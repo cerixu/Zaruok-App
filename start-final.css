@@ -1277,6 +1277,7 @@
 }
 
 .start-final .zf-cats-rail .ctile-img {
+  position: relative;
   width: 66px;
   height: 66px;
   border: 2px solid rgba(255,255,255,.10);
