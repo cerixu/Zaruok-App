@@ -126,7 +126,7 @@ export function startView() {
         kids.push(sectionHead('Kategorie', { action: 'Wszystkie', onAction: () => navigate('/recipes') }));
         kids.push(h('div', { class: 'rail cats' },
           cats.map((cat) => catTile(cat, used.get(cat.id), () =>
-            navigate('/recipes?cat=' + encodeURIComponent(cat.id)))));
+            navigate('/recipes?cat=' + encodeURIComponent(cat.id))))));
       }
 
       if (recent.length) {
