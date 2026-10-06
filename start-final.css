@@ -905,3 +905,46 @@
     height: 27px;
   }
 }
+
+
+.zf-menu-heading {
+  position: relative;
+  gap: 8px;
+  margin-top: 29px;
+  margin-bottom: 11px;
+}
+
+.zf-section-index {
+  display: inline-grid;
+  place-items: center;
+  min-width: 25px;
+  height: 19px;
+  padding: 0 6px;
+  border: 1px solid rgba(242,184,75,.20);
+  border-radius: 999px;
+  color: rgba(242,184,75,.72);
+  background: rgba(242,184,75,.035);
+  font-size: .53rem;
+  letter-spacing: .08em;
+}
+
+.zf-menu-heading .zf-section-line {
+  background: linear-gradient(90deg, rgba(255,255,255,.12), rgba(255,255,255,.025));
+}
+
+.zf-section-caption {
+  margin-left: auto;
+  color: rgba(247,247,244,.22);
+  font-size: .50rem;
+  letter-spacing: .14em;
+}
+
+:root[data-theme="light"] .zf-section-index {
+  border-color: rgba(180,120,30,.22);
+  color: rgba(145,92,18,.72);
+  background: rgba(180,120,30,.035);
+}
+
+:root[data-theme="light"] .zf-section-caption {
+  color: rgba(24,25,27,.25);
+}
