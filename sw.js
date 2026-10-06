@@ -9,7 +9,7 @@
    ZMIANA WERSJI: podbij VERSION (i APP_VERSION w util.js) przy każdej
    aktualizacji plików, żeby urządzenia wykryły nową wersję.
    ========================================================================== */
-const VERSION = 'kucharzyna-1.2.0';
+const VERSION = 'zaruok-1.2.1';
 const NETWORK_TIMEOUT = 3500;
 
 const CORE = [
@@ -38,7 +38,7 @@ self.addEventListener('install', (event) => {
 self.addEventListener('activate', (event) => {
   event.waitUntil((async () => {
     const keys = await caches.keys();
-    await Promise.all(keys.filter((k) => k.startsWith('kucharzyna-') && k !== VERSION).map((k) => caches.delete(k)));
+    await Promise.all(keys.filter((k) => k.startsWith('zaruok-') && k !== VERSION).map((k) => caches.delete(k)));
     await self.clients.claim();
   })());
 });
