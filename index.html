@@ -38,68 +38,57 @@
       } catch (e) {}
     })();
   </script>
-  <!-- Samonaprawa startu PWA: jeśli stary service worker/cache zablokuje moduły, nie zostawiaj użytkownika na splashu. -->
-  <script>
-    (function () {
-      var KEY = 'zaruok-boot-recovery';
-      var recovered = false;
-      try { recovered = sessionStorage.getItem(KEY) === '1'; } catch (e) {}
-      window.addEventListener('error', function (e) {
-        var boot = document.getElementById('boot');
-        if (!boot) return;
-        boot.dataset.error = '1';
-        console.error('Żarłok boot error:', e.error || e.message);
-      });
-      window.addEventListener('unhandledrejection', function (e) {
-        var boot = document.getElementById('boot');
-        if (!boot) return;
-        boot.dataset.error = '1';
-        console.error('Żarłok boot rejection:', e.reason);
-      });
-      setTimeout(function () {
-        var boot = document.getElementById('boot');
-        if (!boot || !document.contains(boot)) return;
-        if (document.querySelector('#view .screen')) return;
-
-        if (!recovered && navigator.onLine && 'serviceWorker' in navigator) {
-          try { sessionStorage.setItem(KEY, '1'); } catch (e) {}
-          Promise.all([
-            navigator.serviceWorker.getRegistrations().then(function (regs) {
-              return Promise.all(regs.map(function (reg) { return reg.unregister(); }));
-            }),
-            window.caches ? caches.keys().then(function (keys) {
-              return Promise.all(keys.filter(function (k) { return k.indexOf('zaruok-') === 0; }).map(function (k) { return caches.delete(k); }));
-            }) : Promise.resolve()
-          ]).finally(function () { location.reload(); });
-          return;
-        }
-
-        boot.classList.add('boot-failed');
-        boot.setAttribute('aria-hidden', 'false');
-        boot.querySelector('.boot-name').textContent = 'Żarłok nie wystartował';
-        var mark = boot.querySelector('.boot-mark');
-        if (mark) mark.textContent = '↻';
-        if (!boot.querySelector('.boot-retry')) {
-          var b = document.createElement('button');
-          b.className = 'boot-retry';
-          b.type = 'button';
-          b.textContent = 'Uruchom ponownie';
-          b.onclick = function () { try { sessionStorage.removeItem(KEY); } catch (e) {} location.reload(); };
-          boot.appendChild(b);
-        }
-      }, 9000);
-    })();
-  </script>
+  <style>
+    #view.boot-shell {
+      min-height: 100%;
+      display: grid;
+      place-items: center;
+      padding: 30px;
+    }
+    .boot-shell-inner {
+      display: grid;
+      justify-items: center;
+      gap: 12px;
+      color: rgba(247,247,244,.72);
+      text-align: center;
+    }
+    .boot-shell-mark {
+      width: 72px;
+      height: 72px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      border: 1px solid rgba(242,184,75,.24);
+      background: rgba(242,184,75,.055);
+      color: #f2b84b;
+      box-shadow: 0 0 0 9px rgba(242,184,75,.02);
+      font-size: 30px;
+    }
+    .boot-shell-name {
+      color: rgba(247,247,244,.92);
+      font: 520 1.2rem -apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif;
+      letter-spacing: -.03em;
+    }
+    .boot-shell-note {
+      color: rgba(247,247,244,.42);
+      font: 500 .68rem -apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif;
+    }
+  </style>
 </head>
 <body>
   <div id="app">
-    <main id="view" aria-live="polite"></main>
+    <main id="view" class="boot-shell" aria-live="polite">
+    <div class="boot-shell-inner">
+      <div class="boot-shell-mark" aria-hidden="true">👨‍🍳</div>
+      <div class="boot-shell-name">Żarłok</div>
+      <div class="boot-shell-note">Przygotowuję Twój notatnik…</div>
+    </div>
+  </main>
     <nav id="tabbar" aria-label="Główna nawigacja"></nav>
   </div>
   <div id="toasts" aria-live="polite"></div>
   <div id="overlays"></div>
   <noscript><p style="padding:24px;font:16px system-ui">Żarłok wymaga włączonego JavaScriptu.</p></noscript>
-  <div id="boot" class="boot" aria-hidden="true"><div class="boot-mark">👨‍🍳</div><div class="boot-name">Żarłok</div></div>
   <script type="module" src="app.js"></script>
 </body>
 </html>
