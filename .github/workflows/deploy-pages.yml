@@ -115,7 +115,7 @@ jobs:
           cat > ci-webkit/playwright.config.js <<'EOF'
           export default {
             testDir: '.',
-            testMatch: '**/ci-webkit/boot.spec.js',
+            testMatch: 'boot.spec.js',
             timeout: 20000,
             projects: [{ name: 'webkit', use: { browserName: 'webkit' } }],
           };
