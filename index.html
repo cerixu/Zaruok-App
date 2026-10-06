@@ -90,9 +90,12 @@
   <div id="overlays"></div>
   <noscript><p style="padding:24px;font:16px system-ui">Żarłok wymaga włączonego JavaScriptu.</p></noscript>
   <script>
-    (async function () {
-      const showError = (err) => {
-        const view = document.getElementById('view');
+    (function () {
+      var shown = false;
+      function showError(message) {
+        if (shown) return;
+        shown = true;
+        var view = document.getElementById('view');
         if (!view) return;
         view.className = '';
         view.innerHTML =
@@ -100,33 +103,40 @@
             '<div style="max-width:330px">' +
               '<div style="font-size:40px;margin-bottom:16px">⚠️</div>' +
               '<h2 style="margin:0 0 10px;font:600 24px system-ui">Żarłok nie wystartował</h2>' +
-              '<p style="margin:0 0 16px;color:rgba(247,247,244,.55);font:14px/1.5 system-ui">Wykryłem błąd ładowania aplikacji zamiast zostawiać Cię na ekranie startowym.</p>' +
+              '<p style="margin:0 0 16px;color:rgba(247,247,244,.55);font:14px/1.5 system-ui">Wystąpił błąd podczas ładowania aplikacji.</p>' +
               '<pre style="margin:0 0 18px;padding:12px;border:1px solid rgba(255,255,255,.1);border-radius:14px;white-space:pre-wrap;overflow:auto;max-height:150px;color:rgba(247,247,244,.7);font:11px/1.45 ui-monospace">' +
-                String(err && (err.stack || err.message || err)).replace(/[<>&]/g, (x) => ({'<':'&lt;','>':'&gt;','&':'&amp;'}[x])) +
+                String(message || 'Nieznany błąd').replace(/[<>&]/g, function (x) {
+                  return x === '<' ? '&lt;' : x === '>' ? '&gt;' : '&amp;';
+                }) +
               '</pre>' +
               '<button id="boot-retry" style="border:0;border-radius:999px;padding:13px 20px;background:#f7f7f4;color:#151515;font:600 14px system-ui">Uruchom ponownie</button>' +
             '</div>' +
           '</div>';
-        var retry = document.getElementById('boot-retry'); if (retry) retry.addEventListener('click', function () { location.reload(); });
-      };
-
-      try {
-        // Stary SW jest najczęstszą przyczyną mieszania wersji index.html/app.js.
-        // Na tym etapie Żarłok startuje bez SW; po uruchomieniu możemy go bezpiecznie włączyć ponownie.
-        if ('serviceWorker' in navigator) {
-          const regs = await navigator.serviceWorker.getRegistrations();
-          await Promise.all(regs.map((reg) => reg.unregister().catch(() => false)));
-        }
-        if ('caches' in window) {
-          const keys = await caches.keys();
-          await Promise.all(keys.map((key) => caches.delete(key).catch(() => false)));
-        }
-        await import('./app.js?v=1.4.2');
-      } catch (err) {
-        console.error('Żarłok boot error:', err);
-        showError(err);
+        var retry = document.getElementById('boot-retry');
+        if (retry) retry.addEventListener('click', function () { location.reload(); });
       }
-    })();
+
+      window.addEventListener('error', function (event) {
+        var file = event && event.filename ? String(event.filename) : '';
+        var msg = event && event.error ? String(event.error.stack || event.error.message || event.error) : (event && event.message ? event.message : '');
+        if (file.indexOf('app.js') >= 0 || file.indexOf('views-') >= 0 || file.indexOf('recipes.js') >= 0) {
+          showError(msg || 'Błąd JavaScript podczas uruchamiania.');
+        }
+      });
+
+      window.addEventListener('unhandledrejection', function (event) {
+        var reason = event && event.reason;
+        showError(reason && (reason.stack || reason.message) ? (reason.stack || reason.message) : String(reason || 'Nieobsłużony błąd Promise.'));
+      });
+
+      window.setTimeout(function () {
+        var view = document.getElementById('view');
+        if (view && view.className.indexOf('boot-shell') >= 0) {
+          showError('Aplikacja nie odpowiedziała podczas uruchamiania.');
+        }
+      }, 8000);
+    }());
   </script>
+  <script type="module" src="app.js?v=1.4.3"></script>
 </body>
 </html>
