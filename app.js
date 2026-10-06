@@ -3,7 +3,7 @@
    obsługa klawiatury iOS (visualViewport), trasy, service worker.
    ========================================================================== */
 import { openDB } from './db.js';
-import { loadAll, state, subscribe, getSetting } from './recipes.js';
+import { loadAll, state, subscribe, getSetting, DEFAULT_SETTINGS, DEFAULT_CATEGORIES } from './recipes.js';
 import { h, icon, toast, $, openSheet } from './ui.js';
 import { APP_VERSION } from './util.js';
 import { setSetting } from './recipes.js';
@@ -175,21 +175,23 @@ function whatsNew() {
 }
 
 async function boot() {
-  try {
-    await openDB();
-    await loadAll();
-  } catch (e) { fatal(e); return; }
+  // Pierwszy render nie zależy od IndexedDB. To jest ważne na iOS, gdzie
+  // otwarcie/odczyt dużej bazy może potrwać wyraźnie dłużej niż render UI.
+  state.settings = { ...DEFAULT_SETTINGS };
+  state.categories = [...DEFAULT_CATEGORIES];
+  state.ready = false;
 
-  if ((getSetting('designV') || 0) < 2) { await setSetting('theme', 'dark'); await setSetting('designV', 2); }   // jednorazowo: nowy ciemny wygląd
-  applyAppearance();
   subscribe((type) => {
     if (type === 'settings') applyAppearance();
     if (type === 'shopping') updateBadge();
   });
+
+  applyAppearance();
   buildTabbar();
   watchViewport();
   watchNetwork();
   startRouter($('#view'), (path, meta) => { setActiveTab(meta); updateBadge(); });
+
   const viewEl = $('#view');
   if (viewEl) viewEl.classList.remove('boot-shell');
 
@@ -197,8 +199,23 @@ async function boot() {
   initTimers();
   requestPersist();
   registerSW();
-  setTimeout(whatsNew, 900);
-  window.__kucharzyna = { state, ready: true };
+  window.__kucharzyna = { state, ready: false };
+
+  // Hydratacja bazy w tle. Start jest już widoczny i interaktywny.
+  try {
+    await openDB();
+    await loadAll();
+    if ((getSetting('designV') || 0) < 2) {
+      await setSetting('theme', 'dark');
+      await setSetting('designV', 2);
+    }
+    applyAppearance();
+    window.__kucharzyna.ready = true;
+    setTimeout(whatsNew, 900);
+  } catch (e) {
+    fatal(e);
+    window.__kucharzyna.ready = false;
+  }
 }
 
 boot();
