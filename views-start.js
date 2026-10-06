@@ -161,7 +161,7 @@ export function startView() {
       }));
       kids.push(h('div', { class: 'rail cats zf-cats-rail' },
         cats.map((cat) => catTile(cat, used.get(cat.id), () =>
-          navigate('/recipes?cat=' + encodeURIComponent(cat.id)))));
+          navigate('/recipes?cat=' + encodeURIComponent(cat.id))))));
     }
 
     if (recent.length) {
