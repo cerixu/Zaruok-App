@@ -54,7 +54,7 @@ export async function registerSW() {
 
   // Przeładuj tylko wtedy, gdy użytkownik sam kliknął „Odśwież”.
   navigator.serviceWorker.addEventListener('controllerchange', () => {
-    if (userAskedForUpdate) { userAskedForUpdate = false; location.reload(); }
+    { userAskedForUpdate = false; location.reload(); }
   });
 
   // Regularne sprawdzanie: po powrocie do aplikacji i co ~30 min.
