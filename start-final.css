@@ -1094,3 +1094,330 @@
   border-color: rgba(20,21,22,.085);
   background: rgba(255,255,255,.20);
 }
+
+
+/* ==========================================================================
+   ŻARŁOK 1.4.8 — finalny rytm Startu / granice, głębia, separacja
+   ========================================================================== */
+
+/* TOPBAR: osobny pas szkła, ale bez ciężkiej belki */
+.start-final .topbar {
+  border-bottom-color: rgba(255,255,255,.075);
+  box-shadow:
+    inset 0 -1px 0 rgba(255,255,255,.018),
+    0 10px 28px rgba(0,0,0,.12);
+}
+
+.start-final .topbar-row {
+  position: relative;
+}
+
+.start-final .topbar-row::after {
+  content: "";
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: -1px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.11) 18%, rgba(255,255,255,.035) 82%, transparent);
+  pointer-events: none;
+}
+
+.start-final .topbar .iconbtn {
+  border-color: rgba(255,255,255,.11);
+  background:
+    radial-gradient(circle at 34% 25%, rgba(255,255,255,.065), transparent 48%),
+    rgba(255,255,255,.028);
+}
+
+/* INTRO: subtelny kontur otwierający całą stronę */
+.start-final .zf-head {
+  position: relative;
+  margin-top: 7px;
+  padding: 19px 12px 13px;
+  border: 1px solid rgba(255,255,255,.065);
+  border-radius: 22px;
+  background:
+    radial-gradient(260px 140px at 14% 0%, rgba(255,150,82,.045), transparent 70%),
+    linear-gradient(145deg, rgba(255,255,255,.018), rgba(255,255,255,.006));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.025),
+    0 12px 30px rgba(0,0,0,.10);
+}
+
+.start-final .zf-head::after {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border: 1px solid rgba(255,255,255,.018);
+  border-radius: 17px;
+  pointer-events: none;
+}
+
+/* HERO: pełna obwódka zamiast dwóch luźnych linii */
+.start-final .zf-feature-wrap {
+  padding-top: 13px;
+}
+
+.start-final .zf-feature {
+  border: 1px solid rgba(255,255,255,.105);
+  border-radius: 27px;
+  background:
+    radial-gradient(150px 150px at 20% 50%, rgba(255,255,255,.045), transparent 72%),
+    radial-gradient(220px 150px at 100% 0%, rgba(108,168,255,.035), transparent 72%),
+    linear-gradient(135deg, rgba(255,255,255,.032), rgba(255,255,255,.008));
+  box-shadow:
+    0 20px 40px rgba(0,0,0,.17),
+    inset 0 1px 0 rgba(255,255,255,.042),
+    inset 0 0 0 1px rgba(255,255,255,.010);
+}
+
+.start-final .zf-feature::before {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border: 1px solid rgba(255,255,255,.025);
+  border-radius: 22px;
+  pointer-events: none;
+}
+
+.start-final .zf-feature-ring {
+  box-shadow:
+    0 20px 44px rgba(0,0,0,.30),
+    0 0 0 1px rgba(255,255,255,.085),
+    0 0 0 6px rgba(255,255,255,.018);
+}
+
+.start-final .zf-feature-copy {
+  position: relative;
+  z-index: 1;
+}
+
+.start-final .zf-feature-open {
+  min-height: 34px;
+  padding: 0 10px;
+  border: 1px solid rgba(242,184,75,.22);
+  border-radius: 999px;
+  background: rgba(242,184,75,.035);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.012);
+}
+
+/* SEKCJE: osobna granica między blokami */
+.start-final .zf-section-title {
+  position: relative;
+}
+
+.start-final .zf-tools-title {
+  margin-top: 28px;
+}
+
+.start-final .zf-tools-title::after {
+  content: "02";
+  display: inline-grid;
+  place-items: center;
+  min-width: 25px;
+  height: 19px;
+  padding: 0 6px;
+  margin-left: -2px;
+  order: -1;
+  border: 1px solid rgba(108,168,255,.18);
+  border-radius: 999px;
+  color: rgba(108,168,255,.66);
+  background: rgba(108,168,255,.028);
+  font-size: .53rem;
+  letter-spacing: .08em;
+}
+
+.start-final .zf-tools-title {
+  gap: 8px;
+}
+
+.start-final .zf-tools-title .zf-section-link {
+  border: 1px solid rgba(242,184,75,.14);
+  border-radius: 999px;
+  padding: 0 9px 0 10px;
+  background: rgba(242,184,75,.024);
+}
+
+/* MENU / quick cards: bardziej czytelna główna granica */
+.start-final .zf-actions {
+  position: relative;
+  border-color: rgba(255,255,255,.11);
+}
+
+.start-final .zf-actions::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border: 1px solid rgba(255,255,255,.016);
+  border-radius: 19px;
+  pointer-events: none;
+}
+
+/* KATEGORIE: każdy krąg dostaje własną „tarczę” */
+.start-final .zf-cats-rail {
+  gap: 12px;
+  padding-left: 10px;
+  padding-right: 10px;
+  overflow-y: visible;
+}
+
+.start-final .zf-cats-rail .ctile {
+  position: relative;
+  min-width: 90px;
+  min-height: 110px;
+  padding: 7px 5px 6px;
+  border: 1px solid rgba(255,255,255,.055);
+  border-radius: 20px;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.024), rgba(255,255,255,.006));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.025),
+    0 8px 20px rgba(0,0,0,.08);
+}
+
+.start-final .zf-cats-rail .ctile-img {
+  width: 66px;
+  height: 66px;
+  border: 2px solid rgba(255,255,255,.10);
+  box-shadow:
+    0 10px 22px rgba(0,0,0,.22),
+    0 0 0 4px rgba(255,255,255,.015);
+}
+
+.start-final .zf-cats-rail .ctile-img::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.08);
+  pointer-events: none;
+}
+
+.start-final .zf-cats-rail .ctile-name {
+  margin-top: 1px;
+  color: rgba(247,247,244,.66);
+  font-weight: 560;
+}
+
+.start-final .zf-cats-rail .ctile-n {
+  display: inline-flex;
+  min-width: 22px;
+  min-height: 17px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0;
+  padding: 0 6px;
+  border: 1px solid rgba(255,255,255,.07);
+  border-radius: 999px;
+  background: rgba(255,255,255,.018);
+  color: rgba(247,247,244,.42);
+}
+
+/* OSTATNIO / ULUBIONE: kapsuła listy i czytelniejsze koła */
+.start-final .zf-recipe-rail {
+  gap: 12px;
+  padding: 8px 10px 11px;
+  border: 1px solid rgba(255,255,255,.055);
+  border-radius: 23px;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.022), rgba(255,255,255,.006));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.018),
+    0 10px 26px rgba(0,0,0,.09);
+}
+
+.start-final .zf-recipe-rail .rtile-img {
+  box-shadow:
+    0 14px 26px rgba(0,0,0,.22),
+    0 0 0 2px rgba(255,255,255,.045);
+}
+
+.start-final .zf-recipe-rail .rtile-name {
+  color: rgba(247,247,244,.72);
+}
+
+.start-final .zf-recipe-rail .rt-sub {
+  color: rgba(247,247,244,.34);
+}
+
+/* TABBAR: dół ma należeć do tego samego systemu szkła */
+#tabbar {
+  background:
+    linear-gradient(180deg, rgba(27,28,31,.92), rgba(18,19,21,.97));
+  border-top-color: rgba(255,255,255,.095);
+  box-shadow:
+    0 -14px 34px rgba(0,0,0,.20),
+    inset 0 1px 0 rgba(255,255,255,.028);
+  -webkit-backdrop-filter: blur(22px) saturate(1.18);
+  backdrop-filter: blur(22px) saturate(1.18);
+}
+
+.start-final + * {}
+
+#tabbar .tab {
+  position: relative;
+}
+
+#tabbar .tab-ico {
+  border: 1px solid rgba(255,255,255,.055);
+  background: rgba(255,255,255,.014);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.018);
+}
+
+#tabbar .tab.on .tab-ico {
+  border-color: color-mix(in srgb, var(--accent) 26%, rgba(255,255,255,.05));
+  box-shadow:
+    0 0 0 4px color-mix(in srgb, var(--accent) 4%, transparent),
+    0 8px 18px color-mix(in srgb, var(--accent) 10%, transparent),
+    inset 0 1px 0 rgba(255,255,255,.06);
+}
+
+:root[data-theme="light"] .start-final .topbar {
+  border-bottom-color: rgba(20,21,22,.09);
+  box-shadow: inset 0 -1px 0 rgba(20,21,22,.018), 0 8px 22px rgba(20,21,22,.06);
+}
+
+:root[data-theme="light"] .start-final .zf-head,
+:root[data-theme="light"] .start-final .zf-feature,
+:root[data-theme="light"] .start-final .zf-actions,
+:root[data-theme="light"] .start-final .zf-cats-rail,
+:root[data-theme="light"] .start-final .zf-recipe-rail {
+  border-color: rgba(20,21,22,.10);
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.80), rgba(255,255,255,.42)),
+    rgba(255,255,255,.24);
+  box-shadow:
+    0 14px 30px rgba(20,21,22,.07),
+    inset 0 1px 0 rgba(255,255,255,.80);
+}
+
+:root[data-theme="light"] .start-final .zf-head::after,
+:root[data-theme="light"] .start-final .zf-feature::before,
+:root[data-theme="light"] .start-final .zf-actions::after {
+  border-color: rgba(20,21,22,.025);
+}
+
+:root[data-theme="light"] .start-final .zf-cats-rail .ctile,
+:root[data-theme="light"] .start-final .zf-recipe-rail {
+  border-color: rgba(20,21,22,.075);
+}
+
+:root[data-theme="light"] .start-final .zf-cats-rail .ctile-n,
+:root[data-theme="light"] #tabbar .tab-ico {
+  border-color: rgba(20,21,22,.075);
+  background: rgba(255,255,255,.24);
+}
+
+:root[data-theme="light"] #tabbar {
+  background: linear-gradient(180deg, rgba(255,255,255,.90), rgba(247,247,243,.96));
+  border-top-color: rgba(20,21,22,.09);
+  box-shadow: 0 -12px 28px rgba(20,21,22,.08), inset 0 1px 0 rgba(255,255,255,.88);
+}
+
+@media (max-width: 380px) {
+  .start-final .zf-head { padding-left: 10px; padding-right: 10px; border-radius: 20px; }
+  .start-final .zf-feature { border-radius: 23px; }
+  .start-final .zf-cats-rail .ctile { min-width: 84px; padding-left: 3px; padding-right: 3px; }
+  .start-final .zf-cats-rail { padding-left: 7px; padding-right: 7px; }
+}
