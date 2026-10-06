@@ -21,7 +21,7 @@ export const isIOS = () => /iPhone|iPad|iPod/.test(navigator.userAgent) || (navi
 function promptUpdate(worker) {
   if (updateShown) return;
   updateShown = true;
-  toast('Nowa wersja Kucharzyny jest dostępna', {
+  toast('Nowa wersja Żarłoka jest dostępna', {
     sticky: true,
     action: {
       label: 'Odśwież',
@@ -36,7 +36,7 @@ export const updateWaiting = () => updateShown;
 export async function registerSW() {
   if (!swSupported()) return null;
   try {
-    registration = await navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' });
+    registration = await navigator.serviceWorker.register('./sw.js', { updateViaCache: 'none' });
   } catch (e) {
     console.warn('Service worker nie został zarejestrowany:', e);
     return null;
