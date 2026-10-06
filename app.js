@@ -198,7 +198,7 @@ async function boot() {
   mountTimerPill($('#app'), openTimersSheet);
   initTimers();
   requestPersist();
-  registerSW();
+  // Service Worker wyłączony podczas stabilizacji startu. Loader czyści stare SW/cache przed importem aplikacji.
   window.__kucharzyna = { state, ready: false };
 
   // Hydratacja bazy w tle. Start jest już widoczny i interaktywny.
