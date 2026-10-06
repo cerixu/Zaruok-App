@@ -136,8 +136,8 @@ jobs:
             page.on('pageerror', (e) => errors.push(String(e && (e.stack || e.message || e))));
             page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
 
-            await page.goto('http://127.0.0.1:4173/index.html', { waitUntil: 'domcontentloaded', timeout: 10000 });
-            await page.waitForTimeout(1500);
+            await page.goto('http://127.0.0.1:4173/index.html', { waitUntil: 'commit', timeout: 5000 });
+            await page.waitForTimeout(2500);
 
             console.log('WEBKIT BODY:\n' + await page.locator('body').innerText());
             console.log('WEBKIT PAGE ERRORS:\n' + JSON.stringify(errors, null, 2));
