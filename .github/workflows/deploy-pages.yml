@@ -113,14 +113,15 @@ jobs:
           set -e
           cat > /tmp/zaruok-webkit.config.js <<'EOF'
           export default {
-            testDir: '/tmp',
+            testDir: '/tmp/zaruok-tests',
             use: { browserName: 'webkit' },
             timeout: 20000,
             webServer: { command: 'python3 -m http.server 4173 --directory .', port: 4173, reuseExistingServer: false },
           };
           EOF
 
-          cat > /tmp/boot.spec.js <<'EOF'
+          mkdir -p /tmp/zaruok-tests
+          cat > /tmp/zaruok-tests/boot.spec.js <<'EOF'
           import { test, expect } from '@playwright/test';
 
           test('Żarłok uruchamia się w WebKit bez błędu JS', async ({ page }) => {
