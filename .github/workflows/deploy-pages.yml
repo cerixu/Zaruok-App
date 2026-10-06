@@ -137,6 +137,17 @@ jobs:
             console.log('WEBKIT BODY:\n' + await page.locator('body').innerText());
             console.log('WEBKIT PAGE ERRORS:\n' + JSON.stringify(errors, null, 2));
 
+            const modules = ["app.js","db.js","recipes.js","ui.js","util.js","router.js","pwa.js","timers.js","components.js","art.js","backup.js","calculator.js","kitchen.js","importer.js","search.js","shopping.js","nutrition.js","calc-kit.js","views-start.js","views-recipes.js","views-detail.js","views-editor.js","views-cook.js","views-calc.js","views-import.js","views-settings.js","views-guide.js","views-search.js","views-tools.js","art-extra.js","art-kit.js","tools-data.js"];
+            const moduleResults = await page.evaluate(async (mods) => {
+              const out = [];
+              for (const mod of mods) {
+                try { await import('./' + mod + '?diag=' + Date.now() + '-' + Math.random()); out.push({ mod, ok: true }); }
+                catch (e) { out.push({ mod, ok: false, error: String(e && (e.stack || e.message || e)) }); }
+              }
+              return out;
+            }, modules);
+            console.log('WEBKIT MODULE DIAGNOSTIC:\\n' + JSON.stringify(moduleResults, null, 2));
+
             await expect(page.getByText('Żarłok nie wystartował')).toHaveCount(0);
             await expect(page.getByText('Przygotowuję Twój notatnik…')).toHaveCount(0);
 
