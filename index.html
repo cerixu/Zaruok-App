@@ -21,6 +21,7 @@
   <link rel="manifest" href="manifest.webmanifest">
 
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="start-final.css">
 
   <!-- Motyw ustawiany zanim pojawi się cokolwiek (brak błysku). Źródłem prawdy jest IndexedDB. -->
   <script>
@@ -35,6 +36,58 @@
         if (g) d.style.setProperty('--glass', String(+g / 100));
         if (tl) d.setAttribute('data-tablabels', tl);
       } catch (e) {}
+    })();
+  </script>
+  <!-- Samonaprawa startu PWA: jeśli stary service worker/cache zablokuje moduły, nie zostawiaj użytkownika na splashu. -->
+  <script>
+    (function () {
+      var KEY = 'zaruok-boot-recovery';
+      var recovered = false;
+      try { recovered = sessionStorage.getItem(KEY) === '1'; } catch (e) {}
+      window.addEventListener('error', function (e) {
+        var boot = document.getElementById('boot');
+        if (!boot) return;
+        boot.dataset.error = '1';
+        console.error('Żarłok boot error:', e.error || e.message);
+      });
+      window.addEventListener('unhandledrejection', function (e) {
+        var boot = document.getElementById('boot');
+        if (!boot) return;
+        boot.dataset.error = '1';
+        console.error('Żarłok boot rejection:', e.reason);
+      });
+      setTimeout(function () {
+        var boot = document.getElementById('boot');
+        if (!boot || !document.contains(boot)) return;
+        if (document.querySelector('#view .screen')) return;
+
+        if (!recovered && navigator.onLine && 'serviceWorker' in navigator) {
+          try { sessionStorage.setItem(KEY, '1'); } catch (e) {}
+          Promise.all([
+            navigator.serviceWorker.getRegistrations().then(function (regs) {
+              return Promise.all(regs.map(function (reg) { return reg.unregister(); }));
+            }),
+            window.caches ? caches.keys().then(function (keys) {
+              return Promise.all(keys.filter(function (k) { return k.indexOf('zaruok-') === 0; }).map(function (k) { return caches.delete(k); }));
+            }) : Promise.resolve()
+          ]).finally(function () { location.reload(); });
+          return;
+        }
+
+        boot.classList.add('boot-failed');
+        boot.setAttribute('aria-hidden', 'false');
+        boot.querySelector('.boot-name').textContent = 'Żarłok nie wystartował';
+        var mark = boot.querySelector('.boot-mark');
+        if (mark) mark.textContent = '↻';
+        if (!boot.querySelector('.boot-retry')) {
+          var b = document.createElement('button');
+          b.className = 'boot-retry';
+          b.type = 'button';
+          b.textContent = 'Uruchom ponownie';
+          b.onclick = function () { try { sessionStorage.removeItem(KEY); } catch (e) {} location.reload(); };
+          boot.appendChild(b);
+        }
+      }, 9000);
     })();
   </script>
 </head>
