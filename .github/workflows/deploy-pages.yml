@@ -122,7 +122,7 @@ jobs:
 
           mkdir -p /tmp/zaruok-tests
           cat > /tmp/zaruok-tests/boot.spec.js <<'EOF'
-          import { test, expect } from '@playwright/test';
+          import { test, expect } from 'playwright/test';
 
           test('Żarłok uruchamia się w WebKit bez błędu JS', async ({ page }) => {
             const errors = [];
