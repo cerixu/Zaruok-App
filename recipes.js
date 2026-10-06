@@ -141,21 +141,42 @@ export async function loadAll() {
   const [recipes, cats, shop, sets, ings] = await Promise.all([
     db.getAll('recipes'), db.getAll('categories'), db.getAll('shoppingItems'), db.getAll('settings'), db.getAll('ingredients'),
   ]);
+
   state.recipes.clear();
   recipes.forEach((r) => state.recipes.set(r.id, normalizeRecipe(r)));
   state.shopping = shop.sort((a, b) => (a.createdAt || 0) - (b.createdAt || 0));
+
   state.settings = {};
   sets.forEach((s) => { if (!String(s.key).includes(':')) state.settings[s.key] = s.value; });
+
   state.catalog = new Map(ings.map((i) => [i.id, i]));
-  if (!cats.length) { await db.putMany('categories', DEFAULT_CATEGORIES); state.categories = [...DEFAULT_CATEGORIES]; }
-  else state.categories = cats.sort((a, b) => a.order - b.order);
-  if (!getSetting('seeded')) {
-    if (!state.recipes.size) await restoreSeeds();
-    await setSetting('seeded', true);
+
+  if (!cats.length) {
+    await db.putMany('categories', DEFAULT_CATEGORIES);
+    state.categories = [...DEFAULT_CATEGORIES];
   } else {
-    await addNewSeeds();
+    state.categories = cats.sort((a, b) => a.order - b.order);
   }
+
+  // Krytyczna zmiana: hydratacja danych jest zakończona zanim aplikacja ruszy.
+  // Duży seed nie może jednak blokować pierwszego renderu.
   state.ready = true;
+  emit('hydrated');
+
+  void (async () => {
+    try {
+      if (!getSetting('seeded')) {
+        if (!state.recipes.size) await restoreSeeds();
+        await setSetting('seeded', true);
+      } else {
+        await addNewSeeds();
+      }
+    } catch (e) {
+      console.error('Seed danych nie został dokończony:', e);
+    }
+  })();
+
+  return state;
 }
 
 /* ---------- Kategorie ---------- */
