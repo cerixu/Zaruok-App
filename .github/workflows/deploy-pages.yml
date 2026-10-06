@@ -134,6 +134,9 @@ jobs:
             await page.goto('http://127.0.0.1:4173/index.html', { waitUntil: 'load' });
             await page.waitForTimeout(5000);
 
+            console.log('WEBKIT BODY:\n' + await page.locator('body').innerText());
+            console.log('WEBKIT PAGE ERRORS:\n' + JSON.stringify(errors, null, 2));
+
             await expect(page.getByText('Żarłok nie wystartował')).toHaveCount(0);
             await expect(page.getByText('Przygotowuję Twój notatnik…')).toHaveCount(0);
 
