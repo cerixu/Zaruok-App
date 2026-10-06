@@ -142,24 +142,6 @@ jobs:
             console.log('WEBKIT BODY:\n' + await page.locator('body').innerText());
             console.log('WEBKIT PAGE ERRORS:\n' + JSON.stringify(errors, null, 2));
 
-            const moduleResults = await page.evaluate(async () => {
-              const out = [];
-              const mods = ['app.js','recipes.js','views-start.js','components.js','ui.js','router.js','db.js','util.js'];
-              for (const mod of mods) {
-                try {
-                  const result = await Promise.race([
-                    import('./' + mod + '?diag=' + Date.now()),
-                    new Promise((_, reject) => setTimeout(() => reject(new Error('TIMEOUT')), 3000)),
-                  ]);
-                  out.push({ mod, ok: true, result: typeof result });
-                } catch (e) {
-                  out.push({ mod, ok: false, error: String(e && (e.stack || e.message || e)) });
-                }
-              }
-              return out;
-            });
-            console.log('WEBKIT MODULE DIAGNOSTIC:\n' + JSON.stringify(moduleResults, null, 2));
-
             await expect(page.getByText('Żarłok nie wystartował')).toHaveCount(0);
             await expect(page.getByText('Przygotowuję Twój notatnik…')).toHaveCount(0);
 
