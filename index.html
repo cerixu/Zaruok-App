@@ -107,7 +107,7 @@
               '<button id="boot-retry" style="border:0;border-radius:999px;padding:13px 20px;background:#f7f7f4;color:#151515;font:600 14px system-ui">Uruchom ponownie</button>' +
             '</div>' +
           '</div>';
-        document.getElementById('boot-retry')?.addEventListener('click', () => location.reload());
+        var retry = document.getElementById('boot-retry'); if (retry) retry.addEventListener('click', function () { location.reload(); });
       };
 
       try {
