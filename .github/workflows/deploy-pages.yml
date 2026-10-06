@@ -24,6 +24,32 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
 
+      - name: Validate JavaScript
+        shell: bash
+        run: |
+          set -e
+          while IFS= read -r -d '' file; do
+            node --check "$file"
+          done < <(find . -maxdepth 1 -type f -name '*.js' -print0)
+
+          node --input-type=module <<'NODE'
+          const fs = await import('node:fs/promises');
+          const names = (await fs.readdir('.')).filter((n) => n.endsWith('.js'));
+          const missing = [];
+          for (const name of names) {
+            const source = await fs.readFile(name, 'utf8');
+            for (const match of source.matchAll(/(?:from|import)\s*['"]\.(\/[^'"]+)['"]/g)) {
+              const target = match[1].replace(/^\//, '');
+              try { await fs.access(new URL(target, import.meta.url)); }
+              catch { missing.push(`${name} -> ${target}`); }
+            }
+          }
+          if (missing.length) {
+            console.error('Missing local JS imports:', missing.join(', '));
+            process.exit(1);
+          }
+          NODE
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
