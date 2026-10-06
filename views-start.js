@@ -119,9 +119,11 @@ export function startView() {
 
       h('div', { class: 'zf-feature-wrap' }, featureRecipe(feature)),
 
-      h('div', { class: 'zf-section-title' },
+      h('div', { class: 'zf-section-title zf-menu-heading' },
+        h('span', { class: 'zf-section-index' }, '01'),
         h('span', null, 'MENU'),
-        h('span', { class: 'zf-section-line' })),
+        h('span', { class: 'zf-section-line' }),
+        h('span', { class: 'zf-section-caption' }, 'NAWIGACJA')),
 
       h('div', { class: 'zf-actions' },
         ACTIONS.map((a) => actionRow(a, a.label === 'Zakupy' ? n : 0))),
