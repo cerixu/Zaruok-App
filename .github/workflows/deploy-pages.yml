@@ -128,6 +128,11 @@ jobs:
 
           test('Żarłok uruchamia się w WebKit bez błędu JS', async ({ page }) => {
             const errors = [];
+            await page.addInitScript(() => {
+              window.__bootErrors = [];
+              window.addEventListener('error', (e) => window.__bootErrors.push({ message: e.message, filename: e.filename, line: e.lineno, col: e.colno, stack: e.error && e.error.stack }));
+              window.addEventListener('unhandledrejection', (e) => window.__bootErrors.push({ message: String(e.reason), stack: e.reason && e.reason.stack }));
+            });
             page.on('pageerror', (e) => errors.push(String(e && (e.stack || e.message || e))));
             page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
 
