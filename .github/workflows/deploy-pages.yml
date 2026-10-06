@@ -146,8 +146,9 @@ jobs:
           SERVER_PID=$!
           trap 'kill $SERVER_PID 2>/dev/null || true; rm -rf ci-webkit playwright.config.mjs' EXIT
 
-          npx --yes @playwright/test@1.55.0 install --with-deps webkit
-          npx --yes --package=@playwright/test@1.55.0 playwright test --config=playwright.config.mjs --reporter=line
+          npm install --no-save --no-package-lock @playwright/test@1.55.0
+          npx playwright install --with-deps webkit
+          npx playwright test --config=playwright.config.mjs --reporter=line
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
