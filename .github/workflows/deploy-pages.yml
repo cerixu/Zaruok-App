@@ -107,6 +107,44 @@ jobs:
           console.log('All local named imports match their exports.');
           NODE
 
+      - name: WebKit startup smoke test
+        shell: bash
+        run: |
+          set -e
+          cat > /tmp/zaruok-webkit.config.js <<'EOF'
+          export default {
+            testDir: '/tmp',
+            use: { browserName: 'webkit' },
+            timeout: 20000,
+            webServer: { command: 'python3 -m http.server 4173 --directory .', port: 4173, reuseExistingServer: false },
+          };
+          EOF
+
+          cat > /tmp/boot.spec.js <<'EOF'
+          import { test, expect } from '@playwright/test';
+
+          test('Żarłok uruchamia się w WebKit bez błędu JS', async ({ page }) => {
+            const errors = [];
+            page.on('pageerror', (e) => errors.push(String(e && (e.stack || e.message || e))));
+            page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
+
+            await page.goto('http://127.0.0.1:4173/index.html', { waitUntil: 'networkidle' });
+            await page.waitForTimeout(5000);
+
+            const errorScreen = page.getByText('Żarłok nie wystartował');
+            await expect(errorScreen).toHaveCount(0);
+
+            const shell = page.getByText('Przygotowuję Twój notatnik…');
+            await expect(shell).toHaveCount(0);
+
+            if (errors.length) throw new Error('Browser errors:\\n' + errors.join('\\n'));
+            await expect(page.locator('#view')).toBeVisible();
+          });
+          EOF
+
+          npx --yes playwright@1.55.0 install --with-deps webkit
+          npx --yes --package=playwright@1.55.0 playwright test /tmp/boot.spec.js --config=/tmp/zaruok-webkit.config.js --reporter=line
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
