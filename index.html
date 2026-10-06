@@ -89,6 +89,44 @@
   <div id="toasts" aria-live="polite"></div>
   <div id="overlays"></div>
   <noscript><p style="padding:24px;font:16px system-ui">Żarłok wymaga włączonego JavaScriptu.</p></noscript>
-  <script type="module" src="app.js"></script>
+  <script>
+    (async function () {
+      const showError = (err) => {
+        const view = document.getElementById('view');
+        if (!view) return;
+        view.className = '';
+        view.innerHTML =
+          '<div style="min-height:100%;display:grid;place-items:center;padding:28px;text-align:center;color:#f7f7f4">' +
+            '<div style="max-width:330px">' +
+              '<div style="font-size:40px;margin-bottom:16px">⚠️</div>' +
+              '<h2 style="margin:0 0 10px;font:600 24px system-ui">Żarłok nie wystartował</h2>' +
+              '<p style="margin:0 0 16px;color:rgba(247,247,244,.55);font:14px/1.5 system-ui">Wykryłem błąd ładowania aplikacji zamiast zostawiać Cię na ekranie startowym.</p>' +
+              '<pre style="margin:0 0 18px;padding:12px;border:1px solid rgba(255,255,255,.1);border-radius:14px;white-space:pre-wrap;overflow:auto;max-height:150px;color:rgba(247,247,244,.7);font:11px/1.45 ui-monospace">' +
+                String(err && (err.stack || err.message || err)).replace(/[<>&]/g, (x) => ({'<':'&lt;','>':'&gt;','&':'&amp;'}[x])) +
+              '</pre>' +
+              '<button id="boot-retry" style="border:0;border-radius:999px;padding:13px 20px;background:#f7f7f4;color:#151515;font:600 14px system-ui">Uruchom ponownie</button>' +
+            '</div>' +
+          '</div>';
+        document.getElementById('boot-retry')?.addEventListener('click', () => location.reload());
+      };
+
+      try {
+        // Stary SW jest najczęstszą przyczyną mieszania wersji index.html/app.js.
+        // Na tym etapie Żarłok startuje bez SW; po uruchomieniu możemy go bezpiecznie włączyć ponownie.
+        if ('serviceWorker' in navigator) {
+          const regs = await navigator.serviceWorker.getRegistrations();
+          await Promise.all(regs.map((reg) => reg.unregister().catch(() => false)));
+        }
+        if ('caches' in window) {
+          const keys = await caches.keys();
+          await Promise.all(keys.map((key) => caches.delete(key).catch(() => false)));
+        }
+        await import('./app.js?v=1.4.2');
+      } catch (err) {
+        console.error('Żarłok boot error:', err);
+        showError(err);
+      }
+    })();
+  </script>
 </body>
 </html>
