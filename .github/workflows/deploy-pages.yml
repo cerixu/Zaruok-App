@@ -50,6 +50,63 @@ jobs:
           }
           NODE
 
+      - name: Validate module exports
+        shell: bash
+        run: |
+          set -e
+          node --input-type=module <<'NODE'
+          const fs = await import('node:fs/promises');
+          const files = (await fs.readdir('.')).filter((n) => n.endsWith('.js'));
+          const sourceByFile = new Map();
+          const exportsByFile = new Map();
+
+          for (const file of files) {
+            const source = await fs.readFile(file, 'utf8');
+            sourceByFile.set(file, source);
+            const ex = new Set();
+
+            for (const m of source.matchAll(/\bexport\s+(?:async\s+)?function\s+([A-Za-z_$][\\w$]*)/g)) ex.add(m[1]);
+            for (const m of source.matchAll(/\bexport\s+(?:const|let|var|class)\s+([A-Za-z_$][\\w$]*)/g)) ex.add(m[1]);
+            for (const m of source.matchAll(/\bexport\s*\{([\\s\\S]*?)\}/g)) {
+              for (const part of m[1].split(',')) {
+                const cleaned = part.replace(/\/\/.*$/gm, '').trim();
+                if (!cleaned) continue;
+                const match = cleaned.match(/^([A-Za-z_$][\\w$]*)(?:\\s+as\\s+([A-Za-z_$][\\w$]*))?$/);
+                if (match) ex.add(match[2] || match[1]);
+              }
+            }
+            exportsByFile.set(file, ex);
+          }
+
+          const errors = [];
+          for (const [file, source] of sourceByFile) {
+            for (const m of source.matchAll(/import\s*\{([\\s\\S]*?)\}\s*from\s*['"](.+?)['"]/g)) {
+              const spec = m[1];
+              const targetPath = m[2];
+              if (!targetPath.startsWith('./') || !targetPath.endsWith('.js')) continue;
+              const target = targetPath.slice(2);
+              const ex = exportsByFile.get(target);
+              if (!ex) {
+                errors.push(`${file} -> missing module ${target}`);
+                continue;
+              }
+              for (const part of spec.split(',')) {
+                const cleaned = part.replace(/\/\/.*$/gm, '').trim();
+                if (!cleaned) continue;
+                const imported = cleaned.match(/^([A-Za-z_$][\\w$]*)(?:\\s+as\\s+[A-Za-z_$][\\w$]*)?$/)?.[1];
+                if (imported && !ex.has(imported)) errors.push(`${file} -> ${imported} is not exported by ${target}`);
+              }
+            }
+          }
+
+          if (errors.length) {
+            console.error('Broken named imports:');
+            console.error(errors.join('\\n'));
+            process.exit(1);
+          }
+          console.log('All local named imports match their exports.');
+          NODE
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
