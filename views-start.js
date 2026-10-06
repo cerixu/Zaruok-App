@@ -179,7 +179,7 @@ export function startView() {
 
   paint();
   unsub = subscribe((t) => {
-    if (t === 'recipes' || t === 'shopping' || t === 'settings' || t === 'categories') paint();
+    if (t === 'recipes' || t === 'shopping' || t === 'settings' || t === 'categories' || t === 'hydrated') paint();
   });
 
   return { el: s.el, destroy: () => unsub && unsub() };
