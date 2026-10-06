@@ -150,8 +150,7 @@ route('/settings', () => settingsView(), { tab: 'settings' });
 
 function fatal(err) {
   console.error(err);
-  const bootEl = $('#boot');
-  if (bootEl) bootEl.remove();
+  $('#view').classList.remove('boot-shell');
   $('#view').replaceChildren(h('div', { class: 'screen' }, h('div', { class: 'scroll' }, h('div', { class: 'content' },
     h('div', { class: 'empty' }, h('div', { class: 'empty-emoji' }, '⚠️'), h('h2', null, 'Nie mogę otworzyć bazy danych'),
       h('p', { class: 'muted' }, 'Kucharzyna zapisuje dane lokalnie (IndexedDB). Sprawdź, czy przeglądarka nie działa w trybie prywatnym ani nie blokuje pamięci witryny, i uruchom ponownie.'),
@@ -191,8 +190,8 @@ async function boot() {
   watchViewport();
   watchNetwork();
   startRouter($('#view'), (path, meta) => { setActiveTab(meta); updateBadge(); });
-  const bootEl = $('#boot');
-  if (bootEl) { bootEl.classList.add('gone'); setTimeout(() => bootEl.remove(), 350); }
+  const viewEl = $('#view');
+  if (viewEl) viewEl.classList.remove('boot-shell');
 
   mountTimerPill($('#app'), openTimersSheet);
   initTimers();
