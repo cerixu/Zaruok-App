@@ -144,7 +144,7 @@ jobs:
           EOF
 
           npx --yes playwright@1.55.0 install --with-deps webkit
-          npx --yes --package=playwright@1.55.0 playwright test /tmp/boot.spec.js --config=/tmp/zaruok-webkit.config.js --reporter=line
+          npx --yes --package=playwright@1.55.0 playwright test --config=/tmp/zaruok-webkit.config.js --reporter=line
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
