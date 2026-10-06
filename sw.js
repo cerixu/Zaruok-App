@@ -9,7 +9,7 @@
    ZMIANA WERSJI: podbij VERSION (i APP_VERSION w util.js) przy każdej
    aktualizacji plików, żeby urządzenia wykryły nową wersję.
    ========================================================================== */
-const VERSION = 'zaruok-1.4.0';
+const VERSION = 'zaruok-1.4.1';
 const NETWORK_TIMEOUT = 3500;
 
 const CORE = [
@@ -32,6 +32,9 @@ self.addEventListener('install', (event) => {
     const cache = await caches.open(VERSION);
     // cache:'reload' omija pamięć HTTP przeglądarki — w cache lądują świeże pliki.
     await cache.addAll(CORE.map((p) => new Request(scopeUrl(p), { cache: 'reload' })));
+    // Żarłok jest aplikacją offline/PWA. Nowy SW ma przejąć aplikację
+    // od razu, inaczej Safari może mieszać nowy index.html ze starym app.js.
+    await self.skipWaiting();
   })());
 });
 
