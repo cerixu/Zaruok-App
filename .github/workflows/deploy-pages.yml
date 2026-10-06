@@ -111,17 +111,17 @@ jobs:
         shell: bash
         run: |
           set -e
-          mkdir -p .ci-webkit
-          cat > .ci-webkit/playwright.config.js <<'EOF'
+          mkdir -p ci-webkit
+          cat > ci-webkit/playwright.config.js <<'EOF'
           export default {
             testDir: '.',
-            testMatch: '**/.ci-webkit/boot.spec.js',
+            testMatch: '**/ci-webkit/boot.spec.js',
             timeout: 20000,
             projects: [{ name: 'webkit', use: { browserName: 'webkit' } }],
           };
           EOF
 
-          cat > .ci-webkit/boot.spec.js <<'EOF'
+          cat > ci-webkit/boot.spec.js <<'EOF'
           import { test, expect } from 'playwright/test';
 
           test('Żarłok uruchamia się w WebKit bez błędu JS', async ({ page }) => {
@@ -142,9 +142,9 @@ jobs:
 
           python3 -m http.server 4173 --directory . >/tmp/zaruok-http.log 2>&1 &
           SERVER_PID=$!
-          trap 'kill $SERVER_PID 2>/dev/null || true; rm -rf .ci-webkit' EXIT
+          trap 'kill $SERVER_PID 2>/dev/null || true; rm -rf ci-webkit' EXIT
           npx --yes playwright@1.55.0 install --with-deps webkit
-          npx --yes --package=playwright@1.55.0 playwright test --config=.ci-webkit/playwright.config.js --reporter=line
+          npx --yes --package=playwright@1.55.0 playwright test --config=ci-webkit/playwright.config.js --reporter=line
           test -s /tmp/zaruok-http.log
 
       - name: Setup Pages
