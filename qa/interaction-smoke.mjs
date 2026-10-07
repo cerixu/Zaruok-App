@@ -96,6 +96,7 @@ try {
   // Powrót i test GOTUJĘ.
   await page.goto(base + href, { waitUntil: 'networkidle' });
   await ready();
+  await page.waitForSelector('.detail', { state: 'visible', timeout: 5000 });
   await page.getByRole('button', { name: 'GOTUJĘ' }).first().click();
   await page.waitForTimeout(200);
   if (!location.hash.includes('/guide/')) throw new Error('GOTUJĘ nie prowadzi do trybu prowadzenia');
