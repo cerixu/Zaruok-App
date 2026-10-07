@@ -16,7 +16,7 @@ async function dismiss() {
 }
 async function firstRecipeHeart() {
   const recipe = page.locator('a[href^="#/recipe/"]').first();
-  if (!(await recipe.count())) throw new Error('Brak receptury testowej.');
+  await recipe.waitFor({ state: 'visible', timeout: 10000 });
   const card = recipe.locator('xpath=ancestor::*[contains(@class,"rtile")][1]');
   const heart = card.locator('.heart').first();
   if (!(await heart.count())) throw new Error('Brak serduszka na karcie receptury.');
