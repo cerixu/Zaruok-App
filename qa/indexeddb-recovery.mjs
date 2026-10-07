@@ -14,7 +14,18 @@ page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
 
 try {
   await page.goto(base, { waitUntil: 'networkidle' });
-  await page.waitForFunction(() => window.__kucharzyna?.ready === true, null, { timeout: 15000 });
+  try {
+    await page.waitForFunction(() => window.__kucharzyna?.ready === true, null, { timeout: 15000 });
+  } catch (e) {
+    console.error('RECOVERY DEBUG', JSON.stringify({
+      url: page.url(),
+      ready: await page.evaluate(() => window.__kucharzyna?.ready ?? null),
+      stateReady: await page.evaluate(() => window.__kucharzyna?.state?.ready ?? null),
+      text: (await page.locator('body').innerText()).slice(0, 1200),
+      errors,
+    }));
+    throw e;
+  }
 
   const start = page.locator('.zf-head').first();
   if (!(await start.count())) throw new Error('Start nie wyrenderował się po recovery IndexedDB');
