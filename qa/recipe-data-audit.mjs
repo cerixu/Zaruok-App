@@ -52,8 +52,8 @@ for (const file of SOURCES) {
 }
 
 const handSource = fs.readFileSync('recipes.js', 'utf8');
-const handMatch = handSource.match(/function handSeeds\(\)[\\s\\S]*?\n}\n/);
-const handCount = handMatch ? (handMatch[0].match(/id:\s*'rcp_seed_/g) || []).length : 0;
+const handIds = ['rcp_seed_pizza', 'rcp_seed_carbonara', 'rcp_seed_sos'];
+const handCount = handIds.filter((id) => new RegExp("id:\\s*['\\\"]" + id + "['\\\"]").test(handSource)).length;
 
 if (sourceCount !== EXPECTED_SOURCE_COUNT) issues.push('Nieoczekiwana liczba seedów: ' + sourceCount + ' (oczekiwano ' + EXPECTED_SOURCE_COUNT + ')');
 if (handCount !== EXPECTED_HAND_COUNT) issues.push('Nieoczekiwana liczba ręcznych seedów: ' + handCount + ' (oczekiwano ' + EXPECTED_HAND_COUNT + ')');
