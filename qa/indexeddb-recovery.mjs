@@ -5,16 +5,21 @@ const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2 });
 
 await page.addInitScript(() => {
-  const proto = Object.getPrototypeOf(indexedDB);
-  const original = proto.open;
+  const native = window.indexedDB;
+  const originalOpen = native.open.bind(native);
   let failed = false;
-  proto.open = function (...args) {
-    if (!failed) {
-      failed = true;
-      throw new DOMException('Simulated Safari IndexedDB startup failure', 'InvalidStateError');
+  Object.defineProperty(window, 'indexedDB', {
+    configurable: true,
+    value: {
+      open(...args) {
+        if (!failed) {
+          failed = true;
+          throw new DOMException('Simulated Safari IndexedDB startup failure', 'InvalidStateError');
+        }
+        return originalOpen(...args);
+      }
     }
-    return original.apply(this, args);
-  };
+  });
 });
 
 const errors = [];
