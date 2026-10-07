@@ -37,10 +37,19 @@ function resetConnection() {
 
 export function openDB() {
   if (dbPromise) return dbPromise;
+
+  let resolveOpen, rejectOpen;
   const promise = new Promise((resolve, reject) => {
+    resolveOpen = resolve;
+    rejectOpen = reject;
+  });
+  dbPromise = promise;
+
+  queueMicrotask(() => {
     if (!('indexedDB' in globalThis)) {
-      dbPromise = null;
-      return reject(new Error('Ta przeglądarka nie udostępnia IndexedDB.'));
+      resetConnection();
+      rejectOpen(new Error('Ta przeglądarka nie udostępnia IndexedDB.'));
+      return;
     }
 
     let rq;
@@ -51,8 +60,9 @@ export function openDB() {
       }
       rq = indexedDB.open(DB_NAME, DB_VERSION);
     } catch (e) {
-      dbPromise = null;
-      return reject(e instanceof Error ? e : new Error('Nie udało się otworzyć IndexedDB.'));
+      resetConnection();
+      rejectOpen(e instanceof Error ? e : new Error('Nie udało się otworzyć IndexedDB.'));
+      return;
     }
 
     rq.onupgradeneeded = () => {
@@ -76,32 +86,23 @@ export function openDB() {
       };
       d.onclose = resetConnection;
       d.onerror = () => {
-        // Safari/WebKit can surface a broken connection asynchronously.
-        // Do not keep a poisoned IDBDatabase object cached.
-        if (d.close) resetConnection();
+        resetConnection();
       };
-      resolve(d);
+      resolveOpen(d);
     };
 
     rq.onerror = () => {
       resetConnection();
-      reject(rq.error || new Error('Nie udało się otworzyć IndexedDB.'));
+      rejectOpen(rq.error || new Error('Nie udało się otworzyć IndexedDB.'));
     };
 
     rq.onblocked = () => {
       console.warn('Otwarcie IndexedDB zostało zablokowane przez inną kartę/aplikację.');
     };
   });
-  dbPromise = promise;
-  // A synchronous failure inside the Promise executor can clear dbPromise
-  // before the assignment above runs. Clear the rejected promise as well,
-  // so Safari retry paths get a genuinely fresh IndexedDB open attempt.
-  promise.catch(() => {
-    if (dbPromise === promise) dbPromise = null;
-  });
+
   return promise;
 }
-
 async function withRetry(fn) {
   try {
     return await fn();
