@@ -198,7 +198,8 @@ async function boot() {
   mountTimerPill($('#app'), openTimersSheet);
   initTimers();
   requestPersist();
-  // Service Worker wyłączony podczas stabilizacji startu. Loader czyści stare SW/cache przed importem aplikacji.
+  // SW rejestruje się równolegle ze startem. Nie blokuje pierwszego renderu ani IndexedDB.
+  registerSW().catch((e) => console.warn('Nie udało się uruchomić trybu PWA/offline:', e));
   window.__kucharzyna = { state, ready: false };
 
   // Hydratacja bazy w tle. Start jest już widoczny i interaktywny.
