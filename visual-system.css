@@ -800,3 +800,231 @@ body {
     transition: none !important;
   }
 }
+
+
+/* ==========================================================================
+   6A.5 — RECIPE DETAIL / MODALS / SECONDARY SURFACES
+   ========================================================================= */
+
+.detail .topbar {
+  background:
+    linear-gradient(to bottom, rgba(13,15,17,.76), rgba(13,15,17,.48)),
+    transparent;
+  border-bottom-color: var(--line-soft);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+}
+
+.detail .topbar .iconbtn,
+.detail .topbar .heart {
+  border: 1px solid rgba(255,255,255,.08);
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.055), rgba(255,255,255,.012)),
+    rgba(8,9,11,.18);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.06),
+    0 8px 20px rgba(0,0,0,.14);
+  -webkit-backdrop-filter: blur(16px) saturate(1.08);
+  backdrop-filter: blur(16px) saturate(1.08);
+}
+
+.detail .detail-hero {
+  position: relative;
+  border-radius: 30px;
+  padding: 5px;
+  background:
+    radial-gradient(circle at 30% 14%, rgba(255,255,255,.10), transparent 34%),
+    linear-gradient(145deg, rgba(217,151,97,.46), rgba(255,255,255,.08) 46%, rgba(255,255,255,.035));
+  box-shadow:
+    0 22px 46px rgba(0,0,0,.26),
+    inset 0 1px 0 rgba(255,255,255,.10);
+}
+
+.detail .hero-circle {
+  border-radius: 26px;
+  overflow: hidden;
+  background: var(--surface-2);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.07),
+    inset 0 -10px 24px rgba(0,0,0,.15);
+}
+
+.detail .detail-title {
+  font-family: var(--font-display);
+  font-weight: 620;
+  letter-spacing: -.05em;
+}
+
+.detail .desc {
+  color: var(--text-soft);
+  line-height: 1.5;
+}
+
+.detail .orbit-title {
+  color: var(--text-faint);
+  font-size: .68rem;
+  font-weight: 760;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.detail .orbit-arc {
+  border-color: rgba(255,255,255,.12);
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,.10));
+}
+
+.detail .orb {
+  transition:
+    transform .16s cubic-bezier(.2,.8,.2,1),
+    filter .16s ease;
+}
+
+.detail .orb:active {
+  transform: scale(.92);
+}
+
+.detail .orb-dot {
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.11),
+    0 8px 18px rgba(0,0,0,.18);
+}
+
+.detail .orb-more .orb-dot-more {
+  background:
+    radial-gradient(circle at 33% 20%, rgba(255,255,255,.12), transparent 34%),
+    linear-gradient(145deg, color-mix(in srgb, var(--accent) 18%, rgba(255,255,255,.025)), rgba(255,255,255,.014));
+  border-color: color-mix(in srgb, var(--accent) 48%, rgba(255,255,255,.12));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.10),
+    0 0 0 4px color-mix(in srgb, var(--accent) 5%, transparent),
+    0 10px 24px rgba(0,0,0,.20);
+}
+
+.detail .actions-primary .btn.primary {
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--accent-strong) 88%, white 12%), var(--accent));
+}
+
+.detail .detail-actions .btn {
+  min-height: 58px;
+}
+
+.detail .rate-row,
+.detail .stepper-bar {
+  padding: 12px 14px;
+  border: 1px solid var(--line-soft);
+  border-radius: 18px;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.035), rgba(255,255,255,.008)),
+    color-mix(in srgb, var(--surface) 66%, transparent);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.035);
+}
+
+.detail .scale-banner {
+  border-color: color-mix(in srgb, var(--accent) 32%, var(--line));
+  background:
+    linear-gradient(145deg, rgba(217,151,97,.09), rgba(255,255,255,.014)),
+    color-mix(in srgb, var(--surface) 72%, transparent);
+}
+
+/* Pełna receptura: szkło mocniejsze niż tło, ale tekst i zdjęcie pozostają
+   zdecydowanie wyżej w hierarchii. */
+.recipe-full-modal .backdrop {
+  background:
+    radial-gradient(circle at 50% 18%, rgba(217,151,97,.08), transparent 42%),
+    rgba(4,5,7,.70);
+  -webkit-backdrop-filter: blur(12px) saturate(1.10);
+  backdrop-filter: blur(12px) saturate(1.10);
+}
+
+.recipe-full-modal .panel {
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.070), rgba(255,255,255,.018)),
+    color-mix(in srgb, var(--surface) 82%, transparent);
+  border-color: rgba(255,255,255,.12);
+  box-shadow:
+    0 32px 84px rgba(0,0,0,.55),
+    inset 0 1px 0 rgba(255,255,255,.085);
+  -webkit-backdrop-filter: blur(calc(var(--glass-blur) + 4px)) saturate(1.18);
+  backdrop-filter: blur(calc(var(--glass-blur) + 4px)) saturate(1.18);
+}
+
+.recipe-full-modal .panel-head {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.012)),
+    rgba(255,255,255,.012);
+  border-bottom-color: var(--line-soft);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.055);
+  -webkit-backdrop-filter: blur(18px) saturate(1.10);
+  backdrop-filter: blur(18px) saturate(1.10);
+}
+
+.recipe-full-modal .panel-foot {
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.055), rgba(255,255,255,.012)),
+    color-mix(in srgb, var(--surface) 74%, transparent);
+  border-top-color: var(--line-soft);
+  box-shadow:
+    0 -14px 30px rgba(0,0,0,.16),
+    inset 0 1px 0 rgba(255,255,255,.045);
+  -webkit-backdrop-filter: blur(20px) saturate(1.10);
+  backdrop-filter: blur(20px) saturate(1.10);
+}
+
+.recipe-modal-hero {
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.060), rgba(255,255,255,.012)),
+    color-mix(in srgb, var(--surface) 62%, transparent);
+  border-color: var(--line);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.055),
+    var(--shadow-1);
+}
+
+.recipe-modal-photo-wrap {
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--accent-strong) 80%, white 20%), rgba(255,255,255,.10));
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.09),
+    0 14px 28px rgba(0,0,0,.24),
+    inset 0 1px 0 rgba(255,255,255,.12);
+}
+
+.recipe-modal-section-head {
+  border-bottom-color: var(--line-soft);
+}
+
+.recipe-modal-index {
+  background:
+    linear-gradient(145deg, rgba(217,151,97,.10), rgba(255,255,255,.012)),
+    color-mix(in srgb, var(--surface) 60%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 24%, var(--line));
+}
+
+.recipe-modal-count {
+  background: rgba(255,255,255,.018);
+  border-color: var(--line-soft);
+}
+
+.recipe-modal-step-text,
+.recipe-modal-ing-name {
+  color: var(--text-soft);
+}
+
+.recipe-modal-steps > li::before {
+  background:
+    linear-gradient(145deg, rgba(217,151,97,.12), rgba(255,255,255,.012));
+  border-color: color-mix(in srgb, var(--accent) 26%, var(--line));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .detail .topbar .iconbtn,
+  .detail .topbar .heart,
+  .recipe-full-modal .panel,
+  .recipe-full-modal .panel-head,
+  .recipe-full-modal .panel-foot {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
