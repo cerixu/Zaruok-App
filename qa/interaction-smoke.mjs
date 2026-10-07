@@ -92,7 +92,8 @@ try {
   // „GOTUJĘ” jest celowo dostępne na ekranie głównym; „Do zakupów” nie jest tu inline.
   await page.getByRole('button', { name: 'GOTUJĘ' }).first().click();
   await page.waitForTimeout(200);
-  if (!location.hash.includes('/guide/')) throw new Error('GOTUJĘ nie prowadzi do trybu prowadzenia');
+  const finalHash = await page.evaluate(() => location.hash);
+  if (!finalHash.includes('/guide/')) throw new Error('GOTUJĘ nie prowadzi do trybu prowadzenia');
 
 } finally {
   await browser.close();
