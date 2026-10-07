@@ -37,7 +37,7 @@ function resetConnection() {
 
 export function openDB() {
   if (dbPromise) return dbPromise;
-  dbPromise = new Promise((resolve, reject) => {
+  const promise = new Promise((resolve, reject) => {
     if (!('indexedDB' in globalThis)) {
       dbPromise = null;
       return reject(new Error('Ta przeglądarka nie udostępnia IndexedDB.'));
@@ -88,7 +88,8 @@ export function openDB() {
       console.warn('Otwarcie IndexedDB zostało zablokowane przez inną kartę/aplikację.');
     };
   });
-  return dbPromise;
+  dbPromise = promise;
+  return promise;
 }
 
 async function withRetry(fn) {
