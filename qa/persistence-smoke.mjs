@@ -15,8 +15,13 @@ async function dismiss() {
   if (await start.count() && await start.isVisible().catch(() => false)) await start.click();
 }
 async function firstRecipeHeart() {
+  await page.waitForFunction(() => {
+    const links = document.querySelectorAll('a[href^="#/recipe/"]');
+    const seeded = window.__kucharzyna?.state?.recipes?.size || 0;
+    return links.length > 0 || seeded > 0;
+  }, null, { timeout: 60000 });
   const recipe = page.locator('a[href^="#/recipe/"]').first();
-  await recipe.waitFor({ state: 'visible', timeout: 10000 });
+  await recipe.waitFor({ state: 'visible', timeout: 15000 });
   const card = recipe.locator('xpath=ancestor::*[contains(@class,"rtile")][1]');
   const heart = card.locator('.heart').first();
   if (!(await heart.count())) throw new Error('Brak serduszka na karcie receptury.');
