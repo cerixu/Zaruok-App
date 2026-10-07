@@ -2,7 +2,7 @@ name: Visual QA
 
 on:
   push:
-    branches: [main, qa-visual-icons]
+    branches: [main, qa-visual-icons, stage-6-visual-system]
   pull_request:
     branches: [main]
 
