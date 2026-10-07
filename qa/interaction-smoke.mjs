@@ -87,7 +87,9 @@ try {
 
   // Test głównych przycisków z recipe detail.
   await page.locator('a[href="' + href + '"]').first().click();
-  await page.getByRole('button', { name: 'Do zakupów' }).click();
+  const shoppingButton = page.locator('.actions-row .btn').filter({ hasText: 'Do zakupów' }).first();
+  await shoppingButton.waitFor({ state: 'visible', timeout: 5000 });
+  await shoppingButton.click();
   await page.waitForTimeout(150);
   if (!(await page.locator('#overlays .overlay').count())) throw new Error('„Do zakupów” nie otworzyło panelu');
   await page.keyboard.press('Escape');
