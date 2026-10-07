@@ -331,7 +331,10 @@ export function detailView({ id }) {
           const q = qtyParts(i);
           const p = pct.get(i.id);
           return h('li', { class: 'ing' },
-            h('span', { class: 'ing-name' }, i.name || '—', showPct && p && KIND_LABEL[p.kind] ? h('span', { class: 'kind' }, KIND_LABEL[p.kind]) : null),
+            h('span', { class: 'ing-icon', 'aria-hidden': 'true' }, ingEmoji(i.name)),
+            h('div', { class: 'ing-main' },
+              h('span', { class: 'ing-name' }, i.name || '—'),
+              showPct && p && KIND_LABEL[p.kind] ? h('span', { class: 'kind' }, KIND_LABEL[p.kind]) : null),
             showPct && p && p.pct != null ? h('span', { class: 'ing-pct num' }, fmtPct(p.pct)) : null,
             h('span', { class: 'ing-qty' }, h('span', { class: 'amt num' }, q.num), h('span', { class: 'unit' }, q.unit)));
         })))) : h('p', { class: 'muted' }, 'Brak składników.'));
