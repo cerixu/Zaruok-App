@@ -6,7 +6,7 @@ Wszystkie dane są w pamięci Twojego urządzenia.
 
 ## Co potrafi
 
-- **Wygląd z makiety (1.2):** ciemny grafit, szare karty z miedzianą krawędzią i światłem u dołu, **okrągłe zdjęcia dań**, ocena ★ i kalorie po prawej stronie karty, pasek ikon bez podpisów, font Poppins. Szczegóły receptury: duże okrągłe zdjęcie, tytuł z oceną, **składniki na łuku** (okrągłe ikony) i „Pokaż szczegóły ⌄”. Jasny motyw, tryb Amator i suwak „Przezroczystość szkła” nadal są w Ustawieniach, podpisy pod ikonami paska włączysz tam jednym przełącznikiem.
+- **Wygląd z makiety (1.2):** ciemny grafit, szare karty z miedzianą krawędzią i światłem u dołu, **okrągłe zdjęcia dań**, ocena ★ i kalorie po prawej stronie karty, pasek ikon bez podpisów, font Poppins. Szczegóły receptury: duże okrągłe zdjęcie, tytuł z oceną, **składniki na łuku** (okrągłe ikony) i „Pokaż szczegóły ⌄”. Suwak „Przezroczystość szkła” i podpisy pod ikonami paska są dostępne w Ustawieniach.
 - **228 przykładowych receptur:** polska kuchnia (zupy, mięsa, pierogi, ciasta, wigilijne), kuchnie świata (Włochy, Francja, Hiszpania, Grecja, Meksyk, USA, Azja, Bliski Wschód…), śniadania, wege i wegańskie, desery, sosy bazowe, prep, przetwory, ponad 20 drinków. Tradycyjne są oznaczone gwiazdką i flagą kraju. Każdą receptura możesz edytować lub usunąć; usunięta nie wraca po aktualizacji, a „Przywróć przykładowe receptury” w Ustawieniach przywraca brakujące.
 - **Ilustracje dań** rysowane w kodzie (ok. 90 wariantów: zupy, makarony, mięsa, desery, drinki…) na ciemnej porcelanie — wszędzie tam, gdzie receptura nie ma własnego zdjęcia. Własne zdjęcie dodajesz w edytorze (kompresowane lokalnie).
 - **Szacunek kalorii na porcję** z tabel wartości odżywczej (pokazywany tylko, gdy rozpoznano ≥ 70% składników; to przybliżenie).
