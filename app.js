@@ -27,24 +27,23 @@ const root = document.documentElement;
 
 /* ---------- Motyw, tryb, rozmiary ---------- */
 
-const BG = { light: { pro: '#f1f0ed', amateur: '#eef7f0' }, dark: { pro: '#1d1d1f', amateur: '#0f1a13' } };
+const BG = { light: '#f1f0ed', dark: '#1d1d1f' };
 const dark = matchMedia('(prefers-color-scheme: dark)');
 
 function applyAppearance() {
-  const theme = getSetting('theme'), mode = getSetting('mode'), tap = getSetting('tapSize'), ts = getSetting('textScale'), glass = getSetting('glass');
+  const theme = getSetting('theme'), tap = getSetting('tapSize'), ts = getSetting('textScale'), glass = getSetting('glass');
   root.setAttribute('data-theme', theme);
-  root.setAttribute('data-mode', mode);
   root.setAttribute('data-tap', tap);
   root.style.setProperty('--ts', String((ts || 100) / 100));
   root.setAttribute('data-tablabels', getSetting('tabLabels') ? 'on' : 'off');
   root.style.setProperty('--glass', String(Math.min(100, Math.max(0, glass == null ? 70 : glass)) / 100));
   try {
-    localStorage.setItem('k:theme', theme); localStorage.setItem('k:mode', mode);
+    localStorage.setItem('k:theme', theme);
     localStorage.setItem('k:tap', tap); localStorage.setItem('k:ts', String(ts)); localStorage.setItem('k:glass', String(glass)); localStorage.setItem('k:tl', getSetting('tabLabels') ? 'on' : 'off');
   } catch (_) { /* tryb prywatny */ }
   // Kolor paska systemowego zgodny z faktycznie wybranym motywem (nie tylko z systemowym).
   const eff = theme === 'auto' ? (dark.matches ? 'dark' : 'light') : theme;
-  const color = BG[eff][mode] || BG[eff].pro;
+  const color = BG[eff];
   document.querySelectorAll('meta[name="theme-color"]').forEach((m) => { m.setAttribute('content', color); m.removeAttribute('media'); });
 }
 dark.addEventListener && dark.addEventListener('change', () => { if (getSetting('theme') === 'auto') applyAppearance(); });
@@ -198,7 +197,8 @@ async function boot() {
   mountTimerPill($('#app'), openTimersSheet);
   initTimers();
   requestPersist();
-  // Service Worker wyłączony podczas stabilizacji startu. Loader czyści stare SW/cache przed importem aplikacji.
+  // SW rejestruje się równolegle ze startem. Nie blokuje pierwszego renderu ani IndexedDB.
+  registerSW().catch((e) => console.warn('Nie udało się uruchomić trybu PWA/offline:', e));
   window.__kucharzyna = { state, ready: false };
 
   // Hydratacja bazy w tle. Start jest już widoczny i interaktywny.
@@ -213,8 +213,19 @@ async function boot() {
     window.__kucharzyna.ready = true;
     setTimeout(whatsNew, 900);
   } catch (e) {
-    fatal(e);
-    window.__kucharzyna.ready = false;
+    // Safari/WebKit can occasionally reject the first IndexedDB open during startup.
+    // Retry once without touching/deleting user data.
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 120));
+      await openDB();
+      await loadAll();
+      applyAppearance();
+      window.__kucharzyna.ready = true;
+      setTimeout(whatsNew, 900);
+    } catch (retryError) {
+      fatal(retryError);
+      window.__kucharzyna.ready = false;
+    }
   }
 }
 

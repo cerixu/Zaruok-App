@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pl" data-theme="dark" data-mode="pro">
+<html lang="pl" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <title>Żarłok</title>
@@ -27,10 +27,9 @@
   <script>
     (function () {
       try {
-        var t = localStorage.getItem('k:theme'), m = localStorage.getItem('k:mode'), z = localStorage.getItem('k:tap'), s = localStorage.getItem('k:ts'), g = localStorage.getItem('k:glass'), tl = localStorage.getItem('k:tl');
+        var t = localStorage.getItem('k:theme'), z = localStorage.getItem('k:tap'), s = localStorage.getItem('k:ts'), g = localStorage.getItem('k:glass'), tl = localStorage.getItem('k:tl');
         var d = document.documentElement;
         if (t) d.setAttribute('data-theme', t);
-        if (m) d.setAttribute('data-mode', m);
         if (z) d.setAttribute('data-tap', z);
         if (s) d.style.setProperty('--ts', String(+s / 100));
         if (g) d.style.setProperty('--glass', String(+g / 100));
@@ -137,6 +136,6 @@
       }, 8000);
     }());
   </script>
-  <script type="module" src="app.js?v=1.4.9"></script>
+  <script type="module" src="app.js?v=1.5.0"></script>
 </body>
 </html>

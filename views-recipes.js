@@ -174,7 +174,7 @@ export function recipesView(query) {
   }
 
   paint();
-  const unsub = subscribe((t) => { if (t === 'recipes' || t === 'categories' || t === 'settings') paint(); });
+  const unsub = subscribe((t) => { if (t === 'hydrated' || t === 'recipes' || t === 'categories' || t === 'settings') paint(); });
   return { el: s.el, destroy: () => { unsub(); onSearch.cancel(); } };
 }
 

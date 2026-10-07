@@ -140,6 +140,26 @@ const CATEGORY_ART = {
 export const ART_KINDS = Object.keys(MOTIFS);
 export { VARIANT_SPECS };
 
+/* ---------- SVG shading: flat fills -> soft 3D gradients ---------- */
+const hex = (c) => [1, 3, 5].map((i) => parseInt(c.slice(i, i + 2), 16));
+const toHex = (a) => '#' + a.map((v) => Math.max(0, Math.min(255, Math.round(v))).toString(16).padStart(2, '0')).join('');
+const lighten = (c, t) => toHex(hex(c).map((v) => v + (255 - v) * t));
+const darken = (c, t) => toHex(hex(c).map((v) => v * (1 - t)));
+function shade(svg) {
+  const map = new Map();
+  let defs = '';
+  const out = svg.replace(/fill="(#[0-9a-fA-F]{6})"/g, (m, c0) => {
+    const c = c0.toLowerCase();
+    let id = map.get(c);
+    if (!id) {
+      id = 'shade' + map.size; map.set(c, id);
+      defs += '<radialGradient id="' + id + '" cx=".34" cy=".28" r=".95"><stop offset="0" stop-color="' + lighten(c, .28) + '"/><stop offset=".56" stop-color="' + c + '"/><stop offset="1" stop-color="' + darken(c, .22) + '"/></radialGradient>';
+    }
+    return 'fill="url(#' + id + ')"';
+  });
+  return out.replace('</defs>', defs + '</defs>');
+}
+
 const cache = new Map();
 const split = (spec) => { const [k, v = ''] = String(spec || '').split(':'); return [MOTIFS[k] ? k : 'plate', v]; };
 /** Czy specyfikacja („rodzaj” lub „rodzaj:wariant”) jest znana? */
@@ -150,12 +170,13 @@ export function artSvg(spec, seedText = '') {
   const [c1, c2] = PALETTES[hash(seedText || k) % PALETTES.length];
   const h = hash(seedText + k);
   const b1 = 20 + (h % 120), b2 = 30 + ((h >> 3) % 110);
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="400" height="400">
-<defs><radialGradient id="g" cx=".5" cy=".42" r=".78"><stop offset="0" stop-color="${c1}"/><stop offset="1" stop-color="${c2}"/></radialGradient></defs>
+  return shade(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="400" height="400">
+<defs><radialGradient id="g" cx=".5" cy=".42" r=".78"><stop offset="0" stop-color="${c1}"/><stop offset="1" stop-color="${c2}"/></radialGradient><radialGradient id="vg" cx=".5" cy=".5" r=".72"><stop offset=".58" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".42"/></radialGradient></defs>
 <rect width="200" height="200" fill="url(#g)"/>
 <circle cx="${b1}" cy="${(b2 % 60) + 14}" r="${30 + (h % 22)}" fill="#fff" opacity=".035"/><circle cx="${200 - b2 / 2}" cy="${150 + (b1 % 40)}" r="${26 + (h % 30)}" fill="#c27a3e" opacity=".07"/>
 ${MOTIFS[k](v)}
-</svg>`;
+<rect width="200" height="200" fill="url(#vg)"/>
+</svg>`);
 }
 
 /** Data URL ilustracji (z pamięcią podręczną) — do <img src>. */
