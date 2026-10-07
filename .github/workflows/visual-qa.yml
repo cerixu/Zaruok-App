@@ -68,7 +68,7 @@ jobs:
         run: node qa/persistence-smoke.mjs
 
   indexeddb-recovery:
-    needs: interaction-smoke
+    needs: persistence-smoke
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
