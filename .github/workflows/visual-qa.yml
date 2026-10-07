@@ -109,3 +109,18 @@ jobs:
           node-version: 20
       - name: Run recipe data audit
         run: node qa/recipe-data-audit.mjs
+
+  unit-grammar-smoke:
+    needs: recipe-data-audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install Playwright
+        run: npm install --no-save playwright && npx playwright install --with-deps chromium
+      - name: Start static server
+        run: python3 -m http.server 4173 >/tmp/zaruok-http.log 2>&1 &
+      - name: Run unit grammar smoke
+        run: node qa/unit-grammar-smoke.mjs
