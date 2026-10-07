@@ -536,3 +536,267 @@ body {
     animation: none !important;
   }
 }
+
+
+/* ==========================================================================
+   6A.4 — START + RECEPTURY
+   ========================================================================= */
+
+.start-final {
+  --zf-lime: #9dbb7c;
+  --zf-amber: var(--accent-strong);
+  --zf-coral: #c98970;
+  --zf-blue: #7d9cbf;
+  --zf-pink: #d77e96;
+  --zf-violet: #9b8dbd;
+  --zf-cyan: #72a9ad;
+  --zf-orange: #c78f67;
+  --zf-ink: var(--text);
+  --zf-soft: var(--text-soft);
+  --zf-faint: var(--text-faint);
+  --zf-line: var(--line);
+  --zf-line-soft: var(--line-soft);
+}
+
+.start-final .scroll {
+  background:
+    radial-gradient(520px 360px at 50% -90px, rgba(217,151,97,.10), transparent 64%),
+    radial-gradient(340px 260px at 8% 22%, rgba(115,144,178,.045), transparent 70%),
+    var(--bg);
+}
+
+.start-final .topbar {
+  background:
+    linear-gradient(to bottom, rgba(13,15,17,.82), rgba(13,15,17,.55)),
+    transparent;
+  border-bottom-color: var(--line-soft);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+}
+
+.start-final .iconbtn {
+  border-color: rgba(255,255,255,.085);
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.055), rgba(255,255,255,.012)),
+    rgba(255,255,255,.01);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.065),
+    0 8px 22px rgba(0,0,0,.16);
+}
+
+.start-final .zf-head h1 {
+  font-family: var(--font-display);
+  font-weight: 560;
+}
+
+.start-final .zf-feature {
+  border-color: var(--line);
+  border-radius: 26px;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.055), rgba(255,255,255,.012)),
+    color-mix(in srgb, var(--surface) 76%, transparent);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.055),
+    var(--shadow-1);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+}
+
+.start-final .zf-feature-ring {
+  background:
+    conic-gradient(
+      from 205deg,
+      color-mix(in srgb, var(--accent-strong) 84%, white 16%),
+      rgba(255,255,255,.20),
+      var(--accent),
+      rgba(255,255,255,.16),
+      color-mix(in srgb, var(--accent-strong) 84%, white 16%)
+    );
+  box-shadow:
+    0 18px 38px rgba(0,0,0,.28),
+    0 0 0 1px rgba(255,255,255,.065);
+}
+
+.start-final .zf-feature-img {
+  background: var(--surface-2);
+  box-shadow:
+    inset 0 0 0 5px rgba(13,15,17,.72),
+    inset 0 1px 0 rgba(255,255,255,.06);
+}
+
+.start-final .zf-feature-open,
+.start-final .zf-section-link {
+  color: var(--accent-strong);
+}
+
+.start-final .zf-actions {
+  border-color: var(--line);
+}
+
+.start-final .zf-action {
+  min-height: 70px;
+  border-bottom-color: var(--line-soft);
+}
+
+.start-final .zf-action-icon,
+.start-final .zf-tool-icon {
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.065), rgba(255,255,255,.012)),
+    color-mix(in srgb, var(--item-tint) 9%, transparent);
+  border: 1px solid color-mix(in srgb, var(--item-tint) 24%, rgba(255,255,255,.08));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.075),
+    0 9px 22px rgba(0,0,0,.16);
+}
+
+.start-final .zf-action-copy strong,
+.start-final .zf-tool-label {
+  color: var(--text-soft);
+}
+
+.start-final .zf-action:active,
+.start-final .zf-tool:active {
+  background: rgba(255,255,255,.025);
+}
+
+.start-final .zf-tools-grid {
+  gap: 12px 6px;
+}
+
+.start-final .zf-tool {
+  border-radius: 18px;
+  border: 1px solid var(--line-soft);
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.045), rgba(255,255,255,.01)),
+    color-mix(in srgb, var(--surface) 62%, transparent);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
+  -webkit-backdrop-filter: blur(18px) saturate(1.1);
+  backdrop-filter: blur(18px) saturate(1.1);
+}
+
+.start-final .zf-backup {
+  border-color: color-mix(in srgb, var(--accent) 28%, var(--line));
+  background:
+    linear-gradient(145deg, rgba(217,151,97,.09), rgba(255,255,255,.014)),
+    color-mix(in srgb, var(--surface) 70%, transparent);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.055),
+    var(--shadow-1);
+}
+
+/* Siatka receptur: jeden materiał, niezależnie od wariantu widoku. */
+.recipes .content {
+  padding-top: 12px;
+  padding-bottom: 34px;
+}
+
+.recipes .searchbar {
+  gap: 8px;
+}
+
+.recipes .searchbox {
+  border-color: var(--line);
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.055), rgba(255,255,255,.012)),
+    color-mix(in srgb, var(--surface) 80%, transparent);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.06),
+    0 8px 22px rgba(0,0,0,.10);
+  -webkit-backdrop-filter: blur(22px) saturate(var(--glass-sat));
+  backdrop-filter: blur(22px) saturate(var(--glass-sat));
+}
+
+.recipes .rgrid {
+  gap: 12px;
+}
+
+.recipes .rtile {
+  padding: 10px 10px 12px;
+  border: 1px solid var(--line-soft);
+  border-radius: 22px;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.043), rgba(255,255,255,.010)),
+    color-mix(in srgb, var(--surface) 66%, transparent);
+  box-shadow: var(--shadow-1);
+  -webkit-backdrop-filter: blur(18px) saturate(1.08);
+  backdrop-filter: blur(18px) saturate(1.08);
+}
+
+.recipes .rtile-img {
+  border-radius: 18px;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.07),
+    0 12px 26px rgba(0,0,0,.24);
+}
+
+.recipes .rtile-name {
+  color: var(--text-soft);
+}
+
+.recipes .rt-side .rt-rate {
+  color: var(--text-soft);
+}
+
+.recipes .rt-side .rt-sub {
+  color: var(--text-faint);
+}
+
+.recipes .rtile-heart {
+  top: 9px;
+  right: 9px;
+}
+
+.recipes .rtile-heart .heart {
+  width: 42px;
+  height: 42px;
+  min-height: 42px;
+  background:
+    rgba(10,11,13,.44);
+  border: 1px solid rgba(255,255,255,.10);
+  -webkit-backdrop-filter: blur(15px) saturate(1.08);
+  backdrop-filter: blur(15px) saturate(1.08);
+}
+
+.recipes .rtile-heart .heart.on {
+  color: var(--heart);
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255,111,145,.18), transparent 70%),
+    rgba(10,11,13,.44);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.10),
+    0 0 22px rgba(255,111,145,.12);
+}
+
+.recipes .rcard {
+  border-radius: 18px;
+  border-color: var(--line-soft);
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.045), rgba(255,255,255,.01)),
+    color-mix(in srgb, var(--surface) 72%, transparent);
+  box-shadow: var(--shadow-1);
+  -webkit-backdrop-filter: blur(18px) saturate(1.08);
+  backdrop-filter: blur(18px) saturate(1.08);
+}
+
+.recipes .rcard-main:active {
+  background: rgba(255,255,255,.025);
+}
+
+.recipes .group-title {
+  color: var(--text-faint);
+  letter-spacing: .12em;
+}
+
+.recipes .group-title svg {
+  color: var(--accent-strong);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .start-final .zf-feature,
+  .start-final .zf-tool,
+  .start-final .zf-action,
+  .recipes .rtile,
+  .recipes .rcard {
+    transition: none !important;
+  }
+}
