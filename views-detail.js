@@ -36,7 +36,6 @@ export function detailView({ id }) {
   let scaled = null;          // przeliczona kopia (niezapisana) albo null
   let scaleLabel = '';
   let skipPaint = false;
-  const amateur = () => getSetting('mode') === 'amateur';
   const base = () => getRecipe(id);
   const cur = () => scaled || base();
 
@@ -296,7 +295,7 @@ export function detailView({ id }) {
         button('Duplikuj', { icon: 'copy', block: true, onClick: async () => { sh.close(); const c = await duplicateRecipe(id); toast('Utworzono kopię', { action: { label: 'Otwórz', fn: () => navigate('/recipe/' + c.id) } }); } }),
         button('Skopiuj jako tekst', { icon: 'copy', block: true, onClick: async () => { sh.close(); const ok = await copyText(recipeToText(cur())); toast(ok ? 'Skopiowano recepturę' : 'Nie udało się skopiować', { type: ok ? '' : 'error' }); } }),
         navigator.share ? button('Udostępnij', { icon: 'share', block: true, onClick: async () => { sh.close(); try { await navigator.share({ title: r.name, text: recipeToText(cur()) }); } catch (_) { /* anulowano */ } } }) : null,
-        amateur() ? null : button('Historia zmian', { icon: 'history', block: true, onClick: () => { sh.close(); openHistory(); } }),
+        button('Historia zmian', { icon: 'history', block: true, onClick: () => { sh.close(); openHistory(); } }),
         button('Usuń recepturę', { icon: 'trash', kind: 'danger', block: true, onClick: async () => {
           sh.close();
           const ok = await confirmDialog({ title: `Usunąć „${r.name}”?`, message: 'Receptura wraz z historią zmian zostanie usunięta z tego telefonu. Tej operacji nie da się cofnąć (chyba że masz kopię JSON).', confirmText: 'Usuń', danger: true });
@@ -320,7 +319,7 @@ export function detailView({ id }) {
   let notesEl = null;
 
   function ingredientsCard(r, table) {
-    const showPct = !!(table && table.ok && r.bakers && !amateur());
+    const showPct = !!(table && table.ok && r.bakers);
     const pct = new Map(table && table.ok ? table.rows.map((x) => [x.id, x]) : []);
     const secs = r.sections.filter((sec) => sec.ingredients.length || sec.name);
     return h('section', { class: 'card ingredients' },
@@ -341,7 +340,7 @@ export function detailView({ id }) {
   }
 
   function bakersCard(r, table) {
-    if (!r.bakers || amateur() || !table.ok) return null;
+    if (!r.bakers || !table.ok) return null;
     const kv = (k, v) => h('div', { class: 'stat' }, h('span', { class: 'stat-k' }, k), h('span', { class: 'stat-v num' }, v));
     return h('section', { class: 'card' },
       h('h2', { class: 'card-title' }, icon('percent', 20), 'Procenty piekarskie'),
@@ -551,7 +550,7 @@ export function detailView({ id }) {
       h('h2', { class: 'card-title' }, icon('list', 20), 'Przygotowanie'),
       r.steps.length ? h('ol', { class: 'steps' }, r.steps.map((st) => h('li', null, h('span', { class: 'step-text' }, st.text)))) : h('p', { class: 'muted' }, 'Brak kroków. Dodaj je w edytorze.')));
 
-    if (!amateur()) det.push(costCard());
+    det.push(costCard());
 
     const startNotes = notesDirty && notesEl ? notesEl.value : base().notes || '';
     notesEl = textArea({ value: startNotes, label: 'Własne uwagi', placeholder: 'Np. ciasto wyszło za twarde — następnym razem +10 g wody…', rows: 3, onInput: (v) => { notesDirty = true; savedHint.textContent = '…'; notesSave(v); } });
@@ -563,7 +562,7 @@ export function detailView({ id }) {
     if (base().sourceUrl) src.push(h('div', null, h('a', { class: 'ext', href: base().sourceUrl, target: '_blank', rel: 'noopener noreferrer' }, icon('link', 16), hostOf(base().sourceUrl) || base().sourceUrl)));
     src.push(h('div', null, `Dodano ${fmtDate(base().createdAt, true)} · zmieniono ${fmtDateTime(base().updatedAt)}`));
     det.push(h('div', { class: 'meta-foot muted small' }, src));
-    if (!amateur()) det.push(h('div', { class: 'row center' }, button('Historia zmian', { icon: 'history', kind: 'ghost', onClick: openHistory })));
+    det.push(h('div', { class: 'row center' }, button('Historia zmian', { icon: 'history', kind: 'ghost', onClick: openHistory })));
 
     // Pełna receptura jest dostępna z okrągłego „więcej” i nie zajmuje miejsca na ekranie głównym. 
     // Szczegóły nie są już renderowane inline.
