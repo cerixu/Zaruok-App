@@ -36,7 +36,6 @@ export const ORIGINS = [
 
 export const DEFAULT_SETTINGS = {
   theme: 'dark',          // auto | light | dark (domyślnie ciemny grafit jak na makiecie)
-  mode: 'pro',            // pro | amateur
   tapSize: 'large',       // normal | large | xl
   textScale: 100,         // 90–130 (%)
   pinTraditional: true,
