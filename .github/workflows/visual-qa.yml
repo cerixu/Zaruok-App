@@ -81,3 +81,18 @@ jobs:
         run: python3 -m http.server 4173 >/tmp/zaruok-http.log 2>&1 &
       - name: Simulate IndexedDB startup failure
         run: node qa/indexeddb-recovery.mjs
+
+  offline-smoke:
+    needs: indexeddb-recovery
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install Playwright
+        run: npm install --no-save playwright && npx playwright install --with-deps chromium
+      - name: Start static server
+        run: python3 -m http.server 4173 >/tmp/zaruok-http.log 2>&1 &
+      - name: Run offline smoke
+        run: node qa/offline-smoke.mjs
