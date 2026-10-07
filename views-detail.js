@@ -505,6 +505,13 @@ export function detailView({ id }) {
       button('GOTUJĘ', { kind: 'primary', lg: true, block: true, icon: 'chef', onClick: () => navigate('/guide/' + id) }),
       h('p', { class: 'muted small center-text' }, 'Prowadzę krok po kroku: składniki, minutniki, czytanie na głos')));
 
+    // Akcje główne pozostają dostępne na ekranie receptury.
+    // Pełne szczegóły składników/przygotowania są nadal otwierane przez „Więcej”.
+    kids.push(h('div', { class: 'actions-row detail-actions' },
+      button('Przelicz', { icon: 'swap', onClick: openScale }),
+      button('Do zakupów', { icon: 'cart', onClick: () => openAddToShopping(r, 1) }),
+      button('Edytuj', { icon: 'edit', onClick: () => navigate('/edit/' + id) })));
+
     const open = false;
     const det = [];
     det.push(h('div', { class: 'detail-head' },
