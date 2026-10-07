@@ -44,3 +44,10 @@ jobs:
         run: python3 -m http.server 4173 >/tmp/zaruok-http.log 2>&1 &
       - name: Run interaction smoke
         run: node qa/interaction-smoke.mjs
+      - name: Upload interaction screenshots
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: zaruok-interaction-qa
+          path: qa-shots/
+          if-no-files-found: ignore
