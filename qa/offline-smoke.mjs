@@ -2,8 +2,12 @@ import { chromium } from 'playwright';
 
 const base = process.env.BASE_URL || 'http://127.0.0.1:4173/';
 const browser = await chromium.launch();
-const context = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2 });
+const context = await browser.newContext({
+  viewport: { width: 390, height: 844 },
+  deviceScaleFactor: 2,
+});
 const page = await context.newPage();
+
 const errors = [];
 page.on('pageerror', (e) => errors.push(String(e)));
 page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
@@ -17,41 +21,48 @@ async function dismiss() {
 }
 
 try {
-  await page.goto(base + '#/recipes', { waitUntil: 'networkidle' });
+  // Online bootstrap and cache installation.
+  await page.goto(base, { waitUntil: 'networkidle' });
   await ready();
   await dismiss();
+
+  await page.goto(base + '#/recipes', { waitUntil: 'networkidle' });
+  await ready();
   await page.waitForSelector('a[href^="#/recipe/"]', { state: 'visible', timeout: 8000 });
 
-  // Service Worker must be registered in production. Local HTTP may intentionally
-  // skip it, so the test accepts either an active SW or an already-cached app shell.
-  const swState = await page.evaluate(async () => {
-    if (!('serviceWorker' in navigator)) return 'unsupported';
-    const reg = await navigator.serviceWorker.getRegistration();
-    return reg?.active ? 'active' : 'none';
+  await page.evaluate(async () => {
+    if (!('serviceWorker' in navigator)) throw new Error('Service Worker API niedostępne.');
+    await navigator.serviceWorker.ready;
   });
+  await page.waitForFunction(() => !!navigator.serviceWorker.controller, null, { timeout: 10000 });
 
-  // Simulate loss of network after the app has loaded.
+  const onlineCount = await page.locator('a[href^="#/recipe/"]').count();
+  const href = await page.locator('a[href^="#/recipe/"]').first().getAttribute('href');
+  if (onlineCount < 1 || !href) throw new Error('Brak receptury do testu offline.');
+
+  // Hard network cut after the service worker is controlling the page.
   await context.setOffline(true);
   await page.reload({ waitUntil: 'domcontentloaded' });
-  await page.waitForTimeout(1800);
+  await ready();
+  await dismiss();
+  await page.waitForSelector('a[href^="#/recipe/"]', { state: 'visible', timeout: 12000 });
 
-  const bodyText = await page.locator('body').innerText();
-  const shellVisible = await page.locator('#view').isVisible().catch(() => false);
-  if (!shellVisible) throw new Error('Aplikacja nie wyrenderowała powłoki po przejściu offline.');
-
-  // If a SW is active, recipes should remain available. If not, report the
-  // exact state instead of falsely treating localhost as a production PWA.
-  const recipeCount = await page.locator('a[href^="#/recipe/"]').count();
-  if (swState === 'active' && recipeCount === 0) {
-    throw new Error('Service Worker aktywny, ale po offline nie ma receptur. BODY=' + bodyText.slice(0, 1200));
+  const offlineCount = await page.locator('a[href^="#/recipe/"]').count();
+  if (offlineCount < onlineCount) {
+    throw new Error('Offline utracił receptury: online=' + onlineCount + ', offline=' + offlineCount);
   }
 
-  await context.setOffline(false);
-  if (errors.length) {
-    console.error('Błędy przeglądarki:\n' + errors.join('\n'));
-    process.exit(1);
-  }
-  console.log('PASS: offline smoke · serviceWorker=' + swState + ' · recipes=' + recipeCount);
+  await page.goto(base + href, { waitUntil: 'domcontentloaded' });
+  await page.waitForSelector('.detail', { state: 'visible', timeout: 8000 });
+  if (!(await page.locator('.detail').count())) throw new Error('Receptura nie otworzyła się offline.');
+
 } finally {
+  await context.close();
   await browser.close();
 }
+
+if (errors.length) {
+  console.error('Błędy przeglądarki:\n' + errors.join('\n'));
+  process.exit(1);
+}
+console.log('PASS: strict offline PWA smoke');
