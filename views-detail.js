@@ -347,30 +347,129 @@ export function detailView({ id }) {
       button('Przelicz ciasto', { icon: 'swap', block: true, onClick: openBakers }));
   }
 
-  /* Składniki na łuku — okrągłe ikony jak na makiecie. */
+  /* Składniki na łuku — szybki podgląd. „Więcej” otwiera pełną recepturę w osobnym oknie. */
   function orbit(r) {
     const ings = allIngredients(r).filter((i) => i.name && i.unit !== '%');
     const picked = [], used = new Set();
-    for (const i of ings) { const em = ingEmoji(i.name); if (used.has(em)) continue; used.add(em); picked.push(i); if (picked.length >= 5) break; }
-    const more = ings.length - picked.length;
-    const items = [...picked.map((i) => ({ ing: i })), ...(more > 0 ? [{ more }] : [])];
+    for (const i of ings) {
+      const em = ingEmoji(i.name);
+      if (used.has(em)) continue;
+      used.add(em);
+      picked.push(i);
+      if (picked.length >= 5) break;
+    }
+    const more = Math.max(0, ings.length - picked.length);
+    const items = [
+      ...picked.map((i) => ({ ing: i })),
+      { more, full: true },
+    ];
     const n = items.length;
-    if (!n) return null;
     const H = n > 3 ? 54 : 30;
-    const el = h('div', { class: 'orbit', style: { '--oh': H + 'px' } }, h('div', { class: 'orbit-arc' }),
+    const el = h('div', { class: 'orbit', style: { '--oh': H + 'px' } },
+      h('div', { class: 'orbit-arc' }),
       ...items.map((it, idx) => {
         const t = n === 1 ? 0.5 : idx / (n - 1);
         const u = 2 * t - 1;
         const y = H * (1 - Math.sqrt(Math.max(0, 1 - u * u)));
         const x = 9 + 82 * t;
         const q = it.ing ? qtyParts(it.ing) : null;
-        return h('button', { type: 'button', class: 'orb', style: { left: x + '%', top: y + 'px' }, 'aria-label': it.ing ? `${it.ing.name} ${q.num} ${q.unit}` : `Jeszcze ${it.more} składników`,
-          onClick: async () => { await setSetting('detailOpen', true); setTimeout(() => { const t2 = s.content.querySelector('.ingredients'); if (t2) t2.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 120); } },
-          h('span', { class: 'orb-dot' }, it.ing ? ingEmoji(it.ing.name) : `+${it.more}`),
-          h('span', { class: 'orb-name' }, it.ing ? it.ing.name.replace(/\s*\(.*\)\s*/, '').split(/[\s,]+/)[0] : 'więcej'),
+        const label = it.full
+          ? (it.more > 0 ? `Jeszcze ${it.more} składników · Otwórz całą recepturę` : 'Otwórz całą recepturę')
+          : `${it.ing.name} ${q.num} ${q.unit}`;
+        return h('button', {
+          type: 'button',
+          class: 'orb' + (it.full ? ' orb-more' : ''),
+          style: { left: x + '%', top: y + 'px' },
+          'aria-label': label,
+          title: it.full ? 'Otwórz całą recepturę' : it.ing.name,
+          onClick: () => openFullRecipe(r),
+        },
+          h('span', { class: 'orb-dot' + (it.full ? ' orb-dot-more' : '') }, it.full ? (it.more > 0 ? `+${it.more}` : '…') : ingEmoji(it.ing.name)),
+          h('span', { class: 'orb-name' }, it.full ? 'więcej' : it.ing.name.replace(/\s*\(.*\)\s*/, '').split(/[\s,]+/)[0]),
           it.ing ? h('span', { class: 'orb-amt num' }, [q.num, q.unit].filter(Boolean).join('\u00a0')) : null);
       }));
     return h('div', { class: 'orbit-wrap' }, h('div', { class: 'orbit-title' }, 'Składniki'), el);
+  }
+
+  function openFullRecipe(r) {
+    const kc = estimateKcal(r);
+    const ings = allIngredients(r).filter((i) => i.name && i.unit !== '%');
+    const hasSections = (r.sections || []).some((sec) => sec.name);
+    const ingredientGroups = (r.sections || []).filter((sec) => sec.ingredients && sec.ingredients.length);
+
+    const modalIngredient = (i) => {
+      const q = qtyParts(i);
+      return h('div', { class: 'recipe-modal-ing' },
+        h('span', { class: 'recipe-modal-ing-icon', 'aria-hidden': 'true' }, ingEmoji(i.name)),
+        h('div', { class: 'recipe-modal-ing-main' },
+          h('span', { class: 'recipe-modal-ing-name' }, i.name),
+          hasSections ? h('span', { class: 'recipe-modal-ing-section' }, ((r.sections || []).find((sec) => sec.ingredients && sec.ingredients.some((x) => x.id === i.id)) || {}).name || 'Składnik') : null),
+        h('span', { class: 'recipe-modal-ing-qty num' }, q.num || '—'),
+        h('span', { class: 'recipe-modal-ing-unit' }, q.unit || ''));
+    };
+
+    const modalSections = [];
+    if (ingredientGroups.length) {
+      ingredientGroups.forEach((sec) => {
+        modalSections.push(h('div', { class: 'recipe-modal-group' },
+          sec.name ? h('div', { class: 'recipe-modal-group-title' }, sec.name) : null,
+          h('div', { class: 'recipe-modal-ingredients' }, sec.ingredients.filter((i) => i.name && i.unit !== '%').map(modalIngredient))));
+      });
+    } else {
+      modalSections.push(h('div', { class: 'recipe-modal-ingredients' }, ings.map(modalIngredient)));
+    }
+
+    const facts = [
+      r.servings ? `${fmtNum(r.servings, 1)} porcji` : '',
+      r.prepTime ? `przyg. ${fmtMinutes(r.prepTime)}` : '',
+      r.cookTime ? `gotow. ${fmtMinutes(r.cookTime)}` : '',
+      r.temperature ? r.temperature : '',
+    ].filter(Boolean);
+
+    const body = h('div', { class: 'recipe-modal' },
+      h('div', { class: 'recipe-modal-hero' },
+        h('div', { class: 'recipe-modal-photo-wrap' },
+          h('img', {
+            class: 'recipe-modal-photo' + (r.photo ? '' : ' art'),
+            src: r.photo || recipeArtUrl(r),
+            alt: r.photo ? `Zdjęcie: ${r.name}` : '',
+          })),
+        h('div', { class: 'recipe-modal-heading' },
+          h('div', { class: 'recipe-modal-kicker' }, catName(r.category)),
+          h('h3', { class: 'recipe-modal-title' }, r.name || 'Receptura'),
+          facts.length ? h('div', { class: 'recipe-modal-facts' }, facts.map((x) => h('span', null, x))) : null,
+          kc ? h('div', { class: 'recipe-modal-kcal' }, `ok. ${kc.perServing} kcal / porcja`) : null)),
+      r.description ? h('p', { class: 'recipe-modal-desc' }, r.description) : null,
+      h('section', { class: 'recipe-modal-section' },
+        h('div', { class: 'recipe-modal-section-head' },
+          h('span', { class: 'recipe-modal-index' }, '01'),
+          h('div', null, h('div', { class: 'recipe-modal-eyebrow' }, 'LISTA'), h('h3', null, 'Składniki')),
+          h('span', { class: 'recipe-modal-count' }, String(ings.length))),
+        ...modalSections),
+      h('section', { class: 'recipe-modal-section' },
+        h('div', { class: 'recipe-modal-section-head' },
+          h('span', { class: 'recipe-modal-index' }, '02'),
+          h('div', null, h('div', { class: 'recipe-modal-eyebrow' }, 'KROK PO KROKU'), h('h3', null, 'Przygotowanie')),
+          h('span', { class: 'recipe-modal-count' }, String((r.steps || []).length))),
+        r.steps && r.steps.length
+          ? h('ol', { class: 'recipe-modal-steps' }, r.steps.map((st) => h('li', null, h('span', { class: 'recipe-modal-step-text' }, st.text))))
+          : h('p', { class: 'muted' }, 'Brak kroków. Dodaj je w edytorze.')),
+      r.notes ? h('section', { class: 'recipe-modal-section recipe-modal-notes' },
+        h('div', { class: 'recipe-modal-section-head' },
+          h('span', { class: 'recipe-modal-index' }, '03'),
+          h('div', null, h('div', { class: 'recipe-modal-eyebrow' }, 'NOTATKA'), h('h3', null, 'Własne uwagi'))),
+        h('p', null, r.notes)) : null);
+
+    openSheet({
+      title: 'Pełna receptura',
+      variant: 'center',
+      cls: 'recipe-full-modal',
+      body,
+      actions: [
+        { label: 'Zamknij', kind: 'ghost' },
+        { label: 'GOTUJĘ', kind: 'primary', icon: 'chef', onClick: () => navigate('/guide/' + id) },
+      ],
+    });
   }
 
   function paint() {
@@ -403,10 +502,7 @@ export function detailView({ id }) {
       button('GOTUJĘ', { kind: 'primary', lg: true, block: true, icon: 'chef', onClick: () => navigate('/guide/' + id) }),
       h('p', { class: 'muted small center-text' }, 'Prowadzę krok po kroku: składniki, minutniki, czytanie na głos')));
 
-    const open = !!getSetting('detailOpen') || !!scaled;
-    kids.push(h('button', { type: 'button', class: 'more-toggle' + (open ? ' open' : ''), 'aria-expanded': open, onClick: async () => { await setSetting('detailOpen', !getSetting('detailOpen')); } },
-      icon('chev', 22), h('span', null, open ? 'Ukryj szczegóły' : 'Pokaż szczegóły')));
-
+    const open = false;
     const det = [];
     det.push(h('div', { class: 'detail-head' },
       h('div', { class: 'row wrap gap' }, tradMark(rr) ? h('span', { class: 'trad-big' }, tradMark(rr), originOf(rr.origin) ? originOf(rr.origin).name : 'Tradycyjna') : null,
@@ -459,7 +555,9 @@ export function detailView({ id }) {
     det.push(h('div', { class: 'meta-foot muted small' }, src));
     if (!amateur()) det.push(h('div', { class: 'row center' }, button('Historia zmian', { icon: 'history', kind: 'ghost', onClick: openHistory })));
 
-    kids.push(h('div', { class: 'detail-more' + (open ? ' open' : ''), hidden: !open }, ...det.filter(Boolean)));
+    // Pełna receptura jest dostępna z okrągłego „więcej” i nie zajmuje miejsca na ekranie głównym. 
+    // Szczegóły nie są już renderowane inline.
+
     s.content.replaceChildren(...kids.filter(Boolean));
   }
 
