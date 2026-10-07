@@ -44,6 +44,27 @@ export function fmtNum(n, dec = 2) {
   return trimZeros((Math.round(n * p) / p).toFixed(dec));
 }
 
+/** Polska odmiana jednostki zależna od liczby. */
+export function fmtUnit(amount, unit = '') {
+  const u = String(unit || '').trim();
+  if (!u || amount == null || !Number.isFinite(amount)) return u;
+  const n = Math.abs(Number(amount));
+
+  const forms = {
+    'łyżka': ['łyżka', 'łyżki', 'łyżek'],
+    'łyżeczka': ['łyżeczka', 'łyżeczki', 'łyżeczek'],
+    'szczypta': ['szczypta', 'szczypty', 'szczypt'],
+    'porcja': ['porcja', 'porcje', 'porcji'],
+  };
+
+  const f = forms[u];
+  if (!f) return u;
+  if (n === 1) return f[0];
+  const whole = Math.floor(n);
+  const is234 = whole % 10 >= 2 && whole % 10 <= 4 && !(whole % 100 >= 12 && whole % 100 <= 14);
+  return is234 ? f[1] : f[2];
+}
+
 /** Ilość składnika — adaptacyjna precyzja (2 g → "2", 0,2 → "0,2", 1032,5 → "1033"). */
 export function fmtAmount(n) {
   if (n == null || !Number.isFinite(n)) return '';
