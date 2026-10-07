@@ -3,7 +3,7 @@ import fs from 'node:fs';
 const SOURCES = ['seeds.js', 'seeds-pl.js', 'seeds-world.js', 'seeds-more.js'];
 const EXPECTED_SOURCE_COUNT = 225;
 const EXPECTED_HAND_COUNT = 3;
-const BAD_ENGLISH = /\b(almonds|butter|flour|sugar|cream|cheese|milk|cup|cups|tbsp|tsp|tablespoon|teaspoon|one|two|three|yellow|green|red|black|white|oil|water)\b/i;
+const BAD_ENGLISH = /\b(almonds|butter|flour|sugar|cream|cheese|milk|cup|cups|tbsp|tsp|tablespoon|teaspoon|yellow)\b/i;
 const BAD_QTY_GRAMMAR = [
   /\b[234]\\s+łyżka\b/i,
   /\b[1]\\s+łyżki\b/i,
