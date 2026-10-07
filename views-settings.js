@@ -1,5 +1,5 @@
 /* ==========================================================================
-   views-settings.js — Ustawienia: wygląd i tryb, kategorie, kopia zapasowa,
+   views-settings.js — Ustawienia: wygląd, kategorie, kopia zapasowa,
    pamięć i PWA, aktualizacje, strefa ryzyka, prywatność.
    ========================================================================== */
 import {
