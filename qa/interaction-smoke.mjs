@@ -94,7 +94,7 @@ try {
   await page.waitForTimeout(120);
 
   // Powrót i test GOTUJĘ.
-  await page.goto(base + href.replace(/^#/, ''), { waitUntil: 'networkidle' });
+  await page.goto(base + href, { waitUntil: 'networkidle' });
   await ready();
   await page.getByRole('button', { name: 'GOTUJĘ' }).first().click();
   await page.waitForTimeout(200);
