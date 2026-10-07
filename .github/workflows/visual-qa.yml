@@ -2,7 +2,7 @@ name: Visual QA
 
 on:
   push:
-    branches: [main, qa-visual-icons, stage-6-visual-system]
+    branches: [main, qa-visual-icons, stage-6-visual-system, stage-7-recipe-data]
   pull_request:
     branches: [main]
 
@@ -98,3 +98,14 @@ jobs:
         run: python3 -m http.server 4173 >/tmp/zaruok-http.log 2>&1 &
       - name: Run offline smoke
         run: node qa/offline-smoke.mjs
+
+  recipe-data-audit:
+    needs: offline-smoke
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Run recipe data audit
+        run: node qa/recipe-data-audit.mjs
