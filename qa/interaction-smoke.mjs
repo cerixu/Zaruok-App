@@ -92,7 +92,7 @@ try {
   const actionTexts = await actionButtons.allTextContents();
   if (!actionTexts.some((x) => x.trim() === 'Do zakupów')) {
     await page.screenshot({ path: 'qa-shots/interaction-shopping-missing.png', fullPage: true });
-    throw new Error('Brak „Do zakupów”. URL=' + location.href + ' · actions-row=' + JSON.stringify(actionTexts));
+    throw new Error('Brak „Do zakupów”. URL=' + page.url() + ' · actions-row=' + JSON.stringify(actionTexts));
   }
   const shoppingButton = actionButtons.filter({ hasText: 'Do zakupów' }).first();
   await shoppingButton.waitFor({ state: 'visible', timeout: 5000 });
