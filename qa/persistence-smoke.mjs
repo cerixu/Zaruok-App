@@ -44,16 +44,27 @@ try {
   await page.reload({ waitUntil: 'networkidle' });
   await ready();
   await dismiss();
-  const afterReload = await firstRecipeHeart();
-  const persisted = await afterReload.getAttribute('aria-pressed');
-  if (persisted !== changed) throw new Error('Stan ulubionych nie przetrwał przeładowania: zapis=' + changed + ', po reload=' + persisted);
+  const afterReload = page.locator('a[href^="#/recipe/"]').first();
+  const debug = await page.evaluate(() => ({
+    hash: location.hash,
+    ready: window.__kucharzyna?.ready,
+    recipes: window.__kucharzyna?.state?.recipes?.size,
+    seeded: window.__kucharzyna?.state?.settings?.seeded,
+  }));
+  await afterReload.waitFor({ state: 'visible', timeout: 10000 }).catch(() => {
+    throw new Error('Po reload brak receptury. DEBUG=' + JSON.stringify(debug));
+  });
+  const afterReloadCard = afterReload.locator('xpath=ancestor::*[contains(@class,"rtile")][1]');
+  const afterReloadHeart = afterReloadCard.locator('.heart').first();
+  const persisted = await afterReloadHeart.getAttribute('aria-pressed');
+  if (persisted !== changed) throw new Error('Stan ulubionych nie przetrwał przeładowania: zapis=' + changed + ', po reload=' + persisted + ' DEBUG=' + JSON.stringify(debug));
 
   // Przywrócenie stanu wejściowego.
   if (persisted !== original) {
-    await afterReload.click();
+    await afterReloadHeart.click();
     await page.waitForTimeout(350);
   }
-  const restored = await afterReload.getAttribute('aria-pressed');
+  const restored = await afterReloadHeart.getAttribute('aria-pressed');
   if (restored !== original) throw new Error('Nie udało się przywrócić stanu wejściowego.');
 
 } finally {
