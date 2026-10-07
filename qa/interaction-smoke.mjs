@@ -88,7 +88,13 @@ try {
   // Test głównych przycisków z recipe detail.
   await page.locator('a[href="' + href + '"]').first().click();
   await page.waitForSelector('.detail', { state: 'visible', timeout: 5000 });
-  const shoppingButton = page.locator('.actions-row .btn').filter({ hasText: 'Do zakupów' }).first();
+  const actionButtons = page.locator('.actions-row .btn');
+  const actionTexts = await actionButtons.allTextContents();
+  if (!actionTexts.some((x) => x.trim() === 'Do zakupów')) {
+    await page.screenshot({ path: 'qa-shots/interaction-shopping-missing.png', fullPage: true });
+    throw new Error('Brak „Do zakupów”. URL=' + location.href + ' · actions-row=' + JSON.stringify(actionTexts));
+  }
+  const shoppingButton = actionButtons.filter({ hasText: 'Do zakupów' }).first();
   await shoppingButton.waitFor({ state: 'visible', timeout: 5000 });
   await shoppingButton.click();
   await page.waitForTimeout(150);
