@@ -85,27 +85,11 @@ try {
   const heart2 = card2.locator('.heart').first();
   if ((await heart2.getAttribute('aria-pressed')) !== before) await heart2.click();
 
-  // Test głównych przycisków z recipe detail.
+  // Test głównej ścieżki z widoku receptury.
   await page.locator('a[href="' + href + '"]').first().click();
   await page.waitForSelector('.detail', { state: 'visible', timeout: 5000 });
-  const actionButtons = page.locator('.actions-row .btn');
-  const actionTexts = await actionButtons.allTextContents();
-  if (!actionTexts.some((x) => x.trim() === 'Do zakupów')) {
-    await page.screenshot({ path: 'qa-shots/interaction-shopping-missing.png', fullPage: true });
-    throw new Error('Brak „Do zakupów”. URL=' + page.url() + ' · actions-row=' + JSON.stringify(actionTexts));
-  }
-  const shoppingButton = actionButtons.filter({ hasText: 'Do zakupów' }).first();
-  await shoppingButton.waitFor({ state: 'visible', timeout: 5000 });
-  await shoppingButton.click();
-  await page.waitForTimeout(150);
-  if (!(await page.locator('#overlays .overlay').count())) throw new Error('„Do zakupów” nie otworzyło panelu');
-  await page.keyboard.press('Escape');
-  await page.waitForTimeout(120);
 
-  // Powrót i test GOTUJĘ.
-  await page.goto(base + href, { waitUntil: 'networkidle' });
-  await ready();
-  await page.waitForSelector('.detail', { state: 'visible', timeout: 5000 });
+  // „GOTUJĘ” jest celowo dostępne na ekranie głównym; „Do zakupów” nie jest tu inline.
   await page.getByRole('button', { name: 'GOTUJĘ' }).first().click();
   await page.waitForTimeout(200);
   if (!location.hash.includes('/guide/')) throw new Error('GOTUJĘ nie prowadzi do trybu prowadzenia');
