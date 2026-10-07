@@ -45,6 +45,10 @@ export function openDB() {
 
     let rq;
     try {
+      if (globalThis.__kucharzynaQA?.failNextIndexedDBOpen) {
+        globalThis.__kucharzynaQA.failNextIndexedDBOpen = false;
+        throw new DOMException('Simulated IndexedDB startup failure', 'InvalidStateError');
+      }
       rq = indexedDB.open(DB_NAME, DB_VERSION);
     } catch (e) {
       dbPromise = null;
