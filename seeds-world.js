@@ -469,7 +469,7 @@ export const SEED_WORLD = `
 > Ryż ugotuj, kurczaka dopraw (kmin, papryka), usmaż i pokrój. Fasolę podgrzej.
 > Do misek wlej ryż i dodatki, polej sokiem z limonki.
 
-# Mac and cheese
+# Makaron z serem po amerykańsku
 @ cat=pasta origin=US servings=4 prep=10 cook=30 temp=200_°C art=pasta:white tags=makaron,sery,wegetariańskie
 : Makaron zapiekany w sosie serowym.
 300 g | Makaron kolanka
