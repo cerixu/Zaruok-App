@@ -63,7 +63,7 @@ try {
   // Test wejścia do receptury.
   await recipe.click();
   await assertRoute('/recipe/' + href.split('/recipe/')[1]);
-  if (!(await page.locator('.detail').count())) throw new Error('Widok receptury nie został otwarty');
+  await page.waitForSelector('.detail', { state: 'visible', timeout: 5000 });
 
   // Test „więcej” i zamknięcia pełnej receptury.
   const more = page.locator('.orb-more').first();
