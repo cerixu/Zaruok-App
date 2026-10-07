@@ -21,6 +21,18 @@ function assert(ok, message) {
 async function ready() {
   await page.waitForFunction(() => window.__kucharzyna?.ready === true, null, { timeout: 15000 });
 }
+async function dismissWhatsNew() {
+  const overlay = page.locator('#overlays .overlay').first();
+  if (!(await overlay.count())) return;
+  if (!(await overlay.isVisible().catch(() => false))) return;
+  const start = page.getByRole('button', { name: 'Zaczynamy' }).first();
+  if (await start.count()) {
+    await start.click();
+  } else {
+    await page.keyboard.press('Escape');
+  }
+  await page.waitForTimeout(150);
+}
 
 async function shot(name) {
   await page.screenshot({ path: 'qa-shots/' + name, fullPage: true });
@@ -35,6 +47,8 @@ async function box(sel) {
 try {
   await page.goto(base, { waitUntil: 'networkidle' });
   await ready();
+  await page.waitForTimeout(1200);
+  await dismissWhatsNew();
 
   const startBox = await box('.zf-head');
   const tabBox = await box('#tabbar');
@@ -44,6 +58,7 @@ try {
 
   await page.goto(base + '#/recipes', { waitUntil: 'networkidle' });
   await ready();
+  await dismissWhatsNew();
   const grid = await box('.rgrid, .rail');
   assert(grid.width > 300, 'Lista/siatka receptur nie zajmuje prawidłowej szerokości.');
 
