@@ -93,6 +93,12 @@ export function openDB() {
     };
   });
   dbPromise = promise;
+  // A synchronous failure inside the Promise executor can clear dbPromise
+  // before the assignment above runs. Clear the rejected promise as well,
+  // so Safari retry paths get a genuinely fresh IndexedDB open attempt.
+  promise.catch(() => {
+    if (dbPromise === promise) dbPromise = null;
+  });
   return promise;
 }
 
