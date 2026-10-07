@@ -213,8 +213,19 @@ async function boot() {
     window.__kucharzyna.ready = true;
     setTimeout(whatsNew, 900);
   } catch (e) {
-    fatal(e);
-    window.__kucharzyna.ready = false;
+    // Safari/WebKit can occasionally reject the first IndexedDB open during startup.
+    // Retry once without touching/deleting user data.
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 120));
+      await openDB();
+      await loadAll();
+      applyAppearance();
+      window.__kucharzyna.ready = true;
+      setTimeout(whatsNew, 900);
+    } catch (retryError) {
+      fatal(retryError);
+      window.__kucharzyna.ready = false;
+    }
   }
 }
 
