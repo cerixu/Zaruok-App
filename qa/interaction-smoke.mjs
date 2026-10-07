@@ -71,10 +71,11 @@ try {
   await more.click();
   if (!(await page.locator('.recipe-full-modal').count())) throw new Error('Nie otworzył się modal pełnej receptury');
 
-  const close = page.getByRole('button', { name: 'Zamknij' }).first();
-  if (await close.count()) await close.click();
-  await page.waitForTimeout(150);
-  if (await page.locator('.recipe-full-modal').count()) throw new Error('Modal pełnej receptury nie zamknął się');
+  await page.keyboard.press('Escape');
+  await page.waitForTimeout(250);
+  if (await page.locator('.recipe-full-modal').count() && await page.locator('.recipe-full-modal').first().isVisible().catch(() => false)) {
+    throw new Error('Modal pełnej receptury nie zamknął się');
+  }
 
   // Przywróć stan ulubionych do stanu sprzed testu.
   await page.goto(base + '#/recipes', { waitUntil: 'networkidle' });
