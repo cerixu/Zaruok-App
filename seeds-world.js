@@ -530,7 +530,7 @@ export const SEED_WORLD = `
 2 szt. | Jajka ugotowane na twardo
 1 szt. | Awokado
 100 g | Pomidorki koktajlowe
-60 g | Ser blue cheese
+60 g | Ser z niebieską pleśnią
 ## SOS
 3 łyżka | Oliwa
 1 łyżka | Ocet winny
