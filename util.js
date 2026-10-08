@@ -3,7 +3,7 @@
    Liczby, jednostki, daty, formatowanie po polsku.
    ========================================================================== */
 
-export const APP_VERSION = '1.5.0';
+export const APP_VERSION = '1.6.0';
 
 /** Stabilne ID z prefiksem (rcp_, sec_, ing_, stp_, cat_, shp_, his_). */
 export function uid(prefix = '') {
@@ -42,6 +42,28 @@ export function fmtNum(n, dec = 2) {
   if (n == null || !Number.isFinite(n)) return '';
   const p = 10 ** dec;
   return trimZeros((Math.round(n * p) / p).toFixed(dec));
+}
+
+/** Polska odmiana jednostki zależna od liczby. */
+export function fmtUnit(amount, unit = '') {
+  const u = String(unit || '').trim();
+  if (!u || amount == null || !Number.isFinite(amount)) return u;
+  const n = Math.abs(Number(amount));
+
+  const forms = {
+    'łyżka': ['łyżka', 'łyżki', 'łyżek'],
+    'łyżeczka': ['łyżeczka', 'łyżeczki', 'łyżeczek'],
+    'szczypta': ['szczypta', 'szczypty', 'szczypt'],
+    'porcja': ['porcja', 'porcje', 'porcji'],
+  };
+
+  const f = forms[u];
+  if (!f) return u;
+  if (n === 1) return f[0];
+  if (n > 1 && n < 2) return f[1];
+  const whole = Math.floor(n);
+  const is234 = whole % 10 >= 2 && whole % 10 <= 4 && !(whole % 100 >= 12 && whole % 100 <= 14);
+  return is234 ? f[1] : f[2];
 }
 
 /** Ilość składnika — adaptacyjna precyzja (2 g → "2", 0,2 → "0,2", 1032,5 → "1033"). */

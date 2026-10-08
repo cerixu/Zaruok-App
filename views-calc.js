@@ -11,8 +11,8 @@ import {
   state, listRecipes, getRecipe, saveRecipe, blankRecipe, blankIngredient, blankSection, blankStep, kv, getSetting, allIngredients,
 } from './recipes.js';
 import {
-  pizzaCalc, yeastSuggestion, YEAST_TYPES, scaleRecipe, factorFromServings, factorFromYield, factorFromIngredient, effectiveYield, recipeCost, priceForFoodCost,
-} from './calculator.js';
+  pizzaCalc, pizzaCalcFromFlour, yeastSuggestion, YEAST_TYPES, scaleRecipe, factorFromServings, factorFromYield, factorFromIngredient, effectiveYield, recipeCost, priceForFoodCost,
+} from './calculator.js?v=1.6.0';
 import { fmtAmount, fmtNum, fmtMoney, debounce } from './util.js';
 import { qtyParts } from './components.js';
 import { addItems, openAddToShopping } from './shopping.js';
@@ -68,30 +68,30 @@ function hub() {
 /* ---------- Pizza ---------- */
 
 function pizzaCalculator() {
-  const { st, save, ready } = memo('pizza', { balls: 4, ballWeight: 250, hydration: 65, salt: 3, oil: 0, yeast: 0.2, yeastType: 'fresh', temp: 20, hours: 24 });
+  const { st, save, ready } = memo('pizza', { mode: 'flour', flour: 5000, leavening: 'yeast', starter: 0.65, balls: 4, ballWeight: 250, hydration: 65, salt: 3, oil: 0, yeast: 0.2, yeastType: 'fresh', temp: 20, hours: 24 });
   const out = h('div', { class: 'results' });
   const form = h('div', { class: 'stack' });
   const s = calcScreen('Pizza i ciasto', form, out);
 
   function compute() {
-    const r = pizzaCalc({ balls: st.balls || 0, ballWeight: st.ballWeight || 0, hydration: st.hydration || 0, salt: st.salt || 0, oil: st.oil || 0, yeast: st.yeast || 0 });
+    const r = st.mode === 'flour' ? pizzaCalcFromFlour({ flour: st.flour || 0, hydration: st.hydration || 0, salt: st.salt || 0, oil: st.oil || 0, yeast: st.leavening === 'starter' ? 0 : (st.yeast || 0), starter: st.leavening === 'starter' ? (st.starter || 0) : 0 }) : pizzaCalc({ balls: st.balls || 0, ballWeight: st.ballWeight || 0, hydration: st.hydration || 0, salt: st.salt || 0, oil: st.oil || 0, yeast: st.yeast || 0 });
     return r;
   }
 
   function paintOut() {
     const r = compute();
     const ok = r.total > 0 && Number.isFinite(r.flour);
-    if (!ok) { out.replaceChildren(h('p', { class: 'muted pad' }, 'Wpisz liczbę kulek i wagę kulki.')); return; }
+    if (!ok) { out.replaceChildren(h('p', { class: 'muted pad' }, 'Wpisz masę mąki.')); return; }
     const yl = YEAST_TYPES[st.yeastType].label;
     out.replaceChildren(
       h('div', { class: 'results-grid' },
         result('Mąka', fmtAmount(r.flour), 'g', 'big'),
         result('Woda', fmtAmount(r.water), 'g', 'big'),
         result('Sól', fmtAmount(r.salt), 'g'),
-        result('Drożdże ' + yl, fmtNum(r.yeast, 2), 'g'),
+        st.leavening === 'starter' ? result('Zakwas aktywny', fmtAmount(r.starter), 'g') : result('Drożdże ' + yl, fmtNum(r.yeast, 2), 'g'),
         st.oil > 0 ? result('Oliwa', fmtAmount(r.oil), 'g') : null,
         result('Masa całkowita', fmtAmount(r.total), 'g', 'total')),
-      h('p', { class: 'muted small' }, `${st.balls} × ${fmtAmount(st.ballWeight)} g · suma procentów ${fmtNum(r.pctSum, 2)}% (mąka = 100%)`),
+      h('p', { class: 'muted small' }, st.mode === 'flour' ? `Na ${fmtAmount(st.flour)} g mąki · suma procentów ${fmtNum(r.pctSum, 2)}% (mąka = 100%)` : `${st.balls} × ${fmtAmount(st.ballWeight)} g · suma procentów ${fmtNum(r.pctSum, 2)}% (mąka = 100%)`),
       h('div', { class: 'row wrap gap' },
         button('Zapisz jako recepturę', { icon: 'plus', kind: 'primary', onClick: () => saveAsRecipe(r) }),
         button('Do zakupów', { icon: 'cart', onClick: async () => {
@@ -109,14 +109,13 @@ function pizzaCalculator() {
     const r1 = (v) => Math.round(v * 10) / 10;
     const ings = [I('Mąka pszenna', r1(r.flour), 'g', { flour: true, percent: 100 }), I('Woda', r1(r.water), 'g', { percent: st.hydration }), I('Sól', r1(r.salt), 'g', { percent: st.salt })];
     if (st.oil > 0) ings.push(I('Oliwa', r1(r.oil), 'g', { percent: st.oil }));
-    ings.push(I(`Drożdże ${YEAST_TYPES[st.yeastType].label}`, Math.round(r.yeast * 100) / 100, 'g', { percent: st.yeast }));
+    ings.push(I(st.leavening === 'starter' ? 'Zakwas aktywny' : `Drożdże ${YEAST_TYPES[st.yeastType].label}`, st.leavening === 'starter' ? Math.round(r.starter * 100) / 100 : Math.round(r.yeast * 100) / 100, 'g', { percent: st.leavening === 'starter' ? st.starter : st.yeast }));
     const sec = blankSection('CIASTO'); sec.ingredients = ings;
     const rec = blankRecipe({
-      name: `Ciasto na pizzę (${st.balls} × ${fmtAmount(st.ballWeight)} g)`, category: 'cat-pizza', servings: st.balls, yieldAmount: Math.round(r.total), yieldUnit: 'g',
+      name: st.mode === 'flour' ? `Ciasto na pizzę (${fmtAmount(r.flour)} g mąki)` : `Ciasto na pizzę (${st.balls} × ${fmtAmount(st.ballWeight)} g)`, category: 'cat-pizza', servings: st.mode === 'flour' ? null : st.balls, yieldAmount: Math.round(r.total), yieldUnit: 'g',
       fermentTime: Math.round((st.hours || 0) * 60), temperature: `fermentacja w ${st.temp} °C`, bakers: true, sections: [sec],
       description: `Hydracja ${st.hydration}%, sól ${st.salt}%${st.oil ? `, oliwa ${st.oil}%` : ''}, drożdże ${st.yeast}%.`, tags: ['ciasto', 'kalkulator'],
-      steps: [blankStep('Rozpuść sól w wodzie, dodaj drożdże.'), blankStep('Dodaj mąkę i wyrabiaj do gładkiego, elastycznego ciasta.'),
-        blankStep(`Podziel na ${st.balls} kulek po ${fmtAmount(st.ballWeight)} g.`), blankStep(`Fermentuj ok. ${fmtNum(st.hours, 1)} h w ${st.temp} °C.`)],
+      steps: [blankStep('Rozpuść sól w wodzie, dodaj drożdże.'), blankStep('Dodaj mąkę i wyrabiaj do gładkiego, elastycznego ciasta.'), ...(st.mode === 'flour' ? [] : [blankStep(`Podziel na ${st.balls} kulek po ${fmtAmount(st.ballWeight)} g.`)]), blankStep(`Fermentuj ok. ${fmtNum(st.hours, 1)} h w ${st.temp} °C.`)],
     });
     const saved = await saveRecipe(rec);
     toast('Zapisano recepturę', { action: { label: 'Otwórz', fn: () => navigate('/recipe/' + saved.id) } });
@@ -130,8 +129,11 @@ function pizzaCalculator() {
     const factor = YEAST_TYPES[st.yeastType].f;
     form.replaceChildren(
       h('section', { class: 'card stack' },
-        h('div', { class: 'row gap' }, col(field('Liczba kulek', numInput({ value: st.balls, label: 'Liczba kulek', dec: 0, onInput: upd('balls') }))), col(field('Waga kulki (g)', numInput({ value: st.ballWeight, label: 'Waga kulki', dec: 1, onInput: upd('ballWeight') })))),
-        chips('ballWeight', [200, 250, 280, 320, 350], ' g')),
+        h('h2', { class: 'card-title' }, icon('scale', 20), 'Sposób liczenia'),
+        segmented([['flour', 'Mam mąkę'], ['balls', 'Kulki']], st.mode, (v) => { st.mode = v; save(); build(); paintOut(); }, { label: 'Sposób liczenia ciasta' }),
+        st.mode === 'flour' ? field('Masa mąki (g)', numInput({ value: st.flour, label: 'Masa mąki', dec: 1, onInput: upd('flour') })) : h('div', { class: 'stack' },
+          h('div', { class: 'row gap' }, col(field('Liczba kulek', numInput({ value: st.balls, label: 'Liczba kulek', dec: 0, onInput: upd('balls') }))), col(field('Waga kulki (g)', numInput({ value: st.ballWeight, label: 'Waga kulki', dec: 1, onInput: upd('ballWeight') })))),
+          chips('ballWeight', [200, 250, 280, 320, 350], ' g'))),
       h('section', { class: 'card stack' },
         h('div', { class: 'row gap' }, col(field('Hydracja %', numInput({ value: st.hydration, label: 'Hydracja', dec: 1, onInput: upd('hydration') }))), col(field('Sól %', numInput({ value: st.salt, label: 'Sól', dec: 2, onInput: upd('salt') })))),
         chips('hydration', [60, 62, 65, 70, 75], '%'),
@@ -140,10 +142,13 @@ function pizzaCalculator() {
         h('h2', { class: 'card-title' }, icon('thermo', 20), 'Drożdże i fermentacja'),
         h('div', { class: 'row gap' }, col(field('Temperatura (°C)', numInput({ value: st.temp, label: 'Temperatura fermentacji', dec: 1, onInput: (v) => { st.temp = v; save(); build(); paintOut(); } }))),
           col(field('Czas (godz.)', numInput({ value: st.hours, label: 'Czas fermentacji w godzinach', dec: 1, onInput: (v) => { st.hours = v; save(); build(); paintOut(); } })))),
-        h('div', { class: 'row gap' },
-          col(field('Rodzaj drożdży', selectEl(Object.entries(YEAST_TYPES).map(([k, v]) => [k, v.label]), st.yeastType, (v) => { st.yeastType = v; save(); build(); paintOut(); }))),
-          col(field('Drożdże %', numInput({ value: st.yeast, label: 'Drożdże procent', dec: 2, onInput: upd('yeast') })))),
-        sug != null ? h('div', { class: 'suggest' },
+        field('Rodzaj zaczynu', selectEl([['yeast', 'Drożdże'], ['starter', 'Zakwas aktywny']], st.leavening, (v) => { st.leavening = v; save(); build(); paintOut(); })),
+        st.leavening === 'starter'
+          ? field('Zakwas aktywny (% mąki)', numInput({ value: st.starter, label: 'Zakwas aktywny procent mąki', dec: 2, onInput: upd('starter') }))
+          : h('div', { class: 'row gap' },
+            col(field('Rodzaj drożdży', selectEl(Object.entries(YEAST_TYPES).map(([k, v]) => [k, v.label]), st.yeastType, (v) => { st.yeastType = v; save(); build(); paintOut(); }))),
+            col(field('Drożdże %', numInput({ value: st.yeast, label: 'Drożdże procent', dec: 2, onInput: upd('yeast') })))),
+        st.leavening === 'yeast' && sug != null ? h('div', { class: 'suggest' },
           h('span', null, `Orientacyjnie dla ${fmtNum(st.temp, 1)} °C i ${fmtNum(st.hours, 1)} h: `, h('strong', { class: 'num' }, fmtNum(sug * factor, 2) + '%'), ` (${YEAST_TYPES[st.yeastType].label})`),
           button('Użyj', { sm: true, onClick: () => { st.yeast = Math.round(sug * factor * 100) / 100; save(); build(); paintOut(); } })) : null,
         h('p', { class: 'muted small' }, 'To tylko wskazówka — mąka, woda i temperatura ciasta zmieniają tempo fermentacji. Dostosuj do swojego procesu.')));
