@@ -12,7 +12,7 @@ import {
 } from './recipes.js';
 import {
   pizzaCalc, pizzaCalcFromFlour, yeastSuggestion, YEAST_TYPES, scaleRecipe, factorFromServings, factorFromYield, factorFromIngredient, effectiveYield, recipeCost, priceForFoodCost,
-} from './calculator.js';
+} from './calculator.js?v=1.6.0';
 import { fmtAmount, fmtNum, fmtMoney, debounce } from './util.js';
 import { qtyParts } from './components.js';
 import { addItems, openAddToShopping } from './shopping.js';
