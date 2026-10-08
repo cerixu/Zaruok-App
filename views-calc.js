@@ -147,7 +147,7 @@ function pizzaCalculator() {
           ? field('Zakwas aktywny (% mąki)', numInput({ value: st.starter, label: 'Zakwas aktywny procent mąki', dec: 2, onInput: upd('starter') }))
           : h('div', { class: 'row gap' },
             col(field('Rodzaj drożdży', selectEl(Object.entries(YEAST_TYPES).map(([k, v]) => [k, v.label]), st.yeastType, (v) => { st.yeastType = v; save(); build(); paintOut(); }))),
-            col(field('Drożdże %', numInput({ value: st.yeast, label: 'Drożdże procent', dec: 2, onInput: upd('yeast') }))),
+            col(field('Drożdże %', numInput({ value: st.yeast, label: 'Drożdże procent', dec: 2, onInput: upd('yeast') })))),
         st.leavening === 'yeast' && sug != null ? h('div', { class: 'suggest' },
           h('span', null, `Orientacyjnie dla ${fmtNum(st.temp, 1)} °C i ${fmtNum(st.hours, 1)} h: `, h('strong', { class: 'num' }, fmtNum(sug * factor, 2) + '%'), ` (${YEAST_TYPES[st.yeastType].label})`),
           button('Użyj', { sm: true, onClick: () => { st.yeast = Math.round(sug * factor * 100) / 100; save(); build(); paintOut(); } })) : null,
