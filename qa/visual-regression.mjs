@@ -20,7 +20,8 @@ function assert(ok, message) {
 
 async function ready() {
   try {
-    await page.waitForFunction(() => window.__kucharzyna?.ready === true, null, { timeout: 15000 });
+    await page.waitForSelector('#view', { state: 'attached', timeout: 10000 });
+    await page.waitForFunction(() => window.__kucharzyna?.ready === true, null, { timeout: 30000 });
   } catch (error) {
     const body = await page.locator('body').innerText().catch(() => '');
     const href = page.url();
