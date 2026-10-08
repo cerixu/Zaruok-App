@@ -126,6 +126,28 @@ export function bakersRecalc(r, o = {}) {
 
 export const YEAST_TYPES = { fresh: { label: 'świeże', f: 1 }, dry: { label: 'suche aktywne', f: 0.4 }, instant: { label: 'instant', f: 0.33 } };
 
+/** Liczy ciasto od zadanej masy mąki, z procentami piekarskimi. */
+export function pizzaCalcFromFlour({ flour, hydration, salt, oil, yeast, starter = 0 }) {
+  const f = Number(flour);
+  const h = Number(hydration) || 0;
+  const sa = Number(salt) || 0;
+  const o = Number(oil) || 0;
+  const y = Number(yeast) || 0;
+  const st = Number(starter) || 0;
+  const part = (p) => (f * p) / 100;
+  const pctSum = 100 + h + sa + o + y + st;
+  return {
+    flour: f,
+    water: part(h),
+    salt: part(sa),
+    oil: part(o),
+    yeast: part(y),
+    starter: part(st),
+    total: f * (pctSum / 100),
+    pctSum,
+  };
+}
+
 /** total = kulki × masa; mąka = total / (1 + suma procentów). */
 export function pizzaCalc({ balls, ballWeight, hydration, salt, oil, yeast }) {
   const total = balls * ballWeight;
