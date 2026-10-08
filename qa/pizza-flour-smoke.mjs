@@ -23,6 +23,12 @@ try {
   });
 
   const expected = { flour: 7200, water: 4680, salt: 216, yeast: 14.4, total: 12110.4 };
+  const starter = await page.evaluate(async () => {
+    const { pizzaCalcFromFlour } = await import('./calculator.js');
+    const r = pizzaCalcFromFlour({ flour: 7200, hydration: 65, salt: 3, oil: 0, yeast: 0 });
+    return { amount065: r.flour * 0.65 / 100, amount1: r.flour * 1 / 100 };
+  });
+  if (starter.amount065 !== 46.8 || starter.amount1 !== 72) throw new Error('Błędny przelicznik zakwasu: ' + JSON.stringify(starter));
   for (const [k, v] of Object.entries(expected)) {
     if (Math.abs(values[k] - v) > 0.001) throw new Error('Błędny wynik ' + k + ': ' + values[k] + ', oczekiwano ' + v);
   }
