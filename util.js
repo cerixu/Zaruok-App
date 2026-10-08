@@ -60,6 +60,7 @@ export function fmtUnit(amount, unit = '') {
   const f = forms[u];
   if (!f) return u;
   if (n === 1) return f[0];
+  if (n > 1 && n < 2) return f[1];
   const whole = Math.floor(n);
   const is234 = whole % 10 >= 2 && whole % 10 <= 4 && !(whole % 100 >= 12 && whole % 100 <= 14);
   return is234 ? f[1] : f[2];
