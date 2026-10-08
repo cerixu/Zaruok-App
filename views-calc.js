@@ -74,7 +74,7 @@ function pizzaCalculator() {
   const s = calcScreen('Pizza i ciasto', form, out);
 
   function compute() {
-    const r = st.mode === 'flour' ? pizzaCalcFromFlour({ flour: st.flour || 0, hydration: st.hydration || 0, salt: st.salt || 0, oil: st.oil || 0, yeast: st.leavening === 'starter' ? 0 : (st.yeast || 0) }) : pizzaCalc({ balls: st.balls || 0, ballWeight: st.ballWeight || 0, hydration: st.hydration || 0, salt: st.salt || 0, oil: st.oil || 0, yeast: st.yeast || 0 });
+    const r = st.mode === 'flour' ? pizzaCalcFromFlour({ flour: st.flour || 0, hydration: st.hydration || 0, salt: st.salt || 0, oil: st.oil || 0, yeast: st.leavening === 'starter' ? 0 : (st.yeast || 0), starter: st.leavening === 'starter' ? (st.starter || 0) : 0 }) : pizzaCalc({ balls: st.balls || 0, ballWeight: st.ballWeight || 0, hydration: st.hydration || 0, salt: st.salt || 0, oil: st.oil || 0, yeast: st.yeast || 0 });
     return r;
   }
 
@@ -88,7 +88,7 @@ function pizzaCalculator() {
         result('Mąka', fmtAmount(r.flour), 'g', 'big'),
         result('Woda', fmtAmount(r.water), 'g', 'big'),
         result('Sól', fmtAmount(r.salt), 'g'),
-        st.leavening === 'starter' ? result('Zakwas aktywny', fmtAmount((r.flour * (st.starter || 0)) / 100), 'g') : result('Drożdże ' + yl, fmtNum(r.yeast, 2), 'g'),
+        st.leavening === 'starter' ? result('Zakwas aktywny', fmtAmount(r.starter), 'g') : result('Drożdże ' + yl, fmtNum(r.yeast, 2), 'g'),
         st.oil > 0 ? result('Oliwa', fmtAmount(r.oil), 'g') : null,
         result('Masa całkowita', fmtAmount(r.total), 'g', 'total')),
       h('p', { class: 'muted small' }, st.mode === 'flour' ? `Na ${fmtAmount(st.flour)} g mąki · suma procentów ${fmtNum(r.pctSum, 2)}% (mąka = 100%)` : `${st.balls} × ${fmtAmount(st.ballWeight)} g · suma procentów ${fmtNum(r.pctSum, 2)}% (mąka = 100%)`),
@@ -109,7 +109,7 @@ function pizzaCalculator() {
     const r1 = (v) => Math.round(v * 10) / 10;
     const ings = [I('Mąka pszenna', r1(r.flour), 'g', { flour: true, percent: 100 }), I('Woda', r1(r.water), 'g', { percent: st.hydration }), I('Sól', r1(r.salt), 'g', { percent: st.salt })];
     if (st.oil > 0) ings.push(I('Oliwa', r1(r.oil), 'g', { percent: st.oil }));
-    ings.push(I(st.leavening === 'starter' ? 'Zakwas aktywny' : `Drożdże ${YEAST_TYPES[st.yeastType].label}`, st.leavening === 'starter' ? Math.round((r.flour * (st.starter || 0) / 100) * 100) / 100 : Math.round(r.yeast * 100) / 100, 'g', { percent: st.leavening === 'starter' ? st.starter : st.yeast }));
+    ings.push(I(st.leavening === 'starter' ? 'Zakwas aktywny' : `Drożdże ${YEAST_TYPES[st.yeastType].label}`, st.leavening === 'starter' ? Math.round(r.starter * 100) / 100 : Math.round(r.yeast * 100) / 100, 'g', { percent: st.leavening === 'starter' ? st.starter : st.yeast }));
     const sec = blankSection('CIASTO'); sec.ingredients = ings;
     const rec = blankRecipe({
       name: st.mode === 'flour' ? `Ciasto na pizzę (${fmtAmount(r.flour)} g mąki)` : `Ciasto na pizzę (${st.balls} × ${fmtAmount(st.ballWeight)} g)`, category: 'cat-pizza', servings: st.mode === 'flour' ? null : st.balls, yieldAmount: Math.round(r.total), yieldUnit: 'g',
