@@ -11,7 +11,7 @@ import {
   state, listRecipes, getRecipe, saveRecipe, blankRecipe, blankIngredient, blankSection, blankStep, kv, getSetting, allIngredients,
 } from './recipes.js';
 import {
-  pizzaCalc, yeastSuggestion, YEAST_TYPES, scaleRecipe, factorFromServings, factorFromYield, factorFromIngredient, effectiveYield, recipeCost, priceForFoodCost,
+  pizzaCalc, pizzaCalcFromFlour, yeastSuggestion, YEAST_TYPES, scaleRecipe, factorFromServings, factorFromYield, factorFromIngredient, effectiveYield, recipeCost, priceForFoodCost,
 } from './calculator.js';
 import { fmtAmount, fmtNum, fmtMoney, debounce } from './util.js';
 import { qtyParts } from './components.js';
