@@ -19,7 +19,13 @@ function assert(ok, message) {
 }
 
 async function ready() {
-  await page.waitForFunction(() => window.__kucharzyna?.ready === true, null, { timeout: 15000 });
+  try {
+    await page.waitForFunction(() => window.__kucharzyna?.ready === true, null, { timeout: 15000 });
+  } catch (error) {
+    const body = await page.locator('body').innerText().catch(() => '');
+    const href = page.url();
+    throw new Error('App readiness timeout. URL=' + href + '\\nBODY=' + body.slice(0, 2000) + '\\nCAUSE=' + error.message);
+  }
 }
 async function dismissWhatsNew() {
   const overlay = page.locator('#overlays .overlay').first();
