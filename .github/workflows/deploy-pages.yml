@@ -170,6 +170,7 @@ jobs:
             await expect(page.locator('.result').filter({ hasText: 'Mąka do zakwasu' })).toContainText('100');
             await expect(page.locator('.result').filter({ hasText: 'Woda do zakwasu' })).toContainText('200');
             await expect(page.getByText('Aktywny zakwas łącznie')).toBeVisible();
+            await expect(page.locator('.result').filter({ hasText: 'Masa całkowita' })).toContainText('1780');
 
             await page.getByRole('button', { name: 'Zapisz jako recepturę' }).click();
             const openRecipe = page.getByRole('button', { name: 'Otwórz' });
