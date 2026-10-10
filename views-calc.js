@@ -12,7 +12,7 @@ import {
 } from './recipes.js';
 import {
   pizzaCalc, pizzaCalcFromFlour, yeastSuggestion, YEAST_TYPES, scaleRecipe, factorFromServings, factorFromYield, factorFromIngredient, effectiveYield, recipeCost, priceForFoodCost,
-} from './calculator.js?v=1.6.1';
+} from './calculator.js?v=1.6.2';
 import { fmtAmount, fmtNum, fmtMoney, debounce } from './util.js';
 import { qtyParts } from './components.js';
 import { addItems, openAddToShopping } from './shopping.js';
@@ -83,9 +83,7 @@ function pizzaCalculator() {
     };
     if (st.mode === 'flour') return pizzaCalcFromFlour({ flour: st.flour || 0, ...values });
     if (st.leavening === 'starter') {
-      // W trybie kulek ich łączna masa zawiera mąkę, całkowitą wodę i sól,
-      // plus sam zakwas macierzysty. Mąka i woda użyte do zbudowania zakwasu
-      // są już częścią docelowych procentów, dlatego nie dodajemy ich drugi raz.
+      // The target ball mass includes total flour/water, salt/oil and only the seed starter.
       const target = (st.balls || 0) * (st.ballWeight || 0);
       const pctSum = 100 + values.hydration + values.salt + values.oil + values.starter / 4;
       const flour = pctSum > 0 ? target / (pctSum / 100) : 0;
