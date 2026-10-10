@@ -50,6 +50,13 @@ try {
   await page.keyboard.type('25');
   if (await temperature.inputValue() !== '25') throw new Error('Pole temperatury gubi fokus przy wpisywaniu znak po znaku');
   if (!(await temperature.evaluate((el) => el === document.activeElement))) throw new Error('Pole temperatury utraciło fokus');
+  const fermentationTime = page.getByLabel('Czas fermentacji w godzinach');
+  await fermentationTime.click();
+  await page.waitForTimeout(30);
+  await fermentationTime.press('Control+A');
+  await page.keyboard.type('18');
+  if (await fermentationTime.inputValue() !== '18') throw new Error('Pole czasu fermentacji gubi fokus przy wpisywaniu');
+  if (!(await fermentationTime.evaluate((el) => el === document.activeElement))) throw new Error('Pole czasu fermentacji utraciło fokus');
 
   // Active sourdough is a 1:1:2 build: seed : added flour : added water.
   await page.getByLabel('Masa mąki').fill('1000');
@@ -61,6 +68,7 @@ try {
   if (!(await row('Mąka do zakwasu').innerText()).includes('100')) throw new Error('Mąka do zakwasu powinna mieć 100 g');
   if (!(await row('Woda do zakwasu').innerText()).includes('200')) throw new Error('Woda do zakwasu powinna mieć 200 g');
   if (!(await row('Aktywny zakwas łącznie').count())) throw new Error('Brak sumy aktywnego zakwasu');
+  if (!(await row('Masa całkowita').innerText()).includes('1780')) throw new Error('Masa końcowa powinna wynosić 1780 g bez podwójnego liczenia mąki i wody z zakwasu');
 
   await page.getByRole('button', { name: 'Zapisz jako recepturę' }).click();
   const openRecipe = page.getByRole('button', { name: 'Otwórz' }).last();
