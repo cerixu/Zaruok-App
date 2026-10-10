@@ -6,9 +6,16 @@ const page = await browser.newPage({ viewport: { width: 390, height: 844 }, devi
 const errors = [];
 page.on('pageerror', (e) => errors.push(String(e)));
 
+async function dismissWhatsNew() {
+  const start = page.getByRole('button', { name: 'Zaczynamy' }).first();
+  if (await start.count() && await start.isVisible().catch(() => false)) await start.click();
+}
+
 try {
   await page.goto(base + '#/calc/pizza', { waitUntil: 'networkidle' });
   await page.waitForFunction(() => window.__kucharzyna?.ready === true, null, { timeout: 15000 });
+  await page.waitForTimeout(1200);
+  await dismissWhatsNew();
 
   const mode = await page.getByRole('button', { name: 'Mam mąkę' }).count();
   if (!mode) throw new Error('Brak opcji „Mam mąkę”');
