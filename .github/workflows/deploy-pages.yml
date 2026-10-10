@@ -161,6 +161,7 @@ jobs:
             await expect(temp).toHaveValue('25');
             await expect(temp).toBeFocused();
 
+            await page.getByRole('textbox', { name: 'Masa mąki' }).fill('1000');
             await page.getByLabel('Rodzaj zaczynu').selectOption('starter');
             await expect(page.getByText('10 g + 10 g + 20 g = 40 g')).toBeVisible();
             const starterPct = page.getByRole('textbox', { name: 'Aktywny zakwas procent mąki' });
