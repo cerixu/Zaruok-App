@@ -141,22 +141,8 @@ jobs:
 
             console.log('WEBKIT BODY:\n' + await page.locator('body').innerText());
             console.log('WEBKIT PAGE ERRORS:\n' + JSON.stringify(errors, null, 2));
-            const syntaxProbe = await page.evaluate(async () => {
-              const files = ['app.js','views-start.js','ui.js','components.js','recipes.js','router.js','art.js','timers.js','shopping.js','backup.js'];
-              const out = [];
-              for (const file of files) {
-                try {
-                  const source = await fetch('./' + file).then((r) => r.text());
-                  const stripped = source.replace(/^\s*import[^;]+;\s*$/gm, '').replace(/^\s*export\s+/gm, '');
-                  new Function(stripped);
-                  out.push({ file, ok: true });
-                } catch (e) {
-                  out.push({ file, ok: false, name: e && e.name, message: e && e.message, stack: e && e.stack });
-                }
-              }
-              return out;
-            });
-            console.log('WEBKIT SYNTAX PROBES:\n' + JSON.stringify(syntaxProbe, null, 2));
+            // Do not fetch modules from page.evaluate here: WebKit's CORS restrictions
+            // make the diagnostic probe report false console errors and block deployment.
 
             await expect(page.getByText('Żarłok nie wystartował')).toHaveCount(0);
             await expect(page.getByText('Przygotowuję Twój notatnik…')).toHaveCount(0);
