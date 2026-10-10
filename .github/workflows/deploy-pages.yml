@@ -152,6 +152,8 @@ jobs:
 
             // Test the real iPhone-sensitive path: input must not be rebuilt for each digit.
             await page.goto('http://127.0.0.1:4173/index.html#/calc/pizza', { waitUntil: 'domcontentloaded', timeout: 5000 });
+            const releaseNotes = page.getByRole('button', { name: 'Zaczynamy' }).first();
+            if (await releaseNotes.count() && await releaseNotes.isVisible().catch(() => false)) await releaseNotes.click();
             await expect(page.getByRole('button', { name: 'Mam mąkę' })).toBeVisible({ timeout: 10000 });
             const temp = page.getByRole('textbox', { name: 'Temperatura fermentacji' });
             await temp.click();
