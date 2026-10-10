@@ -108,9 +108,9 @@ function pizzaCalculator() {
         result('Sól', fmtAmount(r.salt), 'g'),
         ...(st.leavening === 'starter'
           ? [
-              result('Zakwas macierzysty', fmtAmount(r.starterSeed), 'g'),
-              result('Mąka do zakwasu', fmtAmount(r.starterFlour), 'g'),
-              result('Woda do zakwasu', fmtAmount(r.starterWater), 'g'),
+              result('Zakwas macierzysty', fmtNum(r.starterSeed, 1), 'g'),
+              result('Mąka do zakwasu', fmtNum(r.starterFlour, 1), 'g'),
+              result('Woda do zakwasu', fmtNum(r.starterWater, 1), 'g'),
               result('Aktywny zakwas łącznie', fmtAmount(r.starter), 'g'),
             ]
           : [result('Drożdże ' + yl, fmtNum(r.yeast, 2), 'g')]),
@@ -175,7 +175,7 @@ function pizzaCalculator() {
 
     const steps = st.leavening === 'starter'
       ? [
-          blankStep(`Przygotuj aktywny zakwas w proporcji wagowej 1:1:2: ${fmtAmount(r.starterSeed)} g zakwasu macierzystego, ${fmtAmount(r.starterFlour)} g mąki i ${fmtAmount(r.starterWater)} g wody.`),
+          blankStep(`Przygotuj aktywny zakwas w proporcji wagowej 1:1:2: ${fmtNum(r.starterSeed, 1)} g zakwasu macierzystego, ${fmtNum(r.starterFlour, 1)} g mąki i ${fmtNum(r.starterWater, 1)} g wody.`),
           blankStep('Pozostaw przygotowany zakwas do szczytu aktywności.'),
           blankStep('Połącz mąkę na ciasto z wodą i solą, następnie dodaj aktywny zakwas.'),
           blankStep('Wyrabiaj do uzyskania gładkiego, elastycznego ciasta.'),
