@@ -118,7 +118,7 @@ jobs:
           export default {
             testDir: './ci-webkit',
             testMatch: '**/boot.spec.js',
-            timeout: 20000,
+            timeout: 35000,
             projects: [{ name: 'webkit', use: { browserName: 'webkit' } }],
           };
           EOF
@@ -149,6 +149,34 @@ jobs:
 
             if (errors.length) throw new Error('Browser errors:\\n' + errors.join('\\n'));
             await expect(page.locator('#view')).toBeVisible();
+
+            // Test the real iPhone-sensitive path: input must not be rebuilt for each digit.
+            await page.goto('http://127.0.0.1:4173/index.html#/calc/pizza', { waitUntil: 'domcontentloaded', timeout: 5000 });
+            await expect(page.getByRole('button', { name: 'Mam mąkę' })).toBeVisible({ timeout: 10000 });
+            const temp = page.getByRole('textbox', { name: 'Temperatura fermentacji' });
+            await temp.click();
+            await page.waitForTimeout(20);
+            await temp.press('Control+A');
+            await page.keyboard.type('25');
+            await expect(temp).toHaveValue('25');
+            await expect(temp).toBeFocused();
+
+            await page.getByLabel('Rodzaj zaczynu').selectOption('starter');
+            await expect(page.getByText('10 g + 10 g + 20 g = 40 g')).toBeVisible();
+            const starterPct = page.getByRole('textbox', { name: 'Aktywny zakwas procent mąki' });
+            await starterPct.fill('40');
+            await expect(page.locator('.result').filter({ hasText: 'Zakwas macierzysty' })).toContainText('100');
+            await expect(page.locator('.result').filter({ hasText: 'Mąka do zakwasu' })).toContainText('100');
+            await expect(page.locator('.result').filter({ hasText: 'Woda do zakwasu' })).toContainText('200');
+            await expect(page.getByText('Aktywny zakwas łącznie')).toBeVisible();
+
+            await page.getByRole('button', { name: 'Zapisz jako recepturę' }).click();
+            const openRecipe = page.getByRole('button', { name: 'Otwórz' });
+            await expect(openRecipe).toBeVisible({ timeout: 5000 });
+            await openRecipe.click();
+            await expect(page.getByText('Zakwas macierzysty', { exact: true })).toBeVisible({ timeout: 5000 });
+            await expect(page.getByText('Mąka pszenna do zakwasu', { exact: true })).toBeVisible();
+            await expect(page.getByText('Woda do zakwasu', { exact: true })).toBeVisible();
           });
           EOF
 
