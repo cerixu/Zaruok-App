@@ -45,6 +45,16 @@ async function shot(name) {
   await page.screenshot({ path: 'qa-shots/' + name, fullPage: true });
 }
 
+async function assertNoPageOverflow(label) {
+  const metrics = await page.evaluate(() => ({
+    viewport: document.documentElement.clientWidth,
+    document: document.documentElement.scrollWidth,
+    body: document.body.scrollWidth,
+  }));
+  assert(metrics.document <= metrics.viewport && metrics.body <= metrics.viewport,
+    label + ': poziomy overflow strony ' + JSON.stringify(metrics));
+}
+
 async function box(sel) {
   const loc = page.locator(sel).first();
   assert(await loc.count(), 'Brak elementu: ' + sel);
@@ -63,11 +73,26 @@ try {
   assert(tabBox.height >= 50 && tabBox.y >= 780, 'Dolna nawigacja ma nieprawidłową pozycję/rozmiar.');
   await shot('01-start.png');
 
+  // Responsive overflow sweep: horizontal rails may scroll internally, but the page itself must not widen.
+  for (const width of [375, 390, 932]) {
+    await page.setViewportSize({ width, height: width === 932 ? 430 : 844 });
+    await page.waitForTimeout(100);
+    await assertNoPageOverflow('Start @ ' + width + 'px');
+  }
+  await page.setViewportSize({ width: 390, height: 844 });
+
   await page.goto(base + '#/recipes', { waitUntil: 'networkidle' });
   await ready();
   await dismissWhatsNew();
   const grid = await box('.rgrid, .rail');
   assert(grid.width > 300, 'Lista/siatka receptur nie zajmuje prawidłowej szerokości.');
+
+  for (const width of [375, 390, 932]) {
+    await page.setViewportSize({ width, height: width === 932 ? 430 : 844 });
+    await page.waitForTimeout(100);
+    await assertNoPageOverflow('Receptury @ ' + width + 'px');
+  }
+  await page.setViewportSize({ width: 390, height: 844 });
 
   const recipe = page.locator('a[href^="#/recipe/"]').first();
   assert(await recipe.count(), 'Brak receptury testowej.');
