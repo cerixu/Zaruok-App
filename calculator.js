@@ -133,16 +133,32 @@ export function pizzaCalcFromFlour({ flour, hydration, salt, oil, yeast, starter
   const sa = Number(salt) || 0;
   const o = Number(oil) || 0;
   const y = Number(yeast) || 0;
-  const st = Number(starter) || 0;
+  const stPct = Math.max(0, Number(starter) || 0);
   const part = (p) => (f * p) / 100;
-  const pctSum = 100 + h + sa + o + y + st;
+  const starterMass = part(stPct);
+
+  // Aktywny zakwas: 1 część zakwasu macierzystego + 1 część mąki + 2 części wody.
+  // Mąka i woda do zakwasu są częścią zadanej całkowitej mąki/hydracji,
+  // więc odejmujemy je od składników dodawanych bezpośrednio do ciasta.
+  const starterSeed = starterMass / 4;
+  const starterFlour = starterMass / 4;
+  const starterWater = starterMass / 2;
+  const doughFlour = f - starterFlour;
+  const doughWater = part(h) - starterWater;
+  const pctSum = 100 + h + sa + o + y + (stPct > 0 ? stPct / 4 : 0);
+
   return {
     flour: f,
     water: part(h),
+    doughFlour,
+    doughWater,
     salt: part(sa),
     oil: part(o),
     yeast: part(y),
-    starter: part(st),
+    starter: starterMass,
+    starterSeed,
+    starterFlour,
+    starterWater,
     total: f * (pctSum / 100),
     pctSum,
   };
