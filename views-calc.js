@@ -74,14 +74,34 @@ function pizzaCalculator() {
   const s = calcScreen('Pizza i ciasto', form, out);
 
   function compute() {
-    const r = st.mode === 'flour' ? pizzaCalcFromFlour({ flour: st.flour || 0, hydration: st.hydration || 0, salt: st.salt || 0, oil: st.oil || 0, yeast: st.leavening === 'starter' ? 0 : (st.yeast || 0), starter: st.leavening === 'starter' ? (st.starter || 0) : 0 }) : pizzaCalc({ balls: st.balls || 0, ballWeight: st.ballWeight || 0, hydration: st.hydration || 0, salt: st.salt || 0, oil: st.oil || 0, yeast: st.yeast || 0 });
-    return r;
+    const values = {
+      hydration: st.hydration || 0,
+      salt: st.salt || 0,
+      oil: st.oil || 0,
+      yeast: st.leavening === 'starter' ? 0 : (st.yeast || 0),
+      starter: st.leavening === 'starter' ? (st.starter || 0) : 0,
+    };
+    if (st.mode === 'flour') return pizzaCalcFromFlour({ flour: st.flour || 0, ...values });
+    if (st.leavening === 'starter') {
+      // W trybie kulek ich łączna masa zawiera mąkę, całkowitą wodę i sól,
+      // plus sam zakwas macierzysty. Mąka i woda użyte do zbudowania zakwasu
+      // są już częścią docelowych procentów, dlatego nie dodajemy ich drugi raz.
+      const target = (st.balls || 0) * (st.ballWeight || 0);
+      const pctSum = 100 + values.hydration + values.salt + values.oil + values.starter / 4;
+      const flour = pctSum > 0 ? target / (pctSum / 100) : 0;
+      return pizzaCalcFromFlour({ flour, ...values });
+    }
+    return pizzaCalc({ balls: st.balls || 0, ballWeight: st.ballWeight || 0, hydration: values.hydration, salt: values.salt, oil: values.oil, yeast: values.yeast });
   }
 
   function paintOut() {
     const r = compute();
     const ok = r.total > 0 && Number.isFinite(r.flour);
     if (!ok) { out.replaceChildren(h('p', { class: 'muted pad' }, 'Wpisz masę mąki.')); return; }
+    if (st.leavening === 'starter' && (r.doughFlour < 0 || r.doughWater < 0)) {
+      out.replaceChildren(h('p', { class: 'muted pad' }, 'Zakwasu jest za dużo dla wybranej ilości mąki i wody. Zmniejsz procent zakwasu albo zwiększ hydrację.'));
+      return;
+    }
     const yl = YEAST_TYPES[st.yeastType].label;
     out.replaceChildren(
       h('div', { class: 'results-grid' },
@@ -90,9 +110,9 @@ function pizzaCalculator() {
         result('Sól', fmtAmount(r.salt), 'g'),
         ...(st.leavening === 'starter'
           ? [
-              result('Zakwas macierzysty', fmtAmount(r.starter / 4), 'g'),
-              result('Mąka do zakwasu', fmtAmount(r.starter / 4), 'g'),
-              result('Woda do zakwasu', fmtAmount(r.starter / 2), 'g'),
+              result('Zakwas macierzysty', fmtAmount(r.starterSeed), 'g'),
+              result('Mąka do zakwasu', fmtAmount(r.starterFlour), 'g'),
+              result('Woda do zakwasu', fmtAmount(r.starterWater), 'g'),
               result('Aktywny zakwas łącznie', fmtAmount(r.starter), 'g'),
             ]
           : [result('Drożdże ' + yl, fmtNum(r.yeast, 2), 'g')]),
@@ -103,8 +123,11 @@ function pizzaCalculator() {
         button('Zapisz jako recepturę', { icon: 'plus', kind: 'primary', onClick: () => saveAsRecipe(r) }),
         button('Do zakupów', { icon: 'cart', onClick: async () => {
           await addItems([
-            { name: 'Mąka pszenna', amount: Math.round(r.flour), unit: 'g' }, { name: 'Sól', amount: Math.round(r.salt * 10) / 10, unit: 'g' },
-            { name: `Drożdże ${yl}`, amount: Math.round(r.yeast * 100) / 100, unit: 'g' },
+            { name: 'Mąka pszenna', amount: Math.round(r.flour), unit: 'g' },
+            { name: 'Sól', amount: Math.round(r.salt * 10) / 10, unit: 'g' },
+            ...(st.leavening === 'starter'
+              ? [{ name: 'Zakwas macierzysty', amount: Math.round(r.starterSeed * 100) / 100, unit: 'g' }]
+              : [{ name: `Drożdże ${yl}`, amount: Math.round(r.yeast * 100) / 100, unit: 'g' }]),
             ...(r.oil > 0 ? [{ name: 'Oliwa', amount: Math.round(r.oil), unit: 'g' }] : []),
           ]);
           toast('Dodano do zakupów', { action: { label: 'Pokaż', fn: () => navigate('/shopping') } });
@@ -129,8 +152,8 @@ function pizzaCalculator() {
     const I = (name, amount, unit, extra = {}) => blankIngredient({ name, amount, unit, ...extra });
     const r1 = (v) => Math.round(v * 10) / 10;
     const doughIngredients = [
-      I('Mąka pszenna', r1(r.flour), 'g', { flour: true, percent: 100 }),
-      I('Woda', r1(r.water), 'g', { percent: st.hydration }),
+      I('Mąka pszenna', r1(r.doughFlour), 'g', { flour: true, percent: r.flour > 0 ? (r.doughFlour / r.flour) * 100 : 100 }),
+      I('Woda', r1(r.doughWater), 'g', { percent: r.flour > 0 ? (r.doughWater / r.flour) * 100 : 0 }),
       I('Sól', r1(r.salt), 'g', { percent: st.salt }),
     ];
     if (st.oil > 0) doughIngredients.push(I('Oliwa', r1(r.oil), 'g', { percent: st.oil }));
@@ -142,9 +165,9 @@ function pizzaCalculator() {
     if (st.leavening === 'starter') {
       const levain = blankSection('ZAKWAS AKTYWNY · 1:1:2');
       levain.ingredients = [
-        I('Zakwas macierzysty', r1(r.starter / 4), 'g'),
-        I('Mąka pszenna do zakwasu', r1(r.starter / 4), 'g', { flour: true }),
-        I('Woda do zakwasu', r1(r.starter / 2), 'g'),
+        I('Zakwas macierzysty', r1(r.starterSeed), 'g'),
+        I('Mąka pszenna do zakwasu', r1(r.starterFlour), 'g', { flour: true, percent: r.flour > 0 ? (r.starterFlour / r.flour) * 100 : 0 }),
+        I('Woda do zakwasu', r1(r.starterWater), 'g', { percent: r.flour > 0 ? (r.starterWater / r.flour) * 100 : 0 }),
       ];
       sections.push(levain, dough);
     } else {
@@ -154,7 +177,7 @@ function pizzaCalculator() {
 
     const steps = st.leavening === 'starter'
       ? [
-          blankStep(`Przygotuj aktywny zakwas w proporcji wagowej 1:1:2: ${fmtAmount(r.starter / 4)} g zakwasu macierzystego, ${fmtAmount(r.starter / 4)} g mąki i ${fmtAmount(r.starter / 2)} g wody.`),
+          blankStep(`Przygotuj aktywny zakwas w proporcji wagowej 1:1:2: ${fmtAmount(r.starterSeed)} g zakwasu macierzystego, ${fmtAmount(r.starterFlour)} g mąki i ${fmtAmount(r.starterWater)} g wody.`),
           blankStep('Pozostaw przygotowany zakwas do szczytu aktywności.'),
           blankStep('Połącz mąkę na ciasto z wodą i solą, następnie dodaj aktywny zakwas.'),
           blankStep('Wyrabiaj do uzyskania gładkiego, elastycznego ciasta.'),
