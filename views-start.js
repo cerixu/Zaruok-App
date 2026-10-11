@@ -7,7 +7,6 @@ import { h, icon, iconBtn, screen, emptyState, button } from './ui.js';
 import { navigate } from './router.js';
 import { state, subscribe, listRecipes } from './recipes.js';
 import { recipeTile, catTile, sectionHead, metaLine } from './components.js';
-import { openTimersSheet } from './timers.js';
 import { pendingCount } from './shopping.js';
 import { db } from './db.js';
 import { backupDue, daysSinceBackup } from './backup.js';
