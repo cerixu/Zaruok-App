@@ -539,3 +539,23 @@ button:focus-visible, a:focus-visible {
 .detail .orb-dot[data-kind] { color:var(--zc-mint); }
 .ing-icon svg, .recipe-modal-ing-icon svg { display:block; width:26px; height:26px; overflow:visible; }
 .detail .orb-dot svg { display:block; width:24px; height:24px; overflow:visible; }
+
+
+/* Ikony składników: kolor i głębia zgodne z fotorealistycznym kierunkiem projektu. */
+.ing-icon[data-kind], .recipe-modal-ing-icon[data-kind], .detail .orb-dot[data-kind] {
+  color: color-mix(in srgb, var(--tone, #9daec6) 76%, #fff);
+}
+.ing-icon svg, .recipe-modal-ing-icon svg, .detail .orb-dot[data-kind] svg {
+  filter: drop-shadow(0 2px 1.5px rgba(0,0,0,.24));
+  stroke-width: 1.85;
+}
+.detail .orb-dot[data-kind="vegetable"] { --tone: #82d16f; }
+.detail .orb-dot[data-kind="fruit"] { --tone: #f4c76e; }
+.detail .orb-dot[data-kind="meat"] { --tone: #ef8e85; }
+.detail .orb-dot[data-kind="fish"] { --tone: #7dc9df; }
+.detail .orb-dot[data-kind="dairy"] { --tone: #e8d8a0; }
+.detail .orb-dot[data-kind="grain"] { --tone: #d5b17d; }
+.detail .orb-dot[data-kind="oil"] { --tone: #a7d66f; }
+.detail .orb-dot[data-kind="spice"] { --tone: #c6a2f2; }
+.detail .orb-dot[data-kind="sauce"] { --tone: #e8a16f; }
+.detail .orb-dot[data-kind="other"] { --tone: #9daec6; }

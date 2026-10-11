@@ -1,5 +1,9 @@
 name: Visual QA
 
+concurrency:
+  group: visual-qa-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 on:
   push:
     branches: [main, qa-visual-icons, stage-6-visual-system, stage-7-recipe-data]
