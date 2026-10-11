@@ -96,6 +96,8 @@ export function inventoryView() {
   const filterRow = h('div', { class: 'inventory-filters', role: 'group', 'aria-label': 'Kategorie magazynu' });
   const filterButtons = ['Wszystkie', ...CATEGORIES].map((label) => button(label, { kind: 'ghost', onClick: () => { selectedCategory = label; paint(); } }));
   filterRow.replaceChildren(...filterButtons);
+  const content = h('div', { class: 'inventory-content' });
+  c.replaceChildren(searchBar, filterRow, content);
 
   async function reload() {
     try { data = await loadData(); if (active) paint(); }
@@ -323,7 +325,7 @@ export function inventoryView() {
     const alertToggle = button('Alerty niskiego stanu: ' + (alertsOn ? 'włączone' : 'wyłączone'), {
       kind: 'ghost', block: true, icon: 'bell', onClick: async () => { await setSetting('inventoryLowAlerts', !alertsOn); paint(); },
     });
-    const kids = [searchBar, filterRow, summary, alertToggle];
+    const kids = [summary, alertToggle];
     if (low.length) {
       kids.push(h('section', { class: 'inventory-low-panel card stack' },
         h('div', { class: 'row between' }, h('h2', { class: 'card-title' }, icon('alert', 20), 'Do uzupełnienia'), h('span', { class: 'pill' }, String(low.length))),
@@ -352,7 +354,7 @@ export function inventoryView() {
           h('div', null, h('strong', null, m.name), h('p', { class: 'muted small' }, (m.reason || 'Strata') + ' · ' + new Date(m.createdAt).toLocaleDateString('pl-PL'))),
           h('div', { class: 'inventory-movement-cost' }, h('strong', null, money(m.cost)), h('span', { class: 'muted small' }, displayQty(Math.abs(m.amount), m.unit)))))));
     }
-    c.replaceChildren(...kids);
+    content.replaceChildren(...kids);
   }
   function summaryCard(label, value, cls) {
     return h('div', { class: 'inventory-summary-card ' + cls }, h('span', { class: 'muted small' }, label), h('strong', null, value));
