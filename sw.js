@@ -32,9 +32,9 @@ self.addEventListener('install', (event) => {
     const cache = await caches.open(VERSION);
     // cache:'reload' omija pamięć HTTP przeglądarki — w cache lądują świeże pliki.
     await cache.addAll([...new Set(CORE)].map((p) => new Request(scopeUrl(p), { cache: 'reload' })));
-    // Żarłok jest aplikacją offline/PWA. Nowy SW ma przejąć aplikację
-    // od razu, inaczej Safari może mieszać nowy index.html ze starym app.js.
-    await self.skipWaiting();
+    // Pierwsza instalacja może aktywować się od razu; aktualizacje czekają,
+    // aż użytkownik wybierze „Odśwież” w powiadomieniu.
+    if (!self.registration.active) await self.skipWaiting();
   })());
 });
 
