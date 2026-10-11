@@ -15,7 +15,8 @@ Wszystkie dane są w pamięci Twojego urządzenia.
 - **Wiele minutników naraz** z pastylką widoczną na każdym ekranie.
 - **Szukaj w sieci — w samej aplikacji** (patrz niżej).
 - **Narzędzia kuchenne** (zakładka Kalkulatory): pizza/ciasto z procentami piekarskimi, procenty, przeliczanie receptury, koszt i food cost, sól i solanki, zakwas, forma do pieczenia, przelicznik jednostek (także g ↔ ml), temperatury mięs, czasy gotowania z minutnikiem, zamienniki, „Co mam w lodówce?”, „Co dziś gotujemy?”.
-- **Przelicz**, **procenty piekarskie**, **food cost**, **zakupy** (z alejkami), **import z tekstu**, **historia zmian** z przywracaniem wersji, **kopia zapasowa JSON** — jak w poprzednich wersjach.
+- **Magazyn**: lokalne stany, progi niskiego stanu, alerty, straty z kosztem z ostatnich 7 dni, dodawanie braków do zakupów i automatyczne odliczanie dopasowanych składników po zakończeniu gotowania. Skaner EAN używa BarcodeDetector, jeśli przeglądarka go udostępnia, z ręcznym fallbackiem i opcjonalnym rozpoznaniem produktu online.
+- **Przelicz**, **procenty piekarskie**, **food cost**, **zakupy** (z alejkami), **import z tekstu**, **historia zmian** z przywracaniem wersji, **kopia zapasowa JSON**.
 
 ## Struktura plików
 
@@ -47,6 +48,7 @@ tools-data.js, calc-kit.js   dane i klocki narzędzi kuchennych
 importer.js             parser tekstu przepisu (PL/EN, JSON-LD)
 backup.js               eksport/import JSON
 shopping.js             lista zakupów (logika + widok)
+inventory.js            magazyn, EAN, stany, straty i zużycie składników
 ui.js, util.js, components.js     elementy interfejsu, narzędzia
 views-start.js          ekran Start
 views-recipes.js        lista receptur, menedżer kategorii
