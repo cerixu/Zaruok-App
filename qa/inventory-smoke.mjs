@@ -62,6 +62,39 @@ try {
   await page.waitForTimeout(250);
   await expectText('1,75 zł', 'Koszt tygodniowej straty nie został obliczony poprawnie.');
 
+  // Verify recipe completion automatically decrements an exact ingredient match.
+  await page.getByRole('button', { name: 'Dodaj produkt do magazynu' }).click();
+  await page.getByLabel('Nazwa produktu').fill('Mąka pszenna');
+  await page.getByLabel('Aktualny stan').fill('1000');
+  await page.getByLabel('Jednostka stanu').selectOption('g');
+  await page.getByLabel('Próg niskiego stanu').fill('0');
+  await page.getByLabel('Cena za jednostkę (zł)').fill('0.02');
+  await page.getByRole('button', { name: 'Zapisz', exact: true }).click();
+  await page.goto(base + '#/recipes', { waitUntil: 'domcontentloaded' });
+  await ready();
+  await dismiss();
+  await page.getByLabel('Szukaj').fill('Kotlet schabowy');
+  const schabowy = page.locator('a[href^="#/recipe/"]').filter({ hasText: 'Kotlet schabowy' }).first();
+  await schabowy.waitFor({ state: 'visible', timeout: 5000 });
+  await schabowy.click();
+  await page.waitForSelector('.detail', { state: 'visible', timeout: 5000 });
+  await page.getByRole('button', { name: 'GOTUJĘ' }).first().click();
+  await page.waitForSelector('.guide-next', { state: 'visible', timeout: 5000 });
+  for (let step = 0; step < 12; step++) {
+    const next = page.locator('.guide-next');
+    const label = (await next.textContent()).trim();
+    await next.click();
+    if (label === 'Zakończ') break;
+    await page.waitForTimeout(100);
+  }
+  await page.waitForTimeout(250);
+  await page.goto(base + '#/inventory', { waitUntil: 'domcontentloaded' });
+  await ready();
+  await dismiss();
+  const flourRow = page.locator('.inventory-item').filter({ hasText: 'Mąka pszenna' });
+  await flourRow.waitFor({ state: 'visible', timeout: 5000 });
+  await expectText('940 g', 'Ukończenie gotowania nie odjęło 60 g mąki z magazynu.');
+
   await page.getByRole('button', { name: 'Skanuj kod EAN' }).click();
   await page.waitForSelector('.scanner-frame', { timeout: 5000 });
   if (!(await page.locator('.scanner-line').count())) throw new Error('Brak animowanej linii skanowania EAN.');
