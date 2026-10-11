@@ -21,9 +21,11 @@ try {
   await dismiss();
 
   const forms = await page.evaluate(async () => {
-    const { fmtUnit } = await import('./util.js');
+    const { fmtUnit, fmtKitchenAmount } = await import('./util.js');
     const cases = [
       [1, 'łyżka', 'łyżka'],
+      [0.5, 'łyżka', 'łyżki'],
+      [0.333, 'łyżka', 'łyżki'],
       [1.5, 'łyżka', 'łyżki'],
       [2, 'łyżka', 'łyżki'],
       [4, 'łyżka', 'łyżki'],
@@ -43,17 +45,36 @@ try {
     ];
     return cases.map(([n, u, expected]) => ({ n, u, actual: fmtUnit(n, u), expected }));
   });
+  const fractionCases = await page.evaluate(async () => {
+    const { fmtKitchenAmount } = await import('./util.js');
+    return [
+      [1 / 3, 'szt.', '⅓'], [2 / 3, 'szt.', '⅔'],
+      [0.5, 'łyżka', '½'], [1 + 1 / 3, 'szt.', '1⅓'],
+      [0.333, 'g', '0,333'],
+    ].map(([n, unit, expected]) => ({ n, unit, actual: fmtKitchenAmount(n, unit), expected }));
+  });
+  const badFractions = fractionCases.filter((x) => x.actual !== x.expected);
+  if (badFractions.length) throw new Error('Błędny zapis ilości kuchennych: ' + JSON.stringify(badFractions));
+
   const bad = forms.filter((x) => x.actual !== x.expected);
   if (bad.length) throw new Error('Błędna odmiana: ' + JSON.stringify(bad));
 
-  await page.goto(base + '#/recipe/rcp_seed_ragu_alla_bolognese', { waitUntil: 'networkidle' });
+  await page.goto(base + '#/recipe/rcp_seed_lasagne_alla_bolognese', { waitUntil: 'networkidle' });
   await ready();
   await dismiss();
   await page.waitForSelector('.detail', { state: 'visible', timeout: 8000 });
 
-  const units = await page.locator('.detail .ing-qty .unit').allTextContents();
-  const visibleBad = units.filter((u) => /\błyżka\b|\błyżeczka\b|\bszczypta\b|\bporcja\b/.test(u.trim()));
-  if (visibleBad.length) throw new Error('Widok receptury renderuje surową jednostkę zamiast odmiany: ' + JSON.stringify(visibleBad));
+  await page.locator('.orb-more').first().click();
+  await page.waitForSelector('.recipe-full-modal', { state: 'visible', timeout: 5000 });
+  const unitRows = await page.locator('.recipe-full-modal .recipe-modal-ing').evaluateAll((els) => els.map((el) => ({
+    amount: el.querySelector('.recipe-modal-ing-qty')?.textContent?.trim() || '',
+    unit: el.querySelector('.recipe-modal-ing-unit')?.textContent?.trim() || '',
+  })));
+  if (!unitRows.length) throw new Error('Brak ilości składników w pełnej recepturze.');
+  const visibleForms = unitRows.map((x) => x.amount + ' ' + x.unit);
+  if (!visibleForms.includes('⅛ łyżki') || !visibleForms.includes('¼ łyżki')) {
+    throw new Error('Nieprawidłowa odmiana łyżki w pełnej recepturze: ' + JSON.stringify(visibleForms));
+  }
 
   console.log('PASS: Polish unit grammar runtime + recipe rendering');
 } finally {

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Kucharzyna — service worker
+   Żarłok — service worker
    Strategia: network-first z krótkim limitem czasu i cache jako zapasem.
    Dzięki temu online zawsze dostajesz świeże pliki (brak „starej wersji
    przez kilka dni”), a offline aplikacja otwiera się z pamięci podręcznej.
@@ -9,17 +9,17 @@
    ZMIANA WERSJI: podbij VERSION (i APP_VERSION w util.js) przy każdej
    aktualizacji plików, żeby urządzenia wykryły nową wersję.
    ========================================================================== */
-const VERSION = 'zaruok-1.6.3';
+const VERSION = 'zaruok-1.9.1';
 const NETWORK_TIMEOUT = 3500;
 
 const CORE = [
   './',
   'index.html',
-  'styles.css',
+  'styles.css', 'start-final.css', 'visual-system.css', 'claude-completion.css',
   'manifest.webmanifest',
-  'app.js', 'router.js', 'start-final.css', 'pwa.js', 'ui.js', 'util.js', 'db.js', 'recipes.js', 'calculator.js', 'importer.js', 'backup.js',
+  'app.js', 'router.js', 'start-final.css', 'inventory.js', 'barcode.js', 'pwa.js', 'ui.js', 'util.js', 'db.js', 'recipes.js', 'calculator.js', 'importer.js', 'backup.js',
   'components.js', 'shopping.js', 'art.js', 'art-kit.js', 'art-extra.js', 'nutrition.js', 'seeds.js', 'seeds-pl.js', 'seeds-world.js', 'seeds-more.js', 'timers.js', 'kitchen.js', 'tools-data.js', 'calc-kit.js', 'search.js',
-  'views-start.js', 'views-recipes.js', 'views-detail.js', 'views-editor.js', 'views-cook.js', 'views-calc.js', 'views-tools.js', 'views-guide.js', 'views-search.js', 'views-import.js', 'views-settings.js',
+  'views-start.js', 'views-recipes.js', 'views-detail.js', 'views-editor.js', 'views-cook.js', 'views-cook-home.js', 'views-more.js', 'views-calc.js', 'views-tools.js', 'views-guide.js', 'views-search.js', 'views-import.js', 'views-settings.js',
   'apple-touch-icon.png', 'icon-192.png', 'icon-512.png', 'icon-maskable-512.png',
   'poppins-300.woff', 'poppins-400.woff', 'poppins-500.woff', 'poppins-700.woff',
 ];
@@ -31,7 +31,7 @@ self.addEventListener('install', (event) => {
   event.waitUntil((async () => {
     const cache = await caches.open(VERSION);
     // cache:'reload' omija pamięć HTTP przeglądarki — w cache lądują świeże pliki.
-    await cache.addAll(CORE.map((p) => new Request(scopeUrl(p), { cache: 'reload' })));
+    await cache.addAll([...new Set(CORE)].map((p) => new Request(scopeUrl(p), { cache: 'reload' })));
     // Żarłok jest aplikacją offline/PWA. Nowy SW ma przejąć aplikację
     // od razu, inaczej Safari może mieszać nowy index.html ze starym app.js.
     await self.skipWaiting();

@@ -172,8 +172,21 @@ const omelette = () => `${plate(76)}<path d="M42 104 C42 66 158 66 158 104 C158 
 const sandwich = () => `${shadow(100, 158, 70, 8)}${rect(44, 124, 112, 26, '#e3b46c', 12)}${rect(44, 124, 112, 8, '#c98a3f', 6)}<path d="M40 122 C52 108 62 130 74 116 C86 130 96 110 108 120 C120 130 130 110 142 118 C148 122 154 118 160 116 L160 126 L40 126Z" fill="#6fbf4a"/>${rect(46, 106, 108, 12, '#f08a8a', 4)}${[[64, 98], [96, 98], [128, 98]].map(([x, y]) => `${ell(x, y, 15, 7, '#e5483a')}${ell(x - 2, y - 1, 6, 2, '#f0847a')}`).join('')}<path d="M44 94 L156 94 L150 104 L50 104Z" fill="#f6c744"/>${rect(44, 66, 112, 28, '#e3b46c', 12)}${rect(44, 66, 112, 8, '#f0cc8a', 6)}`;
 const focaccia = () => `${shadow(100, 150, 76, 8)}<g transform="rotate(-6 100 100)">${rect(34, 58, 132, 84, '#c98a3a', 14)}${rect(38, 62, 124, 76, '#e6ae52', 11)}${Array.from({ length: 18 }, (_, i) => circ(54 + (i % 6) * 21, 78 + Math.floor(i / 6) * 22, 5, '#c9852f')).join('')}${[[62, 74], [112, 96], [138, 76], [80, 122]].map(([x, y]) => `${circ(x, y, 9, '#d9342a')}${circ(x - 2, y - 2, 3, '#fff', 0.5)}`).join('')}${[[96, 80, 20], [60, 100, -30], [126, 118, 10]].map(([x, y, a]) => `<path d="M${x} ${y} l18 6" stroke="#4a8b3a" stroke-width="2.4" transform="rotate(${a} ${x} ${y})"/>`).join('')}${dots([[70, 90], [100, 110], [120, 80], [140, 100], [86, 66], [110, 128]], 1.6, '#fff', 0.9)}</g>`;
 
+/* ---------- Dipy i pasty warzywne ---------- */
+const dip = (v = 'eggplant') => {
+  const isHummus = v === 'hummus';
+  const isGuac = v === 'guacamole';
+  const cream = isHummus ? '#d9b66d' : isGuac ? '#78a84d' : '#d9c7a2';
+  const garnish = isHummus
+    ? dots([[82, 94], [110, 86], [124, 106], [94, 116]], 3.5, '#b66b2b') + leaf(102, 94, 20, .7)
+    : isGuac
+      ? dots([[82, 92], [112, 106], [124, 88]], 5, '#d9342a') + leaf(98, 98, -20, .8) + leaf(116, 114, 35, .65)
+      : `<g transform="rotate(-18 136 82)"><ellipse cx="136" cy="82" rx="15" ry="27" fill="#51304f"/><ellipse cx="132" cy="75" rx="8" ry="17" fill="#795070"/><path d="M126 58 l-9 -9 l14 3 l7 -10 l2 14 l12 1 l-11 7Z" fill="#4e8b45"/></g>` + leaf(88, 90, -20, .75);
+  return `${bowl(72, '#9699a5', '#272a31')}${ell(100, 100, 55, 34, '#eee5d4')}${ell(100, 98, 48, 27, cream)}<path d="M66 98 C78 82 100 84 115 94 C126 101 118 111 104 110 C90 109 88 96 99 92" stroke="${isGuac ? '#4d8138' : '#b58e5b'}" stroke-width="4" fill="none" stroke-linecap="round"/>${garnish}${dots([[74, 112], [122, 116], [100, 78]], 2.2, '#fff5df')}`;
+};
+
 /* ---------- Eksport ---------- */
-export const EXTRA = { soup, pasta, pizza, salad, sauce, bread, cake, cocktail, pancakes, tart, pudding, cookies, cupcake, icecream, smoothie, jar, fries, skewers, chicken, cutlet, stew, rolls, meatballs, ribs, sausage, lasagne, ramen, curry, taco, sushi, paella, omelette, sandwich, focaccia };
+export const EXTRA = { soup, pasta, pizza, salad, sauce, dip, bread, cake, cocktail, pancakes, tart, pudding, cookies, cupcake, icecream, smoothie, jar, fries, skewers, chicken, cutlet, stew, rolls, meatballs, ribs, sausage, lasagne, ramen, curry, taco, sushi, paella, omelette, sandwich, focaccia };
 
 /** Wszystkie dozwolone specyfikacje „rodzaj:wariant” (do testów i podglądu). */
 export const VARIANT_SPECS = [
@@ -181,5 +194,5 @@ export const VARIANT_SPECS = [
   'pizza', 'pizza:pepperoni', 'pizza:white', 'pizza:veg', 'salad', 'salad:greek', 'salad:caesar', 'salad:caprese', 'salad:potato', 'salad:slaw',
   ...Object.keys(SAUCE).map((v) => (v ? 'sauce:' + v : 'sauce')), 'bread', 'bread:round', 'bread:rolls', 'cake', 'cake:cheese', 'cake:choc', 'cake:tiramisu',
   ...Object.keys(COCK).map((v) => (v ? 'cocktail:' + v : 'cocktail')), 'pancakes', 'pancakes:potato', 'tart', 'tart:apple', 'tart:lemon', 'pudding', 'pudding:brulee', 'cookies', 'cookies:brownie',
-  'cupcake', 'icecream', 'smoothie', 'jar', 'fries', 'skewers', 'chicken', 'cutlet', 'stew', 'rolls', 'meatballs', 'ribs', 'sausage', 'lasagne', 'ramen', 'curry', 'taco', 'sushi', 'paella', 'omelette', 'sandwich', 'focaccia',
+  'cupcake', 'icecream', 'smoothie', 'jar', 'dip', 'dip:eggplant', 'dip:hummus', 'dip:guacamole', 'fries', 'skewers', 'chicken', 'cutlet', 'stew', 'rolls', 'meatballs', 'ribs', 'sausage', 'lasagne', 'ramen', 'curry', 'taco', 'sushi', 'paella', 'omelette', 'sandwich', 'focaccia',
 ];

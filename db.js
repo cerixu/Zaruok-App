@@ -1,6 +1,6 @@
 /* ==========================================================================
    db.js — cienka warstwa nad IndexedDB.
-   Magazyny: recipes, ingredients, categories, shoppingItems, settings, history.
+   Magazyny: recipes, ingredients, categories, shoppingItems, settings, history, inventoryItems, inventoryMovements.
    Każdy rekord ma stabilne ID (settings: klucz tekstowy).
 
    WAŻNE: baza ma własną, unikalną nazwę. GitHub Pages różnych repozytoriów
@@ -9,7 +9,7 @@
    ========================================================================== */
 
 const DB_NAME = 'zaruok-app-db';
-const DB_VERSION = 2;
+const DB_VERSION = 3;
 
 export const STORES = {
   recipes: 'id',
@@ -18,6 +18,8 @@ export const STORES = {
   shoppingItems: 'id',
   settings: 'key',
   history: 'id',
+  inventoryItems: 'id',
+  inventoryMovements: 'id',
 };
 
 let dbPromise = null;

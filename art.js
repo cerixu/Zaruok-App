@@ -187,6 +187,42 @@ export function artUrl(spec, seedText = '') {
   return u;
 }
 
-export const artKindFor = (r) => (isArtSpec(r.art) ? r.art : CATEGORY_ART[r.category] || 'plate');
+const NAME_ART = [
+  [/baba\s*ganoush|mutabbal|eggplant dip/i, 'dip:eggplant'],
+  [/hummus|chickpea dip/i, 'dip:hummus'],
+  [/guacamole/i, 'dip:guacamole'],
+  [/mojito|margarita|martini|negroni|spritz|cocktail|koktajl/i, 'cocktail'],
+  [/sushi|maki|nigiri/i, 'sushi'],
+  [/paella/i, 'paella'],
+  [/ramen|pho|udon soup|noodle soup/i, 'ramen'],
+  [/focaccia/i, 'focaccia'],
+  [/sandwich|kanapka|toast/i, 'sandwich'],
+  [/pizza/i, 'pizza'],
+  [/carbonara|spaghetti|lasagne|lasagna|ravioli|tortellini|tagliatelle|penne|pasta|makaron/i, 'pasta'],
+  [/bigos|gulasz|stew|chili con carne|ragù|ragu/i, 'stew'],
+  [/burger|hamburger/i, 'burger'],
+  [/krewet|shrimp|prawn/i, 'shrimp'],
+  [/łosoś|salmon|dorsz|cod|pstrąg|trout|tuńczyk|tuna|ryba|fish/i, 'fish'],
+  [/stek|steak|wołow|beef|rostbef|antrykot/i, 'steak'],
+  [/schabowy|kotlet|cutlet|schnitzel/i, 'cutlet'],
+  [/kurcz|chicken|pollo|drób/i, 'chicken'],
+  [/klops|meatball|pulpety/i, 'meatballs'],
+  [/jajecznica|omlet|omelette|frittata/i, 'omelette'],
+  [/naleśnik|pancake|placki/i, 'pancakes'],
+  [/zupa|soup|barszcz|rosół|chowder|minestrone/i, 'soup'],
+  [/sałatka|salad|coleslaw|tabbouleh/i, 'salad'],
+  [/brownie/i, 'cookies:brownie'],
+  [/tiramisu/i, 'cake:tiramisu'],
+  [/ciasto|tort|cake|babka|sernik|cheesecake|tarta|tart/i, 'cake'],
+  [/chleb|bread|baguette|bułk|roll/i, 'bread'],
+  [/^sos\b|^sauce\b|sos pomidorowy|marinara|ketchup/i, 'sauce'],
+];
+export const artKindFor = (r) => {
+  const explicit = isArtSpec(r.art) ? r.art : null;
+  const name = String(r.name || '');
+  const matched = NAME_ART.find(([pattern]) => pattern.test(name));
+  if (matched) return matched[1];
+  return explicit || CATEGORY_ART[r.category] || 'plate';
+};
 export const recipeArtUrl = (r) => artUrl(artKindFor(r), r.name || r.id || '');
 export const categoryArtUrl = (catId) => artUrl(CATEGORY_ART[catId] || 'plate', catId);

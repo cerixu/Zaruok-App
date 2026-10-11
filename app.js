@@ -16,12 +16,15 @@ import { recipesView, resetRecipeFilters } from './views-recipes.js';
 import { detailView } from './views-detail.js';
 import { editorView } from './views-editor.js';
 import { cookView } from './views-cook.js';
+import { cookEntryView } from './views-cook-home.js';
 import { calcView } from './views-calc.js';
 import { shoppingView, pendingCount } from './shopping.js';
 import { importView } from './views-import.js';
 import { settingsView } from './views-settings.js';
 import { guideView } from './views-guide.js';
 import { searchView } from './views-search.js';
+import { inventoryView } from './inventory.js';
+import { moreView } from './views-more.js';
 
 const root = document.documentElement;
 
@@ -53,9 +56,9 @@ dark.addEventListener && dark.addEventListener('change', () => { if (getSetting(
 const TABS = [
   ['start', 'Start', 'home', '/'],
   ['recipes', 'Receptury', 'book', '/recipes'],
-  ['calc', 'Kalkulatory', 'calc', '/calc'],
-  ['shopping', 'Zakupy', 'cart', '/shopping'],
-  ['settings', 'Ustawienia', 'sliders', '/settings'],
+  ['cook', 'Gotuję', 'pot', '/cook'],
+  ['inventory', 'Magazyn', 'fridge', '/inventory'],
+  ['more', 'Więcej', 'more', '/more'],
 ];
 
 function buildTabbar() {
@@ -136,14 +139,17 @@ route('/recipes', (p, q) => recipesView(q), { tab: 'recipes' });
 route('/recipe/:id', (p) => detailView(p), { tab: 'recipes' });
 route('/edit/:id', (p) => editorView(p), { tab: 'recipes', tabs: false });
 route('/new', (p, q) => editorView({ id: null }, q), { tab: 'recipes', tabs: false });
-route('/cook/:id', (p) => cookView(p), { tab: 'recipes', tabs: false });
-route('/guide/:id', (p) => guideView(p), { tab: 'recipes', tabs: false });
-route('/search', (p, q) => searchView(q), { tab: 'recipes' });
-route('/import', (p, q) => importView(q), { tab: 'recipes' });
-route('/calc', () => calcView({}), { tab: 'calc' });
-route('/calc/:kind', (p, q) => calcView(p, q), { tab: 'calc' });
-route('/shopping', () => shoppingView(), { tab: 'shopping' });
-route('/settings', () => settingsView(), { tab: 'settings' });
+route('/cook', () => cookEntryView(), { tab: 'cook' });
+route('/cook/:id', (p) => cookView(p), { tab: 'cook', tabs: false });
+route('/guide/:id', (p) => guideView(p), { tab: 'cook', tabs: false });
+route('/search', (p, q) => searchView(q), { tab: 'more' });
+route('/import', (p, q) => importView(q), { tab: 'more' });
+route('/calc', () => calcView({}), { tab: 'more' });
+route('/calc/:kind', (p, q) => calcView(p, q), { tab: 'more' });
+route('/shopping', () => shoppingView(), { tab: 'more' });
+route('/inventory', () => inventoryView(), { tab: 'inventory' });
+route('/settings', () => settingsView(), { tab: 'more' });
+route('/more', () => moreView(), { tab: 'more' });
 
 /* ---------- Start ---------- */
 
@@ -152,7 +158,7 @@ function fatal(err) {
   $('#view').classList.remove('boot-shell');
   $('#view').replaceChildren(h('div', { class: 'screen' }, h('div', { class: 'scroll' }, h('div', { class: 'content' },
     h('div', { class: 'empty' }, h('div', { class: 'empty-emoji' }, '⚠️'), h('h2', null, 'Nie mogę otworzyć bazy danych'),
-      h('p', { class: 'muted' }, 'Kucharzyna zapisuje dane lokalnie (IndexedDB). Sprawdź, czy przeglądarka nie działa w trybie prywatnym ani nie blokuje pamięci witryny, i uruchom ponownie.'),
+      h('p', { class: 'muted' }, 'Żarłok zapisuje dane lokalnie (IndexedDB). Sprawdź, czy przeglądarka nie działa w trybie prywatnym ani nie blokuje pamięci witryny, i uruchom ponownie.'),
       h('p', { class: 'muted small' }, String(err && err.message || err)))))));
 }
 
@@ -163,10 +169,10 @@ function whatsNew() {
     title: `Co nowego w ${APP_VERSION}`, variant: 'sheet',
     body: h('div', { class: 'stack' },
       h('ul', { class: 'whatsnew' },
-        li('Kalkulator pizzy „Mam mąkę” liczy ciasto od gramatury mąki, niezależnie od liczby kulek.'),
-        li('Aktywny zakwas jest rozpisany w proporcji wagowej 1:1:2: zakwas macierzysty, mąka i woda. Mąka i woda z zaczynu są odjęte od dodatków do ciasta, aby nie liczyć ich podwójnie.'),
-        li('Naprawiono utratę fokusu i znikanie klawiatury podczas wpisywania temperatury oraz czasu fermentacji na iPhonie.')),
-      h('p', { class: 'muted small' }, 'Podpisy pod ikonami paska włączysz w Ustawieniach. Poprzedni wygląd: Ustawienia → Motyw.')),
+        li('Spójny wygląd Liquid Glass obejmuje wszystkie główne ekrany iPhone’a, z czytelniejszymi kartami, ikonami i arkuszami.'),
+        li('Nowy Magazyn zapisuje stany lokalnie, pokazuje niskie zapasy i tygodniowe straty oraz pozwala dodać braki do zakupów.'),
+        li('Po zakończeniu trybu „Prowadź mnie” dopasowane składniki są odliczane z magazynu; dodano skaner EAN z opcjonalnym rozpoznaniem produktu online.')),
+      h('p', { class: 'muted small' }, 'Wszystkie stany i receptury zostają na tym urządzeniu. Alerty niskiego stanu można wyłączyć w Magazynie.')),
     actions: [{ label: 'Zaczynamy', kind: 'primary' }],
     onClose: () => setSetting('seenVersion', APP_VERSION),
   });

@@ -26,9 +26,9 @@ try {
 
   const tabs = [
     ['recipes', '/recipes'],
-    ['calc', '/calc'],
-    ['shopping', '/shopping'],
-    ['settings', '/settings'],
+    ['cook', '/cook'],
+    ['inventory', '/inventory'],
+    ['more', '/more'],
     ['start', '/'],
   ];
 
@@ -38,6 +38,13 @@ try {
     await tab.click();
     await assertRoute(path);
     if (!(await page.locator('#view .screen').count())) throw new Error('Ekran nie został wyrenderowany po wejściu na ' + id);
+  }
+
+  for (const path of ['/calc', '/shopping', '/search', '/import', '/settings']) {
+    await page.goto(base + '#' + path, { waitUntil: 'domcontentloaded' });
+    await ready();
+    await dismiss();
+    if (!(await page.locator('#view .screen').count())) throw new Error('Ekran nie został wyrenderowany: ' + path);
   }
 
   await page.goto(base + '#/recipes', { waitUntil: 'networkidle' });

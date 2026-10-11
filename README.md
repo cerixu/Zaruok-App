@@ -1,4 +1,4 @@
-# Kucharzyna 👨‍🍳
+# Żarłok 👨‍🍳
 
 Prywatny notatnik szefa kuchni na iPhone'a (działa też na innych telefonach i komputerze).
 Instalowalna aplikacja PWA, **działa bez internetu**, bez kont, reklam, śledzenia i płatnych API.
@@ -6,7 +6,7 @@ Wszystkie dane są w pamięci Twojego urządzenia.
 
 ## Co potrafi
 
-- **Wygląd z makiety (1.2):** ciemny grafit, szare karty z miedzianą krawędzią i światłem u dołu, **okrągłe zdjęcia dań**, ocena ★ i kalorie po prawej stronie karty, pasek ikon bez podpisów, font Poppins. Szczegóły receptury: duże okrągłe zdjęcie, tytuł z oceną, **składniki na łuku** (okrągłe ikony) i „Pokaż szczegóły ⌄”. Suwak „Przezroczystość szkła” i podpisy pod ikonami paska są dostępne w Ustawieniach.
+- **Wygląd mobilny (1.9.0):** ciemny grafit, szare karty z miedzianą krawędzią i światłem u dołu, **okrągłe zdjęcia dań**, ocena ★ i kalorie po prawej stronie karty, pasek ikon bez podpisów, font Poppins. Szczegóły receptury: duża ilustracja lub własne zdjęcie, tytuł z oceną, **składniki na łuku z wektorowymi ikonami SVG**, a pełna receptura otwiera się w osobnym szklanym arkuszu po naciśnięciu „Więcej”. Suwak „Przezroczystość szkła” i podpisy pod ikonami paska są dostępne w Ustawieniach.
 - **228 przykładowych receptur:** polska kuchnia (zupy, mięsa, pierogi, ciasta, wigilijne), kuchnie świata (Włochy, Francja, Hiszpania, Grecja, Meksyk, USA, Azja, Bliski Wschód…), śniadania, wege i wegańskie, desery, sosy bazowe, prep, przetwory, ponad 20 drinków. Tradycyjne są oznaczone gwiazdką i flagą kraju. Każdą receptura możesz edytować lub usunąć; usunięta nie wraca po aktualizacji, a „Przywróć przykładowe receptury” w Ustawieniach przywraca brakujące.
 - **Ilustracje dań** rysowane w kodzie (ok. 90 wariantów: zupy, makarony, mięsa, desery, drinki…) na ciemnej porcelanie — wszędzie tam, gdzie receptura nie ma własnego zdjęcia. Własne zdjęcie dodajesz w edytorze (kompresowane lokalnie).
 - **Szacunek kalorii na porcję** z tabel wartości odżywczej (pokazywany tylko, gdy rozpoznano ≥ 70% składników; to przybliżenie).
@@ -14,8 +14,9 @@ Wszystkie dane są w pamięci Twojego urządzenia.
 - **GOTUJĘ — „Prowadź mnie” krok po kroku:** ekran „Przygotuj” (składniki, zmiana porcji), potem jeden krok na ekranie z potrzebnymi składnikami i wykrytymi minutnikami; przesuwanie palcem, czytanie na głos, wznawianie, ocena 1–5 i notatka na koniec. Obok klasyczna „Lista kontrolna”.
 - **Wiele minutników naraz** z pastylką widoczną na każdym ekranie.
 - **Szukaj w sieci — w samej aplikacji** (patrz niżej).
-- **Narzędzia kuchenne** (zakładka Kalkulatory): pizza/ciasto z procentami piekarskimi, procenty, przeliczanie receptury, koszt i food cost, sól i solanki, zakwas, forma do pieczenia, przelicznik jednostek (także g ↔ ml), temperatury mięs, czasy gotowania z minutnikiem, zamienniki, „Co mam w lodówce?”, „Co dziś gotujemy?”.
-- **Przelicz**, **procenty piekarskie**, **food cost**, **zakupy** (z alejkami), **import z tekstu**, **historia zmian** z przywracaniem wersji, **kopia zapasowa JSON** — jak w poprzednich wersjach.
+- **Narzędzia kuchenne** (zakładka Więcej → Kalkulatory): pizza/ciasto z procentami piekarskimi, procenty, przeliczanie receptury, koszt i food cost, sól i solanki, zakwas, forma do pieczenia, przelicznik jednostek (także g ↔ ml), temperatury mięs, czasy gotowania z minutnikiem, zamienniki, „Co mam w lodówce?”, „Co dziś gotujemy?”.
+- **Magazyn**: lokalne stany z wyszukiwarką i filtrami kategorii, progi niskiego stanu, alerty, straty z kosztem z ostatnich 7 dni, dodawanie braków do zakupów i automatyczne odliczanie dopasowanych składników po zakończeniu gotowania. Skaner EAN działa z BarcodeDetector, jeśli przeglądarka go udostępnia, a w Safari ma lokalny dekoder EAN-13 bez zewnętrznych API; kod można też wpisać ręcznie. Rozpoznanie nazwy produktu online jest opcjonalne.
+- **Przelicz**, **procenty piekarskie**, **food cost**, **zakupy** (z alejkami), **import z tekstu**, **historia zmian** z przywracaniem wersji, **kopia zapasowa JSON**.
 
 ## Struktura plików
 
@@ -24,13 +25,14 @@ Repozytorium jest **płaskie — wszystkie pliki leżą w jednym katalogu głów
 
 ```
 index.html              powłoka aplikacji, meta tagi iOS, wczesne ustawienie motywu
-styles.css              wszystkie style (motywy, safe-area, komponenty, ekrany)
+styles.css              bazowe style (motywy, safe-area, komponenty)
+claude-completion.css   spójna warstwa Liquid Glass dla wszystkich widoków mobilnych
 manifest.webmanifest    manifest PWA
 sw.js                   service worker (cache offline + wykrywanie aktualizacji)
 app.js                  start, motyw, nawigacja dolna, klawiatura iOS, trasy
 router.js               router po hashu (#/…), pamięć przewijania
 pwa.js                  rejestracja SW, „Nowa wersja → Odśwież", trwały magazyn
-db.js                   IndexedDB (recipes, ingredients, categories, shoppingItems, settings, history)
+db.js                   IndexedDB (recipes, ingredients, categories, shoppingItems, inventoryItems, inventoryMovements, settings, history)
 recipes.js              model danych, zapis, historia, kategorie, dane startowe
 calculator.js           przeliczanie, procenty piekarskie, pizza, food cost
 seeds.js                format receptur startowych + parser + pierwsze 60 receptur
@@ -46,12 +48,16 @@ tools-data.js, calc-kit.js   dane i klocki narzędzi kuchennych
 importer.js             parser tekstu przepisu (PL/EN, JSON-LD)
 backup.js               eksport/import JSON
 shopping.js             lista zakupów (logika + widok)
+inventory.js            magazyn, stany, straty i zużycie składników
+barcode.js              lokalny dekoder kodów EAN-13
 ui.js, util.js, components.js     elementy interfejsu, narzędzia
 views-start.js          ekran Start
 views-recipes.js        lista receptur, menedżer kategorii
 views-detail.js         podgląd receptury, Przelicz, procenty, koszt, historia
 views-editor.js         edytor receptury
 views-cook.js           tryb GOTUJĘ + minutnik
+views-cook-home.js      ekran wejściowy zakładki Gotuję
+views-more.js           skróty do narzędzi i ustawień
 views-calc.js           kalkulatory (pizza, procenty, przeliczanie, koszt)
 views-tools.js          przelicznik, temperatury, czasy, zamienniki, solanki, zakwas, formy, lodówka, losowanie
 views-guide.js          „Prowadź mnie” — gotowanie krok po kroku
@@ -70,7 +76,7 @@ Brak bundlera i zależności — czyste moduły ES. Nic nie trzeba instalować a
 Service worker i instalacja wymagają `http://localhost` albo HTTPS (otwarcie pliku z dysku przez `file://` nie zadziała).
 
 ```bash
-cd kucharzyna
+cd zaruok-app
 python3 -m http.server 8080
 # albo: npx serve .
 ```
@@ -79,13 +85,13 @@ Otwórz `http://localhost:8080`.
 
 ## Publikacja na GitHub Pages (także z samego iPhone'a)
 
-1. Pobierz `kucharzyna.zip`, w aplikacji **Pliki** stuknij go, żeby się rozpakował (powstanie folder z plikami).
-2. W Safari wejdź na github.com → **New repository** (np. `kucharzyna`, publiczne) → **Create repository**.
+1. Pobierz `zaruok-app.zip`, w aplikacji **Pliki** stuknij go, żeby się rozpakował (powstanie folder z plikami).
+2. W Safari wejdź na github.com → **New repository** (np. `Zaruok-App`, publiczne) → **Create repository**.
 3. Na stronie pustego repozytorium stuknij **uploading an existing file** (albo **Add file → Upload files**).
-4. Stuknij **choose your files** → w oknie wyboru wejdź do rozpakowanego folderu → **Zaznacz** → zaznacz **wszystkie pliki** (jest ich 49, same pliki, bez folderów) → **Otwórz**. Poczekaj, aż wszystkie się wgrają (lista na stronie).
+4. Stuknij **choose your files** → w oknie wyboru wejdź do rozpakowanego folderu → **Zaznacz** → zaznacz **wszystkie pliki** (same pliki, bez folderów) → **Otwórz**. Poczekaj, aż wszystkie się wgrają (lista na stronie).
 5. Na dole **Commit changes**.
 6. **Settings → Pages → Build and deployment → Source: Deploy from a branch**, gałąź `main`, folder `/ (root)` → **Save**.
-7. Po minucie–dwóch aplikacja jest pod `https://TWOJA-NAZWA.github.io/kucharzyna/`.
+7. Po minucie–dwóch aplikacja jest pod `https://TWOJA-NAZWA.github.io/Zaruok-App/`.
 
 Przy późniejszych aktualizacjach wgrywasz tylko zmienione pliki tą samą drogą (**Add file → Upload files**) — pliki o tej samej nazwie zostaną podmienione.
 
@@ -126,16 +132,16 @@ Skutki: dane jednego telefonu nie pojawią się na drugim (przenoś kopią JSON)
 
 ## Kopia zapasowa
 
-- **Ustawienia → Eksportuj kopię** — na iPhonie otworzy się arkusz udostępniania: wybierz **Zachowaj w Plikach** (np. iCloud Drive). Plik ma nazwę `kucharzyna-kopia-RRRR-MM-DD.json`.
+- **Ustawienia → Eksportuj kopię** — na iPhonie otworzy się arkusz udostępniania: wybierz **Zachowaj w Plikach** (np. iCloud Drive). Plik ma nazwę `zaruok-kopia-RRRR-MM-DD.json`.
 - **Ustawienia → Wczytaj kopię z pliku**: **Połącz** (dodaje brakujące, przy tej samej recepturze zostaje nowsza wersja) albo **Zastąp wszystko** (po dodatkowym potwierdzeniu).
 - Kopia obejmuje receptury, katalog składników z cenami, kategorie, uwagi, ulubione, ustawienia, zakupy i historię zmian. Szkice edytora nie są w niej zapisywane.
 - Aplikacja przypomina o kopii, gdy ostatnia ma ponad 14 dni.
 
 ## Aktualizacje aplikacji
 
-1. Zmień pliki, podbij wersję w **`sw.js`** (`VERSION = 'kucharzyna-1.2.1'`) i w **`util.js`** (`APP_VERSION = '1.2.1'`) — muszą być zgodne.
+1. Zmień pliki, podbij wersję w **`sw.js`** (`VERSION = 'zaruok-1.9.0'`) i w **`util.js`** (`APP_VERSION = '1.9.0'`) — muszą być zgodne.
 2. Wypchnij zmiany na GitHub.
-3. Telefon wykryje nową wersję i pokaże: **„Nowa wersja Kucharzyny jest dostępna” → Odśwież**. Ręcznie: Ustawienia → Sprawdź aktualizacje.
+3. Telefon wykryje nową wersję i pokaże: **„Nowa wersja Żarłoka jest dostępna” → Odśwież**. Ręcznie: Ustawienia → Sprawdź aktualizacje.
 
 Service worker pobiera pliki z sieci w pierwszej kolejności (z krótkim limitem czasu), więc po stronie telefonu nic nie „zalega” przez dni; offline używa zapisanej kopii.
 

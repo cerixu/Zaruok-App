@@ -192,7 +192,7 @@ export function settingsView() {
     } }));
 
   const about = group('Prywatność',
-    h('p', { class: 'muted' }, 'Kucharzyna nie ma konta, reklam, śledzenia ani analityki. Wszystkie dane są w pamięci tego urządzenia (IndexedDB) i nigdzie nie są wysyłane. Internet jest używany tylko wtedy, gdy sam otworzysz wyszukiwarkę Google lub Google Tłumacz.'));
+    h('p', { class: 'muted' }, 'Żarłok nie ma konta, reklam, śledzenia ani analityki. Wszystkie dane są w pamięci tego urządzenia (IndexedDB) i nigdzie nie są wysyłane. Internet jest używany tylko wtedy, gdy sam otworzysz wyszukiwarkę Google lub Google Tłumacz.'));
 
   c.append(appearance, recipes, cooking, search, backup, app, install, danger, about);
   void state;

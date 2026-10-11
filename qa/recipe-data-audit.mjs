@@ -1,19 +1,26 @@
 import fs from 'node:fs';
+import { artKindFor } from '../art.js';
 
 const SOURCES = ['seeds.js', 'seeds-pl.js', 'seeds-world.js', 'seeds-more.js'];
+
+if (artKindFor({ name: 'Baba ganoush', category: 'sauce', art: 'sauce:tomato' }) !== 'dip:eggplant') throw new Error('Baba ganoush musi używać ilustracji dipu z bakłażana, nawet jeśli ma stary wariant grafiki.');
+if (artKindFor({ name: 'Pizza Margherita', category: 'main', art: 'plate' }) !== 'pizza') throw new Error('Pizza Margherita musi używać ilustracji pizzy.');
 const EXPECTED_SOURCE_COUNT = 225;
 const EXPECTED_HAND_COUNT = 3;
 const BAD_ENGLISH = /\b(almonds|butter|flour|sugar|cream|cheese|milk|cup|cups|tbsp|tsp|tablespoon|teaspoon|yellow)\b/i;
 const BAD_QTY_GRAMMAR = [
-  /\b[234]\\s+łyżka\b/i,
-  /\b[1]\\s+łyżki\b/i,
-  /\b[5-9]\\s+łyżki\b/i,
-  /\b\d+\\s+łyżeczka\b/i,
-  /\bjeden\\s+zółt/i,
+  /\b[234]\s+łyżka\b/i,
+  /\b(?:[5-9]|[1-9]\d+)\s+łyżka\b/i,
+  /\b1\s+łyżki\b/i,
+  /\b[234]\s+łyżeczka\b/i,
+  /\b(?:[5-9]|[1-9]\d+)\s+łyżeczka\b/i,
+  /\b1\s+łyżeczki\b/i,
+  /\b\d+[,.]\d+\s+łyż(?:ka|eczka)\b/i,
+  /\bjeden\s+zółt/i,
 ];
 
 function normalizeName(s) {
-  return s.toLocaleLowerCase('pl').normalize('NFD').replace(/[\\u0300-\\u036f]/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
+  return s.toLocaleLowerCase('pl').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
 }
 
 const issues = [];

@@ -1,0 +1,22 @@
+import { decodeEAN13Bits } from '../barcode.js';
+
+const L = ['0001101','0011001','0010011','0111101','0100011','0110001','0101111','0111011','0110111','0001011'];
+const G = ['0100111','0110011','0011011','0100001','0011101','0111001','0000101','0010001','0001001','0010111'];
+const R = ['1110010','1100110','1101100','1000010','1011100','1001110','1010000','1000100','1001000','1110100'];
+const parity = 'LGGLLG';
+const leftDigits = '901234';
+const rightDigits = '123457';
+let bits = '101';
+for (let i = 0; i < 6; i++) bits += (parity[i] === 'L' ? L : G)[Number(leftDigits[i])];
+bits += '01010';
+for (const digit of rightDigits) bits += R[Number(digit)];
+bits += '101';
+if (bits.length !== 95) throw new Error('EAN-13 test fixture must have 95 modules');
+if (decodeEAN13Bits(bits) !== '5901234123457') throw new Error('EAN-13 decoder failed the valid checksum fixture');
+let invalidBits = '101';
+for (let i = 0; i < 6; i++) invalidBits += (parity[i] === 'L' ? L : G)[Number(leftDigits[i])];
+invalidBits += '01010';
+for (const digit of '123456') invalidBits += R[Number(digit)];
+invalidBits += '101';
+if (decodeEAN13Bits(invalidBits) !== null) throw new Error('EAN-13 decoder accepted an invalid checksum');
+console.log('PASS: local EAN-13 bit decoder and checksum');

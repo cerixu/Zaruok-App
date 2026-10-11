@@ -11,8 +11,13 @@ const page = await browser.newPage({
 });
 
 const errors = [];
-page.on('pageerror', (e) => errors.push(String(e)));
-page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
+const badRequests = [];
+page.on('pageerror', (e) => errors.push(String(e.stack || e)));
+page.on('requestfailed', (req) => badRequests.push(req.url() + ' :: ' + String(req.failure()?.errorText || 'request failed')));
+page.on('response', (res) => { if (/\\.js(?:\\?|$)/.test(res.url()) && !res.ok()) badRequests.push(res.status() + ' ' + res.url()); });
+page.on('console', (m) => { if (m.type() === 'error') errors.push('CONSOLE ' + m.text() + ' @ ' + JSON.stringify(m.location())); });
+page.on('requestfailed', (r) => errors.push('REQUESTFAIL ' + r.url() + ' ' + (r.failure()?.errorText || '')));
+page.on('response', (r) => { if (r.status() >= 400) errors.push('HTTP ' + r.status() + ' ' + r.url()); });
 
 function assert(ok, message) {
   if (!ok) throw new Error(message);
@@ -25,7 +30,7 @@ async function ready() {
   } catch (error) {
     const body = await page.locator('body').innerText().catch(() => '');
     const href = page.url();
-    throw new Error('App readiness timeout. URL=' + href + '\\nBODY=' + body.slice(0, 2000) + '\\nCAUSE=' + error.message);
+    throw new Error('App readiness timeout. URL=' + href + '\\nBODY=' + body.slice(0, 2000) + '\\nERRORS=' + errors.join(' | ') + '\\nBAD_REQUESTS=' + badRequests.join(' | ') + '\\nCAUSE=' + error.message);
   }
 }
 async function dismissWhatsNew() {
@@ -62,10 +67,13 @@ async function box(sel) {
 }
 
 try {
-  await page.goto(base, { waitUntil: 'networkidle' });
+  await page.goto(base, { waitUntil: 'domcontentloaded' });
   await ready();
   await page.waitForTimeout(1200);
   await dismissWhatsNew();
+
+  const designStylesLoaded = await page.evaluate(() => Array.from(document.styleSheets).some((s) => s.href && s.href.includes('claude-completion.css')));
+  assert(designStylesLoaded, 'Brak pełnej warstwy stylu Claude / Liquid Glass.');
 
   const startBox = await box('.zf-head');
   const tabBox = await box('#tabbar');
@@ -81,7 +89,7 @@ try {
   }
   await page.setViewportSize({ width: 390, height: 844 });
 
-  await page.goto(base + '#/recipes', { waitUntil: 'networkidle' });
+  await page.goto(base + '#/recipes', { waitUntil: 'domcontentloaded' });
   await ready();
   await dismissWhatsNew();
   const grid = await box('.rgrid, .rail');
@@ -94,13 +102,24 @@ try {
   }
   await page.setViewportSize({ width: 390, height: 844 });
 
-  const recipe = page.locator('a[href^="#/recipe/"]').first();
-  assert(await recipe.count(), 'Brak receptury testowej.');
-  const heart = recipe.locator('xpath=ancestor::*[contains(@class,"rtile")][1]//button[contains(@class,"heart")]');
-  assert(await heart.count(), 'Brak serduszka na karcie receptury.');
-
-  await recipe.click();
-  await page.waitForTimeout(300);
+  const recipeLinks = await page.locator('a[href^="#/recipe/"]').evaluateAll((els) =>
+    [...new Set(els.map((el) => el.getAttribute('href')))].slice(0, 20));
+  assert(recipeLinks.length > 0, 'Brak receptury testowej.');
+  let selectedRecipe = null;
+  let typedIngredientIcons = 0;
+  for (const href of recipeLinks) {
+    // Change route inside the SPA; do not reload the entire app for every candidate.
+    await page.evaluate((target) => { location.hash = target; }, href);
+    await page.waitForFunction((target) => location.hash === target, href, { timeout: 5000 });
+    await page.waitForSelector('.detail', { state: 'visible', timeout: 5000 });
+    await page.waitForTimeout(150);
+    await dismissWhatsNew();
+    typedIngredientIcons = await page.locator('.orb-dot[data-kind]').count();
+    if (typedIngredientIcons > 0) { selectedRecipe = href; break; }
+  }
+  assert(selectedRecipe, 'Nie znaleziono receptury z ikonami składników do testu.');
+  assert(await page.locator('.orb-dot[data-kind] svg').count() > 0, 'Łuk składników nie renderuje ikon wektorowych.');
+  assert(await page.locator('.orb-dot[data-kind] svg').first().evaluate((el) => el.namespaceURI) === 'http://www.w3.org/2000/svg', 'Ikony na łuku muszą używać przestrzeni nazw SVG.');
   const hero = await box('.detail-hero');
   const orbit = await box('.orbit');
   assert(hero.width > 300, 'Hero receptury ma nieprawidłową szerokość.');
@@ -113,8 +132,14 @@ try {
   await page.waitForTimeout(250);
 
   const modal = await box('.recipe-full-modal');
+  const modalFacts = await page.locator('.recipe-modal-facts').innerText();
+  assert(modalFacts.includes('1 porcja'), 'Receptura nie otwiera się domyślnie na jedną porcję.');
   assert(modal.width >= 330 && modal.width <= 390, 'Modal pełnej receptury ma nieprawidłową szerokość.');
-  assert(await page.locator('.recipe-modal-ing-icon').count() > 0, 'Brak ikon składników w pełnej recepturze.');
+  assert(await page.locator('.recipe-modal-ing-icon[data-kind]').count() > 0, 'Brak ikon składników z kolorami semantycznymi w pełnej recepturze.');
+  assert(await page.locator('.recipe-modal-ing-icon svg').count() > 0, 'Ikony składników nie są renderowane jako wektorowe grafiki SVG.');
+  assert(await page.locator('.recipe-modal-ing-icon svg').first().evaluate((el) => el.namespaceURI) === 'http://www.w3.org/2000/svg', 'Ikony pełnej receptury muszą używać przestrzeni nazw SVG.');
+  const ingredientIconRadius = await page.locator('.recipe-modal-ing-icon').first().evaluate((el) => getComputedStyle(el).borderRadius);
+  assert(['13px', '14px'].includes(ingredientIconRadius), 'Warstwa Liquid Glass nie wystylowała ikon składników.');
   await shot('03-full-recipe.png');
 
   const modalScroll = await page.locator('.recipe-full-modal .scroll').first().evaluate((el) => ({
@@ -122,6 +147,40 @@ try {
     clientHeight: el.clientHeight,
   })).catch(() => null);
   if (modalScroll) assert(modalScroll.scrollHeight >= modalScroll.clientHeight, 'Modal ma uszkodzony obszar przewijania.');
+  // Additional mobile surfaces: design QA must cover the whole app, not only Start.
+  async function captureSurface(path, name, label) {
+    await page.goto(base + '#' + path, { waitUntil: 'domcontentloaded' });
+    await ready();
+    await page.waitForTimeout(350);
+    await dismissWhatsNew();
+    assert(await page.locator('#view .screen').count(), label + ': ekran nie został wyrenderowany.');
+    await assertNoPageOverflow(label);
+    await shot(name);
+  }
+  await captureSurface('/calc', '04-calculators.png', 'Kalkulatory');
+  await captureSurface('/cook', '05-cook-entry.png', 'Gotuję');
+  await captureSurface('/inventory', '06-inventory.png', 'Magazyn');
+  assert(await page.locator('.inventory-head-actions .iconbtn svg path').count() > 0, 'Przyciski Magazynu nie mają widocznych ikon SVG.');
+  await captureSurface('/more', '07-more.png', 'Więcej');
+  await captureSurface('/shopping', '08-shopping.png', 'Zakupy');
+  await captureSurface('/search', '09-search.png', 'Wyszukiwanie');
+  await captureSurface('/settings', '10-settings.png', 'Ustawienia');
+
+  await page.goto(base + '#/recipes', { waitUntil: 'domcontentloaded' });
+  await ready();
+  await dismissWhatsNew();
+  const cookingRecipe = page.locator('a[href^="#/recipe/"]').first();
+  assert(await cookingRecipe.count(), 'Brak receptury do testu widoku gotowania.');
+  await cookingRecipe.click();
+  await page.waitForSelector('.detail', { state: 'visible', timeout: 5000 });
+  await page.getByRole('button', { name: 'GOTUJĘ' }).first().click();
+  await page.waitForTimeout(250);
+  assert(await page.locator('.guide').count(), 'Nie otworzył się widok prowadzenia gotowania.');
+  const guideServings = await page.locator('.guide .stepper-val').innerText();
+  assert(guideServings.includes('1') && guideServings.includes('porcja'), 'Tryb prowadzenia nie startuje na jedną porcję.');
+  await assertNoPageOverflow('Gotowanie');
+  await shot('11-cooking.png');
+
 } finally {
   await browser.close();
 }

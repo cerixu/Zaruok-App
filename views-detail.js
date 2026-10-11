@@ -24,6 +24,159 @@ import { recipeArtUrl } from './art.js';
 
 const KIND_LABEL = { flour: 'mąka', water: 'woda', salt: 'sól', yeast: 'drożdże', fat: 'tłuszcz', other: '' };
 
+function ingredientGlyph(name) {
+  const n = String(name || '').toLocaleLowerCase('pl');
+  const ns = 'http://www.w3.org/2000/svg';
+  const attrs = (node, values) => { Object.entries(values).forEach(([key, value]) => { if (value != null) node.setAttribute(key, String(value)); }); return node; };
+  const svg = (...children) => {
+    const node = attrs(document.createElementNS(ns, 'svg'), { viewBox: '0 0 48 48', width: 26, height: 26, fill: 'none', stroke: 'currentColor', 'stroke-width': 2.2, 'stroke-linecap': 'round', 'stroke-linejoin': 'round', 'aria-hidden': 'true' });
+    children.flat().filter(Boolean).forEach((child) => node.appendChild(child));
+    return node;
+  };
+  const path = (d, props = {}) => attrs(document.createElementNS(ns, 'path'), { d, ...props });
+  const circle = (cx, cy, r, props = {}) => attrs(document.createElementNS(ns, 'circle'), { cx, cy, r, ...props });
+  const ellipse = (cx, cy, rx, ry, props = {}) => attrs(document.createElementNS(ns, 'ellipse'), { cx, cy, rx, ry, ...props });
+
+  if (/oliw|olej|smalec|tłuszcz/.test(n)) return svg(
+    path('M19 11 L19 7 Q19 5 22 5 H27 Q29 5 29 7 V11 L33 16 V39 Q33 42 30 42 H18 Q15 42 15 39 V16 Z', { fill: 'currentColor', 'fill-opacity': '.13' }),
+    path('M19 11 H29 M16 21 H32'), path('M22 28 Q24 25 26 28 Q26 32 24 33 Q22 32 22 28 Z', { fill: 'currentColor', stroke: 'none' })
+  );
+  if (/sól|salt|pieprz|papryk|przypraw|cynamon|kurkum|kumin|oregano|bazylia|tymianek|rozmaryn|chili|chilli|gałka|kardamon|goździk|szafran/.test(n)) return svg(
+    path('M16 16 H32 L30 41 H18 Z', { fill: 'currentColor', 'fill-opacity': '.12' }),
+    path('M18 16 L20 10 H28 L30 16 Z'), path('M22 7 H26'), circle(21, 23, 1, { fill: 'currentColor', stroke: 'none' }), circle(27, 27, 1, { fill: 'currentColor', stroke: 'none' }), circle(22, 33, 1, { fill: 'currentColor', stroke: 'none' })
+  );
+  if (/mąk|płatk|chleb|bułk|makaron|spaghetti|penne|fusilli|kasz|ryż|drożdż|zakwas|semolina|farfalle/.test(n)) {
+    if (/makaron|spaghetti|penne|fusilli|farfalle/.test(n)) return svg(
+      path('M10 18 Q18 12 25 18 T39 18 M9 24 Q17 18 24 24 T39 24 M10 30 Q18 24 25 30 T38 30', { stroke: 'currentColor', 'stroke-width': 3 }),
+      path('M12 35 H36')
+    );
+    if (/ryż/.test(n)) return svg(
+      path('M8 25 Q24 45 40 25 Z', { fill: 'currentColor', 'fill-opacity': '.13' }),
+      path('M8 25 H40'), ...[[15,18],[20,15],[25,18],[30,15],[34,20],[18,21],[26,22]].map(([x,y])=>ellipse(x,y,1.5,2,{fill:'currentColor',stroke:'none'}))
+    );
+    return svg(
+      path('M24 42 V9'), path('M24 17 Q14 17 12 10 Q21 9 24 17 Z', { fill: 'currentColor', 'fill-opacity': '.2' }),
+      path('M24 24 Q34 24 37 17 Q28 16 24 24 Z', { fill: 'currentColor', 'fill-opacity': '.2' }),
+      path('M24 31 Q14 31 11 24 Q20 23 24 31 Z', { fill: 'currentColor', 'fill-opacity': '.2' }),
+      path('M24 37 Q33 37 36 30 Q28 29 24 37 Z', { fill: 'currentColor', 'fill-opacity': '.2' })
+    );
+  }
+  if (/jajk|egg/.test(n)) return svg(
+    ellipse(24, 26, 12, 16, { fill: 'currentColor', 'fill-opacity': '.1' }),
+    circle(24, 27, 6, { fill: 'currentColor', 'fill-opacity': '.55' })
+  );
+  if (/ser|mozzarella|pecorino|parmezan|cheddar|feta|gouda|twaróg/.test(n)) return svg(
+    path('M9 34 L12 16 L39 24 L39 36 Z', { fill: 'currentColor', 'fill-opacity': '.15' }),
+    path('M12 16 L28 8 L39 24'), circle(22, 25, 2), circle(31, 29, 1.5), circle(16, 30, 1.5)
+  );
+  if (/mleko|milk|śmietan|cream|kefir|jogurt/.test(n)) return svg(
+    path('M16 13 L21 7 H31 L35 13 V41 H16 Z', { fill: 'currentColor', 'fill-opacity': '.12' }),
+    path('M16 13 H35 M21 7 V13 M27 21 V32'), path('M23 25 Q27 21 31 25')
+  );
+  if (/masł|butter/.test(n)) return svg(
+    path('M10 20 L32 13 L39 20 L17 28 Z', { fill: 'currentColor', 'fill-opacity': '.16' }),
+    path('M10 20 V34 L17 40 L39 32 V20 L17 28 Z', { fill: 'currentColor', 'fill-opacity': '.1' }),
+    path('M17 28 V40')
+  );
+  if (/cytryn|limonk|pomarańcz|lemon|lime|orange/.test(n)) return svg(
+    path('M10 27 Q12 13 26 13 Q39 15 38 27 Q34 39 21 38 Q10 36 10 27 Z', { fill: 'currentColor', 'fill-opacity': '.17' }),
+    path('M14 27 Q23 20 34 27 M23 15 Q26 11 31 12')
+  );
+  if (/jabłk|apple|gruszk|pear/.test(n)) return svg(
+    path('M24 17 C14 10 8 21 12 31 C15 42 22 40 24 37 C28 41 36 40 39 30 C43 20 34 11 24 17 Z', { fill: 'currentColor', 'fill-opacity': '.16' }),
+    path('M24 17 Q21 10 24 6 M25 12 Q32 6 36 11 Q31 17 25 12 Z', { fill: 'currentColor', 'fill-opacity': '.3' })
+  );
+  if (/pomidor|tomato/.test(n)) return svg(
+    path('M24 15 C12 8 7 20 12 31 C16 41 32 42 37 30 C42 18 34 9 24 15 Z', { fill: 'currentColor', 'fill-opacity': '.18' }),
+    path('M24 15 L19 10 L24 12 L29 9 L28 15 M24 15 L16 17 M24 15 L33 17')
+  );
+  if (/cebula|onion/.test(n)) return svg(
+    path('M24 8 C21 15 11 18 13 29 C14 38 20 41 24 41 C28 41 34 38 35 29 C37 18 27 15 24 8 Z', { fill: 'currentColor', 'fill-opacity': '.16' }),
+    path('M24 8 V4 M24 17 Q18 26 24 37 M24 17 Q30 26 24 37')
+  );
+  if (/czosnek|garlic/.test(n)) return svg(
+    path('M24 13 C14 7 10 19 15 28 C11 34 18 41 24 39 C30 41 37 34 33 28 C38 19 34 7 24 13 Z', { fill: 'currentColor', 'fill-opacity': '.17' }),
+    path('M24 13 V39 M24 18 Q18 23 19 31 M24 18 Q30 23 29 31 M24 13 L21 7')
+  );
+  if (/bakłażan|aubergine|eggplant/.test(n)) return svg(
+    path('M16 12 C8 19 13 33 23 38 C31 43 39 35 36 27 C33 18 23 13 16 12 Z', { fill: 'currentColor', 'fill-opacity': '.17' }),
+    path('M17 13 L13 7 L21 10 L27 7 L25 14 M24 14 Q27 20 30 25')
+  );
+  if (/marchew|carrot/.test(n)) return svg(
+    path('M14 14 L37 20 L22 41 Z', { fill: 'currentColor', 'fill-opacity': '.18' }),
+    path('M17 16 L12 8 M20 17 L22 7 M24 18 L31 10 M19 23 L27 26 M17 29 L23 31')
+  );
+  if (/pieczark|grzyb|mushroom|porcini/.test(n)) return svg(
+    path('M12 23 Q12 10 24 10 Q36 10 36 23 Z', { fill: 'currentColor', 'fill-opacity': '.18' }),
+    path('M19 23 L17 39 Q24 43 31 39 L29 23 Z', { fill: 'currentColor', 'fill-opacity': '.1' }),
+    path('M17 23 H31')
+  );
+  if (/krewet|shrimp|prawn/.test(n)) return svg(
+    path('M11 28 C11 15 26 12 34 20 C41 27 35 37 26 35 C20 34 18 28 22 24 C25 21 30 24 29 27', { fill: 'currentColor', 'fill-opacity': '.13' }),
+    path('M11 28 L7 23 L8 32 Z', { fill: 'currentColor', 'fill-opacity': '.18' }),
+    circle(33, 20, 1.3, { fill: 'currentColor', stroke: 'none' }), path('M34 18 L39 13 M31 18 L34 12')
+  );
+  if (/ryb|fish|łosoś|salmon|dorsz|cod|tuńczyk|tuna|pstrąg|trout/.test(n)) return svg(
+    path('M7 24 Q18 10 33 22 L41 15 V33 L33 26 Q18 38 7 24 Z', { fill: 'currentColor', 'fill-opacity': '.15' }),
+    circle(16, 22, 1.5, { fill: 'currentColor', stroke: 'none' }), path('M23 18 Q28 24 23 30')
+  );
+  if (/wołow|beef|stek|steak|wieprz|pork|boczek|bekon|kurcz|chicken|indyk|mięso|meat|salami|kiełbas/.test(n)) return svg(
+    path('M12 15 C20 9 28 12 32 17 C39 16 41 25 36 30 C35 38 25 40 20 35 C11 37 7 27 12 15 Z', { fill: 'currentColor', 'fill-opacity': '.16' }),
+    ellipse(25, 25, 7, 5, { stroke: 'currentColor', 'stroke-width': 1.6 }), ellipse(25, 25, 3, 2, { fill: 'currentColor', 'fill-opacity': '.25' })
+  );
+  if (/tahini|sos|passata|koncentrat|ketchup|musztard|majonez|bulion|ocet|pesto/.test(n)) return svg(
+    path('M15 17 H33 L31 40 H17 Z', { fill: 'currentColor', 'fill-opacity': '.12' }),
+    path('M18 17 V10 H30 V17 M15 22 H33 M21 28 Q24 24 27 28')
+  );
+  if (/cukier|sugar|miód|honey/.test(n)) return svg(
+    path('M12 20 L24 13 L36 20 L24 27 Z', { fill: 'currentColor', 'fill-opacity': '.17' }),
+    path('M12 20 V32 L24 39 L36 32 V20 M24 27 V39 M18 17 L30 24')
+  );
+  if (/rukol|szpinak|sałat|kapust|bazylia|pietruszk|szczypiorek|kolendra|herb|leaf/.test(n)) return svg(
+    path('M11 36 C9 17 24 8 38 10 C38 26 28 38 11 36 Z', { fill: 'currentColor', 'fill-opacity': '.16' }),
+    path('M11 36 Q22 24 34 14 M20 28 L19 20 M27 22 L33 23')
+  );
+  const kind = ingredientKind(name);
+  if (kind === 'fruit') return svg(
+    path('M24 17 C13 10 8 21 12 31 C15 41 22 40 24 37 C28 41 36 40 39 30 C43 20 34 11 24 17 Z', { fill: 'currentColor', 'fill-opacity': '.16' }),
+    path('M24 17 Q21 10 24 6 M25 12 Q32 6 36 11 Q31 17 25 12 Z', { fill: 'currentColor', 'fill-opacity': '.3' })
+  );
+  if (kind === 'vegetable') return svg(
+    path('M10 36 C9 19 22 9 38 11 C38 27 28 38 10 36 Z', { fill: 'currentColor', 'fill-opacity': '.16' }),
+    path('M10 36 Q23 23 34 15')
+  );
+  if (kind === 'grain') return svg(path('M24 42 V8'), path('M24 18 Q14 18 12 11 Q21 10 24 18 Z'), path('M24 26 Q34 26 37 18 Q28 17 24 26 Z'), path('M24 34 Q14 34 11 27 Q20 26 24 34 Z'));
+  if (kind === 'dairy') return svg(path('M16 13 L22 7 H31 L35 13 V41 H16 Z', { fill: 'currentColor', 'fill-opacity': '.12' }), path('M16 13 H35'));
+  if (kind === 'meat') return svg(path('M12 15 C20 9 28 12 32 17 C39 16 41 25 36 30 C35 38 25 40 20 35 C11 37 7 27 12 15 Z', { fill: 'currentColor', 'fill-opacity': '.16' }), ellipse(25, 25, 6, 4));
+  if (kind === 'fish') return svg(path('M7 24 Q18 10 33 22 L41 15 V33 L33 26 Q18 38 7 24 Z', { fill: 'currentColor', 'fill-opacity': '.15' }), circle(16, 22, 1.5, { fill: 'currentColor', stroke: 'none' }));
+  if (kind === 'oil') return svg(path('M19 11 V6 H29 V11 L33 16 V39 H15 V16 Z', { fill: 'currentColor', 'fill-opacity': '.13' }), path('M19 11 H29 M16 21 H32'));
+  return svg(path('M8 25 Q24 45 40 25 Z', { fill: 'currentColor', 'fill-opacity': '.14' }), path('M8 25 H40'), ...[[16,20],[21,17],[26,20],[31,17]].map(([x,y]) => ellipse(x,y,1.5,2,{fill:'currentColor',stroke:'none'})));
+}
+
+function portionLabel(value) {
+  const n = Number(value);
+  const shown = fmtNum(n, 1);
+  if (Math.abs(n - 1) < 0.0001) return shown + ' porcja';
+  const integer = Math.round(n);
+  const last = integer % 10, lastTwo = integer % 100;
+  if (Math.abs(n - integer) < 0.0001 && last >= 2 && last <= 4 && !(lastTwo >= 12 && lastTwo <= 14)) return shown + ' porcje';
+  return shown + ' porcji';
+}
+
+function ingredientKind(name) {
+  const n = String(name || '').toLocaleLowerCase('pl');
+  if (/(wołow|wieprz|kurcz|indyk|boczek|szynk|guanciale|mięso|salami|kiełbas|jagnię|baranin|prosciutto)/i.test(n)) return 'meat';
+  if (/(ryb|łosoś|tuńczyk|dorsz|krewet|małż|ośmiornic|kalm|anchois|sardyn|śledź|makrel|pstrąg)/i.test(n)) return 'fish';
+  if (/(tahini|sos|passata|koncentrat|ketchup|musztard|majonez|bulion|ocet|pesto)/i.test(n)) return 'sauce';
+  if (/(mąk|ryż|makaron|kasz|płatki|chleb|bułk|ciasto|drożdż|zakwas|semolina|spaghetti|fusilli|penne|farfalle|panko|bułka tarta)/i.test(n)) return 'grain';
+  if (/(ser|mleko|śmietan|masło|jogurt|kefir|ricotta|mozzarella|pecorino|parmezan|jajk|żółtk|twaróg|śmietank)/i.test(n)) return 'dairy';
+  if (/(oliw|olej|smalec|tłuszcz)/i.test(n)) return 'oil';
+  if (/(sól|pieprz|papryk[aię]|cynamon|kurkum|kumin|oregano|bazylia|tymianek|rozmaryn|przypraw|gałka|kardamon|goździk|szafran|chili|chilli|kolendra|kminek)/i.test(n)) return 'spice';
+  if (/(cytryn|pomarańcz|limonk|jabłk|gruszk|banan|mango|ananas|winogron|owoc|truskawk|malin|borówk|żurawin|brzoskwini)/i.test(n)) return 'fruit';
+  if (/(warzyw|bakłażan|cebula|czosnek|marchew|seler|pietruszk|ziemniak|papryka|cukinia|ogórek|sałat|rukol|szpinak|brokuł|kalafior|kapust|fasol|groch|ciecierzyc|soczewic|grzyb|pieczark|kurk|oliwk|szparag|burak|kukurydz|dynia|pomidor|pomidory|rzodkiew|por\b)/i.test(n)) return 'vegetable';
+  return 'other';
+}
+
 export function detailView({ id }) {
   const base0 = getRecipe(id);
   if (!base0) {
@@ -33,8 +186,9 @@ export function detailView({ id }) {
   }
   markOpened(id);
 
-  let scaled = null;          // przeliczona kopia (niezapisana) albo null
-  let scaleLabel = '';
+  // Receptura otwiera się na jedną porcję; oryginalne dane pozostają nietknięte.
+  let scaled = base0.servings > 1 ? scaleRecipe(base0, 1 / base0.servings) : null;
+  let scaleLabel = scaled ? portionLabel(1) : '';
   let skipPaint = false;
   const base = () => getRecipe(id);
   const cur = () => scaled || base();
@@ -79,7 +233,7 @@ export function detailView({ id }) {
     const showOut = () => {
       const k = factor();
       out.replaceChildren(k ? h('span', null, 'Współczynnik ', h('strong', { class: 'num' }, '×' + fmtNum(k, 3)),
-        r.servings ? ` · ${fmtNum(r.servings * k, 1)} porcji` : '') : h('span', { class: 'muted' }, 'Wpisz wartość docelową'));
+        r.servings ? ` · ${portionLabel(r.servings * k)}` : '') : h('span', { class: 'muted' }, 'Wpisz wartość docelową'));
     };
     const build = () => {
       const kids = [];
@@ -115,7 +269,7 @@ export function detailView({ id }) {
         { label: 'Przelicz', kind: 'primary', icon: 'swap', onClick: () => {
           const k = factor();
           if (!k) { toast('Uzupełnij wartość docelową', { type: 'error' }); return false; }
-          const lbl = mode === 'servings' ? `${fmtNum(servings, 1)} porcji` : mode === 'yield' ? `${fmtAmount(yAmt)} ${yUnit}` : `×${fmtNum(k, 3)}`;
+          const lbl = mode === 'servings' ? portionLabel(servings) : mode === 'yield' ? `${fmtAmount(yAmt)} ${yUnit}` : `×${fmtNum(k, 3)}`;
           applyFactor(k, lbl);
         } },
       ],
@@ -330,7 +484,7 @@ export function detailView({ id }) {
           const q = qtyParts(i);
           const p = pct.get(i.id);
           return h('li', { class: 'ing' },
-            h('span', { class: 'ing-icon', 'aria-hidden': 'true' }, ingEmoji(i.name)),
+            h('span', { class: 'ing-icon', 'data-kind': ingredientKind(i.name), 'aria-hidden': 'true' }, ingredientGlyph(i.name)),
             h('div', { class: 'ing-main' },
               h('span', { class: 'ing-name' }, i.name || '—'),
               showPct && p && KIND_LABEL[p.kind] ? h('span', { class: 'kind' }, KIND_LABEL[p.kind]) : null),
@@ -386,7 +540,7 @@ export function detailView({ id }) {
           title: it.full ? 'Otwórz całą recepturę' : it.ing.name,
           onClick: () => openFullRecipe(r),
         },
-          h('span', { class: 'orb-dot' + (it.full ? ' orb-dot-more' : '') }, it.full ? (it.more > 0 ? `+${it.more}` : '…') : ingEmoji(it.ing.name)),
+          h('span', { class: 'orb-dot' + (it.full ? ' orb-dot-more' : ''), 'data-kind': it.ing ? ingredientKind(it.ing.name) : null }, it.full ? (it.more > 0 ? `+${it.more}` : '…') : ingredientGlyph(it.ing.name)),
           h('span', { class: 'orb-name' }, it.full ? 'więcej' : it.ing.name.replace(/\s*\(.*\)\s*/, '').split(/[\s,]+/)[0]),
           it.ing ? h('span', { class: 'orb-amt num' }, [q.num, q.unit].filter(Boolean).join('\u00a0')) : null);
       }));
@@ -402,7 +556,7 @@ export function detailView({ id }) {
     const modalIngredient = (i) => {
       const q = qtyParts(i);
       return h('div', { class: 'recipe-modal-ing' },
-        h('span', { class: 'recipe-modal-ing-icon', 'aria-hidden': 'true' }, ingEmoji(i.name)),
+        h('span', { class: 'recipe-modal-ing-icon', 'data-kind': ingredientKind(i.name), 'aria-hidden': 'true' }, ingredientGlyph(i.name)),
         h('div', { class: 'recipe-modal-ing-main' },
           h('span', { class: 'recipe-modal-ing-name' }, i.name),
           hasSections ? h('span', { class: 'recipe-modal-ing-section' }, ((r.sections || []).find((sec) => sec.ingredients && sec.ingredients.some((x) => x.id === i.id)) || {}).name || 'Składnik') : null),
@@ -422,7 +576,7 @@ export function detailView({ id }) {
     }
 
     const facts = [
-      r.servings ? `${fmtNum(r.servings, 1)} porcji` : '',
+      r.servings ? portionLabel(r.servings) : '',
       r.prepTime ? `przyg. ${fmtMinutes(r.prepTime)}` : '',
       r.cookTime ? `gotow. ${fmtMinutes(r.cookTime)}` : '',
       r.temperature ? r.temperature : '',
@@ -482,7 +636,7 @@ export function detailView({ id }) {
     const y = effectiveYield(r);
     const facts = [];
     const fact = (ico, text) => text ? h('span', { class: 'fact' }, icon(ico, 18), text) : null;
-    facts.push(fact('users', r.servings ? `${fmtNum(r.servings, 1)} porcji` : ''));
+    facts.push(fact('users', r.servings ? portionLabel(r.servings) : ''));
     if (r.yieldAmount) facts.push(fact('info', `${fmtAmount(r.yieldAmount)} ${r.yieldUnit}`));
     facts.push(fact('clock', [r.prepTime ? `przyg. ${fmtMinutes(r.prepTime)}` : '', r.cookTime ? `gotow. ${fmtMinutes(r.cookTime)}` : ''].filter(Boolean).join(' · ')));
     facts.push(fact('timer', r.fermentTime ? `ferm. ${fmtMinutes(r.fermentTime)}` : ''));
@@ -525,7 +679,7 @@ export function detailView({ id }) {
         onClick: async () => { await patchRecipe(id, { rating: rr.rating === n ? 0 : n }); } }, icon('star', 26))))));
     if (rr.servings) det.push(h('div', { class: 'stepper-bar' }, h('span', { class: 'field-label' }, 'Porcje'),
       h('div', { class: 'stepper', role: 'group', 'aria-label': 'Liczba porcji' },
-        iconBtn('minus', 'Mniej porcji', () => { const cs = r.servings || rr.servings; const t = Math.max(0.5, cs > 1 ? cs - 1 : cs / 2); applyFactor(t / rr.servings, `${fmtNum(t, 1)} porcji`); }, 'glassy'),
+        iconBtn('minus', 'Mniej porcji', () => { const cs = r.servings || rr.servings; const t = Math.max(0.5, cs > 1 ? cs - 1 : cs / 2); applyFactor(t / rr.servings, portionLabel(t)); }, 'glassy'),
         h('div', { class: 'stepper-val' }, h('strong', { class: 'num' }, fmtNum(r.servings, 1))),
         iconBtn('plus', 'Więcej porcji', () => { const cs = r.servings || rr.servings; const t = cs + 1; applyFactor(t / rr.servings, `${fmtNum(t, 1)} porcji`); }, 'glassy'))));
     det.push(h('div', { class: 'actions-row' },
