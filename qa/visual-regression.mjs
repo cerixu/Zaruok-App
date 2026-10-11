@@ -67,7 +67,7 @@ try {
   await page.waitForTimeout(1200);
   await dismissWhatsNew();
 
-  const startBox = await box('.zf-head');
+  const designStylesLoaded = await page.evaluate(() => Array.from(document.styleSheets).some((s) => s.href && s.href.includes('claude-completion.css')));\n  assert(designStylesLoaded, 'Brak pełnej warstwy stylu Claude / Liquid Glass.');\n\n  const startBox = await box('.zf-head');
   const tabBox = await box('#tabbar');
   assert(startBox.width > 300, 'Nagłówek Start jest za wąski.');
   assert(tabBox.height >= 50 && tabBox.y >= 780, 'Dolna nawigacja ma nieprawidłową pozycję/rozmiar.');
@@ -101,7 +101,7 @@ try {
 
   await recipe.click();
   await page.waitForTimeout(300);
-  const hero = await box('.detail-hero');
+  const hero = await box('.detail-hero');\n  const typedIngredientIcons = await page.locator('.ing-icon[data-kind]').count();\n  assert(typedIngredientIcons > 0, 'Ikony składników nie mają semantycznego koloru.');
   const orbit = await box('.orbit');
   assert(hero.width > 300, 'Hero receptury ma nieprawidłową szerokość.');
   assert(orbit.width > 300, 'Łuk składników ma nieprawidłową szerokość.');
@@ -114,7 +114,7 @@ try {
 
   const modal = await box('.recipe-full-modal');
   assert(modal.width >= 330 && modal.width <= 390, 'Modal pełnej receptury ma nieprawidłową szerokość.');
-  assert(await page.locator('.recipe-modal-ing-icon').count() > 0, 'Brak ikon składników w pełnej recepturze.');
+  assert(await page.locator('.recipe-modal-ing-icon[data-kind]').count() > 0, 'Brak ikon składników z kolorami semantycznymi w pełnej recepturze.');
   await shot('03-full-recipe.png');
 
   const modalScroll = await page.locator('.recipe-full-modal .scroll').first().evaluate((el) => ({
