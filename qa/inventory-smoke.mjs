@@ -76,6 +76,7 @@ try {
   await page.getByLabel('Szukaj').fill('Kotlet schabowy');
   const schabowy = page.locator('a[href^="#/recipe/"]').filter({ hasText: 'Kotlet schabowy' }).first();
   await schabowy.waitFor({ state: 'visible', timeout: 5000 });
+  const recipeHref = await schabowy.getAttribute('href');
   await schabowy.click();
   await page.waitForSelector('.detail', { state: 'visible', timeout: 5000 });
   await page.getByRole('button', { name: 'GOTUJĘ' }).first().click();
@@ -94,6 +95,32 @@ try {
   const flourRow = page.locator('.inventory-item').filter({ hasText: 'Mąka pszenna' });
   await flourRow.waitFor({ state: 'visible', timeout: 5000 });
   await expectText('985 g', 'Ukończenie gotowania nie odjęło 15 g mąki dla domyślnej jednej porcji.');
+
+  // The classic checklist must also start at one portion and deduct stock once when complete.
+  await page.goto(base + recipeHref, { waitUntil: 'domcontentloaded' });
+  await ready();
+  await dismiss();
+  await page.getByRole('button', { name: 'Lista kontrolna' }).click();
+  await page.waitForSelector('.cook', { state: 'visible', timeout: 5000 });
+  const classicFlour = page.locator('.cook-row:not(.step)').filter({ hasText: 'Mąka pszenna' }).first();
+  await classicFlour.waitFor({ state: 'visible', timeout: 5000 });
+  if (!/15\\s*g/.test((await classicFlour.innerText()).replace(/\\s+/g, ' '))) {
+    throw new Error('Klasyczna lista kontrolna nie startuje od jednej porcji: ' + await classicFlour.innerText());
+  }
+
+  const ingredientRows = page.locator('.cook-row:not(.step)');
+  for (let i = 0; i < await ingredientRows.count(); i++) await ingredientRows.nth(i).click();
+  await page.getByRole('button', { name: 'Kroki', exact: true }).click();
+  const stepRows = page.locator('.cook-row.step');
+  const stepCount = await stepRows.count();
+  if (!stepCount) throw new Error('Klasyczna lista kontrolna nie ma kroków do odhaczenia.');
+  for (let i = 0; i < stepCount; i++) await stepRows.nth(i).click();
+  await page.locator('.cookbar').getByRole('button', { name: 'Zakończ', exact: true }).evaluate((el) => { el.click(); el.click(); });
+  await page.waitForTimeout(350);
+  await page.goto(base + '#/inventory', { waitUntil: 'domcontentloaded' });
+  await ready();
+  await dismiss();
+  await expectText('970 g', 'Klasyczna lista kontrolna nie odjęła dokładnie 15 g albo odjęła składniki podwójnie.');
 
   await page.getByRole('button', { name: 'Skanuj kod EAN' }).click();
   await page.waitForSelector('.scanner-frame', { timeout: 5000 });
