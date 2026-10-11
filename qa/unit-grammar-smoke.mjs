@@ -64,14 +64,16 @@ try {
   await dismiss();
   await page.waitForSelector('.detail', { state: 'visible', timeout: 8000 });
 
-  const unitRows = await page.locator('.detail .ing-qty').evaluateAll((els) => els.map((el) => ({
-    amount: el.querySelector('.amt')?.textContent?.trim() || '',
-    unit: el.querySelector('.unit')?.textContent?.trim() || '',
+  await page.locator('.orb-more').first().click();
+  await page.waitForSelector('.recipe-full-modal', { state: 'visible', timeout: 5000 });
+  const unitRows = await page.locator('.recipe-full-modal .recipe-modal-ing').evaluateAll((els) => els.map((el) => ({
+    amount: el.querySelector('.recipe-modal-ing-qty')?.textContent?.trim() || '',
+    unit: el.querySelector('.recipe-modal-ing-unit')?.textContent?.trim() || '',
   })));
-  if (!unitRows.length) throw new Error('Brak ilości składników w widoku receptury.');
+  if (!unitRows.length) throw new Error('Brak ilości składników w pełnej recepturze.');
   const visibleForms = unitRows.map((x) => x.amount + ' ' + x.unit);
   if (!visibleForms.includes('⅛ łyżki') || !visibleForms.includes('¼ łyżki')) {
-    throw new Error('Nieprawidłowa odmiana łyżki w widoku receptury: ' + JSON.stringify(visibleForms));
+    throw new Error('Nieprawidłowa odmiana łyżki w pełnej recepturze: ' + JSON.stringify(visibleForms));
   }
 
   console.log('PASS: Polish unit grammar runtime + recipe rendering');
