@@ -24,6 +24,20 @@ import { recipeArtUrl } from './art.js';
 
 const KIND_LABEL = { flour: 'mąka', water: 'woda', salt: 'sól', yeast: 'drożdże', fat: 'tłuszcz', other: '' };
 
+function ingredientKind(name) {
+  const n = String(name || '').toLocaleLowerCase('pl');
+  if (/(wołow|wieprz|kurcz|indyk|boczek|szynk|guanciale|mięso|salami|kiełbas|jagnię|baranin|prosciutto)/i.test(n)) return 'meat';
+  if (/(ryb|łosoś|tuńczyk|dorsz|krewet|małż|ośmiornic|kalm|anchois|sardyn|śledź|makrel|pstrąg)/i.test(n)) return 'fish';
+  if (/(tahini|sos|passata|koncentrat|ketchup|musztard|majonez|bulion|ocet|pesto)/i.test(n)) return 'sauce';
+  if (/(mąk|ryż|makaron|kasz|płatki|chleb|bułk|ciasto|drożdż|zakwas|semolina|spaghetti|fusilli|penne|farfalle|panko|bułka tarta)/i.test(n)) return 'grain';
+  if (/(ser|mleko|śmietan|masło|jogurt|kefir|ricotta|mozzarella|pecorino|parmezan|jajk|żółtk|twaróg|śmietank)/i.test(n)) return 'dairy';
+  if (/(oliw|olej|smalec|tłuszcz)/i.test(n)) return 'oil';
+  if (/(sól|pieprz|papryk[aię]|cynamon|kurkum|kumin|oregano|bazylia|tymianek|rozmaryn|przypraw|gałka|kardamon|goździk|szafran|chili|chilli|kolendra|kminek)/i.test(n)) return 'spice';
+  if (/(cytryn|pomarańcz|limonk|jabłk|gruszk|banan|mango|ananas|winogron|owoc|truskawk|malin|borówk|żurawin|brzoskwini)/i.test(n)) return 'fruit';
+  if (/(warzyw|bakłażan|cebula|czosnek|marchew|seler|pietruszk|ziemniak|papryka|cukinia|ogórek|sałat|rukol|szpinak|brokuł|kalafior|kapust|fasol|groch|ciecierzyc|soczewic|grzyb|pieczark|kurk|oliwk|szparag|burak|kukurydz|dynia|pomidor|pomidory|rzodkiew|por)/i.test(n)) return 'vegetable';
+  return 'other';
+}
+
 export function detailView({ id }) {
   const base0 = getRecipe(id);
   if (!base0) {
@@ -330,7 +344,7 @@ export function detailView({ id }) {
           const q = qtyParts(i);
           const p = pct.get(i.id);
           return h('li', { class: 'ing' },
-            h('span', { class: 'ing-icon', 'aria-hidden': 'true' }, ingEmoji(i.name)),
+            h('span', { class: 'ing-icon', 'data-kind': ingredientKind(i.name), 'aria-hidden': 'true' }, ingEmoji(i.name)),
             h('div', { class: 'ing-main' },
               h('span', { class: 'ing-name' }, i.name || '—'),
               showPct && p && KIND_LABEL[p.kind] ? h('span', { class: 'kind' }, KIND_LABEL[p.kind]) : null),
@@ -402,7 +416,7 @@ export function detailView({ id }) {
     const modalIngredient = (i) => {
       const q = qtyParts(i);
       return h('div', { class: 'recipe-modal-ing' },
-        h('span', { class: 'recipe-modal-ing-icon', 'aria-hidden': 'true' }, ingEmoji(i.name)),
+        h('span', { class: 'recipe-modal-ing-icon', 'data-kind': ingredientKind(i.name), 'aria-hidden': 'true' }, ingEmoji(i.name)),
         h('div', { class: 'recipe-modal-ing-main' },
           h('span', { class: 'recipe-modal-ing-name' }, i.name),
           hasSections ? h('span', { class: 'recipe-modal-ing-section' }, ((r.sections || []).find((sec) => sec.ingredients && sec.ingredients.some((x) => x.id === i.id)) || {}).name || 'Składnik') : null),
