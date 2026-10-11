@@ -9,15 +9,15 @@ const EXPECTED_SOURCE_COUNT = 225;
 const EXPECTED_HAND_COUNT = 3;
 const BAD_ENGLISH = /\b(almonds|butter|flour|sugar|cream|cheese|milk|cup|cups|tbsp|tsp|tablespoon|teaspoon|yellow)\b/i;
 const BAD_QTY_GRAMMAR = [
-  /\b[234]\\s+łyżka\b/i,
-  /\b[1]\\s+łyżki\b/i,
-  /\b[5-9]\\s+łyżki\b/i,
-  /\b\d+\\s+łyżeczka\b/i,
-  /\bjeden\\s+zółt/i,
+  /\b[234]\s+łyżka\b/i,
+  /\b[1]\s+łyżki\b/i,
+  /\b[5-9]\s+łyżki\b/i,
+  /\b\d+\s+łyżeczka\b/i,
+  /\bjeden\s+zółt/i,
 ];
 
 function normalizeName(s) {
-  return s.toLocaleLowerCase('pl').normalize('NFD').replace(/[\\u0300-\\u036f]/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
+  return s.toLocaleLowerCase('pl').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
 }
 
 const issues = [];
