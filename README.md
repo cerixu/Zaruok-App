@@ -24,7 +24,8 @@ Repozytorium jest **płaskie — wszystkie pliki leżą w jednym katalogu głów
 
 ```
 index.html              powłoka aplikacji, meta tagi iOS, wczesne ustawienie motywu
-styles.css              bazowe style (motywy, safe-area, komponenty)\nclaude-completion.css   spójna warstwa Liquid Glass dla wszystkich widoków mobilnych
+styles.css              bazowe style (motywy, safe-area, komponenty)
+claude-completion.css   spójna warstwa Liquid Glass dla wszystkich widoków mobilnych
 manifest.webmanifest    manifest PWA
 sw.js                   service worker (cache offline + wykrywanie aktualizacji)
 app.js                  start, motyw, nawigacja dolna, klawiatura iOS, trasy
