@@ -45,11 +45,14 @@ try {
     ];
     return cases.map(([n, u, expected]) => ({ n, u, actual: fmtUnit(n, u), expected }));
   });
-  const fractionCases = [
-    [1 / 3, 'szt.', '⅓'], [2 / 3, 'szt.', '⅔'],
-    [0.5, 'łyżka', '½'], [1 + 1 / 3, 'szt.', '1⅓'],
-    [0.333, 'g', '0,333'],
-  ].map(([n, unit, expected]) => ({ n, unit, actual: fmtKitchenAmount(n, unit), expected }));
+  const fractionCases = await page.evaluate(async () => {
+    const { fmtKitchenAmount } = await import('./util.js');
+    return [
+      [1 / 3, 'szt.', '⅓'], [2 / 3, 'szt.', '⅔'],
+      [0.5, 'łyżka', '½'], [1 + 1 / 3, 'szt.', '1⅓'],
+      [0.333, 'g', '0,333'],
+    ].map(([n, unit, expected]) => ({ n, unit, actual: fmtKitchenAmount(n, unit), expected }));
+  });
   const badFractions = fractionCases.filter((x) => x.actual !== x.expected);
   if (badFractions.length) throw new Error('Błędny zapis ilości kuchennych: ' + JSON.stringify(badFractions));
 
