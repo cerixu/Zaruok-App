@@ -92,6 +92,7 @@ try {
       leftGap: rect.left,
       rightGap: innerWidth - rect.right,
       radius: style.borderRadius,
+      backgroundColor: style.backgroundColor,
       position: style.position,
       tabs: tabs.length,
       activeMarkerDisplay: getComputedStyle(tabs.find((tab) => tab.classList.contains('on')) || bar.querySelector('.tab'), '::after').display,
@@ -103,6 +104,8 @@ try {
   assert(tabBox.height >= 50 && tabBox.height <= 80, 'Dolna nawigacja ma nieprawidłową wysokość: ' + JSON.stringify(tabMetrics));
   assert(tabMetrics.position === 'absolute' && tabMetrics.width < tabMetrics.viewport && tabMetrics.x > 0 && tabMetrics.centerError <= 2 && tabMetrics.leftGap >= 8 && tabMetrics.rightGap >= 8,
     'Dolna nawigacja nie jest równo wycentrowaną pływającą kapsułą: ' + JSON.stringify(tabMetrics));
+  assert(tabMetrics.backgroundColor.includes('0.95') || tabMetrics.backgroundColor.includes('0.97'),
+    'Dolna nawigacja jest zbyt przezroczysta i przepuszcza tekst/karty spod spodu: ' + JSON.stringify(tabMetrics));
   assert(tabMetrics.bottomGap >= 5 && tabMetrics.bottomGap < 70,
     'Dolna nawigacja koliduje z dolnym obszarem bezpiecznym: ' + JSON.stringify(tabMetrics));
   assert(tabMetrics.tabs === 5 && tabMetrics.widths.every((w) => w >= 45) && tabMetrics.iconsInside,
