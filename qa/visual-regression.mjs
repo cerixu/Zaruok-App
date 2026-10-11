@@ -67,7 +67,10 @@ try {
   await page.waitForTimeout(1200);
   await dismissWhatsNew();
 
-  const designStylesLoaded = await page.evaluate(() => Array.from(document.styleSheets).some((s) => s.href && s.href.includes('claude-completion.css')));\n  assert(designStylesLoaded, 'Brak pełnej warstwy stylu Claude / Liquid Glass.');\n\n  const startBox = await box('.zf-head');
+  const designStylesLoaded = await page.evaluate(() => Array.from(document.styleSheets).some((s) => s.href && s.href.includes('claude-completion.css')));
+  assert(designStylesLoaded, 'Brak pełnej warstwy stylu Claude / Liquid Glass.');
+
+  const startBox = await box('.zf-head');
   const tabBox = await box('#tabbar');
   assert(startBox.width > 300, 'Nagłówek Start jest za wąski.');
   assert(tabBox.height >= 50 && tabBox.y >= 780, 'Dolna nawigacja ma nieprawidłową pozycję/rozmiar.');
