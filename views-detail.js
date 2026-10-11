@@ -664,6 +664,10 @@ export function detailView({ id }) {
       button('Przelicz', { icon: 'swap', onClick: openScale }),
       button('Do zakupów', { icon: 'cart', onClick: () => openAddToShopping(r, 1) }),
       button('Edytuj', { icon: 'edit', onClick: () => navigate('/edit/' + id) })));
+    kids.push(button('Lista kontrolna', {
+      block: true, icon: 'list', kind: 'ghost',
+      onClick: () => navigate('/cook/' + id),
+    }));
 
     const open = false;
     const det = [];
