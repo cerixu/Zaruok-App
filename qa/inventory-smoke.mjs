@@ -104,7 +104,7 @@ try {
   await page.waitForSelector('.cook', { state: 'visible', timeout: 5000 });
   const classicFlour = page.locator('.cook-row:not(.step)').filter({ hasText: 'Mąka pszenna' }).first();
   await classicFlour.waitFor({ state: 'visible', timeout: 5000 });
-  if (!/15\\s*g/.test((await classicFlour.innerText()).replace(/\\s+/g, ' '))) {
+  if (!/15\s*g/.test((await classicFlour.innerText()).replace(/\s+/g, ' '))) {
     throw new Error('Klasyczna lista kontrolna nie startuje od jednej porcji: ' + await classicFlour.innerText());
   }
 
