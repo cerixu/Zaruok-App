@@ -93,7 +93,7 @@ try {
   await dismiss();
   const flourRow = page.locator('.inventory-item').filter({ hasText: 'Mąka pszenna' });
   await flourRow.waitFor({ state: 'visible', timeout: 5000 });
-  await expectText('940 g', 'Ukończenie gotowania nie odjęło 60 g mąki z magazynu.');
+  await expectText('985 g', 'Ukończenie gotowania nie odjęło 15 g mąki dla domyślnej jednej porcji.');
 
   await page.getByRole('button', { name: 'Skanuj kod EAN' }).click();
   await page.waitForSelector('.scanner-frame', { timeout: 5000 });
