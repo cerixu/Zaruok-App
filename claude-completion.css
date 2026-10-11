@@ -534,3 +534,8 @@ button:focus-visible, a:focus-visible {
 .inventory-filters .btn.on { color:var(--zc-mint); background:rgba(169,223,130,.12); border-color:rgba(169,223,130,.3); }
 
 .inventory-content { display:grid; gap:14px; }
+
+.ing-icon[data-kind], .recipe-modal-ing-icon[data-kind] { color:var(--tone,#9daec6); }
+.detail .orb-dot[data-kind] { color:var(--zc-mint); }
+.ing-icon svg, .recipe-modal-ing-icon svg { display:block; width:26px; height:26px; overflow:visible; }
+.detail .orb-dot svg { display:block; width:24px; height:24px; overflow:visible; }
