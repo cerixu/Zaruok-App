@@ -113,6 +113,7 @@ try {
     if (typedIngredientIcons > 0) { selectedRecipe = href; break; }
   }
   assert(selectedRecipe, 'Nie znaleziono receptury z ikonami składników do testu.');
+  assert(await page.locator('.orb-dot[data-kind] svg').count() > 0, 'Łuk składników nie renderuje ikon wektorowych.');
   const hero = await box('.detail-hero');
   const orbit = await box('.orbit');
   assert(hero.width > 300, 'Hero receptury ma nieprawidłową szerokość.');
