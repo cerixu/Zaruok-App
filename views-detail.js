@@ -523,7 +523,7 @@ export function detailView({ id }) {
           title: it.full ? 'Otwórz całą recepturę' : it.ing.name,
           onClick: () => openFullRecipe(r),
         },
-          h('span', { class: 'orb-dot' + (it.full ? ' orb-dot-more' : ''), 'data-kind': it.ing ? ingredientKind(it.ing.name) : null }, it.full ? (it.more > 0 ? `+${it.more}` : '…') : ingEmoji(it.ing.name)),
+          h('span', { class: 'orb-dot' + (it.full ? ' orb-dot-more' : ''), 'data-kind': it.ing ? ingredientKind(it.ing.name) : null }, it.full ? (it.more > 0 ? `+${it.more}` : '…') : ingredientGlyph(it.ing.name)),
           h('span', { class: 'orb-name' }, it.full ? 'więcej' : it.ing.name.replace(/\s*\(.*\)\s*/, '').split(/[\s,]+/)[0]),
           it.ing ? h('span', { class: 'orb-amt num' }, [q.num, q.unit].filter(Boolean).join('\u00a0')) : null);
       }));
@@ -539,7 +539,7 @@ export function detailView({ id }) {
     const modalIngredient = (i) => {
       const q = qtyParts(i);
       return h('div', { class: 'recipe-modal-ing' },
-        h('span', { class: 'recipe-modal-ing-icon', 'data-kind': ingredientKind(i.name), 'aria-hidden': 'true' }, ingEmoji(i.name)),
+        h('span', { class: 'recipe-modal-ing-icon', 'data-kind': ingredientKind(i.name), 'aria-hidden': 'true' }, ingredientGlyph(i.name)),
         h('div', { class: 'recipe-modal-ing-main' },
           h('span', { class: 'recipe-modal-ing-name' }, i.name),
           hasSections ? h('span', { class: 'recipe-modal-ing-section' }, ((r.sections || []).find((sec) => sec.ingredients && sec.ingredients.some((x) => x.id === i.id)) || {}).name || 'Składnik') : null),
