@@ -88,6 +88,9 @@ try {
       viewport: innerWidth,
       x: rect.x, y: rect.y, width: rect.width, height: rect.height,
       bottomGap: innerHeight - rect.bottom,
+      centerError: Math.abs((rect.left + rect.right) / 2 - innerWidth / 2),
+      leftGap: rect.left,
+      rightGap: innerWidth - rect.right,
       radius: style.borderRadius,
       position: style.position,
       tabs: tabs.length,
@@ -96,8 +99,8 @@ try {
     };
   });
   assert(tabBox.height >= 50 && tabBox.height <= 80, 'Dolna nawigacja ma nieprawidłową wysokość: ' + JSON.stringify(tabMetrics));
-  assert(tabMetrics.position === 'absolute' && tabMetrics.width < tabMetrics.viewport && tabMetrics.x > 0,
-    'Dolna nawigacja nie jest wycentrowaną pływającą kapsułą: ' + JSON.stringify(tabMetrics));
+  assert(tabMetrics.position === 'absolute' && tabMetrics.width < tabMetrics.viewport && tabMetrics.x > 0 && tabMetrics.centerError <= 2 && tabMetrics.leftGap >= 8 && tabMetrics.rightGap >= 8,
+    'Dolna nawigacja nie jest równo wycentrowaną pływającą kapsułą: ' + JSON.stringify(tabMetrics));
   assert(tabMetrics.bottomGap >= 5 && tabMetrics.bottomGap < 70,
     'Dolna nawigacja koliduje z dolnym obszarem bezpiecznym: ' + JSON.stringify(tabMetrics));
   assert(tabMetrics.tabs === 5 && tabMetrics.widths.every((w) => w >= 45) && tabMetrics.iconsInside,
