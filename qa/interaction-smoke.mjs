@@ -28,7 +28,7 @@ try {
     ['recipes', '/recipes'],
     ['calc', '/calc'],
     ['shopping', '/shopping'],
-    ['settings', '/settings'],
+    ['inventory', '/inventory'],
     ['start', '/'],
   ];
 
@@ -39,6 +39,11 @@ try {
     await assertRoute(path);
     if (!(await page.locator('#view .screen').count())) throw new Error('Ekran nie został wyrenderowany po wejściu na ' + id);
   }
+
+  await page.goto(base + '#/settings', { waitUntil: 'networkidle' });
+  await ready();
+  await dismiss();
+  if (!(await page.locator('#view .screen').count())) throw new Error('Ekran ustawień nie został wyrenderowany');
 
   await page.goto(base + '#/recipes', { waitUntil: 'networkidle' });
   await ready();
