@@ -136,7 +136,7 @@ try {
   if (modalScroll) assert(modalScroll.scrollHeight >= modalScroll.clientHeight, 'Modal ma uszkodzony obszar przewijania.');
   // Additional mobile surfaces: design QA must cover the whole app, not only Start.
   async function captureSurface(path, name, label) {
-    await page.goto(base + '#' + path, { waitUntil: 'networkidle' });
+    await page.goto(base + '#' + path, { waitUntil: 'domcontentloaded' });
     await ready();
     await page.waitForTimeout(350);
     await dismissWhatsNew();
