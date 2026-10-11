@@ -89,6 +89,13 @@ export function inventoryView() {
     iconBtn('plus', 'Dodaj produkt do magazynu', () => openItemSheet()));
   const s = screen({ title: 'Magazyn', right, cls: 'inventory' });
   const c = s.content;
+  let selectedCategory = 'Wszystkie';
+  const searchIn = textInput({ label: 'Szukaj w magazynie', placeholder: 'Szukaj w magazynie…' });
+  searchIn.addEventListener('input', paint);
+  const searchBar = h('div', { class: 'inventory-search' }, icon('search', 18), searchIn);
+  const filterRow = h('div', { class: 'inventory-filters', role: 'group', 'aria-label': 'Kategorie magazynu' });
+  const filterButtons = ['Wszystkie', ...CATEGORIES].map((label) => button(label, { kind: 'ghost', onClick: () => { selectedCategory = label; paint(); } }));
+  filterRow.replaceChildren(...filterButtons);
 
   async function reload() {
     try { data = await loadData(); if (active) paint(); }
@@ -303,6 +310,9 @@ export function inventoryView() {
 
   function paint() {
     const low = lowItems();
+    const query = clean(searchIn.value);
+    const filteredItems = data.items.filter((item) => (selectedCategory === 'Wszystkie' || (item.category || 'Inne') === selectedCategory) && (!query || clean([item.name, ...(item.aliases || []), item.barcode].join(' ')).includes(query)));
+    filterButtons.forEach((b, i) => { b.classList.toggle('on', ['Wszystkie', ...CATEGORIES][i] === selectedCategory); });
     const from = Date.now() - WEEK;
     const recentWaste = data.movements.filter((m) => m.type === 'waste' && (m.createdAt || 0) >= from).slice(0, 5);
     const alertsOn = getSetting('inventoryLowAlerts') !== false;
@@ -313,7 +323,7 @@ export function inventoryView() {
     const alertToggle = button('Alerty niskiego stanu: ' + (alertsOn ? 'włączone' : 'wyłączone'), {
       kind: 'ghost', block: true, icon: 'bell', onClick: async () => { await setSetting('inventoryLowAlerts', !alertsOn); paint(); },
     });
-    const kids = [summary, alertToggle];
+    const kids = [searchBar, filterRow, summary, alertToggle];
     if (low.length) {
       kids.push(h('section', { class: 'inventory-low-panel card stack' },
         h('div', { class: 'row between' }, h('h2', { class: 'card-title' }, icon('alert', 20), 'Do uzupełnienia'), h('span', { class: 'pill' }, String(low.length))),
@@ -324,9 +334,11 @@ export function inventoryView() {
       kids.push(emptyState('📦', 'Magazyn jest pusty', 'Dodaj produkty, ustaw jednostkę i minimum. Żarłok może potem odliczać składniki po zakończeniu gotowania.',
         button('Dodaj pierwszy produkt', { kind: 'primary', icon: 'plus', onClick: () => openItemSheet() }),
         button('Skanuj kod EAN', { icon: 'scan', onClick: openScanner })));
+    } else if (!filteredItems.length) {
+      kids.push(emptyState('🔎', 'Brak wyników', 'Zmień frazę albo kategorię magazynu.'));
     } else {
       const groups = new Map();
-      data.items.forEach((item) => { const key = item.category || 'Inne'; if (!groups.has(key)) groups.set(key, []); groups.get(key).push(item); });
+      filteredItems.forEach((item) => { const key = item.category || 'Inne'; if (!groups.has(key)) groups.set(key, []); groups.get(key).push(item); });
       [...groups.entries()].sort((a, b) => a[0].localeCompare(b[0], 'pl')).forEach(([label, items]) => {
         kids.push(h('section', { class: 'inventory-group card stack' },
           h('div', { class: 'row between' }, h('h2', { class: 'card-title' }, label), h('span', { class: 'pill' }, String(items.length))),
