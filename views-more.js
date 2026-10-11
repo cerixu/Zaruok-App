@@ -5,7 +5,7 @@ import { navigate } from './router.js';
 const ITEMS = [
   ['Kalkulatory', 'Proporcje, przeliczniki, food cost i ciasto', 'calc', '/calc'],
   ['Lista zakupów', 'Pozycje do kupienia i ilości', 'cart', '/shopping'],
-  ['Wyszukaj recepturę', 'Nazwa, składniki i kuchnie świata', 'search', '/search'],
+  ['Szukaj w sieci', 'Źródła online i import do bazy', 'search', '/search'],
   ['Ulubione', 'Zapisane receptury', 'heart', '/recipes?f=fav'],
   ['Import receptur', 'Dodaj z tekstu lub pliku', 'upload', '/import'],
   ['Ustawienia', 'Wygląd, kopia danych i prywatność', 'sliders', '/settings'],
