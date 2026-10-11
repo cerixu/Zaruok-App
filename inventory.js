@@ -47,7 +47,7 @@ function matches(item, name) {
   const names = [item.name, ...(Array.isArray(item.aliases) ? item.aliases : [])];
   return names.some((n) => clean(n) === target);
 }
-function lowStock(item) { return Number(item.stock || 0) <= Number(item.minStock || 0); }
+function lowStock(item) { return Number(item.minStock || 0) > 0 && Number(item.stock || 0) <= Number(item.minStock || 0); }
 
 async function loadData() {
   const [items, movements] = await Promise.all([db.getAll('inventoryItems'), db.getAll('inventoryMovements')]);
@@ -296,8 +296,9 @@ export function inventoryView() {
       h('div', { class: 'inventory-item-actions' },
         iconBtn('minus', 'Odejmij 1 ' + item.unit, () => adjust(item, -1), 'quiet'),
         iconBtn('plus', 'Dodaj 1 ' + item.unit, () => adjust(item, 1), 'quiet'),
-        iconBtn('trash', 'Zarejestruj stratę: ' + item.name, () => recordWaste(item), 'quiet'),
-        iconBtn('edit', 'Edytuj: ' + item.name, () => openItemSheet(item), 'quiet')));
+        iconBtn('alert', 'Zarejestruj stratę: ' + item.name, () => recordWaste(item), 'quiet'),
+        iconBtn('edit', 'Edytuj: ' + item.name, () => openItemSheet(item), 'quiet'),
+        iconBtn('x', 'Usuń produkt: ' + item.name, () => deleteItem(item), 'quiet')));
   }
 
   function paint() {
