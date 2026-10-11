@@ -397,7 +397,6 @@ button:focus-visible, a:focus-visible {
 
 /* Prawdziwe szkło dla dolnego paska, z zachowaniem obszaru Home Indicator. */
 #tabbar {
-  padding-bottom: max(env(safe-area-inset-bottom, 0px), 5px);
   background:
     linear-gradient(180deg, rgba(42,43,46,.72), rgba(28,29,32,.91));
   border: 1px solid rgba(255,255,255,.13);
