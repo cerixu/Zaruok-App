@@ -6,6 +6,7 @@ import { db } from './db.js';
 import { uid, norm, fmtAmount, parseNum } from './util.js';
 import { getSetting, setSetting } from './recipes.js';
 import { addItems } from './shopping.js';
+import { decodeEAN13Frame } from './barcode.js';
 import { h, icon, screen, button, iconBtn, toast, openSheet, confirmDialog, emptyState, textInput, selectEl } from './ui.js';
 
 const CATEGORIES = ['Warzywa i owoce', 'Mięso i ryby', 'Nabiał i jaja', 'Suche i przyprawy', 'Mrożonki', 'Inne'];
@@ -270,33 +271,35 @@ export function inventoryView() {
       const track = stream.getVideoTracks()[0];
       const caps = track && track.getCapabilities ? track.getCapabilities() : {};
       torchBtn.disabled = !(caps && caps.torch);
+      let detector = null;
       if (typeof window.BarcodeDetector === 'function') {
-        let detector;
         try { detector = new window.BarcodeDetector({ formats: ['ean_13', 'ean_8', 'upc_a', 'upc_e'] }); } catch (_) { detector = null; }
-        const scanFrame = async () => {
-          if (!active || !detector) return;
-          // Kamera może potrzebować kilku klatek po video.play(). Nie kończ skanera
-          // na pierwszym readyState < 2 — ponów próbę aż obraz będzie gotowy.
-          if (video.readyState < 2 || video.videoWidth < 1 || video.videoHeight < 1) {
-            requestAnimationFrame(scanFrame);
-            return;
-          }
-          try {
-            const codes = await detector.detect(video);
-            if (codes && codes.length && codes[0].rawValue) {
-              await acceptCode(codes[0].rawValue);
-              return;
-            }
-          } catch (_) { /* błąd pojedynczej klatki; skanuj dalej */ }
-          if (active) requestAnimationFrame(scanFrame);
-        };
-        if (detector) {
-          status.textContent = 'Skanuję automatycznie — ustaw kod w środku kadru.';
-          requestAnimationFrame(scanFrame);
-        } else status.textContent = 'Wpisz kod EAN ręcznie — automatyczny skaner nie jest dostępny.';
-      } else {
-        status.textContent = 'Automatyczny skaner nie jest dostępny w tej wersji Safari. Wpisz kod ręcznie.';
       }
+      const canvas = document.createElement('canvas');
+      let lastScanAt = 0;
+      status.textContent = detector
+        ? 'Skanuję automatycznie — ustaw kod w środku kadru.'
+        : 'Skanuję EAN-13 lokalnie — trzymaj kod poziomo w ramce.';
+      const scanFrame = async () => {
+        if (!active) return;
+        if (video.readyState < 2 || video.videoWidth < 1 || video.videoHeight < 1) {
+          requestAnimationFrame(scanFrame);
+          return;
+        }
+        if (Date.now() - lastScanAt >= 120) {
+          lastScanAt = Date.now();
+          try {
+            let raw = '';
+            if (detector) {
+              const codes = await detector.detect(video);
+              raw = codes && codes.length ? codes[0].rawValue : '';
+            } else raw = decodeEAN13Frame(video, canvas) || '';
+            if (raw) { await acceptCode(raw); return; }
+          } catch (_) { /* pomiń klatkę z odbiciem lub rozmyciem */ }
+        }
+        if (active) requestAnimationFrame(scanFrame);
+      };
+      requestAnimationFrame(scanFrame);
     } catch (e) {
       status.textContent = 'Nie udało się uruchomić kamery. Możesz wpisać EAN ręcznie.';
       toast(e.message || 'Nie udało się uruchomić kamery', { type: 'error' });
