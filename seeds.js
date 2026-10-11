@@ -10,7 +10,13 @@
    ========================================================================== */
 import { parseNum, norm } from './util.js';
 
-const UNIT_RE = /^(g|kg|ml|l|szt\.|łyżeczka|łyżka|szczypta|porcja)$/;
+const UNIT_RE = /^(g|kg|ml|l|szt\.|łyżeczka|łyżeczki|łyżeczek|łyżka|łyżki|łyżek|szczypta|szczypty|szczypt|porcja|porcje|porcji)$/;
+const UNIT_CANONICAL = {
+  'łyżka': 'łyżka', 'łyżki': 'łyżka', 'łyżek': 'łyżka',
+  'łyżeczka': 'łyżeczka', 'łyżeczki': 'łyżeczka', 'łyżeczek': 'łyżeczka',
+  'szczypta': 'szczypta', 'szczypty': 'szczypta', 'szczypt': 'szczypta',
+  'porcja': 'porcja', 'porcje': 'porcja', 'porcji': 'porcja',
+};
 
 export function parseSeeds(text, f) {
   const out = [];
@@ -59,8 +65,8 @@ export function parseSeeds(text, f) {
       if (l) {
         const parts = l.split(/\s+/);
         const u = parts[parts.length - 1];
-        if (parts.length > 1 && UNIT_RE.test(u)) { unit = u; amount = parseNum(parts.slice(0, -1).join(' ')); }
-        else if (UNIT_RE.test(l)) { unit = l; amount = 1; }
+        if (parts.length > 1 && UNIT_RE.test(u)) { unit = UNIT_CANONICAL[u] || u; amount = parseNum(parts.slice(0, -1).join(' ')); }
+        else if (UNIT_RE.test(l)) { unit = UNIT_CANONICAL[l] || l; amount = 1; }
         else amount = parseNum(l);
         if (!Number.isFinite(amount)) amount = null;
       }
