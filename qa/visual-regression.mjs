@@ -127,6 +127,8 @@ try {
   await page.waitForTimeout(250);
 
   const modal = await box('.recipe-full-modal');
+  const modalFacts = await page.locator('.recipe-modal-facts').innerText();
+  assert(modalFacts.includes('1 porcja'), 'Receptura nie otwiera się domyślnie na jedną porcję.');
   assert(modal.width >= 330 && modal.width <= 390, 'Modal pełnej receptury ma nieprawidłową szerokość.');
   assert(await page.locator('.recipe-modal-ing-icon[data-kind]').count() > 0, 'Brak ikon składników z kolorami semantycznymi w pełnej recepturze.');
   assert(await page.locator('.recipe-modal-ing-icon svg').count() > 0, 'Ikony składników nie są renderowane jako wektorowe grafiki SVG.');
@@ -166,6 +168,8 @@ try {
   await page.getByRole('button', { name: 'GOTUJĘ' }).first().click();
   await page.waitForTimeout(250);
   assert(await page.locator('.guide').count(), 'Nie otworzył się widok prowadzenia gotowania.');
+  const guideServings = await page.locator('.guide .stepper-val').innerText();
+  assert(guideServings.includes('1') && guideServings.includes('porcja'), 'Tryb prowadzenia nie startuje na jedną porcję.');
   await assertNoPageOverflow('Gotowanie');
   await shot('09-cooking.png');
 
