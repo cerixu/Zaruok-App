@@ -157,7 +157,7 @@ function ingredientKind(name) {
   if (/(oliw|olej|smalec|tłuszcz)/i.test(n)) return 'oil';
   if (/(sól|pieprz|papryk[aię]|cynamon|kurkum|kumin|oregano|bazylia|tymianek|rozmaryn|przypraw|gałka|kardamon|goździk|szafran|chili|chilli|kolendra|kminek)/i.test(n)) return 'spice';
   if (/(cytryn|pomarańcz|limonk|jabłk|gruszk|banan|mango|ananas|winogron|owoc|truskawk|malin|borówk|żurawin|brzoskwini)/i.test(n)) return 'fruit';
-  if (/(warzyw|bakłażan|cebula|czosnek|marchew|seler|pietruszk|ziemniak|papryka|cukinia|ogórek|sałat|rukol|szpinak|brokuł|kalafior|kapust|fasol|groch|ciecierzyc|soczewic|grzyb|pieczark|kurk|oliwk|szparag|burak|kukurydz|dynia|pomidor|pomidory|rzodkiew|por)/i.test(n)) return 'vegetable';
+  if (/(warzyw|bakłażan|cebula|czosnek|marchew|seler|pietruszk|ziemniak|papryka|cukinia|ogórek|sałat|rukol|szpinak|brokuł|kalafior|kapust|fasol|groch|ciecierzyc|soczewic|grzyb|pieczark|kurk|oliwk|szparag|burak|kukurydz|dynia|pomidor|pomidory|rzodkiew|por\b)/i.test(n)) return 'vegetable';
   return 'other';
 }
 
