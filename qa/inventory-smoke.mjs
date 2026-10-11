@@ -34,6 +34,17 @@ try {
   await page.waitForTimeout(250);
   await expectText('Mąka testowa', 'Nie zapisano produktu w magazynie.');
   await expectText('Niski stan', 'Nie pokazano ostrzeżenia o niskim stanie.');
+  const search = page.getByLabel('Szukaj w magazynie');
+  await search.fill('Mąka');
+  await expectText('Mąka testowa', 'Wyszukiwanie magazynu nie znalazło produktu.');
+  await search.fill('brak-tej-pozycji');
+  await expectText('Brak wyników', 'Nie pokazano pustego stanu dla wyszukiwarki magazynu.');
+  await search.fill('');
+
+  await page.reload({ waitUntil: 'networkidle' });
+  await ready();
+  await dismiss();
+  await expectText('Mąka testowa', 'Stan magazynu nie przetrwał przeładowania strony.');
 
   await page.getByRole('button', { name: 'Dodaj braki do zakupów' }).click();
   await page.goto(base + '#/shopping', { waitUntil: 'networkidle' });
