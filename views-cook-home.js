@@ -49,7 +49,7 @@ export function cookEntryView() {
         h('strong', null, r.name),
         h('span', { class: 'muted small' }, catName(r.category)),
         h('span', { class: 'cook-entry-meta' }, r.prepTime ? 'Przygotowanie ' + r.prepTime + ' min' : 'Otwórz tryb gotowania')),
-      h('span', { class: 'cook-entry-arrow' }, icon('right', 18))));
+      h('span', { class: 'cook-entry-arrow' }, icon('right', 18)))));
   }
 
   search.addEventListener('input', paint);
