@@ -104,7 +104,9 @@ try {
 
   await recipe.click();
   await page.waitForTimeout(300);
-  const hero = await box('.detail-hero');\n  const typedIngredientIcons = await page.locator('.ing-icon[data-kind]').count();\n  assert(typedIngredientIcons > 0, 'Ikony składników nie mają semantycznego koloru.');
+  const hero = await box('.detail-hero');
+  const typedIngredientIcons = await page.locator('.ing-icon[data-kind]').count();
+  assert(typedIngredientIcons > 0, 'Ikony składników nie mają semantycznego koloru.');
   const orbit = await box('.orbit');
   assert(hero.width > 300, 'Hero receptury ma nieprawidłową szerokość.');
   assert(orbit.width > 300, 'Łuk składników ma nieprawidłową szerokość.');
