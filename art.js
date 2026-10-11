@@ -219,7 +219,6 @@ const NAME_ART = [
 ];
 export const artKindFor = (r) => {
   const explicit = isArtSpec(r.art) ? r.art : null;
-  if (explicit && explicit.includes(':')) return explicit;
   const name = String(r.name || '');
   const matched = NAME_ART.find(([pattern]) => pattern.test(name));
   if (matched) return matched[1];
