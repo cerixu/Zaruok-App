@@ -524,3 +524,11 @@ button:focus-visible, a:focus-visible {
 @keyframes scanner-sweep { from { transform:translateY(-72px); } to { transform:translateY(72px); } }
 @media(max-width:360px) { .inventory-summary { gap:6px; } .inventory-summary-card { padding:10px 8px; } .inventory-edit-form .grid.two { grid-template-columns:1fr; } }
 @media(prefers-reduced-motion:reduce) { .scanner-line { animation:none; } }
+
+.inventory-search { display:flex; align-items:center; gap:10px; padding:0 13px; min-height:49px; border:1px solid var(--zc-glass-edge); border-radius:16px; background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.012)),var(--surface); color:var(--text-soft); }
+.inventory-search .input { flex:1; min-width:0; border:0; background:transparent; box-shadow:none; padding-left:0; padding-right:0; }
+.inventory-search .input:focus { box-shadow:none; }
+.inventory-filters { display:flex; gap:7px; overflow-x:auto; padding:2px 0 5px; scrollbar-width:none; }
+.inventory-filters::-webkit-scrollbar { display:none; }
+.inventory-filters .btn { min-height:36px; height:36px; padding:0 13px; border-radius:999px; white-space:nowrap; font-size:.78rem; }
+.inventory-filters .btn.on { color:var(--zc-mint); background:rgba(169,223,130,.12); border-color:rgba(169,223,130,.3); }
