@@ -448,7 +448,7 @@ button:focus-visible, a:focus-visible {
   .card { border-radius: 21px; }
   .recipe-modal-ing { grid-template-columns: 42px minmax(0,1fr) auto auto; gap: 10px; }
   .recipe-modal-ing-name { line-height: 1.3; }
-  .ing-icon, .recipe-modal-ing-icon { border-radius: 13px; }
+  .ing-icon, .recipe-modal-ing-icon { border-radius: 14px; }
 }
 @media (orientation: landscape) and (max-height: 500px) {
   #tabbar { min-height: 48px; }
