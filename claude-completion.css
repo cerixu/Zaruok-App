@@ -629,7 +629,7 @@ button:focus-visible, a:focus-visible {
   box-sizing: border-box;
   border: 1px solid var(--glass-line, rgba(255,255,255,.14));
   border-radius: 999px;
-  /* Nie używaj ogólnej --glass-bg (.72 alfa): tekst kart prześwitujeł przez dock. */
+  /* Nie używaj ogólnej --glass-bg (.72 alfa): tekst kart prześwituje przez dock. */
   background: rgba(34,35,38,.95);
   -webkit-backdrop-filter: blur(24px) saturate(1.4);
   backdrop-filter: blur(24px) saturate(1.4);
