@@ -153,6 +153,16 @@ function ingredientGlyph(name) {
   return svg(path('M8 25 Q24 45 40 25 Z', { fill: 'currentColor', 'fill-opacity': '.14' }), path('M8 25 H40'), ...[[16,20],[21,17],[26,20],[31,17]].map(([x,y]) => ellipse(x,y,1.5,2,{fill:'currentColor',stroke:'none'})));
 }
 
+function portionLabel(value) {
+  const n = Number(value);
+  const shown = fmtNum(n, 1);
+  if (Math.abs(n - 1) < 0.0001) return shown + ' porcja';
+  const integer = Math.round(n);
+  const last = integer % 10, lastTwo = integer % 100;
+  if (Math.abs(n - integer) < 0.0001 && last >= 2 && last <= 4 && !(lastTwo >= 12 && lastTwo <= 14)) return shown + ' porcje';
+  return shown + ' porcji';
+}
+
 function ingredientKind(name) {
   const n = String(name || '').toLocaleLowerCase('pl');
   if (/(wołow|wieprz|kurcz|indyk|boczek|szynk|guanciale|mięso|salami|kiełbas|jagnię|baranin|prosciutto)/i.test(n)) return 'meat';
@@ -176,8 +186,9 @@ export function detailView({ id }) {
   }
   markOpened(id);
 
-  let scaled = null;          // przeliczona kopia (niezapisana) albo null
-  let scaleLabel = '';
+  // Receptura otwiera się na jedną porcję; oryginalne dane pozostają nietknięte.
+  let scaled = base0.servings > 1 ? scaleRecipe(base0, 1 / base0.servings) : null;
+  let scaleLabel = scaled ? portionLabel(1) : '';
   let skipPaint = false;
   const base = () => getRecipe(id);
   const cur = () => scaled || base();
@@ -222,7 +233,7 @@ export function detailView({ id }) {
     const showOut = () => {
       const k = factor();
       out.replaceChildren(k ? h('span', null, 'Współczynnik ', h('strong', { class: 'num' }, '×' + fmtNum(k, 3)),
-        r.servings ? ` · ${fmtNum(r.servings * k, 1)} porcji` : '') : h('span', { class: 'muted' }, 'Wpisz wartość docelową'));
+        r.servings ? ` · ${portionLabel(r.servings * k)}` : '') : h('span', { class: 'muted' }, 'Wpisz wartość docelową'));
     };
     const build = () => {
       const kids = [];
@@ -258,7 +269,7 @@ export function detailView({ id }) {
         { label: 'Przelicz', kind: 'primary', icon: 'swap', onClick: () => {
           const k = factor();
           if (!k) { toast('Uzupełnij wartość docelową', { type: 'error' }); return false; }
-          const lbl = mode === 'servings' ? `${fmtNum(servings, 1)} porcji` : mode === 'yield' ? `${fmtAmount(yAmt)} ${yUnit}` : `×${fmtNum(k, 3)}`;
+          const lbl = mode === 'servings' ? portionLabel(servings) : mode === 'yield' ? `${fmtAmount(yAmt)} ${yUnit}` : `×${fmtNum(k, 3)}`;
           applyFactor(k, lbl);
         } },
       ],
@@ -565,7 +576,7 @@ export function detailView({ id }) {
     }
 
     const facts = [
-      r.servings ? `${fmtNum(r.servings, 1)} porcji` : '',
+      r.servings ? portionLabel(r.servings) : '',
       r.prepTime ? `przyg. ${fmtMinutes(r.prepTime)}` : '',
       r.cookTime ? `gotow. ${fmtMinutes(r.cookTime)}` : '',
       r.temperature ? r.temperature : '',
@@ -625,7 +636,7 @@ export function detailView({ id }) {
     const y = effectiveYield(r);
     const facts = [];
     const fact = (ico, text) => text ? h('span', { class: 'fact' }, icon(ico, 18), text) : null;
-    facts.push(fact('users', r.servings ? `${fmtNum(r.servings, 1)} porcji` : ''));
+    facts.push(fact('users', r.servings ? portionLabel(r.servings) : ''));
     if (r.yieldAmount) facts.push(fact('info', `${fmtAmount(r.yieldAmount)} ${r.yieldUnit}`));
     facts.push(fact('clock', [r.prepTime ? `przyg. ${fmtMinutes(r.prepTime)}` : '', r.cookTime ? `gotow. ${fmtMinutes(r.cookTime)}` : ''].filter(Boolean).join(' · ')));
     facts.push(fact('timer', r.fermentTime ? `ferm. ${fmtMinutes(r.fermentTime)}` : ''));
@@ -668,7 +679,7 @@ export function detailView({ id }) {
         onClick: async () => { await patchRecipe(id, { rating: rr.rating === n ? 0 : n }); } }, icon('star', 26))))));
     if (rr.servings) det.push(h('div', { class: 'stepper-bar' }, h('span', { class: 'field-label' }, 'Porcje'),
       h('div', { class: 'stepper', role: 'group', 'aria-label': 'Liczba porcji' },
-        iconBtn('minus', 'Mniej porcji', () => { const cs = r.servings || rr.servings; const t = Math.max(0.5, cs > 1 ? cs - 1 : cs / 2); applyFactor(t / rr.servings, `${fmtNum(t, 1)} porcji`); }, 'glassy'),
+        iconBtn('minus', 'Mniej porcji', () => { const cs = r.servings || rr.servings; const t = Math.max(0.5, cs > 1 ? cs - 1 : cs / 2); applyFactor(t / rr.servings, portionLabel(t)); }, 'glassy'),
         h('div', { class: 'stepper-val' }, h('strong', { class: 'num' }, fmtNum(r.servings, 1))),
         iconBtn('plus', 'Więcej porcji', () => { const cs = r.servings || rr.servings; const t = cs + 1; applyFactor(t / rr.servings, `${fmtNum(t, 1)} porcji`); }, 'glassy'))));
     det.push(h('div', { class: 'actions-row' },
