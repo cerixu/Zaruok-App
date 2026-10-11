@@ -186,9 +186,17 @@ jobs:
             await expect(page.locator('.result').filter({ hasText: 'Masa całkowita' })).toContainText('1780');
 
             await page.getByRole('button', { name: 'Zapisz jako recepturę' }).click();
-            const openRecipe = page.getByRole('button', { name: 'Otwórz' });
+            const openRecipe = page.getByRole('button', { name: 'Otwórz', exact: true });
             await expect(openRecipe).toBeVisible({ timeout: 5000 });
             await openRecipe.click();
+            await expect(page.getByRole('heading', { name: /Ciasto na pizzę/ })).toBeVisible({ timeout: 5000 });
+
+            // Ingredient details intentionally live in the dedicated full-recipe sheet,
+            // not in the compact orbit preview on the redesigned detail screen.
+            const openFullRecipe = page.getByRole('button', { name: /Otwórz całą recepturę/ });
+            await expect(openFullRecipe).toBeVisible({ timeout: 5000 });
+            await openFullRecipe.click();
+            await expect(page.getByText('Pełna receptura')).toBeVisible({ timeout: 5000 });
             await expect(page.getByText('Zakwas macierzysty', { exact: true })).toBeVisible({ timeout: 5000 });
             await expect(page.getByText('Mąka pszenna do zakwasu', { exact: true })).toBeVisible();
             await expect(page.getByText('Woda do zakwasu', { exact: true })).toBeVisible();
