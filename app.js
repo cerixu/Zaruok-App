@@ -22,6 +22,7 @@ import { importView } from './views-import.js';
 import { settingsView } from './views-settings.js';
 import { guideView } from './views-guide.js';
 import { searchView } from './views-search.js';
+import { inventoryView } from './inventory.js';
 
 const root = document.documentElement;
 
@@ -55,7 +56,7 @@ const TABS = [
   ['recipes', 'Receptury', 'book', '/recipes'],
   ['calc', 'Kalkulatory', 'calc', '/calc'],
   ['shopping', 'Zakupy', 'cart', '/shopping'],
-  ['settings', 'Ustawienia', 'sliders', '/settings'],
+  ['inventory', 'Magazyn', 'fridge', '/inventory'],
 ];
 
 function buildTabbar() {
@@ -143,6 +144,7 @@ route('/import', (p, q) => importView(q), { tab: 'recipes' });
 route('/calc', () => calcView({}), { tab: 'calc' });
 route('/calc/:kind', (p, q) => calcView(p, q), { tab: 'calc' });
 route('/shopping', () => shoppingView(), { tab: 'shopping' });
+route('/inventory', () => inventoryView(), { tab: 'inventory' });
 route('/settings', () => settingsView(), { tab: 'settings' });
 
 /* ---------- Start ---------- */
@@ -163,10 +165,10 @@ function whatsNew() {
     title: `Co nowego w ${APP_VERSION}`, variant: 'sheet',
     body: h('div', { class: 'stack' },
       h('ul', { class: 'whatsnew' },
-        li('Spójny wygląd Liquid Glass obejmuje teraz start, listę receptur, szczegóły, gotowanie, kalkulatory, zakupy, wyszukiwanie i ustawienia.'),
-        li('Karty, przyciski, okna i dolna nawigacja mają dopracowane szkło, delikatne światło oraz stany dotykowe.'),
-        li('Ikony składników otrzymały kolorystyczne oznaczenia kategorii, a warstwa mobilna uwzględnia safe-area i ustawienie ograniczenia animacji.')),
-      h('p', { class: 'muted small' }, 'Receptury i zapisane dane pozostają na tym urządzeniu. Jeśli zmiany nie pojawią się od razu, otwórz Ustawienia → Sprawdź aktualizacje.')),
+        li('Spójny wygląd Liquid Glass obejmuje wszystkie główne ekrany iPhone’a, z czytelniejszymi kartami, ikonami i arkuszami.'),
+        li('Nowy Magazyn zapisuje stany lokalnie, pokazuje niskie zapasy i tygodniowe straty oraz pozwala dodać braki do zakupów.'),
+        li('Po zakończeniu trybu „Prowadź mnie” dopasowane składniki są odliczane z magazynu; dodano skaner EAN z opcjonalnym rozpoznaniem produktu online.')),
+      h('p', { class: 'muted small' }, 'Wszystkie stany i receptury zostają na tym urządzeniu. Alerty niskiego stanu można wyłączyć w Magazynie.')),
     actions: [{ label: 'Zaczynamy', kind: 'primary' }],
     onClose: () => setSetting('seenVersion', APP_VERSION),
   });
