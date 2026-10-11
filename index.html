@@ -120,6 +120,7 @@
       window.addEventListener('error', function (event) {
         var file = event && event.filename ? String(event.filename) : '';
         var msg = event && event.error ? String(event.error.stack || event.error.message || event.error) : (event && event.message ? event.message : '');
+        if (event && event.filename) msg += '\\nŹRÓDŁO: ' + event.filename + ':' + (event.lineno || 0) + ':' + (event.colno || 0);
         if (file.indexOf('app.js') >= 0 || file.indexOf('views-') >= 0 || file.indexOf('recipes.js') >= 0) {
           showError(msg || 'Błąd JavaScript podczas uruchamiania.');
         }
