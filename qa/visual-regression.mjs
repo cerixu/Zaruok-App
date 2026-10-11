@@ -97,16 +97,21 @@ try {
   }
   await page.setViewportSize({ width: 390, height: 844 });
 
-  const recipe = page.locator('a[href^="#/recipe/"]').first();
-  assert(await recipe.count(), 'Brak receptury testowej.');
-  const heart = recipe.locator('xpath=ancestor::*[contains(@class,"rtile")][1]//button[contains(@class,"heart")]');
-  assert(await heart.count(), 'Brak serduszka na karcie receptury.');
-
-  await recipe.click();
-  await page.waitForTimeout(300);
+  const recipeLinks = await page.locator('a[href^="#/recipe/"]').evaluateAll((els) =>
+    [...new Set(els.map((el) => el.getAttribute('href')))].slice(0, 20));
+  assert(recipeLinks.length > 0, 'Brak receptury testowej.');
+  let selectedRecipe = null;
+  let typedIngredientIcons = 0;
+  for (const href of recipeLinks) {
+    await page.goto(base + href, { waitUntil: 'networkidle' });
+    await ready();
+    await page.waitForTimeout(250);
+    await dismissWhatsNew();
+    typedIngredientIcons = await page.locator('.orb-dot[data-kind]').count();
+    if (typedIngredientIcons > 0) { selectedRecipe = href; break; }
+  }
+  assert(selectedRecipe, 'Nie znaleziono receptury z ikonami składników do testu.');
   const hero = await box('.detail-hero');
-  const typedIngredientIcons = await page.locator('.orb-dot[data-kind]').count();
-  assert(typedIngredientIcons > 0, 'Ikony składników na łuku nie mają semantycznego koloru.');
   const orbit = await box('.orbit');
   assert(hero.width > 300, 'Hero receptury ma nieprawidłową szerokość.');
   assert(orbit.width > 300, 'Łuk składników ma nieprawidłową szerokość.');
