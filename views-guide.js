@@ -199,6 +199,7 @@ export function guideView({ id }) {
     if (stockResult && stockResult.deducted) {
       toast('Zapisano. Odjęto z magazynu: ' + stockResult.deducted + ' pozycji.');
       if (stockResult.missing.length) toast('Nie znaleziono w magazynie: ' + stockResult.missing.slice(0, 3).join(', '), { type: 'error' });
+      if (stockResult.low.length && getSetting('inventoryLowAlerts') !== false) toast('Niski stan: ' + stockResult.low.slice(0, 3).join(', '), { type: 'error' });
     } else toast('Zapisano. Smacznego! 👨‍🍳');
     goBack('/recipe/' + id);
   }
