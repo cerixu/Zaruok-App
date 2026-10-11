@@ -132,14 +132,14 @@ Skutki: dane jednego telefonu nie pojawią się na drugim (przenoś kopią JSON)
 
 ## Kopia zapasowa
 
-- **Ustawienia → Eksportuj kopię** — na iPhonie otworzy się arkusz udostępniania: wybierz **Zachowaj w Plikach** (np. iCloud Drive). Plik ma nazwę `kucharzyna-kopia-RRRR-MM-DD.json`.
+- **Ustawienia → Eksportuj kopię** — na iPhonie otworzy się arkusz udostępniania: wybierz **Zachowaj w Plikach** (np. iCloud Drive). Plik ma nazwę `zaruok-kopia-RRRR-MM-DD.json`.
 - **Ustawienia → Wczytaj kopię z pliku**: **Połącz** (dodaje brakujące, przy tej samej recepturze zostaje nowsza wersja) albo **Zastąp wszystko** (po dodatkowym potwierdzeniu).
 - Kopia obejmuje receptury, katalog składników z cenami, kategorie, uwagi, ulubione, ustawienia, zakupy i historię zmian. Szkice edytora nie są w niej zapisywane.
 - Aplikacja przypomina o kopii, gdy ostatnia ma ponad 14 dni.
 
 ## Aktualizacje aplikacji
 
-1. Zmień pliki, podbij wersję w **`sw.js`** (`VERSION = 'kucharzyna-1.2.1'`) i w **`util.js`** (`APP_VERSION = '1.2.1'`) — muszą być zgodne.
+1. Zmień pliki, podbij wersję w **`sw.js`** (`VERSION = 'zaruok-1.9.0'`) i w **`util.js`** (`APP_VERSION = '1.9.0'`) — muszą być zgodne.
 2. Wypchnij zmiany na GitHub.
 3. Telefon wykryje nową wersję i pokaże: **„Nowa wersja Żarłoka jest dostępna” → Odśwież**. Ręcznie: Ustawienia → Sprawdź aktualizacje.
 
