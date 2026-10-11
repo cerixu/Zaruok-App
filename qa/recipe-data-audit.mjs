@@ -10,9 +10,12 @@ const EXPECTED_HAND_COUNT = 3;
 const BAD_ENGLISH = /\b(almonds|butter|flour|sugar|cream|cheese|milk|cup|cups|tbsp|tsp|tablespoon|teaspoon|yellow)\b/i;
 const BAD_QTY_GRAMMAR = [
   /\b[234]\s+łyżka\b/i,
-  /\b[1]\s+łyżki\b/i,
-  /\b[5-9]\s+łyżki\b/i,
-  /\b\d+\s+łyżeczka\b/i,
+  /\b(?:[5-9]|[1-9]\d+)\s+łyżka\b/i,
+  /\b1\s+łyżki\b/i,
+  /\b[234]\s+łyżeczka\b/i,
+  /\b(?:[5-9]|[1-9]\d+)\s+łyżeczka\b/i,
+  /\b1\s+łyżeczki\b/i,
+  /\b\d+[,.]\d+\s+łyż(?:ka|eczka)\b/i,
   /\bjeden\s+zółt/i,
 ];
 
