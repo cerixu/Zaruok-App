@@ -89,7 +89,7 @@ try {
   }
   await page.setViewportSize({ width: 390, height: 844 });
 
-  await page.goto(base + '#/recipes', { waitUntil: 'networkidle' });
+  await page.goto(base + '#/recipes', { waitUntil: 'domcontentloaded' });
   await ready();
   await dismissWhatsNew();
   const grid = await box('.rgrid, .rail');
@@ -166,7 +166,7 @@ try {
   await captureSurface('/search', '09-search.png', 'Wyszukiwanie');
   await captureSurface('/settings', '10-settings.png', 'Ustawienia');
 
-  await page.goto(base + '#/recipes', { waitUntil: 'networkidle' });
+  await page.goto(base + '#/recipes', { waitUntil: 'domcontentloaded' });
   await ready();
   await dismissWhatsNew();
   const cookingRecipe = page.locator('a[href^="#/recipe/"]').first();
