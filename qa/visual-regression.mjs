@@ -92,8 +92,11 @@ try {
       leftGap: rect.left,
       rightGap: innerWidth - rect.right,
       radius: style.borderRadius,
+      backgroundColor: style.backgroundColor,
       position: style.position,
       tabs: tabs.length,
+      activeMarkerDisplay: getComputedStyle(tabs.find((tab) => tab.classList.contains('on')) || bar.querySelector('.tab'), '::after').display,
+      activeTabTransform: getComputedStyle(tabs.find((tab) => tab.classList.contains('on')) || bar.querySelector('.tab')).transform,
       iconsInside: icons.every((icon) => icon && icon.left >= rect.left && icon.right <= rect.right && icon.top >= rect.top && icon.bottom <= rect.bottom),
       widths: tabs.map((tab) => tab.getBoundingClientRect().width),
     };
@@ -101,10 +104,28 @@ try {
   assert(tabBox.height >= 50 && tabBox.height <= 80, 'Dolna nawigacja ma nieprawidłową wysokość: ' + JSON.stringify(tabMetrics));
   assert(tabMetrics.position === 'absolute' && tabMetrics.width < tabMetrics.viewport && tabMetrics.x > 0 && tabMetrics.centerError <= 2 && tabMetrics.leftGap >= 8 && tabMetrics.rightGap >= 8,
     'Dolna nawigacja nie jest równo wycentrowaną pływającą kapsułą: ' + JSON.stringify(tabMetrics));
+  assert(tabMetrics.backgroundColor.includes('0.95') || tabMetrics.backgroundColor.includes('0.97'),
+    'Dolna nawigacja jest zbyt przezroczysta i przepuszcza tekst/karty spod spodu: ' + JSON.stringify(tabMetrics));
   assert(tabMetrics.bottomGap >= 5 && tabMetrics.bottomGap < 70,
     'Dolna nawigacja koliduje z dolnym obszarem bezpiecznym: ' + JSON.stringify(tabMetrics));
   assert(tabMetrics.tabs === 5 && tabMetrics.widths.every((w) => w >= 45) && tabMetrics.iconsInside,
     'Ikony lub zakładki dolnej nawigacji są ściśnięte albo wychodzą poza pasek: ' + JSON.stringify(tabMetrics));
+  assert(tabMetrics.activeMarkerDisplay === 'none',
+    'Aktywna zakładka ma odziedziczony marker/kropkę, która psuje wyrównanie: ' + JSON.stringify(tabMetrics));
+  assert(tabMetrics.activeTabTransform === 'none',
+    'Cała aktywna zakładka nie może skakać podczas przejść stanów: ' + JSON.stringify(tabMetrics));
+  const tapTarget = page.locator('#tabbar .tab[data-tab="recipes"]');
+  const tapBox = await tapTarget.boundingBox();
+  await page.mouse.move(tapBox.x + tapBox.width / 2, tapBox.y + tapBox.height / 2);
+  await page.mouse.down();
+  const pressTransforms = await tapTarget.evaluate((el) => ({
+    tab: getComputedStyle(el).transform,
+    icon: getComputedStyle(el.querySelector('.tab-ico')).transform,
+  }));
+  await page.mouse.move(2, 2); // release poza linkiem, żeby nie nawigować podczas testu :active
+  await page.mouse.up();
+  assert(pressTransforms.tab === 'none' && pressTransforms.icon !== 'none',
+    'Naciśnięcie nawigacji powinno animować tylko kapsułę ikony, bez przesuwania całej zakładki: ' + JSON.stringify(pressTransforms));
   await shot('01-start.png');
 
   // Responsive overflow sweep: horizontal rails may scroll internally, but the page itself must not widen.

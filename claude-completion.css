@@ -606,15 +606,16 @@ button:focus-visible, a:focus-visible {
 @media (max-width:360px) { .zf-status-row { gap:6px; } .zf-status-card { padding:9px 7px; gap:6px; } .zf-status-icon { flex-basis:30px; width:30px; height:30px; } .more-grid { gap:7px; } .more-card { padding:11px; } }
 
 /* ==========================================================================
-   ŻARŁOK · bottom bar fix
-   Jedno, spójne źródło prawdy dla pływającej nawigacji iPhone.
-   Pozycjonowanie względem środka ekranu usuwa rozjazdy od safe-area i dawnych reguł.
+   ŻARŁOK · stabilna dolna nawigacja iPhone
+   Jedna końcowa definicja: bez starych pasków pełnej szerokości i bez
+   dodatkowych markerów/transformacji, które powodowały optyczne skakanie.
    ========================================================================== */
 #tabbar {
   position: absolute;
   left: 50%;
   right: auto;
-  bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+  top: auto;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 10px);
   width: min(520px, calc(100% - 24px - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px)));
   max-width: 520px;
   height: var(--tab-h, 64px);
@@ -626,15 +627,16 @@ button:focus-visible, a:focus-visible {
   justify-content: space-between;
   gap: 3px;
   box-sizing: border-box;
-  overflow: visible;
-  transform: translateX(-50%);
   border: 1px solid var(--glass-line, rgba(255,255,255,.14));
   border-radius: 999px;
-  background: var(--glass-bg, rgba(35,36,40,.86));
-  -webkit-backdrop-filter: var(--blur-strong, blur(28px) saturate(1.6));
-  backdrop-filter: var(--blur-strong, blur(28px) saturate(1.6));
-  box-shadow: 0 12px 34px rgba(0,0,0,.26), inset 0 1px 0 rgba(255,255,255,.16);
-  isolation: isolate;
+  /* Nie używaj ogólnej --glass-bg (.72 alfa): tekst kart prześwituje przez dock. */
+  background: rgba(34,35,38,.95);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  backdrop-filter: blur(24px) saturate(1.4);
+  box-shadow: 0 10px 30px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.14);
+  z-index: 20;
+  transform: translateX(-50%);
+  -webkit-tap-highlight-color: transparent;
 }
 #tabbar .tab {
   position: relative;
@@ -644,9 +646,11 @@ button:focus-visible, a:focus-visible {
   align-items: center;
   justify-content: center;
   gap: 2px;
+  width: auto;
   min-width: 0;
   min-height: 0;
   height: 100%;
+  margin: 0;
   padding: 0 2px;
   border: 0;
   border-radius: 999px;
@@ -655,10 +659,10 @@ button:focus-visible, a:focus-visible {
   color: var(--muted, #a0a4ab);
   text-decoration: none;
   transform: none;
+  transition: color .16s ease;
   -webkit-tap-highlight-color: transparent;
-  transition: color .18s ease, background .18s ease, transform .18s ease;
 }
-#tabbar .tab:active { transform: scale(.94); }
+#tabbar .tab:active { transform: none; }
 #tabbar .tab .tab-ico {
   position: relative;
   display: grid;
@@ -666,14 +670,17 @@ button:focus-visible, a:focus-visible {
   place-items: center;
   width: 42px;
   height: 34px;
+  margin: 0;
   border: 1px solid transparent;
   border-radius: 999px;
   background: transparent !important;
   box-shadow: none;
   color: inherit;
-  transition: background .18s ease, border-color .18s ease, color .18s ease;
+  transform: none;
+  transition: transform .16s ease, background-color .16s ease, border-color .16s ease, color .16s ease;
 }
 #tabbar .tab .tab-ico svg {
+  display: block;
   width: 23px;
   height: 23px;
   stroke-width: 1.8;
@@ -689,6 +696,15 @@ button:focus-visible, a:focus-visible {
   box-shadow: inset 0 1px 0 rgba(255,255,255,.10), 0 3px 12px rgba(0,0,0,.08);
   color: var(--accent-text, #efb784);
 }
+/* Starsze arkusze dodawały kropkę pod aktywną ikoną i animowały jednocześnie
+   całą zakładkę oraz ikonę. Wyłączamy oba efekty konfliktowe. */
+#tabbar .tab::after,
+#tabbar .tab.on::after { content: none !important; display: none !important; }
+#tabbar .tab:active .tab-ico {
+  transform: scale(.92);
+  background: color-mix(in srgb, var(--accent, #efb784) 20%, rgba(255,255,255,.07)) !important;
+}
+#tabbar .tab:focus-visible { outline: 2px solid var(--accent-text, #efb784); outline-offset: 2px; }
 #tabbar .tab .tab-label { display: none; }
 :root[data-tablabels="on"] #tabbar .tab .tab-label {
   display: block;
@@ -700,11 +716,11 @@ button:focus-visible, a:focus-visible {
   line-height: 1.1;
   font-weight: 550;
 }
-:root[data-tablabels="on"] #tabbar .tab.on .tab-ico { height: 30px; }
+:root[data-tablabels="on"] #tabbar .tab .tab-ico { height: 30px; }
 :root[data-theme="light"] #tabbar {
-  background: rgba(249,248,245,.92);
+  background: rgba(249,248,245,.97);
   border-color: rgba(25,26,28,.10);
-  box-shadow: 0 12px 30px rgba(20,21,22,.12), inset 0 1px 0 rgba(255,255,255,.95);
+  box-shadow: 0 10px 28px rgba(20,21,22,.13), inset 0 1px 0 rgba(255,255,255,.95);
 }
 :root[data-theme="light"] #tabbar .tab { color: #777780; }
 :root[data-theme="light"] #tabbar .tab.on { color: #222327; }
@@ -717,6 +733,9 @@ body.kb-open #tabbar { display: none; }
   #tabbar { height: var(--tab-h, 50px); min-height: var(--tab-h, 50px); }
   #tabbar .tab .tab-ico { height: 28px; }
   :root[data-tablabels="on"] #tabbar .tab .tab-ico { height: 25px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #tabbar .tab .tab-ico { transition: none; }
 }
 @media (prefers-reduced-transparency: reduce) {
   #tabbar { -webkit-backdrop-filter: none; backdrop-filter: none; background: var(--surface, #202124); }
