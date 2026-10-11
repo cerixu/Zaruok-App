@@ -11,8 +11,8 @@ const page = await browser.newPage({
 });
 
 const errors = [];
-page.on('pageerror', (e) => errors.push(String(e)));
-page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
+page.on('pageerror', (e) => errors.push(String(e.stack || e)));
+page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text() + ' @ ' + JSON.stringify(m.location())); });
 
 function assert(ok, message) {
   if (!ok) throw new Error(message);
