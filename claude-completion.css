@@ -532,3 +532,5 @@ button:focus-visible, a:focus-visible {
 .inventory-filters::-webkit-scrollbar { display:none; }
 .inventory-filters .btn { min-height:36px; height:36px; padding:0 13px; border-radius:999px; white-space:nowrap; font-size:.78rem; }
 .inventory-filters .btn.on { color:var(--zc-mint); background:rgba(169,223,130,.12); border-color:rgba(169,223,130,.3); }
+
+.inventory-content { display:grid; gap:14px; }
