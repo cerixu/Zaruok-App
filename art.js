@@ -188,7 +188,7 @@ export function artUrl(spec, seedText = '') {
 }
 
 const NAME_ART = [
-  [/baba\\s*ganoush|mutabbal|eggplant dip/i, 'dip:eggplant'],
+  [/baba\s*ganoush|mutabbal|eggplant dip/i, 'dip:eggplant'],
   [/hummus|chickpea dip/i, 'dip:hummus'],
   [/guacamole/i, 'dip:guacamole'],
   [/mojito|margarita|martini|negroni|spritz|cocktail|koktajl/i, 'cocktail'],
@@ -215,7 +215,7 @@ const NAME_ART = [
   [/tiramisu/i, 'cake:tiramisu'],
   [/ciasto|tort|cake|babka|sernik|cheesecake|tarta|tart/i, 'cake'],
   [/chleb|bread|baguette|bułk|roll/i, 'bread'],
-  [/^sos\\b|^sauce\\b|sos pomidorowy|marinara|ketchup/i, 'sauce'],
+  [/^sos\b|^sauce\b|sos pomidorowy|marinara|ketchup/i, 'sauce'],
 ];
 export const artKindFor = (r) => {
   const explicit = isArtSpec(r.art) ? r.art : null;
