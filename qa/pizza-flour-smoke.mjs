@@ -6,9 +6,16 @@ const page = await browser.newPage({ viewport: { width: 390, height: 844 }, devi
 const errors = [];
 page.on('pageerror', (e) => errors.push(String(e)));
 
+async function dismissWhatsNew() {
+  const start = page.getByRole('button', { name: 'Zaczynamy' }).first();
+  if (await start.count() && await start.isVisible().catch(() => false)) await start.click();
+}
+
 try {
   await page.goto(base + '#/calc/pizza', { waitUntil: 'networkidle' });
   await page.waitForFunction(() => window.__kucharzyna?.ready === true, null, { timeout: 15000 });
+  await page.waitForTimeout(1200);
+  await dismissWhatsNew();
 
   const mode = await page.getByRole('button', { name: 'Mam mąkę' }).count();
   if (!mode) throw new Error('Brak opcji „Mam mąkę”');
@@ -42,7 +49,47 @@ try {
   await page.getByRole('button', { name: 'Mam mąkę' }).click();
   if (!(await page.getByLabel('Masa mąki').count())) throw new Error('Powrót do trybu „Mam mąkę” nie działa');
 
-  console.log('PASS: flour-first pizza calculator, 7200 g scenario + mode switch');
+  // Fermentation fields must retain focus across consecutive keystrokes.
+  const temperature = page.getByLabel('Temperatura fermentacji');
+  await temperature.click();
+  await page.waitForTimeout(30);
+  await temperature.press('Control+A');
+  await page.keyboard.type('25');
+  if (await temperature.inputValue() !== '25') throw new Error('Pole temperatury gubi fokus przy wpisywaniu znak po znaku');
+  if (!(await temperature.evaluate((el) => el === document.activeElement))) throw new Error('Pole temperatury utraciło fokus');
+  const fermentationTime = page.getByLabel('Czas fermentacji w godzinach');
+  await fermentationTime.click();
+  await page.waitForTimeout(30);
+  await fermentationTime.press('Control+A');
+  await page.keyboard.type('18');
+  if (await fermentationTime.inputValue() !== '18') throw new Error('Pole czasu fermentacji gubi fokus przy wpisywaniu');
+  if (!(await fermentationTime.evaluate((el) => el === document.activeElement))) throw new Error('Pole czasu fermentacji utraciło fokus');
+
+  // Active sourdough is a 1:1:2 build: seed : added flour : added water.
+  await page.getByLabel('Masa mąki').fill('1000');
+  await page.getByLabel('Rodzaj zaczynu').selectOption('starter');
+  if (!(await page.getByText('10 g + 10 g + 20 g = 40 g').count())) throw new Error('Brak objaśnienia proporcji zakwasu 1:1:2');
+  await page.getByLabel('Aktywny zakwas procent mąki').fill('40');
+  const row = (label) => page.locator('.result').filter({ hasText: label });
+  if (!(await row('Zakwas macierzysty').innerText()).includes('100')) throw new Error('Zakwas macierzysty powinien mieć 100 g');
+  if (!(await row('Mąka do zakwasu').innerText()).includes('100')) throw new Error('Mąka do zakwasu powinna mieć 100 g');
+  if (!(await row('Woda do zakwasu').innerText()).includes('200')) throw new Error('Woda do zakwasu powinna mieć 200 g');
+  if (!(await row('Aktywny zakwas łącznie').count())) throw new Error('Brak sumy aktywnego zakwasu');
+  if (!(await row('Masa całkowita').innerText()).includes('1780')) throw new Error('Masa końcowa powinna wynosić 1780 g bez podwójnego liczenia mąki i wody z zakwasu');
+
+  await page.getByRole('button', { name: 'Zapisz jako recepturę' }).click();
+  const openRecipe = page.getByRole('button', { name: 'Otwórz' }).last();
+  await openRecipe.waitFor({ state: 'visible', timeout: 5000 });
+  await openRecipe.click();
+  await page.waitForSelector('.detail', { state: 'visible', timeout: 5000 });
+  await page.locator('.orb-more').first().click();
+  await page.waitForSelector('.recipe-full-modal', { state: 'visible', timeout: 5000 });
+  const savedRecipe = await page.locator('.recipe-full-modal').innerText();
+  for (const item of ['Zakwas macierzysty', 'Mąka pszenna do zakwasu', 'Woda do zakwasu']) {
+    if (!savedRecipe.includes(item)) throw new Error('Zapisana receptura nie zawiera składnika: ' + item);
+  }
+
+  console.log('PASS: flour-first pizza, focus-stable temperature, 1:1:2 sourdough and saved recipe');
 } finally {
   await browser.close();
 }
