@@ -1,6 +1,10 @@
 import fs from 'node:fs';
+import { artKindFor } from '../art.js';
 
 const SOURCES = ['seeds.js', 'seeds-pl.js', 'seeds-world.js', 'seeds-more.js'];
+
+if (artKindFor({ name: 'Baba ganoush', category: 'sauce', art: 'sauce' }) !== 'dip:eggplant') throw new Error('Baba ganoush musi używać ilustracji dipu z bakłażana.');
+if (artKindFor({ name: 'Pizza Margherita', category: 'main', art: 'plate' }) !== 'pizza') throw new Error('Pizza Margherita musi używać ilustracji pizzy.');
 const EXPECTED_SOURCE_COUNT = 225;
 const EXPECTED_HAND_COUNT = 3;
 const BAD_ENGLISH = /\b(almonds|butter|flour|sugar|cream|cheese|milk|cup|cups|tbsp|tsp|tablespoon|teaspoon|yellow)\b/i;
