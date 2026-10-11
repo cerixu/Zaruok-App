@@ -15,7 +15,7 @@ Wszystkie dane są w pamięci Twojego urządzenia.
 - **Wiele minutników naraz** z pastylką widoczną na każdym ekranie.
 - **Szukaj w sieci — w samej aplikacji** (patrz niżej).
 - **Narzędzia kuchenne** (zakładka Kalkulatory): pizza/ciasto z procentami piekarskimi, procenty, przeliczanie receptury, koszt i food cost, sól i solanki, zakwas, forma do pieczenia, przelicznik jednostek (także g ↔ ml), temperatury mięs, czasy gotowania z minutnikiem, zamienniki, „Co mam w lodówce?”, „Co dziś gotujemy?”.
-- **Magazyn**: lokalne stany z wyszukiwarką i filtrami kategorii, progi niskiego stanu, alerty, straty z kosztem z ostatnich 7 dni, dodawanie braków do zakupów i automatyczne odliczanie dopasowanych składników po zakończeniu gotowania. Skaner EAN używa BarcodeDetector, jeśli przeglądarka go udostępnia, z ręcznym fallbackiem i opcjonalnym rozpoznaniem produktu online.
+- **Magazyn**: lokalne stany z wyszukiwarką i filtrami kategorii, progi niskiego stanu, alerty, straty z kosztem z ostatnich 7 dni, dodawanie braków do zakupów i automatyczne odliczanie dopasowanych składników po zakończeniu gotowania. Skaner EAN działa z BarcodeDetector, jeśli przeglądarka go udostępnia, a w Safari ma lokalny dekoder EAN-13 bez zewnętrznych API; kod można też wpisać ręcznie. Rozpoznanie nazwy produktu online jest opcjonalne.
 - **Przelicz**, **procenty piekarskie**, **food cost**, **zakupy** (z alejkami), **import z tekstu**, **historia zmian** z przywracaniem wersji, **kopia zapasowa JSON**.
 
 ## Struktura plików
@@ -48,7 +48,7 @@ tools-data.js, calc-kit.js   dane i klocki narzędzi kuchennych
 importer.js             parser tekstu przepisu (PL/EN, JSON-LD)
 backup.js               eksport/import JSON
 shopping.js             lista zakupów (logika + widok)
-inventory.js            magazyn, EAN, stany, straty i zużycie składników
+inventory.js            magazyn, stany, straty i zużycie składników\nbarcode.js              lokalny dekoder kodów EAN-13
 ui.js, util.js, components.js     elementy interfejsu, narzędzia
 views-start.js          ekran Start
 views-recipes.js        lista receptur, menedżer kategorii
