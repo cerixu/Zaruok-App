@@ -1,4 +1,4 @@
-# Kucharzyna 👨‍🍳
+# Żarłok 👨‍🍳
 
 Prywatny notatnik szefa kuchni na iPhone'a (działa też na innych telefonach i komputerze).
 Instalowalna aplikacja PWA, **działa bez internetu**, bez kont, reklam, śledzenia i płatnych API.
@@ -24,7 +24,7 @@ Repozytorium jest **płaskie — wszystkie pliki leżą w jednym katalogu głów
 
 ```
 index.html              powłoka aplikacji, meta tagi iOS, wczesne ustawienie motywu
-styles.css              wszystkie style (motywy, safe-area, komponenty, ekrany)
+styles.css              bazowe style (motywy, safe-area, komponenty)\nclaude-completion.css   spójna warstwa Liquid Glass dla wszystkich widoków mobilnych
 manifest.webmanifest    manifest PWA
 sw.js                   service worker (cache offline + wykrywanie aktualizacji)
 app.js                  start, motyw, nawigacja dolna, klawiatura iOS, trasy
@@ -135,7 +135,7 @@ Skutki: dane jednego telefonu nie pojawią się na drugim (przenoś kopią JSON)
 
 1. Zmień pliki, podbij wersję w **`sw.js`** (`VERSION = 'kucharzyna-1.2.1'`) i w **`util.js`** (`APP_VERSION = '1.2.1'`) — muszą być zgodne.
 2. Wypchnij zmiany na GitHub.
-3. Telefon wykryje nową wersję i pokaże: **„Nowa wersja Kucharzyny jest dostępna” → Odśwież**. Ręcznie: Ustawienia → Sprawdź aktualizacje.
+3. Telefon wykryje nową wersję i pokaże: **„Nowa wersja Żarłoka jest dostępna” → Odśwież**. Ręcznie: Ustawienia → Sprawdź aktualizacje.
 
 Service worker pobiera pliki z sieci w pierwszej kolejności (z krótkim limitem czasu), więc po stronie telefonu nic nie „zalega” przez dni; offline używa zapisanej kopii.
 
