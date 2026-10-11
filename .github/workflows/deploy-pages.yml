@@ -180,9 +180,12 @@ jobs:
             await expect(page.locator('.result').filter({ hasText: 'Masa całkowita' })).toContainText('1780');
 
             await page.getByRole('button', { name: 'Zapisz jako recepturę' }).click();
-            const openRecipe = page.getByRole('button', { name: 'Otwórz' });
+            const openRecipe = page.getByRole('button', { name: 'Otwórz' }).last();
             await expect(openRecipe).toBeVisible({ timeout: 5000 });
             await openRecipe.click();
+            await expect(page.locator('.detail')).toBeVisible({ timeout: 5000 });
+            await page.locator('.orb-more').first().click();
+            await expect(page.locator('.recipe-full-modal')).toBeVisible({ timeout: 5000 });
             await expect(page.getByText('Zakwas macierzysty', { exact: true })).toBeVisible({ timeout: 5000 });
             await expect(page.getByText('Mąka pszenna do zakwasu', { exact: true })).toBeVisible();
             await expect(page.getByText('Woda do zakwasu', { exact: true })).toBeVisible();
