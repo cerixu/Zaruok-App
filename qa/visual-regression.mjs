@@ -103,9 +103,11 @@ try {
   let selectedRecipe = null;
   let typedIngredientIcons = 0;
   for (const href of recipeLinks) {
-    await page.goto(base + href, { waitUntil: 'networkidle' });
-    await ready();
-    await page.waitForTimeout(250);
+    // Change route inside the SPA; do not reload the entire app for every candidate.
+    await page.evaluate((target) => { location.hash = target; }, href);
+    await page.waitForFunction((target) => location.hash === target, href, { timeout: 5000 });
+    await page.waitForSelector('.detail', { state: 'visible', timeout: 5000 });
+    await page.waitForTimeout(150);
     await dismissWhatsNew();
     typedIngredientIcons = await page.locator('.orb-dot[data-kind]').count();
     if (typedIngredientIcons > 0) { selectedRecipe = href; break; }
