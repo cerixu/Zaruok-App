@@ -162,8 +162,11 @@ function fatal(err) {
       h('p', { class: 'muted small' }, String(err && err.message || err)))))));
 }
 
+let whatsNewOpened = false;
 function whatsNew() {
-  if (getSetting('seenVersion') === APP_VERSION || document.querySelector('.overlay')) return;
+  // WebKit can finish more than one startup hydration path; show this release sheet once per page.
+  if (whatsNewOpened || getSetting('seenVersion') === APP_VERSION || document.querySelector('.overlay')) return;
+  whatsNewOpened = true;
   const li = (t) => h('li', null, t);
   openSheet({
     title: `Co nowego w ${APP_VERSION}`, variant: 'sheet',
