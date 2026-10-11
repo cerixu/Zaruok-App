@@ -67,7 +67,7 @@ jobs:
       - name: Start static server
         run: python3 -m http.server 4173 >/tmp/zaruok-http.log 2>&1 &
       - name: Run inventory and EAN smoke
-        run: node qa/inventory-smoke.mjs
+        run: node qa/barcode-smoke.mjs && node qa/inventory-smoke.mjs
 
   persistence-smoke:
     needs: inventory-smoke
