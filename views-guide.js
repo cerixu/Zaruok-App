@@ -40,6 +40,14 @@ const stopSpeaking = () => { try { if (speechSupported()) speechSynthesis.cancel
 
 /* ---------- Widok ---------- */
 
+function portionUnit(value) {
+  const n = Number(value);
+  if (Math.abs(n - 1) < 0.0001) return 'porcja';
+  const integer = Math.round(n), last = integer % 10, lastTwo = integer % 100;
+  if (Math.abs(n - integer) < 0.0001 && last >= 2 && last <= 4 && !(lastTwo >= 12 && lastTwo <= 14)) return 'porcje';
+  return 'porcji';
+}
+
 export function guideView({ id }) {
   const r0 = getRecipe(id);
   if (!r0) {
@@ -48,7 +56,7 @@ export function guideView({ id }) {
     return { el: s.el };
   }
 
-  let st = { page: 0, factor: 1, have: {}, rating: 0 };
+  let st = { page: 0, factor: r0.servings > 1 ? 1 / r0.servings : 1, have: {}, rating: 0 };
   let finishing = false;
   let dir = 1;
   let loaded = false;
@@ -114,7 +122,7 @@ export function guideView({ id }) {
     const sv = base().servings ? Math.round(base().servings * st.factor * 10) / 10 : null;
     const stepper = base().servings ? h('div', { class: 'stepper', role: 'group', 'aria-label': 'Liczba porcji' },
       iconBtn('minus', 'Mniej porcji', () => { setFactor(Math.max(0.1, (sv - (sv > 1 ? 1 : 0.5)) / base().servings)); }, 'glassy'),
-      h('div', { class: 'stepper-val' }, h('strong', { class: 'num' }, fmtNum(sv, 1)), h('span', { class: 'muted small' }, 'porcji')),
+      h('div', { class: 'stepper-val' }, h('strong', { class: 'num' }, fmtNum(sv, 1)), h('span', { class: 'muted small' }, portionUnit(sv))),
       iconBtn('plus', 'Więcej porcji', () => { setFactor((sv + 1) / base().servings); }, 'glassy')) : null;
     const total = (base().prepTime || 0) + (base().cookTime || 0);
     return h('div', { class: 'guide-card' },
@@ -195,7 +203,7 @@ export function guideView({ id }) {
     catch (e) { console.warn('Nie udało się odjąć składników z magazynu:', e); }
     await patchRecipe(id, { cookCount: (b.cookCount || 0) + 1, lastCookedAt: Date.now(), rating: st.rating || b.rating || 0 });
     await kv.del('guide:' + id).catch(() => {});
-    st = { page: 0, factor: 1, have: {}, rating: 0 };
+    st = { page: 0, factor: r0.servings > 1 ? 1 / r0.servings : 1, have: {}, rating: 0 };
     if (stockResult && stockResult.deducted) {
       toast('Zapisano. Odjęto z magazynu: ' + stockResult.deducted + ' pozycji.');
       if (stockResult.missing.length) toast('Nie znaleziono w magazynie: ' + stockResult.missing.slice(0, 3).join(', '), { type: 'error' });
@@ -233,7 +241,7 @@ export function guideView({ id }) {
   kv.get('guide:' + id).then((p) => {
     loaded = true;
     if (p && typeof p === 'object') {
-      st = { page: 0, factor: 1, have: {}, rating: 0, ...p };
+      st = { page: 0, factor: r0.servings > 1 ? 1 / r0.servings : 1, have: {}, rating: 0, ...p };
       st.page = Math.min(st.page, lastPage());
       paint(false);
       if (st.page > 0 && st.page <= stepsCount()) {
