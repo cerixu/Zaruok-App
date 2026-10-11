@@ -19,6 +19,7 @@ const ACTIONS = [
   { label: 'Receptury', note: 'Cała książka', icon: 'book', tint: 'lime', path: '/recipes', primary: true },
   { label: 'Nowa receptura', note: 'Od pustej kartki', icon: 'plus', tint: 'coral', path: '/new' },
   { label: 'Kalkulatory', note: 'Przelicz i policz', icon: 'calc', tint: 'amber', path: '/calc' },
+  { label: 'Magazyn', note: 'Stany, straty i koszty', icon: 'fridge', tint: 'cyan', path: '/inventory' },
   { label: 'Zakupy', note: 'Lista zakupów', icon: 'cart', tint: 'blue', path: '/shopping' },
   { label: 'Ulubione', note: 'Twoje pewniaki', icon: 'heart', tint: 'pink', path: '/recipes?f=fav' },
 ];
@@ -86,7 +87,7 @@ export function startView() {
   const s = screen({
     title: 'Żarłok',
     left: h('span', { class: 'nav-spacer' }),
-    right: iconBtn('search', 'Szukaj', () => navigate('/search')),
+    right: h('div', { class: 'row gap' }, iconBtn('search', 'Szukaj', () => navigate('/search')), iconBtn('sliders', 'Ustawienia', () => navigate('/settings'))),
     cls: 'start-final',
     large: 'hero',
   });
