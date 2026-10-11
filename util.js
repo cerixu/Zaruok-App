@@ -60,6 +60,7 @@ export function fmtUnit(amount, unit = '') {
   const f = forms[u];
   if (!f) return u;
   if (n === 1) return f[0];
+  if (n > 0 && n < 1) return u === 'porcja' ? f[2] : f[1];
   if (n > 1 && n < 2) return f[1];
   const whole = Math.floor(n);
   const is234 = whole % 10 >= 2 && whole % 10 <= 4 && !(whole % 100 >= 12 && whole % 100 <= 14);
@@ -71,6 +72,25 @@ export function fmtAmount(n) {
   if (n == null || !Number.isFinite(n)) return '';
   const a = Math.abs(n);
   return fmtNum(n, a >= 100 ? 0 : a >= 10 ? 1 : a >= 1 ? 2 : 3);
+}
+
+const FRACTIONABLE_UNIT = /^(?:szt\\.?|sztuka|sztuki|sztuk|łyżka|łyżki|łyżek|łyżeczka|łyżeczki|łyżeczek|szczypta|szczypty|szczypt|porcja|porcje|porcji|szklanka|szklanki|szklanek|ząbek|ząbki|ząbków|liść|liście|liści|plaster|plastry|plastrów|garść|garście|garści|pęczek|pęczki|pęczków|opak\\.?|opakowanie|opakowania|opakowań|kawałek|kawałki|kawałków|kromka|kromki|kromek|kostka|kostki|kostek|filet|filety|filetów|jajko|jajka|jajek)$/i;
+const COOKING_FRACTIONS = [
+  [1 / 8, '⅛'], [1 / 4, '¼'], [1 / 3, '⅓'], [3 / 8, '⅜'],
+  [1 / 2, '½'], [5 / 8, '⅝'], [2 / 3, '⅔'], [3 / 4, '¾'], [7 / 8, '⅞'],
+];
+
+/** Ilości ułamkowe dla sztuk i miar kuchennych: ⅓ szt., ½ łyżki; gramy zostają liczbowe. */
+export function fmtKitchenAmount(n, unit = '') {
+  if (n == null || !Number.isFinite(n)) return '';
+  if (!FRACTIONABLE_UNIT.test(String(unit || '').trim())) return fmtAmount(n);
+  const sign = n < 0 ? '-' : '';
+  const abs = Math.abs(n);
+  const whole = Math.floor(abs + 1e-9);
+  const remainder = abs - whole;
+  const match = COOKING_FRACTIONS.find(([fraction]) => Math.abs(remainder - fraction) < 0.006);
+  if (!match) return fmtAmount(n);
+  return sign + (whole ? String(whole) : '') + match[1];
 }
 
 export const fmtPct = (n) => (n == null || !Number.isFinite(n) ? '' : fmtNum(n, Math.abs(n) < 1 ? 2 : 1) + '%');
