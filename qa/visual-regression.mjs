@@ -25,7 +25,7 @@ async function ready() {
   } catch (error) {
     const body = await page.locator('body').innerText().catch(() => '');
     const href = page.url();
-    throw new Error('App readiness timeout. URL=' + href + '\\nBODY=' + body.slice(0, 2000) + '\\nCAUSE=' + error.message);
+    throw new Error('App readiness timeout. URL=' + href + '\\nBODY=' + body.slice(0, 2000) + '\\nERRORS=' + errors.join(' | ') + '\\nCAUSE=' + error.message);
   }
 }
 async function dismissWhatsNew() {
