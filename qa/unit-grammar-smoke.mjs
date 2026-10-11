@@ -59,14 +59,20 @@ try {
   const bad = forms.filter((x) => x.actual !== x.expected);
   if (bad.length) throw new Error('Błędna odmiana: ' + JSON.stringify(bad));
 
-  await page.goto(base + '#/recipe/rcp_seed_ragu_alla_bolognese', { waitUntil: 'networkidle' });
+  await page.goto(base + '#/recipe/rcp_seed_lasagne_alla_bolognese', { waitUntil: 'networkidle' });
   await ready();
   await dismiss();
   await page.waitForSelector('.detail', { state: 'visible', timeout: 8000 });
 
-  const units = await page.locator('.detail .ing-qty .unit').allTextContents();
-  const visibleBad = units.filter((u) => /\błyżka\b|\błyżeczka\b|\bszczypta\b|\bporcja\b/.test(u.trim()));
-  if (visibleBad.length) throw new Error('Widok receptury renderuje surową jednostkę zamiast odmiany: ' + JSON.stringify(visibleBad));
+  const unitRows = await page.locator('.detail .ing-qty').evaluateAll((els) => els.map((el) => ({
+    amount: el.querySelector('.amt')?.textContent?.trim() || '',
+    unit: el.querySelector('.unit')?.textContent?.trim() || '',
+  })));
+  if (!unitRows.length) throw new Error('Brak ilości składników w widoku receptury.');
+  const visibleForms = unitRows.map((x) => x.amount + ' ' + x.unit);
+  if (!visibleForms.includes('1 łyżka') || !visibleForms.includes('2 łyżki')) {
+    throw new Error('Nieprawidłowa odmiana łyżki w widoku receptury: ' + JSON.stringify(visibleForms));
+  }
 
   console.log('PASS: Polish unit grammar runtime + recipe rendering');
 } finally {
