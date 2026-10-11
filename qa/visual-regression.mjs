@@ -114,6 +114,7 @@ try {
   }
   assert(selectedRecipe, 'Nie znaleziono receptury z ikonami składników do testu.');
   assert(await page.locator('.orb-dot[data-kind] svg').count() > 0, 'Łuk składników nie renderuje ikon wektorowych.');
+  assert(await page.locator('.orb-dot[data-kind] svg').first().evaluate((el) => el.namespaceURI) === 'http://www.w3.org/2000/svg', 'Ikony na łuku muszą używać przestrzeni nazw SVG.');
   const hero = await box('.detail-hero');
   const orbit = await box('.orbit');
   assert(hero.width > 300, 'Hero receptury ma nieprawidłową szerokość.');
@@ -129,6 +130,7 @@ try {
   assert(modal.width >= 330 && modal.width <= 390, 'Modal pełnej receptury ma nieprawidłową szerokość.');
   assert(await page.locator('.recipe-modal-ing-icon[data-kind]').count() > 0, 'Brak ikon składników z kolorami semantycznymi w pełnej recepturze.');
   assert(await page.locator('.recipe-modal-ing-icon svg').count() > 0, 'Ikony składników nie są renderowane jako wektorowe grafiki SVG.');
+  assert(await page.locator('.recipe-modal-ing-icon svg').first().evaluate((el) => el.namespaceURI) === 'http://www.w3.org/2000/svg', 'Ikony pełnej receptury muszą używać przestrzeni nazw SVG.');
   const ingredientIconRadius = await page.locator('.recipe-modal-ing-icon').first().evaluate((el) => getComputedStyle(el).borderRadius);
   assert(['13px', '14px'].includes(ingredientIconRadius), 'Warstwa Liquid Glass nie wystylowała ikon składników.');
   await shot('03-full-recipe.png');
