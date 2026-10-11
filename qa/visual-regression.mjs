@@ -122,7 +122,34 @@ try {
     clientHeight: el.clientHeight,
   })).catch(() => null);
   if (modalScroll) assert(modalScroll.scrollHeight >= modalScroll.clientHeight, 'Modal ma uszkodzony obszar przewijania.');
-} finally {
+  // Additional mobile surfaces: design QA must cover the whole app, not only Start.
+  async function captureSurface(path, name, label) {
+    await page.goto(base + '#' + path, { waitUntil: 'networkidle' });
+    await ready();
+    await page.waitForTimeout(350);
+    await dismissWhatsNew();
+    assert(await page.locator('#view .screen').count(), label + ': ekran nie został wyrenderowany.');
+    await assertNoPageOverflow(label);
+    await shot(name);
+  }
+  await captureSurface('/calc', '04-calculators.png', 'Kalkulatory');
+  await captureSurface('/shopping', '05-shopping.png', 'Zakupy');
+  await captureSurface('/search', '06-search.png', 'Wyszukiwanie');
+  await captureSurface('/settings', '07-settings.png', 'Ustawienia');
+
+  await page.goto(base + '#/recipes', { waitUntil: 'networkidle' });
+  await ready();
+  await dismissWhatsNew();
+  const cookingRecipe = page.locator('a[href^="#/recipe/"]').first();
+  assert(await cookingRecipe.count(), 'Brak receptury do testu widoku gotowania.');
+  await cookingRecipe.click();
+  await page.waitForSelector('.detail', { state: 'visible', timeout: 5000 });
+  await page.getByRole('button', { name: 'GOTUJĘ' }).first().click();
+  await page.waitForTimeout(250);
+  assert(await page.locator('.guide').count(), 'Nie otworzył się widok prowadzenia gotowania.');
+  await assertNoPageOverflow('Gotowanie');
+  await shot('08-cooking.png');
+\n} finally {
   await browser.close();
 }
 
