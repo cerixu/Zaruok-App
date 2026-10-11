@@ -48,7 +48,8 @@ tools-data.js, calc-kit.js   dane i klocki narzędzi kuchennych
 importer.js             parser tekstu przepisu (PL/EN, JSON-LD)
 backup.js               eksport/import JSON
 shopping.js             lista zakupów (logika + widok)
-inventory.js            magazyn, stany, straty i zużycie składników\nbarcode.js              lokalny dekoder kodów EAN-13
+inventory.js            magazyn, stany, straty i zużycie składników
+barcode.js              lokalny dekoder kodów EAN-13
 ui.js, util.js, components.js     elementy interfejsu, narzędzia
 views-start.js          ekran Start
 views-recipes.js        lista receptur, menedżer kategorii
