@@ -74,7 +74,18 @@ export function fmtAmount(n) {
   return fmtNum(n, a >= 100 ? 0 : a >= 10 ? 1 : a >= 1 ? 2 : 3);
 }
 
-const FRACTIONABLE_UNIT = /^(?:szt\\.?|sztuka|sztuki|sztuk|łyżka|łyżki|łyżek|łyżeczka|łyżeczki|łyżeczek|szczypta|szczypty|szczypt|porcja|porcje|porcji|szklanka|szklanki|szklanek|ząbek|ząbki|ząbków|liść|liście|liści|plaster|plastry|plastrów|garść|garście|garści|pęczek|pęczki|pęczków|opak\\.?|opakowanie|opakowania|opakowań|kawałek|kawałki|kawałków|kromka|kromki|kromek|kostka|kostki|kostek|filet|filety|filetów|jajko|jajka|jajek)$/i;
+const FRACTIONABLE_UNITS = new Set([
+  'szt.', 'szt', 'sztuka', 'sztuki', 'sztuk',
+  'łyżka', 'łyżki', 'łyżek', 'łyżeczka', 'łyżeczki', 'łyżeczek',
+  'szczypta', 'szczypty', 'szczypt', 'porcja', 'porcje', 'porcji',
+  'szklanka', 'szklanki', 'szklanek', 'ząbek', 'ząbki', 'ząbków',
+  'liść', 'liście', 'liści', 'plaster', 'plastry', 'plastrów',
+  'garść', 'garście', 'garści', 'pęczek', 'pęczki', 'pęczków',
+  'opak.', 'opak', 'opakowanie', 'opakowania', 'opakowań',
+  'kawałek', 'kawałki', 'kawałków', 'kromka', 'kromki', 'kromek',
+  'kostka', 'kostki', 'kostek', 'filet', 'filety', 'filetów',
+  'jajko', 'jajka', 'jajek',
+]);
 const COOKING_FRACTIONS = [
   [1 / 8, '⅛'], [1 / 4, '¼'], [1 / 3, '⅓'], [3 / 8, '⅜'],
   [1 / 2, '½'], [5 / 8, '⅝'], [2 / 3, '⅔'], [3 / 4, '¾'], [7 / 8, '⅞'],
@@ -83,7 +94,7 @@ const COOKING_FRACTIONS = [
 /** Ilości ułamkowe dla sztuk i miar kuchennych: ⅓ szt., ½ łyżki; gramy zostają liczbowe. */
 export function fmtKitchenAmount(n, unit = '') {
   if (n == null || !Number.isFinite(n)) return '';
-  if (!FRACTIONABLE_UNIT.test(String(unit || '').trim())) return fmtAmount(n);
+  if (!FRACTIONABLE_UNITS.has(String(unit || '').trim().toLocaleLowerCase('pl'))) return fmtAmount(n);
   const sign = n < 0 ? '-' : '';
   const abs = Math.abs(n);
   const whole = Math.floor(abs + 1e-9);
