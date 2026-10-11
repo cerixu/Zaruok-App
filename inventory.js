@@ -274,15 +274,26 @@ export function inventoryView() {
         let detector;
         try { detector = new window.BarcodeDetector({ formats: ['ean_13', 'ean_8', 'upc_a', 'upc_e'] }); } catch (_) { detector = null; }
         const scanFrame = async () => {
-          if (!active || !detector || video.readyState < 2) return;
+          if (!active || !detector) return;
+          // Kamera może potrzebować kilku klatek po video.play(). Nie kończ skanera
+          // na pierwszym readyState < 2 — ponów próbę aż obraz będzie gotowy.
+          if (video.readyState < 2 || video.videoWidth < 1 || video.videoHeight < 1) {
+            requestAnimationFrame(scanFrame);
+            return;
+          }
           try {
             const codes = await detector.detect(video);
-            if (codes && codes.length && codes[0].rawValue) { await acceptCode(codes[0].rawValue); return; }
-          } catch (_) { /* kolejne klatki */ }
+            if (codes && codes.length && codes[0].rawValue) {
+              await acceptCode(codes[0].rawValue);
+              return;
+            }
+          } catch (_) { /* błąd pojedynczej klatki; skanuj dalej */ }
           if (active) requestAnimationFrame(scanFrame);
         };
-        if (detector) requestAnimationFrame(scanFrame);
-        else status.textContent = 'Wpisz kod EAN ręcznie — automatyczny skaner nie jest dostępny.';
+        if (detector) {
+          status.textContent = 'Skanuję automatycznie — ustaw kod w środku kadru.';
+          requestAnimationFrame(scanFrame);
+        } else status.textContent = 'Wpisz kod EAN ręcznie — automatyczny skaner nie jest dostępny.';
       } else {
         status.textContent = 'Automatyczny skaner nie jest dostępny w tej wersji Safari. Wpisz kod ręcznie.';
       }
