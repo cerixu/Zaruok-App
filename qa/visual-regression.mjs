@@ -149,7 +149,8 @@ try {
   assert(await page.locator('.guide').count(), 'Nie otworzył się widok prowadzenia gotowania.');
   await assertNoPageOverflow('Gotowanie');
   await shot('08-cooking.png');
-\n} finally {
+
+} finally {
   await browser.close();
 }
 
