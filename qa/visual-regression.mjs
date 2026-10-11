@@ -94,6 +94,8 @@ try {
       radius: style.borderRadius,
       position: style.position,
       tabs: tabs.length,
+      activeMarkerDisplay: getComputedStyle(tabs.find((tab) => tab.classList.contains('on')) || bar.querySelector('.tab'), '::after').display,
+      activeTabTransform: getComputedStyle(tabs.find((tab) => tab.classList.contains('on')) || bar.querySelector('.tab')).transform,
       iconsInside: icons.every((icon) => icon && icon.left >= rect.left && icon.right <= rect.right && icon.top >= rect.top && icon.bottom <= rect.bottom),
       widths: tabs.map((tab) => tab.getBoundingClientRect().width),
     };
@@ -105,6 +107,21 @@ try {
     'Dolna nawigacja koliduje z dolnym obszarem bezpiecznym: ' + JSON.stringify(tabMetrics));
   assert(tabMetrics.tabs === 5 && tabMetrics.widths.every((w) => w >= 45) && tabMetrics.iconsInside,
     'Ikony lub zakładki dolnej nawigacji są ściśnięte albo wychodzą poza pasek: ' + JSON.stringify(tabMetrics));
+  assert(tabMetrics.activeMarkerDisplay === 'none',
+    'Aktywna zakładka ma odziedziczony marker/kropkę, która psuje wyrównanie: ' + JSON.stringify(tabMetrics));
+  assert(tabMetrics.activeTabTransform === 'none',
+    'Cała aktywna zakładka nie może skakać podczas przejść stanów: ' + JSON.stringify(tabMetrics));
+  const tapTarget = page.locator('#tabbar .tab[data-tab="recipes"]');
+  const tapBox = await tapTarget.boundingBox();
+  await page.mouse.move(tapBox.x + tapBox.width / 2, tapBox.y + tapBox.height / 2);
+  await page.mouse.down();
+  const pressTransforms = await tapTarget.evaluate((el) => ({
+    tab: getComputedStyle(el).transform,
+    icon: getComputedStyle(el.querySelector('.tab-ico')).transform,
+  }));
+  await page.mouse.up();
+  assert(pressTransforms.tab === 'none' && pressTransforms.icon !== 'none',
+    'Naciśnięcie nawigacji powinno animować tylko kapsułę ikony, bez przesuwania całej zakładki: ' + JSON.stringify(pressTransforms));
   await shot('01-start.png');
 
   // Responsive overflow sweep: horizontal rails may scroll internally, but the page itself must not widen.
