@@ -45,7 +45,7 @@ try {
   await ready();
   await dismiss();
   await page.getByRole('button', { name: 'Zarejestruj stratę: Mąka testowa' }).click();
-  await page.getByLabel('Ilość straty (kg)').fill('0.5');
+  await page.getByLabel('Ilość straty').fill('0.5');
   await page.getByLabel('Powód').selectOption('Zepsute');
   await page.getByRole('button', { name: 'Zapisz stratę' }).click();
   await page.waitForTimeout(250);
@@ -55,7 +55,7 @@ try {
   await page.waitForSelector('.scanner-frame', { timeout: 5000 });
   if (!(await page.locator('.scanner-line').count())) throw new Error('Brak animowanej linii skanowania EAN.');
   if (!(await page.getByLabel('Kod EAN').count())) throw new Error('Brak ręcznego pola kodu EAN.');
-  await page.getByRole('button', { name: 'Zamknij', exact: true }).click();
+  await page.locator('.overlay .panel-foot').getByRole('button', { name: 'Zamknij', exact: true }).click();
 
 } finally {
   await browser.close();
