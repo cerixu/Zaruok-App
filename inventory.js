@@ -319,7 +319,7 @@ export function inventoryView() {
       h('div', { class: 'inventory-item-actions' },
         iconBtn('minus', 'Odejmij 1 ' + item.unit, () => adjust(item, -1), 'quiet'),
         iconBtn('plus', 'Dodaj 1 ' + item.unit, () => adjust(item, 1), 'quiet'),
-        iconBtn('alert', 'Zarejestruj stratę: ' + item.name, () => recordWaste(item), 'quiet'),
+        iconBtn('trash', 'Zarejestruj stratę: ' + item.name, () => recordWaste(item), 'quiet'),
         iconBtn('edit', 'Edytuj: ' + item.name, () => openItemSheet(item), 'quiet'),
         iconBtn('x', 'Usuń produkt: ' + item.name, () => deleteItem(item), 'quiet')));
   }
