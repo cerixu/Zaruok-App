@@ -119,6 +119,7 @@ try {
     tab: getComputedStyle(el).transform,
     icon: getComputedStyle(el.querySelector('.tab-ico')).transform,
   }));
+  await page.mouse.move(2, 2); // release poza linkiem, żeby nie nawigować podczas testu :active
   await page.mouse.up();
   assert(pressTransforms.tab === 'none' && pressTransforms.icon !== 'none',
     'Naciśnięcie nawigacji powinno animować tylko kapsułę ikony, bez przesuwania całej zakładki: ' + JSON.stringify(pressTransforms));
