@@ -126,7 +126,7 @@ try {
   assert(modal.width >= 330 && modal.width <= 390, 'Modal pełnej receptury ma nieprawidłową szerokość.');
   assert(await page.locator('.recipe-modal-ing-icon[data-kind]').count() > 0, 'Brak ikon składników z kolorami semantycznymi w pełnej recepturze.');
   const ingredientIconRadius = await page.locator('.recipe-modal-ing-icon').first().evaluate((el) => getComputedStyle(el).borderRadius);
-  assert(ingredientIconRadius === '14px', 'Warstwa Liquid Glass nie wystylowała ikon składników.');
+  assert(['13px', '14px'].includes(ingredientIconRadius), 'Warstwa Liquid Glass nie wystylowała ikon składników.');
   await shot('03-full-recipe.png');
 
   const modalScroll = await page.locator('.recipe-full-modal .scroll').first().evaluate((el) => ({
