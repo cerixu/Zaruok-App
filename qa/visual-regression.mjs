@@ -11,7 +11,10 @@ const page = await browser.newPage({
 });
 
 const errors = [];
+const badRequests = [];
 page.on('pageerror', (e) => errors.push(String(e.stack || e)));
+page.on('requestfailed', (req) => badRequests.push(req.url() + ' :: ' + String(req.failure()?.errorText || 'request failed')));
+page.on('response', (res) => { if (/\\.js(?:\\?|$)/.test(res.url()) && !res.ok()) badRequests.push(res.status() + ' ' + res.url()); });
 page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text() + ' @ ' + JSON.stringify(m.location())); });
 
 function assert(ok, message) {
@@ -25,7 +28,7 @@ async function ready() {
   } catch (error) {
     const body = await page.locator('body').innerText().catch(() => '');
     const href = page.url();
-    throw new Error('App readiness timeout. URL=' + href + '\\nBODY=' + body.slice(0, 2000) + '\\nERRORS=' + errors.join(' | ') + '\\nCAUSE=' + error.message);
+    throw new Error('App readiness timeout. URL=' + href + '\\nBODY=' + body.slice(0, 2000) + '\\nERRORS=' + errors.join(' | ') + '\\nBAD_REQUESTS=' + badRequests.join(' | ') + '\\nCAUSE=' + error.message);
   }
 }
 async function dismissWhatsNew() {
