@@ -3,7 +3,7 @@ import { artKindFor } from '../art.js';
 
 const SOURCES = ['seeds.js', 'seeds-pl.js', 'seeds-world.js', 'seeds-more.js'];
 
-if (artKindFor({ name: 'Baba ganoush', category: 'sauce', art: 'sauce' }) !== 'dip:eggplant') throw new Error('Baba ganoush musi używać ilustracji dipu z bakłażana.');
+if (artKindFor({ name: 'Baba ganoush', category: 'sauce', art: 'sauce:tomato' }) !== 'dip:eggplant') throw new Error('Baba ganoush musi używać ilustracji dipu z bakłażana, nawet jeśli ma stary wariant grafiki.');
 if (artKindFor({ name: 'Pizza Margherita', category: 'main', art: 'plate' }) !== 'pizza') throw new Error('Pizza Margherita musi używać ilustracji pizzy.');
 const EXPECTED_SOURCE_COUNT = 225;
 const EXPECTED_HAND_COUNT = 3;
