@@ -152,7 +152,7 @@ function fatal(err) {
   $('#view').classList.remove('boot-shell');
   $('#view').replaceChildren(h('div', { class: 'screen' }, h('div', { class: 'scroll' }, h('div', { class: 'content' },
     h('div', { class: 'empty' }, h('div', { class: 'empty-emoji' }, '⚠️'), h('h2', null, 'Nie mogę otworzyć bazy danych'),
-      h('p', { class: 'muted' }, 'Kucharzyna zapisuje dane lokalnie (IndexedDB). Sprawdź, czy przeglądarka nie działa w trybie prywatnym ani nie blokuje pamięci witryny, i uruchom ponownie.'),
+      h('p', { class: 'muted' }, 'Żarłok zapisuje dane lokalnie (IndexedDB). Sprawdź, czy przeglądarka nie działa w trybie prywatnym ani nie blokuje pamięci witryny, i uruchom ponownie.'),
       h('p', { class: 'muted small' }, String(err && err.message || err)))))));
 }
 
@@ -163,10 +163,10 @@ function whatsNew() {
     title: `Co nowego w ${APP_VERSION}`, variant: 'sheet',
     body: h('div', { class: 'stack' },
       h('ul', { class: 'whatsnew' },
-        li('Kalkulator pizzy „Mam mąkę” liczy ciasto od gramatury mąki, niezależnie od liczby kulek.'),
-        li('Aktywny zakwas jest rozpisany w proporcji wagowej 1:1:2: zakwas macierzysty, mąka i woda. Mąka i woda z zaczynu są odjęte od dodatków do ciasta, aby nie liczyć ich podwójnie.'),
-        li('Naprawiono utratę fokusu i znikanie klawiatury podczas wpisywania temperatury oraz czasu fermentacji na iPhonie.')),
-      h('p', { class: 'muted small' }, 'Podpisy pod ikonami paska włączysz w Ustawieniach. Poprzedni wygląd: Ustawienia → Motyw.')),
+        li('Spójny wygląd Liquid Glass obejmuje teraz start, listę receptur, szczegóły, gotowanie, kalkulatory, zakupy, wyszukiwanie i ustawienia.'),
+        li('Karty, przyciski, okna i dolna nawigacja mają dopracowane szkło, delikatne światło oraz stany dotykowe.'),
+        li('Ikony składników otrzymały kolorystyczne oznaczenia kategorii, a warstwa mobilna uwzględnia safe-area i ustawienie ograniczenia animacji.')),
+      h('p', { class: 'muted small' }, 'Receptury i zapisane dane pozostają na tym urządzeniu. Jeśli zmiany nie pojawią się od razu, otwórz Ustawienia → Sprawdź aktualizacje.')),
     actions: [{ label: 'Zaczynamy', kind: 'primary' }],
     onClose: () => setSetting('seenVersion', APP_VERSION),
   });
