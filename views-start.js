@@ -9,6 +9,7 @@ import { state, subscribe, listRecipes } from './recipes.js';
 import { recipeTile, catTile, sectionHead, metaLine } from './components.js';
 import { openTimersSheet } from './timers.js';
 import { pendingCount } from './shopping.js';
+import { db } from './db.js';
 import { backupDue, daysSinceBackup } from './backup.js';
 import { recipeArtUrl } from './art.js';
 
@@ -18,21 +19,10 @@ const plural = (n) => n === 1 ? '1 receptura' :
 const ACTIONS = [
   { label: 'Receptury', note: 'Cała książka', icon: 'book', tint: 'lime', path: '/recipes', primary: true },
   { label: 'Nowa receptura', note: 'Od pustej kartki', icon: 'plus', tint: 'coral', path: '/new' },
-  { label: 'Kalkulatory', note: 'Przelicz i policz', icon: 'calc', tint: 'amber', path: '/calc' },
+  { label: 'Gotuję', note: 'Zacznij gotowanie', icon: 'pot', tint: 'violet', path: '/cook' },
   { label: 'Magazyn', note: 'Stany, straty i koszty', icon: 'fridge', tint: 'cyan', path: '/inventory' },
   { label: 'Zakupy', note: 'Lista zakupów', icon: 'cart', tint: 'blue', path: '/shopping' },
   { label: 'Ulubione', note: 'Twoje pewniaki', icon: 'heart', tint: 'pink', path: '/recipes?f=fav' },
-];
-
-const TOOLS = [
-  ['Minutnik', 'timer', 'amber', () => openTimersSheet()],
-  ['Przelicznik', 'scale', 'blue', () => navigate('/calc/units')],
-  ['Temperatury', 'thermo', 'coral', () => navigate('/calc/doneness')],
-  ['Zamienniki', 'swap', 'violet', () => navigate('/calc/subs')],
-  ['Lodówka', 'fridge', 'cyan', () => navigate('/calc/pantry')],
-  ['Losuj', 'shuffle', 'lime', () => navigate('/calc/random')],
-  ['Importuj', 'upload', 'orange', () => navigate('/import')],
-  ['Szukaj', 'search', 'pink', () => navigate('/search')],
 ];
 
 function actionRow(a, badge = 0) {
@@ -50,18 +40,6 @@ function actionRow(a, badge = 0) {
       h('small', null, a.note)),
     h('span', { class: 'zf-action-go', 'aria-hidden': 'true' }, icon('right', 17))
   );
-}
-
-function toolButton([label, ico, tint, fn]) {
-  return h('button', {
-    type: 'button',
-    class: 'zf-tool',
-    style: { '--item-tint': 'var(--zf-' + tint + ')' },
-    onClick: fn,
-    'aria-label': label,
-  },
-    h('span', { class: 'zf-tool-icon' }, icon(ico, 20)),
-    h('span', { class: 'zf-tool-label' }, label));
 }
 
 function featureRecipe(r) {
@@ -87,13 +65,23 @@ export function startView() {
   const s = screen({
     title: 'Żarłok',
     left: h('span', { class: 'nav-spacer' }),
-    right: h('div', { class: 'row gap' }, iconBtn('search', 'Szukaj', () => navigate('/search')), iconBtn('sliders', 'Ustawienia', () => navigate('/settings'))),
+    right: iconBtn('search', 'Szukaj', () => navigate('/search')),
     cls: 'start-final',
     large: 'hero',
   });
 
   const c = s.content;
   let unsub;
+  let destroyed = false;
+  let stockSummary = { loaded: false, items: 0, low: 0 };
+
+  async function refreshStockSummary() {
+    try {
+      const items = await db.getAll('inventoryItems');
+      stockSummary = { loaded: true, items: items.length, low: items.filter((x) => Number(x.minStock || 0) > 0 && Number(x.stock || 0) <= Number(x.minStock || 0)).length };
+    } catch (_) { stockSummary.loaded = true; }
+    if (!destroyed) paint();
+  }
 
   function paint() {
     const all = listRecipes();
@@ -113,12 +101,22 @@ export function startView() {
         h('div', { class: 'zf-head-copy' },
           h('span', { class: 'zf-kicker' }, 'NOTATNIK KUCHARZA'),
           h('h1', null, 'Żarłok'),
-          h('p', null, plural(all.length) + ' · tylko na tym telefonie')),
+          h('p', null, 'Co dziś gotujemy?'),
+          h('small', { class: 'zf-head-meta' }, plural(all.length) + ' · tylko na tym telefonie')),
         h('div', { class: 'zf-head-mark', 'aria-hidden': 'true' },
           h('span', { class: 'zf-mark-dot' }),
           h('span', null, 'PRO'))),
 
       h('div', { class: 'zf-feature-wrap' }, featureRecipe(feature)),
+      h('div', { class: 'zf-status-row' },
+        h('button', { type: 'button', class: 'zf-status-card', onClick: () => navigate('/inventory') },
+          h('span', { class: 'zf-status-icon' }, icon('fridge', 19)),
+          h('span', { class: 'zf-status-copy' }, h('strong', null, 'Magazyn'), h('small', null, !stockSummary.loaded ? 'Sprawdzam stany…' : stockSummary.items === 0 ? 'Dodaj produkty' : stockSummary.low ? stockSummary.low + ' braków' : stockSummary.items + ' produktów')),
+          h('span', { class: 'zf-status-go' }, icon('right', 15))),
+        h('button', { type: 'button', class: 'zf-status-card', onClick: () => navigate('/shopping') },
+          h('span', { class: 'zf-status-icon shopping' }, icon('cart', 19)),
+          h('span', { class: 'zf-status-copy' }, h('strong', null, 'Zakupy'), h('small', null, n ? n + ' pozycji do kupienia' : 'Lista jest pusta')),
+          h('span', { class: 'zf-status-go' }, icon('right', 15)))),
 
       h('div', { class: 'zf-section-title zf-menu-heading' },
         h('span', { class: 'zf-section-index' }, '01'),
@@ -129,12 +127,10 @@ export function startView() {
       h('div', { class: 'zf-actions' },
         ACTIONS.map((a) => actionRow(a, a.label === 'Zakupy' ? n : 0))),
 
-      h('div', { class: 'zf-section-title zf-tools-title' },
-        h('span', null, 'SZYBKO'),
-        h('button', { type: 'button', class: 'zf-section-link', onClick: () => navigate('/calc') },
-          'Więcej', icon('right', 15))),
-
-      h('div', { class: 'zf-tools-grid' }, TOOLS.map(toolButton))
+      h('button', { type: 'button', class: 'zf-more-cta', onClick: () => navigate('/more') },
+        h('span', { class: 'zf-more-cta-icon' }, icon('more', 20)),
+        h('span', null, h('strong', null, 'Więcej narzędzi'), h('small', null, 'Kalkulatory, import i ustawienia')),
+        icon('right', 17))
     ];
 
     if (backupDue()) {
@@ -181,9 +177,10 @@ export function startView() {
   }
 
   paint();
+  void refreshStockSummary();
   unsub = subscribe((t) => {
     if (t === 'recipes' || t === 'shopping' || t === 'settings' || t === 'categories' || t === 'hydrated') paint();
   });
 
-  return { el: s.el, destroy: () => unsub && unsub() };
+  return { el: s.el, destroy: () => { destroyed = true; if (unsub) unsub(); } };
 }
