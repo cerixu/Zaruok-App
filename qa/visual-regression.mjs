@@ -153,11 +153,13 @@ try {
     await shot(name);
   }
   await captureSurface('/calc', '04-calculators.png', 'Kalkulatory');
-  await captureSurface('/inventory', '05-inventory.png', 'Magazyn');
+  await captureSurface('/cook', '05-cook-entry.png', 'Gotuję');
+  await captureSurface('/inventory', '06-inventory.png', 'Magazyn');
   assert(await page.locator('.inventory-head-actions .iconbtn svg path').count() > 0, 'Przyciski Magazynu nie mają widocznych ikon SVG.');
-  await captureSurface('/shopping', '06-shopping.png', 'Zakupy');
-  await captureSurface('/search', '07-search.png', 'Wyszukiwanie');
-  await captureSurface('/settings', '08-settings.png', 'Ustawienia');
+  await captureSurface('/more', '07-more.png', 'Więcej');
+  await captureSurface('/shopping', '08-shopping.png', 'Zakupy');
+  await captureSurface('/search', '09-search.png', 'Wyszukiwanie');
+  await captureSurface('/settings', '10-settings.png', 'Ustawienia');
 
   await page.goto(base + '#/recipes', { waitUntil: 'networkidle' });
   await ready();
@@ -172,7 +174,7 @@ try {
   const guideServings = await page.locator('.guide .stepper-val').innerText();
   assert(guideServings.includes('1') && guideServings.includes('porcja'), 'Tryb prowadzenia nie startuje na jedną porcję.');
   await assertNoPageOverflow('Gotowanie');
-  await shot('09-cooking.png');
+  await shot('11-cooking.png');
 
 } finally {
   await browser.close();
