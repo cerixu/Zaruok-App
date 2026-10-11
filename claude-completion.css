@@ -604,3 +604,119 @@ button:focus-visible, a:focus-visible {
 .more-card-copy small { color:var(--text-muted); font-size:.7rem; line-height:1.35; }
 .more-card-arrow { align-self:flex-end; margin-top:auto; opacity:.55; }
 @media (max-width:360px) { .zf-status-row { gap:6px; } .zf-status-card { padding:9px 7px; gap:6px; } .zf-status-icon { flex-basis:30px; width:30px; height:30px; } .more-grid { gap:7px; } .more-card { padding:11px; } }
+
+/* ==========================================================================
+   ŻARŁOK · bottom bar fix
+   Jedno, spójne źródło prawdy dla pływającej nawigacji iPhone.
+   Nadpisuje historyczne reguły paska z wcześniejszych arkuszy.
+   ========================================================================== */
+#tabbar {
+  position: absolute;
+  inset: auto max(12px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(12px, env(safe-area-inset-left, 0px));
+  width: auto;
+  max-width: 520px;
+  height: var(--tab-h, 64px);
+  min-height: var(--tab-h, 64px);
+  margin-inline: auto;
+  padding: 5px;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 3px;
+  box-sizing: border-box;
+  overflow: visible;
+  border: 1px solid var(--glass-line, rgba(255,255,255,.14));
+  border-radius: 999px;
+  background: var(--glass-bg, rgba(35,36,40,.86));
+  -webkit-backdrop-filter: var(--blur-strong, blur(28px) saturate(1.6));
+  backdrop-filter: var(--blur-strong, blur(28px) saturate(1.6));
+  box-shadow: 0 12px 34px rgba(0,0,0,.26), inset 0 1px 0 rgba(255,255,255,.16);
+  isolation: isolate;
+}
+#tabbar .tab {
+  position: relative;
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  padding: 0 2px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  box-shadow: none;
+  color: var(--muted, #a0a4ab);
+  text-decoration: none;
+  transform: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: color .18s ease, background .18s ease, transform .18s ease;
+}
+#tabbar .tab:active { transform: scale(.94); }
+#tabbar .tab .tab-ico {
+  position: relative;
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 42px;
+  height: 34px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: transparent !important;
+  box-shadow: none;
+  color: inherit;
+  transition: background .18s ease, border-color .18s ease, color .18s ease;
+}
+#tabbar .tab .tab-ico svg {
+  width: 23px;
+  height: 23px;
+  stroke-width: 1.8;
+}
+#tabbar .tab.on {
+  color: var(--text, #f1f1ee);
+  background: transparent;
+  box-shadow: none;
+}
+#tabbar .tab.on .tab-ico {
+  background: color-mix(in srgb, var(--accent, #efb784) 17%, rgba(255,255,255,.055)) !important;
+  border-color: color-mix(in srgb, var(--accent, #efb784) 27%, transparent);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.10), 0 3px 12px rgba(0,0,0,.08);
+  color: var(--accent-text, #efb784);
+}
+#tabbar .tab .tab-label { display: none; }
+:root[data-tablabels="on"] #tabbar .tab .tab-label {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: max(10px, .66rem);
+  line-height: 1.1;
+  font-weight: 550;
+}
+:root[data-tablabels="on"] #tabbar .tab.on .tab-ico {
+  height: 30px;
+}
+:root[data-theme="light"] #tabbar {
+  background: rgba(249,248,245,.88);
+  border-color: rgba(25,26,28,.10);
+  box-shadow: 0 12px 30px rgba(20,21,22,.12), inset 0 1px 0 rgba(255,255,255,.95);
+}
+:root[data-theme="light"] #tabbar .tab { color: #777780; }
+:root[data-theme="light"] #tabbar .tab.on { color: #222327; }
+:root[data-theme="light"] #tabbar .tab.on .tab-ico {
+  background: color-mix(in srgb, var(--accent, #c77f4c) 16%, white) !important;
+}
+body.no-tabs #tabbar,
+body.kb-open #tabbar { display: none; }
+@media (orientation: landscape) and (max-height: 520px) {
+  #tabbar { height: var(--tab-h, 50px); min-height: var(--tab-h, 50px); }
+  #tabbar .tab .tab-ico { height: 28px; }
+  :root[data-tablabels="on"] #tabbar .tab .tab-ico { height: 25px; }
+}
+@media (prefers-reduced-transparency: reduce) {
+  #tabbar { -webkit-backdrop-filter: none; backdrop-filter: none; background: var(--surface, #202124); }
+}
