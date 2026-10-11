@@ -26,10 +26,16 @@ const KIND_LABEL = { flour: 'mąka', water: 'woda', salt: 'sól', yeast: 'drożd
 
 function ingredientGlyph(name) {
   const n = String(name || '').toLocaleLowerCase('pl');
-  const svg = (...children) => h('svg', { viewBox: '0 0 48 48', width: 26, height: 26, fill: 'none', stroke: 'currentColor', 'stroke-width': 2.2, 'stroke-linecap': 'round', 'stroke-linejoin': 'round', 'aria-hidden': 'true' }, ...children);
-  const path = (d, props = {}) => h('path', { d, ...props });
-  const circle = (cx, cy, r, props = {}) => h('circle', { cx, cy, r, ...props });
-  const ellipse = (cx, cy, rx, ry, props = {}) => h('ellipse', { cx, cy, rx, ry, ...props });
+  const ns = 'http://www.w3.org/2000/svg';
+  const attrs = (node, values) => { Object.entries(values).forEach(([key, value]) => { if (value != null) node.setAttribute(key, String(value)); }); return node; };
+  const svg = (...children) => {
+    const node = attrs(document.createElementNS(ns, 'svg'), { viewBox: '0 0 48 48', width: 26, height: 26, fill: 'none', stroke: 'currentColor', 'stroke-width': 2.2, 'stroke-linecap': 'round', 'stroke-linejoin': 'round', 'aria-hidden': 'true' });
+    children.flat().filter(Boolean).forEach((child) => node.appendChild(child));
+    return node;
+  };
+  const path = (d, props = {}) => attrs(document.createElementNS(ns, 'path'), { d, ...props });
+  const circle = (cx, cy, r, props = {}) => attrs(document.createElementNS(ns, 'circle'), { cx, cy, r, ...props });
+  const ellipse = (cx, cy, rx, ry, props = {}) => attrs(document.createElementNS(ns, 'ellipse'), { cx, cy, rx, ry, ...props });
 
   if (/oliw|olej|smalec|tłuszcz/.test(n)) return svg(
     path('M19 11 L19 7 Q19 5 22 5 H27 Q29 5 29 7 V11 L33 16 V39 Q33 42 30 42 H18 Q15 42 15 39 V16 Z', { fill: 'currentColor', 'fill-opacity': '.13' }),
