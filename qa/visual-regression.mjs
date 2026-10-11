@@ -78,7 +78,30 @@ try {
   const startBox = await box('.zf-head');
   const tabBox = await box('#tabbar');
   assert(startBox.width > 300, 'Nagłówek Start jest za wąski.');
-  assert(tabBox.height >= 50 && tabBox.y >= 780, 'Dolna nawigacja ma nieprawidłową pozycję/rozmiar.');
+  const tabMetrics = await page.evaluate(() => {
+    const bar = document.querySelector('#tabbar');
+    const rect = bar.getBoundingClientRect();
+    const style = getComputedStyle(bar);
+    const tabs = [...bar.querySelectorAll('.tab')];
+    const icons = tabs.map((tab) => tab.querySelector('.tab-ico')?.getBoundingClientRect());
+    return {
+      viewport: innerWidth,
+      x: rect.x, y: rect.y, width: rect.width, height: rect.height,
+      bottomGap: innerHeight - rect.bottom,
+      radius: style.borderRadius,
+      position: style.position,
+      tabs: tabs.length,
+      iconsInside: icons.every((icon) => icon && icon.left >= rect.left && icon.right <= rect.right && icon.top >= rect.top && icon.bottom <= rect.bottom),
+      widths: tabs.map((tab) => tab.getBoundingClientRect().width),
+    };
+  });
+  assert(tabBox.height >= 50 && tabBox.height <= 80, 'Dolna nawigacja ma nieprawidłową wysokość: ' + JSON.stringify(tabMetrics));
+  assert(tabMetrics.position === 'absolute' && tabMetrics.width < tabMetrics.viewport && tabMetrics.x > 0,
+    'Dolna nawigacja nie jest wycentrowaną pływającą kapsułą: ' + JSON.stringify(tabMetrics));
+  assert(tabMetrics.bottomGap >= 5 && tabMetrics.bottomGap < 70,
+    'Dolna nawigacja koliduje z dolnym obszarem bezpiecznym: ' + JSON.stringify(tabMetrics));
+  assert(tabMetrics.tabs === 5 && tabMetrics.widths.every((w) => w >= 45) && tabMetrics.iconsInside,
+    'Ikony lub zakładki dolnej nawigacji są ściśnięte albo wychodzą poza pasek: ' + JSON.stringify(tabMetrics));
   await shot('01-start.png');
 
   // Responsive overflow sweep: horizontal rails may scroll internally, but the page itself must not widen.
