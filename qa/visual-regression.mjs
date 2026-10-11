@@ -15,7 +15,9 @@ const badRequests = [];
 page.on('pageerror', (e) => errors.push(String(e.stack || e)));
 page.on('requestfailed', (req) => badRequests.push(req.url() + ' :: ' + String(req.failure()?.errorText || 'request failed')));
 page.on('response', (res) => { if (/\\.js(?:\\?|$)/.test(res.url()) && !res.ok()) badRequests.push(res.status() + ' ' + res.url()); });
-page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text() + ' @ ' + JSON.stringify(m.location())); });
+page.on('console', (m) => { if (m.type() === 'error') errors.push('CONSOLE ' + m.text() + ' @ ' + JSON.stringify(m.location())); });
+page.on('requestfailed', (r) => errors.push('REQUESTFAIL ' + r.url() + ' ' + (r.failure()?.errorText || '')));
+page.on('response', (r) => { if (r.status() >= 400) errors.push('HTTP ' + r.status() + ' ' + r.url()); });
 
 function assert(ok, message) {
   if (!ok) throw new Error(message);
@@ -65,7 +67,7 @@ async function box(sel) {
 }
 
 try {
-  await page.goto(base, { waitUntil: 'networkidle' });
+  await page.goto(base, { waitUntil: 'domcontentloaded' });
   await ready();
   await page.waitForTimeout(1200);
   await dismissWhatsNew();
