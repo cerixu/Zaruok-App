@@ -14,6 +14,7 @@ import { ingredientsInText } from './kitchen.js';
 import { findTimes } from './views-cook.js';
 import { startTimer, openTimersSheet } from './timers.js';
 import { fmtNum, fmtMinutes, debounce } from './util.js';
+import { deductRecipeIngredients } from './inventory.js';
 
 /* ---------- Czytanie na głos ---------- */
 
@@ -48,6 +49,7 @@ export function guideView({ id }) {
   }
 
   let st = { page: 0, factor: 1, have: {}, rating: 0 };
+  let finishing = false;
   let dir = 1;
   let loaded = false;
   const base = () => getRecipe(id) || r0;
@@ -183,13 +185,21 @@ export function guideView({ id }) {
   }
 
   async function finish() {
+    if (finishing) return;
+    finishing = true;
     stopSpeaking();
     saveNotes.flush(notes);
     const b = base();
+    let stockResult = null;
+    try { stockResult = await deductRecipeIngredients(b, st.factor || 1); }
+    catch (e) { console.warn('Nie udało się odjąć składników z magazynu:', e); }
     await patchRecipe(id, { cookCount: (b.cookCount || 0) + 1, lastCookedAt: Date.now(), rating: st.rating || b.rating || 0 });
     await kv.del('guide:' + id).catch(() => {});
     st = { page: 0, factor: 1, have: {}, rating: 0 };
-    toast('Zapisano. Smacznego! 👨‍🍳');
+    if (stockResult && stockResult.deducted) {
+      toast('Zapisano. Odjęto z magazynu: ' + stockResult.deducted + ' pozycji.');
+      if (stockResult.missing.length) toast('Nie znaleziono w magazynie: ' + stockResult.missing.slice(0, 3).join(', '), { type: 'error' });
+    } else toast('Zapisano. Smacznego! 👨‍🍳');
     goBack('/recipe/' + id);
   }
 
