@@ -26,9 +26,9 @@ try {
 
   const tabs = [
     ['recipes', '/recipes'],
-    ['calc', '/calc'],
-    ['shopping', '/shopping'],
+    ['cook', '/cook'],
     ['inventory', '/inventory'],
+    ['more', '/more'],
     ['start', '/'],
   ];
 
@@ -40,10 +40,12 @@ try {
     if (!(await page.locator('#view .screen').count())) throw new Error('Ekran nie został wyrenderowany po wejściu na ' + id);
   }
 
-  await page.goto(base + '#/settings', { waitUntil: 'networkidle' });
-  await ready();
-  await dismiss();
-  if (!(await page.locator('#view .screen').count())) throw new Error('Ekran ustawień nie został wyrenderowany');
+  for (const path of ['/calc', '/shopping', '/search', '/import', '/settings']) {
+    await page.goto(base + '#' + path, { waitUntil: 'domcontentloaded' });
+    await ready();
+    await dismiss();
+    if (!(await page.locator('#view .screen').count())) throw new Error('Ekran nie został wyrenderowany: ' + path);
+  }
 
   await page.goto(base + '#/recipes', { waitUntil: 'networkidle' });
   await ready();
