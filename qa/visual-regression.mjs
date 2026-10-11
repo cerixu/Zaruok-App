@@ -149,9 +149,10 @@ try {
     await shot(name);
   }
   await captureSurface('/calc', '04-calculators.png', 'Kalkulatory');
-  await captureSurface('/shopping', '05-shopping.png', 'Zakupy');
-  await captureSurface('/search', '06-search.png', 'Wyszukiwanie');
-  await captureSurface('/settings', '07-settings.png', 'Ustawienia');
+  await captureSurface('/inventory', '05-inventory.png', 'Magazyn');
+  await captureSurface('/shopping', '06-shopping.png', 'Zakupy');
+  await captureSurface('/search', '07-search.png', 'Wyszukiwanie');
+  await captureSurface('/settings', '08-settings.png', 'Ustawienia');
 
   await page.goto(base + '#/recipes', { waitUntil: 'networkidle' });
   await ready();
@@ -164,7 +165,7 @@ try {
   await page.waitForTimeout(250);
   assert(await page.locator('.guide').count(), 'Nie otworzył się widok prowadzenia gotowania.');
   await assertNoPageOverflow('Gotowanie');
-  await shot('08-cooking.png');
+  await shot('09-cooking.png');
 
 } finally {
   await browser.close();
