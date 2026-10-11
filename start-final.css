@@ -1807,3 +1807,173 @@
   .recipe-modal-ing { grid-template-columns: 36px minmax(0,1fr) auto auto; padding-right: 6px; }
   .recipe-modal-ing-icon { width: 34px; height: 34px; }
 }
+
+
+/* ==========================================================================
+   ŻARŁOK · redesign inspirowany mobilnym deck UI
+   Warstwa prezentacji: bez zmian w logice receptur i nawigacji.
+   ========================================================================== */
+.start-final {
+  isolation: isolate;
+  position: relative;
+  overflow: clip;
+  padding-bottom: calc(28px + env(safe-area-inset-bottom, 0px));
+}
+.start-final::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+  opacity: .22;
+  background-image: radial-gradient(rgba(255,255,255,.15) .55px, transparent .8px);
+  background-size: 5px 5px;
+  mask-image: linear-gradient(to bottom, #000, transparent 76%);
+}
+.start-final .zf-head {
+  align-items: center;
+  margin-bottom: clamp(20px, 5vw, 32px);
+}
+.start-final .zf-head h1 {
+  letter-spacing: -.055em;
+  font-weight: 700;
+  line-height: .98;
+  text-wrap: balance;
+}
+.start-final .zf-head p {
+  line-height: 1.45;
+  max-width: 26ch;
+}
+.start-final .zf-head-mark {
+  border: 1px solid color-mix(in srgb, var(--line) 76%, transparent);
+  background: color-mix(in srgb, var(--surface) 58%, transparent);
+  backdrop-filter: blur(18px) saturate(1.35);
+  -webkit-backdrop-filter: blur(18px) saturate(1.35);
+}
+.start-final .zf-feature-wrap {
+  margin-block: 0 30px;
+  perspective: 900px;
+}
+.start-final .zf-feature {
+  overflow: hidden;
+  border-radius: 30px;
+  border: 1px solid rgba(255,255,255,.10);
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.075), transparent 52%),
+    color-mix(in srgb, var(--surface) 88%, transparent);
+  box-shadow: 0 22px 54px rgba(0,0,0,.20), inset 0 1px rgba(255,255,255,.08);
+  backdrop-filter: blur(20px) saturate(1.2);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
+  transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+}
+.start-final .zf-feature:active {
+  transform: scale(.985);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+}
+.start-final .zf-feature-ring {
+  transform: translateZ(0);
+}
+.start-final .zf-feature-img img {
+  transition: transform .45s cubic-bezier(.2,.8,.2,1);
+}
+@media (hover:hover) {
+  .start-final .zf-feature:hover .zf-feature-img img { transform: scale(1.045); }
+}
+.start-final .zf-feature-copy h2 {
+  letter-spacing: -.035em;
+  line-height: 1.12;
+  text-wrap: balance;
+}
+.start-final .zf-feature-open {
+  min-height: 34px;
+  padding: 0 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 13%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 26%, transparent);
+}
+.start-final .zf-section-title {
+  letter-spacing: .13em;
+}
+.start-final .zf-actions {
+  gap: 3px;
+}
+.start-final .zf-action {
+  min-height: 66px;
+  border-radius: 19px;
+  padding-inline: 10px 12px;
+  transition: background .18s ease, transform .18s ease;
+}
+.start-final .zf-action:active {
+  transform: scale(.985);
+  background: color-mix(in srgb, var(--surface-2) 72%, transparent);
+}
+.start-final .zf-action-icon {
+  border-radius: 15px;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.075), 0 5px 15px rgba(0,0,0,.12);
+}
+.start-final .zf-action-copy strong {
+  letter-spacing: -.018em;
+}
+.start-final .zf-tools-grid {
+  padding: 17px 12px 15px;
+  border: 1px solid color-mix(in srgb, var(--line) 68%, transparent);
+  border-radius: 26px;
+  background: color-mix(in srgb, var(--surface) 55%, transparent);
+  box-shadow: inset 0 1px rgba(255,255,255,.045);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+.start-final .zf-tool {
+  min-height: 82px;
+  border-radius: 18px;
+  transition: transform .18s ease, background .18s ease;
+}
+.start-final .zf-tool:active { transform: scale(.94); }
+.start-final .zf-tool-icon {
+  border: 1px solid color-mix(in srgb, var(--item-tint) 28%, transparent);
+  box-shadow: inset 0 1px rgba(255,255,255,.09), 0 7px 18px rgba(0,0,0,.16);
+}
+.start-final .zf-cats-rail .ctile,
+.start-final .zf-recipe-rail .rtile {
+  transform: translateZ(0);
+  transition: transform .2s ease;
+}
+.start-final .zf-cats-rail .ctile:active,
+.start-final .zf-recipe-rail .rtile:active { transform: scale(.97); }
+#tabbar {
+  padding: 7px 9px calc(7px + env(safe-area-inset-bottom, 0px));
+  border-top: 1px solid rgba(255,255,255,.075);
+  background: color-mix(in srgb, var(--bg) 74%, transparent);
+  box-shadow: 0 -12px 32px rgba(0,0,0,.13);
+  backdrop-filter: blur(28px) saturate(1.45);
+  -webkit-backdrop-filter: blur(28px) saturate(1.45);
+}
+#tabbar .tab {
+  min-height: 48px;
+  border-radius: 17px;
+  transition: background .18s ease, transform .18s ease;
+}
+#tabbar .tab:active { transform: scale(.94); }
+#tabbar .tab.on {
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+}
+#tabbar .tab.on .tab-ico {
+  filter: drop-shadow(0 2px 8px color-mix(in srgb, var(--accent) 22%, transparent));
+}
+@media (orientation: landscape) and (max-height: 520px) {
+  .start-final { padding-bottom: 18px; }
+  .start-final .zf-head { margin-bottom: 14px; }
+  .start-final .zf-feature-wrap { margin-bottom: 18px; }
+  .start-final .zf-feature { max-height: 230px; }
+  #tabbar { padding-bottom: max(4px, env(safe-area-inset-bottom, 0px)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .start-final *, #tabbar .tab {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
