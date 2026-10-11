@@ -70,7 +70,7 @@ try {
   })));
   if (!unitRows.length) throw new Error('Brak ilości składników w widoku receptury.');
   const visibleForms = unitRows.map((x) => x.amount + ' ' + x.unit);
-  if (!visibleForms.includes('1 łyżka') || !visibleForms.includes('2 łyżki')) {
+  if (!visibleForms.includes('⅛ łyżki') || !visibleForms.includes('¼ łyżki')) {
     throw new Error('Nieprawidłowa odmiana łyżki w widoku receptury: ' + JSON.stringify(visibleForms));
   }
 
