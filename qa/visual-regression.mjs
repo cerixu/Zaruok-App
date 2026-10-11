@@ -154,6 +154,7 @@ try {
   }
   await captureSurface('/calc', '04-calculators.png', 'Kalkulatory');
   await captureSurface('/inventory', '05-inventory.png', 'Magazyn');
+  assert(await page.locator('.inventory-head-actions .iconbtn svg path').count() > 0, 'Przyciski Magazynu nie mają widocznych ikon SVG.');
   await captureSurface('/shopping', '06-shopping.png', 'Zakupy');
   await captureSurface('/search', '07-search.png', 'Wyszukiwanie');
   await captureSurface('/settings', '08-settings.png', 'Ustawienia');
