@@ -149,6 +149,31 @@ try {
   }
   await page.setViewportSize({ width: 390, height: 844 });
 
+  // Capture and assert the exact screen affected by the recipe search/filter styling.
+  const recipeUi = await page.evaluate(() => {
+    const box = document.querySelector('.topbar .searchbox');
+    const input = document.querySelector('.topbar .search-input');
+    const chip = document.querySelector('.topbar .chips .chip.on');
+    if (!box || !input || !chip) return null;
+    const bs = getComputedStyle(box);
+    const ins = getComputedStyle(input);
+    const cs = getComputedStyle(chip);
+    return {
+      radius: parseFloat(bs.borderTopLeftRadius),
+      inputBorder: parseFloat(ins.borderTopWidth),
+      inputBackground: ins.backgroundColor,
+      chipColor: cs.color,
+      searchboxWidth: box.getBoundingClientRect().width
+    };
+  });
+  assert(recipeUi, 'Brakuje wyszukiwarki lub aktywnego filtra na liście receptur.');
+  assert(recipeUi.radius >= 16, 'Pole wyszukiwania nie ma zaokrąglonego kształtu: ' + JSON.stringify(recipeUi));
+  assert(recipeUi.inputBorder === 0, 'Wyszukiwarka ma dodatkową ramkę wewnątrz szklanego kontenera: ' + JSON.stringify(recipeUi));
+  const chipRgb = (recipeUi.chipColor.match(/\d+/g) || []).slice(0, 3).map(Number);
+  assert(chipRgb.length === 3 && chipRgb[0] > 180 && chipRgb[1] > 150,
+    'Aktywny filtr ma zbyt ciemny tekst zamiast jasnego kontrastu: ' + JSON.stringify(recipeUi));
+  await shot('02-recipes-list.png');
+
   const recipeLinks = await page.locator('a[href^="#/recipe/"]').evaluateAll((els) =>
     [...new Set(els.map((el) => el.getAttribute('href')))].slice(0, 20));
   assert(recipeLinks.length > 0, 'Brak receptury testowej.');
