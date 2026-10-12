@@ -89,6 +89,12 @@ try {
       x: rect.x, y: rect.y, width: rect.width, height: rect.height,
       bottomGap: innerHeight - rect.bottom,
       centerError: Math.abs((rect.left + rect.right) / 2 - innerWidth / 2),
+      firstIconShiftX: (() => {
+        const svg = bar.querySelector('.tab:nth-child(1) .tab-ico svg');
+        if (!svg) return null;
+        const transform = getComputedStyle(svg).transform;
+        return transform === 'none' ? 0 : new DOMMatrixReadOnly(transform).m41;
+      })(),
       leftGap: rect.left,
       rightGap: innerWidth - rect.right,
       radius: style.borderRadius,
@@ -110,6 +116,8 @@ try {
     'Dolna nawigacja koliduje z dolnym obszarem bezpiecznym: ' + JSON.stringify(tabMetrics));
   assert(tabMetrics.tabs === 5 && tabMetrics.widths.every((w) => w >= 45) && tabMetrics.iconsInside,
     'Ikony lub zakładki dolnej nawigacji są ściśnięte albo wychodzą poza pasek: ' + JSON.stringify(tabMetrics));
+  assert(tabMetrics.firstIconShiftX !== null && Math.abs(tabMetrics.firstIconShiftX) <= 0.1,
+    'Pierwsza ikona dolnego paska jest przesunięta poza optyczny środek: ' + JSON.stringify(tabMetrics));
   assert(tabMetrics.activeMarkerDisplay === 'none',
     'Aktywna zakładka ma odziedziczony marker/kropkę, która psuje wyrównanie: ' + JSON.stringify(tabMetrics));
   assert(tabMetrics.activeTabTransform === 'none',

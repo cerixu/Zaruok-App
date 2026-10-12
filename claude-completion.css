@@ -856,7 +856,7 @@ body.kb-open #tabbar { display: none; }
 
 
 /* ==========================================================================
-   1.9.8 — dopracowanie wyszukiwarki receptur, filtrów i optycznego centrowania
+   1.9.9 — poprawka skanera EAN i centrowania pierwszej ikony paska
    Wyszukiwarka w subbarze znajduje się poza .recipes, dlatego stylujemy ją
    przez .topbar. Pole jest jedną szklaną kapsułą, bez drugiego kwadratowego tła.
    ========================================================================== */
@@ -1038,14 +1038,10 @@ body.kb-open #tabbar { display: none; }
 
 /* Optyczny mikrooffset dwóch glyphów; kontenery 42×42 pozostają symetryczne.
    Korekta dotyczy rysunku SVG, a nie całego przycisku ani aktywnego kółka. */
-#tabbar .tab:nth-child(1) .tab-ico svg { transform: translateX(-1px); }
+#tabbar .tab:nth-child(1) .tab-ico svg { transform: translateX(0); }
 #tabbar .tab:nth-child(2) .tab-ico svg { transform: translateX(1px); }
-#tabbar .tab:nth-child(1):active .tab-ico svg,
-#tabbar .tab:nth-child(2):active .tab-ico svg {
-  transform: translateX(var(--tab-optical-x, 0px));
-}
-#tabbar .tab:nth-child(1):active .tab-ico svg { --tab-optical-x: -1px; }
-#tabbar .tab:nth-child(2):active .tab-ico svg { --tab-optical-x: 1px; }
+#tabbar .tab:nth-child(1):active .tab-ico svg { transform: translateX(0); }
+#tabbar .tab:nth-child(2):active .tab-ico svg { transform: translateX(1px); }
 @media (max-width: 370px) {
   .topbar .subbar { gap: 7px; padding-bottom: 8px; }
   .topbar .searchbar { gap: 7px; }
