@@ -740,3 +740,60 @@ body.kb-open #tabbar { display: none; }
 @media (prefers-reduced-transparency: reduce) {
   #tabbar { -webkit-backdrop-filter: none; backdrop-filter: none; background: var(--surface, #202124); }
 }
+
+/* ==========================================================================
+   1.9.6 — dolna nawigacja: stabilny układ mobilny
+   Ostatnia warstwa celowo nadpisuje historyczne reguły z arkuszy bazowych.
+   ========================================================================= */
+#tabbar {
+  position: absolute;
+  inset-block-start: auto;
+  inset-inline-start: 50%;
+  inset-inline-end: auto;
+  inset-block-end: calc(env(safe-area-inset-bottom, 0px) + 10px);
+  width: min(520px, calc(100vw - 24px - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px)));
+  max-width: 520px;
+  height: var(--tab-h, 64px);
+  min-height: var(--tab-h, 64px);
+  max-height: 72px;
+  padding: 5px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 3px;
+  overflow: visible;
+  box-sizing: border-box;
+  border-radius: 999px;
+  transform: translateX(-50%);
+}
+#tabbar .tab {
+  flex: 1 1 0%;
+  min-width: 0;
+  max-width: none;
+  height: 100%;
+  padding: 0 2px;
+  gap: 2px;
+  overflow: visible;
+  transform: none;
+  animation: none;
+}
+#tabbar .tab .tab-ico {
+  flex: 0 0 42px;
+  width: 42px;
+  height: 34px;
+  max-width: 100%;
+  margin: 0;
+  transform: none;
+}
+#tabbar .tab.on { transform: none; }
+#tabbar .tab:active { transform: none; }
+#tabbar .tab:active .tab-ico { transform: scale(.92); }
+@media (max-width: 360px) {
+  #tabbar { gap: 1px; padding: 4px; }
+  #tabbar .tab .tab-ico { flex-basis: 38px; width: 38px; height: 32px; }
+  #tabbar .tab .tab-ico svg { width: 22px; height: 22px; }
+}
+@media (orientation: landscape) and (max-height: 520px) {
+  #tabbar { bottom: calc(env(safe-area-inset-bottom, 0px) + 6px); }
+}
