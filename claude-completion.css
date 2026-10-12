@@ -853,3 +853,203 @@ body.kb-open #tabbar { display: none; }
   #tabbar .tab .tab-ico { flex-basis: 38px; width: 38px !important; height: 38px !important; }
   #tabbar .tab .tab-ico svg, #tabbar .tab > svg { width: 23px; height: 23px; }
 }
+
+
+/* ==========================================================================
+   1.9.8 — dopracowanie wyszukiwarki receptur, filtrów i optycznego centrowania
+   Wyszukiwarka w subbarze znajduje się poza .recipes, dlatego stylujemy ją
+   przez .topbar. Pole jest jedną szklaną kapsułą, bez drugiego kwadratowego tła.
+   ========================================================================== */
+.topbar .subbar {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  padding: 0 6px 10px;
+}
+.topbar .searchbar {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+}
+.topbar .searchbox {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  min-width: 0;
+  min-height: 50px;
+  box-sizing: border-box;
+  padding: 0 4px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.13);
+  border-radius: 18px;
+  background:
+    radial-gradient(ellipse at 18% 0%, rgba(255,255,255,.075), transparent 62%),
+    linear-gradient(145deg, rgba(255,255,255,.045), rgba(255,255,255,.012)),
+    rgba(255,255,255,.025);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.075),
+    0 7px 20px rgba(0,0,0,.12);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
+  backdrop-filter: blur(20px) saturate(1.2);
+}
+.topbar .searchbox > svg {
+  z-index: 1;
+  left: 13px;
+  width: 19px;
+  height: 19px;
+  color: rgba(233,230,224,.56);
+}
+.topbar .searchbox .search-input {
+  display: block;
+  flex: 1 1 auto;
+  width: 100%;
+  min-width: 0;
+  min-height: 48px;
+  box-sizing: border-box;
+  padding: 0 42px 0 40px;
+  border: 0 !important;
+  border-radius: 0 !important;
+  outline: 0;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: var(--text, #f3f1ed);
+  font-size: max(16px, .94rem);
+  line-height: 1.25;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.topbar .searchbox .search-input::placeholder {
+  color: rgba(226,224,220,.58);
+  opacity: 1;
+}
+.topbar .searchbox .search-input:focus,
+.topbar .searchbox .search-input:focus-visible {
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+}
+.topbar .searchbox .clear {
+  right: 2px;
+  z-index: 2;
+  width: 40px;
+  min-width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background: transparent;
+}
+.topbar .searchbox .clear:active {
+  background: rgba(255,255,255,.075);
+}
+.topbar .chips {
+  gap: 8px;
+  padding: 2px 2px 4px;
+  scroll-padding-inline: 12px;
+}
+.topbar .chip {
+  min-height: 42px;
+  padding-inline: 15px;
+  border: 1px solid rgba(255,255,255,.12);
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.045), rgba(255,255,255,.012)),
+    rgba(255,255,255,.025);
+  color: rgba(244,242,237,.88);
+  font-size: .91rem;
+  font-weight: 560;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.045);
+  transition:
+    color .18s ease,
+    background .18s ease,
+    border-color .18s ease,
+    box-shadow .18s ease,
+    transform .16s ease;
+}
+.topbar .chip.on,
+.topbar .chip[aria-pressed="true"] {
+  border-color: rgba(242,195,109,.52);
+  background:
+    linear-gradient(145deg, rgba(242,195,109,.19), rgba(217,151,97,.09)),
+    rgba(255,255,255,.025);
+  color: #f5d9a8;
+  font-weight: 720;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.11),
+    0 3px 12px rgba(0,0,0,.08);
+}
+.topbar .chip.on .chip-n,
+.topbar .chip[aria-pressed="true"] .chip-n {
+  color: rgba(255,235,199,.82);
+  opacity: 1;
+}
+.topbar .chip.ghost {
+  border-style: solid;
+  color: rgba(232,229,222,.72);
+}
+.topbar .chip:active {
+  transform: scale(.975);
+}
+:root[data-theme="light"] .topbar .searchbox {
+  border-color: rgba(30,31,34,.13);
+  background: linear-gradient(145deg, rgba(255,255,255,.94), rgba(245,243,239,.92));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.95), 0 7px 18px rgba(0,0,0,.06);
+}
+:root[data-theme="light"] .topbar .searchbox .search-input::placeholder {
+  color: rgba(54,54,58,.52);
+}
+:root[data-theme="light"] .topbar .chip {
+  border-color: rgba(30,31,34,.13);
+  background: rgba(0,0,0,.025);
+  color: rgba(35,35,39,.78);
+}
+:root[data-theme="light"] .topbar .chip.on,
+:root[data-theme="light"] .topbar .chip[aria-pressed="true"] {
+  border-color: rgba(169,111,44,.48);
+  background: linear-gradient(145deg, rgba(217,151,97,.18), rgba(242,195,109,.13));
+  color: #70451d;
+}
+:root[data-theme="light"] .topbar .chip.on .chip-n,
+:root[data-theme="light"] .topbar .chip[aria-pressed="true"] .chip-n {
+  color: #70451d;
+}
+.recipes .group-title {
+  gap: 8px;
+  color: rgba(239,222,192,.74);
+  letter-spacing: .14em;
+}
+.recipes .group-title svg {
+  color: #f0bd69;
+  fill: currentColor;
+}
+.recipes .group-title::after {
+  content: "";
+  flex: 1 1 auto;
+  min-width: 12px;
+  height: 1px;
+  margin-left: 5px;
+  background: linear-gradient(90deg, rgba(242,195,109,.24), rgba(242,195,109,.035));
+}
+:root[data-theme="light"] .recipes .group-title {
+  color: rgba(94,70,43,.76);
+}
+:root[data-theme="light"] .recipes .group-title::after {
+  background: linear-gradient(90deg, rgba(169,111,44,.26), rgba(169,111,44,.025));
+}
+
+/* Optyczny mikrooffset dwóch glyphów; kontenery 42×42 pozostają symetryczne.
+   Korekta dotyczy rysunku SVG, a nie całego przycisku ani aktywnego kółka. */
+#tabbar .tab:nth-child(1) .tab-ico svg { transform: translateX(-1px); }
+#tabbar .tab:nth-child(2) .tab-ico svg { transform: translateX(1px); }
+#tabbar .tab:nth-child(1):active .tab-ico svg,
+#tabbar .tab:nth-child(2):active .tab-ico svg {
+  transform: translateX(var(--tab-optical-x, 0px));
+}
+#tabbar .tab:nth-child(1):active .tab-ico svg { --tab-optical-x: -1px; }
+#tabbar .tab:nth-child(2):active .tab-ico svg { --tab-optical-x: 1px; }
+@media (max-width: 370px) {
+  .topbar .subbar { gap: 7px; padding-bottom: 8px; }
+  .topbar .searchbar { gap: 7px; }
+  .topbar .searchbox { min-height: 48px; border-radius: 16px; }
+  .topbar .searchbox .search-input { min-height: 46px; }
+  .topbar .chip { min-height: 40px; padding-inline: 12px; font-size: .88rem; }
+}
