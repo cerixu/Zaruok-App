@@ -263,7 +263,7 @@ export function inventoryView() {
     });
     try {
       if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) throw new Error('Brak dostępu do kamery w tej przeglądarce.');
-      stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: 'environment' } }, audio: false });
+      stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: 'environment' }, width: { ideal: 1920 }, height: { ideal: 1080 } }, audio: false });
       if (!active) { stream.getTracks().forEach((t) => t.stop()); return; }
       video.srcObject = stream;
       await video.play();
@@ -291,9 +291,18 @@ export function inventoryView() {
           try {
             let raw = '';
             if (detector) {
-              const codes = await detector.detect(video);
-              raw = codes && codes.length ? codes[0].rawValue : '';
-            } else raw = decodeEAN13Frame(video, canvas) || '';
+              try {
+                const codes = await detector.detect(video);
+                raw = codes && codes.length ? codes[0].rawValue : '';
+              } catch (_) {
+                // An available BarcodeDetector can still fail on a given frame/browser.
+                // Disable it after the first failure and continue with the local decoder.
+                detector = null;
+              }
+            }
+            // Always fall back when the native detector returns no result. Safari/iOS
+            // versions often expose camera APIs but no usable BarcodeDetector support.
+            if (!raw) raw = decodeEAN13Frame(video, canvas) || '';
             if (raw) { await acceptCode(raw); return; }
           } catch (_) { /* pomiń klatkę z odbiciem lub rozmyciem */ }
         }
