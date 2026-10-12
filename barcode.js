@@ -62,7 +62,7 @@ export function decodeEAN13Frame(video, canvas) {
 
   // A label's barcode may sit above/below the exact centre. Try several scanlines.
   const rows = [.28, .34, .40, .46, .50, .54, .60, .66, .72];
-  const scaleAdjustments = [.90, .925, .95, .975, 1, 1.025, 1.05, 1.075, 1.10];
+  const scaleAdjustments = [.92, .96, 1, 1.04, 1.08];
   const phaseAdjustments = [-.18, 0, .18];
 
   for (const fraction of rows) {
@@ -100,6 +100,10 @@ export function decodeEAN13Frame(video, canvas) {
         const a = runs[i], b = runs[i + 1], c = runs[i + 2];
         if (a.color !== 1 || b.color !== 0 || c.color !== 1) continue;
         const module = (a.length + b.length + c.length) / 3;
+        const quiet = runs[i - 1];
+        // EAN-13 has a clear white quiet zone before the start guard; it also
+        // rejects most incidental 101 patterns in text, glare and label art.
+        if (!quiet || quiet.color !== 0 || quiet.length < module * 5) continue;
         const smallest = Math.min(a.length, b.length, c.length);
         const largest = Math.max(a.length, b.length, c.length);
         if (module < 1.1 || largest / Math.max(1, smallest) > 1.9 || a.start + module * 95 > width) continue;
