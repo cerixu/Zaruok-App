@@ -263,10 +263,14 @@ export function inventoryView() {
     });
     try {
       if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) throw new Error('Brak dostępu do kamery w tej przeglądarce.');
-      stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: 'environment' } }, audio: false });
+      stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: 'environment' }, width: { ideal: 1920 }, height: { ideal: 1080 }, frameRate: { ideal: 30, max: 30 } }, audio: false });
       if (!active) { stream.getTracks().forEach((t) => t.stop()); return; }
       video.srcObject = stream;
+      video.setAttribute('playsinline', '');
+      video.setAttribute('autoplay', '');
+      video.muted = true;
       await video.play();
+      try { await stream.getVideoTracks()[0]?.applyConstraints({ advanced: [{ focusMode: 'continuous' }] }); } catch (_) { /* ciągły autofocus nie jest dostępny na każdej kamerze */ }
       status.textContent = 'Skieruj kod kreskowy na środek kadru.';
       const track = stream.getVideoTracks()[0];
       const caps = track && track.getCapabilities ? track.getCapabilities() : {};
@@ -279,7 +283,7 @@ export function inventoryView() {
       let lastScanAt = 0;
       status.textContent = detector
         ? 'Skanuję automatycznie — ustaw kod w środku kadru.'
-        : 'Skanuję EAN-13 lokalnie — trzymaj kod poziomo w ramce.';
+        : 'Skaner lokalny aktywny — ustaw cały kod poziomo, w dobrym świetle.';
       const scanFrame = async () => {
         if (!active) return;
         if (video.readyState < 2 || video.videoWidth < 1 || video.videoHeight < 1) {

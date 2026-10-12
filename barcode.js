@@ -51,13 +51,13 @@ function otsuThreshold(values) {
 /** Reads several horizontal scanlines from a live video element. Returns EAN-13 or null. */
 export function decodeEAN13Frame(video, canvas) {
   if (!video || !canvas || video.readyState < 2 || !video.videoWidth || !video.videoHeight) return null;
-  const width = 640;
+  const width = 960;
   const height = Math.max(240, Math.round(width * video.videoHeight / video.videoWidth));
   canvas.width = width; canvas.height = height;
   const ctx = canvas.getContext('2d', { willReadFrequently: true });
   if (!ctx) return null;
   ctx.drawImage(video, 0, 0, width, height);
-  const ys = [Math.round(height * .38), Math.round(height * .5), Math.round(height * .62)];
+  const ys = [Math.round(height * .28), Math.round(height * .38), Math.round(height * .5), Math.round(height * .62), Math.round(height * .72)];
   for (const y of ys) {
     const pixels = ctx.getImageData(0, y, width, 1).data;
     const values = new Array(width);
@@ -77,7 +77,7 @@ export function decodeEAN13Frame(video, canvas) {
       if (a.color !== 1 || b.color !== 0 || c.color !== 1) continue;
       const module = (a.length + b.length + c.length) / 3;
       const smallest = Math.min(a.length, b.length, c.length), largest = Math.max(a.length, b.length, c.length);
-      if (module < 1.15 || largest / Math.max(1, smallest) > 1.75 || a.start + module * 95 > width) continue;
+      if (module < 0.85 || largest / Math.max(1, smallest) > 2.1 || a.start + module * 95 > width) continue;
       let sampled = '';
       for (let m = 0; m < 95; m++) sampled += bits[Math.min(width - 1, Math.floor(a.start + (m + .5) * module))] ? '1' : '0';
       const decoded = decodeEAN13Bits(sampled);
