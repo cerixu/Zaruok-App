@@ -48,40 +48,77 @@ function otsuThreshold(values) {
   return threshold;
 }
 
-/** Reads several horizontal scanlines from a live video element. Returns EAN-13 or null. */
+/** Reads a live frame at several rows/scales. Works without BarcodeDetector (Safari/iOS). */
 export function decodeEAN13Frame(video, canvas) {
   if (!video || !canvas || video.readyState < 2 || !video.videoWidth || !video.videoHeight) return null;
-  const width = 640;
-  const height = Math.max(240, Math.round(width * video.videoHeight / video.videoWidth));
-  canvas.width = width; canvas.height = height;
+  // Keep enough horizontal pixels for narrow EAN bars even when the camera feed is HD.
+  const width = 960;
+  const height = Math.max(320, Math.round(width * video.videoHeight / video.videoWidth));
+  canvas.width = width;
+  canvas.height = height;
   const ctx = canvas.getContext('2d', { willReadFrequently: true });
   if (!ctx) return null;
   ctx.drawImage(video, 0, 0, width, height);
-  const ys = [Math.round(height * .38), Math.round(height * .5), Math.round(height * .62)];
-  for (const y of ys) {
+
+  // A label's barcode may sit above/below the exact centre. Try several scanlines.
+  const rows = [.28, .34, .40, .46, .50, .54, .60, .66, .72];
+  const scaleAdjustments = [.90, .925, .95, .975, 1, 1.025, 1.05, 1.075, 1.10];
+  const phaseAdjustments = [-.18, 0, .18];
+
+  for (const fraction of rows) {
+    const y = Math.max(0, Math.min(height - 1, Math.round(height * fraction)));
     const pixels = ctx.getImageData(0, y, width, 1).data;
-    const values = new Array(width);
-    for (let x = 0; x < width; x++) values[x] = Math.round(pixels[x * 4] * .299 + pixels[x * 4 + 1] * .587 + pixels[x * 4 + 2] * .114);
-    const threshold = otsuThreshold(values);
-    const bits = values.map((v) => v < threshold ? 1 : 0);
-    const runs = [];
-    let color = bits[0], start = 0;
-    for (let x = 1; x <= width; x++) {
-      if (x === width || bits[x] !== color) {
-        runs.push({ color, start, length: x - start });
-        color = bits[x]; start = x;
-      }
+    const values = new Uint8Array(width);
+    let min = 255, max = 0;
+    for (let x = 0; x < width; x++) {
+      const p = x * 4;
+      const value = Math.round(pixels[p] * .299 + pixels[p + 1] * .587 + pixels[p + 2] * .114);
+      values[x] = value;
+      if (value < min) min = value;
+      if (value > max) max = value;
     }
-    for (let i = 0; i + 2 < runs.length; i++) {
-      const a = runs[i], b = runs[i + 1], c = runs[i + 2];
-      if (a.color !== 1 || b.color !== 0 || c.color !== 1) continue;
-      const module = (a.length + b.length + c.length) / 3;
-      const smallest = Math.min(a.length, b.length, c.length), largest = Math.max(a.length, b.length, c.length);
-      if (module < 1.15 || largest / Math.max(1, smallest) > 1.75 || a.start + module * 95 > width) continue;
-      let sampled = '';
-      for (let m = 0; m < 95; m++) sampled += bits[Math.min(width - 1, Math.floor(a.start + (m + .5) * module))] ? '1' : '0';
-      const decoded = decodeEAN13Bits(sampled);
-      if (decoded) return decoded;
+    if (max - min < 28) continue;
+
+    // Otsu can legitimately return 0 for a clean black/white frame. Use <= below,
+    // otherwise perfectly black bars are classified as white and no scan can succeed.
+    const thresholds = [...new Set([otsuThreshold(values), Math.round((min + max) / 2)])];
+    for (const threshold of thresholds) {
+      const bits = Array.from(values, (v) => v <= threshold ? 1 : 0);
+      const runs = [];
+      let color = bits[0], start = 0;
+      for (let x = 1; x <= width; x++) {
+        if (x === width || bits[x] !== color) {
+          runs.push({ color, start, length: x - start });
+          color = bits[x];
+          start = x;
+        }
+      }
+
+      // Start guard is 101. Slight blur/uneven exposure can distort the three run
+      // widths, so fit a small range of module widths and sampling phases.
+      for (let i = 0; i + 2 < runs.length; i++) {
+        const a = runs[i], b = runs[i + 1], c = runs[i + 2];
+        if (a.color !== 1 || b.color !== 0 || c.color !== 1) continue;
+        const module = (a.length + b.length + c.length) / 3;
+        const smallest = Math.min(a.length, b.length, c.length);
+        const largest = Math.max(a.length, b.length, c.length);
+        if (module < 1.1 || largest / Math.max(1, smallest) > 1.9 || a.start + module * 95 > width) continue;
+
+        for (const scale of scaleAdjustments) {
+          const step = module * scale;
+          if (a.start + step * 95 > width) continue;
+          for (const phase of phaseAdjustments) {
+            let sampled = '';
+            const origin = a.start + module * phase;
+            for (let m = 0; m < 95; m++) {
+              const x = Math.max(0, Math.min(width - 1, Math.floor(origin + (m + .5) * step)));
+              sampled += bits[x] ? '1' : '0';
+            }
+            const decoded = decodeEAN13Bits(sampled);
+            if (decoded) return decoded;
+          }
+        }
+      }
     }
   }
   return null;
