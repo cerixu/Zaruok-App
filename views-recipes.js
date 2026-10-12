@@ -46,7 +46,7 @@ export function recipesView(query) {
   if (pQ) { vs.q = pQ; vs.chip = 'all'; vs.tag = ''; }
   if (f || pCat || pTag || pQ) vs.shown = PAGE;
 
-  const search = h('input', { class: 'input search-input', type: 'search', placeholder: 'Szukaj receptury, składnika, tagu…', value: vs.q,
+  const search = h('input', { class: 'input search-input', type: 'search', placeholder: 'Szukaj…', value: vs.q,
     'aria-label': 'Szukaj', autocomplete: 'off', autocapitalize: 'off', spellcheck: 'false', enterkeyhint: 'search' });
   const clear = iconBtn('x', 'Wyczyść wyszukiwanie', () => { search.value = ''; vs.q = ''; search.focus(); paint(); }, 'quiet clear');
   const searchWrap = h('div', { class: 'searchbox' }, icon('search', 20), search, clear);
