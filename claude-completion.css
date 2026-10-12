@@ -742,7 +742,7 @@ body.kb-open #tabbar { display: none; }
 }
 
 /* ==========================================================================
-   1.9.6 — dolna nawigacja: stabilny układ mobilny
+   1.9.7 — wycentrowane ikony dolnej nawigacji
    Ostatnia warstwa celowo nadpisuje historyczne reguły z arkuszy bazowych.
    ========================================================================= */
 #tabbar {
@@ -796,4 +796,60 @@ body.kb-open #tabbar { display: none; }
 }
 @media (orientation: landscape) and (max-height: 520px) {
   #tabbar { bottom: calc(env(safe-area-inset-bottom, 0px) + 6px); }
+}
+
+
+/* 1.9.7 — naprawa centrowania ikon w dolnej nawigacji iOS.
+   Stały obszar ikony zapobiega przesunięciu glifu w zależności od SVG. */
+#tabbar .tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  gap: 2px;
+  padding: 4px 0;
+  text-align: center;
+}
+#tabbar .tab .tab-ico {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: 0 0 42px;
+  width: 42px !important;
+  height: 42px !important;
+  margin: 0 auto;
+  padding: 0;
+  border-radius: 50%;
+  background: transparent !important;
+  line-height: 0;
+  transform: none;
+}
+#tabbar .tab .tab-ico svg,
+#tabbar .tab > svg {
+  display: block;
+  width: 25px;
+  height: 25px;
+  margin: 0;
+  flex: 0 0 auto;
+  overflow: visible;
+}
+#tabbar .tab.on .tab-ico {
+  background: color-mix(in srgb, var(--accent) 19%, rgba(255,255,255,.045)) !important;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 43%, transparent),
+              inset 0 1px 0 rgba(255,255,255,.13);
+  color: var(--accent-strong, #efb784);
+}
+#tabbar .tab .tab-label {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  line-height: 1.2;
+  text-align: center;
+}
+#tabbar .tab:active { transform: none; }
+#tabbar .tab:active .tab-ico { transform: scale(.94); }
+@media (max-width: 370px) {
+  #tabbar .tab .tab-ico { flex-basis: 38px; width: 38px !important; height: 38px !important; }
+  #tabbar .tab .tab-ico svg, #tabbar .tab > svg { width: 23px; height: 23px; }
 }
