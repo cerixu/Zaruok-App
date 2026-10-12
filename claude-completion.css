@@ -1053,3 +1053,8 @@ body.kb-open #tabbar { display: none; }
   .topbar .searchbox .search-input { min-height: 46px; }
   .topbar .chip { min-height: 40px; padding-inline: 12px; font-size: .88rem; }
 }
+
+
+/* Fix optycznego centrowania pierwszej zakładki — poprzednie przesunięcie -1px było zbyt duże na iPhonie. */
+#tabbar .tab:nth-child(1) .tab-ico svg { transform: none !important; }
+#tabbar .tab:nth-child(1):active .tab-ico svg { transform: none !important; }
