@@ -1,8 +1,39 @@
 import { chromium } from 'playwright';
 
 const base = process.env.BASE_URL || 'http://127.0.0.1:4173/';
-const browser = await chromium.launch();
+const browser = await chromium.launch({ args: ['--use-fake-device-for-media-stream', '--use-fake-ui-for-media-stream'] });
 const page = await browser.newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2 });
+await page.addInitScript(() => {
+  // Deterministic camera harness: fake video frames and a delayed decode let this
+  // smoke test verify torch-button contents and scanner cancellation without hardware.
+  const media = navigator.mediaDevices;
+  if (media && media.getUserMedia) {
+    const originalGetUserMedia = media.getUserMedia.bind(media);
+    media.getUserMedia = async (...args) => {
+      const stream = await originalGetUserMedia(...args);
+      const track = stream.getVideoTracks()[0];
+      if (track) {
+        const originalCapabilities = track.getCapabilities?.bind(track);
+        track.getCapabilities = () => ({ ...(originalCapabilities ? originalCapabilities() : {}), torch: true });
+        track.applyConstraints = async (constraints) => { window.__torchConstraints = constraints; };
+      }
+      return stream;
+    };
+  }
+  window.__barcodeDetectStarted = false;
+  window.__releaseBarcodeDetect = false;
+  window.BarcodeDetector = class {
+    constructor() {}
+    async detect() {
+      window.__barcodeDetectStarted = true;
+      await new Promise((resolve) => {
+        const poll = () => window.__releaseBarcodeDetect ? resolve() : setTimeout(poll, 10);
+        poll();
+      });
+      return [{ rawValue: '5901234123457' }];
+    }
+  };
+});
 const errors = [];
 page.on('pageerror', (e) => errors.push(String(e)));
 page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
@@ -126,7 +157,28 @@ try {
   await page.waitForSelector('.scanner-frame', { timeout: 5000 });
   if (!(await page.locator('.scanner-line').count())) throw new Error('Brak animowanej linii skanowania EAN.');
   if (!(await page.getByLabel('Kod EAN').count())) throw new Error('Brak ręcznego pola kodu EAN.');
+
+  const torchButton = page.locator('.scanner-shell button.btn');
+  await torchButton.waitFor({ state: 'visible', timeout: 5000 });
+  await page.waitForFunction(() => window.__barcodeDetectStarted === true, null, { timeout: 5000 });
+  if (await torchButton.isDisabled()) throw new Error('Latarka nie jest dostępna w teście kamery.');
+  await torchButton.click();
+  await torchButton.getByText('Wyłącz latarkę', { exact: true }).waitFor({ state: 'visible', timeout: 1500 });
+  if (!(await torchButton.locator('svg').count())) throw new Error('Kliknięcie latarki usunęło ikonę SVG z przycisku.');
+  const torchOn = await page.evaluate(() => window.__torchConstraints?.advanced?.[0]?.torch === true);
+  if (!torchOn) throw new Error('Skaner nie przekazał poprawnego przełączenia latarki.');
+  await torchButton.click();
+  await torchButton.getByText('Latarka', { exact: true }).waitFor({ state: 'visible', timeout: 1500 });
+  if (!(await torchButton.locator('svg').count())) throw new Error('Ponowne kliknięcie latarki usunęło ikonę SVG z przycisku.');
+
+  // Close while native decoding is awaiting a frame. Its eventual result must not
+  // reopen the product sheet after the scanner has been dismissed.
   await page.locator('.overlay .panel-foot').getByRole('button', { name: 'Zamknij', exact: true }).click();
+  await page.evaluate(() => { window.__releaseBarcodeDetect = true; });
+  await page.waitForTimeout(250);
+  if (await page.getByLabel('Nazwa produktu').count()) {
+    throw new Error('Wynik skanowania otworzył formularz produktu po zamknięciu skanera.');
+  }
 
 } finally {
   await browser.close();
