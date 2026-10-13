@@ -59,7 +59,7 @@ export function recipesView(query) {
 
   const s = screen({
     title: 'Receptury',
-    right: h('div', { class: 'row' }, iconBtn('upload', 'Importuj recepturę', () => navigate('/import')), iconBtn('plus', 'Nowa receptura', () => navigate('/new'), 'primary')),
+    right: h('div', { class: 'row' }, iconBtn('grid', 'Otwórz kategorie', () => navigate('/categories')), iconBtn('upload', 'Importuj recepturę', () => navigate('/import')), iconBtn('plus', 'Nowa receptura', () => navigate('/new'), 'primary')),
     sub, cls: 'recipes',
   });
 
@@ -241,4 +241,62 @@ export function openCategoryManager() {
     body: h('div', { class: 'stack' }, h('p', { class: 'muted' }, 'Stuknij nazwę, aby zmienić. Kategoria „Inne” jest stała — trafiają do niej receptury usuniętych kategorii.'), list),
     actions: [{ label: 'Gotowe', kind: 'ghost' }, { label: 'Nowa kategoria', kind: 'primary', icon: 'plus', close: false, onClick: () => { editCat(null); return false; } }],
   });
+}
+
+
+/* ---------- Osobny ekran kategorii: duże, łatwe do trafienia kafelki ---------- */
+export function categoriesView() {
+  const all = listRecipes();
+  const count = (id) => all.filter((r) => r.category === id).length;
+  const search = h('input', {
+    class: 'input search-input category-search', type: 'search',
+    placeholder: 'Szukaj kategorii…', 'aria-label': 'Szukaj kategorii',
+    autocomplete: 'off', autocapitalize: 'off', spellcheck: 'false',
+  });
+  const searchWrap = h('div', { class: 'searchbox category-searchbox' }, icon('search', 20), search);
+  const sub = h('div', { class: 'subbar category-subbar' }, searchWrap);
+  const s = screen({
+    title: 'Kategorie',
+    right: h('div', { class: 'row' },
+      iconBtn('sliders', 'Zarządzaj kategoriami', () => openCategoryManager()),
+      iconBtn('arrow-left', 'Wróć do receptur', () => navigate('/recipes'))),
+    sub, cls: 'category-browser',
+  });
+  const specials = [
+    { id: 'all', label: 'Wszystkie receptury', icon: '📚', count: all.length, path: '/recipes' },
+    { id: 'fav', label: 'Ulubione', icon: '❤️', count: all.filter((r) => r.favorite).length, path: '/recipes?f=fav' },
+    { id: 'recent', label: 'Ostatnio otwierane', icon: '🕘', count: all.filter((r) => r.lastOpenedAt).length, path: '/recipes?f=recent' },
+    { id: 'trad', label: 'Tradycyjne', icon: '⭐', count: all.filter((r) => r.traditional).length, path: '/recipes?f=trad' },
+  ];
+  const grid = h('div', { class: 'category-tile-grid', role: 'list', 'aria-label': 'Kategorie receptur' });
+  function paint() {
+    const q = norm(search.value.trim());
+    const tiles = [
+      ...specials.map((c) => ({ ...c, special: true })),
+      ...state.categories.map((c) => ({
+        id: c.id, label: c.name, icon: catIcon(c.id) || c.icon || '🍽️',
+        count: count(c.id), path: '/recipes?cat=' + encodeURIComponent(c.id),
+      })),
+    ].filter((c) => !q || norm(c.label).includes(q));
+    grid.replaceChildren(...tiles.map((c) => {
+      const btn = h('button', {
+        type: 'button', class: 'category-tile' + (c.special ? ' category-tile-special' : ''),
+        'aria-label': c.label + ', ' + c.count + ' receptur',
+        onClick: () => {
+          if (c.id === 'all') resetRecipeFilters();
+          navigate(c.path);
+        },
+      },
+        h('span', { class: 'category-tile-icon', 'aria-hidden': 'true' }, c.icon),
+        h('span', { class: 'category-tile-name' }, c.label),
+        h('span', { class: 'category-tile-count' }, String(c.count) + (c.count === 1 ? ' receptura' : ' receptur')),
+        h('span', { class: 'category-tile-arrow', 'aria-hidden': 'true' }, icon('chevron-right', 17)));
+      return h('div', { class: 'category-tile-item', role: 'listitem' }, btn);
+    }));
+    if (!tiles.length) grid.replaceChildren(emptyState('🔎', 'Brak takiej kategorii', 'Spróbuj wpisać krótszą nazwę.'));
+  }
+  search.addEventListener('input', paint);
+  paint();
+  const unsub = subscribe((t) => { if (t === 'hydrated' || t === 'recipes' || t === 'categories') paint(); });
+  return { el: s.el, destroy: () => unsub() };
 }
