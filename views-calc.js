@@ -12,7 +12,7 @@ import {
 } from './recipes.js';
 import {
   pizzaCalc, pizzaCalcFromFlour, yeastSuggestion, YEAST_TYPES, scaleRecipe, factorFromServings, factorFromYield, factorFromIngredient, effectiveYield, recipeCost, priceForFoodCost,
-} from './calculator.js?v=1.6.2';
+} from './calculator.js?v=1.9.10';
 import { fmtAmount, fmtNum, fmtMoney, debounce } from './util.js';
 import { qtyParts } from './components.js';
 import { addItems, openAddToShopping } from './shopping.js';
@@ -68,7 +68,7 @@ function hub() {
 /* ---------- Pizza ---------- */
 
 function pizzaCalculator() {
-  const { st, save, ready } = memo('pizza', { mode: 'flour', flour: 5000, leavening: 'yeast', starter: 65, balls: 4, ballWeight: 250, hydration: 65, salt: 3, oil: 0, yeast: 0.2, yeastType: 'fresh', temp: 20, hours: 24 });
+  const { st, save, ready } = memo('pizza', { mode: 'flour', flour: 5000, leavening: 'yeast', starter: 0.65, balls: 4, ballWeight: 250, hydration: 65, salt: 3, oil: 0, yeast: 0.2, yeastType: 'fresh', temp: 20, hours: 24 });
   const out = h('div', { class: 'results' });
   const form = h('div', { class: 'stack' });
   const s = calcScreen('Pizza i ciasto', form, out);
@@ -232,9 +232,9 @@ function pizzaCalculator() {
         field('Rodzaj zaczynu', selectEl([['yeast', 'Drożdże'], ['starter', 'Zakwas aktywny']], st.leavening, (v) => { st.leavening = v; save(); build(); paintOut(); })),
         st.leavening === 'starter'
           ? h('div', { class: 'stack' },
-              field('Aktywny zakwas (% mąki)', numInput({ value: st.starter, label: 'Aktywny zakwas procent mąki', dec: 1, onInput: upd('starter') }),
-                'Procent dotyczy łącznej masy przygotowanego aktywnego zakwasu.'),
-              h('p', { class: 'muted small' }, 'Przygotuj go wagowo w proporcji 1:1:2: 1 część dojrzałego zakwasu macierzystego + 1 część mąki + 2 części wody. Przykład: 10 g + 10 g + 20 g = 40 g. Zapisana receptura rozpisze te składniki osobno.'))
+              field('Zakwas macierzysty (% mąki)', numInput({ value: st.starter, label: 'Zakwas macierzysty procent mąki', dec: 3, onInput: (v, el) => { st.starter = Math.min(1, Math.max(0, Number(v) || 0)); if (Number(v) > 1) el.value = '1'; save(); paintOut(); } }),
+                'Wpisz procent samego zakwasu macierzystego. Maksymalnie 1% mąki.'),
+              h('p', { class: 'muted small' }, 'Dokarmienie 1:1:2: tyle samo mąki co zakwasu macierzystego i 2× tyle wody. Przykład: 50,5 g + 50,5 g + 101 g = 202 g aktywnego zakwasu. Mąka i woda z dokarmienia są odejmowane od składników ciasta, więc nie liczą się podwójnie.'))
           : h('div', { class: 'row gap' },
             col(field('Rodzaj drożdży', selectEl(Object.entries(YEAST_TYPES).map(([k, v]) => [k, v.label]), st.yeastType, (v) => { st.yeastType = v; save(); build(); paintOut(); }))),
             col(field('Drożdże %', numInput({ value: st.yeast, label: 'Drożdże procent', dec: 2, onInput: upd('yeast') })))),
@@ -250,8 +250,8 @@ function pizzaCalculator() {
   }
 
   ready.then(() => {
-    // Migrate the old 1.6.0 default (0.65 meant 0.65%, but the field is a percent).
-    if (st.starter === 0.65) { st.starter = 65; save(); }
+    // Migrate values from the previous model, where the field meant total levain percent.
+    if (st.starter > 1) { st.starter = 0.65; save(); }
     build();
     paintOut();
   });
