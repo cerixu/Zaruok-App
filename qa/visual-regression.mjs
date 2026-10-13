@@ -122,6 +122,39 @@ try {
     'Aktywna zakładka ma odziedziczony marker/kropkę, która psuje wyrównanie: ' + JSON.stringify(tabMetrics));
   assert(tabMetrics.activeTabTransform === 'none',
     'Cała aktywna zakładka nie może skakać podczas przejść stanów: ' + JSON.stringify(tabMetrics));
+
+  // Ustawienie podpisów zakładek musi działać w obu stanach; stare reguły CSS
+  // wcześniej wymuszały display:block nawet przy data-tablabels="off".
+  const tabLabelStates = await page.evaluate(() => {
+    const root = document.documentElement;
+    const old = root.getAttribute('data-tablabels');
+    const labels = [...document.querySelectorAll('#tabbar .tab .tab-label')];
+    root.setAttribute('data-tablabels', 'off');
+    const hiddenWhenOff = labels.length === 5 && labels.every((el) => getComputedStyle(el).display === 'none');
+    root.setAttribute('data-tablabels', 'on');
+    const shownWhenOn = labels.length === 5 && labels.every((el) => getComputedStyle(el).display !== 'none');
+    const bar = document.querySelector('#tabbar').getBoundingClientRect();
+    const labelsInsideBar = labels.every((el) => {
+      const r = el.getBoundingClientRect();
+      return r.left >= bar.left - 1 && r.right <= bar.right + 1;
+    });
+    if (old === null) root.removeAttribute('data-tablabels');
+    else root.setAttribute('data-tablabels', old);
+    return { hiddenWhenOff, shownWhenOn, labelsInsideBar, count: labels.length };
+  });
+  assert(tabLabelStates.hiddenWhenOff && tabLabelStates.shownWhenOn && tabLabelStates.labelsInsideBar,
+    'Podpisy zakładek nie respektują ustawienia lub wychodzą poza pasek: ' + JSON.stringify(tabLabelStates));
+
+  const tabCentering = await page.evaluate(() => {
+    const bar = document.querySelector('#tabbar').getBoundingClientRect();
+    return [...document.querySelectorAll('#tabbar .tab')].map((tab) => {
+      const icon = tab.querySelector('.tab-ico').getBoundingClientRect();
+      return Math.abs((icon.left + icon.right) / 2 - (tab.getBoundingClientRect().left + tab.getBoundingClientRect().right) / 2);
+    });
+  });
+  assert(tabCentering.length === 5 && tabCentering.every((n) => n <= 1.5),
+    'Ikony zakładek nie są wycentrowane we własnych polach: ' + JSON.stringify(tabCentering));
+
   const tapTarget = page.locator('#tabbar .tab[data-tab="recipes"]');
   const tapBox = await tapTarget.boundingBox();
   await page.mouse.move(tapBox.x + tapBox.width / 2, tapBox.y + tapBox.height / 2);
