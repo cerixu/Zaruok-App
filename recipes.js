@@ -11,6 +11,7 @@ import { SEED_TEXT, parseSeeds } from './seeds.js';
 import { SEED_PL } from './seeds-pl.js';
 import { SEED_WORLD } from './seeds-world.js';
 import { SEED_MORE } from './seeds-more.js';
+import { migrateSeedRecipe } from './recipe-migrations.js';
 
 /* ---------- Kategorie i kraje ---------- */
 
@@ -493,6 +494,21 @@ async function addNewSeeds() {
   if (!Array.isArray(added)) added = [...LEGACY_SEED_IDS];       // wersja 1.0 miała tylko te trzy
   const have = new Set(added);
   const all = seedRecipes();
+
+  // Migrate only values that still exactly match the old, untouched seed defaults.
+  // Any custom name or description is preserved.
+  const migrated = [];
+  for (const seed of all) {
+    const current = state.recipes.get(seed.id);
+    const updated = migrateSeedRecipe(current, seed);
+    if (updated) migrated.push(updated);
+  }
+  if (migrated.length) {
+    await db.putMany('recipes', migrated);
+    migrated.forEach((r) => state.recipes.set(r.id, normalizeRecipe(r)));
+    emit('recipes');
+  }
+
   const fresh = all.filter((r) => !have.has(r.id) && !state.recipes.has(r.id));
   if (fresh.length) {
     await db.putMany('recipes', fresh);

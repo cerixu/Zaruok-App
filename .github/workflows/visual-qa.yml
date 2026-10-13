@@ -127,7 +127,7 @@ jobs:
         with:
           node-version: 20
       - name: Run recipe data audit
-        run: node qa/recipe-data-audit.mjs
+        run: node qa/recipe-data-audit.mjs && node qa/recipe-seed-migration-smoke.mjs
 
   unit-grammar-smoke:
     needs: recipe-data-audit

@@ -497,8 +497,8 @@ export const SEED_WORLD = `
 > Żeberka oczyść z błony, natrzyj marynatą. Owiń folią.
 > Piecz 2,5 godziny w 150 °C. Posmaruj sosem BBQ, karmelizuj 20 minut w 200 °C.
 
-# Pulled pork
-@ cat=mieso origin=US servings=8 prep=15 cook=480 temp=140_°C art=ribs tags=obiad,grill,wieprzowina
+# Szarpana wieprzowina
+@ id=rcp_seed_pulled_pork cat=mieso origin=US servings=8 prep=15 cook=480 temp=140_°C art=ribs tags=obiad,grill,wieprzowina
 : Szarpana wieprzowina z łopatki — idealna do burgerów.
 2000 g | Łopatka wieprzowa
 2 łyżki | Papryka wędzona
@@ -596,7 +596,7 @@ export const SEED_WORLD = `
 
 # Smażony ryż z jajkiem
 @ cat=inne origin=CN servings=2 prep=10 cook=10 art=rice tags=obiad,chińskie,szybkie
-: Wok-fried rice z warzywami i jajkiem.
+: Smażony ryż z warzywami i jajkiem, przygotowany na mocno rozgrzanym woku.
 300 g | Ryż ugotowany (schłodzony)
 2 szt. | Jajka
 100 g | Groszek i marchew
@@ -881,8 +881,8 @@ export const SEED_WORLD = `
 > Dodaj bulion, morele i duś pod przykryciem 40 minut.
 > Dodaj oliwki, gotuj 10 minut.
 
-# Shepherd's pie
-@ cat=mieso origin=GB trad servings=6 prep=30 cook=60 temp=200_°C art=lasagne tags=obiad,brytyjskie,zapiekane
+# Zapiekanka pasterska
+@ id=rcp_seed_shepherd_s_pie cat=mieso origin=GB trad servings=6 prep=30 cook=60 temp=200_°C art=lasagne tags=obiad,brytyjskie,zapiekane
 : Mięso mielone z warzywami pod puree ziemniaczanym.
 600 g | Jagnięcina mielona
 1 szt. | Cebula
