@@ -137,7 +137,6 @@ function watchNetwork() {
 route('/', () => startView(), { tab: 'start' });
 route('/recipes', (p, q) => recipesView(q), { tab: 'recipes' });
 route('/categories', () => categoriesView(), { tab: 'recipes' });
-route('/categories', () => categoriesView(), { tab: 'recipes' });
 route('/recipe/:id', (p) => detailView(p), { tab: 'recipes' });
 route('/edit/:id', (p) => editorView(p), { tab: 'recipes', tabs: false });
 route('/new', (p, q) => editorView({ id: null }, q), { tab: 'recipes', tabs: false });
