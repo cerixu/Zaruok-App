@@ -158,7 +158,7 @@ try {
   if (!(await page.locator('.scanner-line').count())) throw new Error('Brak animowanej linii skanowania EAN.');
   if (!(await page.getByLabel('Kod EAN').count())) throw new Error('Brak ręcznego pola kodu EAN.');
 
-  const torchButton = page.getByRole('button', { name: 'Latarka' });
+  const torchButton = page.locator('.scanner-shell button.btn');
   await torchButton.waitFor({ state: 'visible', timeout: 5000 });
   await page.waitForFunction(() => window.__barcodeDetectStarted === true, null, { timeout: 5000 });
   if (await torchButton.isDisabled()) throw new Error('Latarka nie jest dostępna w teście kamery.');
