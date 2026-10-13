@@ -742,120 +742,6 @@ body.kb-open #tabbar { display: none; }
 }
 
 /* ==========================================================================
-   1.9.7 — wycentrowane ikony dolnej nawigacji
-   Ostatnia warstwa celowo nadpisuje historyczne reguły z arkuszy bazowych.
-   ========================================================================= */
-#tabbar {
-  position: absolute;
-  inset-block-start: auto;
-  inset-inline-start: 50%;
-  inset-inline-end: auto;
-  inset-block-end: calc(env(safe-area-inset-bottom, 0px) + 10px);
-  width: min(520px, calc(100vw - 24px - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px)));
-  max-width: 520px;
-  height: var(--tab-h, 64px);
-  min-height: var(--tab-h, 64px);
-  max-height: 72px;
-  padding: 5px;
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: stretch;
-  justify-content: space-between;
-  gap: 3px;
-  overflow: visible;
-  box-sizing: border-box;
-  border-radius: 999px;
-  transform: translateX(-50%);
-}
-#tabbar .tab {
-  flex: 1 1 0%;
-  min-width: 0;
-  max-width: none;
-  height: 100%;
-  padding: 0 2px;
-  gap: 2px;
-  overflow: visible;
-  transform: none;
-  animation: none;
-}
-#tabbar .tab .tab-ico {
-  flex: 0 0 42px;
-  width: 42px;
-  height: 34px;
-  max-width: 100%;
-  margin: 0;
-  transform: none;
-}
-#tabbar .tab.on { transform: none; }
-#tabbar .tab:active { transform: none; }
-#tabbar .tab:active .tab-ico { transform: scale(.92); }
-@media (max-width: 360px) {
-  #tabbar { gap: 1px; padding: 4px; }
-  #tabbar .tab .tab-ico { flex-basis: 38px; width: 38px; height: 32px; }
-  #tabbar .tab .tab-ico svg { width: 22px; height: 22px; }
-}
-@media (orientation: landscape) and (max-height: 520px) {
-  #tabbar { bottom: calc(env(safe-area-inset-bottom, 0px) + 6px); }
-}
-
-
-/* 1.9.7 — naprawa centrowania ikon w dolnej nawigacji iOS.
-   Stały obszar ikony zapobiega przesunięciu glifu w zależności od SVG. */
-#tabbar .tab {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-width: 0;
-  gap: 2px;
-  padding: 4px 0;
-  text-align: center;
-}
-#tabbar .tab .tab-ico {
-  position: relative;
-  display: grid;
-  place-items: center;
-  flex: 0 0 42px;
-  width: 42px !important;
-  height: 42px !important;
-  margin: 0 auto;
-  padding: 0;
-  border-radius: 50%;
-  background: transparent !important;
-  line-height: 0;
-  transform: none;
-}
-#tabbar .tab .tab-ico svg,
-#tabbar .tab > svg {
-  display: block;
-  width: 25px;
-  height: 25px;
-  margin: 0;
-  flex: 0 0 auto;
-  overflow: visible;
-}
-#tabbar .tab.on .tab-ico {
-  background: color-mix(in srgb, var(--accent) 19%, rgba(255,255,255,.045)) !important;
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 43%, transparent),
-              inset 0 1px 0 rgba(255,255,255,.13);
-  color: var(--accent-strong, #efb784);
-}
-#tabbar .tab .tab-label {
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  line-height: 1.2;
-  text-align: center;
-}
-#tabbar .tab:active { transform: none; }
-#tabbar .tab:active .tab-ico { transform: scale(.94); }
-@media (max-width: 370px) {
-  #tabbar .tab .tab-ico { flex-basis: 38px; width: 38px !important; height: 38px !important; }
-  #tabbar .tab .tab-ico svg, #tabbar .tab > svg { width: 23px; height: 23px; }
-}
-
-
-/* ==========================================================================
    1.9.9 — poprawka skanera EAN i centrowania pierwszej ikony paska
    Wyszukiwarka w subbarze znajduje się poza .recipes, dlatego stylujemy ją
    przez .topbar. Pole jest jedną szklaną kapsułą, bez drugiego kwadratowego tła.
@@ -1036,16 +922,70 @@ body.kb-open #tabbar { display: none; }
   background: linear-gradient(90deg, rgba(169,111,44,.26), rgba(169,111,44,.025));
 }
 
-/* Optyczny mikrooffset dwóch glyphów; kontenery 42×42 pozostają symetryczne.
-   Korekta dotyczy rysunku SVG, a nie całego przycisku ani aktywnego kółka. */
-#tabbar .tab:nth-child(1) .tab-ico svg { transform: translateX(0); }
-#tabbar .tab:nth-child(2) .tab-ico svg { transform: translateX(1px); }
-#tabbar .tab:nth-child(1):active .tab-ico svg { transform: translateX(0); }
-#tabbar .tab:nth-child(2):active .tab-ico svg { transform: translateX(1px); }
 @media (max-width: 370px) {
   .topbar .subbar { gap: 7px; padding-bottom: 8px; }
   .topbar .searchbar { gap: 7px; }
   .topbar .searchbox { min-height: 48px; border-radius: 16px; }
   .topbar .searchbox .search-input { min-height: 46px; }
   .topbar .chip { min-height: 40px; padding-inline: 12px; font-size: .88rem; }
+}
+
+
+/* ==========================================================================
+   1.9.11 — finalna reguła dolnej nawigacji
+   Jedno źródło prawdy dla ikon, podpisów, stanów dotyku i małych ekranów.
+   ========================================================================= */
+#tabbar .tab {
+  min-height: 0;
+  overflow: visible;
+  text-align: center;
+  touch-action: manipulation;
+}
+#tabbar .tab .tab-ico {
+  box-sizing: border-box;
+  flex: 0 0 42px;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  margin: 0 auto;
+  line-height: 0;
+}
+#tabbar .tab .tab-ico svg,
+#tabbar .tab > svg {
+  transform: none !important;
+  flex: 0 0 auto;
+  margin: 0;
+}
+#tabbar .tab .tab-label {
+  display: none;
+  flex: 0 1 auto;
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+  line-height: 1.1;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+:root[data-tablabels="on"] #tabbar .tab .tab-label {
+  display: block;
+}
+#tabbar .tab:active {
+  background: transparent;
+  transform: none;
+}
+#tabbar .tab:active .tab-ico {
+  transform: scale(.93);
+}
+#tabbar .tab:focus-visible {
+  outline: 2px solid var(--accent-text, #efb784);
+  outline-offset: -3px;
+}
+@media (max-width: 370px) {
+  #tabbar { gap: 1px; padding: 4px; }
+  #tabbar .tab { padding-inline: 0; }
+  #tabbar .tab .tab-ico { flex-basis: 38px; width: 38px; height: 38px; }
+  #tabbar .tab .tab-ico svg,
+  #tabbar .tab > svg { width: 23px; height: 23px; }
 }
