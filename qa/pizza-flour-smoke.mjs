@@ -32,10 +32,16 @@ try {
   const expected = { flour: 7200, water: 4680, salt: 216, yeast: 14.4, total: 12110.4 };
   const starter = await page.evaluate(async () => {
     const { pizzaCalcFromFlour } = await import('./calculator.js');
-    const r = pizzaCalcFromFlour({ flour: 7200, hydration: 65, salt: 3, oil: 0, yeast: 0 });
-    return { amount065: r.flour * 0.65 / 100, amount1: r.flour * 1 / 100 };
+    const r = pizzaCalcFromFlour({ flour: 7700, hydration: 65, salt: 3, oil: 0, yeast: 0, starter: 0.656 });
+    return { seed: r.starterSeed, flour: r.starterFlour, water: r.starterWater, totalStarter: r.starter, doughFlour: r.doughFlour, doughWater: r.doughWater, total: r.total };
   });
-  if (starter.amount065 !== 46.8 || starter.amount1 !== 72) throw new Error('Błędny przelicznik zakwasu: ' + JSON.stringify(starter));
+  const starterExpected = { seed: 50.512, flour: 50.512, water: 101.024, totalStarter: 202.048, doughFlour: 7649.488, doughWater: 4903.976, total: 12986.512 };
+  for (const [k, v] of Object.entries(starterExpected)) if (Math.abs(starter[k] - v) > 0.001) throw new Error('Błędny przelicznik aktywnego zakwasu ' + k + ': ' + starter[k] + ', oczekiwano ' + v);
+  const capped = await page.evaluate(async () => {
+    const { pizzaCalcFromFlour } = await import('./calculator.js');
+    return pizzaCalcFromFlour({ flour: 7700, hydration: 65, salt: 3, oil: 0, yeast: 0, starter: 20 }).starterSeed;
+  });
+  if (capped !== 77) throw new Error('Zakwas macierzysty musi być ograniczony do maks. 1% mąki: ' + capped);
   for (const [k, v] of Object.entries(expected)) {
     if (Math.abs(values[k] - v) > 0.001) throw new Error('Błędny wynik ' + k + ': ' + values[k] + ', oczekiwano ' + v);
   }
@@ -65,17 +71,20 @@ try {
   if (await fermentationTime.inputValue() !== '18') throw new Error('Pole czasu fermentacji gubi fokus przy wpisywaniu');
   if (!(await fermentationTime.evaluate((el) => el === document.activeElement))) throw new Error('Pole czasu fermentacji utraciło fokus');
 
-  // Active sourdough is a 1:1:2 build: seed : added flour : added water.
-  await page.getByLabel('Masa mąki').fill('1000');
+  // Input is mother-starter percentage, capped at 1% of total flour.
+  await page.getByLabel('Masa mąki').fill('7700');
   await page.getByLabel('Rodzaj zaczynu').selectOption('starter');
-  if (!(await page.getByText('10 g + 10 g + 20 g = 40 g').count())) throw new Error('Brak objaśnienia proporcji zakwasu 1:1:2');
-  await page.getByLabel('Aktywny zakwas procent mąki').fill('40');
+  if (!(await page.getByText(/50,5 g \+ 50,5 g \+ 101 g = 202 g/).count())) throw new Error('Brak przykładu proporcji 1:1:2 dla aktywnego zakwasu');
+  await page.getByLabel('Zakwas macierzysty procent mąki').fill('0.656');
   const row = (label) => page.locator('.result').filter({ hasText: label });
-  if (!(await row('Zakwas macierzysty').innerText()).includes('100')) throw new Error('Zakwas macierzysty powinien mieć 100 g');
-  if (!(await row('Mąka do zakwasu').innerText()).includes('100')) throw new Error('Mąka do zakwasu powinna mieć 100 g');
-  if (!(await row('Woda do zakwasu').innerText()).includes('200')) throw new Error('Woda do zakwasu powinna mieć 200 g');
-  if (!(await row('Aktywny zakwas łącznie').count())) throw new Error('Brak sumy aktywnego zakwasu');
-  if (!(await row('Masa całkowita').innerText()).includes('1780')) throw new Error('Masa końcowa powinna wynosić 1780 g bez podwójnego liczenia mąki i wody z zakwasu');
+  if (!(await row('Zakwas macierzysty').innerText()).includes('50,5')) throw new Error('Zakwas macierzysty powinien mieć ok. 50,5 g');
+  if (!(await row('Mąka do zakwasu').innerText()).includes('50,5')) throw new Error('Mąka do zakwasu powinna mieć ok. 50,5 g');
+  if (!(await row('Woda do zakwasu').innerText()).includes('101')) throw new Error('Woda do zakwasu powinna mieć ok. 101 g');
+  if (!(await row('Aktywny zakwas łącznie').innerText()).includes('202')) throw new Error('Aktywny zakwas powinien mieć ok. 202 g');
+  const totalText = await row('Masa całkowita').innerText();
+  if (!totalText.includes('12 986') && !totalText.includes('12986')) throw new Error('Masa końcowa powinna wynosić ok. 12 986,5 g bez podwójnego liczenia mąki i wody');
+  await page.getByLabel('Zakwas macierzysty procent mąki').fill('5');
+  if (!(await page.getByLabel('Zakwas macierzysty procent mąki').inputValue()).startsWith('1')) throw new Error('Pole zakwasu nie ogranicza wartości do 1%');
 
   await page.getByRole('button', { name: 'Zapisz jako recepturę' }).click();
   const openRecipe = page.getByRole('button', { name: 'Otwórz' }).last();
