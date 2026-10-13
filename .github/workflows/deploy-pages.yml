@@ -186,14 +186,14 @@ jobs:
 
             await page.getByRole('textbox', { name: 'Masa mąki' }).fill('1000');
             await page.getByLabel('Rodzaj zaczynu').selectOption('starter');
-            await expect(page.getByText('10 g + 10 g + 20 g = 40 g')).toBeVisible();
-            const starterPct = page.getByRole('textbox', { name: 'Aktywny zakwas procent mąki' });
-            await starterPct.fill('40');
-            await expect(page.locator('.result').filter({ hasText: 'Zakwas macierzysty' })).toContainText('100');
-            await expect(page.locator('.result').filter({ hasText: 'Mąka do zakwasu' })).toContainText('100');
-            await expect(page.locator('.result').filter({ hasText: 'Woda do zakwasu' })).toContainText('200');
+            await expect(page.getByText(/50,5 g \+ 50,5 g \+ 101 g = 202 g/)).toBeVisible();
+            const starterPct = page.getByRole('textbox', { name: 'Zakwas macierzysty procent mąki' });
+            await starterPct.fill('0.5');
+            await expect(page.locator('.result').filter({ hasText: 'Zakwas macierzysty' })).toContainText('5');
+            await expect(page.locator('.result').filter({ hasText: 'Mąka do zakwasu' })).toContainText('5');
+            await expect(page.locator('.result').filter({ hasText: 'Woda do zakwasu' })).toContainText('10');
             await expect(page.getByText('Aktywny zakwas łącznie')).toBeVisible();
-            await expect(page.locator('.result').filter({ hasText: 'Masa całkowita' })).toContainText('1780');
+            await expect(page.locator('.result').filter({ hasText: 'Masa całkowita' })).toContainText('1685');
 
             await page.getByRole('button', { name: 'Zapisz jako recepturę' }).click();
             const openRecipe = page.getByRole('button', { name: 'Otwórz', exact: true });
