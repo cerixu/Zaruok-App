@@ -279,6 +279,26 @@ try {
   await captureSurface('/search', '09-search.png', 'Wyszukiwanie');
   await captureSurface('/settings', '10-settings.png', 'Ustawienia');
 
+  await captureSurface('/categories', '11-category-tiles.png', 'Kategorie');
+  assert(await page.locator('.category-tile-grid').count() === 1, 'Brak siatki kafelków kategorii.');
+  assert(await page.locator('.category-tile').count() >= 4, 'Ekran kategorii powinien pokazywać co najmniej cztery skróty.');
+  const categoryGridMetrics = await page.locator('.category-tile-grid').evaluate((el) => {
+    const grid = el.getBoundingClientRect();
+    const tiles = [...el.querySelectorAll('.category-tile')].slice(0, 2).map((t) => t.getBoundingClientRect());
+    return { width: grid.width, columns: getComputedStyle(el).gridTemplateColumns, tiles };
+  });
+  assert(categoryGridMetrics.tiles.length === 2 && categoryGridMetrics.tiles[0].width > 130 &&
+    categoryGridMetrics.tiles[0].left < categoryGridMetrics.tiles[1].left,
+    'Kafelki kategorii nie układają się w czytelne dwie kolumny: ' + JSON.stringify(categoryGridMetrics));
+  const categorySearch = page.getByRole('searchbox', { name: 'Szukaj kategorii' });
+  await categorySearch.fill('Wszystkie');
+  assert(await page.locator('.category-tile').count() === 1, 'Wyszukiwanie kategorii nie filtruje kafelków.');
+  await page.locator('.category-tile').click();
+  await page.waitForFunction(() => location.hash === '#/recipes', null, { timeout: 5000 });
+  assert(await page.locator('.recipes').count() === 1, 'Kafelek „Wszystkie receptury” nie wraca do listy receptur.');
+  await assertNoPageOverflow('Kategorie');
+
+
   await page.goto(base + '#/recipes', { waitUntil: 'domcontentloaded' });
   await ready();
   await dismissWhatsNew();
