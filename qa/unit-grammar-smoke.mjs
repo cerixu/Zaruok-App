@@ -76,7 +76,21 @@ try {
     throw new Error('Nieprawidłowa odmiana łyżki w pełnej recepturze: ' + JSON.stringify(visibleForms));
   }
 
-  console.log('PASS: Polish unit grammar runtime + recipe rendering');
+  // Keep the existing source IDs even when the user-facing seed names become Polish.
+  for (const [id, name] of [
+    ['rcp_seed_fish_and_chips', 'Ryba z frytkami'],
+    ['rcp_seed_pulled_pork', 'Szarpana wieprzowina'],
+    ['rcp_seed_shepherd_s_pie', 'Zapiekanka pasterska'],
+  ]) {
+    await page.goto(base + '#/recipe/' + id, { waitUntil: 'networkidle' });
+    await ready();
+    await dismiss();
+    await page.waitForSelector('.detail', { state: 'visible', timeout: 8000 });
+    const detail = await page.locator('.detail').innerText();
+    if (!detail.includes(name)) throw new Error('Brak receptury "' + name + '" pod dotychczasowym ID ' + id);
+  }
+
+  console.log('PASS: Polish unit grammar + recipe rendering + stable translated seed IDs');
 } finally {
   await browser.close();
 }
