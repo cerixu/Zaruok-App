@@ -54,7 +54,8 @@ export function recipesView(query) {
   const filterBtn = iconBtn('filter', 'Filtry', () => openFilters());
   const sortBtn = iconBtn('sort', 'Sortowanie', () => openSort());
   const viewBtn = iconBtn(getSetting('listView') === 'list' ? 'grid' : 'list', 'Zmień widok: kafelki / lista', async () => { await setSetting('listView', getSetting('listView') === 'list' ? 'grid' : 'list'); viewBtn.replaceChildren(icon(getSetting('listView') === 'list' ? 'grid' : 'list', 22)); vs.shown = PAGE; paint(); });
-  const bar = h('div', { class: 'searchbar' }, searchWrap, filterBtn, sortBtn, viewBtn);
+  const categoriesBtn = iconBtn('grid', 'Otwórz kategorie', () => navigate('/categories'));
+  const bar = h('div', { class: 'searchbar' }, searchWrap, categoriesBtn, filterBtn, sortBtn, viewBtn);
   const sub = h('div', { class: 'subbar' }, bar, chips);
 
   const s = screen({
