@@ -506,6 +506,7 @@ async function addNewSeeds() {
   if (migrated.length) {
     await db.putMany('recipes', migrated);
     migrated.forEach((r) => state.recipes.set(r.id, normalizeRecipe(r)));
+    emit('recipes');
   }
 
   const fresh = all.filter((r) => !have.has(r.id) && !state.recipes.has(r.id));
