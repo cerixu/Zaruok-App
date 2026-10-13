@@ -716,7 +716,7 @@ button:focus-visible, a:focus-visible {
   line-height: 1.1;
   font-weight: 550;
 }
-:root[data-tablabels="on"] #tabbar .tab .tab-ico { height: 30px; }
+:root[data-tablabels="on"] #tabbar .tab .tab-ico { flex-basis: 32px; height: 32px; }
 :root[data-theme="light"] #tabbar {
   background: rgba(249,248,245,.97);
   border-color: rgba(25,26,28,.10);
