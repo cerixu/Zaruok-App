@@ -989,3 +989,95 @@ body.kb-open #tabbar { display: none; }
   #tabbar .tab .tab-ico svg,
   #tabbar .tab > svg { width: 23px; height: 23px; }
 }
+
+
+/* ==========================================================================
+   KATEGORIE — osobny ekran z dużymi kafelkami, wygodny na iPhonie
+   ========================================================================== */
+.category-browser .category-subbar { padding: 0 10px 10px; }
+.category-searchbox { min-height: 48px; }
+.category-search { min-height: 48px; }
+.category-browser .content { gap: 12px; }
+.category-tile-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  width: 100%;
+  align-items: stretch;
+}
+.category-tile-item { min-width: 0; display: flex; }
+.category-tile {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 10px;
+  width: 100%;
+  min-width: 0;
+  min-height: 142px;
+  padding: 16px 13px 14px;
+  border: 1px solid var(--zc-glass-edge, rgba(255,255,255,.12));
+  border-radius: 22px;
+  color: var(--text, #f4f3ef);
+  background:
+    radial-gradient(circle at 100% 0%, rgba(217,151,97,.13), transparent 54%),
+    linear-gradient(145deg, rgba(255,255,255,.065), rgba(255,255,255,.012)),
+    color-mix(in srgb, var(--surface, #171a1e) 88%, transparent);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.07), 0 10px 24px rgba(0,0,0,.12);
+  -webkit-backdrop-filter: blur(18px) saturate(1.12);
+  backdrop-filter: blur(18px) saturate(1.12);
+  transition: transform .16s var(--zc-ease, cubic-bezier(.2,.8,.2,1)), border-color .16s ease, background .16s ease;
+  touch-action: manipulation;
+}
+.category-tile:active { transform: scale(.975); border-color: var(--accent, #d99761); }
+.category-tile:focus-visible { outline: 2px solid var(--focus, #8dc5ff); outline-offset: 3px; }
+.category-tile-icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  flex: none;
+  border-radius: 15px;
+  background: rgba(217,151,97,.12);
+  border: 1px solid rgba(217,151,97,.17);
+  font-size: 25px;
+  line-height: 1;
+}
+.category-tile-name {
+  display: -webkit-box;
+  width: 100%;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  min-height: 2.55em;
+  padding-right: 14px;
+  font-size: .98rem;
+  font-weight: 720;
+  letter-spacing: -.025em;
+  line-height: 1.28;
+  overflow-wrap: anywhere;
+}
+.category-tile-count { color: var(--muted, #9fa5ad); font-size: .77rem; font-weight: 550; }
+.category-tile-arrow {
+  position: absolute;
+  right: 10px;
+  bottom: 12px;
+  display: grid;
+  place-items: center;
+  color: var(--text-faint, rgba(244,243,239,.42));
+}
+.category-tile-special { background:
+  radial-gradient(circle at 100% 0%, rgba(217,151,97,.2), transparent 58%),
+  linear-gradient(145deg, rgba(255,255,255,.07), rgba(255,255,255,.015)),
+  color-mix(in srgb, var(--surface, #171a1e) 88%, transparent); }
+.category-tile-special .category-tile-icon { background: rgba(217,151,97,.16); }
+@media (max-width: 350px) {
+  .category-tile-grid { gap: 9px; }
+  .category-tile { min-height: 132px; padding: 13px 10px 12px; border-radius: 18px; }
+  .category-tile-name { font-size: .9rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .category-tile { transition: none; }
+}
