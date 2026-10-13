@@ -45,6 +45,6 @@ assert.equal(migrateSeedRecipe(editedDescription, newDescription), null, 'Własn
 assert.equal(migrateSeedRecipe(cases[0].current, { ...cases[0].seed, id: 'inny-id' }), null, 'Migracja nie może obejmować innych rekordów');
 
 const recipesSource = fs.readFileSync(new URL('../recipes.js', import.meta.url), 'utf8');
-assert.match(recipesSource, /imports*{s*migrateSeedRecipes*}s*froms*['"]./recipe-migrations.js['"]/);
-assert.match(recipesSource, /migrateSeedRecipe(current,s*seed)/, 'addNewSeeds musi wykonać migrację przed końcem');
+assert.ok(recipesSource.includes("import { migrateSeedRecipe } from './recipe-migrations.js';"), 'recipes.js musi importować moduł migracji');
+assert.ok(recipesSource.includes('migrateSeedRecipe(current, seed)'), 'addNewSeeds musi wykonać migrację przed końcem');
 console.log('PASS: selective seed migration preserves stable IDs and user edits');
