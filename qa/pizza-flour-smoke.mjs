@@ -82,7 +82,7 @@ try {
   if (!(await row('Woda do zakwasu').innerText()).includes('101')) throw new Error('Woda do zakwasu powinna mieć ok. 101 g');
   if (!(await row('Aktywny zakwas łącznie').innerText()).includes('202')) throw new Error('Aktywny zakwas powinien mieć ok. 202 g');
   const totalText = await row('Masa całkowita').innerText();
-  if (!totalText.includes('12 986') && !totalText.includes('12986')) throw new Error('Masa końcowa powinna wynosić ok. 12 986,5 g bez podwójnego liczenia mąki i wody');
+  if (!totalText.includes('12 987') && !totalText.includes('12987')) throw new Error('Masa końcowa powinna zaokrąglać się do 12 987 g bez podwójnego liczenia mąki i wody');
   await page.getByLabel('Zakwas macierzysty procent mąki').fill('5');
   if (!(await page.getByLabel('Zakwas macierzysty procent mąki').inputValue()).startsWith('1')) throw new Error('Pole zakwasu nie ogranicza wartości do 1%');
 
