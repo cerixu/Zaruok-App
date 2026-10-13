@@ -221,29 +221,45 @@ export function inventoryView() {
   }
 
   async function openScanner() {
-    let active = true, stream = null, torch = false;
+    let active = true, accepting = false, stream = null, torch = false;
     const video = h('video', { class: 'scanner-video', autoplay: true, playsinline: true, muted: true });
     const code = textInput({ label: 'Kod EAN', placeholder: 'Zeskanuj lub wpisz kod', inputmode: 'numeric' });
     const status = h('p', { class: 'scanner-status muted', 'aria-live': 'polite' }, 'Uruchamiam kamerę…');
     const torchBtn = button('Latarka', { kind: 'ghost', icon: 'flashlight', onClick: async () => {
       const track = stream && stream.getVideoTracks()[0];
-      if (!track) return;
+      if (!track || torchBtn.disabled || !active) return;
+      const nextTorch = !torch;
       try {
-        torch = !torch;
-        await track.applyConstraints({ advanced: [{ torch }] });
-        torchBtn.textContent = torch ? 'Wyłącz latarkę' : 'Latarka';
-      } catch (_) { toast('Latarka nie jest obsługiwana przez tę kamerę'); }
+        await track.applyConstraints({ advanced: [{ torch: nextTorch }] });
+        if (!active) return;
+        torch = nextTorch;
+        // The shared button helper keeps its SVG icon next to a text span.
+        // Updating textContent on the button would delete that icon.
+        const label = torchBtn.querySelector('span');
+        if (label) label.textContent = torch ? 'Wyłącz latarkę' : 'Latarka';
+      } catch (_) {
+        if (active) toast('Latarka nie jest obsługiwana przez tę kamerę');
+      }
     } });
-    const stop = () => {
-      active = false;
+    const stopCamera = () => {
       if (stream) stream.getTracks().forEach((t) => t.stop());
       stream = null;
       video.srcObject = null;
     };
+    const stop = () => {
+      active = false;
+      stopCamera();
+    };
     const acceptCode = async (raw) => {
+      if (!active || accepting) return false;
       const value = String(raw || '').replace(/\D/g, '');
-      if (!/^\d{8}$|^\d{12,14}$/.test(value)) { toast('Wpisz prawidłowy kod EAN/UPC', { type: 'error' }); return false; }
-      active = false; stop();
+      if (!/^\d{8}$|^\d{12,14}$/.test(value)) {
+        toast('Wpisz prawidłowy kod EAN/UPC', { type: 'error' });
+        return false;
+      }
+      accepting = true;
+      active = false;
+      stopCamera();
       sh.close('scan');
       const found = await lookupBarcode(value);
       openItemSheet(null, { barcode: value, name: found.name || '' });
@@ -264,9 +280,10 @@ export function inventoryView() {
     try {
       if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) throw new Error('Brak dostępu do kamery w tej przeglądarce.');
       stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: 'environment' }, width: { ideal: 1920 }, height: { ideal: 1080 } }, audio: false });
-      if (!active) { stream.getTracks().forEach((t) => t.stop()); return; }
+      if (!active) { stopCamera(); return; }
       video.srcObject = stream;
       await video.play();
+      if (!active) { stopCamera(); return; }
       status.textContent = 'Skieruj kod kreskowy na środek kadru.';
       const track = stream.getVideoTracks()[0];
       const caps = track && track.getCapabilities ? track.getCapabilities() : {};
@@ -277,6 +294,7 @@ export function inventoryView() {
       }
       const canvas = document.createElement('canvas');
       let lastScanAt = 0;
+      let nativeFrameCount = 0;
       status.textContent = detector
         ? 'Skanuję automatycznie — ustaw kod w środku kadru.'
         : 'Skanuję EAN-13 lokalnie — trzymaj kod poziomo w ramce.';
@@ -290,19 +308,25 @@ export function inventoryView() {
           lastScanAt = Date.now();
           try {
             let raw = '';
+            let fallbackDue = !detector;
             if (detector) {
               try {
                 const codes = await detector.detect(video);
+                if (!active) return;
                 raw = codes && codes.length ? codes[0].rawValue : '';
+                nativeFrameCount += 1;
+                // Native detection runs at full speed; run the heavier local decoder
+                // every third miss as a compatibility fallback, not on every frame.
+                fallbackDue = !raw && nativeFrameCount % 3 === 0;
               } catch (_) {
-                // An available BarcodeDetector can still fail on a given frame/browser.
-                // Disable it after the first failure and continue with the local decoder.
+                // If native detection fails for this browser/device, switch to local scan.
                 detector = null;
+                fallbackDue = true;
               }
             }
-            // Always fall back when the native detector returns no result. Safari/iOS
-            // versions often expose camera APIs but no usable BarcodeDetector support.
-            if (!raw) raw = decodeEAN13Frame(video, canvas) || '';
+            if (!active) return;
+            if (!raw && fallbackDue) raw = decodeEAN13Frame(video, canvas) || '';
+            if (!active) return;
             if (raw) { await acceptCode(raw); return; }
           } catch (_) { /* pomiń klatkę z odbiciem lub rozmyciem */ }
         }
@@ -310,6 +334,10 @@ export function inventoryView() {
       };
       requestAnimationFrame(scanFrame);
     } catch (e) {
+      if (!active) { stopCamera(); return; }
+      // Camera startup can fail after getUserMedia has returned a stream. Stop it
+      // cleanly, but keep the sheet active so manual barcode entry still works.
+      stopCamera();
       status.textContent = 'Nie udało się uruchomić kamery. Możesz wpisać EAN ręcznie.';
       toast(e.message || 'Nie udało się uruchomić kamery', { type: 'error' });
     }
