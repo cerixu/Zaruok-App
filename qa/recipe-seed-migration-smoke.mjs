@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import { migrateSeedRecipe } from '../recipe-migrations.js';
+import { parseSeeds } from '../seeds.js';
 
 const names = [
   {
@@ -46,6 +47,15 @@ assert.equal(migratedRice.notes, oldRice.notes);
 const recipesSource = fs.readFileSync(new URL('../recipes.js', import.meta.url), 'utf8');
 assert.ok(recipesSource.includes("import { migrateSeedRecipe } from './recipe-migrations.js';'));
 assert.ok(recipesSource.includes('migrateSeedRecipe(current, seed)'));
-const parserSource = fs.readFileSync(new URL('../seeds.js', import.meta.url), 'utf8');
-assert.ok(parserSource.includes("if (k === 'id')"));
+const parsed = parseSeeds(`# Ryba z frytkami
+@ id=rcp_seed_fish_and_chips cat=ryby origin=GB
+100 g | Dorsz
+`, {
+  blankRecipe: (recipe) => ({ ...recipe }),
+  blankSection: (name) => ({ name, ingredients: [] }),
+  blankIngredient: (ingredient) => ({ ...ingredient }),
+  blankStep: (text) => ({ text }),
+});
+assert.equal(parsed[0].id, 'rcp_seed_fish_and_chips', 'Parser musi honorować jawne, stabilne ID');
+assert.equal(parsed[0].name, 'Ryba z frytkami');
 console.log('PASS: translated seed migrations preserve stable IDs and user-edited data');
