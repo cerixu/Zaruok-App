@@ -37,14 +37,15 @@ function sorter(kind) {
 
 export function recipesView(query) {
   const f = query && query.get && query.get('f');
+  const pCat = query && query.get && query.get('cat'), pTag = query && query.get && query.get('tag'), pQ = query && query.get && query.get('q');
+  // Jawny deep-link zaczyna się od czystych filtrów; zwykły powrót do /recipes zachowuje stan listy.
+  if (f || pCat || pTag || pQ) Object.assign(vs, { q: '', chip: 'all', tag: '', maxTime: 0, favOnly: false, shown: PAGE });
   if (f === 'fav') { vs.chip = 'fav'; vs.q = ''; }
   else if (f === 'recent') { vs.chip = 'recent'; vs.q = ''; }
   else if (f === 'trad') { vs.chip = 'trad'; vs.q = ''; }
-  const pCat = query && query.get && query.get('cat'), pTag = query && query.get && query.get('tag'), pQ = query && query.get && query.get('q');
   if (pCat) { vs.chip = pCat; vs.q = ''; vs.tag = ''; }
   if (pTag) { vs.tag = pTag; vs.chip = 'all'; vs.q = ''; }
   if (pQ) { vs.q = pQ; vs.chip = 'all'; vs.tag = ''; }
-  if (f || pCat || pTag || pQ) vs.shown = PAGE;
 
   const search = h('input', { class: 'input search-input', type: 'search', placeholder: 'Szukaj…', value: vs.q,
     'aria-label': 'Szukaj', autocomplete: 'off', autocapitalize: 'off', spellcheck: 'false', enterkeyhint: 'search' });
@@ -54,7 +55,6 @@ export function recipesView(query) {
   const filterBtn = iconBtn('filter', 'Filtry', () => openFilters());
   const sortBtn = iconBtn('sort', 'Sortowanie', () => openSort());
   const viewBtn = iconBtn(getSetting('listView') === 'list' ? 'grid' : 'list', 'Zmień widok: kafelki / lista', async () => { await setSetting('listView', getSetting('listView') === 'list' ? 'grid' : 'list'); viewBtn.replaceChildren(icon(getSetting('listView') === 'list' ? 'grid' : 'list', 22)); vs.shown = PAGE; paint(); });
-  const categoriesBtn = iconBtn('grid', 'Otwórz kategorie', () => navigate('/categories'));
   const bar = h('div', { class: 'searchbar' }, searchWrap, filterBtn, sortBtn, viewBtn);
   const sub = h('div', { class: 'subbar' }, bar, chips);
 
@@ -245,6 +245,14 @@ export function openCategoryManager() {
 }
 
 
+/* Liczba receptur — poprawna polska odmiana w widokach mobilnych. */
+function recipeCountLabel(n) {
+  const mod10 = n % 10, mod100 = n % 100;
+  if (n === 1) return '1 receptura';
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return n + ' receptury';
+  return n + ' receptur';
+}
+
 /* ---------- Osobny ekran kategorii: duże, łatwe do trafienia kafelki ---------- */
 export function categoriesView() {
   const count = (id) => listRecipes().filter((r) => r.category === id).length;
@@ -282,7 +290,7 @@ export function categoriesView() {
     grid.replaceChildren(...tiles.map((c) => {
       const btn = h('button', {
         type: 'button', class: 'category-tile' + (c.special ? ' category-tile-special' : ''),
-        'aria-label': c.label + ', ' + c.count + ' receptur',
+        'aria-label': c.label + ', ' + recipeCountLabel(c.count),
         onClick: () => {
           if (c.id === 'all') resetRecipeFilters();
           navigate(c.path);
@@ -290,7 +298,7 @@ export function categoriesView() {
       },
         h('span', { class: 'category-tile-icon', 'aria-hidden': 'true' }, c.icon),
         h('span', { class: 'category-tile-name' }, c.label),
-        h('span', { class: 'category-tile-count' }, String(c.count) + (c.count === 1 ? ' receptura' : ' receptur')),
+        h('span', { class: 'category-tile-count' }, recipeCountLabel(c.count)),
         h('span', { class: 'category-tile-arrow', 'aria-hidden': 'true' }, icon('chevron-right', 17)));
       return h('div', { class: 'category-tile-item', role: 'listitem' }, btn);
     }));
