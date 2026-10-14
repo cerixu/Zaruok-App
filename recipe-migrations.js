@@ -22,7 +22,7 @@ export function migrateSeedRecipe(current, seed) {
   }
 
   if (
-    seed.id === 'rcp_seed_seed_fried_rice' &&
+    seed.name === 'Smażony ryż z jajkiem' &&
     current.description === LEGACY_FRIED_RICE_DESCRIPTION &&
     seed.description !== LEGACY_FRIED_RICE_DESCRIPTION
   ) {
