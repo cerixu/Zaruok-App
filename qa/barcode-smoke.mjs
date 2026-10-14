@@ -13,8 +13,14 @@ ean13 += '101';
 if (ean13.length !== 95) throw new Error('EAN-13 fixture must have 95 modules');
 if (decodeEAN13Bits(ean13) !== '5901234123457') throw new Error('EAN-13 decoder failed the valid checksum fixture');
 
-const invalidEAN13 = ean13.slice(0, 88) + R[6] + '101';
-if (decodeEAN13Bits(invalidEAN13) !== null) throw new Error('EAN-13 decoder accepted an invalid checksum');
+let invalidEAN13 = '101';
+for (let i = 0; i < 6; i++) invalidEAN13 += (parity[i] === 'L' ? L : G)[Number('901234'[i])];
+invalidEAN13 += '01010';
+for (const digit of '123456') invalidEAN13 += R[Number(digit)];
+invalidEAN13 += '101';
+if (invalidEAN13.length !== 95 || decodeEAN13Bits(invalidEAN13) !== null) {
+  throw new Error('EAN-13 decoder accepted an invalid checksum');
+}
 
 const ean8 = '101' + L[9] + L[6] + L[3] + L[8] + '01010' + R[5] + R[0] + R[7] + R[4] + '101';
 if (ean8.length !== 67) throw new Error('EAN-8 fixture must have 67 modules');
