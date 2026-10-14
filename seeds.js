@@ -39,8 +39,13 @@ export function parseSeeds(text, f) {
     } else if (!cur) continue;
     else if (line.startsWith('@ ')) {
       for (const m of line.slice(2).matchAll(/(\w+)(?:=("[^"]*"|\S+))?/g)) {
-        const k = m[1], v = (m[2] || '').replace(/^"|"$/g, '').replace(/_/g, ' ');
-        if (k === 'cat') cur.category = 'cat-' + v;
+        const k = m[1], rawValue = (m[2] || '').replace(/^"|"$/g, '');
+        const v = rawValue.replace(/_/g, ' ');
+        if (k === 'id') {
+          if (!/^rcp_seed_[a-z0-9_]+$/i.test(rawValue)) throw new Error('Nieprawidłowe stałe ID receptury: ' + rawValue);
+          cur.id = rawValue;
+        }
+        else if (k === 'cat') cur.category = 'cat-' + v;
         else if (k === 'origin') cur.origin = v;
         else if (k === 'trad') cur.traditional = true;
         else if (k === 'bakers') cur.bakers = true;
@@ -687,8 +692,8 @@ export const SEED_TEXT = `
 > Piekarnik nagrzej do 200 °C. Łososia posól, popieprz, skrop oliwą.
 > Połóż skórą do dołu, na wierzchu masło, czosnek, plasterki cytryny. Piecz 12–15 minut. Posyp koperkiem.
 
-# Fish and chips
-@ cat=ryby origin=GB trad servings=4 prep=30 cook=25 temp=180_°C art=fish tags=obiad,smażone,angielskie
+# Ryba z frytkami
+@ id=rcp_seed_fish_and_chips cat=ryby origin=GB trad servings=4 prep=30 cook=25 temp=180_°C art=fish tags=obiad,smażone,angielskie
 : Ryba w kruchym cieście piwnym z grubymi frytkami.
 600 g | Filet z dorsza
 190 g | Mąka pszenna
