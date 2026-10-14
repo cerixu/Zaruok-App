@@ -309,10 +309,30 @@ export function inventoryView() {
       const canvas = document.createElement('canvas');
       let lastScanAt = 0;
       let nativeFrameCount = 0;
+      let nativeRequestId = 0;
+      let nativePendingId = 0;
+      let nativeResult = null;
 
       status.textContent = detector
         ? 'Skanuję automatycznie w całym kadrze — nie musisz celować w linię.'
         : 'Skanuję lokalnie w wielu kierunkach — obróć produkt, jeśli trzeba.';
+
+      const startNativeDetection = () => {
+        if (!active || !detector || nativePendingId) return;
+        const requestId = ++nativeRequestId;
+        nativePendingId = requestId;
+        // Do not await detect(video): one slow WebKit detector must never freeze
+        // the scan loop or prevent the local decoder from checking later frames.
+        try {
+          Promise.resolve(detector.detect(video)).then((codes) => {
+            if (active && nativePendingId === requestId) nativeResult = { requestId, codes };
+          }, () => {
+            if (active && nativePendingId === requestId) nativeResult = { requestId, error: true };
+          });
+        } catch (_) {
+          nativeResult = { requestId, error: true };
+        }
+      };
 
       const scheduleScan = () => {
         if (!active) return;
@@ -335,19 +355,28 @@ export function inventoryView() {
               let fallbackDue = !detector;
 
               if (detector) {
-                try {
-                  const codes = await detector.detect(video);
-                  if (!active) return;
-                  const hit = (codes || []).find((item) => /^(?:\d{8}|\d{12,14})$/.test(String(item && item.rawValue || '').replace(/\D/g, '')));
-                  raw = hit ? String(hit.rawValue).replace(/\D/g, '') : '';
-                  nativeFrameCount++;
-                  // Native detection is fast but not uniformly reliable across devices.
-                  // Run the local multi-angle reader every second native miss.
-                  fallbackDue = !raw && nativeFrameCount % 2 === 0;
-                } catch (_) {
-                  detector = null;
+                if (nativeResult && nativeResult.requestId === nativePendingId) {
+                  const result = nativeResult;
+                  nativeResult = null;
+                  nativePendingId = 0;
+                  if (result.error) {
+                    detector = null;
+                    fallbackDue = true;
+                  } else {
+                    const hit = (result.codes || []).find((item) => /^(?:\d{8}|\d{12,14})$/.test(String(item && item.rawValue || '').replace(/\D/g, '')));
+                    raw = hit ? String(hit.rawValue).replace(/\D/g, '') : '';
+                    nativeFrameCount++;
+                    // Native detection remains the fast path; local decoding runs
+                    // on alternating misses and immediately if native detection stalls.
+                    fallbackDue = !raw && nativeFrameCount % 2 === 0;
+                  }
+                } else if (nativePendingId) {
                   fallbackDue = true;
                 }
+
+                // Keep one native task in flight at most. A new request is started
+                // after the previous result is collected, never on top of a slow one.
+                if (detector && !nativePendingId) startNativeDetection();
               }
 
               if (!active) return;
