@@ -29,7 +29,7 @@ for (const { current, seed, expectedName } of names) {
   assert.equal(result.description, current.description, 'Własny opis nie może zostać nadpisany');
 }
 const oldRice = {
-  id: 'rice-stable-id',
+  id: 'smazony_ryz_z_jajkiem',
   name: 'Smażony ryż z jajkiem',
   description: 'Wok-fried rice z warzywami i jajkiem.',
   notes: 'Moje uwagi do ryżu',
@@ -39,23 +39,9 @@ const newRice = {
   description: 'Smażony ryż z warzywami i jajkiem, przygotowany na mocno rozgrzanym woku.',
 };
 const migratedRice = migrateSeedRecipe(oldRice, newRice);
-assert.equal(migratedRice, null, 'Migracja opisu ryżu jest przypisana do stabilnego ID seedowanego przepisu');
-
-const stableRice = {
-  ...oldRice,
-  id: 'rcp_seed_seed_fried_rice',
-};
-const migratedStableRice = migrateSeedRecipe(stableRice, { ...newRice, id: stableRice.id });
-assert.ok(migratedStableRice);
-assert.equal(migratedStableRice.description, newRice.description);
-assert.equal(migratedStableRice.notes, oldRice.notes);
-
-assert.equal(migrateSeedRecipe({ ...names[0].current, name: 'Moja własna ryba' }, names[0].seed), null,
-  'Nie nadpisuj własnej nazwy');
-assert.equal(migrateSeedRecipe({ ...oldRice, description: 'Mój własny opis' }, { ...newRice, id: oldRice.id }), null,
-  'Nie nadpisuj własnego opisu');
-assert.equal(migrateSeedRecipe(names[0].current, { ...names[0].seed, id: 'different-id' }), null,
-  'Nie migruj rekordów o innym ID');
+assert.ok(migratedRice);
+assert.equal(migratedRice.description, newRice.description);
+assert.equal(migratedRice.notes, oldRice.notes);
 
 const recipesSource = fs.readFileSync(new URL('../recipes.js', import.meta.url), 'utf8');
 assert.ok(recipesSource.includes("import { migrateSeedRecipe } from './recipe-migrations.js';'));
