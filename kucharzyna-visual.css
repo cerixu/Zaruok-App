@@ -299,9 +299,25 @@ body {
   --zf-line: rgba(255,255,255,.095);
   --zf-line-soft: rgba(255,255,255,.06);
 }
-:root[data-theme="light"] .start-final,
+:root[data-theme="light"] .start-final {
+
+    --zf-lime: #b96e32;
+    --zf-amber: #b96e32;
+    --zf-coral: #c17a43;
+    --zf-blue: #af8f70;
+    --zf-pink: #c58b61;
+    --zf-violet: #b49a80;
+    --zf-cyan: #bca48c;
+    --zf-orange: #b96e32;
+    --zf-ink: rgba(38,33,29,.94);
+    --zf-soft: rgba(38,33,29,.62);
+    --zf-faint: rgba(38,33,29,.38);
+    --zf-line: rgba(75,55,35,.13);
+    --zf-line-soft: rgba(75,55,35,.08);
+}
 @media (prefers-color-scheme: light) {
   :root[data-theme="auto"] .start-final {
+
     --zf-lime: #b96e32;
     --zf-amber: #b96e32;
     --zf-coral: #c17a43;
