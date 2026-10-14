@@ -604,7 +604,9 @@ body {
     radial-gradient(circle at 100% 0%, rgba(194,122,62,.22), transparent 60%),
     linear-gradient(158deg, color-mix(in srgb, var(--card-a) 88%, #5a3b29), var(--card-b));
 }
-:root[data-theme="light"] .category-tile,
+:root[data-theme="light"] .category-tile {
+  box-shadow: 0 10px 24px rgba(60,40,20,.075), inset 0 1px 0 rgba(255,255,255,.85), inset 0 -1.5px 0 var(--rim);
+}
 @media (prefers-color-scheme: light) {
   :root[data-theme="auto"] .category-tile {
     box-shadow: 0 10px 24px rgba(60,40,20,.075), inset 0 1px 0 rgba(255,255,255,.85), inset 0 -1.5px 0 var(--rim);
