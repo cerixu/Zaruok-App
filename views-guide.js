@@ -66,7 +66,10 @@ export function guideView({ id }) {
   const lastPage = () => stepsCount() + 1;
   const saveSt = debounce(() => { kv.set('guide:' + id, st).catch(() => {}); }, 250);
 
-  const speakBtn = iconBtn(getSetting('guideSpeak') ? 'volume' : 'mute', 'Czytaj kroki na głos', () => toggleSpeak(), getSetting('guideSpeak') ? 'active' : '');
+  const speakOnAtStart = !!getSetting('guideSpeak');
+  const speakBtn = iconBtn(speakOnAtStart ? 'volume' : 'mute',
+    speakOnAtStart ? 'Zatrzymaj czytanie kroków na głos' : 'Włącz czytanie kroków na głos',
+    () => toggleSpeak(), speakOnAtStart ? 'active' : '');
   const s = screen({
     title: r0.name, large: false, cls: 'guide',
     left: iconBtn('x', 'Zamknij tryb prowadzenia', () => close()),
