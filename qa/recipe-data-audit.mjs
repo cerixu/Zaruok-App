@@ -12,7 +12,7 @@ const REQUIRED_TRANSLATIONS = [
   ['Szarpana wieprzowina', 'rcp_seed_pulled_pork'],
   ['Zapiekanka pasterska', 'rcp_seed_shepherd_s_pie'],
 ];
-const BAD_ENGLISH = /\\b(almonds|butter|flour|sugar|cream|cheese|milk|cup|cups|tbsp|tsp|tablespoon|teaspoon|yellow|wok-fried)\\b|\\b(?:pulled\\s+pork|fish\\s+and\\s+chips|shepherd'?s\\s+pie)\\b/i;
+const BAD_ENGLISH = /\b(almonds|butter|flour|sugar|cream|cheese|milk|cup|cups|tbsp|tsp|tablespoon|teaspoon|yellow|wok-fried)\b|\b(?:pulled\s+pork|fish\s+and\s+chips|shepherd'?s\s+pie)\b/i;
 const BAD_QTY_GRAMMAR = [
   /\b[234]\s+łyżka\b/i,
   /\b(?:[5-9]|[1-9]\d+)\s+łyżka\b/i,
