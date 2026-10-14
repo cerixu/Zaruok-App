@@ -351,7 +351,7 @@ try {
   await page.waitForFunction((n) => window.__speechLog.cancelled > n, cancelledBeforeStop, { timeout: 1500 });
   assert(await page.getByRole('button', { name: 'Włącz czytanie kroków na głos' }).count() === 1,
     'Zatrzymanie czytania nie wyłączyło automatycznego czytania następnych kroków.');
-  await page.getByRole('button', { name: 'Dalej', exact: true }).click();
+  await page.locator('.guide-next').click();
   await page.waitForTimeout(100);
   assert(await page.evaluate(() => window.__speechLog.spoken) === spokenBeforeStop,
     'Po zatrzymaniu głosu kolejny krok został automatycznie odczytany.');
