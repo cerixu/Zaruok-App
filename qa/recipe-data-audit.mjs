@@ -7,7 +7,12 @@ if (artKindFor({ name: 'Baba ganoush', category: 'sauce', art: 'sauce:tomato' })
 if (artKindFor({ name: 'Pizza Margherita', category: 'main', art: 'plate' }) !== 'pizza') throw new Error('Pizza Margherita musi używać ilustracji pizzy.');
 const EXPECTED_SOURCE_COUNT = 225;
 const EXPECTED_HAND_COUNT = 3;
-const BAD_ENGLISH = /\b(almonds|butter|flour|sugar|cream|cheese|milk|cup|cups|tbsp|tsp|tablespoon|teaspoon|yellow)\b/i;
+const REQUIRED_TRANSLATIONS = [
+  ['Ryba z frytkami', 'rcp_seed_fish_and_chips'],
+  ['Szarpana wieprzowina', 'rcp_seed_pulled_pork'],
+  ['Zapiekanka pasterska', 'rcp_seed_shepherd_s_pie'],
+];
+const BAD_ENGLISH = /\\b(almonds|butter|flour|sugar|cream|cheese|milk|cup|cups|tbsp|tsp|tablespoon|teaspoon|yellow|wok-fried)\\b|\\b(?:pulled\\s+pork|fish\\s+and\\s+chips|shepherd'?s\\s+pie)\\b/i;
 const BAD_QTY_GRAMMAR = [
   /\b[234]\s+łyżka\b/i,
   /\b(?:[5-9]|[1-9]\d+)\s+łyżka\b/i,
@@ -26,6 +31,13 @@ function normalizeName(s) {
 const issues = [];
 const names = new Map();
 let sourceCount = 0;
+const allSeedSource = SOURCES.map((file) => fs.readFileSync(file, 'utf8')).join('\\n');
+for (const [name, id] of REQUIRED_TRANSLATIONS) {
+  if (!allSeedSource.includes('# ' + name + '\\n')) issues.push('Brak polskiej nazwy receptury: ' + name);
+  if (!allSeedSource.split('\\n').some((line) => line.startsWith('@ ') && line.includes('id=' + id))) {
+    issues.push('Brak zachowanego ID receptury: ' + id);
+  }
+}
 
 for (const file of SOURCES) {
   const text = fs.readFileSync(file, 'utf8');
