@@ -18,6 +18,28 @@ page.on('response', (res) => { if (/\\.js(?:\\?|$)/.test(res.url()) && !res.ok()
 page.on('console', (m) => { if (m.type() === 'error') errors.push('CONSOLE ' + m.text() + ' @ ' + JSON.stringify(m.location())); });
 page.on('requestfailed', (r) => errors.push('REQUESTFAIL ' + r.url() + ' ' + (r.failure()?.errorText || '')));
 page.on('response', (r) => { if (r.status() >= 400) errors.push('HTTP ' + r.status() + ' ' + r.url()); });
+await page.addInitScript(() => {
+  window.__speechLog = { spoken: 0, cancelled: 0, lastText: '' };
+  class TestSpeechUtterance {
+    constructor(text) { this.text = text; this.lang = ''; this.rate = 1; this.voice = null; }
+  }
+  Object.defineProperty(window, 'SpeechSynthesisUtterance', {
+    configurable: true, writable: true, value: TestSpeechUtterance,
+  });
+  const engine = {
+    speaking: false, pending: false, paused: false,
+    getVoices: () => [{ lang: 'pl-PL', name: 'Test Polish voice' }],
+    speak(utterance) {
+      this.speaking = true;
+      window.__speechLog.spoken++;
+      window.__speechLog.lastText = utterance.text;
+    },
+    cancel() { this.speaking = false; this.pending = false; window.__speechLog.cancelled++; },
+    pause() { this.paused = true; },
+    resume() { this.paused = false; },
+  };
+  Object.defineProperty(window, 'speechSynthesis', { configurable: true, writable: true, value: engine });
+});
 
 function assert(ok, message) {
   if (!ok) throw new Error(message);
@@ -310,6 +332,29 @@ try {
   assert(await page.locator('.guide').count(), 'Nie otworzył się widok prowadzenia gotowania.');
   const guideServings = await page.locator('.guide .stepper-val').innerText();
   assert(guideServings.includes('1') && guideServings.includes('porcja'), 'Tryb prowadzenia nie startuje na jedną porcję.');
+  const enabledSpeak = page.getByRole('button', { name: 'Zatrzymaj czytanie kroków na głos' });
+  if (await enabledSpeak.count()) {
+    await enabledSpeak.click();
+    await page.getByRole('button', { name: 'Włącz czytanie kroków na głos' }).waitFor({ state: 'visible', timeout: 1500 });
+  }
+  await page.getByRole('button', { name: 'Zaczynamy', exact: true }).click();
+  await page.locator('.guide-speech-actions').waitFor({ state: 'visible', timeout: 5000 });
+  const readCurrentStep = page.getByRole('button', { name: 'Czytaj ten krok', exact: true });
+  const stopReading = page.getByRole('button', { name: 'Zatrzymaj czytanie', exact: true });
+  assert(await readCurrentStep.count() === 1 && await stopReading.count() === 1,
+    'W trybie gotowania brakuje przycisków czytania i zatrzymania kroku.');
+  await readCurrentStep.click();
+  await page.waitForFunction(() => window.__speechLog.spoken > 0, null, { timeout: 1500 });
+  const spokenBeforeStop = await page.evaluate(() => window.__speechLog.spoken);
+  const cancelledBeforeStop = await page.evaluate(() => window.__speechLog.cancelled);
+  await stopReading.click();
+  await page.waitForFunction((n) => window.__speechLog.cancelled > n, cancelledBeforeStop, { timeout: 1500 });
+  assert(await page.getByRole('button', { name: 'Włącz czytanie kroków na głos' }).count() === 1,
+    'Zatrzymanie czytania nie wyłączyło automatycznego czytania następnych kroków.');
+  await page.locator('.guide-next').click();
+  await page.waitForTimeout(100);
+  assert(await page.evaluate(() => window.__speechLog.spoken) === spokenBeforeStop,
+    'Po zatrzymaniu głosu kolejny krok został automatycznie odczytany.');
   await assertNoPageOverflow('Gotowanie');
   await shot('11-cooking.png');
 

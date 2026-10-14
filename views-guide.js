@@ -66,7 +66,10 @@ export function guideView({ id }) {
   const lastPage = () => stepsCount() + 1;
   const saveSt = debounce(() => { kv.set('guide:' + id, st).catch(() => {}); }, 250);
 
-  const speakBtn = iconBtn(getSetting('guideSpeak') ? 'volume' : 'mute', 'Czytaj kroki na głos', () => toggleSpeak(), getSetting('guideSpeak') ? 'active' : '');
+  const speakOnAtStart = !!getSetting('guideSpeak');
+  const speakBtn = iconBtn(speakOnAtStart ? 'volume' : 'mute',
+    speakOnAtStart ? 'Zatrzymaj czytanie kroków na głos' : 'Włącz czytanie kroków na głos',
+    () => toggleSpeak(), speakOnAtStart ? 'active' : '');
   const s = screen({
     title: r0.name, large: false, cls: 'guide',
     left: iconBtn('x', 'Zamknij tryb prowadzenia', () => close()),
@@ -81,13 +84,27 @@ export function guideView({ id }) {
   const bar = h('div', { class: 'guidebar' }, back, next);
   s.el.append(bar);
 
+  function syncSpeakButton(on) {
+    speakBtn.replaceChildren(icon(on ? 'volume' : 'mute', 22));
+    speakBtn.classList.toggle('active', on);
+    const label = on ? 'Zatrzymaj czytanie kroków na głos' : 'Włącz czytanie kroków na głos';
+    speakBtn.setAttribute('aria-label', label);
+    speakBtn.title = label;
+  }
+
   function toggleSpeak() {
     const on = !getSetting('guideSpeak');
     setSetting('guideSpeak', on);
-    speakBtn.replaceChildren(icon(on ? 'volume' : 'mute', 22));
-    speakBtn.classList.toggle('active', on);
+    syncSpeakButton(on);
     if (on) speakStep(); else stopSpeaking();
     toast(on ? 'Czytam kroki na głos' : 'Czytanie wyłączone');
+  }
+
+  function stopGuideReading() {
+    stopSpeaking();
+    if (getSetting('guideSpeak')) setSetting('guideSpeak', false);
+    syncSpeakButton(false);
+    toast('Zatrzymano czytanie kroków');
   }
 
   const stepText = () => { const n = st.page - 1; return view().steps[n] ? view().steps[n].text : ''; };
@@ -162,7 +179,9 @@ export function guideView({ id }) {
         h('div', { class: 'guide-chips' }, ings.map((i) => { const q = qtyParts(i); return h('span', { class: 'gchip' }, h('span', null, i.name.replace(/\s*\(.*\)\s*/, '')), h('strong', { class: 'num' }, [q.num, q.unit].filter(Boolean).join('\u00a0'))); }))) : null,
       times.length ? h('div', { class: 'guide-timers' }, times.map((t) => button(`Minutnik: ${t.label}`, { icon: 'timer', kind: 'primary', block: true,
         onClick: () => { startTimer(t.sec, `krok ${st.page} · ${base().name}`); toast(`Minutnik: ${t.label}`); } }))) : null,
-      speechSupported() ? button('Czytaj ten krok', { icon: 'volume', kind: 'ghost', onClick: () => speak(`Krok ${st.page}. ${step.text}`) }) : null);
+      speechSupported() ? h('div', { class: 'guide-speech-actions' },
+        button('Czytaj ten krok', { icon: 'volume', kind: 'ghost', onClick: () => speak(`Krok ${st.page}. ${step.text}`) }),
+        button('Zatrzymaj czytanie', { kind: 'ghost', onClick: stopGuideReading })) : null);
   }
 
   let notes = base().notes || '';
