@@ -48,81 +48,188 @@ function otsuThreshold(values) {
   return threshold;
 }
 
-/** Reads a live frame at several rows/scales. Works without BarcodeDetector (Safari/iOS). */
+/** EAN-8 software fallback for browsers without BarcodeDetector. */
+export function decodeEAN8Bits(bits) {
+  if (typeof bits !== 'string' || bits.length !== 67 || !/^[01]+$/.test(bits)) return null;
+  if (bits.slice(0, 3) !== '101' || bits.slice(31, 36) !== '01010' || bits.slice(64, 67) !== '101') return null;
+  let digits = '';
+  for (let i = 0; i < 4; i++) {
+    const digit = L.indexOf(bits.slice(3 + i * 7, 10 + i * 7));
+    if (digit < 0) return null;
+    digits += String(digit);
+  }
+  for (let i = 0; i < 4; i++) {
+    const digit = R.indexOf(bits.slice(36 + i * 7, 43 + i * 7));
+    if (digit < 0) return null;
+    digits += String(digit);
+  }
+  let sum = 0;
+  for (let i = 0; i < 7; i++) sum += Number(digits[i]) * (i % 2 === 0 ? 3 : 1);
+  return (10 - (sum % 10)) % 10 === Number(digits[7]) ? digits : null;
+}
+
+const MODULE_SCALES = [0.94, 0.97, 1, 1.03, 1.06];
+const MODULE_PHASES = [-0.2, 0, 0.2];
+
+/** Decode one grayscale scanline. Reverse reading handles a barcode turned 180°. */
+function decodeGrayLine(values) {
+  const length = values.length;
+  if (length < 180) return null;
+
+  let min = 255, max = 0;
+  for (let i = 0; i < length; i++) {
+    const value = values[i];
+    if (value < min) min = value;
+    if (value > max) max = value;
+  }
+  if (max - min < 24) return null;
+
+  const thresholds = [...new Set([otsuThreshold(values), Math.round((min + max) / 2)])];
+  const bits = new Uint8Array(length);
+
+  for (const threshold of thresholds) {
+    for (let i = 0; i < length; i++) bits[i] = values[i] <= threshold ? 1 : 0;
+
+    for (const reverse of [false, true]) {
+      const runs = [];
+      let color = bits[reverse ? length - 1 : 0];
+      let runStart = 0;
+
+      for (let i = 1; i <= length; i++) {
+        const next = i === length ? -1 : bits[reverse ? length - 1 - i : i];
+        if (i === length || next !== color) {
+          runs.push({ color, start: runStart, length: i - runStart });
+          color = next;
+          runStart = i;
+        }
+      }
+
+      // Guard 101 gives a local module-width estimate without guessing across
+      // the entire image. The checksum remains the final acceptance criterion.
+      for (let i = 1; i + 2 < runs.length; i++) {
+        const a = runs[i], b = runs[i + 1], c = runs[i + 2];
+        if (a.color !== 1 || b.color !== 0 || c.color !== 1) continue;
+
+        const module = (a.length + b.length + c.length) / 3;
+        if (module < 1.05) continue;
+
+        const smallest = Math.min(a.length, b.length, c.length);
+        const largest = Math.max(a.length, b.length, c.length);
+        if (largest / Math.max(1, smallest) > 2.25) continue;
+
+        const quiet = runs[i - 1];
+        // Normally a white quiet zone is required. At the edge of the camera
+        // frame allow it to be clipped; the complete guard + checksum must pass.
+        if ((!quiet || quiet.color !== 0 || quiet.length < module * 3) && a.start > module * 1.5) continue;
+
+        for (const bitLength of [95, 67]) {
+          for (const scale of MODULE_SCALES) {
+            const step = module * scale;
+            if (a.start + step * bitLength > length + module * 0.1) continue;
+
+            for (const phase of MODULE_PHASES) {
+              const origin = a.start + module * phase;
+              if (origin < 0 || origin + step * bitLength > length) continue;
+              let sampled = '';
+              for (let m = 0; m < bitLength; m++) {
+                const x = Math.min(length - 1, Math.max(0, Math.floor(origin + (m + 0.5) * step)));
+                sampled += bits[reverse ? length - 1 - x : x] ? '1' : '0';
+              }
+
+              const decoded = bitLength === 95
+                ? decodeEAN13Bits(sampled)
+                : decodeEAN8Bits(sampled);
+              if (decoded) {
+                // UPC-A is encoded as a leading-zero EAN-13 bit pattern.
+                // Return the printed 12-digit UPC-A string for product lookup.
+                if (bitLength === 95 && decoded.length === 13 && decoded[0] === '0') return decoded.slice(1);
+                return decoded;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  return null;
+}
+
+/**
+ * Scan the full camera frame at multiple angles and offsets.
+ * This supports barcodes anywhere in view, rotated/tilted labels and cameras
+ * that do not expose the native BarcodeDetector API (e.g. iOS Safari).
+ */
 export function decodeEAN13Frame(video, canvas) {
   if (!video || !canvas || video.readyState < 2 || !video.videoWidth || !video.videoHeight) return null;
-  // Keep enough horizontal pixels for narrow EAN bars even when the camera feed is HD.
-  const width = 960;
+
+  // Keep more pixels for small retail labels while avoiding a huge 4K canvas.
+  const width = Math.min(1280, Math.max(960, video.videoWidth));
   const height = Math.max(320, Math.round(width * video.videoHeight / video.videoWidth));
   canvas.width = width;
   canvas.height = height;
+
   const ctx = canvas.getContext('2d', { willReadFrequently: true });
   if (!ctx) return null;
   ctx.drawImage(video, 0, 0, width, height);
 
-  // A label's barcode may sit above/below the exact centre. Try several scanlines.
-  const rows = [.28, .34, .40, .46, .50, .54, .60, .66, .72];
-  const scaleAdjustments = [.92, .96, 1, 1.04, 1.08];
-  const phaseAdjustments = [-.18, 0, .18];
+  let pixels;
+  try {
+    pixels = ctx.getImageData(0, 0, width, height).data;
+  } catch (_) {
+    return null;
+  }
 
-  for (const fraction of rows) {
-    const y = Math.max(0, Math.min(height - 1, Math.round(height * fraction)));
-    const pixels = ctx.getImageData(0, y, width, 1).data;
-    const values = new Uint8Array(width);
-    let min = 255, max = 0;
-    for (let x = 0; x < width; x++) {
-      const p = x * 4;
-      const value = Math.round(pixels[p] * .299 + pixels[p + 1] * .587 + pixels[p + 2] * .114);
-      values[x] = value;
-      if (value < min) min = value;
-      if (value > max) max = value;
-    }
-    if (max - min < 28) continue;
+  // Convert the frame once; reading lots of individual rows from Canvas is
+  // significantly slower on mobile Safari than scanning a single typed array.
+  const gray = new Uint8Array(width * height);
+  for (let src = 0, dst = 0; dst < gray.length; dst++, src += 4) {
+    gray[dst] = (pixels[src] * 77 + pixels[src + 1] * 150 + pixels[src + 2] * 29) >> 8;
+  }
 
-    // Otsu can legitimately return 0 for a clean black/white frame. Use <= below,
-    // otherwise perfectly black bars are classified as white and no scan can succeed.
-    const thresholds = [...new Set([otsuThreshold(values), Math.round((min + max) / 2)])];
-    for (const threshold of thresholds) {
-      const bits = Array.from(values, (v) => v <= threshold ? 1 : 0);
-      const runs = [];
-      let color = bits[0], start = 0;
-      for (let x = 1; x <= width; x++) {
-        if (x === width || bits[x] !== color) {
-          runs.push({ color, start, length: x - start });
-          color = bits[x];
-          start = x;
-        }
+  const angles = [0, 90, 15, 165, 30, 150, 45, 135, 60, 120, 75, 105];
+  const offsets = [0, -0.16, 0.16, -0.32, 0.32, -0.48, 0.48, -0.64, 0.64, -0.8, 0.8];
+  const centerX = (width - 1) / 2;
+  const centerY = (height - 1) / 2;
+
+  for (const degrees of angles) {
+    const angle = degrees * Math.PI / 180;
+    const dx = Math.cos(angle), dy = Math.sin(angle);
+    const nx = -dy, ny = dx;
+    const normalRadius = (Math.abs(nx) * (width - 1) + Math.abs(ny) * (height - 1)) / 2;
+
+    for (const fraction of offsets) {
+      const x0 = centerX + nx * normalRadius * fraction;
+      const y0 = centerY + ny * normalRadius * fraction;
+      let tMin = -Infinity, tMax = Infinity;
+
+      if (Math.abs(dx) < 1e-6) {
+        if (x0 < 0 || x0 >= width) continue;
+      } else {
+        const ta = (0 - x0) / dx, tb = (width - 1 - x0) / dx;
+        tMin = Math.max(tMin, Math.min(ta, tb));
+        tMax = Math.min(tMax, Math.max(ta, tb));
+      }
+      if (Math.abs(dy) < 1e-6) {
+        if (y0 < 0 || y0 >= height) continue;
+      } else {
+        const ta = (0 - y0) / dy, tb = (height - 1 - y0) / dy;
+        tMin = Math.max(tMin, Math.min(ta, tb));
+        tMax = Math.min(tMax, Math.max(ta, tb));
       }
 
-      // Start guard is 101. Slight blur/uneven exposure can distort the three run
-      // widths, so fit a small range of module widths and sampling phases.
-      for (let i = 0; i + 2 < runs.length; i++) {
-        const a = runs[i], b = runs[i + 1], c = runs[i + 2];
-        if (a.color !== 1 || b.color !== 0 || c.color !== 1) continue;
-        const module = (a.length + b.length + c.length) / 3;
-        const quiet = runs[i - 1];
-        // EAN-13 has a clear white quiet zone before the start guard; it also
-        // rejects most incidental 101 patterns in text, glare and label art.
-        if (!quiet || quiet.color !== 0 || quiet.length < module * 5) continue;
-        const smallest = Math.min(a.length, b.length, c.length);
-        const largest = Math.max(a.length, b.length, c.length);
-        if (module < 1.1 || largest / Math.max(1, smallest) > 1.9 || a.start + module * 95 > width) continue;
-
-        for (const scale of scaleAdjustments) {
-          const step = module * scale;
-          if (a.start + step * 95 > width) continue;
-          for (const phase of phaseAdjustments) {
-            let sampled = '';
-            const origin = a.start + module * phase;
-            for (let m = 0; m < 95; m++) {
-              const x = Math.max(0, Math.min(width - 1, Math.floor(origin + (m + .5) * step)));
-              sampled += bits[x] ? '1' : '0';
-            }
-            const decoded = decodeEAN13Bits(sampled);
-            if (decoded) return decoded;
-          }
-        }
+      const firstT = Math.ceil(tMin), lastT = Math.floor(tMax);
+      const lineLength = lastT - firstT + 1;
+      if (lineLength < 180) continue;
+      const values = new Uint8Array(lineLength);
+      for (let i = 0; i < lineLength; i++) {
+        const t = firstT + i;
+        const x = Math.max(0, Math.min(width - 1, Math.round(x0 + dx * t)));
+        const y = Math.max(0, Math.min(height - 1, Math.round(y0 + dy * t)));
+        values[i] = gray[y * width + x];
       }
+
+      const decoded = decodeGrayLine(values);
+      if (decoded) return decoded;
     }
   }
   return null;
