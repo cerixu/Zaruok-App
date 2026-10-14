@@ -106,7 +106,7 @@ function decodeGrayLine(values) {
 
       // Guard 101 gives a local module-width estimate without guessing across
       // the entire image. The checksum remains the final acceptance criterion.
-      for (let i = 1; i + 2 < runs.length; i++) {
+      for (let i = 0; i + 2 < runs.length; i++) {
         const a = runs[i], b = runs[i + 1], c = runs[i + 2];
         if (a.color !== 1 || b.color !== 0 || c.color !== 1) continue;
 
