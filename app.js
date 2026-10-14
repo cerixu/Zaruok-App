@@ -12,7 +12,7 @@ import { registerSW, requestPersist } from './pwa.js';
 import { mountTimerPill, initTimers, openTimersSheet } from './timers.js';
 
 import { startView } from './views-start.js';
-import { recipesView, resetRecipeFilters } from './views-recipes.js';
+import { recipesView, categoriesView, resetRecipeFilters } from './views-recipes.js';
 import { detailView } from './views-detail.js';
 import { editorView } from './views-editor.js';
 import { cookView } from './views-cook.js';
@@ -136,6 +136,7 @@ function watchNetwork() {
 
 route('/', () => startView(), { tab: 'start' });
 route('/recipes', (p, q) => recipesView(q), { tab: 'recipes' });
+route('/categories', () => categoriesView(), { tab: 'recipes' });
 route('/recipe/:id', (p) => detailView(p), { tab: 'recipes' });
 route('/edit/:id', (p) => editorView(p), { tab: 'recipes', tabs: false });
 route('/new', (p, q) => editorView({ id: null }, q), { tab: 'recipes', tabs: false });
