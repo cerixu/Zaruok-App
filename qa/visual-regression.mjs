@@ -333,7 +333,10 @@ try {
   const guideServings = await page.locator('.guide .stepper-val').innerText();
   assert(guideServings.includes('1') && guideServings.includes('porcja'), 'Tryb prowadzenia nie startuje na jedną porcję.');
   const enabledSpeak = page.getByRole('button', { name: 'Zatrzymaj czytanie kroków na głos' });
-  if (await enabledSpeak.count()) await enabledSpeak.click();
+  if (await enabledSpeak.count()) {
+    await enabledSpeak.click();
+    await page.getByRole('button', { name: 'Włącz czytanie kroków na głos' }).waitFor({ state: 'visible', timeout: 1500 });
+  }
   await page.getByRole('button', { name: 'Zaczynamy', exact: true }).click();
   await page.locator('.guide-speech-actions').waitFor({ state: 'visible', timeout: 5000 });
   const readCurrentStep = page.getByRole('button', { name: 'Czytaj ten krok', exact: true });
