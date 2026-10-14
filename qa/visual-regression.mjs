@@ -294,6 +294,7 @@ try {
   assert(await page.locator('.category-tile').count() === 1, 'Wyszukiwanie kategorii nie filtruje kafelków.');
   await page.locator('.category-tile').click();
   await page.waitForFunction(() => location.hash === '#/recipes', null, { timeout: 5000 });
+  await page.waitForSelector('.recipes', { state: 'visible', timeout: 5000 });
   assert(await page.locator('.recipes').count() === 1, 'Kafelek „Wszystkie receptury” nie wraca do listy receptur.');
   await assertNoPageOverflow('Kategorie');
 
