@@ -68,8 +68,8 @@ export function decodeEAN8Bits(bits) {
   return (10 - (sum % 10)) % 10 === Number(digits[7]) ? digits : null;
 }
 
-const MODULE_SCALES = [0.94, 0.97, 1, 1.03, 1.06];
-const MODULE_PHASES = [-0.2, 0, 0.2];
+const MODULE_SCALES = [0.9, 0.95, 0.98, 1, 1.02, 1.05, 1.1];
+const MODULE_PHASES = [-0.3, 0, 0.3];
 
 /** Decode one grayscale scanline. Reverse reading handles a barcode turned 180°. */
 function decodeGrayLine(values) {
@@ -115,7 +115,7 @@ function decodeGrayLine(values) {
 
         const smallest = Math.min(a.length, b.length, c.length);
         const largest = Math.max(a.length, b.length, c.length);
-        if (largest / Math.max(1, smallest) > 2.25) continue;
+        if (largest / Math.max(1, smallest) > 2.8) continue;
 
         const quiet = runs[i - 1];
         // Normally a white quiet zone is required. At the edge of the camera
@@ -223,9 +223,14 @@ export function decodeEAN13Frame(video, canvas) {
       const values = new Uint8Array(lineLength);
       for (let i = 0; i < lineLength; i++) {
         const t = firstT + i;
-        const x = Math.max(0, Math.min(width - 1, Math.round(x0 + dx * t)));
-        const y = Math.max(0, Math.min(height - 1, Math.round(y0 + dy * t)));
-        values[i] = gray[y * width + x];
+        const px = Math.max(0, Math.min(width - 1, x0 + dx * t));
+        const py = Math.max(0, Math.min(height - 1, y0 + dy * t));
+        const x = Math.floor(px), y = Math.floor(py);
+        const x1 = Math.min(width - 1, x + 1), y1 = Math.min(height - 1, y + 1);
+        const fx = px - x, fy = py - y;
+        const top = gray[y * width + x] * (1 - fx) + gray[y * width + x1] * fx;
+        const bottom = gray[y1 * width + x] * (1 - fx) + gray[y1 * width + x1] * fx;
+        values[i] = Math.round(top * (1 - fy) + bottom * fy);
       }
 
       const decoded = decodeGrayLine(values);
