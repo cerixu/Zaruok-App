@@ -279,15 +279,29 @@ export function inventoryView() {
     });
     try {
       if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) throw new Error('Brak dostępu do kamery w tej przeglądarce.');
-      stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: 'environment' }, width: { ideal: 1920 }, height: { ideal: 1080 } }, audio: false });
+      stream = await navigator.mediaDevices.getUserMedia({
+        video: {
+          facingMode: { ideal: 'environment' },
+          width: { ideal: 1280 }, height: { ideal: 720 },
+          frameRate: { ideal: 30, max: 30 },
+        },
+        audio: false,
+      });
       if (!active) { stopCamera(); return; }
       video.srcObject = stream;
       await video.play();
       if (!active) { stopCamera(); return; }
-      status.textContent = 'Skieruj kod kreskowy na środek kadru.';
+      const frame = video.closest('.scanner-frame');
+      if (frame && video.videoWidth && video.videoHeight) frame.style.aspectRatio = video.videoWidth + ' / ' + video.videoHeight;
+      status.textContent = 'Szukam kodu w całym kadrze — możesz obrócić produkt lub telefon.';
       const track = stream.getVideoTracks()[0];
-      const caps = track && track.getCapabilities ? track.getCapabilities() : {};
+      let caps = {};
+      try { caps = track && track.getCapabilities ? track.getCapabilities() : {}; } catch (_) {}
       torchBtn.disabled = !(caps && caps.torch);
+      // Keep the camera continuously focused when the device exposes that control.
+      if (track && Array.isArray(caps.focusMode) && caps.focusMode.includes('continuous')) {
+        try { await track.applyConstraints({ advanced: [{ focusMode: 'continuous' }] }); } catch (_) {}
+      }
       let detector = null;
       if (typeof window.BarcodeDetector === 'function') {
         try { detector = new window.BarcodeDetector({ formats: ['ean_13', 'ean_8', 'upc_a', 'upc_e'] }); } catch (_) { detector = null; }
@@ -295,44 +309,62 @@ export function inventoryView() {
       const canvas = document.createElement('canvas');
       let lastScanAt = 0;
       let nativeFrameCount = 0;
+
       status.textContent = detector
-        ? 'Skanuję automatycznie — ustaw kod w środku kadru.'
-        : 'Skanuję EAN-13 lokalnie — trzymaj kod poziomo w ramce.';
+        ? 'Skanuję automatycznie w całym kadrze — nie musisz celować w linię.'
+        : 'Skanuję lokalnie w wielu kierunkach — obróć produkt, jeśli trzeba.';
+
+      const scheduleScan = () => {
+        if (!active) return;
+        // Use actual camera-frame callbacks when available; RAF is the Safari fallback.
+        if (typeof video.requestVideoFrameCallback === 'function') {
+          video.requestVideoFrameCallback(() => { void scanFrame(); });
+        } else {
+          requestAnimationFrame(() => { void scanFrame(); });
+        }
+      };
+
       const scanFrame = async () => {
         if (!active) return;
-        if (video.readyState < 2 || video.videoWidth < 1 || video.videoHeight < 1) {
-          requestAnimationFrame(scanFrame);
-          return;
-        }
-        if (Date.now() - lastScanAt >= 120) {
-          lastScanAt = Date.now();
-          try {
-            let raw = '';
-            let fallbackDue = !detector;
-            if (detector) {
-              try {
-                const codes = await detector.detect(video);
-                if (!active) return;
-                raw = codes && codes.length ? codes[0].rawValue : '';
-                nativeFrameCount += 1;
-                // Native detection runs at full speed; run the heavier local decoder
-                // every third miss as a compatibility fallback, not on every frame.
-                fallbackDue = !raw && nativeFrameCount % 3 === 0;
-              } catch (_) {
-                // If native detection fails for this browser/device, switch to local scan.
-                detector = null;
-                fallbackDue = true;
+        try {
+          if (video.readyState >= 2 && video.videoWidth > 0 && video.videoHeight > 0) {
+            const now = performance.now ? performance.now() : Date.now();
+            if (now - lastScanAt >= (detector ? 75 : 90)) {
+              lastScanAt = now;
+              let raw = '';
+              let fallbackDue = !detector;
+
+              if (detector) {
+                try {
+                  const codes = await detector.detect(video);
+                  if (!active) return;
+                  const hit = (codes || []).find((item) => /^(?:\d{8}|\d{12,14})$/.test(String(item && item.rawValue || '').replace(/\D/g, '')));
+                  raw = hit ? String(hit.rawValue).replace(/\D/g, '') : '';
+                  nativeFrameCount++;
+                  // Native detection is fast but not uniformly reliable across devices.
+                  // Run the local multi-angle reader every second native miss.
+                  fallbackDue = !raw && nativeFrameCount % 2 === 0;
+                } catch (_) {
+                  detector = null;
+                  fallbackDue = true;
+                }
+              }
+
+              if (!active) return;
+              if (!raw && fallbackDue) raw = decodeEAN13Frame(video, canvas) || '';
+              if (!active) return;
+              if (raw) {
+                await acceptCode(raw);
+                return;
               }
             }
-            if (!active) return;
-            if (!raw && fallbackDue) raw = decodeEAN13Frame(video, canvas) || '';
-            if (!active) return;
-            if (raw) { await acceptCode(raw); return; }
-          } catch (_) { /* pomiń klatkę z odbiciem lub rozmyciem */ }
+          }
+        } catch (_) {
+          // Skip this frame (blur, glare or unsupported camera pixel format) and keep scanning.
         }
-        if (active) requestAnimationFrame(scanFrame);
+        scheduleScan();
       };
-      requestAnimationFrame(scanFrame);
+      scheduleScan();
     } catch (e) {
       if (!active) { stopCamera(); return; }
       // Camera startup can fail after getUserMedia has returned a stream. Stop it
