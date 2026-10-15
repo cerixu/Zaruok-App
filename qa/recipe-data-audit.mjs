@@ -29,8 +29,24 @@ let sourceCount = 0;
 
 for (const file of SOURCES) {
   const text = fs.readFileSync(file, 'utf8');
+  const recipeBlocks = text.split(/\\n(?=# )/).filter((block) => block.startsWith('# '));
   const recipeNames = [...text.matchAll(/^# (.+)$/gm)].map((m) => m[1].trim());
   sourceCount += recipeNames.length;
+
+  for (const block of recipeBlocks) {
+    const lines = block.split('\\n');
+    const name = lines[0].slice(2).trim();
+    const ingredientLines = lines.filter((line) => line.includes('|') && !line.startsWith('@ '));
+    const steps = lines.filter((line) => line.startsWith('> ')).map((line) => line.slice(2).trim());
+    if (!lines.some((line) => line.startsWith('@ '))) issues.push(file + ': brak metadanych: ' + name);
+    if (!lines.some((line) => line.startsWith(': '))) issues.push(file + ': brak opisu: ' + name);
+    if (ingredientLines.length < 2) issues.push(file + ': mniej niż 2 składniki: ' + name);
+    if (!steps.length) issues.push(file + ': brak instrukcji: ' + name);
+    const normalizedSteps = steps.map((step) => step.toLocaleLowerCase('pl').replace(/\\s+/g, ' ').trim());
+    if (normalizedSteps.some((step, idx) => normalizedSteps.indexOf(step) !== idx)) {
+      issues.push(file + ': powtórzony krok w tej samej recepturze: ' + name);
+    }
+  }
 
   if (!recipeNames.length) issues.push(file + ': brak receptur');
   recipeNames.forEach((name, idx) => {
@@ -44,17 +60,24 @@ for (const file of SOURCES) {
   const lines = text.split('\n');
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i].trim();
-    if (!line || line.startsWith('# ') || line.startsWith('@ ') || line.startsWith(': ') || line.startsWith('## ') || line.startsWith('> ')) continue;
+    if (!line) continue;
+    if (line.startsWith('> ')) {
+      if (BAD_ENGLISH.test(line.slice(2))) issues.push(file + ':' + (i + 1) + ': angielski fragment w kroku: "' + line.slice(2) + '"');
+      continue;
+    }
+    if (line.startsWith(': ')) {
+      if (BAD_ENGLISH.test(line.slice(2))) issues.push(file + ':' + (i + 1) + ': angielski fragment w opisie: "' + line.slice(2) + '"');
+      continue;
+    }
+    if (line.startsWith('# ') || line.startsWith('@ ') || line.startsWith('## ')) continue;
     if (line.includes('|')) {
       const parts = line.split('|');
       const left = parts[0].trim();
       const ing = parts.slice(1).join('|').trim();
       if (!ing) issues.push(file + ':' + (i + 1) + ': pusty składnik');
-      if (BAD_ENGLISH.test(ing)) issues.push(file + ':' + (i + 1) + ': angielski fragment w składniku/opisie: "' + ing + '"');
+      if (BAD_ENGLISH.test(ing)) issues.push(file + ':' + (i + 1) + ': angielski fragment w składniku: "' + ing + '"');
       BAD_QTY_GRAMMAR.forEach((re) => { if (re.test(left)) issues.push(file + ':' + (i + 1) + ': podejrzana odmiana jednostki: "' + left + '"'); });
     }
-    if (line.startsWith('> ') && BAD_ENGLISH.test(line)) issues.push(file + ':' + (i + 1) + ': angielski fragment w kroku: "' + line.slice(2) + '"');
-    if (line.startsWith(': ') && BAD_ENGLISH.test(line)) issues.push(file + ':' + (i + 1) + ': angielski fragment w opisie: "' + line.slice(2) + '"');
   }
 }
 
@@ -67,7 +90,13 @@ for (const block of curatedBlocks) {
   const steps = [...block.matchAll(/^> (.+)$/gm)].map((m) => m[1].trim());
   if (ingredients.length < 3) issues.push('Receptura bez minimum 3 składników: ' + name);
   if (steps.length < 4) issues.push('Za mało kroków w recepturze: ' + name);
-  if (steps.some((step) => GENERIC_STEPS.test(step))) issues.push('Pozostał generyczny krok w recepturze: ' + name);
+  if (steps.some((step) => GENERIC_STEPS.some((pattern) => pattern.test(step)))) issues.push('Pozostał generyczny krok w recepturze: ' + name);
+  const meta = block.split('\\n').find((line) => line.startsWith('@ ')) || '';
+  if (/\\btags=wok\\b/.test(meta)) {
+    const firstIngredient = ingredients[0]?.split('|').slice(1).join('|').trim() || '';
+    const expectedCategory = /krewetki/i.test(firstIngredient) ? 'owoce-morza' : /tofu/i.test(firstIngredient) ? 'warzywa' : 'mieso';
+    if (!new RegExp('\\\\bcat=' + expectedCategory + '\\\\b').test(meta)) issues.push('Nieprawidłowa kategoria dania z woka: ' + name);
+  }
 }
 
 const handSource = fs.readFileSync('recipes.js', 'utf8');

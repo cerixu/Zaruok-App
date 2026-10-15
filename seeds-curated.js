@@ -293,7 +293,7 @@ export const SEED_CURATED = `
 > Odczekaj 5 minut przed podaniem.
 
 # Pizza Margherita
-@ cat=pizza origin=IT trad servings=1 prep=10 cook=15 art=pizza tags=tradycyjne,pizza,pieczone,kuchnia-włoska
+@ cat=pizza origin=IT trad servings=1 prep=10 ferm=120 cook=15 art=pizza tags=tradycyjne,pizza,pieczone,kuchnia-włoska
 : Pizza na sosie pomidorowym z mozzarellą i świeżą bazylią.
 110 g | mąka pszenna 00
 70 ml | woda
@@ -303,14 +303,14 @@ export const SEED_CURATED = `
 50 g | sos pomidorowy
 70 g | mozzarella
 4 g | świeża bazylia
-> Rozgrzej piec i kamień lub stal do temperatury przewidzianej dla używanego ciasta. Przygotuj składniki i odsącz mozzarellę, jeśli jest wilgotna.
-> Rozciągnij kulkę ciasta ręcznie, zostawiając nieco grubszy brzeg. Nie dociskaj rantu.
-> Rozprowadź cienką warstwę pomidorów, dodaj mozzarellę i pozostałe dodatki z listy.
-> Piecz na mocno rozgrzanym podłożu, aż spód będzie wypieczony, a rant wyrośnie i się zarumieni. Czas zależy od temperatury pieca.
-> Po wypieku dodaj świeżą bazylię i oliwę, jeśli są w składnikach.
+> W misie wymieszaj mąkę z wodą i drożdżami, dodaj sól, a oliwę wlej pod koniec wyrabiania. Wyrabiaj 8–10 minut, aż ciasto będzie gładkie i sprężyste.
+> Uformuj kulę, przykryj i pozostaw na około 2 godziny w temperaturze pokojowej, aż wyraźnie urośnie. Delikatnie odgazuj i rozciągnij placek, zostawiając grubszy rant.
+> Rozsmaruj cienką warstwę sosu pomidorowego, pozostawiając 1–1,5 cm wolnego rantu. Rozłóż równomiernie: mozzarella.
+> Piecz na mocno nagrzanym kamieniu lub stali do wyrośnięcia rantu i rumianego spodu. W piecu domowym przy 250–300°C zajmuje to zwykle 6–9 minut; w piecu profesjonalnym kontroluj już po 1–3 minutach.
+> Po wypieku dodaj świeża bazylia; podawaj od razu.
 
 # Pizza Marinara
-@ cat=pizza origin=IT trad servings=1 prep=10 cook=15 art=pizza tags=tradycyjne,pizza,pieczone,kuchnia-włoska
+@ cat=pizza origin=IT trad servings=1 prep=10 ferm=120 cook=15 art=pizza tags=tradycyjne,pizza,pieczone,kuchnia-włoska
 : Pizza neapolitańska z sosem pomidorowym, czosnkiem i oregano; bez sera.
 110 g | mąka pszenna 00
 70 ml | woda
@@ -320,14 +320,14 @@ export const SEED_CURATED = `
 50 g | sos pomidorowy
 4 g | czosnek
 1 g | oregano
-> Rozgrzej piec i kamień lub stal do maksymalnej temperatury odpowiedniej dla ciasta.
-> Rozciągnij ciasto ręcznie, pozostawiając wyższy brzeg.
-> Nałóż cienką warstwę pomidorów, dodaj czosnek, oregano i oliwę. Nie dodawaj sera — marinara jest tradycyjnie bez mozzarelli.
-> Piecz, aż spód będzie wypieczony, a rant wyrośnie i się zarumieni.
-> Po wyjęciu skrop oliwą i podawaj od razu.
+> W misie wymieszaj mąkę z wodą i drożdżami, dodaj sól, a oliwę wlej pod koniec wyrabiania. Wyrabiaj 8–10 minut, aż ciasto będzie gładkie i sprężyste.
+> Uformuj kulę, przykryj i pozostaw na około 2 godziny w temperaturze pokojowej, aż wyraźnie urośnie. Delikatnie odgazuj i rozciągnij placek, zostawiając grubszy rant.
+> Rozsmaruj cienką warstwę sosu pomidorowego, pozostawiając 1–1,5 cm wolnego rantu. Rozłóż równomiernie: czosnek, oregano.
+> Piecz na mocno nagrzanym kamieniu lub stali do wyrośnięcia rantu i rumianego spodu. W piecu domowym przy 250–300°C zajmuje to zwykle 6–9 minut; w piecu profesjonalnym kontroluj już po 1–3 minutach.
+> Po wyjęciu odczekaj około minuty, pokrój i podawaj, gdy rant pozostaje chrupiący.
 
 # Pizza Diavola
-@ cat=pizza origin=IT servings=1 prep=10 cook=15 art=pizza tags=pizza,pieczone,kuchnia-włoska
+@ cat=pizza origin=IT servings=1 prep=10 ferm=120 cook=15 art=pizza tags=pizza,pieczone,kuchnia-włoska
 : Pizza z mozzarellą, pikantnym salami i chili.
 110 g | mąka pszenna 00
 70 ml | woda
@@ -338,14 +338,14 @@ export const SEED_CURATED = `
 60 g | mozzarella
 35 g | salami pikantne
 1 g | chili
-> Rozgrzej piec oraz kamień lub stal do temperatury odpowiedniej dla używanego ciasta. Odsącz wilgotne dodatki.
-> Rozciągnij kulkę ciasta ręcznie, pozostawiając nieco grubszy brzeg.
-> Nałóż cienką warstwę sosu lub oliwy, a następnie dodatki z listy. Nie przeciążaj środka, by spód dobrze się wypiekł.
-> Piecz na mocno rozgrzanym podłożu, aż spód będzie wypieczony, a rant wyrośnie i się zarumieni. Czas zależy od temperatury pieca.
-> Po wypieku dodaj świeże zioła lub oliwę, jeśli są w składnikach, i podawaj od razu.
+> W misie wymieszaj mąkę z wodą i drożdżami, dodaj sól, a oliwę wlej pod koniec wyrabiania. Wyrabiaj 8–10 minut, aż ciasto będzie gładkie i sprężyste.
+> Uformuj kulę, przykryj i pozostaw na około 2 godziny w temperaturze pokojowej, aż wyraźnie urośnie. Delikatnie odgazuj i rozciągnij placek, zostawiając grubszy rant.
+> Rozsmaruj cienką warstwę sosu pomidorowego, pozostawiając 1–1,5 cm wolnego rantu. Rozłóż równomiernie: mozzarella, salami pikantne, chili.
+> Piecz na mocno nagrzanym kamieniu lub stali do wyrośnięcia rantu i rumianego spodu. W piecu domowym przy 250–300°C zajmuje to zwykle 6–9 minut; w piecu profesjonalnym kontroluj już po 1–3 minutach.
+> Po wyjęciu odczekaj około minuty, pokrój i podawaj, gdy rant pozostaje chrupiący.
 
 # Pizza Capricciosa
-@ cat=pizza origin=IT servings=1 prep=10 cook=15 art=pizza tags=pizza,pieczone,kuchnia-włoska
+@ cat=pizza origin=IT servings=1 prep=10 ferm=120 cook=15 art=pizza tags=pizza,pieczone,kuchnia-włoska
 : Pizza z szynką, pieczarkami, karczochami i oliwkami.
 110 g | mąka pszenna 00
 70 ml | woda
@@ -358,14 +358,14 @@ export const SEED_CURATED = `
 25 g | pieczarki
 20 g | karczochy
 10 g | oliwki
-> Rozgrzej piec oraz kamień lub stal do temperatury odpowiedniej dla używanego ciasta. Odsącz wilgotne dodatki.
-> Rozciągnij kulkę ciasta ręcznie, pozostawiając nieco grubszy brzeg.
-> Nałóż cienką warstwę sosu lub oliwy, a następnie dodatki z listy. Nie przeciążaj środka, by spód dobrze się wypiekł.
-> Piecz na mocno rozgrzanym podłożu, aż spód będzie wypieczony, a rant wyrośnie i się zarumieni. Czas zależy od temperatury pieca.
-> Po wypieku dodaj świeże zioła lub oliwę, jeśli są w składnikach, i podawaj od razu.
+> W misie wymieszaj mąkę z wodą i drożdżami, dodaj sól, a oliwę wlej pod koniec wyrabiania. Wyrabiaj 8–10 minut, aż ciasto będzie gładkie i sprężyste.
+> Uformuj kulę, przykryj i pozostaw na około 2 godziny w temperaturze pokojowej, aż wyraźnie urośnie. Delikatnie odgazuj i rozciągnij placek, zostawiając grubszy rant.
+> Rozsmaruj cienką warstwę sosu pomidorowego, pozostawiając 1–1,5 cm wolnego rantu. Rozłóż równomiernie: mozzarella, szynka gotowana, pieczarki, karczochy, oliwki.
+> Piecz na mocno nagrzanym kamieniu lub stali do wyrośnięcia rantu i rumianego spodu. W piecu domowym przy 250–300°C zajmuje to zwykle 6–9 minut; w piecu profesjonalnym kontroluj już po 1–3 minutach.
+> Po wyjęciu odczekaj około minuty, pokrój i podawaj, gdy rant pozostaje chrupiący.
 
 # Pizza Prosciutto e rucola
-@ cat=pizza origin=IT servings=1 prep=10 cook=15 art=pizza tags=pizza,pieczone,kuchnia-włoska
+@ cat=pizza origin=IT servings=1 prep=10 ferm=120 cook=15 art=pizza tags=pizza,pieczone,kuchnia-włoska
 : Pizza z szynką parmeńską, rukolą i parmezanem.
 110 g | mąka pszenna 00
 70 ml | woda
@@ -377,14 +377,14 @@ export const SEED_CURATED = `
 25 g | szynka parmeńska
 15 g | rukola
 10 g | parmezan
-> Rozgrzej piec oraz kamień lub stal do temperatury odpowiedniej dla używanego ciasta. Odsącz wilgotne dodatki.
-> Rozciągnij kulkę ciasta ręcznie, pozostawiając nieco grubszy brzeg.
-> Nałóż cienką warstwę sosu lub oliwy, a następnie dodatki z listy. Nie przeciążaj środka, by spód dobrze się wypiekł.
-> Piecz na mocno rozgrzanym podłożu, aż spód będzie wypieczony, a rant wyrośnie i się zarumieni. Czas zależy od temperatury pieca.
-> Po wypieku dodaj świeże zioła lub oliwę, jeśli są w składnikach, i podawaj od razu.
+> W misie wymieszaj mąkę z wodą i drożdżami, dodaj sól, a oliwę wlej pod koniec wyrabiania. Wyrabiaj 8–10 minut, aż ciasto będzie gładkie i sprężyste.
+> Uformuj kulę, przykryj i pozostaw na około 2 godziny w temperaturze pokojowej, aż wyraźnie urośnie. Delikatnie odgazuj i rozciągnij placek, zostawiając grubszy rant.
+> Rozsmaruj cienką warstwę sosu pomidorowego, pozostawiając 1–1,5 cm wolnego rantu. Rozłóż równomiernie: mozzarella.
+> Piecz na mocno nagrzanym kamieniu lub stali do wyrośnięcia rantu i rumianego spodu. W piecu domowym przy 250–300°C zajmuje to zwykle 6–9 minut; w piecu profesjonalnym kontroluj już po 1–3 minutach.
+> Po wypieku dodaj szynka parmeńska, rukola, parmezan; podawaj od razu.
 
 # Pizza Quattro stagioni
-@ cat=pizza origin=IT trad servings=1 prep=10 cook=15 art=pizza tags=tradycyjne,pizza,pieczone,kuchnia-włoska
+@ cat=pizza origin=IT trad servings=1 prep=10 ferm=120 cook=15 art=pizza tags=tradycyjne,pizza,pieczone,kuchnia-włoska
 : Pizza z czterema dodatkami: szynką, pieczarkami, karczochami i oliwkami.
 110 g | mąka pszenna 00
 70 ml | woda
@@ -397,14 +397,14 @@ export const SEED_CURATED = `
 20 g | pieczarki
 20 g | karczochy
 10 g | oliwki
-> Rozgrzej piec oraz kamień lub stal do temperatury odpowiedniej dla używanego ciasta. Odsącz wilgotne dodatki.
-> Rozciągnij kulkę ciasta ręcznie, pozostawiając nieco grubszy brzeg.
-> Nałóż cienką warstwę sosu lub oliwy, a następnie dodatki z listy. Nie przeciążaj środka, by spód dobrze się wypiekł.
-> Piecz na mocno rozgrzanym podłożu, aż spód będzie wypieczony, a rant wyrośnie i się zarumieni. Czas zależy od temperatury pieca.
-> Po wypieku dodaj świeże zioła lub oliwę, jeśli są w składnikach, i podawaj od razu.
+> W misie wymieszaj mąkę z wodą i drożdżami, dodaj sól, a oliwę wlej pod koniec wyrabiania. Wyrabiaj 8–10 minut, aż ciasto będzie gładkie i sprężyste.
+> Uformuj kulę, przykryj i pozostaw na około 2 godziny w temperaturze pokojowej, aż wyraźnie urośnie. Delikatnie odgazuj i rozciągnij placek, zostawiając grubszy rant.
+> Rozsmaruj cienką warstwę sosu pomidorowego, pozostawiając 1–1,5 cm wolnego rantu. Rozłóż równomiernie: mozzarella, szynka gotowana, pieczarki, karczochy, oliwki.
+> Piecz na mocno nagrzanym kamieniu lub stali do wyrośnięcia rantu i rumianego spodu. W piecu domowym przy 250–300°C zajmuje to zwykle 6–9 minut; w piecu profesjonalnym kontroluj już po 1–3 minutach.
+> Po wyjęciu odczekaj około minuty, pokrój i podawaj, gdy rant pozostaje chrupiący.
 
 # Pizza Ortolana
-@ cat=pizza origin=IT servings=1 prep=10 cook=15 art=pizza tags=pizza,pieczone,kuchnia-włoska
+@ cat=pizza origin=IT servings=1 prep=10 ferm=120 cook=15 art=pizza tags=pizza,pieczone,kuchnia-włoska
 : Wegetariańska pizza z cukinią, bakłażanem i papryką.
 110 g | mąka pszenna 00
 70 ml | woda
@@ -416,14 +416,14 @@ export const SEED_CURATED = `
 25 g | cukinia
 25 g | bakłażan
 25 g | papryka
-> Rozgrzej piec oraz kamień lub stal do temperatury odpowiedniej dla używanego ciasta. Odsącz wilgotne dodatki.
-> Rozciągnij kulkę ciasta ręcznie, pozostawiając nieco grubszy brzeg.
-> Nałóż cienką warstwę sosu lub oliwy, a następnie dodatki z listy. Nie przeciążaj środka, by spód dobrze się wypiekł.
-> Piecz na mocno rozgrzanym podłożu, aż spód będzie wypieczony, a rant wyrośnie i się zarumieni. Czas zależy od temperatury pieca.
-> Po wypieku dodaj świeże zioła lub oliwę, jeśli są w składnikach, i podawaj od razu.
+> W misie wymieszaj mąkę z wodą i drożdżami, dodaj sól, a oliwę wlej pod koniec wyrabiania. Wyrabiaj 8–10 minut, aż ciasto będzie gładkie i sprężyste.
+> Uformuj kulę, przykryj i pozostaw na około 2 godziny w temperaturze pokojowej, aż wyraźnie urośnie. Delikatnie odgazuj i rozciągnij placek, zostawiając grubszy rant.
+> Rozsmaruj cienką warstwę sosu pomidorowego, pozostawiając 1–1,5 cm wolnego rantu. Rozłóż równomiernie: mozzarella, cukinia, bakłażan, papryka.
+> Piecz na mocno nagrzanym kamieniu lub stali do wyrośnięcia rantu i rumianego spodu. W piecu domowym przy 250–300°C zajmuje to zwykle 6–9 minut; w piecu profesjonalnym kontroluj już po 1–3 minutach.
+> Po wyjęciu odczekaj około minuty, pokrój i podawaj, gdy rant pozostaje chrupiący.
 
 # Pizza Tonno e cipolla
-@ cat=pizza origin=IT servings=1 prep=10 cook=15 art=pizza tags=pizza,pieczone,kuchnia-włoska
+@ cat=pizza origin=IT servings=1 prep=10 ferm=120 cook=15 art=pizza tags=pizza,pieczone,kuchnia-włoska
 : Pizza z tuńczykiem, cebulą i kaparami.
 110 g | mąka pszenna 00
 70 ml | woda
@@ -435,14 +435,14 @@ export const SEED_CURATED = `
 40 g | tuńczyk odsączony
 20 g | cebula
 5 g | kapary
-> Rozgrzej piec oraz kamień lub stal do temperatury odpowiedniej dla używanego ciasta. Odsącz wilgotne dodatki.
-> Rozciągnij kulkę ciasta ręcznie, pozostawiając nieco grubszy brzeg.
-> Nałóż cienką warstwę sosu lub oliwy, a następnie dodatki z listy. Nie przeciążaj środka, by spód dobrze się wypiekł.
-> Piecz na mocno rozgrzanym podłożu, aż spód będzie wypieczony, a rant wyrośnie i się zarumieni. Czas zależy od temperatury pieca.
-> Po wypieku dodaj świeże zioła lub oliwę, jeśli są w składnikach, i podawaj od razu.
+> W misie wymieszaj mąkę z wodą i drożdżami, dodaj sól, a oliwę wlej pod koniec wyrabiania. Wyrabiaj 8–10 minut, aż ciasto będzie gładkie i sprężyste.
+> Uformuj kulę, przykryj i pozostaw na około 2 godziny w temperaturze pokojowej, aż wyraźnie urośnie. Delikatnie odgazuj i rozciągnij placek, zostawiając grubszy rant.
+> Rozsmaruj cienką warstwę sosu pomidorowego, pozostawiając 1–1,5 cm wolnego rantu. Rozłóż równomiernie: mozzarella, tuńczyk odsączony, cebula, kapary.
+> Piecz na mocno nagrzanym kamieniu lub stali do wyrośnięcia rantu i rumianego spodu. W piecu domowym przy 250–300°C zajmuje to zwykle 6–9 minut; w piecu profesjonalnym kontroluj już po 1–3 minutach.
+> Po wyjęciu odczekaj około minuty, pokrój i podawaj, gdy rant pozostaje chrupiący.
 
 # Pizza Boscaiola
-@ cat=pizza origin=IT servings=1 prep=10 cook=15 art=pizza tags=pizza,pieczone,kuchnia-włoska
+@ cat=pizza origin=IT servings=1 prep=10 ferm=120 cook=15 art=pizza tags=pizza,pieczone,kuchnia-włoska
 : Pizza z włoską kiełbasą salsiccia i pieczarkami.
 110 g | mąka pszenna 00
 70 ml | woda
@@ -453,14 +453,14 @@ export const SEED_CURATED = `
 55 g | mozzarella
 35 g | włoska kiełbasa salsiccia
 30 g | pieczarki
-> Rozgrzej piec oraz kamień lub stal do temperatury odpowiedniej dla używanego ciasta. Odsącz wilgotne dodatki.
-> Rozciągnij kulkę ciasta ręcznie, pozostawiając nieco grubszy brzeg.
-> Nałóż cienką warstwę sosu lub oliwy, a następnie dodatki z listy. Nie przeciążaj środka, by spód dobrze się wypiekł.
-> Piecz na mocno rozgrzanym podłożu, aż spód będzie wypieczony, a rant wyrośnie i się zarumieni. Czas zależy od temperatury pieca.
-> Po wypieku dodaj świeże zioła lub oliwę, jeśli są w składnikach, i podawaj od razu.
+> W misie wymieszaj mąkę z wodą i drożdżami, dodaj sól, a oliwę wlej pod koniec wyrabiania. Wyrabiaj 8–10 minut, aż ciasto będzie gładkie i sprężyste.
+> Uformuj kulę, przykryj i pozostaw na około 2 godziny w temperaturze pokojowej, aż wyraźnie urośnie. Delikatnie odgazuj i rozciągnij placek, zostawiając grubszy rant.
+> Rozsmaruj cienką warstwę sosu pomidorowego, pozostawiając 1–1,5 cm wolnego rantu. Rozłóż równomiernie: mozzarella, włoska kiełbasa salsiccia, pieczarki. Surową salsiccię wcześniej podsmaż do pełnej gotowości i odsącz tłuszcz przed nałożeniem.
+> Piecz na mocno nagrzanym kamieniu lub stali do wyrośnięcia rantu i rumianego spodu. W piecu domowym przy 250–300°C zajmuje to zwykle 6–9 minut; w piecu profesjonalnym kontroluj już po 1–3 minutach.
+> Po wyjęciu odczekaj około minuty, pokrój i podawaj, gdy rant pozostaje chrupiący.
 
 # Pizza Frutti di mare
-@ cat=pizza origin=IT servings=1 prep=10 cook=15 art=pizza tags=pizza,pieczone,kuchnia-włoska
+@ cat=pizza origin=IT servings=1 prep=10 ferm=120 cook=15 art=pizza tags=pizza,pieczone,kuchnia-włoska
 : Pizza z owocami morza, czosnkiem i natką pietruszki.
 110 g | mąka pszenna 00
 70 ml | woda
@@ -471,14 +471,14 @@ export const SEED_CURATED = `
 60 g | owoce morza
 3 g | czosnek
 3 g | natka pietruszki
-> Rozgrzej piec oraz kamień lub stal do temperatury odpowiedniej dla używanego ciasta. Odsącz wilgotne dodatki.
-> Rozciągnij kulkę ciasta ręcznie, pozostawiając nieco grubszy brzeg.
-> Nałóż cienką warstwę sosu lub oliwy, a następnie dodatki z listy. Nie przeciążaj środka, by spód dobrze się wypiekł.
-> Piecz na mocno rozgrzanym podłożu, aż spód będzie wypieczony, a rant wyrośnie i się zarumieni. Czas zależy od temperatury pieca.
-> Po wypieku dodaj świeże zioła lub oliwę, jeśli są w składnikach, i podawaj od razu.
+> W misie wymieszaj mąkę z wodą i drożdżami, dodaj sól, a oliwę wlej pod koniec wyrabiania. Wyrabiaj 8–10 minut, aż ciasto będzie gładkie i sprężyste.
+> Uformuj kulę, przykryj i pozostaw na około 2 godziny w temperaturze pokojowej, aż wyraźnie urośnie. Delikatnie odgazuj i rozciągnij placek, zostawiając grubszy rant.
+> Rozsmaruj cienką warstwę sosu pomidorowego, pozostawiając 1–1,5 cm wolnego rantu. Rozłóż równomiernie: owoce morza, czosnek.
+> Piecz na mocno nagrzanym kamieniu lub stali do wyrośnięcia rantu i rumianego spodu. W piecu domowym przy 250–300°C zajmuje to zwykle 6–9 minut; w piecu profesjonalnym kontroluj już po 1–3 minutach.
+> Po wypieku dodaj natka pietruszki; podawaj od razu.
 
 # Pizza Calzone
-@ cat=pizza origin=IT servings=1 prep=10 cook=15 art=pizza tags=pizza,pieczone,kuchnia-włoska
+@ cat=pizza origin=IT servings=1 prep=10 ferm=120 cook=15 art=pizza tags=pizza,pieczone,kuchnia-włoska
 : Zamknięta pizza calzone z ricottą, mozzarellą i szynką.
 110 g | mąka pszenna 00
 70 ml | woda
@@ -489,14 +489,14 @@ export const SEED_CURATED = `
 50 g | mozzarella
 30 g | ricotta
 30 g | szynka gotowana
-> Rozgrzej piec i przygotuj farsz, odcedzając składniki, które mogłyby puścić dużo wody.
-> Rozciągnij ciasto w okrąg, ułóż farsz na jednej połowie i zostaw wolny brzeg.
-> Złóż ciasto na pół i dokładnie sklej brzegi, aby farsz nie wypływał.
-> Piecz na mocno rozgrzanym podłożu, aż ciasto wyrośnie i równomiernie się zarumieni.
-> Odczekaj chwilę po wypieku, po czym przekrój i podawaj gorące.
+> W misie wymieszaj mąkę z wodą i drożdżami, dodaj sól, a oliwę wlej pod koniec wyrabiania. Wyrabiaj 8–10 minut, aż ciasto będzie gładkie i sprężyste.
+> Uformuj kulę, przykryj i pozostaw na około 2 godziny w temperaturze pokojowej, aż wyraźnie urośnie. Delikatnie odgazuj i rozciągnij placek, zostawiając grubszy rant.
+> Na połowie ciasta rozprowadź cienko sos pomidorowy, zostawiając około 2 cm wolnego brzegu. Rozłóż mozzarellę, ricottę i szynkę gotowaną.
+> Złóż placek na pół i dokładnie zlep brzegi, dociskając je palcami. Zrób 2 małe nacięcia w wierzchu, aby para mogła uchodzić.
+> Przełóż calzone na rozgrzany kamień lub blachę i piecz w 230–250°C, aż ciasto będzie wyraźnie rumiane, zwykle 12–18 minut. Odczekaj minutę przed przekrojeniem.
 
 # Pizza Bianca z ziemniakami
-@ cat=pizza origin=IT servings=1 prep=10 cook=15 art=pizza tags=pizza,pieczone,kuchnia-włoska
+@ cat=pizza origin=IT servings=1 prep=10 ferm=120 cook=15 art=pizza tags=pizza,pieczone,kuchnia-włoska
 : Biała pizza z cienko krojonymi ziemniakami, rozmarynem i pecorino.
 110 g | mąka pszenna 00
 70 ml | woda
@@ -507,14 +507,14 @@ export const SEED_CURATED = `
 35 g | mozzarella
 20 g | pecorino
 1 g | rozmaryn
-> Rozgrzej piec oraz kamień lub stal do temperatury odpowiedniej dla używanego ciasta. Odsącz wilgotne dodatki.
-> Rozciągnij kulkę ciasta ręcznie, pozostawiając nieco grubszy brzeg.
-> Nałóż cienką warstwę sosu lub oliwy, a następnie dodatki z listy. Nie przeciążaj środka, by spód dobrze się wypiekł.
-> Piecz na mocno rozgrzanym podłożu, aż spód będzie wypieczony, a rant wyrośnie i się zarumieni. Czas zależy od temperatury pieca.
-> Po wypieku dodaj świeże zioła lub oliwę, jeśli są w składnikach, i podawaj od razu.
+> W misie wymieszaj mąkę z wodą i drożdżami, dodaj sól, a oliwę wlej pod koniec wyrabiania. Wyrabiaj 8–10 minut, aż ciasto będzie gładkie i sprężyste.
+> Uformuj kulę, przykryj i pozostaw na około 2 godziny w temperaturze pokojowej, aż wyraźnie urośnie. Delikatnie odgazuj i rozciągnij placek, zostawiając grubszy rant.
+> Nie dodawaj sosu; rozprowadź dodatki bezpośrednio na cieście, zostawiając wolny rant. Rozłóż równomiernie: ziemniaki cienko pokrojone, mozzarella, pecorino, rozmaryn. Ziemniaki ułóż bardzo cienko, lekko zachodzącymi na siebie plasterkami.
+> Piecz na kamieniu lub stali w maksymalnie nagrzanym piecu; kontroluj spód i dopiekaj do chwili, gdy cienkie plastry ziemniaka będą miękkie, a rant rumiany.
+> Po wyjęciu odczekaj około minuty, pokrój i podawaj, gdy rant pozostaje chrupiący.
 
 # Pizza Salsiccia e friarielli
-@ cat=pizza origin=IT trad servings=1 prep=10 cook=15 art=pizza tags=tradycyjne,pizza,pieczone,kuchnia-włoska
+@ cat=pizza origin=IT trad servings=1 prep=10 ferm=120 cook=15 art=pizza tags=tradycyjne,pizza,pieczone,kuchnia-włoska
 : Pizza z kiełbasą salsiccia i brokułami friarielli.
 110 g | mąka pszenna 00
 70 ml | woda
@@ -525,14 +525,14 @@ export const SEED_CURATED = `
 45 g | mozzarella
 40 g | kiełbasa salsiccia
 40 g | brokuł włoski friarielli
-> Rozgrzej piec oraz kamień lub stal do temperatury odpowiedniej dla używanego ciasta. Odsącz wilgotne dodatki.
-> Rozciągnij kulkę ciasta ręcznie, pozostawiając nieco grubszy brzeg.
-> Nałóż cienką warstwę sosu lub oliwy, a następnie dodatki z listy. Nie przeciążaj środka, by spód dobrze się wypiekł.
-> Piecz na mocno rozgrzanym podłożu, aż spód będzie wypieczony, a rant wyrośnie i się zarumieni. Czas zależy od temperatury pieca.
-> Po wypieku dodaj świeże zioła lub oliwę, jeśli są w składnikach, i podawaj od razu.
+> W misie wymieszaj mąkę z wodą i drożdżami, dodaj sól, a oliwę wlej pod koniec wyrabiania. Wyrabiaj 8–10 minut, aż ciasto będzie gładkie i sprężyste.
+> Uformuj kulę, przykryj i pozostaw na około 2 godziny w temperaturze pokojowej, aż wyraźnie urośnie. Delikatnie odgazuj i rozciągnij placek, zostawiając grubszy rant.
+> Rozsmaruj cienką warstwę sosu pomidorowego, pozostawiając 1–1,5 cm wolnego rantu. Rozłóż równomiernie: mozzarella, kiełbasa salsiccia, brokuł włoski friarielli. Surową salsiccię wcześniej podsmaż do pełnej gotowości i odsącz tłuszcz przed nałożeniem.
+> Piecz na mocno nagrzanym kamieniu lub stali do wyrośnięcia rantu i rumianego spodu. W piecu domowym przy 250–300°C zajmuje to zwykle 6–9 minut; w piecu profesjonalnym kontroluj już po 1–3 minutach.
+> Po wyjęciu odczekaj około minuty, pokrój i podawaj, gdy rant pozostaje chrupiący.
 
 # Pizza ’Nduja z miodem
-@ cat=pizza origin=IT servings=1 prep=10 cook=15 art=pizza tags=pizza,pieczone,kuchnia-włoska
+@ cat=pizza origin=IT servings=1 prep=10 ferm=120 cook=15 art=pizza tags=pizza,pieczone,kuchnia-włoska
 : Pizza z pikantną ndują, mozzarellą i odrobiną miodu.
 110 g | mąka pszenna 00
 70 ml | woda
@@ -543,14 +543,14 @@ export const SEED_CURATED = `
 60 g | mozzarella
 25 g | nduja
 8 g | miód
-> Rozgrzej piec oraz kamień lub stal do temperatury odpowiedniej dla używanego ciasta. Odsącz wilgotne dodatki.
-> Rozciągnij kulkę ciasta ręcznie, pozostawiając nieco grubszy brzeg.
-> Nałóż cienką warstwę sosu lub oliwy, a następnie dodatki z listy. Nie przeciążaj środka, by spód dobrze się wypiekł.
-> Piecz na mocno rozgrzanym podłożu, aż spód będzie wypieczony, a rant wyrośnie i się zarumieni. Czas zależy od temperatury pieca.
-> Po wypieku dodaj świeże zioła lub oliwę, jeśli są w składnikach, i podawaj od razu.
+> W misie wymieszaj mąkę z wodą i drożdżami, dodaj sól, a oliwę wlej pod koniec wyrabiania. Wyrabiaj 8–10 minut, aż ciasto będzie gładkie i sprężyste.
+> Uformuj kulę, przykryj i pozostaw na około 2 godziny w temperaturze pokojowej, aż wyraźnie urośnie. Delikatnie odgazuj i rozciągnij placek, zostawiając grubszy rant.
+> Rozsmaruj cienką warstwę sosu pomidorowego, pozostawiając 1–1,5 cm wolnego rantu. Rozłóż równomiernie: mozzarella, nduja.
+> Piecz na mocno nagrzanym kamieniu lub stali do wyrośnięcia rantu i rumianego spodu. W piecu domowym przy 250–300°C zajmuje to zwykle 6–9 minut; w piecu profesjonalnym kontroluj już po 1–3 minutach.
+> Po wypieku dodaj miód i cienko polej miodem; podawaj od razu.
 
 # Pizza z truflą i pieczarkami
-@ cat=pizza origin=IT servings=1 prep=10 cook=15 art=pizza tags=pizza,pieczone,kuchnia-włoska
+@ cat=pizza origin=IT servings=1 prep=10 ferm=120 cook=15 art=pizza tags=pizza,pieczone,kuchnia-włoska
 : Biała pizza z pieczarkami, pastą truflową i parmezanem.
 110 g | mąka pszenna 00
 70 ml | woda
@@ -561,14 +561,14 @@ export const SEED_CURATED = `
 35 g | pieczarki
 5 g | pasta truflowa
 15 g | parmezan
-> Rozgrzej piec oraz kamień lub stal do temperatury odpowiedniej dla używanego ciasta. Odsącz wilgotne dodatki.
-> Rozciągnij kulkę ciasta ręcznie, pozostawiając nieco grubszy brzeg.
-> Nałóż cienką warstwę sosu lub oliwy, a następnie dodatki z listy. Nie przeciążaj środka, by spód dobrze się wypiekł.
-> Piecz na mocno rozgrzanym podłożu, aż spód będzie wypieczony, a rant wyrośnie i się zarumieni. Czas zależy od temperatury pieca.
-> Po wypieku dodaj świeże zioła lub oliwę, jeśli są w składnikach, i podawaj od razu.
+> W misie wymieszaj mąkę z wodą i drożdżami, dodaj sól, a oliwę wlej pod koniec wyrabiania. Wyrabiaj 8–10 minut, aż ciasto będzie gładkie i sprężyste.
+> Uformuj kulę, przykryj i pozostaw na około 2 godziny w temperaturze pokojowej, aż wyraźnie urośnie. Delikatnie odgazuj i rozciągnij placek, zostawiając grubszy rant.
+> Nie dodawaj sosu; rozprowadź dodatki bezpośrednio na cieście, zostawiając wolny rant. Rozłóż równomiernie: mozzarella, pieczarki.
+> Piecz na mocno nagrzanym kamieniu lub stali do wyrośnięcia rantu i rumianego spodu. W piecu domowym przy 250–300°C zajmuje to zwykle 6–9 minut; w piecu profesjonalnym kontroluj już po 1–3 minutach.
+> Po wypieku dodaj pasta truflowa, parmezan; podawaj od razu.
 
 # Pizza Hawajska
-@ cat=pizza origin=US servings=1 prep=10 cook=15 art=pizza tags=pizza,pieczone,kuchnia-amerykańska
+@ cat=pizza origin=US servings=1 prep=10 ferm=120 cook=15 art=pizza tags=pizza,pieczone,kuchnia-amerykańska
 : Pizza z szynką i ananasem.
 110 g | mąka pszenna 00
 70 ml | woda
@@ -579,14 +579,14 @@ export const SEED_CURATED = `
 60 g | mozzarella
 30 g | szynka gotowana
 30 g | ananas
-> Rozgrzej piec oraz kamień lub stal do temperatury odpowiedniej dla używanego ciasta. Odsącz wilgotne dodatki.
-> Rozciągnij kulkę ciasta ręcznie, pozostawiając nieco grubszy brzeg.
-> Nałóż cienką warstwę sosu lub oliwy, a następnie dodatki z listy. Nie przeciążaj środka, by spód dobrze się wypiekł.
-> Piecz na mocno rozgrzanym podłożu, aż spód będzie wypieczony, a rant wyrośnie i się zarumieni. Czas zależy od temperatury pieca.
-> Po wypieku dodaj świeże zioła lub oliwę, jeśli są w składnikach, i podawaj od razu.
+> W misie wymieszaj mąkę z wodą i drożdżami, dodaj sól, a oliwę wlej pod koniec wyrabiania. Wyrabiaj 8–10 minut, aż ciasto będzie gładkie i sprężyste.
+> Uformuj kulę, przykryj i pozostaw na około 2 godziny w temperaturze pokojowej, aż wyraźnie urośnie. Delikatnie odgazuj i rozciągnij placek, zostawiając grubszy rant.
+> Rozsmaruj cienką warstwę sosu pomidorowego, pozostawiając 1–1,5 cm wolnego rantu. Rozłóż równomiernie: mozzarella, szynka gotowana, ananas. Ananasa dokładnie odsącz, żeby nie zawilgocił środka.
+> Piecz na mocno nagrzanym kamieniu lub stali do wyrośnięcia rantu i rumianego spodu. W piecu domowym przy 250–300°C zajmuje to zwykle 6–9 minut; w piecu profesjonalnym kontroluj już po 1–3 minutach.
+> Po wyjęciu odczekaj około minuty, pokrój i podawaj, gdy rant pozostaje chrupiący.
 
 # Pizza BBQ kurczak
-@ cat=pizza origin=US servings=1 prep=10 cook=15 art=pizza tags=pizza,pieczone,kuchnia-amerykańska
+@ cat=pizza origin=US servings=1 prep=10 ferm=120 cook=15 art=pizza tags=pizza,pieczone,kuchnia-amerykańska
 : Pizza z kurczakiem, sosem barbecue, mozzarellą i czerwoną cebulą.
 110 g | mąka pszenna 00
 70 ml | woda
@@ -597,14 +597,14 @@ export const SEED_CURATED = `
 50 g | mozzarella
 40 g | kurczak pieczony
 20 g | czerwona cebula
-> Rozgrzej piec oraz kamień lub stal do temperatury odpowiedniej dla używanego ciasta. Odsącz wilgotne dodatki.
-> Rozciągnij kulkę ciasta ręcznie, pozostawiając nieco grubszy brzeg.
-> Nałóż cienką warstwę sosu lub oliwy, a następnie dodatki z listy. Nie przeciążaj środka, by spód dobrze się wypiekł.
-> Piecz na mocno rozgrzanym podłożu, aż spód będzie wypieczony, a rant wyrośnie i się zarumieni. Czas zależy od temperatury pieca.
-> Po wypieku dodaj świeże zioła lub oliwę, jeśli są w składnikach, i podawaj od razu.
+> W misie wymieszaj mąkę z wodą i drożdżami, dodaj sól, a oliwę wlej pod koniec wyrabiania. Wyrabiaj 8–10 minut, aż ciasto będzie gładkie i sprężyste.
+> Uformuj kulę, przykryj i pozostaw na około 2 godziny w temperaturze pokojowej, aż wyraźnie urośnie. Delikatnie odgazuj i rozciągnij placek, zostawiając grubszy rant.
+> Rozprowadź cienką, równą warstwę sosu barbecue. Rozłóż równomiernie: mozzarella, kurczak pieczony, czerwona cebula.
+> Piecz na mocno nagrzanym kamieniu lub stali do wyrośnięcia rantu i rumianego spodu. W piecu domowym przy 250–300°C zajmuje to zwykle 6–9 minut; w piecu profesjonalnym kontroluj już po 1–3 minutach.
+> Po wyjęciu odczekaj około minuty, pokrój i podawaj, gdy rant pozostaje chrupiący.
 
 # Pizza Spinaci e uovo
-@ cat=pizza origin=IT servings=1 prep=10 cook=15 art=pizza tags=pizza,pieczone,kuchnia-włoska
+@ cat=pizza origin=IT servings=1 prep=10 ferm=120 cook=15 art=pizza tags=pizza,pieczone,kuchnia-włoska
 : Biała pizza ze szpinakiem, jajkiem i pecorino.
 110 g | mąka pszenna 00
 70 ml | woda
@@ -615,14 +615,14 @@ export const SEED_CURATED = `
 40 g | szpinak
 1 szt. | jajko
 15 g | pecorino
-> Rozgrzej piec oraz kamień lub stal do temperatury odpowiedniej dla używanego ciasta. Odsącz wilgotne dodatki.
-> Rozciągnij kulkę ciasta ręcznie, pozostawiając nieco grubszy brzeg.
-> Nałóż cienką warstwę sosu lub oliwy, a następnie dodatki z listy. Nie przeciążaj środka, by spód dobrze się wypiekł.
-> Piecz na mocno rozgrzanym podłożu, aż spód będzie wypieczony, a rant wyrośnie i się zarumieni. Czas zależy od temperatury pieca.
-> Po wypieku dodaj świeże zioła lub oliwę, jeśli są w składnikach, i podawaj od razu.
+> W misie wymieszaj mąkę z wodą i drożdżami, dodaj sól, a oliwę wlej pod koniec wyrabiania. Wyrabiaj 8–10 minut, aż ciasto będzie gładkie i sprężyste.
+> Uformuj kulę, przykryj i pozostaw na około 2 godziny w temperaturze pokojowej, aż wyraźnie urośnie. Delikatnie odgazuj i rozciągnij placek, zostawiając grubszy rant.
+> Nie dodawaj sosu; rozprowadź dodatki bezpośrednio na cieście, zostawiając wolny rant. Rozłóż równomiernie: mozzarella, szpinak, pecorino. Szpinak wcześniej krótko podduś i odparuj nadmiar wody.
+> Piecz na rozgrzanym kamieniu lub stali do wyrośnięcia rantu. Po około 3–4 minutach ostrożnie wbij jajko i dopiekaj, aż białko się zetnie.
+> Po wypieku dodaj jajko; podawaj od razu.
 
 # Pizza Gorgonzola e pere
-@ cat=pizza origin=IT servings=1 prep=10 cook=15 art=pizza tags=pizza,pieczone,kuchnia-włoska
+@ cat=pizza origin=IT servings=1 prep=10 ferm=120 cook=15 art=pizza tags=pizza,pieczone,kuchnia-włoska
 : Biała pizza z gorgonzolą, gruszką i orzechami włoskimi.
 110 g | mąka pszenna 00
 70 ml | woda
@@ -633,14 +633,14 @@ export const SEED_CURATED = `
 25 g | gorgonzola
 30 g | gruszka
 8 g | orzechy włoskie
-> Rozgrzej piec oraz kamień lub stal do temperatury odpowiedniej dla używanego ciasta. Odsącz wilgotne dodatki.
-> Rozciągnij kulkę ciasta ręcznie, pozostawiając nieco grubszy brzeg.
-> Nałóż cienką warstwę sosu lub oliwy, a następnie dodatki z listy. Nie przeciążaj środka, by spód dobrze się wypiekł.
-> Piecz na mocno rozgrzanym podłożu, aż spód będzie wypieczony, a rant wyrośnie i się zarumieni. Czas zależy od temperatury pieca.
-> Po wypieku dodaj świeże zioła lub oliwę, jeśli są w składnikach, i podawaj od razu.
+> W misie wymieszaj mąkę z wodą i drożdżami, dodaj sól, a oliwę wlej pod koniec wyrabiania. Wyrabiaj 8–10 minut, aż ciasto będzie gładkie i sprężyste.
+> Uformuj kulę, przykryj i pozostaw na około 2 godziny w temperaturze pokojowej, aż wyraźnie urośnie. Delikatnie odgazuj i rozciągnij placek, zostawiając grubszy rant.
+> Nie dodawaj sosu; rozprowadź dodatki bezpośrednio na cieście, zostawiając wolny rant. Rozłóż równomiernie: mozzarella, gorgonzola, gruszka, orzechy włoskie.
+> Piecz na mocno nagrzanym kamieniu lub stali do wyrośnięcia rantu i rumianego spodu. W piecu domowym przy 250–300°C zajmuje to zwykle 6–9 minut; w piecu profesjonalnym kontroluj już po 1–3 minutach.
+> Po wyjęciu odczekaj około minuty, pokrój i podawaj, gdy rant pozostaje chrupiący.
 
 # Pizza Pesto i pomidorki
-@ cat=pizza origin=IT servings=1 prep=10 cook=15 art=pizza tags=pizza,pieczone,kuchnia-włoska
+@ cat=pizza origin=IT servings=1 prep=10 ferm=120 cook=15 art=pizza tags=pizza,pieczone,kuchnia-włoska
 : Pizza z pesto, pomidorkami koktajlowymi i mozzarellą.
 110 g | mąka pszenna 00
 70 ml | woda
@@ -650,14 +650,14 @@ export const SEED_CURATED = `
 20 g | pesto alla genovese
 40 g | pomidorki koktajlowe
 50 g | mozzarella
-> Rozgrzej piec oraz kamień lub stal do temperatury odpowiedniej dla używanego ciasta. Odsącz wilgotne dodatki.
-> Rozciągnij kulkę ciasta ręcznie, pozostawiając nieco grubszy brzeg.
-> Nałóż cienką warstwę sosu lub oliwy, a następnie dodatki z listy. Nie przeciążaj środka, by spód dobrze się wypiekł.
-> Piecz na mocno rozgrzanym podłożu, aż spód będzie wypieczony, a rant wyrośnie i się zarumieni. Czas zależy od temperatury pieca.
-> Po wypieku dodaj świeże zioła lub oliwę, jeśli są w składnikach, i podawaj od razu.
+> W misie wymieszaj mąkę z wodą i drożdżami, dodaj sól, a oliwę wlej pod koniec wyrabiania. Wyrabiaj 8–10 minut, aż ciasto będzie gładkie i sprężyste.
+> Uformuj kulę, przykryj i pozostaw na około 2 godziny w temperaturze pokojowej, aż wyraźnie urośnie. Delikatnie odgazuj i rozciągnij placek, zostawiając grubszy rant.
+> Rozprowadź cienką warstwę pesto, nie dochodząc do samego brzegu. Rozłóż równomiernie: pomidorki koktajlowe, mozzarella.
+> Piecz na mocno nagrzanym kamieniu lub stali do wyrośnięcia rantu i rumianego spodu. W piecu domowym przy 250–300°C zajmuje to zwykle 6–9 minut; w piecu profesjonalnym kontroluj już po 1–3 minutach.
+> Po wyjęciu odczekaj około minuty, pokrój i podawaj, gdy rant pozostaje chrupiący.
 
 # Pizza Cotto e funghi
-@ cat=pizza origin=IT servings=1 prep=10 cook=15 art=pizza tags=pizza,pieczone,kuchnia-włoska
+@ cat=pizza origin=IT servings=1 prep=10 ferm=120 cook=15 art=pizza tags=pizza,pieczone,kuchnia-włoska
 : Pizza z gotowaną szynką, pieczarkami i mozzarellą.
 110 g | mąka pszenna 00
 70 ml | woda
@@ -668,14 +668,14 @@ export const SEED_CURATED = `
 60 g | mozzarella
 30 g | szynka gotowana
 30 g | pieczarki
-> Rozgrzej piec oraz kamień lub stal do temperatury odpowiedniej dla używanego ciasta. Odsącz wilgotne dodatki.
-> Rozciągnij kulkę ciasta ręcznie, pozostawiając nieco grubszy brzeg.
-> Nałóż cienką warstwę sosu lub oliwy, a następnie dodatki z listy. Nie przeciążaj środka, by spód dobrze się wypiekł.
-> Piecz na mocno rozgrzanym podłożu, aż spód będzie wypieczony, a rant wyrośnie i się zarumieni. Czas zależy od temperatury pieca.
-> Po wypieku dodaj świeże zioła lub oliwę, jeśli są w składnikach, i podawaj od razu.
+> W misie wymieszaj mąkę z wodą i drożdżami, dodaj sól, a oliwę wlej pod koniec wyrabiania. Wyrabiaj 8–10 minut, aż ciasto będzie gładkie i sprężyste.
+> Uformuj kulę, przykryj i pozostaw na około 2 godziny w temperaturze pokojowej, aż wyraźnie urośnie. Delikatnie odgazuj i rozciągnij placek, zostawiając grubszy rant.
+> Rozsmaruj cienką warstwę sosu pomidorowego, pozostawiając 1–1,5 cm wolnego rantu. Rozłóż równomiernie: mozzarella, szynka gotowana, pieczarki.
+> Piecz na mocno nagrzanym kamieniu lub stali do wyrośnięcia rantu i rumianego spodu. W piecu domowym przy 250–300°C zajmuje to zwykle 6–9 minut; w piecu profesjonalnym kontroluj już po 1–3 minutach.
+> Po wyjęciu odczekaj około minuty, pokrój i podawaj, gdy rant pozostaje chrupiący.
 
 # Pizza Zucca e salsiccia
-@ cat=pizza origin=IT servings=1 prep=10 cook=15 art=pizza tags=pizza,pieczone,kuchnia-włoska
+@ cat=pizza origin=IT servings=1 prep=10 ferm=120 cook=15 art=pizza tags=pizza,pieczone,kuchnia-włoska
 : Biała pizza z dynią, kiełbasą salsiccia i szałwią.
 110 g | mąka pszenna 00
 70 ml | woda
@@ -686,11 +686,11 @@ export const SEED_CURATED = `
 45 g | mozzarella
 35 g | kiełbasa salsiccia
 1 g | szałwia
-> Rozgrzej piec oraz kamień lub stal do temperatury odpowiedniej dla używanego ciasta. Odsącz wilgotne dodatki.
-> Rozciągnij kulkę ciasta ręcznie, pozostawiając nieco grubszy brzeg.
-> Nałóż cienką warstwę sosu lub oliwy, a następnie dodatki z listy. Nie przeciążaj środka, by spód dobrze się wypiekł.
-> Piecz na mocno rozgrzanym podłożu, aż spód będzie wypieczony, a rant wyrośnie i się zarumieni. Czas zależy od temperatury pieca.
-> Po wypieku dodaj świeże zioła lub oliwę, jeśli są w składnikach, i podawaj od razu.
+> W misie wymieszaj mąkę z wodą i drożdżami, dodaj sól, a oliwę wlej pod koniec wyrabiania. Wyrabiaj 8–10 minut, aż ciasto będzie gładkie i sprężyste.
+> Uformuj kulę, przykryj i pozostaw na około 2 godziny w temperaturze pokojowej, aż wyraźnie urośnie. Delikatnie odgazuj i rozciągnij placek, zostawiając grubszy rant.
+> Nie dodawaj sosu; rozprowadź dodatki bezpośrednio na cieście, zostawiając wolny rant. Rozłóż równomiernie: dynia pieczona, mozzarella, kiełbasa salsiccia.
+> Piecz na mocno nagrzanym kamieniu lub stali do wyrośnięcia rantu i rumianego spodu. W piecu domowym przy 250–300°C zajmuje to zwykle 6–9 minut; w piecu profesjonalnym kontroluj już po 1–3 minutach.
+> Po wypieku dodaj szałwia; podawaj od razu.
 
 # Bouillabaisse
 @ cat=zupy origin=FR trad servings=1 prep=10 cook=16 art=soup tags=tradycyjne,zupa,kuchnia-francuska
@@ -1421,100 +1421,100 @@ export const SEED_CURATED = `
 > Studź na kratce przed krojeniem.
 
 # Sos pomidorowy napolitano
-@ cat=sosy origin=IT trad servings=1 prep=8 cook=12 art=food tags=tradycyjne,sos,kuchnia-włoska
+@ cat=sosy origin=IT trad servings=1 prep=8 art=food tags=tradycyjne,sos,kuchnia-włoska
 : Sos pomidorowy napolitano — sos do dań głównych, makaronu lub warzyw, o konsystencji dopasowanej do sposobu podania.
 150 g | pomidor pelati
 1 szt. | czosnek
 4 g | bazylia
 12 ml | oliwa z oliwek
 3 g | sól
-> Przygotuj składniki: posiekaj aromaty, odmierz płyny i zetrzyj sery lub przyprawy, jeśli są w recepturze.
-> Podgrzej bazę na małym lub średnim ogniu, mieszając, aby składniki równomiernie się połączyły.
-> Jeśli sos wymaga redukcji, gotuj łagodnie do uzyskania właściwej konsystencji. Jeśli ma pozostać świeży, nie podgrzewaj go.
-> Dopraw stopniowo i próbuj po każdym dodatku. W razie potrzeby przecedź lub zblenduj.
-> Podawaj od razu albo ostudź szybko i przechowuj w lodówce.
+> Odcedź pomidory pelati, jeśli mają dużo soku, i rozgnieć je ręcznie na nierówną, soczystą pulpę.
+> Czosnek drobno posiekaj lub zetrzyj i wymieszaj z pomidorami oraz solą.
+> Porwij bazylię palcami i wmieszaj ją delikatnie do pomidorów.
+> Wlej oliwę i wymieszaj tylko do połączenia; nie gotuj sosu, jeśli ma trafić na pizzę neapolitańską.
+> Spróbuj sosu i odstaw na 10 minut, aby czosnek i bazylia oddały aromat.
 
 # Pesto alla genovese
-@ cat=sosy origin=IT trad servings=1 prep=8 cook=12 art=food tags=tradycyjne,sos,kuchnia-włoska
+@ cat=sosy origin=IT trad servings=1 prep=8 art=food tags=tradycyjne,sos,kuchnia-włoska
 : Pesto alla genovese — sos do dań głównych, makaronu lub warzyw, o konsystencji dopasowanej do sposobu podania.
 30 g | bazylia
 10 g | piniole
 20 g | parmezan
 1 szt. | czosnek
 12 ml | oliwa z oliwek
-> Przygotuj składniki: posiekaj aromaty, odmierz płyny i zetrzyj sery lub przyprawy, jeśli są w recepturze.
-> Podgrzej bazę na małym lub średnim ogniu, mieszając, aby składniki równomiernie się połączyły.
-> Jeśli sos wymaga redukcji, gotuj łagodnie do uzyskania właściwej konsystencji. Jeśli ma pozostać świeży, nie podgrzewaj go.
-> Dopraw stopniowo i próbuj po każdym dodatku. W razie potrzeby przecedź lub zblenduj.
-> Podawaj od razu albo ostudź szybko i przechowuj w lodówce.
+> Pinii delikatnie podpraż na suchej patelni tylko do uwolnienia aromatu, po czym całkowicie ostudź.
+> Bazylię osusz bardzo dokładnie; mokre liście szybciej utleniają pesto i rozwadniają konsystencję.
+> Utrzyj lub krótko pulsacyjnie zmiksuj bazylię z pinolami i czosnkiem.
+> Dodaj drobno starty parmezan i wlewaj oliwę cienkim strumieniem, miksując tylko do uzyskania gęstego pesto.
+> Nie podgrzewaj pesto. Przełóż do czystego pojemnika i przykryj powierzchnię cienką warstwą oliwy.
 
 # Sos carbonara
-@ cat=sosy origin=IT trad servings=1 prep=8 cook=12 art=food tags=tradycyjne,sos,kuchnia-włoska
+@ cat=sosy origin=IT trad servings=1 prep=8 cook=5 art=food tags=tradycyjne,sos,kuchnia-włoska
 : Sos carbonara — sos do dań głównych, makaronu lub warzyw, o konsystencji dopasowanej do sposobu podania.
 1 szt. | żółtko
 40 g | guanciale
 25 g | pecorino
 1 g | pieprz czarny
-> Przygotuj składniki: posiekaj aromaty, odmierz płyny i zetrzyj sery lub przyprawy, jeśli są w recepturze.
-> Podgrzej bazę na małym lub średnim ogniu, mieszając, aby składniki równomiernie się połączyły.
-> Jeśli sos wymaga redukcji, gotuj łagodnie do uzyskania właściwej konsystencji. Jeśli ma pozostać świeży, nie podgrzewaj go.
-> Dopraw stopniowo i próbuj po każdym dodatku. W razie potrzeby przecedź lub zblenduj.
-> Podawaj od razu albo ostudź szybko i przechowuj w lodówce.
+> Guanciale pokrój w drobną kostkę i wytapiaj powoli na zimnej patelni, aż tłuszcz się wytopi, a kawałki będą złociste.
+> Zdejmij patelnię z ognia i zachowaj wytopiony tłuszcz; nie dopuść, by guanciale zrobiło się gorzkie.
+> Żółtko utrzyj z pecorino i świeżo mielonym pieprzem na gęstą pastę.
+> Dodaj łyżkę gorącej wody z gotowania makaronu do pasty, mieszając energicznie, aby ją rozluźnić.
+> Wymieszaj sos z gorącym makaronem poza bezpośrednim ogniem, dodając tłuszcz z guanciale stopniowo; sos ma być kremowy, nie jajecznicowy.
 
 # Beszamel
-@ cat=sosy origin=FR trad servings=1 prep=8 cook=12 art=food tags=tradycyjne,sos,kuchnia-francuska
+@ cat=sosy origin=FR trad servings=1 prep=8 cook=8 art=food tags=tradycyjne,sos,kuchnia-francuska
 : Beszamel — sos do dań głównych, makaronu lub warzyw, o konsystencji dopasowanej do sposobu podania.
 150 ml | mleko
 15 g | masło
 15 g | mąka pszenna
 0,3 g | gałka muszkatołowa
 3 g | sól
-> Przygotuj składniki: posiekaj aromaty, odmierz płyny i zetrzyj sery lub przyprawy, jeśli są w recepturze.
-> Podgrzej bazę na małym lub średnim ogniu, mieszając, aby składniki równomiernie się połączyły.
-> Jeśli sos wymaga redukcji, gotuj łagodnie do uzyskania właściwej konsystencji. Jeśli ma pozostać świeży, nie podgrzewaj go.
-> Dopraw stopniowo i próbuj po każdym dodatku. W razie potrzeby przecedź lub zblenduj.
-> Podawaj od razu albo ostudź szybko i przechowuj w lodówce.
+> Masło rozpuść w rondlu na średnio małym ogniu, nie dopuszczając do zbrązowienia.
+> Wsyp mąkę i mieszaj rózgą przez 1–2 minuty, aby powstała jasna zasmażka bez surowego zapachu mąki.
+> Ciepłe mleko wlewaj partiami, każdą porcję dokładnie rozprowadzając przed dolaniem następnej.
+> Gotuj łagodnie przez 5–8 minut, stale mieszając, aż sos pokryje tył łyżki i nie będzie grudek.
+> Dopraw solą oraz gałką muszkatołową; jeśli sos jest zbyt gęsty, rozrzedź go niewielką ilością mleka.
 
 # Sos pieczarkowy
-@ cat=sosy origin=PL trad servings=1 prep=8 cook=12 art=food tags=tradycyjne,sos,kuchnia-polska
+@ cat=sosy origin=PL trad servings=1 prep=8 cook=10 art=food tags=tradycyjne,sos,kuchnia-polska
 : Sos pieczarkowy — sos do dań głównych, makaronu lub warzyw, o konsystencji dopasowanej do sposobu podania.
 80 g | pieczarki
 0,5 szt. | cebula
 30 ml | śmietana 18%
 10 g | masło
 4 g | natka pietruszki
-> Przygotuj składniki: posiekaj aromaty, odmierz płyny i zetrzyj sery lub przyprawy, jeśli są w recepturze.
-> Podgrzej bazę na małym lub średnim ogniu, mieszając, aby składniki równomiernie się połączyły.
-> Jeśli sos wymaga redukcji, gotuj łagodnie do uzyskania właściwej konsystencji. Jeśli ma pozostać świeży, nie podgrzewaj go.
-> Dopraw stopniowo i próbuj po każdym dodatku. W razie potrzeby przecedź lub zblenduj.
-> Podawaj od razu albo ostudź szybko i przechowuj w lodówce.
+> Pieczarki oczyść i pokrój w równe plastry; cebulę posiekaj drobno.
+> Na maśle zeszklij cebulę, następnie dodaj pieczarki i smaż na dość mocnym ogniu, aż odparuje ich płyn.
+> Zmniejsz ogień, wlej śmietanę i delikatnie podgrzewaj, nie dopuszczając do gwałtownego wrzenia.
+> Gotuj kilka minut do lekkiego zgęstnienia, mieszając i zeskrobując smak z dna patelni.
+> Natkę posiekaj i dodaj pod koniec; spróbuj sosu i dopraw przed podaniem.
 
 # Salsa roja
-@ cat=sosy origin=MX trad servings=1 prep=8 cook=12 art=food tags=tradycyjne,sos,kuchnia-meksykańska
+@ cat=sosy origin=MX trad servings=1 prep=8 art=food tags=tradycyjne,sos,kuchnia-meksykańska
 : Salsa roja — sos do dań głównych, makaronu lub warzyw, o konsystencji dopasowanej do sposobu podania.
 120 g | pomidor
 0,5 szt. | jalapeño
 1 szt. | czosnek
 5 g | kolendra
 0,3 szt. | limonka
-> Przygotuj składniki: posiekaj aromaty, odmierz płyny i zetrzyj sery lub przyprawy, jeśli są w recepturze.
-> Podgrzej bazę na małym lub średnim ogniu, mieszając, aby składniki równomiernie się połączyły.
-> Jeśli sos wymaga redukcji, gotuj łagodnie do uzyskania właściwej konsystencji. Jeśli ma pozostać świeży, nie podgrzewaj go.
-> Dopraw stopniowo i próbuj po każdym dodatku. W razie potrzeby przecedź lub zblenduj.
-> Podawaj od razu albo ostudź szybko i przechowuj w lodówce.
+> Pomidora przekrój na połówki; jalapeño i czosnek przygotuj w całości.
+> Opiecz pomidora, jalapeño i czosnek na suchej, mocno rozgrzanej patelni, obracając, aż pojawią się ciemne plamki.
+> Ostudź składniki na tyle, by można było je bezpiecznie zblendować; obierz luźną skórkę pomidora, jeśli odchodzi.
+> Zmiksuj krótko z kolendrą i sokiem z limonki, pozostawiając lekko ziarnistą teksturę.
+> Odstaw salsę na 10 minut, spróbuj i w razie potrzeby skoryguj ostrość lub kwasowość.
 
 # Satay orzechowy
-@ cat=sosy servings=1 prep=8 cook=12 art=food tags=tradycyjne,sos,kuchnia-azjatycka
+@ cat=sosy servings=1 prep=8 cook=5 art=food tags=tradycyjne,sos,kuchnia-azjatycka
 : Satay orzechowy — sos do dań głównych, makaronu lub warzyw, o konsystencji dopasowanej do sposobu podania.
 40 g | masło orzechowe
 40 ml | mleko kokosowe
 10 ml | sos sojowy
 0,2 szt. | limonka
-> Przygotuj składniki: posiekaj aromaty, odmierz płyny i zetrzyj sery lub przyprawy, jeśli są w recepturze.
-> Podgrzej bazę na małym lub średnim ogniu, mieszając, aby składniki równomiernie się połączyły.
-> Jeśli sos wymaga redukcji, gotuj łagodnie do uzyskania właściwej konsystencji. Jeśli ma pozostać świeży, nie podgrzewaj go.
-> Dopraw stopniowo i próbuj po każdym dodatku. W razie potrzeby przecedź lub zblenduj.
-> Podawaj od razu albo ostudź szybko i przechowuj w lodówce.
+> Masło orzechowe przełóż do małego rondla i rozmieszaj z mlekiem kokosowym.
+> Dodaj sos sojowy i sok z limonki, mieszając do połączenia.
+> Podgrzewaj na małym ogniu, często mieszając; nie doprowadzaj do mocnego wrzenia.
+> Jeśli sos jest zbyt gęsty, dodaj odrobinę wody i ponownie wymieszaj do gładkiej konsystencji.
+> Spróbuj i dopasuj balans słonego, kwaśnego i orzechowego smaku; podawaj ciepły lub w temperaturze pokojowej.
 
 # Sos teriyaki
 @ cat=sosy origin=JP trad servings=1 prep=8 cook=12 art=food tags=tradycyjne,sos,kuchnia-japońska
@@ -1530,7 +1530,7 @@ export const SEED_CURATED = `
 > Ostudź lub użyj od razu jako glazury do potraw.
 
 # Chimichurri
-@ cat=sosy servings=1 prep=8 cook=12 art=food tags=tradycyjne,sos
+@ cat=sosy servings=1 prep=8 art=food tags=tradycyjne,sos
 : Chimichurri — sos do dań głównych, makaronu lub warzyw, o konsystencji dopasowanej do sposobu podania.
 4 g | natka pietruszki
 1 szt. | czosnek
@@ -1538,38 +1538,38 @@ export const SEED_CURATED = `
 10 ml | ocet winny
 12 ml | oliwa z oliwek
 1 g | chilli
-> Przygotuj składniki: posiekaj aromaty, odmierz płyny i zetrzyj sery lub przyprawy, jeśli są w recepturze.
-> Podgrzej bazę na małym lub średnim ogniu, mieszając, aby składniki równomiernie się połączyły.
-> Jeśli sos wymaga redukcji, gotuj łagodnie do uzyskania właściwej konsystencji. Jeśli ma pozostać świeży, nie podgrzewaj go.
-> Dopraw stopniowo i próbuj po każdym dodatku. W razie potrzeby przecedź lub zblenduj.
-> Podawaj od razu albo ostudź szybko i przechowuj w lodówce.
+> Natkę pietruszki posiekaj bardzo drobno, ale nie miksuj na gładką pastę.
+> Czosnek posiekaj, a oregano rozetrzyj delikatnie w dłoniach, aby uwolnić aromat.
+> Wymieszaj z octem winnym i chilli, po czym odstaw na 5 minut.
+> Wlewaj oliwę, mieszając, aby zioła równomiernie się rozprowadziły.
+> Pozostaw sos na co najmniej 15 minut przed podaniem; nie podgrzewaj, bo straci świeży aromat.
 
 # Aioli
-@ cat=sosy servings=1 prep=8 cook=12 art=food tags=tradycyjne,sos,kuchnia-śródziemnomorska
+@ cat=sosy servings=1 prep=8 art=food tags=tradycyjne,sos,kuchnia-śródziemnomorska
 : Aioli — sos do dań głównych, makaronu lub warzyw, o konsystencji dopasowanej do sposobu podania.
 9 g | żółtko
 1 szt. | czosnek
 12 ml | oliwa z oliwek
 0,3 szt. | cytryna
 3 g | sól
-> Przygotuj składniki: posiekaj aromaty, odmierz płyny i zetrzyj sery lub przyprawy, jeśli są w recepturze.
-> Podgrzej bazę na małym lub średnim ogniu, mieszając, aby składniki równomiernie się połączyły.
-> Jeśli sos wymaga redukcji, gotuj łagodnie do uzyskania właściwej konsystencji. Jeśli ma pozostać świeży, nie podgrzewaj go.
-> Dopraw stopniowo i próbuj po każdym dodatku. W razie potrzeby przecedź lub zblenduj.
-> Podawaj od razu albo ostudź szybko i przechowuj w lodówce.
+> Użyj pasteryzowanego żółtka i składników w podobnej temperaturze; czosnek rozetrzyj na gładką pastę.
+> Żółtko ubij z solą, a następnie dodawaj oliwę dosłownie kropla po kropli, cały czas energicznie ubijając.
+> Gdy emulsja zacznie gęstnieć, zwiększaj strumień oliwy, nie przestając mieszać.
+> Dodaj czosnek i sok z cytryny; wymieszaj i sprawdź, czy konsystencja jest jednolita.
+> Schłodź w lodówce w czystym, zamkniętym pojemniku i zużyj zgodnie z zasadami przechowywania sosów na bazie jaj.
 
 # Sos serowy cheddar
-@ cat=sosy origin=US trad servings=1 prep=8 cook=12 art=food tags=tradycyjne,sos,kuchnia-amerykańska
+@ cat=sosy origin=US trad servings=1 prep=8 cook=5 art=food tags=tradycyjne,sos,kuchnia-amerykańska
 : Sos serowy cheddar — sos do dań głównych, makaronu lub warzyw, o konsystencji dopasowanej do sposobu podania.
 50 g | cheddar
 80 ml | mleko
 10 g | masło
 8 g | mąka pszenna
-> Przygotuj składniki: posiekaj aromaty, odmierz płyny i zetrzyj sery lub przyprawy, jeśli są w recepturze.
-> Podgrzej bazę na małym lub średnim ogniu, mieszając, aby składniki równomiernie się połączyły.
-> Jeśli sos wymaga redukcji, gotuj łagodnie do uzyskania właściwej konsystencji. Jeśli ma pozostać świeży, nie podgrzewaj go.
-> Dopraw stopniowo i próbuj po każdym dodatku. W razie potrzeby przecedź lub zblenduj.
-> Podawaj od razu albo ostudź szybko i przechowuj w lodówce.
+> Masło rozpuść w rondlu na małym ogniu i wsyp mąkę.
+> Mieszaj zasmażkę przez 1–2 minuty, po czym stopniowo dolej mleko, rozprowadzając je rózgą.
+> Gotuj łagodnie, aż baza zgęstnieje i będzie gładka.
+> Zdejmij rondel z ognia i dodawaj cheddar partiami, mieszając do całkowitego roztopienia.
+> Dopraw według receptury i podawaj od razu; przy odgrzewaniu podgrzewaj łagodnie, aby sos się nie rozwarstwił.
 
 # Manhattan
 @ cat=cocktaile servings=1 prep=3 cook=5 art=drink tags=koktajl,bar
@@ -1794,11 +1794,11 @@ export const SEED_CURATED = `
 8 g | cukier
 30 g | ananas
 12 ml | olej rzepakowy
-> Pokrój białko i warzywa na równe kawałki. Osusz składniki, a sos przygotuj wcześniej z produktów wymienionych w recepturze.
-> Rozgrzej wok lub szeroką patelnię. Obsmaż białko partiami na mocnym ogniu i odłóż na bok.
-> Dodaj aromaty oraz warzywa. Smaż krótko, aby zachowały jędrność i kolor.
-> Włóż białko z powrotem, dodaj sos i podgrzewaj, aż składniki będą gotowe, a sos lekko zgęstnieje.
-> Spróbuj, dopraw i podawaj od razu.
+> Filet z kurczaka pokrój w cienkie, równe paski lub niewielkie kawałki. Ananasa pokrój na niewielkie kawałki.
+> W miseczce rozmieszaj ketchup, ocet ryżowy i cukier, aż kryształki cukru się rozpuszczą.
+> Mocno rozgrzej wok z olejem. Obsmaż partiami na mocnym ogniu, aż kawałki będą zrumienione i w pełni ugotowane; odłóż na talerz.
+> Wrzuć ananasa na patelnię i smaż około minuty; wlej przygotowany sos oraz 1–2 łyżki wody, jeśli trzeba go rozrzedzić.
+> Włóż filet z kurczaka z powrotem, wymieszaj i podgrzewaj do uzyskania błyszczącej glazury. Sprawdź wysmażenie i podawaj natychmiast.
 
 # Kurczak kung pao
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -1809,11 +1809,11 @@ export const SEED_CURATED = `
 12 ml | sos sojowy
 1 g | pieprz syczuański
 12 ml | olej rzepakowy
-> Pokrój białko w równe kawałki i osusz. Przygotuj sos z sosu sojowego oraz pozostałych składników płynnych.
-> Rozgrzej wok lub dużą patelnię. Smaż białko partiami, aby się zrumieniło zamiast puścić wodę; odłóż na bok.
-> Krótko podsmaż czosnek, chili i warzywa. Dodaj orzeszki, jeśli są w składnikach.
-> Włóż białko z powrotem, wlej sos i energicznie mieszaj, aż oblepi składniki i lekko zgęstnieje.
-> Podawaj od razu z ryżem lub makaronem, jeśli są przewidziane w recepturze.
+> Filet z kurczaka pokrój w cienkie, równe paski lub niewielkie kawałki. Orzeszki ziemne przygotuj z wyprzedzeniem, a pieprz syczuański lekko rozgnieć.
+> Rozgrzej wok z olejem i obsmaż białko partiami; tofu odłóż na bok po zrumienieniu.
+> Wsyp chilli oraz pieprz syczuański i smaż przez 15–20 sekund, nie przypalając przypraw.
+> Dodaj sos sojowy i 1–2 łyżki wody, szybko zamieszaj, aby powstała aromatyczna glazura.
+> Dodaj filet z kurczaka oraz orzeszki ziemne, wymieszaj przez 30–60 sekund i od razu podawaj.
 
 # Kurczak z czarnym pieprzem
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -1824,11 +1824,11 @@ export const SEED_CURATED = `
 0,5 szt. | cebula
 40 g | papryka
 12 ml | olej rzepakowy
-> Pokrój białko w cienkie paski i dokładnie osusz. Warzywa pokrój na podobną wielkość.
-> Rozgrzej wok lub dużą patelnię. Obsmaż białko partiami na mocnym ogniu i odłóż na bok.
-> Dodaj aromaty i warzywa, smaż krótko. Przygotuj sos z czarnego pieprzu i składników płynnych z listy.
-> Włóż białko z powrotem, wlej sos i mieszaj, aż całość będzie gorąca, a sos oblepi składniki.
-> Podawaj natychmiast z ryżem lub makaronem, jeśli przewidziano je w składnikach.
+> Filet z kurczaka pokrój w cienkie, równe paski lub niewielkie kawałki. Cebulę pokrój w piórka, a paprykę w cienkie paski; pieprz grubo rozgnieć.
+> Rozgrzej wok z olejem. Obsmaż białko partiami, aż się zrumieni, i przełóż na talerz.
+> Na tej samej patelni krótko smaż cebulę i paprykę, aby zmiękły, ale pozostały jędrne.
+> Rozmieszaj sos ostrygowy z 1–2 łyżkami wody, wlej do woka i zagotuj krótko.
+> Włóż filet z kurczaka z powrotem, dodaj pieprz i wymieszaj, aż sos pokryje składniki cienką warstwą.
 
 # Kurczak po syczuańsku
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -1839,14 +1839,14 @@ export const SEED_CURATED = `
 5 g | imbir
 5 ml | sezamowy olej
 12 ml | olej rzepakowy
-> Pokrój białko i warzywa na równe kawałki. Osusz składniki, a sos przygotuj wcześniej z produktów wymienionych w recepturze.
-> Rozgrzej wok lub szeroką patelnię. Obsmaż białko partiami na mocnym ogniu i odłóż na bok.
-> Dodaj aromaty oraz warzywa. Smaż krótko, aby zachowały jędrność i kolor.
-> Włóż białko z powrotem, dodaj sos i podgrzewaj, aż składniki będą gotowe, a sos lekko zgęstnieje.
-> Spróbuj, dopraw i podawaj od razu.
+> Filet z kurczaka pokrój w cienkie, równe paski lub niewielkie kawałki. Czosnek drobno posiekaj, a imbir zetrzyj lub pokrój w cienkie zapałki.
+> Rozgrzej wok z olejem i obsmaż białko; jeśli używasz tofu, zrumień je z każdej strony. Odłóż na bok.
+> Zmniejsz nieco ogień, dodaj czosnek, imbir i pastę doubanjiang; smaż 20–30 sekund, aż uwolnią aromat.
+> Wlej olej sezamowy oraz 1–2 łyżki wody, po czym zeskrob z dna przyprawy i utwórz lekki sos.
+> Włóż filet z kurczaka z powrotem, dokładnie obtocz w sosie i podgrzej do pełnej gotowości. Podawaj od razu.
 
 # Kurczak z bazylią tajską
-@ cat=ryby servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
+@ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
 : Szybkie danie z woka z tajską bazylią, czosnkiem i pikantno-słonym sosem.
 140 g | filet z kurczaka
 8 g | bazylia tajska
@@ -1854,11 +1854,11 @@ export const SEED_CURATED = `
 3 g | chilli
 1 szt. | czosnek
 12 ml | olej rzepakowy
-> Pokrój białko w cienkie kawałki i przygotuj wszystkie składniki przed rozgrzaniem patelni — smażenie będzie szybkie.
-> Rozgrzej wok z olejem. Krótko podsmaż czosnek i chili, aż zaczną pachnieć.
-> Dodaj białko i smaż na dużym ogniu, mieszając, aż będzie prawie gotowe.
-> Dodaj sosy z receptury i odrobinę wody, jeśli potrzeba. Na sam koniec wmieszaj tajską bazylię, aby zachowała aromat.
-> Podawaj natychmiast z ryżem, jeśli jest w składnikach.
+> Filet z kurczaka pokrój w cienkie, równe paski lub niewielkie kawałki. Czosnek drobno posiekaj, chilli pokrój cienko, a bazylię tajską przygotuj do dodania na końcu.
+> Rozgrzej wok z olejem; czosnek i chilli smaż przez 15–20 sekund, tylko do uwolnienia aromatu.
+> Dodaj filet z kurczaka i smaż na mocnym ogniu, często mieszając, aż będzie w pełni ugotowane.
+> Dodaj sos rybny oraz łyżkę wody, jeśli składniki zaczynają przywierać; szybko wymieszaj.
+> Zdejmij wok z ognia, wmieszaj bazylię tajską i podawaj natychmiast, zanim liście stracą kolor.
 
 # Kurczak pad see ew
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -1869,11 +1869,11 @@ export const SEED_CURATED = `
 50 g | brokuł chiński
 28 g | jajko (roztrzepane)
 12 ml | olej rzepakowy
-> Makaron ryżowy przygotuj zgodnie z instrukcją na opakowaniu. Warzywa pokrój, a białko osusz.
-> Rozgrzej wok bardzo mocno. Smaż białko krótko, aż się zetnie i lekko zrumieni; odłóż na bok.
-> Dodaj warzywa i smaż krótko, zachowując ich jędrność. Jeśli receptura zawiera jajko, wbij je na wolne miejsce i szybko zetnij.
-> Dodaj makaron i sos sojowy. Włóż białko z powrotem i wymieszaj na dużym ogniu, aż makaron złapie kolor sosu.
-> Podawaj natychmiast, prosto z woka.
+> Makaron ryżowy przygotuj zgodnie z instrukcją na opakowaniu, odcedź i filet z kurczaka pokrój w cienkie, równe paski lub niewielkie kawałki.
+> Rozgrzej wok z olejem i obsmaż białko; odłóż je na bok, gdy będzie zrumienione lub w pełni ugotowane.
+> Dodaj brokuł chiński i smaż krótko, aż łodyżki zmiękną, ale zachowają jędrność.
+> Przesuń składniki na bok, wlej roztrzepane jajko i szybko mieszaj, aż się zetnie; dodaj makaron i ciemny sos sojowy.
+> Włóż filet z kurczaka z powrotem i wymieszaj na mocnym ogniu, aż makaron pokryje się sosem i będzie gorący.
 
 # Kurczak w sosie orzechowym
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -1884,11 +1884,11 @@ export const SEED_CURATED = `
 0,2 szt. | limonka
 8 ml | sos sojowy
 12 ml | olej rzepakowy
-> Pokrój białko i warzywa na równe kawałki. Osusz składniki, a sos przygotuj wcześniej z produktów wymienionych w recepturze.
-> Rozgrzej wok lub szeroką patelnię. Obsmaż białko partiami na mocnym ogniu i odłóż na bok.
-> Dodaj aromaty oraz warzywa. Smaż krótko, aby zachowały jędrność i kolor.
-> Włóż białko z powrotem, dodaj sos i podgrzewaj, aż składniki będą gotowe, a sos lekko zgęstnieje.
-> Spróbuj, dopraw i podawaj od razu.
+> Filet z kurczaka pokrój w cienkie, równe paski lub niewielkie kawałki. Limonkę przekrój i wyciśnij sok.
+> W małej misce wymieszaj masło orzechowe, mleko kokosowe, sos sojowy i sok z limonki do uzyskania gładkiego sosu.
+> Rozgrzej wok z olejem. Obsmaż partiami na mocnym ogniu, aż kawałki będą zrumienione i w pełni ugotowane; odłóż na talerz.
+> Zmniejsz ogień i wlej sos orzechowy; mieszaj bez przerwy, aby nie przywarł ani się nie rozwarstwił.
+> Jeśli sos jest zbyt gęsty, dolej trochę wody. Włóż filet z kurczaka z powrotem, obtocz i podawaj na gorąco.
 
 # Wołowina w sosie słodko-kwaśnym
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -1899,11 +1899,11 @@ export const SEED_CURATED = `
 8 g | cukier
 30 g | ananas
 12 ml | olej rzepakowy
-> Pokrój białko i warzywa na równe kawałki. Osusz składniki, a sos przygotuj wcześniej z produktów wymienionych w recepturze.
-> Rozgrzej wok lub szeroką patelnię. Obsmaż białko partiami na mocnym ogniu i odłóż na bok.
-> Dodaj aromaty oraz warzywa. Smaż krótko, aby zachowały jędrność i kolor.
-> Włóż białko z powrotem, dodaj sos i podgrzewaj, aż składniki będą gotowe, a sos lekko zgęstnieje.
-> Spróbuj, dopraw i podawaj od razu.
+> Wołowina pokrój w cienkie, równe paski lub niewielkie kawałki. Ananasa pokrój na niewielkie kawałki.
+> W miseczce rozmieszaj ketchup, ocet ryżowy i cukier, aż kryształki cukru się rozpuszczą.
+> Mocno rozgrzej wok z olejem. Obsmaż partiami na mocnym ogniu, aż kawałki będą zrumienione i w pełni ugotowane; odłóż na talerz.
+> Wrzuć ananasa na patelnię i smaż około minuty; wlej przygotowany sos oraz 1–2 łyżki wody, jeśli trzeba go rozrzedzić.
+> Włóż wołowina z powrotem, wymieszaj i podgrzewaj do uzyskania błyszczącej glazury. Sprawdź wysmażenie i podawaj natychmiast.
 
 # Wołowina kung pao
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -1914,11 +1914,11 @@ export const SEED_CURATED = `
 12 ml | sos sojowy
 1 g | pieprz syczuański
 12 ml | olej rzepakowy
-> Pokrój białko w równe kawałki i osusz. Przygotuj sos z sosu sojowego oraz pozostałych składników płynnych.
-> Rozgrzej wok lub dużą patelnię. Smaż białko partiami, aby się zrumieniło zamiast puścić wodę; odłóż na bok.
-> Krótko podsmaż czosnek, chili i warzywa. Dodaj orzeszki, jeśli są w składnikach.
-> Włóż białko z powrotem, wlej sos i energicznie mieszaj, aż oblepi składniki i lekko zgęstnieje.
-> Podawaj od razu z ryżem lub makaronem, jeśli są przewidziane w recepturze.
+> Wołowina pokrój w cienkie, równe paski lub niewielkie kawałki. Orzeszki ziemne przygotuj z wyprzedzeniem, a pieprz syczuański lekko rozgnieć.
+> Rozgrzej wok z olejem i obsmaż białko partiami; tofu odłóż na bok po zrumienieniu.
+> Wsyp chilli oraz pieprz syczuański i smaż przez 15–20 sekund, nie przypalając przypraw.
+> Dodaj sos sojowy i 1–2 łyżki wody, szybko zamieszaj, aby powstała aromatyczna glazura.
+> Dodaj wołowina oraz orzeszki ziemne, wymieszaj przez 30–60 sekund i od razu podawaj.
 
 # Wołowina z czarnym pieprzem
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -1929,11 +1929,11 @@ export const SEED_CURATED = `
 0,5 szt. | cebula
 40 g | papryka
 12 ml | olej rzepakowy
-> Pokrój białko w cienkie paski i dokładnie osusz. Warzywa pokrój na podobną wielkość.
-> Rozgrzej wok lub dużą patelnię. Obsmaż białko partiami na mocnym ogniu i odłóż na bok.
-> Dodaj aromaty i warzywa, smaż krótko. Przygotuj sos z czarnego pieprzu i składników płynnych z listy.
-> Włóż białko z powrotem, wlej sos i mieszaj, aż całość będzie gorąca, a sos oblepi składniki.
-> Podawaj natychmiast z ryżem lub makaronem, jeśli przewidziano je w składnikach.
+> Wołowina pokrój w cienkie, równe paski lub niewielkie kawałki. Cebulę pokrój w piórka, a paprykę w cienkie paski; pieprz grubo rozgnieć.
+> Rozgrzej wok z olejem. Obsmaż białko partiami, aż się zrumieni, i przełóż na talerz.
+> Na tej samej patelni krótko smaż cebulę i paprykę, aby zmiękły, ale pozostały jędrne.
+> Rozmieszaj sos ostrygowy z 1–2 łyżkami wody, wlej do woka i zagotuj krótko.
+> Włóż wołowina z powrotem, dodaj pieprz i wymieszaj, aż sos pokryje składniki cienką warstwą.
 
 # Wołowina po syczuańsku
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -1944,14 +1944,14 @@ export const SEED_CURATED = `
 5 g | imbir
 5 ml | sezamowy olej
 12 ml | olej rzepakowy
-> Pokrój białko i warzywa na równe kawałki. Osusz składniki, a sos przygotuj wcześniej z produktów wymienionych w recepturze.
-> Rozgrzej wok lub szeroką patelnię. Obsmaż białko partiami na mocnym ogniu i odłóż na bok.
-> Dodaj aromaty oraz warzywa. Smaż krótko, aby zachowały jędrność i kolor.
-> Włóż białko z powrotem, dodaj sos i podgrzewaj, aż składniki będą gotowe, a sos lekko zgęstnieje.
-> Spróbuj, dopraw i podawaj od razu.
+> Wołowina pokrój w cienkie, równe paski lub niewielkie kawałki. Czosnek drobno posiekaj, a imbir zetrzyj lub pokrój w cienkie zapałki.
+> Rozgrzej wok z olejem i obsmaż białko; jeśli używasz tofu, zrumień je z każdej strony. Odłóż na bok.
+> Zmniejsz nieco ogień, dodaj czosnek, imbir i pastę doubanjiang; smaż 20–30 sekund, aż uwolnią aromat.
+> Wlej olej sezamowy oraz 1–2 łyżki wody, po czym zeskrob z dna przyprawy i utwórz lekki sos.
+> Włóż wołowina z powrotem, dokładnie obtocz w sosie i podgrzej do pełnej gotowości. Podawaj od razu.
 
 # Wołowina z bazylią tajską
-@ cat=ryby servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
+@ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
 : Szybkie danie z woka z tajską bazylią, czosnkiem i pikantno-słonym sosem.
 130 g | wołowina
 8 g | bazylia tajska
@@ -1959,11 +1959,11 @@ export const SEED_CURATED = `
 3 g | chilli
 1 szt. | czosnek
 12 ml | olej rzepakowy
-> Pokrój białko w cienkie kawałki i przygotuj wszystkie składniki przed rozgrzaniem patelni — smażenie będzie szybkie.
-> Rozgrzej wok z olejem. Krótko podsmaż czosnek i chili, aż zaczną pachnieć.
-> Dodaj białko i smaż na dużym ogniu, mieszając, aż będzie prawie gotowe.
-> Dodaj sosy z receptury i odrobinę wody, jeśli potrzeba. Na sam koniec wmieszaj tajską bazylię, aby zachowała aromat.
-> Podawaj natychmiast z ryżem, jeśli jest w składnikach.
+> Wołowina pokrój w cienkie, równe paski lub niewielkie kawałki. Czosnek drobno posiekaj, chilli pokrój cienko, a bazylię tajską przygotuj do dodania na końcu.
+> Rozgrzej wok z olejem; czosnek i chilli smaż przez 15–20 sekund, tylko do uwolnienia aromatu.
+> Dodaj wołowina i smaż na mocnym ogniu, często mieszając, aż będzie w pełni ugotowane.
+> Dodaj sos rybny oraz łyżkę wody, jeśli składniki zaczynają przywierać; szybko wymieszaj.
+> Zdejmij wok z ognia, wmieszaj bazylię tajską i podawaj natychmiast, zanim liście stracą kolor.
 
 # Wołowina pad see ew
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -1974,11 +1974,11 @@ export const SEED_CURATED = `
 50 g | brokuł chiński
 28 g | jajko (roztrzepane)
 12 ml | olej rzepakowy
-> Makaron ryżowy przygotuj zgodnie z instrukcją na opakowaniu. Warzywa pokrój, a białko osusz.
-> Rozgrzej wok bardzo mocno. Smaż białko krótko, aż się zetnie i lekko zrumieni; odłóż na bok.
-> Dodaj warzywa i smaż krótko, zachowując ich jędrność. Jeśli receptura zawiera jajko, wbij je na wolne miejsce i szybko zetnij.
-> Dodaj makaron i sos sojowy. Włóż białko z powrotem i wymieszaj na dużym ogniu, aż makaron złapie kolor sosu.
-> Podawaj natychmiast, prosto z woka.
+> Makaron ryżowy przygotuj zgodnie z instrukcją na opakowaniu, odcedź i wołowina pokrój w cienkie, równe paski lub niewielkie kawałki.
+> Rozgrzej wok z olejem i obsmaż białko; odłóż je na bok, gdy będzie zrumienione lub w pełni ugotowane.
+> Dodaj brokuł chiński i smaż krótko, aż łodyżki zmiękną, ale zachowają jędrność.
+> Przesuń składniki na bok, wlej roztrzepane jajko i szybko mieszaj, aż się zetnie; dodaj makaron i ciemny sos sojowy.
+> Włóż wołowina z powrotem i wymieszaj na mocnym ogniu, aż makaron pokryje się sosem i będzie gorący.
 
 # Wołowina w sosie orzechowym
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -1989,11 +1989,11 @@ export const SEED_CURATED = `
 0,2 szt. | limonka
 8 ml | sos sojowy
 12 ml | olej rzepakowy
-> Pokrój białko i warzywa na równe kawałki. Osusz składniki, a sos przygotuj wcześniej z produktów wymienionych w recepturze.
-> Rozgrzej wok lub szeroką patelnię. Obsmaż białko partiami na mocnym ogniu i odłóż na bok.
-> Dodaj aromaty oraz warzywa. Smaż krótko, aby zachowały jędrność i kolor.
-> Włóż białko z powrotem, dodaj sos i podgrzewaj, aż składniki będą gotowe, a sos lekko zgęstnieje.
-> Spróbuj, dopraw i podawaj od razu.
+> Wołowina pokrój w cienkie, równe paski lub niewielkie kawałki. Limonkę przekrój i wyciśnij sok.
+> W małej misce wymieszaj masło orzechowe, mleko kokosowe, sos sojowy i sok z limonki do uzyskania gładkiego sosu.
+> Rozgrzej wok z olejem. Obsmaż partiami na mocnym ogniu, aż kawałki będą zrumienione i w pełni ugotowane; odłóż na talerz.
+> Zmniejsz ogień i wlej sos orzechowy; mieszaj bez przerwy, aby nie przywarł ani się nie rozwarstwił.
+> Jeśli sos jest zbyt gęsty, dolej trochę wody. Włóż wołowina z powrotem, obtocz i podawaj na gorąco.
 
 # Krewetki w sosie słodko-kwaśnym
 @ cat=owoce-morza servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -2004,11 +2004,11 @@ export const SEED_CURATED = `
 8 g | cukier
 30 g | ananas
 12 ml | olej rzepakowy
-> Pokrój białko i warzywa na równe kawałki. Osusz składniki, a sos przygotuj wcześniej z produktów wymienionych w recepturze.
-> Rozgrzej wok lub szeroką patelnię. Obsmaż białko partiami na mocnym ogniu i odłóż na bok.
-> Dodaj aromaty oraz warzywa. Smaż krótko, aby zachowały jędrność i kolor.
-> Włóż białko z powrotem, dodaj sos i podgrzewaj, aż składniki będą gotowe, a sos lekko zgęstnieje.
-> Spróbuj, dopraw i podawaj od razu.
+> Krewetki oczyść, usuń przewód pokarmowy, a następnie dokładnie osusz. Ananasa pokrój na niewielkie kawałki.
+> W miseczce rozmieszaj ketchup, ocet ryżowy i cukier, aż kryształki cukru się rozpuszczą.
+> Mocno rozgrzej wok z olejem. Smaż krótko, zwykle 1–2 minuty z każdej strony, aż krewetki staną się różowe i nieprzezroczyste.
+> Wrzuć ananasa na patelnię i smaż około minuty; wlej przygotowany sos oraz 1–2 łyżki wody, jeśli trzeba go rozrzedzić.
+> Włóż krewetki z powrotem, wymieszaj i podgrzewaj do uzyskania błyszczącej glazury. Sprawdź wysmażenie i podawaj natychmiast.
 
 # Krewetki kung pao
 @ cat=owoce-morza servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -2019,11 +2019,11 @@ export const SEED_CURATED = `
 12 ml | sos sojowy
 1 g | pieprz syczuański
 12 ml | olej rzepakowy
-> Pokrój białko w równe kawałki i osusz. Przygotuj sos z sosu sojowego oraz pozostałych składników płynnych.
-> Rozgrzej wok lub dużą patelnię. Smaż białko partiami, aby się zrumieniło zamiast puścić wodę; odłóż na bok.
-> Krótko podsmaż czosnek, chili i warzywa. Dodaj orzeszki, jeśli są w składnikach.
-> Włóż białko z powrotem, wlej sos i energicznie mieszaj, aż oblepi składniki i lekko zgęstnieje.
-> Podawaj od razu z ryżem lub makaronem, jeśli są przewidziane w recepturze.
+> Krewetki oczyść, usuń przewód pokarmowy, a następnie dokładnie osusz. Orzeszki ziemne przygotuj z wyprzedzeniem, a pieprz syczuański lekko rozgnieć.
+> Rozgrzej wok z olejem i obsmaż białko partiami; tofu odłóż na bok po zrumienieniu.
+> Wsyp chilli oraz pieprz syczuański i smaż przez 15–20 sekund, nie przypalając przypraw.
+> Dodaj sos sojowy i 1–2 łyżki wody, szybko zamieszaj, aby powstała aromatyczna glazura.
+> Dodaj krewetki oraz orzeszki ziemne, wymieszaj przez 30–60 sekund i od razu podawaj.
 
 # Krewetki z czarnym pieprzem
 @ cat=owoce-morza servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -2034,11 +2034,11 @@ export const SEED_CURATED = `
 0,5 szt. | cebula
 40 g | papryka
 12 ml | olej rzepakowy
-> Pokrój białko w cienkie paski i dokładnie osusz. Warzywa pokrój na podobną wielkość.
-> Rozgrzej wok lub dużą patelnię. Obsmaż białko partiami na mocnym ogniu i odłóż na bok.
-> Dodaj aromaty i warzywa, smaż krótko. Przygotuj sos z czarnego pieprzu i składników płynnych z listy.
-> Włóż białko z powrotem, wlej sos i mieszaj, aż całość będzie gorąca, a sos oblepi składniki.
-> Podawaj natychmiast z ryżem lub makaronem, jeśli przewidziano je w składnikach.
+> Krewetki oczyść, usuń przewód pokarmowy, a następnie dokładnie osusz. Cebulę pokrój w piórka, a paprykę w cienkie paski; pieprz grubo rozgnieć.
+> Rozgrzej wok z olejem. Obsmaż białko partiami, aż się zrumieni, i przełóż na talerz.
+> Na tej samej patelni krótko smaż cebulę i paprykę, aby zmiękły, ale pozostały jędrne.
+> Rozmieszaj sos ostrygowy z 1–2 łyżkami wody, wlej do woka i zagotuj krótko.
+> Włóż krewetki z powrotem, dodaj pieprz i wymieszaj, aż sos pokryje składniki cienką warstwą.
 
 # Krewetki po syczuańsku
 @ cat=owoce-morza servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -2049,11 +2049,11 @@ export const SEED_CURATED = `
 5 g | imbir
 5 ml | sezamowy olej
 12 ml | olej rzepakowy
-> Pokrój białko i warzywa na równe kawałki. Osusz składniki, a sos przygotuj wcześniej z produktów wymienionych w recepturze.
-> Rozgrzej wok lub szeroką patelnię. Obsmaż białko partiami na mocnym ogniu i odłóż na bok.
-> Dodaj aromaty oraz warzywa. Smaż krótko, aby zachowały jędrność i kolor.
-> Włóż białko z powrotem, dodaj sos i podgrzewaj, aż składniki będą gotowe, a sos lekko zgęstnieje.
-> Spróbuj, dopraw i podawaj od razu.
+> Krewetki oczyść, usuń przewód pokarmowy, a następnie dokładnie osusz. Czosnek drobno posiekaj, a imbir zetrzyj lub pokrój w cienkie zapałki.
+> Rozgrzej wok z olejem i obsmaż białko; jeśli używasz tofu, zrumień je z każdej strony. Odłóż na bok.
+> Zmniejsz nieco ogień, dodaj czosnek, imbir i pastę doubanjiang; smaż 20–30 sekund, aż uwolnią aromat.
+> Wlej olej sezamowy oraz 1–2 łyżki wody, po czym zeskrob z dna przyprawy i utwórz lekki sos.
+> Włóż krewetki z powrotem, dokładnie obtocz w sosie i podgrzej do pełnej gotowości. Podawaj od razu.
 
 # Krewetki z bazylią tajską
 @ cat=owoce-morza servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -2064,11 +2064,11 @@ export const SEED_CURATED = `
 3 g | chilli
 1 szt. | czosnek
 12 ml | olej rzepakowy
-> Pokrój białko w cienkie kawałki i przygotuj wszystkie składniki przed rozgrzaniem patelni — smażenie będzie szybkie.
-> Rozgrzej wok z olejem. Krótko podsmaż czosnek i chili, aż zaczną pachnieć.
-> Dodaj białko i smaż na dużym ogniu, mieszając, aż będzie prawie gotowe.
-> Dodaj sosy z receptury i odrobinę wody, jeśli potrzeba. Na sam koniec wmieszaj tajską bazylię, aby zachowała aromat.
-> Podawaj natychmiast z ryżem, jeśli jest w składnikach.
+> Krewetki oczyść, usuń przewód pokarmowy, a następnie dokładnie osusz. Czosnek drobno posiekaj, chilli pokrój cienko, a bazylię tajską przygotuj do dodania na końcu.
+> Rozgrzej wok z olejem; czosnek i chilli smaż przez 15–20 sekund, tylko do uwolnienia aromatu.
+> Dodaj krewetki i smaż na mocnym ogniu, często mieszając, aż będzie w pełni ugotowane.
+> Dodaj sos rybny oraz łyżkę wody, jeśli składniki zaczynają przywierać; szybko wymieszaj.
+> Zdejmij wok z ognia, wmieszaj bazylię tajską i podawaj natychmiast, zanim liście stracą kolor.
 
 # Krewetki pad see ew
 @ cat=owoce-morza servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -2079,11 +2079,11 @@ export const SEED_CURATED = `
 50 g | brokuł chiński
 28 g | jajko (roztrzepane)
 12 ml | olej rzepakowy
-> Makaron ryżowy przygotuj zgodnie z instrukcją na opakowaniu. Warzywa pokrój, a białko osusz.
-> Rozgrzej wok bardzo mocno. Smaż białko krótko, aż się zetnie i lekko zrumieni; odłóż na bok.
-> Dodaj warzywa i smaż krótko, zachowując ich jędrność. Jeśli receptura zawiera jajko, wbij je na wolne miejsce i szybko zetnij.
-> Dodaj makaron i sos sojowy. Włóż białko z powrotem i wymieszaj na dużym ogniu, aż makaron złapie kolor sosu.
-> Podawaj natychmiast, prosto z woka.
+> Makaron ryżowy przygotuj zgodnie z instrukcją na opakowaniu, odcedź i krewetki oczyść, usuń przewód pokarmowy, a następnie dokładnie osusz.
+> Rozgrzej wok z olejem i obsmaż białko; odłóż je na bok, gdy będzie zrumienione lub w pełni ugotowane.
+> Dodaj brokuł chiński i smaż krótko, aż łodyżki zmiękną, ale zachowają jędrność.
+> Przesuń składniki na bok, wlej roztrzepane jajko i szybko mieszaj, aż się zetnie; dodaj makaron i ciemny sos sojowy.
+> Włóż krewetki z powrotem i wymieszaj na mocnym ogniu, aż makaron pokryje się sosem i będzie gorący.
 
 # Krewetki w sosie orzechowym
 @ cat=owoce-morza servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -2094,11 +2094,11 @@ export const SEED_CURATED = `
 0,2 szt. | limonka
 8 ml | sos sojowy
 12 ml | olej rzepakowy
-> Pokrój białko i warzywa na równe kawałki. Osusz składniki, a sos przygotuj wcześniej z produktów wymienionych w recepturze.
-> Rozgrzej wok lub szeroką patelnię. Obsmaż białko partiami na mocnym ogniu i odłóż na bok.
-> Dodaj aromaty oraz warzywa. Smaż krótko, aby zachowały jędrność i kolor.
-> Włóż białko z powrotem, dodaj sos i podgrzewaj, aż składniki będą gotowe, a sos lekko zgęstnieje.
-> Spróbuj, dopraw i podawaj od razu.
+> Krewetki oczyść, usuń przewód pokarmowy, a następnie dokładnie osusz. Limonkę przekrój i wyciśnij sok.
+> W małej misce wymieszaj masło orzechowe, mleko kokosowe, sos sojowy i sok z limonki do uzyskania gładkiego sosu.
+> Rozgrzej wok z olejem. Smaż krótko, zwykle 1–2 minuty z każdej strony, aż krewetki staną się różowe i nieprzezroczyste.
+> Zmniejsz ogień i wlej sos orzechowy; mieszaj bez przerwy, aby nie przywarł ani się nie rozwarstwił.
+> Jeśli sos jest zbyt gęsty, dolej trochę wody. Włóż krewetki z powrotem, obtocz i podawaj na gorąco.
 
 # Tofu w sosie słodko-kwaśnym
 @ cat=warzywa servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -2109,11 +2109,11 @@ export const SEED_CURATED = `
 8 g | cukier
 30 g | ananas
 12 ml | olej rzepakowy
-> Pokrój białko i warzywa na równe kawałki. Osusz składniki, a sos przygotuj wcześniej z produktów wymienionych w recepturze.
-> Rozgrzej wok lub szeroką patelnię. Obsmaż białko partiami na mocnym ogniu i odłóż na bok.
-> Dodaj aromaty oraz warzywa. Smaż krótko, aby zachowały jędrność i kolor.
-> Włóż białko z powrotem, dodaj sos i podgrzewaj, aż składniki będą gotowe, a sos lekko zgęstnieje.
-> Spróbuj, dopraw i podawaj od razu.
+> Tofu osusz ręcznikiem i pokrój w równe kostki. Ananasa pokrój na niewielkie kawałki.
+> W miseczce rozmieszaj ketchup, ocet ryżowy i cukier, aż kryształki cukru się rozpuszczą.
+> Mocno rozgrzej wok z olejem. Smaż 3–4 minuty, obracając, aż tofu zrumieni się z kilku stron.
+> Wrzuć ananasa na patelnię i smaż około minuty; wlej przygotowany sos oraz 1–2 łyżki wody, jeśli trzeba go rozrzedzić.
+> Włóż tofu z powrotem, wymieszaj i podgrzewaj do uzyskania błyszczącej glazury. Sprawdź wysmażenie i podawaj natychmiast.
 
 # Tofu kung pao
 @ cat=warzywa servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -2124,11 +2124,11 @@ export const SEED_CURATED = `
 12 ml | sos sojowy
 1 g | pieprz syczuański
 12 ml | olej rzepakowy
-> Pokrój białko w równe kawałki i osusz. Przygotuj sos z sosu sojowego oraz pozostałych składników płynnych.
-> Rozgrzej wok lub dużą patelnię. Smaż białko partiami, aby się zrumieniło zamiast puścić wodę; odłóż na bok.
-> Krótko podsmaż czosnek, chili i warzywa. Dodaj orzeszki, jeśli są w składnikach.
-> Włóż białko z powrotem, wlej sos i energicznie mieszaj, aż oblepi składniki i lekko zgęstnieje.
-> Podawaj od razu z ryżem lub makaronem, jeśli są przewidziane w recepturze.
+> Tofu osusz ręcznikiem i pokrój w równe kostki. Orzeszki ziemne przygotuj z wyprzedzeniem, a pieprz syczuański lekko rozgnieć.
+> Rozgrzej wok z olejem i obsmaż białko partiami; tofu odłóż na bok po zrumienieniu.
+> Wsyp chilli oraz pieprz syczuański i smaż przez 15–20 sekund, nie przypalając przypraw.
+> Dodaj sos sojowy i 1–2 łyżki wody, szybko zamieszaj, aby powstała aromatyczna glazura.
+> Dodaj tofu oraz orzeszki ziemne, wymieszaj przez 30–60 sekund i od razu podawaj.
 
 # Tofu z czarnym pieprzem
 @ cat=warzywa servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -2139,11 +2139,11 @@ export const SEED_CURATED = `
 0,5 szt. | cebula
 40 g | papryka
 12 ml | olej rzepakowy
-> Pokrój białko w cienkie paski i dokładnie osusz. Warzywa pokrój na podobną wielkość.
-> Rozgrzej wok lub dużą patelnię. Obsmaż białko partiami na mocnym ogniu i odłóż na bok.
-> Dodaj aromaty i warzywa, smaż krótko. Przygotuj sos z czarnego pieprzu i składników płynnych z listy.
-> Włóż białko z powrotem, wlej sos i mieszaj, aż całość będzie gorąca, a sos oblepi składniki.
-> Podawaj natychmiast z ryżem lub makaronem, jeśli przewidziano je w składnikach.
+> Tofu osusz ręcznikiem i pokrój w równe kostki. Cebulę pokrój w piórka, a paprykę w cienkie paski; pieprz grubo rozgnieć.
+> Rozgrzej wok z olejem. Obsmaż białko partiami, aż się zrumieni, i przełóż na talerz.
+> Na tej samej patelni krótko smaż cebulę i paprykę, aby zmiękły, ale pozostały jędrne.
+> Rozmieszaj sos ostrygowy z 1–2 łyżkami wody, wlej do woka i zagotuj krótko.
+> Włóż tofu z powrotem, dodaj pieprz i wymieszaj, aż sos pokryje składniki cienką warstwą.
 
 # Tofu po syczuańsku
 @ cat=warzywa servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -2154,14 +2154,14 @@ export const SEED_CURATED = `
 5 g | imbir
 5 ml | sezamowy olej
 12 ml | olej rzepakowy
-> Pokrój białko i warzywa na równe kawałki. Osusz składniki, a sos przygotuj wcześniej z produktów wymienionych w recepturze.
-> Rozgrzej wok lub szeroką patelnię. Obsmaż białko partiami na mocnym ogniu i odłóż na bok.
-> Dodaj aromaty oraz warzywa. Smaż krótko, aby zachowały jędrność i kolor.
-> Włóż białko z powrotem, dodaj sos i podgrzewaj, aż składniki będą gotowe, a sos lekko zgęstnieje.
-> Spróbuj, dopraw i podawaj od razu.
+> Tofu osusz ręcznikiem i pokrój w równe kostki. Czosnek drobno posiekaj, a imbir zetrzyj lub pokrój w cienkie zapałki.
+> Rozgrzej wok z olejem i obsmaż białko; jeśli używasz tofu, zrumień je z każdej strony. Odłóż na bok.
+> Zmniejsz nieco ogień, dodaj czosnek, imbir i pastę doubanjiang; smaż 20–30 sekund, aż uwolnią aromat.
+> Wlej olej sezamowy oraz 1–2 łyżki wody, po czym zeskrob z dna przyprawy i utwórz lekki sos.
+> Włóż tofu z powrotem, dokładnie obtocz w sosie i podgrzej do pełnej gotowości. Podawaj od razu.
 
 # Tofu z bazylią tajską
-@ cat=ryby servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
+@ cat=warzywa servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
 : Szybkie danie z woka z tajską bazylią, czosnkiem i pikantno-słonym sosem.
 140 g | tofu
 8 g | bazylia tajska
@@ -2169,11 +2169,11 @@ export const SEED_CURATED = `
 3 g | chilli
 1 szt. | czosnek
 12 ml | olej rzepakowy
-> Pokrój białko w cienkie kawałki i przygotuj wszystkie składniki przed rozgrzaniem patelni — smażenie będzie szybkie.
-> Rozgrzej wok z olejem. Krótko podsmaż czosnek i chili, aż zaczną pachnieć.
-> Dodaj białko i smaż na dużym ogniu, mieszając, aż będzie prawie gotowe.
-> Dodaj sosy z receptury i odrobinę wody, jeśli potrzeba. Na sam koniec wmieszaj tajską bazylię, aby zachowała aromat.
-> Podawaj natychmiast z ryżem, jeśli jest w składnikach.
+> Tofu osusz ręcznikiem i pokrój w równe kostki. Czosnek drobno posiekaj, chilli pokrój cienko, a bazylię tajską przygotuj do dodania na końcu.
+> Rozgrzej wok z olejem; czosnek i chilli smaż przez 15–20 sekund, tylko do uwolnienia aromatu.
+> Dodaj tofu i smaż na mocnym ogniu, często mieszając, aż będzie w pełni ugotowane.
+> Dodaj sos rybny oraz łyżkę wody, jeśli składniki zaczynają przywierać; szybko wymieszaj.
+> Zdejmij wok z ognia, wmieszaj bazylię tajską i podawaj natychmiast, zanim liście stracą kolor.
 
 # Tofu pad see ew
 @ cat=warzywa servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -2184,11 +2184,11 @@ export const SEED_CURATED = `
 50 g | brokuł chiński
 28 g | jajko (roztrzepane)
 12 ml | olej rzepakowy
-> Makaron ryżowy przygotuj zgodnie z instrukcją na opakowaniu. Warzywa pokrój, a białko osusz.
-> Rozgrzej wok bardzo mocno. Smaż białko krótko, aż się zetnie i lekko zrumieni; odłóż na bok.
-> Dodaj warzywa i smaż krótko, zachowując ich jędrność. Jeśli receptura zawiera jajko, wbij je na wolne miejsce i szybko zetnij.
-> Dodaj makaron i sos sojowy. Włóż białko z powrotem i wymieszaj na dużym ogniu, aż makaron złapie kolor sosu.
-> Podawaj natychmiast, prosto z woka.
+> Makaron ryżowy przygotuj zgodnie z instrukcją na opakowaniu, odcedź i tofu osusz ręcznikiem i pokrój w równe kostki.
+> Rozgrzej wok z olejem i obsmaż białko; odłóż je na bok, gdy będzie zrumienione lub w pełni ugotowane.
+> Dodaj brokuł chiński i smaż krótko, aż łodyżki zmiękną, ale zachowają jędrność.
+> Przesuń składniki na bok, wlej roztrzepane jajko i szybko mieszaj, aż się zetnie; dodaj makaron i ciemny sos sojowy.
+> Włóż tofu z powrotem i wymieszaj na mocnym ogniu, aż makaron pokryje się sosem i będzie gorący.
 
 # Tofu w sosie orzechowym
 @ cat=warzywa servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -2199,11 +2199,11 @@ export const SEED_CURATED = `
 0,2 szt. | limonka
 8 ml | sos sojowy
 12 ml | olej rzepakowy
-> Pokrój białko i warzywa na równe kawałki. Osusz składniki, a sos przygotuj wcześniej z produktów wymienionych w recepturze.
-> Rozgrzej wok lub szeroką patelnię. Obsmaż białko partiami na mocnym ogniu i odłóż na bok.
-> Dodaj aromaty oraz warzywa. Smaż krótko, aby zachowały jędrność i kolor.
-> Włóż białko z powrotem, dodaj sos i podgrzewaj, aż składniki będą gotowe, a sos lekko zgęstnieje.
-> Spróbuj, dopraw i podawaj od razu.
+> Tofu osusz ręcznikiem i pokrój w równe kostki. Limonkę przekrój i wyciśnij sok.
+> W małej misce wymieszaj masło orzechowe, mleko kokosowe, sos sojowy i sok z limonki do uzyskania gładkiego sosu.
+> Rozgrzej wok z olejem. Smaż 3–4 minuty, obracając, aż tofu zrumieni się z kilku stron.
+> Zmniejsz ogień i wlej sos orzechowy; mieszaj bez przerwy, aby nie przywarł ani się nie rozwarstwił.
+> Jeśli sos jest zbyt gęsty, dolej trochę wody. Włóż tofu z powrotem, obtocz i podawaj na gorąco.
 
 # Wieprzowina w sosie słodko-kwaśnym
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -2214,11 +2214,11 @@ export const SEED_CURATED = `
 8 g | cukier
 30 g | ananas
 12 ml | olej rzepakowy
-> Pokrój białko i warzywa na równe kawałki. Osusz składniki, a sos przygotuj wcześniej z produktów wymienionych w recepturze.
-> Rozgrzej wok lub szeroką patelnię. Obsmaż białko partiami na mocnym ogniu i odłóż na bok.
-> Dodaj aromaty oraz warzywa. Smaż krótko, aby zachowały jędrność i kolor.
-> Włóż białko z powrotem, dodaj sos i podgrzewaj, aż składniki będą gotowe, a sos lekko zgęstnieje.
-> Spróbuj, dopraw i podawaj od razu.
+> Wieprzowina pokrój w cienkie, równe paski lub niewielkie kawałki. Ananasa pokrój na niewielkie kawałki.
+> W miseczce rozmieszaj ketchup, ocet ryżowy i cukier, aż kryształki cukru się rozpuszczą.
+> Mocno rozgrzej wok z olejem. Obsmaż partiami na mocnym ogniu, aż kawałki będą zrumienione i w pełni ugotowane; odłóż na talerz.
+> Wrzuć ananasa na patelnię i smaż około minuty; wlej przygotowany sos oraz 1–2 łyżki wody, jeśli trzeba go rozrzedzić.
+> Włóż wieprzowina z powrotem, wymieszaj i podgrzewaj do uzyskania błyszczącej glazury. Sprawdź wysmażenie i podawaj natychmiast.
 
 # Wieprzowina kung pao
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -2229,11 +2229,11 @@ export const SEED_CURATED = `
 12 ml | sos sojowy
 1 g | pieprz syczuański
 12 ml | olej rzepakowy
-> Pokrój białko w równe kawałki i osusz. Przygotuj sos z sosu sojowego oraz pozostałych składników płynnych.
-> Rozgrzej wok lub dużą patelnię. Smaż białko partiami, aby się zrumieniło zamiast puścić wodę; odłóż na bok.
-> Krótko podsmaż czosnek, chili i warzywa. Dodaj orzeszki, jeśli są w składnikach.
-> Włóż białko z powrotem, wlej sos i energicznie mieszaj, aż oblepi składniki i lekko zgęstnieje.
-> Podawaj od razu z ryżem lub makaronem, jeśli są przewidziane w recepturze.
+> Wieprzowina pokrój w cienkie, równe paski lub niewielkie kawałki. Orzeszki ziemne przygotuj z wyprzedzeniem, a pieprz syczuański lekko rozgnieć.
+> Rozgrzej wok z olejem i obsmaż białko partiami; tofu odłóż na bok po zrumienieniu.
+> Wsyp chilli oraz pieprz syczuański i smaż przez 15–20 sekund, nie przypalając przypraw.
+> Dodaj sos sojowy i 1–2 łyżki wody, szybko zamieszaj, aby powstała aromatyczna glazura.
+> Dodaj wieprzowina oraz orzeszki ziemne, wymieszaj przez 30–60 sekund i od razu podawaj.
 
 # Wieprzowina z czarnym pieprzem
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -2244,11 +2244,11 @@ export const SEED_CURATED = `
 0,5 szt. | cebula
 40 g | papryka
 12 ml | olej rzepakowy
-> Pokrój białko w cienkie paski i dokładnie osusz. Warzywa pokrój na podobną wielkość.
-> Rozgrzej wok lub dużą patelnię. Obsmaż białko partiami na mocnym ogniu i odłóż na bok.
-> Dodaj aromaty i warzywa, smaż krótko. Przygotuj sos z czarnego pieprzu i składników płynnych z listy.
-> Włóż białko z powrotem, wlej sos i mieszaj, aż całość będzie gorąca, a sos oblepi składniki.
-> Podawaj natychmiast z ryżem lub makaronem, jeśli przewidziano je w składnikach.
+> Wieprzowina pokrój w cienkie, równe paski lub niewielkie kawałki. Cebulę pokrój w piórka, a paprykę w cienkie paski; pieprz grubo rozgnieć.
+> Rozgrzej wok z olejem. Obsmaż białko partiami, aż się zrumieni, i przełóż na talerz.
+> Na tej samej patelni krótko smaż cebulę i paprykę, aby zmiękły, ale pozostały jędrne.
+> Rozmieszaj sos ostrygowy z 1–2 łyżkami wody, wlej do woka i zagotuj krótko.
+> Włóż wieprzowina z powrotem, dodaj pieprz i wymieszaj, aż sos pokryje składniki cienką warstwą.
 
 # Wieprzowina po syczuańsku
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -2259,14 +2259,14 @@ export const SEED_CURATED = `
 5 g | imbir
 5 ml | sezamowy olej
 12 ml | olej rzepakowy
-> Pokrój białko i warzywa na równe kawałki. Osusz składniki, a sos przygotuj wcześniej z produktów wymienionych w recepturze.
-> Rozgrzej wok lub szeroką patelnię. Obsmaż białko partiami na mocnym ogniu i odłóż na bok.
-> Dodaj aromaty oraz warzywa. Smaż krótko, aby zachowały jędrność i kolor.
-> Włóż białko z powrotem, dodaj sos i podgrzewaj, aż składniki będą gotowe, a sos lekko zgęstnieje.
-> Spróbuj, dopraw i podawaj od razu.
+> Wieprzowina pokrój w cienkie, równe paski lub niewielkie kawałki. Czosnek drobno posiekaj, a imbir zetrzyj lub pokrój w cienkie zapałki.
+> Rozgrzej wok z olejem i obsmaż białko; jeśli używasz tofu, zrumień je z każdej strony. Odłóż na bok.
+> Zmniejsz nieco ogień, dodaj czosnek, imbir i pastę doubanjiang; smaż 20–30 sekund, aż uwolnią aromat.
+> Wlej olej sezamowy oraz 1–2 łyżki wody, po czym zeskrob z dna przyprawy i utwórz lekki sos.
+> Włóż wieprzowina z powrotem, dokładnie obtocz w sosie i podgrzej do pełnej gotowości. Podawaj od razu.
 
 # Wieprzowina z bazylią tajską
-@ cat=ryby servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
+@ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
 : Szybkie danie z woka z tajską bazylią, czosnkiem i pikantno-słonym sosem.
 130 g | wieprzowina
 8 g | bazylia tajska
@@ -2274,11 +2274,11 @@ export const SEED_CURATED = `
 3 g | chilli
 1 szt. | czosnek
 12 ml | olej rzepakowy
-> Pokrój białko w cienkie kawałki i przygotuj wszystkie składniki przed rozgrzaniem patelni — smażenie będzie szybkie.
-> Rozgrzej wok z olejem. Krótko podsmaż czosnek i chili, aż zaczną pachnieć.
-> Dodaj białko i smaż na dużym ogniu, mieszając, aż będzie prawie gotowe.
-> Dodaj sosy z receptury i odrobinę wody, jeśli potrzeba. Na sam koniec wmieszaj tajską bazylię, aby zachowała aromat.
-> Podawaj natychmiast z ryżem, jeśli jest w składnikach.
+> Wieprzowina pokrój w cienkie, równe paski lub niewielkie kawałki. Czosnek drobno posiekaj, chilli pokrój cienko, a bazylię tajską przygotuj do dodania na końcu.
+> Rozgrzej wok z olejem; czosnek i chilli smaż przez 15–20 sekund, tylko do uwolnienia aromatu.
+> Dodaj wieprzowina i smaż na mocnym ogniu, często mieszając, aż będzie w pełni ugotowane.
+> Dodaj sos rybny oraz łyżkę wody, jeśli składniki zaczynają przywierać; szybko wymieszaj.
+> Zdejmij wok z ognia, wmieszaj bazylię tajską i podawaj natychmiast, zanim liście stracą kolor.
 
 # Wieprzowina pad see ew
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -2289,11 +2289,11 @@ export const SEED_CURATED = `
 50 g | brokuł chiński
 28 g | jajko (roztrzepane)
 12 ml | olej rzepakowy
-> Makaron ryżowy przygotuj zgodnie z instrukcją na opakowaniu. Warzywa pokrój, a białko osusz.
-> Rozgrzej wok bardzo mocno. Smaż białko krótko, aż się zetnie i lekko zrumieni; odłóż na bok.
-> Dodaj warzywa i smaż krótko, zachowując ich jędrność. Jeśli receptura zawiera jajko, wbij je na wolne miejsce i szybko zetnij.
-> Dodaj makaron i sos sojowy. Włóż białko z powrotem i wymieszaj na dużym ogniu, aż makaron złapie kolor sosu.
-> Podawaj natychmiast, prosto z woka.
+> Makaron ryżowy przygotuj zgodnie z instrukcją na opakowaniu, odcedź i wieprzowina pokrój w cienkie, równe paski lub niewielkie kawałki.
+> Rozgrzej wok z olejem i obsmaż białko; odłóż je na bok, gdy będzie zrumienione lub w pełni ugotowane.
+> Dodaj brokuł chiński i smaż krótko, aż łodyżki zmiękną, ale zachowają jędrność.
+> Przesuń składniki na bok, wlej roztrzepane jajko i szybko mieszaj, aż się zetnie; dodaj makaron i ciemny sos sojowy.
+> Włóż wieprzowina z powrotem i wymieszaj na mocnym ogniu, aż makaron pokryje się sosem i będzie gorący.
 
 # Wieprzowina w sosie orzechowym
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -2304,11 +2304,11 @@ export const SEED_CURATED = `
 0,2 szt. | limonka
 8 ml | sos sojowy
 12 ml | olej rzepakowy
-> Pokrój białko i warzywa na równe kawałki. Osusz składniki, a sos przygotuj wcześniej z produktów wymienionych w recepturze.
-> Rozgrzej wok lub szeroką patelnię. Obsmaż białko partiami na mocnym ogniu i odłóż na bok.
-> Dodaj aromaty oraz warzywa. Smaż krótko, aby zachowały jędrność i kolor.
-> Włóż białko z powrotem, dodaj sos i podgrzewaj, aż składniki będą gotowe, a sos lekko zgęstnieje.
-> Spróbuj, dopraw i podawaj od razu.
+> Wieprzowina pokrój w cienkie, równe paski lub niewielkie kawałki. Limonkę przekrój i wyciśnij sok.
+> W małej misce wymieszaj masło orzechowe, mleko kokosowe, sos sojowy i sok z limonki do uzyskania gładkiego sosu.
+> Rozgrzej wok z olejem. Obsmaż partiami na mocnym ogniu, aż kawałki będą zrumienione i w pełni ugotowane; odłóż na talerz.
+> Zmniejsz ogień i wlej sos orzechowy; mieszaj bez przerwy, aby nie przywarł ani się nie rozwarstwił.
+> Jeśli sos jest zbyt gęsty, dolej trochę wody. Włóż wieprzowina z powrotem, obtocz i podawaj na gorąco.
 
 # Kaczka w sosie słodko-kwaśnym
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -2319,11 +2319,11 @@ export const SEED_CURATED = `
 8 g | cukier
 30 g | ananas
 12 ml | olej rzepakowy
-> Pokrój białko i warzywa na równe kawałki. Osusz składniki, a sos przygotuj wcześniej z produktów wymienionych w recepturze.
-> Rozgrzej wok lub szeroką patelnię. Obsmaż białko partiami na mocnym ogniu i odłóż na bok.
-> Dodaj aromaty oraz warzywa. Smaż krótko, aby zachowały jędrność i kolor.
-> Włóż białko z powrotem, dodaj sos i podgrzewaj, aż składniki będą gotowe, a sos lekko zgęstnieje.
-> Spróbuj, dopraw i podawaj od razu.
+> Kaczka pokrój w cienkie, równe paski lub niewielkie kawałki. Ananasa pokrój na niewielkie kawałki.
+> W miseczce rozmieszaj ketchup, ocet ryżowy i cukier, aż kryształki cukru się rozpuszczą.
+> Mocno rozgrzej wok z olejem. Obsmaż partiami na mocnym ogniu, aż kawałki będą zrumienione i w pełni ugotowane; odłóż na talerz.
+> Wrzuć ananasa na patelnię i smaż około minuty; wlej przygotowany sos oraz 1–2 łyżki wody, jeśli trzeba go rozrzedzić.
+> Włóż kaczka z powrotem, wymieszaj i podgrzewaj do uzyskania błyszczącej glazury. Sprawdź wysmażenie i podawaj natychmiast.
 
 # Kaczka kung pao
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -2334,11 +2334,11 @@ export const SEED_CURATED = `
 12 ml | sos sojowy
 1 g | pieprz syczuański
 12 ml | olej rzepakowy
-> Pokrój białko w równe kawałki i osusz. Przygotuj sos z sosu sojowego oraz pozostałych składników płynnych.
-> Rozgrzej wok lub dużą patelnię. Smaż białko partiami, aby się zrumieniło zamiast puścić wodę; odłóż na bok.
-> Krótko podsmaż czosnek, chili i warzywa. Dodaj orzeszki, jeśli są w składnikach.
-> Włóż białko z powrotem, wlej sos i energicznie mieszaj, aż oblepi składniki i lekko zgęstnieje.
-> Podawaj od razu z ryżem lub makaronem, jeśli są przewidziane w recepturze.
+> Kaczka pokrój w cienkie, równe paski lub niewielkie kawałki. Orzeszki ziemne przygotuj z wyprzedzeniem, a pieprz syczuański lekko rozgnieć.
+> Rozgrzej wok z olejem i obsmaż białko partiami; tofu odłóż na bok po zrumienieniu.
+> Wsyp chilli oraz pieprz syczuański i smaż przez 15–20 sekund, nie przypalając przypraw.
+> Dodaj sos sojowy i 1–2 łyżki wody, szybko zamieszaj, aby powstała aromatyczna glazura.
+> Dodaj kaczka oraz orzeszki ziemne, wymieszaj przez 30–60 sekund i od razu podawaj.
 
 # Kaczka z czarnym pieprzem
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -2349,11 +2349,11 @@ export const SEED_CURATED = `
 0,5 szt. | cebula
 40 g | papryka
 12 ml | olej rzepakowy
-> Pokrój białko w cienkie paski i dokładnie osusz. Warzywa pokrój na podobną wielkość.
-> Rozgrzej wok lub dużą patelnię. Obsmaż białko partiami na mocnym ogniu i odłóż na bok.
-> Dodaj aromaty i warzywa, smaż krótko. Przygotuj sos z czarnego pieprzu i składników płynnych z listy.
-> Włóż białko z powrotem, wlej sos i mieszaj, aż całość będzie gorąca, a sos oblepi składniki.
-> Podawaj natychmiast z ryżem lub makaronem, jeśli przewidziano je w składnikach.
+> Kaczka pokrój w cienkie, równe paski lub niewielkie kawałki. Cebulę pokrój w piórka, a paprykę w cienkie paski; pieprz grubo rozgnieć.
+> Rozgrzej wok z olejem. Obsmaż białko partiami, aż się zrumieni, i przełóż na talerz.
+> Na tej samej patelni krótko smaż cebulę i paprykę, aby zmiękły, ale pozostały jędrne.
+> Rozmieszaj sos ostrygowy z 1–2 łyżkami wody, wlej do woka i zagotuj krótko.
+> Włóż kaczka z powrotem, dodaj pieprz i wymieszaj, aż sos pokryje składniki cienką warstwą.
 
 # Kaczka po syczuańsku
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -2364,14 +2364,14 @@ export const SEED_CURATED = `
 5 g | imbir
 5 ml | sezamowy olej
 12 ml | olej rzepakowy
-> Pokrój białko i warzywa na równe kawałki. Osusz składniki, a sos przygotuj wcześniej z produktów wymienionych w recepturze.
-> Rozgrzej wok lub szeroką patelnię. Obsmaż białko partiami na mocnym ogniu i odłóż na bok.
-> Dodaj aromaty oraz warzywa. Smaż krótko, aby zachowały jędrność i kolor.
-> Włóż białko z powrotem, dodaj sos i podgrzewaj, aż składniki będą gotowe, a sos lekko zgęstnieje.
-> Spróbuj, dopraw i podawaj od razu.
+> Kaczka pokrój w cienkie, równe paski lub niewielkie kawałki. Czosnek drobno posiekaj, a imbir zetrzyj lub pokrój w cienkie zapałki.
+> Rozgrzej wok z olejem i obsmaż białko; jeśli używasz tofu, zrumień je z każdej strony. Odłóż na bok.
+> Zmniejsz nieco ogień, dodaj czosnek, imbir i pastę doubanjiang; smaż 20–30 sekund, aż uwolnią aromat.
+> Wlej olej sezamowy oraz 1–2 łyżki wody, po czym zeskrob z dna przyprawy i utwórz lekki sos.
+> Włóż kaczka z powrotem, dokładnie obtocz w sosie i podgrzej do pełnej gotowości. Podawaj od razu.
 
 # Kaczka z bazylią tajską
-@ cat=ryby servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
+@ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
 : Szybkie danie z woka z tajską bazylią, czosnkiem i pikantno-słonym sosem.
 130 g | kaczka
 8 g | bazylia tajska
@@ -2379,11 +2379,11 @@ export const SEED_CURATED = `
 3 g | chilli
 1 szt. | czosnek
 12 ml | olej rzepakowy
-> Pokrój białko w cienkie kawałki i przygotuj wszystkie składniki przed rozgrzaniem patelni — smażenie będzie szybkie.
-> Rozgrzej wok z olejem. Krótko podsmaż czosnek i chili, aż zaczną pachnieć.
-> Dodaj białko i smaż na dużym ogniu, mieszając, aż będzie prawie gotowe.
-> Dodaj sosy z receptury i odrobinę wody, jeśli potrzeba. Na sam koniec wmieszaj tajską bazylię, aby zachowała aromat.
-> Podawaj natychmiast z ryżem, jeśli jest w składnikach.
+> Kaczka pokrój w cienkie, równe paski lub niewielkie kawałki. Czosnek drobno posiekaj, chilli pokrój cienko, a bazylię tajską przygotuj do dodania na końcu.
+> Rozgrzej wok z olejem; czosnek i chilli smaż przez 15–20 sekund, tylko do uwolnienia aromatu.
+> Dodaj kaczka i smaż na mocnym ogniu, często mieszając, aż będzie w pełni ugotowane.
+> Dodaj sos rybny oraz łyżkę wody, jeśli składniki zaczynają przywierać; szybko wymieszaj.
+> Zdejmij wok z ognia, wmieszaj bazylię tajską i podawaj natychmiast, zanim liście stracą kolor.
 
 # Kaczka pad see ew
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -2394,11 +2394,11 @@ export const SEED_CURATED = `
 50 g | brokuł chiński
 28 g | jajko (roztrzepane)
 12 ml | olej rzepakowy
-> Makaron ryżowy przygotuj zgodnie z instrukcją na opakowaniu. Warzywa pokrój, a białko osusz.
-> Rozgrzej wok bardzo mocno. Smaż białko krótko, aż się zetnie i lekko zrumieni; odłóż na bok.
-> Dodaj warzywa i smaż krótko, zachowując ich jędrność. Jeśli receptura zawiera jajko, wbij je na wolne miejsce i szybko zetnij.
-> Dodaj makaron i sos sojowy. Włóż białko z powrotem i wymieszaj na dużym ogniu, aż makaron złapie kolor sosu.
-> Podawaj natychmiast, prosto z woka.
+> Makaron ryżowy przygotuj zgodnie z instrukcją na opakowaniu, odcedź i kaczka pokrój w cienkie, równe paski lub niewielkie kawałki.
+> Rozgrzej wok z olejem i obsmaż białko; odłóż je na bok, gdy będzie zrumienione lub w pełni ugotowane.
+> Dodaj brokuł chiński i smaż krótko, aż łodyżki zmiękną, ale zachowają jędrność.
+> Przesuń składniki na bok, wlej roztrzepane jajko i szybko mieszaj, aż się zetnie; dodaj makaron i ciemny sos sojowy.
+> Włóż kaczka z powrotem i wymieszaj na mocnym ogniu, aż makaron pokryje się sosem i będzie gorący.
 
 # Kaczka w sosie orzechowym
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -2409,11 +2409,11 @@ export const SEED_CURATED = `
 0,2 szt. | limonka
 8 ml | sos sojowy
 12 ml | olej rzepakowy
-> Pokrój białko i warzywa na równe kawałki. Osusz składniki, a sos przygotuj wcześniej z produktów wymienionych w recepturze.
-> Rozgrzej wok lub szeroką patelnię. Obsmaż białko partiami na mocnym ogniu i odłóż na bok.
-> Dodaj aromaty oraz warzywa. Smaż krótko, aby zachowały jędrność i kolor.
-> Włóż białko z powrotem, dodaj sos i podgrzewaj, aż składniki będą gotowe, a sos lekko zgęstnieje.
-> Spróbuj, dopraw i podawaj od razu.
+> Kaczka pokrój w cienkie, równe paski lub niewielkie kawałki. Limonkę przekrój i wyciśnij sok.
+> W małej misce wymieszaj masło orzechowe, mleko kokosowe, sos sojowy i sok z limonki do uzyskania gładkiego sosu.
+> Rozgrzej wok z olejem. Obsmaż partiami na mocnym ogniu, aż kawałki będą zrumienione i w pełni ugotowane; odłóż na talerz.
+> Zmniejsz ogień i wlej sos orzechowy; mieszaj bez przerwy, aby nie przywarł ani się nie rozwarstwił.
+> Jeśli sos jest zbyt gęsty, dolej trochę wody. Włóż kaczka z powrotem, obtocz i podawaj na gorąco.
 
 # Ziemniaki puree
 @ cat=warzywa origin=PL trad servings=1 prep=10 cook=15 art=food tags=tradycyjne,dodatek,kuchnia-polska
@@ -2716,6 +2716,7 @@ export const SEED_CURATED = `
 
 # Fusilli ze szpinakiem i ricottą
 @ cat=pasta origin=IT servings=1 prep=10 cook=15 art=pasta tags=makaron,kuchnia-włoska
+8 ml | oliwa z oliwek
 : Makaron Fusilli ze szpinakiem i ricottą.
 90 g | fusilli
 70 g | szpinak
@@ -2723,14 +2724,15 @@ export const SEED_CURATED = `
 1 szt. | czosnek
 0,3 g | gałka muszkatołowa
 3 g | sól
-> Ugotuj makaron al dente w osolonej wodzie. Zachowaj kubek wody z gotowania.
-> Przygotuj składniki sosu: warzywa pokrój równo, a mięso lub owoce morza osusz przed smażeniem.
-> Podsmaż składniki wymagające zrumienienia, następnie dodaj pozostałe składniki sosu i krótko podduś.
-> Przełóż makaron do sosu i dolej po trochu wody z gotowania, aż całość będzie soczysta, ale nie wodnista.
-> Spróbuj, dopraw i podawaj od razu.
+> Ugotuj fusilli w osolonej wodzie do al dente. Przed odcedzeniem zachowaj około 80 ml wody z gotowania.
+> Czosnek drobno posiekaj i podsmaż 20–30 sekund na oliwie na średnim ogniu; nie dopuść do zbrązowienia.
+> Dodaj szpinak i duś 2–3 minuty, aż zwiędnie; jeśli używasz szpinaku mrożonego, odparuj nadmiar wody.
+> Zmniejsz ogień, wmieszaj ricottę i gałkę muszkatołową. Dolewaj stopniowo wodę z makaronu, aż powstanie kremowy sos.
+> Dodaj fusilli, wymieszaj przez 30–60 sekund, dopraw solą i podawaj od razu.
 
 # Farfalle ze szpinakiem i ricottą
 @ cat=pasta origin=IT servings=1 prep=10 cook=15 art=pasta tags=makaron,kuchnia-włoska
+8 ml | oliwa z oliwek
 : Makaron Farfalle ze szpinakiem i ricottą.
 90 g | farfalle
 70 g | szpinak
@@ -2738,14 +2740,15 @@ export const SEED_CURATED = `
 1 szt. | czosnek
 0,3 g | gałka muszkatołowa
 3 g | sól
-> Ugotuj makaron al dente w osolonej wodzie. Zachowaj kubek wody z gotowania.
-> Przygotuj składniki sosu: warzywa pokrój równo, a mięso lub owoce morza osusz przed smażeniem.
-> Podsmaż składniki wymagające zrumienienia, następnie dodaj pozostałe składniki sosu i krótko podduś.
-> Przełóż makaron do sosu i dolej po trochu wody z gotowania, aż całość będzie soczysta, ale nie wodnista.
-> Spróbuj, dopraw i podawaj od razu.
+> Ugotuj farfalle w osolonej wodzie do al dente. Przed odcedzeniem zachowaj około 80 ml wody z gotowania.
+> Czosnek drobno posiekaj i podsmaż 20–30 sekund na oliwie na średnim ogniu; nie dopuść do zbrązowienia.
+> Dodaj szpinak i duś 2–3 minuty, aż zwiędnie; jeśli używasz szpinaku mrożonego, odparuj nadmiar wody.
+> Zmniejsz ogień, wmieszaj ricottę i gałkę muszkatołową. Dolewaj stopniowo wodę z makaronu, aż powstanie kremowy sos.
+> Dodaj farfalle, wymieszaj przez 30–60 sekund, dopraw solą i podawaj od razu.
 
 # Rigatoni ze szpinakiem i ricottą
 @ cat=pasta origin=IT servings=1 prep=10 cook=15 art=pasta tags=makaron,kuchnia-włoska
+8 ml | oliwa z oliwek
 : Makaron Rigatoni ze szpinakiem i ricottą.
 90 g | rigatoni
 70 g | szpinak
@@ -2753,14 +2756,15 @@ export const SEED_CURATED = `
 1 szt. | czosnek
 0,3 g | gałka muszkatołowa
 3 g | sól
-> Ugotuj makaron al dente w osolonej wodzie. Zachowaj kubek wody z gotowania.
-> Przygotuj składniki sosu: warzywa pokrój równo, a mięso lub owoce morza osusz przed smażeniem.
-> Podsmaż składniki wymagające zrumienienia, następnie dodaj pozostałe składniki sosu i krótko podduś.
-> Przełóż makaron do sosu i dolej po trochu wody z gotowania, aż całość będzie soczysta, ale nie wodnista.
-> Spróbuj, dopraw i podawaj od razu.
+> Ugotuj rigatoni w osolonej wodzie do al dente. Przed odcedzeniem zachowaj około 80 ml wody z gotowania.
+> Czosnek drobno posiekaj i podsmaż 20–30 sekund na oliwie na średnim ogniu; nie dopuść do zbrązowienia.
+> Dodaj szpinak i duś 2–3 minuty, aż zwiędnie; jeśli używasz szpinaku mrożonego, odparuj nadmiar wody.
+> Zmniejsz ogień, wmieszaj ricottę i gałkę muszkatołową. Dolewaj stopniowo wodę z makaronu, aż powstanie kremowy sos.
+> Dodaj rigatoni, wymieszaj przez 30–60 sekund, dopraw solą i podawaj od razu.
 
 # Paccheri ze szpinakiem i ricottą
 @ cat=pasta origin=IT servings=1 prep=10 cook=15 art=pasta tags=makaron,kuchnia-włoska
+8 ml | oliwa z oliwek
 : Makaron Paccheri ze szpinakiem i ricottą.
 90 g | paccheri
 70 g | szpinak
@@ -2768,14 +2772,15 @@ export const SEED_CURATED = `
 1 szt. | czosnek
 0,3 g | gałka muszkatołowa
 3 g | sól
-> Ugotuj makaron al dente w osolonej wodzie. Zachowaj kubek wody z gotowania.
-> Przygotuj składniki sosu: warzywa pokrój równo, a mięso lub owoce morza osusz przed smażeniem.
-> Podsmaż składniki wymagające zrumienienia, następnie dodaj pozostałe składniki sosu i krótko podduś.
-> Przełóż makaron do sosu i dolej po trochu wody z gotowania, aż całość będzie soczysta, ale nie wodnista.
-> Spróbuj, dopraw i podawaj od razu.
+> Ugotuj paccheri w osolonej wodzie do al dente. Przed odcedzeniem zachowaj około 80 ml wody z gotowania.
+> Czosnek drobno posiekaj i podsmaż 20–30 sekund na oliwie na średnim ogniu; nie dopuść do zbrązowienia.
+> Dodaj szpinak i duś 2–3 minuty, aż zwiędnie; jeśli używasz szpinaku mrożonego, odparuj nadmiar wody.
+> Zmniejsz ogień, wmieszaj ricottę i gałkę muszkatołową. Dolewaj stopniowo wodę z makaronu, aż powstanie kremowy sos.
+> Dodaj paccheri, wymieszaj przez 30–60 sekund, dopraw solą i podawaj od razu.
 
 # Conchiglie ze szpinakiem i ricottą
 @ cat=pasta origin=IT servings=1 prep=10 cook=15 art=pasta tags=makaron,kuchnia-włoska
+8 ml | oliwa z oliwek
 : Makaron Conchiglie ze szpinakiem i ricottą.
 90 g | conchiglie
 70 g | szpinak
@@ -2783,14 +2788,15 @@ export const SEED_CURATED = `
 1 szt. | czosnek
 0,3 g | gałka muszkatołowa
 3 g | sól
-> Ugotuj makaron al dente w osolonej wodzie. Zachowaj kubek wody z gotowania.
-> Przygotuj składniki sosu: warzywa pokrój równo, a mięso lub owoce morza osusz przed smażeniem.
-> Podsmaż składniki wymagające zrumienienia, następnie dodaj pozostałe składniki sosu i krótko podduś.
-> Przełóż makaron do sosu i dolej po trochu wody z gotowania, aż całość będzie soczysta, ale nie wodnista.
-> Spróbuj, dopraw i podawaj od razu.
+> Ugotuj conchiglie w osolonej wodzie do al dente. Przed odcedzeniem zachowaj około 80 ml wody z gotowania.
+> Czosnek drobno posiekaj i podsmaż 20–30 sekund na oliwie na średnim ogniu; nie dopuść do zbrązowienia.
+> Dodaj szpinak i duś 2–3 minuty, aż zwiędnie; jeśli używasz szpinaku mrożonego, odparuj nadmiar wody.
+> Zmniejsz ogień, wmieszaj ricottę i gałkę muszkatołową. Dolewaj stopniowo wodę z makaronu, aż powstanie kremowy sos.
+> Dodaj conchiglie, wymieszaj przez 30–60 sekund, dopraw solą i podawaj od razu.
 
 # Gemelli ze szpinakiem i ricottą
 @ cat=pasta origin=IT servings=1 prep=10 cook=15 art=pasta tags=makaron,kuchnia-włoska
+8 ml | oliwa z oliwek
 : Makaron Gemelli ze szpinakiem i ricottą.
 90 g | gemelli
 70 g | szpinak
@@ -2798,14 +2804,15 @@ export const SEED_CURATED = `
 1 szt. | czosnek
 0,3 g | gałka muszkatołowa
 3 g | sól
-> Ugotuj makaron al dente w osolonej wodzie. Zachowaj kubek wody z gotowania.
-> Przygotuj składniki sosu: warzywa pokrój równo, a mięso lub owoce morza osusz przed smażeniem.
-> Podsmaż składniki wymagające zrumienienia, następnie dodaj pozostałe składniki sosu i krótko podduś.
-> Przełóż makaron do sosu i dolej po trochu wody z gotowania, aż całość będzie soczysta, ale nie wodnista.
-> Spróbuj, dopraw i podawaj od razu.
+> Ugotuj gemelli w osolonej wodzie do al dente. Przed odcedzeniem zachowaj około 80 ml wody z gotowania.
+> Czosnek drobno posiekaj i podsmaż 20–30 sekund na oliwie na średnim ogniu; nie dopuść do zbrązowienia.
+> Dodaj szpinak i duś 2–3 minuty, aż zwiędnie; jeśli używasz szpinaku mrożonego, odparuj nadmiar wody.
+> Zmniejsz ogień, wmieszaj ricottę i gałkę muszkatołową. Dolewaj stopniowo wodę z makaronu, aż powstanie kremowy sos.
+> Dodaj gemelli, wymieszaj przez 30–60 sekund, dopraw solą i podawaj od razu.
 
 # Cavatappi ze szpinakiem i ricottą
 @ cat=pasta origin=IT servings=1 prep=10 cook=15 art=pasta tags=makaron,kuchnia-włoska
+8 ml | oliwa z oliwek
 : Makaron Cavatappi ze szpinakiem i ricottą.
 90 g | cavatappi
 70 g | szpinak
@@ -2813,14 +2820,15 @@ export const SEED_CURATED = `
 1 szt. | czosnek
 0,3 g | gałka muszkatołowa
 3 g | sól
-> Ugotuj makaron al dente w osolonej wodzie. Zachowaj kubek wody z gotowania.
-> Przygotuj składniki sosu: warzywa pokrój równo, a mięso lub owoce morza osusz przed smażeniem.
-> Podsmaż składniki wymagające zrumienienia, następnie dodaj pozostałe składniki sosu i krótko podduś.
-> Przełóż makaron do sosu i dolej po trochu wody z gotowania, aż całość będzie soczysta, ale nie wodnista.
-> Spróbuj, dopraw i podawaj od razu.
+> Ugotuj cavatappi w osolonej wodzie do al dente. Przed odcedzeniem zachowaj około 80 ml wody z gotowania.
+> Czosnek drobno posiekaj i podsmaż 20–30 sekund na oliwie na średnim ogniu; nie dopuść do zbrązowienia.
+> Dodaj szpinak i duś 2–3 minuty, aż zwiędnie; jeśli używasz szpinaku mrożonego, odparuj nadmiar wody.
+> Zmniejsz ogień, wmieszaj ricottę i gałkę muszkatołową. Dolewaj stopniowo wodę z makaronu, aż powstanie kremowy sos.
+> Dodaj cavatappi, wymieszaj przez 30–60 sekund, dopraw solą i podawaj od razu.
 
 # Maccheroni ze szpinakiem i ricottą
 @ cat=pasta origin=IT servings=1 prep=10 cook=15 art=pasta tags=makaron,kuchnia-włoska
+8 ml | oliwa z oliwek
 : Makaron Maccheroni ze szpinakiem i ricottą.
 90 g | maccheroni
 70 g | szpinak
@@ -2828,11 +2836,11 @@ export const SEED_CURATED = `
 1 szt. | czosnek
 0,3 g | gałka muszkatołowa
 3 g | sól
-> Ugotuj makaron al dente w osolonej wodzie. Zachowaj kubek wody z gotowania.
-> Przygotuj składniki sosu: warzywa pokrój równo, a mięso lub owoce morza osusz przed smażeniem.
-> Podsmaż składniki wymagające zrumienienia, następnie dodaj pozostałe składniki sosu i krótko podduś.
-> Przełóż makaron do sosu i dolej po trochu wody z gotowania, aż całość będzie soczysta, ale nie wodnista.
-> Spróbuj, dopraw i podawaj od razu.
+> Ugotuj maccheroni w osolonej wodzie do al dente. Przed odcedzeniem zachowaj około 80 ml wody z gotowania.
+> Czosnek drobno posiekaj i podsmaż 20–30 sekund na oliwie na średnim ogniu; nie dopuść do zbrązowienia.
+> Dodaj szpinak i duś 2–3 minuty, aż zwiędnie; jeśli używasz szpinaku mrożonego, odparuj nadmiar wody.
+> Zmniejsz ogień, wmieszaj ricottę i gałkę muszkatołową. Dolewaj stopniowo wodę z makaronu, aż powstanie kremowy sos.
+> Dodaj maccheroni, wymieszaj przez 30–60 sekund, dopraw solą i podawaj od razu.
 
 # White Russian
 @ cat=cocktaile servings=1 prep=3 cook=5 art=drink tags=koktajl
@@ -2962,93 +2970,93 @@ export const SEED_CURATED = `
 > Udekoruj składnikiem z listy i podawaj od razu.
 
 # Winegret klasyczny
-@ cat=sosy origin=FR servings=1 prep=3 cook=5 art=food tags=sos,dressing,kuchnia-francuska
+@ cat=sosy origin=FR servings=1 prep=3 art=food tags=sos,dressing,kuchnia-francuska
 : Winegret klasyczny — porcja sosu lub dressingu.
 20 ml | oliwa z oliwek
 8 ml | ocet winny
 3 g | musztarda
 3 g | sól
-> Przygotuj składniki: posiekaj aromaty, odmierz płyny i zetrzyj sery lub przyprawy, jeśli są w recepturze.
-> Podgrzej bazę na małym lub średnim ogniu, mieszając, aby składniki równomiernie się połączyły.
-> Jeśli sos wymaga redukcji, gotuj łagodnie do uzyskania właściwej konsystencji. Jeśli ma pozostać świeży, nie podgrzewaj go.
-> Dopraw stopniowo i próbuj po każdym dodatku. W razie potrzeby przecedź lub zblenduj.
-> Podawaj od razu albo ostudź szybko i przechowuj w lodówce.
+> Musztardę i sól rozmieszaj z octem winnym, aż sól zacznie się rozpuszczać.
+> Oliwę dodawaj cienkim strumieniem, cały czas energicznie ubijając rózgą.
+> Ubijaj do uzyskania chwilowej, jednolitej emulsji.
+> Spróbuj i skoryguj kwasowość proporcją oliwy do octu, zamiast dosładzać bez potrzeby.
+> Wymieszaj bezpośrednio przed podaniem, ponieważ emulsja z czasem naturalnie się rozwarstwia.
 
 # Sos winegret malinowy
-@ cat=sosy origin=FR servings=1 prep=3 cook=5 art=food tags=sos,dressing,kuchnia-francuska
+@ cat=sosy origin=FR servings=1 prep=3 art=food tags=sos,dressing,kuchnia-francuska
 : Sos winegret malinowy — porcja sosu lub dressingu.
 18 ml | oliwa z oliwek
 8 ml | ocet malinowy
 4 g | miód
-> Przygotuj składniki: posiekaj aromaty, odmierz płyny i zetrzyj sery lub przyprawy, jeśli są w recepturze.
-> Podgrzej bazę na małym lub średnim ogniu, mieszając, aby składniki równomiernie się połączyły.
-> Jeśli sos wymaga redukcji, gotuj łagodnie do uzyskania właściwej konsystencji. Jeśli ma pozostać świeży, nie podgrzewaj go.
-> Dopraw stopniowo i próbuj po każdym dodatku. W razie potrzeby przecedź lub zblenduj.
-> Podawaj od razu albo ostudź szybko i przechowuj w lodówce.
+> W miseczce połącz ocet malinowy z miodem i mieszaj do jego rozpuszczenia.
+> Oliwę dodawaj cienkim strumieniem, energicznie ubijając.
+> Kontynuuj ubijanie, aż dressing stanie się lekko kremowy i jednolity.
+> Spróbuj i skoryguj balans kwaśnego octu i słodyczy miodu.
+> Wymieszaj ponownie tuż przed polaniem sałatki; przechowuj krótko w lodówce.
 
 # Sos tahini
-@ cat=sosy servings=1 prep=3 cook=5 art=food tags=sos,dressing,kuchnia-śródziemnomorska
+@ cat=sosy servings=1 prep=3 art=food tags=sos,dressing,kuchnia-śródziemnomorska
 : Sos tahini — porcja sosu lub dressingu.
 25 g | tahini
 10 ml | sok z cytryny
 1 szt. | czosnek
 15 ml | woda
-> Przygotuj składniki: posiekaj aromaty, odmierz płyny i zetrzyj sery lub przyprawy, jeśli są w recepturze.
-> Podgrzej bazę na małym lub średnim ogniu, mieszając, aby składniki równomiernie się połączyły.
-> Jeśli sos wymaga redukcji, gotuj łagodnie do uzyskania właściwej konsystencji. Jeśli ma pozostać świeży, nie podgrzewaj go.
-> Dopraw stopniowo i próbuj po każdym dodatku. W razie potrzeby przecedź lub zblenduj.
-> Podawaj od razu albo ostudź szybko i przechowuj w lodówce.
+> Tahini dokładnie wymieszaj w słoiku, jeśli olej oddzielił się na powierzchni.
+> Dodaj sok z cytryny i drobno starty czosnek; masa może początkowo zgęstnieć.
+> Dolewaj wodę po łyżeczce, za każdym razem energicznie mieszając.
+> Kontynuuj do uzyskania gładkiego, jasnego sosu, który spływa z łyżki szeroką wstążką.
+> Odstaw na 5 minut, spróbuj i podawaj; w razie potrzeby rozrzedź kolejną małą porcją wody.
 
 # Sos czosnkowy jogurtowy
-@ cat=sosy origin=PL servings=1 prep=3 cook=5 art=food tags=sos,dressing,kuchnia-polska
+@ cat=sosy origin=PL servings=1 prep=3 art=food tags=sos,dressing,kuchnia-polska
 : Sos czosnkowy jogurtowy — porcja sosu lub dressingu.
 60 g | jogurt
 1 szt. | czosnek
 3 g | koperek
 3 g | sól
-> Przygotuj składniki: posiekaj aromaty, odmierz płyny i zetrzyj sery lub przyprawy, jeśli są w recepturze.
-> Podgrzej bazę na małym lub średnim ogniu, mieszając, aby składniki równomiernie się połączyły.
-> Jeśli sos wymaga redukcji, gotuj łagodnie do uzyskania właściwej konsystencji. Jeśli ma pozostać świeży, nie podgrzewaj go.
-> Dopraw stopniowo i próbuj po każdym dodatku. W razie potrzeby przecedź lub zblenduj.
-> Podawaj od razu albo ostudź szybko i przechowuj w lodówce.
+> Czosnek przeciśnij przez praskę lub zetrzyj na drobnej tarce.
+> Koperek posiekaj drobno, odrzucając grube łodygi.
+> Wymieszaj jogurt z czosnkiem, koperkiem i solą do uzyskania jednolitej konsystencji.
+> Odstaw pod przykryciem do lodówki na 10–15 minut, aby czosnek oddał aromat.
+> Przed podaniem wymieszaj i spróbuj; podawaj schłodzony.
 
 # Sos sriracha mayo
-@ cat=sosy servings=1 prep=3 cook=5 art=food tags=sos,dressing,kuchnia-azjatycka
+@ cat=sosy servings=1 prep=3 art=food tags=sos,dressing,kuchnia-azjatycka
 : Sos sriracha mayo — porcja sosu lub dressingu.
 30 g | majonez
 8 g | sriracha
 4 ml | sok z limonki
-> Przygotuj składniki: posiekaj aromaty, odmierz płyny i zetrzyj sery lub przyprawy, jeśli są w recepturze.
-> Podgrzej bazę na małym lub średnim ogniu, mieszając, aby składniki równomiernie się połączyły.
-> Jeśli sos wymaga redukcji, gotuj łagodnie do uzyskania właściwej konsystencji. Jeśli ma pozostać świeży, nie podgrzewaj go.
-> Dopraw stopniowo i próbuj po każdym dodatku. W razie potrzeby przecedź lub zblenduj.
-> Podawaj od razu albo ostudź szybko i przechowuj w lodówce.
+> Majonez przełóż do małej miski i dodaj srirachę.
+> Sok z limonki dodawaj stopniowo, mieszając po każdej porcji.
+> Wymieszaj do uzyskania jednolitego koloru bez smug majonezu.
+> Spróbuj i dopasuj ostrość, dodając niewielką ilość srirachy tylko wtedy, gdy potrzeba.
+> Schłodź przez kilka minut i podawaj jako dip lub sos do kanapek.
 
 # Sos sojowo-imbirowy
-@ cat=sosy origin=JP servings=1 prep=3 cook=5 art=food tags=sos,dressing,kuchnia-japońska
+@ cat=sosy origin=JP servings=1 prep=3 art=food tags=sos,dressing,kuchnia-japońska
 : Sos na bazie sosu sojowego, imbiru, cukru i oleju sezamowego.
 20 ml | sos sojowy
 6 g | imbir
 4 g | cukier
 4 ml | sezamowy olej
-> Przygotuj składniki: posiekaj aromaty, odmierz płyny i zetrzyj sery lub przyprawy, jeśli są w recepturze.
-> Podgrzej bazę na małym lub średnim ogniu, mieszając, aby składniki równomiernie się połączyły.
-> Jeśli sos wymaga redukcji, gotuj łagodnie do uzyskania właściwej konsystencji. Jeśli ma pozostać świeży, nie podgrzewaj go.
-> Dopraw stopniowo i próbuj po każdym dodatku. W razie potrzeby przecedź lub zblenduj.
-> Podawaj od razu albo ostudź szybko i przechowuj w lodówce.
+> Imbir obierz i zetrzyj drobno, aby równomiernie rozprowadził się w sosie.
+> Sos sojowy połącz z cukrem i mieszaj do rozpuszczenia kryształków.
+> Dodaj imbir i olej sezamowy.
+> Wymieszaj energicznie, aż olej rozbije się na drobne krople w sosie.
+> Odstaw na 5–10 minut przed użyciem jako dressing lub marynatę; nie musisz go gotować.
 
 # Gremolata
-@ cat=sosy origin=IT servings=1 prep=3 cook=5 art=food tags=sos,dressing,kuchnia-włoska
+@ cat=sosy origin=IT servings=1 prep=3 art=food tags=sos,dressing,kuchnia-włoska
 : Gremolata — porcja sosu lub dressingu.
 4 g | natka pietruszki
 3 g | skórka cytrynowa
 1 szt. | czosnek
 12 ml | oliwa z oliwek
-> Przygotuj składniki: posiekaj aromaty, odmierz płyny i zetrzyj sery lub przyprawy, jeśli są w recepturze.
-> Podgrzej bazę na małym lub średnim ogniu, mieszając, aby składniki równomiernie się połączyły.
-> Jeśli sos wymaga redukcji, gotuj łagodnie do uzyskania właściwej konsystencji. Jeśli ma pozostać świeży, nie podgrzewaj go.
-> Dopraw stopniowo i próbuj po każdym dodatku. W razie potrzeby przecedź lub zblenduj.
-> Podawaj od razu albo ostudź szybko i przechowuj w lodówce.
+> Natkę pietruszki osusz dokładnie i posiekaj bardzo drobno.
+> Skórkę cytrynową zetrzyj drobno, unikając białej, gorzkiej części.
+> Czosnek posiekaj lub rozetrzyj na pastę.
+> Wymieszaj składniki tuż przed podaniem, bez podgrzewania.
+> Użyj gremolaty na końcu przygotowania dania, aby zachować cytrusowy aromat i świeży kolor.
 
 # Koktajl owocowy truskawka i banan
 @ cat=cocktaile servings=1 prep=3 cook=5 art=drink tags=koktajl-owocowy,napój
