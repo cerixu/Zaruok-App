@@ -1840,7 +1840,7 @@ export const SEED_CURATED = `
 5 ml | sezamowy olej
 12 ml | olej rzepakowy
 > Filet z kurczaka pokrój w cienkie, równe paski lub niewielkie kawałki. Czosnek drobno posiekaj, a imbir zetrzyj lub pokrój w cienkie zapałki.
-> Rozgrzej wok z olejem. Obsmaż kawałki mięsa w jednej warstwie, partiami jeśli trzeba, aż się zrumienią; odłóż na bok.
+> Rozgrzej wok z olejem. Obsmaż kurczaka w jednej warstwie, partiami jeśli trzeba, aż z zewnątrz zbieleje i lekko się zrumieni; odłóż na bok.
 > Zmniejsz nieco ogień, dodaj czosnek, imbir i pastę doubanjiang; smaż 20–30 sekund, aż uwolnią aromat.
 > Wlej olej sezamowy oraz 1–2 łyżki wody, po czym zeskrob z dna przyprawy i utwórz lekki sos.
 > Włóż filet z kurczaka z powrotem, dokładnie obtocz w sosie i podgrzej do pełnej gotowości. Podawaj od razu.
@@ -1914,7 +1914,7 @@ export const SEED_CURATED = `
 12 ml | sos sojowy
 1 g | pieprz syczuański
 12 ml | olej rzepakowy
-> Wołowina pokrój w cienkie, równe paski lub niewielkie kawałki. Orzeszki ziemne przygotuj z wyprzedzeniem, a pieprz syczuański lekko rozgnieć.
+> Wołowinę pokrój w cienkie, równe paski lub niewielkie kawałki. Orzeszki ziemne przygotuj z wyprzedzeniem, a pieprz syczuański lekko rozgnieć.
 > Rozgrzej wok z olejem i obsmaż białko partiami; tofu odłóż na bok po zrumienieniu.
 > Wsyp chilli oraz pieprz syczuański i smaż przez 15–20 sekund, nie przypalając przypraw.
 > Dodaj sos sojowy i 1–2 łyżki wody, szybko zamieszaj, aby powstała aromatyczna glazura.
@@ -1933,7 +1933,7 @@ export const SEED_CURATED = `
 > Rozgrzej wok z olejem. Obsmaż białko partiami, aż się zrumieni, i przełóż na talerz.
 > Na tej samej patelni krótko smaż cebulę i paprykę, aby zmiękły, ale pozostały jędrne.
 > Rozmieszaj sos ostrygowy z 1–2 łyżkami wody, wlej do woka i zagotuj krótko.
-> Włóż wołowina z powrotem, dodaj pieprz i wymieszaj, aż sos pokryje składniki cienką warstwą.
+> Włóż wołowinę z powrotem, dodaj pieprz i wymieszaj, aż sos pokryje składniki cienką warstwą.
 
 # Wołowina po syczuańsku
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -1945,7 +1945,7 @@ export const SEED_CURATED = `
 5 ml | sezamowy olej
 12 ml | olej rzepakowy
 > Wołowina pokrój w cienkie, równe paski lub niewielkie kawałki. Czosnek drobno posiekaj, a imbir zetrzyj lub pokrój w cienkie zapałki.
-> Rozgrzej wok z olejem i obsmaż białko; jeśli używasz tofu, zrumień je z każdej strony. Odłóż na bok.
+> Rozgrzej wok mocno z olejem. Obsmaż wołowinę krótko, partiami, aż się zrumieni, ale nie przesusz; odłóż na bok.
 > Zmniejsz nieco ogień, dodaj czosnek, imbir i pastę doubanjiang; smaż 20–30 sekund, aż uwolnią aromat.
 > Wlej olej sezamowy oraz 1–2 łyżki wody, po czym zeskrob z dna przyprawy i utwórz lekki sos.
 > Włóż wołowina z powrotem, dokładnie obtocz w sosie i podgrzej do pełnej gotowości. Podawaj od razu.
@@ -2050,7 +2050,7 @@ export const SEED_CURATED = `
 5 ml | sezamowy olej
 12 ml | olej rzepakowy
 > Krewetki oczyść, usuń przewód pokarmowy, a następnie dokładnie osusz. Czosnek drobno posiekaj, a imbir zetrzyj lub pokrój w cienkie zapałki.
-> Rozgrzej wok z olejem i obsmaż białko; jeśli używasz tofu, zrumień je z każdej strony. Odłóż na bok.
+> Rozgrzej wok z olejem. Smaż krewetki krótko, około 1–2 minut, aż zmienią kolor i staną się nieprzezroczyste; odłóż na bok.
 > Zmniejsz nieco ogień, dodaj czosnek, imbir i pastę doubanjiang; smaż 20–30 sekund, aż uwolnią aromat.
 > Wlej olej sezamowy oraz 1–2 łyżki wody, po czym zeskrob z dna przyprawy i utwórz lekki sos.
 > Włóż krewetki z powrotem, dokładnie obtocz w sosie i podgrzej do pełnej gotowości. Podawaj od razu.
@@ -2155,7 +2155,7 @@ export const SEED_CURATED = `
 5 ml | sezamowy olej
 12 ml | olej rzepakowy
 > Tofu osusz ręcznikiem i pokrój w równe kostki. Czosnek drobno posiekaj, a imbir zetrzyj lub pokrój w cienkie zapałki.
-> Rozgrzej wok z olejem i obsmaż białko; jeśli używasz tofu, zrumień je z każdej strony. Odłóż na bok.
+> Rozgrzej wok z olejem. Osusz tofu, pokrój w kostkę i smaż w jednej warstwie, aż zrumieni się z kilku stron; odłóż na bok.
 > Zmniejsz nieco ogień, dodaj czosnek, imbir i pastę doubanjiang; smaż 20–30 sekund, aż uwolnią aromat.
 > Wlej olej sezamowy oraz 1–2 łyżki wody, po czym zeskrob z dna przyprawy i utwórz lekki sos.
 > Włóż tofu z powrotem, dokładnie obtocz w sosie i podgrzej do pełnej gotowości. Podawaj od razu.
@@ -2229,7 +2229,7 @@ export const SEED_CURATED = `
 12 ml | sos sojowy
 1 g | pieprz syczuański
 12 ml | olej rzepakowy
-> Wieprzowina pokrój w cienkie, równe paski lub niewielkie kawałki. Orzeszki ziemne przygotuj z wyprzedzeniem, a pieprz syczuański lekko rozgnieć.
+> Wieprzowinę pokrój w cienkie, równe paski lub niewielkie kawałki. Orzeszki ziemne przygotuj z wyprzedzeniem, a pieprz syczuański lekko rozgnieć.
 > Rozgrzej wok z olejem i obsmaż białko partiami; tofu odłóż na bok po zrumienieniu.
 > Wsyp chilli oraz pieprz syczuański i smaż przez 15–20 sekund, nie przypalając przypraw.
 > Dodaj sos sojowy i 1–2 łyżki wody, szybko zamieszaj, aby powstała aromatyczna glazura.
@@ -2248,7 +2248,7 @@ export const SEED_CURATED = `
 > Rozgrzej wok z olejem. Obsmaż białko partiami, aż się zrumieni, i przełóż na talerz.
 > Na tej samej patelni krótko smaż cebulę i paprykę, aby zmiękły, ale pozostały jędrne.
 > Rozmieszaj sos ostrygowy z 1–2 łyżkami wody, wlej do woka i zagotuj krótko.
-> Włóż wieprzowina z powrotem, dodaj pieprz i wymieszaj, aż sos pokryje składniki cienką warstwą.
+> Włóż wieprzowinę z powrotem, dodaj pieprz i wymieszaj, aż sos pokryje składniki cienką warstwą.
 
 # Wieprzowina po syczuańsku
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -2260,7 +2260,7 @@ export const SEED_CURATED = `
 5 ml | sezamowy olej
 12 ml | olej rzepakowy
 > Wieprzowina pokrój w cienkie, równe paski lub niewielkie kawałki. Czosnek drobno posiekaj, a imbir zetrzyj lub pokrój w cienkie zapałki.
-> Rozgrzej wok z olejem i obsmaż białko; jeśli używasz tofu, zrumień je z każdej strony. Odłóż na bok.
+> Rozgrzej wok z olejem. Obsmaż wieprzowinę w cienkich paskach, partiami jeśli trzeba, aż się zrumieni; odłóż na bok.
 > Zmniejsz nieco ogień, dodaj czosnek, imbir i pastę doubanjiang; smaż 20–30 sekund, aż uwolnią aromat.
 > Wlej olej sezamowy oraz 1–2 łyżki wody, po czym zeskrob z dna przyprawy i utwórz lekki sos.
 > Włóż wieprzowina z powrotem, dokładnie obtocz w sosie i podgrzej do pełnej gotowości. Podawaj od razu.
@@ -2334,7 +2334,7 @@ export const SEED_CURATED = `
 12 ml | sos sojowy
 1 g | pieprz syczuański
 12 ml | olej rzepakowy
-> Kaczka pokrój w cienkie, równe paski lub niewielkie kawałki. Orzeszki ziemne przygotuj z wyprzedzeniem, a pieprz syczuański lekko rozgnieć.
+> Kaczkę pokrój w cienkie, równe paski lub niewielkie kawałki. Orzeszki ziemne przygotuj z wyprzedzeniem, a pieprz syczuański lekko rozgnieć.
 > Rozgrzej wok z olejem i obsmaż białko partiami; tofu odłóż na bok po zrumienieniu.
 > Wsyp chilli oraz pieprz syczuański i smaż przez 15–20 sekund, nie przypalając przypraw.
 > Dodaj sos sojowy i 1–2 łyżki wody, szybko zamieszaj, aby powstała aromatyczna glazura.
@@ -2353,7 +2353,7 @@ export const SEED_CURATED = `
 > Rozgrzej wok z olejem. Obsmaż białko partiami, aż się zrumieni, i przełóż na talerz.
 > Na tej samej patelni krótko smaż cebulę i paprykę, aby zmiękły, ale pozostały jędrne.
 > Rozmieszaj sos ostrygowy z 1–2 łyżkami wody, wlej do woka i zagotuj krótko.
-> Włóż kaczka z powrotem, dodaj pieprz i wymieszaj, aż sos pokryje składniki cienką warstwą.
+> Włóż kaczkę z powrotem, dodaj pieprz i wymieszaj, aż sos pokryje składniki cienką warstwą.
 
 # Kaczka po syczuańsku
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -2365,7 +2365,7 @@ export const SEED_CURATED = `
 5 ml | sezamowy olej
 12 ml | olej rzepakowy
 > Kaczka pokrój w cienkie, równe paski lub niewielkie kawałki. Czosnek drobno posiekaj, a imbir zetrzyj lub pokrój w cienkie zapałki.
-> Rozgrzej wok z olejem i obsmaż białko; jeśli używasz tofu, zrumień je z każdej strony. Odłóż na bok.
+> Rozgrzej wok z olejem. Obsmaż kaczkę w cienkich paskach, partiami jeśli trzeba, aż się zrumieni i będzie prawie gotowa; odłóż na bok.
 > Zmniejsz nieco ogień, dodaj czosnek, imbir i pastę doubanjiang; smaż 20–30 sekund, aż uwolnią aromat.
 > Wlej olej sezamowy oraz 1–2 łyżki wody, po czym zeskrob z dna przyprawy i utwórz lekki sos.
 > Włóż kaczka z powrotem, dokładnie obtocz w sosie i podgrzej do pełnej gotowości. Podawaj od razu.
