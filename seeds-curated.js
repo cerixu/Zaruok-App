@@ -21,7 +21,7 @@ export const SEED_CURATED = `# Pierogi z mięsem
 > Podawaj zgodnie z charakterem dania — gorące, z dodatkami przewidzianymi w recepturze.
 
 # Uszka z grzybami
-@ cat=warzywa origin=PL trad servings=1 prep=24 cook=36 art=food tags=tradycyjne,wigilijne,zupa,kuchnia-polska
+@ cat=inne origin=PL trad servings=1 prep=24 cook=36 art=food tags=tradycyjne,wigilijne,zupa,kuchnia-polska
 : Małe pierożki do barszczu, nadziewane grzybami.
 60 g | mąka pszenna
 30 ml | woda
@@ -29,11 +29,11 @@ export const SEED_CURATED = `# Pierogi z mięsem
 0,5 szt. | cebula
 12 ml | oliwa z oliwek
 3 g | sól
-> Umyj i przygotuj warzywa. Pokrój je równo, aby wszystkie kawałki zmiękły w podobnym czasie.
-> Rozgrzej tłuszcz z receptury. Podsmaż cebulę lub czosnek, jeśli występują w składnikach, aż zmiękną i zaczną pachnieć.
-> Dodaj warzywa i zastosuj metodę odpowiednią dla dania: smaż do zrumienienia, duś pod przykryciem albo piecz do miękkości.
-> Dopraw stopniowo. Jeśli używasz sera, ziół lub orzechów, dodaj je pod koniec, aby zachowały aromat i teksturę.
-> Podawaj od razu jako samodzielne danie lub dodatek.
+> Grzyby namocz i ugotuj do miękkości. Posiekaj bardzo drobno i połącz z zeszkloną cebulą. Farsz powinien być zwarty, nie wodnisty.
+> Z mąki, wody i soli zagnieć gładkie ciasto. Przykryj i odstaw na 15 minut.
+> Rozwałkuj bardzo cienko i pokrój na małe kwadraty. Na środek każdego nałóż odrobinę farszu.
+> Złóż kwadrat w trójkąt, dokładnie zlep brzegi, a następnie połącz dwa końce wokół palca.
+> Gotuj w osolonym wrzątku 2–3 minuty od wypłynięcia. Podawaj z barszczem.
 
 # Żurek staropolski
 @ cat=zupy origin=PL trad servings=1 prep=20 cook=30 art=soup tags=tradycyjne,zupa,wielkanoc,kuchnia-polska
@@ -46,11 +46,11 @@ export const SEED_CURATED = `# Pierogi z mięsem
 2 g | majeranek
 20 ml | śmietana 18%
 3 g | sól
-> Warzywa i pozostałe składniki oczyść oraz pokrój. Jeśli receptura zawiera mięso lub aromaty, obsmaż je krótko przed dodaniem płynu.
-> Dodaj bulion lub wodę oraz twardsze składniki, które potrzebują najdłuższego gotowania.
-> Gotuj na łagodnym ogniu, aż składniki będą miękkie. Delikatne warzywa, makaron lub owoce morza dodaj później, by ich nie rozgotować.
-> Dopraw pod koniec. Śmietanę, cytrynę lub zioła dodaj stopniowo, próbując smak po każdym dodatku.
-> Podawaj gorące, z dodatkami przewidzianymi w recepturze.
+> Ziemniaki pokrój w kostkę. Białą kiełbasę zalej wodą lub bulionem, dodaj czosnek i przyprawy, po czym gotuj łagodnie, aż kiełbasa będzie ugotowana.
+> Wyjmij kiełbasę, pokrój ją w plastry, a do wywaru dodaj ziemniaki. Gotuj do miękkości.
+> Zakwas wymieszaj i wlej stopniowo do zupy, próbując kwasowość. Gotuj kilka minut na małym ogniu.
+> Śmietanę zahartuj kilkoma łyżkami gorącej zupy i wlej do garnka. Dodaj majeranek oraz kiełbasę.
+> Podawaj gorący, z jajkiem na twardo, jeśli jest w składnikach.
 
 # Sernik krakowski
 @ cat=desery origin=PL trad servings=1 prep=36 cook=54 art=dessert tags=tradycyjne,ciasto,sernik,kuchnia-polska
@@ -729,11 +729,11 @@ export const SEED_CURATED = `# Pierogi z mięsem
 0,4 szt. | limonka
 12 g | pasta tom yum
 30 g | pieczarki
-> Warzywa i pozostałe składniki oczyść oraz pokrój. Jeśli receptura zawiera mięso lub aromaty, obsmaż je krótko przed dodaniem płynu.
-> Dodaj bulion lub wodę oraz twardsze składniki, które potrzebują najdłuższego gotowania.
-> Gotuj na łagodnym ogniu, aż składniki będą miękkie. Delikatne warzywa, makaron lub owoce morza dodaj później, by ich nie rozgotować.
-> Dopraw pod koniec. Śmietanę, cytrynę lub zioła dodaj stopniowo, próbując smak po każdym dodatku.
-> Podawaj gorące, z dodatkami przewidzianymi w recepturze.
+> Przygotuj bulion. Dodaj trawę cytrynową, galangal lub imbir, liście limonki i chili, jeśli są w składnikach. Gotuj kilka minut, aby uwolnić aromaty.
+> Dodaj grzyby i twardsze warzywa, a po chwili krewetki lub inne owoce morza.
+> Gotuj tylko do momentu, gdy owoce morza będą gotowe — zbyt długie gotowanie sprawia, że stają się gumowate.
+> Zdejmij garnek z ognia i dopraw sokiem z limonki oraz sosem rybnym z receptury. Spróbuj równowagi kwaśnego, słonego i ostrego smaku.
+> Podawaj od razu, z ziołami przewidzianymi w składnikach.
 
 # Tom kha gai
 @ cat=zupy servings=1 prep=19 cook=29 art=soup tags=tradycyjne,zupa,kuchnia-azjatycka
@@ -743,11 +743,11 @@ export const SEED_CURATED = `# Pierogi z mięsem
 5 g | galangal
 0,3 szt. | limonka
 6 g | trawa cytrynowa
-> Warzywa i pozostałe składniki oczyść oraz pokrój. Jeśli receptura zawiera mięso lub aromaty, obsmaż je krótko przed dodaniem płynu.
-> Dodaj bulion lub wodę oraz twardsze składniki, które potrzebują najdłuższego gotowania.
-> Gotuj na łagodnym ogniu, aż składniki będą miękkie. Delikatne warzywa, makaron lub owoce morza dodaj później, by ich nie rozgotować.
-> Dopraw pod koniec. Śmietanę, cytrynę lub zioła dodaj stopniowo, próbując smak po każdym dodatku.
-> Podawaj gorące, z dodatkami przewidzianymi w recepturze.
+> Podgrzej bulion z mlekiem kokosowym. Dodaj trawę cytrynową, galangal lub imbir oraz liście limonki z receptury.
+> Gotuj łagodnie kilka minut, aby płyn nabrał aromatu. Nie dopuszczaj do gwałtownego wrzenia mleka kokosowego.
+> Dodaj pokrojonego kurczaka i grzyby. Gotuj delikatnie, aż mięso będzie całkowicie ugotowane.
+> Zdejmij z ognia i dopraw sokiem z limonki oraz sosem rybnym. Sprawdź równowagę słoności i kwasowości.
+> Podawaj gorącą, z kolendrą lub innymi ziołami z listy.
 
 # Avgolemono
 @ cat=zupy servings=1 prep=20 cook=30 art=soup tags=tradycyjne,zupa,kuchnia-śródziemnomorska
@@ -771,11 +771,11 @@ export const SEED_CURATED = `# Pierogi z mięsem
 2 g | kumin
 0,3 szt. | cytryna
 4 g | kolendra
-> Warzywa i pozostałe składniki oczyść oraz pokrój. Jeśli receptura zawiera mięso lub aromaty, obsmaż je krótko przed dodaniem płynu.
-> Dodaj bulion lub wodę oraz twardsze składniki, które potrzebują najdłuższego gotowania.
-> Gotuj na łagodnym ogniu, aż składniki będą miękkie. Delikatne warzywa, makaron lub owoce morza dodaj później, by ich nie rozgotować.
-> Dopraw pod koniec. Śmietanę, cytrynę lub zioła dodaj stopniowo, próbując smak po każdym dodatku.
-> Podawaj gorące, z dodatkami przewidzianymi w recepturze.
+> Soczewicę wypłucz na sicie. Cebulę, marchew i inne warzywa z receptury pokrój w drobną kostkę.
+> Podsmaż cebulę i przyprawy na tłuszczu z receptury, aż zaczną pachnieć. Dodaj pozostałe warzywa.
+> Wsyp soczewicę, wlej bulion lub wodę i gotuj łagodnie, aż soczewica będzie miękka.
+> Jeśli chcesz uzyskać gęstszą konsystencję, rozgnieć część soczewicy lub krótko zblenduj zupę. Dopraw solą i kwasem z receptury.
+> Podawaj gorącą, z ziołami lub jogurtem, jeśli są w składnikach.
 
 # Clam chowder
 @ cat=zupy origin=US trad servings=1 prep=20 cook=29 art=soup tags=tradycyjne,zupa,kuchnia-amerykańska
@@ -785,11 +785,11 @@ export const SEED_CURATED = `# Pierogi z mięsem
 30 ml | śmietana 18%
 20 g | seler naciowy
 15 g | boczek
-> Warzywa i pozostałe składniki oczyść oraz pokrój. Jeśli receptura zawiera mięso lub aromaty, obsmaż je krótko przed dodaniem płynu.
-> Dodaj bulion lub wodę oraz twardsze składniki, które potrzebują najdłuższego gotowania.
-> Gotuj na łagodnym ogniu, aż składniki będą miękkie. Delikatne warzywa, makaron lub owoce morza dodaj później, by ich nie rozgotować.
-> Dopraw pod koniec. Śmietanę, cytrynę lub zioła dodaj stopniowo, próbując smak po każdym dodatku.
-> Podawaj gorące, z dodatkami przewidzianymi w recepturze.
+> Pokrój cebulę, seler i ziemniaki w niewielką kostkę. Podsmaż cebulę i seler na maśle, aż zmiękną.
+> Jeśli receptura zawiera boczek, wytop go na początku i wykorzystaj tłuszcz do warzyw.
+> Wsyp mąkę, jeśli jest w składnikach, i mieszaj minutę. Stopniowo wlej bulion oraz mleko lub śmietankę, mieszając, aby nie powstały grudki.
+> Dodaj ziemniaki i gotuj, aż będą miękkie. Małże dodaj pod koniec i podgrzej krótko, aby nie stwardniały.
+> Dopraw i podawaj gorącą.
 
 # Pozole
 @ cat=zupy origin=MX trad servings=1 prep=25 cook=38 art=soup tags=tradycyjne,zupa,kuchnia-meksykańska
@@ -841,11 +841,11 @@ export const SEED_CURATED = `# Pierogi z mięsem
 5 g | bazylia
 12 ml | oliwa z oliwek
 5 ml | ocet balsamiczny
-> Umyj i dokładnie osusz warzywa oraz zioła. Pokrój składniki na równe, wygodne do jedzenia kawałki.
-> Przygotuj dressing, łącząc składniki płynne i przyprawy. Wymieszaj lub wstrząśnij do uzyskania emulsji.
-> Jeśli receptura zawiera białko, ser lub pieczywo, przygotuj je osobno i ostudź przed połączeniem z delikatnymi liśćmi.
-> Połącz składniki tuż przed podaniem, aby sałatka zachowała świeżość i chrupkość.
-> Spróbuj, skoryguj sól i kwasowość, a następnie podawaj.
+> Pomidory i mozzarellę pokrój w plastry podobnej grubości.
+> Ułóż na talerzu na przemian plastry pomidora i mozzarelli.
+> Rozłóż świeże liście bazylii. Skrop oliwą z oliwek.
+> Dopraw solą i świeżo mielonym pieprzem tuż przed podaniem.
+> Podawaj w temperaturze pokojowej, aby pomidory zachowały pełnię smaku.
 
 # Niçoise
 @ cat=salatki origin=FR trad servings=1 prep=8 cook=12 art=food tags=tradycyjne,sałatka,świeże,kuchnia-francuska
@@ -870,11 +870,11 @@ export const SEED_CURATED = `# Pierogi z mięsem
 2 g | sumak
 20 g | rzodkiewka
 12 ml | oliwa z oliwek
-> Umyj i dokładnie osusz warzywa oraz zioła. Pokrój składniki na równe, wygodne do jedzenia kawałki.
-> Przygotuj dressing, łącząc składniki płynne i przyprawy. Wymieszaj lub wstrząśnij do uzyskania emulsji.
-> Jeśli receptura zawiera białko, ser lub pieczywo, przygotuj je osobno i ostudź przed połączeniem z delikatnymi liśćmi.
-> Połącz składniki tuż przed podaniem, aby sałatka zachowała świeżość i chrupkość.
-> Spróbuj, skoryguj sól i kwasowość, a następnie podawaj.
+> Warzywa umyj i osusz. Pomidory, ogórek, rzodkiewkę i pozostałe składniki pokrój na kawałki podobnej wielkości.
+> Pieczywo pokrój w kostkę i upiecz lub usmaż na złoto. Ostudź, aby pozostało chrupiące.
+> Przygotuj dressing z oliwy, cytryny i przypraw z receptury.
+> Połącz warzywa z ziołami i dressingiem tuż przed podaniem. Grzanki dodaj na sam koniec.
+> Spróbuj i dopraw; podawaj, zanim pieczywo zmięknie.
 
 # Sałatka z buraków i koziego sera
 @ cat=salatki origin=FR trad servings=1 prep=8 cook=12 art=food tags=tradycyjne,sałatka,świeże,kuchnia-francuska
@@ -884,11 +884,11 @@ export const SEED_CURATED = `# Pierogi z mięsem
 10 g | orzechy włoskie
 20 g | rukola
 12 ml | oliwa z oliwek
-> Umyj i dokładnie osusz warzywa oraz zioła. Pokrój składniki na równe, wygodne do jedzenia kawałki.
-> Przygotuj dressing, łącząc składniki płynne i przyprawy. Wymieszaj lub wstrząśnij do uzyskania emulsji.
-> Jeśli receptura zawiera białko, ser lub pieczywo, przygotuj je osobno i ostudź przed połączeniem z delikatnymi liśćmi.
-> Połącz składniki tuż przed podaniem, aby sałatka zachowała świeżość i chrupkość.
-> Spróbuj, skoryguj sól i kwasowość, a następnie podawaj.
+> Buraki upiecz w skórce lub ugotuj do miękkości, a następnie ostudź i obierz. Pokrój w cząstki.
+> Przygotuj dressing z oliwy i składników kwaśnych z receptury. Spróbuj i zrównoważ słodycz buraków kwasowością.
+> Ułóż buraki na talerzu, dodaj kozi ser i pozostałe składniki.
+> Polej dressingiem tuż przed podaniem. Orzechy lub delikatne liście dodaj na końcu, aby zachowały teksturę.
+> Podawaj od razu.
 
 # Poke bowl z łososiem
 @ cat=salatki origin=US trad servings=1 prep=8 cook=12 art=food tags=tradycyjne,sałatka,świeże,kuchnia-amerykańska
@@ -898,11 +898,11 @@ export const SEED_CURATED = `# Pierogi z mięsem
 30 g | edamame
 40 g | mango
 10 ml | sos sojowy
-> Umyj i dokładnie osusz warzywa oraz zioła. Pokrój składniki na równe, wygodne do jedzenia kawałki.
-> Przygotuj dressing, łącząc składniki płynne i przyprawy. Wymieszaj lub wstrząśnij do uzyskania emulsji.
-> Jeśli receptura zawiera białko, ser lub pieczywo, przygotuj je osobno i ostudź przed połączeniem z delikatnymi liśćmi.
-> Połącz składniki tuż przed podaniem, aby sałatka zachowała świeżość i chrupkość.
-> Spróbuj, skoryguj sól i kwasowość, a następnie podawaj.
+> Ryż dokładnie wypłucz i ugotuj zgodnie z instrukcją. Ostudź do temperatury pokojowej.
+> Łososia przygotuj zgodnie z przeznaczeniem dania i wymaganiami bezpieczeństwa. Do podania na surowo używaj wyłącznie ryby przeznaczonej do takiego spożycia; w innym przypadku usmaż ją lub upiecz.
+> Pokrój warzywa i dodatki na równe kawałki. Przygotuj sos z produktów wymienionych w recepturze.
+> Do miski włóż ryż, ułóż na nim łososia i dodatki osobnymi grupami, a następnie polej sosem.
+> Podawaj od razu, aby ryż nie nasiąkł nadmiernie dressingiem.
 
 # Buddha bowl
 @ cat=salatki servings=1 prep=8 cook=12 art=food tags=tradycyjne,sałatka,świeże,kuchnia-śródziemnomorska
