@@ -6,7 +6,7 @@
 export const SEED_CURATED = `
 # Pierogi z mięsem
 @ cat=mieso origin=PL trad servings=1 prep=32 cook=48 art=food tags=tradycyjne,pierogi,mięso,kuchnia-polska
-: Domowe pierogi z farszem z mięsa z rosołu.
+: Domowe pierogi z delikatnym ciastem i doprawionym farszem mięsno-cebulowym.
 90 g | mąka pszenna
 17 g | jajko (roztrzepane)
 40 ml | woda
@@ -15,11 +15,11 @@ export const SEED_CURATED = `
 3 g | sól
 1 g | pieprz czarny
 10 g | masło
-> Przygotuj składniki: warzywa oczyść i pokrój, mięso osusz i dopraw.
-> Podsmaż składniki, które wymagają zrumienienia. W przypadku potraw duszonych dodaj płyn i zbierz z dna patelni przyrumienione soki.
-> Duś lub gotuj łagodnie pod przykryciem, aż mięso i warzywa będą miękkie. Kontroluj ilość płynu i w razie potrzeby uzupełnij.
-> Dopraw pod koniec, gdy smaki się skoncentrują. W razie potrzeby odtłuść sos lub wywar.
-> Podawaj zgodnie z charakterem dania — gorące, z dodatkami przewidzianymi w recepturze.
+> Posiekaj cebulę i zeszklij ją na maśle. Dodaj mięso, rozdrobnij łopatką i smaż, aż będzie całkowicie ugotowane. Dopraw solą oraz pieprzem i odstaw farsz do przestudzenia.
+> Z mąki, jajka, wody i szczypty soli zagnieć gładkie, elastyczne ciasto. Przykryj i odstaw na 15–20 minut, aby odpoczęło.
+> Rozwałkuj ciasto cienko i wytnij krążki. Na każdy nałóż porcję farszu, złóż na pół i dokładnie zlep brzegi.
+> Gotuj pierogi partiami w osolonym wrzątku. Po wypłynięciu gotuj jeszcze 2–3 minuty, zależnie od grubości ciasta.
+> Podawaj od razu, polane roztopionym masłem lub z cebulką podsmażoną na maśle.
 
 # Uszka z grzybami
 @ cat=inne origin=PL trad servings=1 prep=24 cook=36 art=food tags=tradycyjne,wigilijne,zupa,kuchnia-polska
