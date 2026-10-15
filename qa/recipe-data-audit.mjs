@@ -29,12 +29,12 @@ let sourceCount = 0;
 
 for (const file of SOURCES) {
   const text = fs.readFileSync(file, 'utf8');
-  const recipeBlocks = text.split(/\\n(?=# )/).filter((block) => block.startsWith('# '));
+  const recipeBlocks = text.split(/\n(?=# )/).filter((block) => block.startsWith('# '));
   const recipeNames = [...text.matchAll(/^# (.+)$/gm)].map((m) => m[1].trim());
   sourceCount += recipeNames.length;
 
   for (const block of recipeBlocks) {
-    const lines = block.split('\\n');
+    const lines = block.split('\n');
     const name = lines[0].slice(2).trim();
     const ingredientLines = lines.filter((line) => line.includes('|') && !line.startsWith('@ '));
     const steps = lines.filter((line) => line.startsWith('> ')).map((line) => line.slice(2).trim());
@@ -42,7 +42,7 @@ for (const file of SOURCES) {
     if (!lines.some((line) => line.startsWith(': '))) issues.push(file + ': brak opisu: ' + name);
     if (ingredientLines.length < 2) issues.push(file + ': mniej niż 2 składniki: ' + name);
     if (!steps.length) issues.push(file + ': brak instrukcji: ' + name);
-    const normalizedSteps = steps.map((step) => step.toLocaleLowerCase('pl').replace(/\\s+/g, ' ').trim());
+    const normalizedSteps = steps.map((step) => step.toLocaleLowerCase('pl').replace(/\s+/g, ' ').trim());
     if (normalizedSteps.some((step, idx) => normalizedSteps.indexOf(step) !== idx)) {
       issues.push(file + ': powtórzony krok w tej samej recepturze: ' + name);
     }
@@ -92,8 +92,8 @@ for (const block of curatedBlocks) {
   if (steps.length < 4) issues.push('Za mało kroków w recepturze: ' + name);
   if (steps.some((step) => GENERIC_STEPS.some((pattern) => pattern.test(step)))) issues.push('Pozostał generyczny krok w recepturze: ' + name);
   if (steps.some((step) => /^Po wypieku dodaj .+; podawaj od razu\.$/i.test(step))) issues.push('Niepełna instrukcja wykończenia pizzy: ' + name);
-  const meta = block.split('\\n').find((line) => line.startsWith('@ ')) || '';
-  if (/\\btags=wok\\b/.test(meta)) {
+  const meta = block.split('\n').find((line) => line.startsWith('@ ')) || '';
+  if (/\btags=wok\b/.test(meta)) {
     const firstIngredient = ingredients[0]?.split('|').slice(1).join('|').trim() || '';
     const expectedCategory = /krewetki/i.test(firstIngredient) ? 'owoce-morza' : /tofu/i.test(firstIngredient) ? 'warzywa' : 'mieso';
     if (!new RegExp('\\bcat=' + expectedCategory + '\\b').test(meta)) issues.push('Nieprawidłowa kategoria dania z woka: ' + name);
