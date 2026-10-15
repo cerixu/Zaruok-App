@@ -7,7 +7,7 @@ export const SEED_CURATED = `# Pierogi z mięsem
 @ cat=mieso origin=PL trad servings=1 prep=32 cook=48 art=food tags=tradycyjne,pierogi,mięso,kuchnia-polska
 : Domowe pierogi z farszem z mięsa z rosołu.
 90 g | mąka pszenna
-0,3 szt. | jajko
+17 g | jajko (roztrzepane)
 40 ml | woda
 100 g | mięso wołowo-wieprzowe
 0,5 szt. | cebula
@@ -73,7 +73,7 @@ export const SEED_CURATED = `# Pierogi z mięsem
 80 g | mąka pszenna
 40 ml | mleko
 4 g | drożdże świeże
-0,4 szt. | jajko
+22 g | jajko (roztrzepane)
 12 g | masło
 10 g | cukier
 20 g | marmolada różana
@@ -754,7 +754,7 @@ export const SEED_CURATED = `# Pierogi z mięsem
 : Grecka zupa cytrynowo-jajeczna z ryżem.
 240 ml | bulion z kury
 25 g | ryż
-0,8 szt. | jajko
+44 g | jajko (roztrzepane)
 0,3 szt. | cytryna
 3 g | sól
 > Warzywa i pozostałe składniki oczyść oraz pokrój. Jeśli receptura zawiera mięso lub aromaty, obsmaż je krótko przed dodaniem płynu.
@@ -966,7 +966,7 @@ export const SEED_CURATED = `# Pierogi z mięsem
 : Ptysie z bitą śmietaną i czekoladą.
 30 g | mąka pszenna
 20 g | masło
-0,8 szt. | jajko
+44 g | jajko (roztrzepane)
 40 ml | śmietanka 30%
 25 g | czekolada
 > Przygotuj wszystkie składniki i nagrzej piekarnik do temperatury odpowiedniej dla tego deseru.
@@ -981,7 +981,7 @@ export const SEED_CURATED = `# Pierogi z mięsem
 50 g | czekolada
 30 g | masło
 35 g | cukier
-0,8 szt. | jajko
+44 g | jajko (roztrzepane)
 20 g | mąka pszenna
 15 g | orzechy włoskie
 > Rozpuść czekoladę z masłem i odstaw do lekkiego przestudzenia.
@@ -1036,7 +1036,7 @@ export const SEED_CURATED = `# Pierogi z mięsem
 @ cat=desery origin=JP trad servings=1 prep=20 cook=30 art=dessert tags=tradycyjne,deser,kuchnia-japońska
 : Japońskie placki z pastą anko.
 40 g | mąka pszenna
-0,6 szt. | jajko
+33 g | jajko (roztrzepane)
 18 g | cukier
 30 g | pasta anko
 > Wymieszaj jajko z cukrem, dodaj mąkę i pozostałe składniki ciasta. Odstaw na kilka minut.
@@ -1135,7 +1135,7 @@ export const SEED_CURATED = `# Pierogi z mięsem
 4 g | matcha
 35 g | biszkopty
 18 g | cukier
-0,5 szt. | jajko
+28 g | jajko (roztrzepane)
 > Przygotuj wszystkie składniki i nagrzej piekarnik do temperatury odpowiedniej dla tego deseru.
 > Wymieszaj składniki suche osobno, a mokre połącz w drugim naczyniu, jeśli receptura zawiera obie grupy.
 > Połącz składniki delikatnie, tylko do uzyskania jednolitej masy. Przełóż do formy lub przygotuj porcje.
@@ -1176,7 +1176,7 @@ export const SEED_CURATED = `# Pierogi z mięsem
 1 szt. | muffin angielski
 1 szt. | jajko
 30 g | szynka
-0,5 szt. | żółtko
+9 g | żółtko
 10 g | masło
 0,3 szt. | cytryna
 > Przygotuj składniki. Jajka roztrzep z solą i pieprzem; dodatki pokrój na małe kawałki.
@@ -1190,7 +1190,7 @@ export const SEED_CURATED = `# Pierogi z mięsem
 : Chrupiące gofry z owocami i bitą śmietaną.
 60 g | mąka pszenna
 70 ml | mleko
-0,7 szt. | jajko
+39 g | jajko (roztrzepane)
 15 g | masło
 40 g | owoce
 > Wymieszaj składniki suche. W osobnej misce połącz jajko, mleko i pozostałe składniki płynne, a następnie połącz obie mieszanki bez nadmiernego mieszania.
@@ -1378,7 +1378,7 @@ export const SEED_CURATED = `# Pierogi z mięsem
 @ cat=pieczywo origin=FR trad servings=1 prep=72 cook=108 art=bread tags=tradycyjne,pieczywo,pieczone,kuchnia-francuska
 : Maślana brioche, puszysta i złota.
 100 g | mąka pszenna
-0,7 szt. | jajko
+39 g | jajko (roztrzepane)
 30 g | masło
 30 ml | mleko
 10 g | cukier
@@ -1408,7 +1408,7 @@ export const SEED_CURATED = `# Pierogi z mięsem
 @ cat=pieczywo servings=1 prep=72 cook=108 art=bread tags=tradycyjne,pieczywo,pieczone
 : Zaplatana chałka z jajkiem.
 110 g | mąka pszenna
-0,5 szt. | jajko
+28 g | jajko (roztrzepane)
 55 ml | woda
 10 g | cukier
 3 g | drożdże
@@ -1546,7 +1546,7 @@ export const SEED_CURATED = `# Pierogi z mięsem
 # Aioli
 @ cat=sosy servings=1 prep=8 cook=12 art=food tags=tradycyjne,sos,kuchnia-śródziemnomorska
 : Aioli — sos do dań głównych, makaronu lub warzyw, o konsystencji dopasowanej do sposobu podania.
-0,5 szt. | żółtko
+9 g | żółtko
 1 szt. | czosnek
 12 ml | oliwa z oliwek
 0,3 szt. | cytryna
@@ -1866,7 +1866,7 @@ export const SEED_CURATED = `# Pierogi z mięsem
 80 g | makaron ryżowy
 15 ml | sos sojowy ciemny
 50 g | brokuł chiński
-0,5 szt. | jajko
+28 g | jajko (roztrzepane)
 12 ml | olej rzepakowy
 > Makaron ryżowy przygotuj zgodnie z instrukcją na opakowaniu. Warzywa pokrój, a białko osusz.
 > Rozgrzej wok bardzo mocno. Smaż białko krótko, aż się zetnie i lekko zrumieni; odłóż na bok.
@@ -1971,7 +1971,7 @@ export const SEED_CURATED = `# Pierogi z mięsem
 80 g | makaron ryżowy
 15 ml | sos sojowy ciemny
 50 g | brokuł chiński
-0,5 szt. | jajko
+28 g | jajko (roztrzepane)
 12 ml | olej rzepakowy
 > Makaron ryżowy przygotuj zgodnie z instrukcją na opakowaniu. Warzywa pokrój, a białko osusz.
 > Rozgrzej wok bardzo mocno. Smaż białko krótko, aż się zetnie i lekko zrumieni; odłóż na bok.
@@ -2076,7 +2076,7 @@ export const SEED_CURATED = `# Pierogi z mięsem
 80 g | makaron ryżowy
 15 ml | sos sojowy ciemny
 50 g | brokuł chiński
-0,5 szt. | jajko
+28 g | jajko (roztrzepane)
 12 ml | olej rzepakowy
 > Makaron ryżowy przygotuj zgodnie z instrukcją na opakowaniu. Warzywa pokrój, a białko osusz.
 > Rozgrzej wok bardzo mocno. Smaż białko krótko, aż się zetnie i lekko zrumieni; odłóż na bok.
@@ -2181,7 +2181,7 @@ export const SEED_CURATED = `# Pierogi z mięsem
 80 g | makaron ryżowy
 15 ml | sos sojowy ciemny
 50 g | brokuł chiński
-0,5 szt. | jajko
+28 g | jajko (roztrzepane)
 12 ml | olej rzepakowy
 > Makaron ryżowy przygotuj zgodnie z instrukcją na opakowaniu. Warzywa pokrój, a białko osusz.
 > Rozgrzej wok bardzo mocno. Smaż białko krótko, aż się zetnie i lekko zrumieni; odłóż na bok.
@@ -2286,7 +2286,7 @@ export const SEED_CURATED = `# Pierogi z mięsem
 80 g | makaron ryżowy
 15 ml | sos sojowy ciemny
 50 g | brokuł chiński
-0,5 szt. | jajko
+28 g | jajko (roztrzepane)
 12 ml | olej rzepakowy
 > Makaron ryżowy przygotuj zgodnie z instrukcją na opakowaniu. Warzywa pokrój, a białko osusz.
 > Rozgrzej wok bardzo mocno. Smaż białko krótko, aż się zetnie i lekko zrumieni; odłóż na bok.
@@ -2391,7 +2391,7 @@ export const SEED_CURATED = `# Pierogi z mięsem
 80 g | makaron ryżowy
 15 ml | sos sojowy ciemny
 50 g | brokuł chiński
-0,5 szt. | jajko
+28 g | jajko (roztrzepane)
 12 ml | olej rzepakowy
 > Makaron ryżowy przygotuj zgodnie z instrukcją na opakowaniu. Warzywa pokrój, a białko osusz.
 > Rozgrzej wok bardzo mocno. Smaż białko krótko, aż się zetnie i lekko zrumieni; odłóż na bok.
