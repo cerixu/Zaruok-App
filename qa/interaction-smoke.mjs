@@ -26,6 +26,7 @@ try {
 
   const tabs = [
     ['recipes', '/recipes'],
+    ['categories', '/categories'],
     ['cook', '/cook'],
     ['inventory', '/inventory'],
     ['more', '/more'],
