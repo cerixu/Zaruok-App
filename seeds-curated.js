@@ -705,7 +705,7 @@ export const SEED_CURATED = `
 > Dodaj bulion lub wodę oraz twardsze składniki, które potrzebują najdłuższego gotowania.
 > Gotuj na łagodnym ogniu, aż składniki będą miękkie. Delikatne warzywa, makaron lub owoce morza dodaj później, by ich nie rozgotować.
 > Dopraw pod koniec. Śmietanę, cytrynę lub zioła dodaj stopniowo, próbując smak po każdym dodatku.
-> Podawaj gorące, z dodatkami przewidzianymi w recepturze.
+> Rozdziel kawałki ryby i małże między podgrzane miski, zalej gorącym wywarem i podawaj natychmiast.
 
 # Miso shiru
 @ cat=zupy origin=JP trad servings=1 prep=14 cook=20 art=soup tags=tradycyjne,zupa,kuchnia-japońska
@@ -762,7 +762,7 @@ export const SEED_CURATED = `
 > Dodaj bulion lub wodę oraz twardsze składniki, które potrzebują najdłuższego gotowania.
 > Gotuj na łagodnym ogniu, aż składniki będą miękkie. Delikatne warzywa, makaron lub owoce morza dodaj później, by ich nie rozgotować.
 > Dopraw pod koniec. Śmietanę, cytrynę lub zioła dodaj stopniowo, próbując smak po każdym dodatku.
-> Podawaj gorące, z dodatkami przewidzianymi w recepturze.
+> Zdejmij garnek z ognia. Zahartuj roztrzepane jajko kilkoma łyżkami gorącego bulionu, połącz z sokiem z cytryny i wlej do zupy, energicznie mieszając; nie doprowadzaj już do wrzenia.
 
 # Zupa z soczewicy
 @ cat=zupy servings=1 prep=20 cook=29 art=soup tags=tradycyjne,zupa,kuchnia-śródziemnomorska
@@ -804,7 +804,7 @@ export const SEED_CURATED = `
 > Dodaj bulion lub wodę oraz twardsze składniki, które potrzebują najdłuższego gotowania.
 > Gotuj na łagodnym ogniu, aż składniki będą miękkie. Delikatne warzywa, makaron lub owoce morza dodaj później, by ich nie rozgotować.
 > Dopraw pod koniec. Śmietanę, cytrynę lub zioła dodaj stopniowo, próbując smak po każdym dodatku.
-> Podawaj gorące, z dodatkami przewidzianymi w recepturze.
+> Podawaj gorące, dodając do każdej porcji pokrojoną rzodkiewkę i sok z limonki. Dopraw oregano tuż przed podaniem.
 
 # Mulligatawny
 @ cat=zupy origin=IN trad servings=1 prep=14 cook=20 art=soup tags=tradycyjne,zupa,kuchnia-indyjska
@@ -818,7 +818,7 @@ export const SEED_CURATED = `
 > Dodaj bulion lub wodę oraz twardsze składniki, które potrzebują najdłuższego gotowania.
 > Gotuj na łagodnym ogniu, aż składniki będą miękkie. Delikatne warzywa, makaron lub owoce morza dodaj później, by ich nie rozgotować.
 > Dopraw pod koniec. Śmietanę, cytrynę lub zioła dodaj stopniowo, próbując smak po każdym dodatku.
-> Podawaj gorące, z dodatkami przewidzianymi w recepturze.
+> Dodaj mleko kokosowe i podgrzewaj delikatnie przez 2–3 minuty, nie dopuszczając do gwałtownego wrzenia. Spróbuj i skoryguj ilość curry.
 
 # Gulaszowa zupa
 @ cat=zupy servings=1 prep=24 cook=37 art=soup tags=tradycyjne,zupa
@@ -832,7 +832,7 @@ export const SEED_CURATED = `
 > Dodaj bulion lub wodę oraz twardsze składniki, które potrzebują najdłuższego gotowania.
 > Gotuj na łagodnym ogniu, aż składniki będą miękkie. Delikatne warzywa, makaron lub owoce morza dodaj później, by ich nie rozgotować.
 > Dopraw pod koniec. Śmietanę, cytrynę lub zioła dodaj stopniowo, próbując smak po każdym dodatku.
-> Podawaj gorące, z dodatkami przewidzianymi w recepturze.
+> Gotuj do miękkości wołowiny i ziemniaków. Dopraw papryką, kminkiem, solą i pieprzem, a następnie podawaj bardzo gorącą.
 
 # Caprese
 @ cat=salatki origin=IT trad servings=1 prep=8 cook=12 art=food tags=tradycyjne,sałatka,świeże,kuchnia-włoska
@@ -1114,7 +1114,7 @@ export const SEED_CURATED = `
 > Uformuj równe porcje. Przygotuj dodatki i cukier do obtoczenia przed rozpoczęciem smażenia.
 > Rozgrzej olej do temperatury właściwej dla deseru (zwykle 170–175°C). Smaż małymi partiami, aby temperatura oleju nie spadła.
 > Odsącz na papierze. Jeśli deser podaje się w syropie, przełóż go do ciepłego syropu, nie wrzącego.
-> Podawaj z dodatkami przewidzianymi w recepturze.
+> Podawaj kulki po namoczeniu w ciepłym syropie cukrowym aromatyzowanym kardamonem i wodą różaną; przed podaniem daj im kilka minut, aby nasiąkły.
 
 # Kulfi pistacjowe
 @ cat=desery origin=IN trad servings=1 prep=18 cook=26 art=dessert tags=tradycyjne,deser,kuchnia-indyjska
@@ -1180,7 +1180,7 @@ export const SEED_CURATED = `
 9 g | żółtko
 10 g | masło
 0,3 szt. | cytryna
-> Przygotuj składniki. Jajka roztrzep z solą i pieprzem; dodatki pokrój na małe kawałki.
+> Przygotuj sos holenderski: ubij żółtko z sokiem z cytryny nad łagodną parą, po czym stopniowo wlewaj ciepłe, roztopione masło, cały czas ubijając, aż sos zgęstnieje.
 > Rozgrzej patelnię na małym lub średnim ogniu i dodaj masło albo olej z receptury.
 > Dodaj dodatki, które wymagają podsmażenia, i przygotuj je do miękkości. Wlej jajka lub masę jajeczną.
 > Smaż łagodnie, mieszając albo składając masę zależnie od dania. Zdejmij z ognia, gdy jajka są ścięte, ale nadal wilgotne.
@@ -1248,7 +1248,7 @@ export const SEED_CURATED = `
 5 ml | sos sojowy
 8 ml | mirin
 4 g | cukier
-> Przygotuj składniki. Jajka roztrzep z solą i pieprzem; dodatki pokrój na małe kawałki.
+> Roztrzep jajka z sosem sojowym, mirinem i cukrem, aż składniki się połączą. Przygotuj lekko natłuszczoną patelnię na małym ogniu.
 > Rozgrzej patelnię na małym lub średnim ogniu i dodaj masło albo olej z receptury.
 > Dodaj dodatki, które wymagają podsmażenia, i przygotuj je do miękkości. Wlej jajka lub masę jajeczną.
 > Smaż łagodnie, mieszając albo składając masę zależnie od dania. Zdejmij z ognia, gdy jajka są ścięte, ale nadal wilgotne.
@@ -1300,11 +1300,11 @@ export const SEED_CURATED = `
 10 g | masło
 15 ml | śmietanka 30%
 3 g | szczypiorek
-> Przygotuj składniki. Jajka roztrzep z solą i pieprzem; dodatki pokrój na małe kawałki.
+> Roztrzep jajka ze śmietanką i szczyptą soli. Roztop masło na małym ogniu i przygotuj patelnię do powolnego ścinania jaj.
 > Rozgrzej patelnię na małym lub średnim ogniu i dodaj masło albo olej z receptury.
 > Dodaj dodatki, które wymagają podsmażenia, i przygotuj je do miękkości. Wlej jajka lub masę jajeczną.
 > Smaż łagodnie, mieszając albo składając masę zależnie od dania. Zdejmij z ognia, gdy jajka są ścięte, ale nadal wilgotne.
-> Podawaj od razu, z pieczywem lub dodatkami przewidzianymi w recepturze.
+> Wlewaj masę jajeczną na masło i mieszaj silikonową łopatką powoli, zgarniając ścięte fragmenty z dna. Zdejmij z ognia, gdy jajka będą kremowe i jeszcze lekko wilgotne; posyp szczypiorkiem.
 
 # Baguette
 @ cat=pieczywo origin=FR trad servings=1 prep=72 cook=108 art=bread tags=tradycyjne,pieczywo,pieczone,kuchnia-francuska
@@ -2615,12 +2615,13 @@ export const SEED_CURATED = `
 @ cat=zupy origin=PL servings=1 prep=14 cook=21 art=soup tags=zupa,krem,kuchnia-polska
 : Krem z pieczarek — jedna głęboka miska.
 120 g | pieczarki
+220 ml | bulion warzywny
 0,5 szt. | cebula
 30 ml | śmietana 18%
 10 g | masło
 > Warzywa oczyść i pokrój na równe kawałki. Cebulę lub czosnek zeszklij w garnku na tłuszczu z receptury.
 > Dodaj główny składnik zupy i krótko podsmaż, aby wydobyć aromat.
-> Wlej bulion lub wodę z listy składników. Gotuj łagodnie, aż warzywa będą całkowicie miękkie.
+> Zalej podsmażone pieczarki gorącym bulionem warzywnym tak, by były przykryte. Gotuj 10–15 minut, zblenduj na gładki krem, dodaj śmietanę i dopraw do smaku.
 > Zblenduj na gładki krem. Jeśli dodajesz śmietankę lub mleko, wmieszaj je na końcu i już mocno nie gotuj.
 > Dopraw, sprawdź konsystencję i podawaj gorące.
 
@@ -2628,12 +2629,13 @@ export const SEED_CURATED = `
 @ cat=zupy origin=IT servings=1 prep=14 cook=21 art=soup tags=zupa,krem,kuchnia-włoska
 : Krem z pomidorów pieczonych — jedna głęboka miska.
 180 g | pomidor
+150 ml | bulion warzywny
 1 szt. | czosnek
 12 ml | oliwa z oliwek
 4 g | bazylia
 > Warzywa oczyść i pokrój na równe kawałki. Cebulę lub czosnek zeszklij w garnku na tłuszczu z receptury.
 > Dodaj główny składnik zupy i krótko podsmaż, aby wydobyć aromat.
-> Wlej bulion lub wodę z listy składników. Gotuj łagodnie, aż warzywa będą całkowicie miękkie.
+> Piecz pomidory z czosnkiem i oliwą w 200°C przez około 25 minut, aż się skarmelizują. Zblenduj z gorącym bulionem warzywnym na gładki krem, dopraw i dodaj świeżą bazylię.
 > Zblenduj na gładki krem. Jeśli dodajesz śmietankę lub mleko, wmieszaj je na końcu i już mocno nie gotuj.
 > Dopraw, sprawdź konsystencję i podawaj gorące.
 
@@ -2641,12 +2643,13 @@ export const SEED_CURATED = `
 @ cat=zupy servings=1 prep=14 cook=21 art=soup tags=zupa,krem
 : Krem z marchewki i imbiru — jedna głęboka miska.
 160 g | marchew
+220 ml | bulion warzywny
 8 g | imbir
 30 ml | śmietana 18%
 0,5 szt. | cebula
 > Warzywa oczyść i pokrój na równe kawałki. Cebulę lub czosnek zeszklij w garnku na tłuszczu z receptury.
 > Dodaj główny składnik zupy i krótko podsmaż, aby wydobyć aromat.
-> Wlej bulion lub wodę z listy składników. Gotuj łagodnie, aż warzywa będą całkowicie miękkie.
+> Podsmaż cebulę, marchew i imbir przez 3–4 minuty. Zalej gorącym bulionem warzywnym tak, by przykrył warzywa, gotuj do miękkości, zblenduj i zabiel śmietaną.
 > Zblenduj na gładki krem. Jeśli dodajesz śmietankę lub mleko, wmieszaj je na końcu i już mocno nie gotuj.
 > Dopraw, sprawdź konsystencję i podawaj gorące.
 
@@ -2661,7 +2664,7 @@ export const SEED_CURATED = `
 > Dodaj bulion lub wodę oraz twardsze składniki, które potrzebują najdłuższego gotowania.
 > Gotuj na łagodnym ogniu, aż składniki będą miękkie. Delikatne warzywa, makaron lub owoce morza dodaj później, by ich nie rozgotować.
 > Dopraw pod koniec. Śmietanę, cytrynę lub zioła dodaj stopniowo, próbując smak po każdym dodatku.
-> Podawaj gorące, z dodatkami przewidzianymi w recepturze.
+> Dodaj mleko kokosowe i podgrzewaj na małym ogniu, nie doprowadzając do gwałtownego wrzenia. Dopraw sokiem z limonki i podawaj od razu, gdy kurczak jest całkowicie ugotowany.
 
 # Zupa miso z małżami
 @ cat=zupy origin=JP servings=1 prep=14 cook=21 art=soup tags=zupa,krem,kuchnia-japońska
@@ -2686,7 +2689,7 @@ export const SEED_CURATED = `
 > Dodaj bulion lub wodę oraz twardsze składniki, które potrzebują najdłuższego gotowania.
 > Gotuj na łagodnym ogniu, aż składniki będą miękkie. Delikatne warzywa, makaron lub owoce morza dodaj później, by ich nie rozgotować.
 > Dopraw pod koniec. Śmietanę, cytrynę lub zioła dodaj stopniowo, próbując smak po każdym dodatku.
-> Podawaj gorące, z dodatkami przewidzianymi w recepturze.
+> Włóż wontony do delikatnie gotującego się bulionu i gotuj zgodnie z rodzajem farszu, zwykle 4–6 minut. Dodaj pak choi i sos sojowy pod koniec, aby warzywa pozostały jędrne.
 
 # Zupa ramen miso
 @ cat=zupy origin=JP servings=1 prep=14 cook=21 art=soup tags=zupa,krem,kuchnia-japońska
@@ -3161,7 +3164,7 @@ export const SEED_CURATED = `
 2 szt. | jajko
 4 g | szczypiorek
 10 g | masło
-> Przygotuj składniki. Jajka roztrzep z solą i pieprzem; dodatki pokrój na małe kawałki.
+> Posiekaj szczypiorek i roztrzep jajka ze szczyptą soli. Roztop masło na patelni na średnio małym ogniu.
 > Rozgrzej patelnię na małym lub średnim ogniu i dodaj masło albo olej z receptury.
 > Dodaj dodatki, które wymagają podsmażenia, i przygotuj je do miękkości. Wlej jajka lub masę jajeczną.
 > Smaż łagodnie, mieszając albo składając masę zależnie od dania. Zdejmij z ognia, gdy jajka są ścięte, ale nadal wilgotne.
@@ -3173,7 +3176,7 @@ export const SEED_CURATED = `
 2 szt. | jajko
 50 g | pieczarki
 10 g | masło
-> Przygotuj składniki. Jajka roztrzep z solą i pieprzem; dodatki pokrój na małe kawałki.
+> Oczyść pieczarki i pokrój je w cienkie plasterki. Roztrzep jajka ze szczyptą soli i przygotuj masło do smażenia.
 > Rozgrzej patelnię na małym lub średnim ogniu i dodaj masło albo olej z receptury.
 > Dodaj dodatki, które wymagają podsmażenia, i przygotuj je do miękkości. Wlej jajka lub masę jajeczną.
 > Smaż łagodnie, mieszając albo składając masę zależnie od dania. Zdejmij z ognia, gdy jajka są ścięte, ale nadal wilgotne.
@@ -3185,7 +3188,7 @@ export const SEED_CURATED = `
 2 szt. | jajko
 40 g | szpinak
 20 g | feta
-> Przygotuj składniki. Jajka roztrzep z solą i pieprzem; dodatki pokrój na małe kawałki.
+> Opłucz szpinak i osusz go dokładnie. Pokrusz fetę, roztrzep jajka ze szczyptą soli i rozgrzej patelnię z masłem.
 > Rozgrzej patelnię na małym lub średnim ogniu i dodaj masło albo olej z receptury.
 > Dodaj dodatki, które wymagają podsmażenia, i przygotuj je do miękkości. Wlej jajka lub masę jajeczną.
 > Smaż łagodnie, mieszając albo składając masę zależnie od dania. Zdejmij z ognia, gdy jajka są ścięte, ale nadal wilgotne.
@@ -3197,7 +3200,7 @@ export const SEED_CURATED = `
 2 szt. | jajko
 25 g | ser żółty
 10 g | masło
-> Przygotuj składniki. Jajka roztrzep z solą i pieprzem; dodatki pokrój na małe kawałki.
+> Zetrzyj ser na grubych oczkach. Roztrzep jajka ze szczyptą soli i roztop masło na patelni na średnio małym ogniu.
 > Rozgrzej patelnię na małym lub średnim ogniu i dodaj masło albo olej z receptury.
 > Dodaj dodatki, które wymagają podsmażenia, i przygotuj je do miękkości. Wlej jajka lub masę jajeczną.
 > Smaż łagodnie, mieszając albo składając masę zależnie od dania. Zdejmij z ognia, gdy jajka są ścięte, ale nadal wilgotne.
@@ -3209,7 +3212,7 @@ export const SEED_CURATED = `
 2 szt. | jajko
 10 g | masło
 3 g | sól
-> Przygotuj składniki. Jajka roztrzep z solą i pieprzem; dodatki pokrój na małe kawałki.
+> Przygotuj jajka i sól przy kuchence. Rozgrzej masło na patelni na średnio małym ogniu, uważając, by nie zaczęło brązowieć.
 > Rozgrzej patelnię na małym lub średnim ogniu i dodaj masło albo olej z receptury.
 > Dodaj dodatki, które wymagają podsmażenia, i przygotuj je do miękkości. Wlej jajka lub masę jajeczną.
 > Smaż łagodnie, mieszając albo składając masę zależnie od dania. Zdejmij z ognia, gdy jajka są ścięte, ale nadal wilgotne.
@@ -3221,7 +3224,7 @@ export const SEED_CURATED = `
 2 szt. | jajko
 5 ml | ocet
 3 g | sól
-> Przygotuj składniki. Jajka roztrzep z solą i pieprzem; dodatki pokrój na małe kawałki.
+> Zagotuj wodę w szerokim rondlu i dodaj ocet. Zmniejsz ogień tak, by woda tylko lekko drżała; jajko wbij do osobnej miseczki.
 > Rozgrzej patelnię na małym lub średnim ogniu i dodaj masło albo olej z receptury.
 > Dodaj dodatki, które wymagają podsmażenia, i przygotuj je do miękkości. Wlej jajka lub masę jajeczną.
 > Smaż łagodnie, mieszając albo składając masę zależnie od dania. Zdejmij z ognia, gdy jajka są ścięte, ale nadal wilgotne.
@@ -3233,7 +3236,7 @@ export const SEED_CURATED = `
 2 szt. | jajko
 60 g | cukinia
 15 g | parmezan
-> Przygotuj składniki. Jajka roztrzep z solą i pieprzem; dodatki pokrój na małe kawałki.
+> Pokrój cukinię w cienkie półplasterki i zetrzyj parmezan. Roztrzep jajka ze szczyptą soli, przygotuj patelnię i rozgrzej ją na średnim ogniu.
 > Rozgrzej patelnię na małym lub średnim ogniu i dodaj masło albo olej z receptury.
 > Dodaj dodatki, które wymagają podsmażenia, i przygotuj je do miękkości. Wlej jajka lub masę jajeczną.
 > Smaż łagodnie, mieszając albo składając masę zależnie od dania. Zdejmij z ognia, gdy jajka są ścięte, ale nadal wilgotne.
@@ -3245,7 +3248,7 @@ export const SEED_CURATED = `
 2 szt. | jajko
 70 g | ziemniaki
 0,5 szt. | cebula
-> Przygotuj składniki. Jajka roztrzep z solą i pieprzem; dodatki pokrój na małe kawałki.
+> Ugotowane ziemniaki pokrój w plastry, a cebulę w cienkie piórka. Roztrzep jajka ze szczyptą soli i przygotuj patelnię z odrobiną tłuszczu.
 > Rozgrzej patelnię na małym lub średnim ogniu i dodaj masło albo olej z receptury.
 > Dodaj dodatki, które wymagają podsmażenia, i przygotuj je do miękkości. Wlej jajka lub masę jajeczną.
 > Smaż łagodnie, mieszając albo składając masę zależnie od dania. Zdejmij z ognia, gdy jajka są ścięte, ale nadal wilgotne.
