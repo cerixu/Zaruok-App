@@ -56,6 +56,7 @@ dark.addEventListener && dark.addEventListener('change', () => { if (getSetting(
 const TABS = [
   ['start', 'Start', 'home', '/'],
   ['recipes', 'Receptury', 'book', '/recipes'],
+  ['categories', 'Kategorie', 'grid', '/categories'],
   ['cook', 'Gotuję', 'pot', '/cook'],
   ['inventory', 'Magazyn', 'fridge', '/inventory'],
   ['more', 'Więcej', 'more', '/more'],
@@ -136,7 +137,7 @@ function watchNetwork() {
 
 route('/', () => startView(), { tab: 'start' });
 route('/recipes', (p, q) => recipesView(q), { tab: 'recipes' });
-route('/categories', () => categoriesView(), { tab: 'recipes' });
+route('/categories', () => categoriesView(), { tab: 'categories' });
 route('/recipe/:id', (p) => detailView(p), { tab: 'recipes' });
 route('/edit/:id', (p) => editorView(p), { tab: 'recipes', tabs: false });
 route('/new', (p, q) => editorView({ id: null }, q), { tab: 'recipes', tabs: false });
