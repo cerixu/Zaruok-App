@@ -58,6 +58,18 @@ for (const file of SOURCES) {
   }
 }
 
+const curatedText = fs.readFileSync('seeds-curated.js', 'utf8');
+const curatedBlocks = curatedText.split(/\n(?=# )/).filter((block) => block.startsWith('# '));
+const GENERIC_STEPS = /^(?:Przygotuj bazę\.|Dodaj dodatki\.|Podawaj od razu\.|Przygotuj składniki\.|Dopraw i podawaj\.)$/i;
+for (const block of curatedBlocks) {
+  const name = block.split('\n')[0].slice(2).trim();
+  const ingredients = block.split('\n').filter((line) => line.includes('|') && !line.startsWith('@ '));
+  const steps = [...block.matchAll(/^> (.+)$/gm)].map((m) => m[1].trim());
+  if (ingredients.length < 3) issues.push('Receptura bez minimum 3 składników: ' + name);
+  if (steps.length < 4) issues.push('Za mało kroków w recepturze: ' + name);
+  if (steps.some((step) => GENERIC_STEPS.test(step))) issues.push('Pozostał generyczny krok w recepturze: ' + name);
+}
+
 const handSource = fs.readFileSync('recipes.js', 'utf8');
 const handIds = ['rcp_seed_pizza', 'rcp_seed_carbonara', 'rcp_seed_sos'];
 const handCount = handIds.filter((id) => handSource.includes("id: '" + id + "'")).length;
