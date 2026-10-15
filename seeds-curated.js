@@ -263,7 +263,7 @@ export const SEED_CURATED = `
 > Na oliwie krótko podgrzej czosnek, dodaj anchois i rozetrzyj je łopatką.
 > Dodaj pomidory, posiekane oliwki i kapary. Gotuj 8–12 minut, aż sos lekko zgęstnieje; spróbuj przed dosoleniem.
 > Połącz spaghetti z sosem i odrobiną wody z gotowania.
-> Podawaj od razu, z ziołami przewidzianymi w składnikach.
+> Wymieszaj makaron z sosem na patelni przez minutę, dodając odrobinę wody z gotowania, jeśli sos jest zbyt gęsty. Spróbuj przed dosoleniem, bo anchois, kapary i oliwki są słone.
 
 # Trofie al pesto
 @ cat=pasta origin=IT trad servings=1 prep=9 cook=14 art=pasta tags=tradycyjne,włochy,makaron,kuchnia-włoska
@@ -734,7 +734,7 @@ export const SEED_CURATED = `
 > Dodaj grzyby i twardsze warzywa, a po chwili krewetki lub inne owoce morza.
 > Gotuj tylko do momentu, gdy owoce morza będą gotowe — zbyt długie gotowanie sprawia, że stają się gumowate.
 > Zdejmij garnek z ognia i dopraw sokiem z limonki oraz sosem rybnym z receptury. Spróbuj równowagi kwaśnego, słonego i ostrego smaku.
-> Podawaj od razu, z ziołami przewidzianymi w składnikach.
+> Zdejmij zupę z ognia, dodaj sok z limonki i spróbuj. Dopraw pastą tom yum do pożądanej ostrości; podawaj od razu, zanim krewetki staną się twarde.
 
 # Tom kha gai
 @ cat=zupy servings=1 prep=19 cook=29 art=soup tags=tradycyjne,zupa,kuchnia-azjatycka
@@ -1169,7 +1169,7 @@ export const SEED_CURATED = `
 > Ugotuj bazę w proporcji płynu do produktu odpowiedniej dla składnika, aż będzie miękka, ale nie rozgotowana.
 > Przygotuj dodatki osobno: owoce pokrój, orzechy podpraż krótko, a składniki wymagające smażenia zrumień na patelni.
 > Połącz składniki, dopraw i dostosuj konsystencję płynem z receptury.
-> Podawaj od razu albo schłodź, jeśli danie serwuje się na zimno.
+> Zrób w sosie małe wgłębienia, wbij jajko i przykryj patelnię. Duś na małym ogniu 5–7 minut, aż białko się zetnie, a żółtko pozostanie płynne lub osiągnie preferowany stopień ścięcia. Podawaj na gorąco.
 
 # Jajka po benedyktyńsku
 @ cat=inne origin=US trad servings=1 prep=4 cook=6 art=food tags=tradycyjne,śniadanie,kuchnia-amerykańska
@@ -1184,7 +1184,7 @@ export const SEED_CURATED = `
 > Rozgrzej patelnię na małym lub średnim ogniu i dodaj masło albo olej z receptury.
 > Dodaj dodatki, które wymagają podsmażenia, i przygotuj je do miękkości. Wlej jajka lub masę jajeczną.
 > Smaż łagodnie, mieszając albo składając masę zależnie od dania. Zdejmij z ognia, gdy jajka są ścięte, ale nadal wilgotne.
-> Podawaj od razu, z pieczywem lub dodatkami przewidzianymi w recepturze.
+> Złóż danie: na przekrojonym i podpieczonym muffinie ułóż podgrzaną szynkę oraz jajko w koszulce. Polej sosem holenderskim przygotowanym z żółtka, masła i soku z cytryny; podawaj natychmiast.
 
 # Gofry brukselskie
 @ cat=inne servings=1 prep=6 cook=10 art=food tags=tradycyjne,śniadanie
@@ -1212,7 +1212,7 @@ export const SEED_CURATED = `
 > Ugotuj bazę w proporcji płynu do produktu odpowiedniej dla składnika, aż będzie miękka, ale nie rozgotowana.
 > Przygotuj dodatki osobno: owoce pokrój, orzechy podpraż krótko, a składniki wymagające smażenia zrumień na patelni.
 > Połącz składniki, dopraw i dostosuj konsystencję płynem z receptury.
-> Podawaj od razu albo schłodź, jeśli danie serwuje się na zimno.
+> Przełóż owsiankę do miski. Dodaj pokrojonego banana, miód i posiekane orzechy; podawaj od razu, zanim płatki nadmiernie zgęstnieją.
 
 # Granola bowl
 @ cat=inne origin=US trad servings=1 prep=8 cook=12 art=food tags=tradycyjne,śniadanie,kuchnia-amerykańska
@@ -1225,7 +1225,7 @@ export const SEED_CURATED = `
 > Ugotuj bazę w proporcji płynu do produktu odpowiedniej dla składnika, aż będzie miękka, ale nie rozgotowana.
 > Przygotuj dodatki osobno: owoce pokrój, orzechy podpraż krótko, a składniki wymagające smażenia zrumień na patelni.
 > Połącz składniki, dopraw i dostosuj konsystencję płynem z receptury.
-> Podawaj od razu albo schłodź, jeśli danie serwuje się na zimno.
+> Nałóż jogurt do miski, posyp granolą, owocami jagodowymi i nasionami chia. Podawaj od razu, aby granola pozostała chrupiąca.
 
 # Tost z awokado
 @ cat=inne origin=US trad servings=1 prep=7 cook=10 art=food tags=tradycyjne,śniadanie,kuchnia-amerykańska
@@ -1235,7 +1235,7 @@ export const SEED_CURATED = `
 1 szt. | jajko
 1 g | chilli płatki
 0,3 szt. | cytryna
-> Przygotuj składniki i pokrój warzywa oraz pieczywo. Jeśli mięso wymaga obróbki, usmaż je lub podgrzej osobno.
+> Opiecz chleb na złoty kolor. Rozgnieć awokado z sokiem z cytryny, dopraw solą i płatkami chilli, rozsmaruj na grzance i ułóż na wierzchu jajko sadzone lub ugotowane według preferencji.
 > Podpiecz pieczywo, jeśli pasuje do dania, tak aby było chrupiące z zewnątrz, ale nie wyschło.
 > Rozprowadź sos lub smarowidło na pieczywie, a następnie ułóż składniki w kolejności, która utrzyma kanapkę stabilnie.
 > Dodaj delikatne liście i świeże składniki na końcu, aby nie zwiędły od gorących elementów.
@@ -1252,7 +1252,7 @@ export const SEED_CURATED = `
 > Rozgrzej patelnię na małym lub średnim ogniu i dodaj masło albo olej z receptury.
 > Dodaj dodatki, które wymagają podsmażenia, i przygotuj je do miękkości. Wlej jajka lub masę jajeczną.
 > Smaż łagodnie, mieszając albo składając masę zależnie od dania. Zdejmij z ognia, gdy jajka są ścięte, ale nadal wilgotne.
-> Podawaj od razu, z pieczywem lub dodatkami przewidzianymi w recepturze.
+> Roztrzep jajka z sosem sojowym, mirinem i cukrem. Wlewaj cienkie warstwy na lekko natłuszczoną patelnię, każdą po ścięciu zwijaj w rulon i przesuwaj na brzeg. Powtarzaj do wykorzystania masy, następnie pokrój omlet w plastry.
 
 # Onigiri z łososiem
 @ cat=inne origin=JP trad servings=1 prep=6 cook=10 art=food tags=tradycyjne,śniadanie,kuchnia-japońska
@@ -1279,7 +1279,7 @@ export const SEED_CURATED = `
 > Ugotuj bazę w proporcji płynu do produktu odpowiedniej dla składnika, aż będzie miękka, ale nie rozgotowana.
 > Przygotuj dodatki osobno: owoce pokrój, orzechy podpraż krótko, a składniki wymagające smażenia zrumień na patelni.
 > Połącz składniki, dopraw i dostosuj konsystencję płynem z receptury.
-> Podawaj od razu albo schłodź, jeśli danie serwuje się na zimno.
+> Podgrzej tortille na suchej patelni. Usmaż jajka, nałóż na tortille z salsą i fasolą, a na koniec dodaj pokrojone awokado. Podawaj na gorąco.
 
 # Croissant z masłem
 @ cat=inne origin=FR trad servings=1 prep=9 cook=13 art=food tags=tradycyjne,śniadanie,kuchnia-francuska
@@ -1287,7 +1287,7 @@ export const SEED_CURATED = `
 1 szt. | croissant
 10 g | masło
 15 g | dżem morelowy
-> Przygotuj składniki i pokrój warzywa oraz pieczywo. Jeśli mięso wymaga obróbki, usmaż je lub podgrzej osobno.
+> Przekrój croissanta wzdłuż i podgrzej krótko w piekarniku w 170°C, aż będzie chrupiący. Podawaj z masłem i dżemem morelowym.
 > Podpiecz pieczywo, jeśli pasuje do dania, tak aby było chrupiące z zewnątrz, ale nie wyschło.
 > Rozprowadź sos lub smarowidło na pieczywie, a następnie ułóż składniki w kolejności, która utrzyma kanapkę stabilnie.
 > Dodaj delikatne liście i świeże składniki na końcu, aby nie zwiędły od gorących elementów.
@@ -2538,7 +2538,7 @@ export const SEED_CURATED = `
 20 g | bekon
 15 g | sałata
 20 g | pomidor
-> Przygotuj składniki i pokrój warzywa oraz pieczywo. Jeśli mięso wymaga obróbki, usmaż je lub podgrzej osobno.
+> Usmaż lub podgrzej kurczaka do pełnego ugotowania, a bekon wysmaż na chrupko. Podpiecz chleb i przełóż go kurczakiem, bekonem, sałatą oraz pomidorem; przekrój kanapkę na trójkąty.
 > Podpiecz pieczywo, jeśli pasuje do dania, tak aby było chrupiące z zewnątrz, ale nie wyschło.
 > Rozprowadź sos lub smarowidło na pieczywie, a następnie ułóż składniki w kolejności, która utrzyma kanapkę stabilnie.
 > Dodaj delikatne liście i świeże składniki na końcu, aby nie zwiędły od gorących elementów.
@@ -2552,7 +2552,7 @@ export const SEED_CURATED = `
 30 g | kapusta kiszona
 20 g | ser szwajcarski
 15 g | sos tysiąca wysp
-> Przygotuj składniki i pokrój warzywa oraz pieczywo. Jeśli mięso wymaga obróbki, usmaż je lub podgrzej osobno.
+> Posmaruj kromki chleba sosem tysiąca wysp. Ułóż pastrami, odciśniętą kapustę kiszoną i ser, zamknij kanapkę i opiecz na patelni z obu stron, aż chleb będzie chrupiący, a ser się roztopi.
 > Podpiecz pieczywo, jeśli pasuje do dania, tak aby było chrupiące z zewnątrz, ale nie wyschło.
 > Rozprowadź sos lub smarowidło na pieczywie, a następnie ułóż składniki w kolejności, która utrzyma kanapkę stabilnie.
 > Dodaj delikatne liście i świeże składniki na końcu, aby nie zwiędły od gorących elementów.
@@ -2566,7 +2566,7 @@ export const SEED_CURATED = `
 20 g | marchew
 20 g | ogórek
 4 g | kolendra
-> Przygotuj składniki i pokrój warzywa oraz pieczywo. Jeśli mięso wymaga obróbki, usmaż je lub podgrzej osobno.
+> Przekrój bagietkę i lekko ją podpiecz. Wieprzowinę usmaż lub upiecz do pełnego ugotowania, pokrój w cienkie plastry i włóż do pieczywa z marchewką, ogórkiem i świeżą kolendrą.
 > Podpiecz pieczywo, jeśli pasuje do dania, tak aby było chrupiące z zewnątrz, ale nie wyschło.
 > Rozprowadź sos lub smarowidło na pieczywie, a następnie ułóż składniki w kolejności, która utrzyma kanapkę stabilnie.
 > Dodaj delikatne liście i świeże składniki na końcu, aby nie zwiędły od gorących elementów.
@@ -2578,7 +2578,7 @@ export const SEED_CURATED = `
 1 szt. | croissant
 25 g | szynka
 20 g | ser
-> Przygotuj składniki i pokrój warzywa oraz pieczywo. Jeśli mięso wymaga obróbki, usmaż je lub podgrzej osobno.
+> Przekrój croissanta, włóż szynkę i ser, a następnie podgrzej w piekarniku w 170°C przez kilka minut, aż ser się roztopi.
 > Podpiecz pieczywo, jeśli pasuje do dania, tak aby było chrupiące z zewnątrz, ale nie wyschło.
 > Rozprowadź sos lub smarowidło na pieczywie, a następnie ułóż składniki w kolejności, która utrzyma kanapkę stabilnie.
 > Dodaj delikatne liście i świeże składniki na końcu, aby nie zwiędły od gorących elementów.
@@ -2605,7 +2605,7 @@ export const SEED_CURATED = `
 40 g | łosoś wędzony
 25 g | ser śmietankowy
 4 g | kapary
-> Przygotuj składniki i pokrój warzywa oraz pieczywo. Jeśli mięso wymaga obróbki, usmaż je lub podgrzej osobno.
+> Przekrój bagel i podpiecz go od strony miąższu. Posmaruj serem śmietankowym, dodaj łososia wędzonego i kapary; podawaj od razu.
 > Podpiecz pieczywo, jeśli pasuje do dania, tak aby było chrupiące z zewnątrz, ale nie wyschło.
 > Rozprowadź sos lub smarowidło na pieczywie, a następnie ułóż składniki w kolejności, która utrzyma kanapkę stabilnie.
 > Dodaj delikatne liście i świeże składniki na końcu, aby nie zwiędły od gorących elementów.
@@ -3165,7 +3165,7 @@ export const SEED_CURATED = `
 > Rozgrzej patelnię na małym lub średnim ogniu i dodaj masło albo olej z receptury.
 > Dodaj dodatki, które wymagają podsmażenia, i przygotuj je do miękkości. Wlej jajka lub masę jajeczną.
 > Smaż łagodnie, mieszając albo składając masę zależnie od dania. Zdejmij z ognia, gdy jajka są ścięte, ale nadal wilgotne.
-> Podawaj od razu, z pieczywem lub dodatkami przewidzianymi w recepturze.
+> Roztrzep jajka ze szczyptą soli. Wlej na patelnię z roztopionym masłem i smaż na małym ogniu, delikatnie podważając brzegi. Złóż omlet, gdy wierzch będzie jeszcze lekko wilgotny, i posyp szczypiorkiem.
 
 # Omlet z pieczarkami
 @ cat=inne servings=1 prep=5 cook=7 art=food tags=jajka,śniadanie
@@ -3177,7 +3177,7 @@ export const SEED_CURATED = `
 > Rozgrzej patelnię na małym lub średnim ogniu i dodaj masło albo olej z receptury.
 > Dodaj dodatki, które wymagają podsmażenia, i przygotuj je do miękkości. Wlej jajka lub masę jajeczną.
 > Smaż łagodnie, mieszając albo składając masę zależnie od dania. Zdejmij z ognia, gdy jajka są ścięte, ale nadal wilgotne.
-> Podawaj od razu, z pieczywem lub dodatkami przewidzianymi w recepturze.
+> Pokrój pieczarki i podsmaż je na części masła, aż odparują. Wlej roztrzepane jajka, smaż na małym ogniu do ścięcia spodu, złóż omlet i podawaj na gorąco.
 
 # Omlet ze szpinakiem
 @ cat=inne servings=1 prep=5 cook=7 art=food tags=jajka,śniadanie
@@ -3189,7 +3189,7 @@ export const SEED_CURATED = `
 > Rozgrzej patelnię na małym lub średnim ogniu i dodaj masło albo olej z receptury.
 > Dodaj dodatki, które wymagają podsmażenia, i przygotuj je do miękkości. Wlej jajka lub masę jajeczną.
 > Smaż łagodnie, mieszając albo składając masę zależnie od dania. Zdejmij z ognia, gdy jajka są ścięte, ale nadal wilgotne.
-> Podawaj od razu, z pieczywem lub dodatkami przewidzianymi w recepturze.
+> Krótko podsmaż szpinak i odparuj nadmiar płynu. Wlej roztrzepane jajka na patelnię z masłem, dodaj szpinak i pokruszoną fetę, a następnie smaż do ścięcia jaj.
 
 # Omlet z serem
 @ cat=inne servings=1 prep=5 cook=7 art=food tags=jajka,śniadanie
@@ -3201,7 +3201,7 @@ export const SEED_CURATED = `
 > Rozgrzej patelnię na małym lub średnim ogniu i dodaj masło albo olej z receptury.
 > Dodaj dodatki, które wymagają podsmażenia, i przygotuj je do miękkości. Wlej jajka lub masę jajeczną.
 > Smaż łagodnie, mieszając albo składając masę zależnie od dania. Zdejmij z ognia, gdy jajka są ścięte, ale nadal wilgotne.
-> Podawaj od razu, z pieczywem lub dodatkami przewidzianymi w recepturze.
+> Roztrzep jajka i wlej na patelnię z roztopionym masłem. Gdy spód zacznie się ścinać, posyp serem, złóż omlet na pół i smaż jeszcze chwilę, aż ser się roztopi.
 
 # Jajka sadzone na maśle
 @ cat=inne servings=1 prep=5 cook=7 art=food tags=jajka,śniadanie
@@ -3213,7 +3213,7 @@ export const SEED_CURATED = `
 > Rozgrzej patelnię na małym lub średnim ogniu i dodaj masło albo olej z receptury.
 > Dodaj dodatki, które wymagają podsmażenia, i przygotuj je do miękkości. Wlej jajka lub masę jajeczną.
 > Smaż łagodnie, mieszając albo składając masę zależnie od dania. Zdejmij z ognia, gdy jajka są ścięte, ale nadal wilgotne.
-> Podawaj od razu, z pieczywem lub dodatkami przewidzianymi w recepturze.
+> Rozgrzej masło na patelni na średnio małym ogniu. Wbij jajka, posól i smaż, aż białka się zetną; jeśli chcesz mocniej ścięte żółtka, przykryj patelnię na ostatnią minutę.
 
 # Jajka w koszulce
 @ cat=inne servings=1 prep=5 cook=7 art=food tags=jajka,śniadanie
@@ -3225,7 +3225,7 @@ export const SEED_CURATED = `
 > Rozgrzej patelnię na małym lub średnim ogniu i dodaj masło albo olej z receptury.
 > Dodaj dodatki, które wymagają podsmażenia, i przygotuj je do miękkości. Wlej jajka lub masę jajeczną.
 > Smaż łagodnie, mieszając albo składając masę zależnie od dania. Zdejmij z ognia, gdy jajka są ścięte, ale nadal wilgotne.
-> Podawaj od razu, z pieczywem lub dodatkami przewidzianymi w recepturze.
+> Zagotuj wodę z octem, po czym zmniejsz ogień do lekkiego wrzenia. Wbij jajko do miseczki i delikatnie wsuń do wody; gotuj 3–4 minuty, aż białko się zetnie, a żółtko pozostanie płynne.
 
 # Frittata z cukinią
 @ cat=inne servings=1 prep=5 cook=7 art=food tags=jajka,śniadanie
@@ -3237,7 +3237,7 @@ export const SEED_CURATED = `
 > Rozgrzej patelnię na małym lub średnim ogniu i dodaj masło albo olej z receptury.
 > Dodaj dodatki, które wymagają podsmażenia, i przygotuj je do miękkości. Wlej jajka lub masę jajeczną.
 > Smaż łagodnie, mieszając albo składając masę zależnie od dania. Zdejmij z ognia, gdy jajka są ścięte, ale nadal wilgotne.
-> Podawaj od razu, z pieczywem lub dodatkami przewidzianymi w recepturze.
+> Pokrój cukinię w cienkie półplasterki i podsmaż na patelni. Wlej roztrzepane jajka, posyp parmezanem i smaż na małym ogniu pod przykryciem, aż masa się zetnie; w razie potrzeby dopiecz krótko pod grillem.
 
 # Frittata z ziemniakami
 @ cat=inne servings=1 prep=5 cook=7 art=food tags=jajka,śniadanie
@@ -3249,5 +3249,5 @@ export const SEED_CURATED = `
 > Rozgrzej patelnię na małym lub średnim ogniu i dodaj masło albo olej z receptury.
 > Dodaj dodatki, które wymagają podsmażenia, i przygotuj je do miękkości. Wlej jajka lub masę jajeczną.
 > Smaż łagodnie, mieszając albo składając masę zależnie od dania. Zdejmij z ognia, gdy jajka są ścięte, ale nadal wilgotne.
-> Podawaj od razu, z pieczywem lub dodatkami przewidzianymi w recepturze.
+> Ugotowane ziemniaki pokrój w plastry i podsmaż z cebulą. Wlej roztrzepane jajka, smaż pod przykryciem na małym ogniu do ścięcia, a następnie ostrożnie obróć lub dopiecz pod grillem.
 `;
