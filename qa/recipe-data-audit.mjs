@@ -102,7 +102,7 @@ for (const block of curatedBlocks) {
 
 
 const criticalRecipes = new Map([
-  ['Sernik krakowski', [/temperaturze odpowiedniej dla rodzaju wypieku/i, /owoce pokrój i dopraw/i, /masę serową/i]],
+  ['Sernik krakowski', [/temperaturze odpowiedniej dla rodzaju wypieku/i, /owoce pokrój i dopraw/i, /owoce pokrój.*masę serową/i]],
   ['Pączki różane', [/nagrzej piekarnik do temperatury odpowiedniej/i, /jeśli receptura zawiera/i, /piecz, gotuj albo schładzaj/i]],
   ['Profiteroles', [/temperaturze odpowiedniej dla tego deseru/i, /jeśli receptura zawiera/i, /piecz, gotuj albo schładzaj/i]],
   ['Amerykańska szarlotka', [/masę serową/i, /temperaturze odpowiedniej dla rodzaju wypieku/i]],
