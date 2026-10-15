@@ -11,6 +11,7 @@ import { SEED_TEXT, parseSeeds } from './seeds.js';
 import { SEED_PL } from './seeds-pl.js';
 import { SEED_WORLD } from './seeds-world.js';
 import { SEED_MORE } from './seeds-more.js';
+import { SEED_CURATED } from './seeds-curated.js';
 
 /* ---------- Kategorie i kraje ---------- */
 
@@ -406,7 +407,7 @@ const LEGACY_SEED_IDS = ['rcp_seed_pizza', 'rcp_seed_carbonara', 'rcp_seed_sos']
 
 export function seedRecipes() {
   const f = { blankRecipe, blankIngredient, blankSection, blankStep };
-  const all = [...handSeeds(), ...[SEED_TEXT, SEED_PL, SEED_WORLD, SEED_MORE].flatMap((t) => parseSeeds(t, f))];
+  const all = [...handSeeds(), ...[SEED_TEXT, SEED_PL, SEED_WORLD, SEED_MORE, SEED_CURATED].flatMap((t) => parseSeeds(t, f))];
   const seen = new Set();
   return all.filter((r) => (seen.has(r.id) ? false : (seen.add(r.id), true)));   // unikalne id
 }
