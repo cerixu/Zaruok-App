@@ -216,11 +216,11 @@ export const SEED_CURATED = `# Pierogi z mięsem
 10 g | masło
 4 g | szałwia
 15 g | parmezan
-> Zagotuj dużą ilość osolonej wody. Gotuj ravioli delikatnie według instrukcji na opakowaniu, aby nie uszkodzić pierożków.
-> Na patelni rozpuść masło i dodaj szałwię. Podgrzewaj krótko, aż masło zacznie pachnieć orzechowo.
-> Przełóż ravioli na patelnię, dodaj łyżkę wody z gotowania i delikatnie obtocz w maśle.
-> Posyp parmezanem.
-> Podawaj od razu.
+> Zagotuj dużą ilość osolonej wody i ugotuj ravioli delikatnie według instrukcji na opakowaniu. Zachowaj odrobinę wody z gotowania.
+> Na patelni rozpuść masło i dodaj szałwię. Podgrzewaj krótko, aż masło zacznie pachnieć orzechowo, ale nie przypali się.
+> Przełóż ravioli na patelnię, dodaj łyżkę wody z gotowania i delikatnie obtocz w maśle szałwiowym.
+> Posyp drobno startym parmezanem i spróbuj przed dosoleniem.
+> Podawaj od razu, zanim masło z szałwią ostygnie.
 
 # Risotto z grzybami
 @ cat=warzywa origin=IT servings=1 prep=12 cook=17 art=food tags=włochy,makaron,kuchnia-włoska
@@ -885,10 +885,10 @@ export const SEED_CURATED = `# Pierogi z mięsem
 20 g | rukola
 12 ml | oliwa z oliwek
 > Buraki upiecz w skórce lub ugotuj do miękkości, a następnie ostudź i obierz. Pokrój w cząstki.
-> Przygotuj dressing z oliwy i składników kwaśnych z receptury. Spróbuj i zrównoważ słodycz buraków kwasowością.
+> Przygotuj dressing z oliwy oraz składników kwaśnych z receptury. Zrównoważ słodycz buraków kwasowością.
 > Ułóż buraki na talerzu, dodaj kozi ser i pozostałe składniki.
-> Polej dressingiem tuż przed podaniem. Orzechy lub delikatne liście dodaj na końcu, aby zachowały teksturę.
-> Podawaj od razu.
+> Polej dressingiem tuż przed podaniem. Orzechy lub delikatne liście dodaj na sam koniec, aby zachowały teksturę.
+> Sprawdź doprawienie i podawaj, zanim liście stracą jędrność.
 
 # Poke bowl z łososiem
 @ cat=salatki origin=US trad servings=1 prep=8 cook=12 art=food tags=tradycyjne,sałatka,świeże,kuchnia-amerykańska
