@@ -125,7 +125,7 @@ export const SEED_CURATED = `
 60 ml | przecier pomidorowy
 > Posiekaj cebulę, marchew i seler naciowy. Podsmaż powoli na tłuszczu przewidzianym w recepturze, aż zmiękną.
 > Dodaj mieloną wołowinę i smaż, rozdrabniając ją łopatką, aż straci surowy kolor i zacznie się rumienić.
-> Dodaj pomidory oraz płyn z listy składników. Duś na małym ogniu, aż sos zgęstnieje, a mięso będzie miękkie; w razie potrzeby dolej trochę wody.
+> Dodaj przecier pomidorowy i duś ragù na małym ogniu przez 15–20 minut, mieszając co kilka minut. Jeśli sos zacznie przywierać, dolej łyżkę wody; dopraw solą i pieprzem.
 > Ugotuj tagliatelle al dente i połącz z ragù. Jeśli sos jest zbyt gęsty, dolej odrobinę wody z gotowania.
 > Podawaj od razu, z tartym serem, jeśli jest w składnikach.
 
@@ -307,7 +307,7 @@ export const SEED_CURATED = `
 > Uformuj kulę, przykryj i pozostaw na około 2 godziny w temperaturze pokojowej, aż wyraźnie urośnie. Delikatnie odgazuj i rozciągnij placek, zostawiając grubszy rant.
 > Rozsmaruj cienką warstwę sosu pomidorowego, pozostawiając 1–1,5 cm wolnego rantu. Rozłóż równomiernie: mozzarella.
 > Piecz na mocno nagrzanym kamieniu lub stali do wyrośnięcia rantu i rumianego spodu. W piecu domowym przy 250–300°C zajmuje to zwykle 6–9 minut; w piecu profesjonalnym kontroluj już po 1–3 minutach.
-> Po wypieku dodaj świeża bazylia; podawaj od razu.
+> Upiecz pizzę w maksymalnie nagrzanym piecu, aż rant mocno wyrośnie, a spód się zarumieni. Po wyjęciu ułóż świeże liście bazylii i podawaj od razu.
 
 # Pizza Marinara
 @ cat=pizza origin=IT trad servings=1 prep=10 ferm=120 cook=15 art=pizza tags=tradycyjne,pizza,pieczone,kuchnia-włoska
@@ -381,7 +381,7 @@ export const SEED_CURATED = `
 > Uformuj kulę, przykryj i pozostaw na około 2 godziny w temperaturze pokojowej, aż wyraźnie urośnie. Delikatnie odgazuj i rozciągnij placek, zostawiając grubszy rant.
 > Rozsmaruj cienką warstwę sosu pomidorowego, pozostawiając 1–1,5 cm wolnego rantu. Rozłóż równomiernie: mozzarella.
 > Piecz na mocno nagrzanym kamieniu lub stali do wyrośnięcia rantu i rumianego spodu. W piecu domowym przy 250–300°C zajmuje to zwykle 6–9 minut; w piecu profesjonalnym kontroluj już po 1–3 minutach.
-> Po wypieku dodaj szynka parmeńska, rukola, parmezan; podawaj od razu.
+> Upiecz pizzę z sosem i mozzarellą, aż rant się zarumieni. Po wyjęciu rozłóż szynkę parmeńską i rukolę, posyp płatkami parmezanu i podawaj od razu.
 
 # Pizza Quattro stagioni
 @ cat=pizza origin=IT trad servings=1 prep=10 ferm=120 cook=15 art=pizza tags=tradycyjne,pizza,pieczone,kuchnia-włoska
@@ -475,7 +475,7 @@ export const SEED_CURATED = `
 > Uformuj kulę, przykryj i pozostaw na około 2 godziny w temperaturze pokojowej, aż wyraźnie urośnie. Delikatnie odgazuj i rozciągnij placek, zostawiając grubszy rant.
 > Rozsmaruj cienką warstwę sosu pomidorowego, pozostawiając 1–1,5 cm wolnego rantu. Rozłóż równomiernie: owoce morza, czosnek.
 > Piecz na mocno nagrzanym kamieniu lub stali do wyrośnięcia rantu i rumianego spodu. W piecu domowym przy 250–300°C zajmuje to zwykle 6–9 minut; w piecu profesjonalnym kontroluj już po 1–3 minutach.
-> Po wypieku dodaj natka pietruszki; podawaj od razu.
+> Owoce morza krótko podsmaż z czosnkiem, aby odparować nadmiar płynu. Rozłóż je na pizzy przed pieczeniem; po wypieku posyp posiekaną natką pietruszki.
 
 # Pizza Calzone
 @ cat=pizza origin=IT servings=1 prep=10 ferm=120 cook=15 art=pizza tags=pizza,pieczone,kuchnia-włoska
@@ -547,7 +547,7 @@ export const SEED_CURATED = `
 > Uformuj kulę, przykryj i pozostaw na około 2 godziny w temperaturze pokojowej, aż wyraźnie urośnie. Delikatnie odgazuj i rozciągnij placek, zostawiając grubszy rant.
 > Rozsmaruj cienką warstwę sosu pomidorowego, pozostawiając 1–1,5 cm wolnego rantu. Rozłóż równomiernie: mozzarella, nduja.
 > Piecz na mocno nagrzanym kamieniu lub stali do wyrośnięcia rantu i rumianego spodu. W piecu domowym przy 250–300°C zajmuje to zwykle 6–9 minut; w piecu profesjonalnym kontroluj już po 1–3 minutach.
-> Po wypieku dodaj miód i cienko polej miodem; podawaj od razu.
+> Rozłóż nduję i mozzarellę na cieście z sosem. Upiecz do zarumienienia rantu, a po wyjęciu skrop pizzę miodem cienką strużką.
 
 # Pizza z truflą i pieczarkami
 @ cat=pizza origin=IT servings=1 prep=10 ferm=120 cook=15 art=pizza tags=pizza,pieczone,kuchnia-włoska
@@ -565,7 +565,7 @@ export const SEED_CURATED = `
 > Uformuj kulę, przykryj i pozostaw na około 2 godziny w temperaturze pokojowej, aż wyraźnie urośnie. Delikatnie odgazuj i rozciągnij placek, zostawiając grubszy rant.
 > Nie dodawaj sosu; rozprowadź dodatki bezpośrednio na cieście, zostawiając wolny rant. Rozłóż równomiernie: mozzarella, pieczarki.
 > Piecz na mocno nagrzanym kamieniu lub stali do wyrośnięcia rantu i rumianego spodu. W piecu domowym przy 250–300°C zajmuje to zwykle 6–9 minut; w piecu profesjonalnym kontroluj już po 1–3 minutach.
-> Po wypieku dodaj pasta truflowa, parmezan; podawaj od razu.
+> Pieczarki pokrój cienko i rozłóż na cieście z mozzarellą. Piecz do zarumienienia; po wyjęciu dodaj pastę truflową i posyp parmezanem.
 
 # Pizza Hawajska
 @ cat=pizza origin=US servings=1 prep=10 ferm=120 cook=15 art=pizza tags=pizza,pieczone,kuchnia-amerykańska
@@ -619,7 +619,7 @@ export const SEED_CURATED = `
 > Uformuj kulę, przykryj i pozostaw na około 2 godziny w temperaturze pokojowej, aż wyraźnie urośnie. Delikatnie odgazuj i rozciągnij placek, zostawiając grubszy rant.
 > Nie dodawaj sosu; rozprowadź dodatki bezpośrednio na cieście, zostawiając wolny rant. Rozłóż równomiernie: mozzarella, szpinak, pecorino. Szpinak wcześniej krótko podduś i odparuj nadmiar wody.
 > Piecz na rozgrzanym kamieniu lub stali do wyrośnięcia rantu. Po około 3–4 minutach ostrożnie wbij jajko i dopiekaj, aż białko się zetnie.
-> Po wypieku dodaj jajko; podawaj od razu.
+> Szpinak krótko podsmaż i dobrze odciśnij z płynu. Rozłóż go z mozzarellą na cieście, wbij jajko na środku i piecz do ścięcia białka; pecorino dodaj pod koniec pieczenia.
 
 # Pizza Gorgonzola e pere
 @ cat=pizza origin=IT servings=1 prep=10 ferm=120 cook=15 art=pizza tags=pizza,pieczone,kuchnia-włoska
@@ -690,7 +690,7 @@ export const SEED_CURATED = `
 > Uformuj kulę, przykryj i pozostaw na około 2 godziny w temperaturze pokojowej, aż wyraźnie urośnie. Delikatnie odgazuj i rozciągnij placek, zostawiając grubszy rant.
 > Nie dodawaj sosu; rozprowadź dodatki bezpośrednio na cieście, zostawiając wolny rant. Rozłóż równomiernie: dynia pieczona, mozzarella, kiełbasa salsiccia.
 > Piecz na mocno nagrzanym kamieniu lub stali do wyrośnięcia rantu i rumianego spodu. W piecu domowym przy 250–300°C zajmuje to zwykle 6–9 minut; w piecu profesjonalnym kontroluj już po 1–3 minutach.
-> Po wypieku dodaj szałwia; podawaj od razu.
+> Rozłóż na cieście pieczoną dynię, mozzarellę i rozdrobnioną salsiccię. Piecz do zarumienienia rantu i pełnego dopieczenia kiełbasy; po wyjęciu dodaj drobno posiekaną szałwię.
 
 # Bouillabaisse
 @ cat=zupy origin=FR trad servings=1 prep=10 cook=16 art=soup tags=tradycyjne,zupa,kuchnia-francuska
