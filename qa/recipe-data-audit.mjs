@@ -1,11 +1,11 @@
 import fs from 'node:fs';
 import { artKindFor } from '../art.js';
 
-const SOURCES = ['seeds.js', 'seeds-pl.js', 'seeds-world.js', 'seeds-more.js'];
+const SOURCES = ['seeds.js', 'seeds-pl.js', 'seeds-world.js', 'seeds-more.js', 'seeds-curated.js'];
 
 if (artKindFor({ name: 'Baba ganoush', category: 'sauce', art: 'sauce:tomato' }) !== 'dip:eggplant') throw new Error('Baba ganoush musi używać ilustracji dipu z bakłażana, nawet jeśli ma stary wariant grafiki.');
 if (artKindFor({ name: 'Pizza Margherita', category: 'main', art: 'plate' }) !== 'pizza') throw new Error('Pizza Margherita musi używać ilustracji pizzy.');
-const EXPECTED_SOURCE_COUNT = 225;
+const EXPECTED_SOURCE_COUNT = 453;
 const EXPECTED_HAND_COUNT = 3;
 const BAD_ENGLISH = /\b(almonds|butter|flour|sugar|cream|cheese|milk|cup|cups|tbsp|tsp|tablespoon|teaspoon|yellow)\b/i;
 const BAD_QTY_GRAMMAR = [
@@ -56,6 +56,18 @@ for (const file of SOURCES) {
     if (line.startsWith('> ') && BAD_ENGLISH.test(line)) issues.push(file + ':' + (i + 1) + ': angielski fragment w kroku: "' + line.slice(2) + '"');
     if (line.startsWith(': ') && BAD_ENGLISH.test(line)) issues.push(file + ':' + (i + 1) + ': angielski fragment w opisie: "' + line.slice(2) + '"');
   }
+}
+
+const curatedText = fs.readFileSync('seeds-curated.js', 'utf8');
+const curatedBlocks = curatedText.split(/\n(?=# )/).filter((block) => block.startsWith('# '));
+const GENERIC_STEPS = /^(?:Przygotuj bazę\.|Dodaj dodatki\.|Podawaj od razu\.|Przygotuj składniki\.|Dopraw i podawaj\.)$/i;
+for (const block of curatedBlocks) {
+  const name = block.split('\n')[0].slice(2).trim();
+  const ingredients = block.split('\n').filter((line) => line.includes('|') && !line.startsWith('@ '));
+  const steps = [...block.matchAll(/^> (.+)$/gm)].map((m) => m[1].trim());
+  if (ingredients.length < 3) issues.push('Receptura bez minimum 3 składników: ' + name);
+  if (steps.length < 4) issues.push('Za mało kroków w recepturze: ' + name);
+  if (steps.some((step) => GENERIC_STEPS.test(step))) issues.push('Pozostał generyczny krok w recepturze: ' + name);
 }
 
 const handSource = fs.readFileSync('recipes.js', 'utf8');
