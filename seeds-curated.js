@@ -3,7 +3,8 @@
    Zbiór wejściowy: wybrane receptury z audytu Groka; wpisy mają opis i kroki
    dopasowane do rodzaju dania. Odrzucono duplikaty i powtarzalne warianty.
    ========================================================================== */
-export const SEED_CURATED = `# Pierogi z mięsem
+export const SEED_CURATED = `
+# Pierogi z mięsem
 @ cat=mieso origin=PL trad servings=1 prep=32 cook=48 art=food tags=tradycyjne,pierogi,mięso,kuchnia-polska
 : Domowe pierogi z farszem z mięsa z rosołu.
 90 g | mąka pszenna
