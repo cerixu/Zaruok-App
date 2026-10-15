@@ -16,10 +16,10 @@ import { SEED_CURATED } from './seeds-curated.js';
 /* ---------- Kategorie i kraje ---------- */
 
 export const DEFAULT_CATEGORIES = [
-  ['cat-pizza', 'Pizza', '🍕'], ['cat-pasta', 'Pasta', '🍝'], ['cat-sosy', 'Sosy', '🥫'],
+  ['cat-pizza', 'Pizza', '🍕'], ['cat-pasta', 'Makarony', '🍝'], ['cat-sosy', 'Sosy', '🥫'],
   ['cat-mieso', 'Mięso', '🥩'], ['cat-ryby', 'Ryby', '🐟'], ['cat-owoce-morza', 'Owoce morza', '🦐'],
   ['cat-warzywa', 'Warzywa', '🥕'], ['cat-desery', 'Desery', '🍰'], ['cat-pieczywo', 'Pieczywo', '🥖'],
-  ['cat-zupy', 'Zupy', '🍲'], ['cat-salatki', 'Sałatki', '🥗'], ['cat-cocktaile', 'Cocktaile', '🍸'],
+  ['cat-zupy', 'Zupy', '🍲'], ['cat-salatki', 'Sałatki', '🥗'], ['cat-cocktaile', 'Koktajle', '🍸'],
   ['cat-prep', 'Prep', '🔪'], ['cat-sosy-bazowe', 'Sosy bazowe', '🍅'], ['cat-inne', 'Inne', '🍽️'],
 ].map(([id, name, icon], order) => ({ id, name, icon, builtin: true, order }));
 
@@ -156,6 +156,19 @@ export async function loadAll() {
     state.categories = [...DEFAULT_CATEGORIES];
   } else {
     state.categories = cats.sort((a, b) => a.order - b.order);
+    // Popraw tylko stare etykiety wbudowanych kategorii; ID pozostają niezmienione,
+    // więc przypisania receptur i zapisane filtry użytkownika nadal działają.
+    const legacyLabels = new Map([
+      ['cat-pasta', ['Pasta', 'Makarony']],
+      ['cat-cocktaile', ['Cocktaile', 'Koktajle']],
+    ]);
+    for (const cat of state.categories) {
+      const legacy = legacyLabels.get(cat.id);
+      if (legacy && cat.name === legacy[0]) {
+        cat.name = legacy[1];
+        await db.put('categories', cat);
+      }
+    }
   }
 
   // Krytyczna zmiana: hydratacja danych jest zakończona zanim aplikacja ruszy.
@@ -494,7 +507,8 @@ async function addNewSeeds() {
   if (!Array.isArray(added)) added = [...LEGACY_SEED_IDS];       // wersja 1.0 miała tylko te trzy
   const have = new Set(added);
   const all = seedRecipes();
-  const fresh = all.filter((r) => !have.has(r.id) && !state.recipes.has(r.id));
+  const existingNames = new Set([...state.recipes.values()].map((r) => norm(r.name)));
+  const fresh = all.filter((r) => !have.has(r.id) && !state.recipes.has(r.id) && !existingNames.has(norm(r.name)));
   if (fresh.length) {
     await db.putMany('recipes', fresh);
     fresh.forEach((r) => state.recipes.set(r.id, r));
