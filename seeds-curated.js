@@ -701,10 +701,10 @@ export const SEED_CURATED = `
 0,1 g | szafran
 1 szt. | czosnek
 20 g | fenkuł
-> Warzywa i pozostałe składniki oczyść oraz pokrój. Jeśli receptura zawiera mięso lub aromaty, obsmaż je krótko przed dodaniem płynu.
-> Dodaj bulion lub wodę oraz twardsze składniki, które potrzebują najdłuższego gotowania.
-> Gotuj na łagodnym ogniu, aż składniki będą miękkie. Delikatne warzywa, makaron lub owoce morza dodaj później, by ich nie rozgotować.
-> Dopraw pod koniec. Śmietanę, cytrynę lub zioła dodaj stopniowo, próbując smak po każdym dodatku.
+> Fenkuł pokrój w cienkie plasterki, pomidora w kostkę, a czosnek posiekaj. W garnku rozgrzej odrobinę oliwy, dodaj fenkuł i czosnek, smaż 3–4 minuty bez rumienienia.
+> Dodaj pomidora, szafran i około 250 ml bulionu rybnego lub wody. Gotuj 8–10 minut, aż fenkuł zmięknie i wywar nabierze aromatu.
+> Rybę pokrój na duże kawałki i włóż do lekko wrzącego wywaru. Gotuj delikatnie 3–5 minut, zależnie od grubości, nie mieszając intensywnie.
+> Małże dodaj na końcu i gotuj pod przykryciem, aż się otworzą. Odrzuć muszle, które pozostały zamknięte; spróbuj wywaru i dopraw solą.
 > Rozdziel kawałki ryby i małże między podgrzane miski, zalej gorącym wywarem i podawaj natychmiast.
 
 # Miso shiru
@@ -758,11 +758,11 @@ export const SEED_CURATED = `
 44 g | jajko (roztrzepane)
 0,3 szt. | cytryna
 3 g | sól
-> Warzywa i pozostałe składniki oczyść oraz pokrój. Jeśli receptura zawiera mięso lub aromaty, obsmaż je krótko przed dodaniem płynu.
-> Dodaj bulion lub wodę oraz twardsze składniki, które potrzebują najdłuższego gotowania.
-> Gotuj na łagodnym ogniu, aż składniki będą miękkie. Delikatne warzywa, makaron lub owoce morza dodaj później, by ich nie rozgotować.
-> Dopraw pod koniec. Śmietanę, cytrynę lub zioła dodaj stopniowo, próbując smak po każdym dodatku.
-> Zdejmij garnek z ognia. Zahartuj roztrzepane jajko kilkoma łyżkami gorącego bulionu, połącz z sokiem z cytryny i wlej do zupy, energicznie mieszając; nie doprowadzaj już do wrzenia.
+> Przepłucz ryż. W garnku zagotuj bulion z kurczaka, wsyp ryż i gotuj na małym ogniu 15–18 minut, aż będzie miękki.
+> W misce roztrzep jajko z sokiem z cytryny. Stopniowo wlewaj chochlę gorącego bulionu, cały czas ubijając, aby ogrzać jajko bez ścięcia.
+> Zdejmij garnek z ognia i powoli wlej zahartowaną mieszankę jajeczno-cytrynową do zupy, energicznie mieszając.
+> Podgrzewaj bardzo łagodnie przez 1–2 minuty, nie doprowadzając do wrzenia, bo jajko może się zwarzyć. Spróbuj i dopraw solą.
+> Podawaj od razu, gdy zupa jest jedwabista i gorąca; po dodaniu jajka nie gotuj jej ponownie.
 
 # Zupa z soczewicy
 @ cat=zupy servings=1 prep=20 cook=29 art=soup tags=tradycyjne,zupa,kuchnia-śródziemnomorska
@@ -800,10 +800,10 @@ export const SEED_CURATED = `
 2 g | oregano
 20 g | rzodkiewka
 0,3 szt. | limonka
-> Warzywa i pozostałe składniki oczyść oraz pokrój. Jeśli receptura zawiera mięso lub aromaty, obsmaż je krótko przed dodaniem płynu.
-> Dodaj bulion lub wodę oraz twardsze składniki, które potrzebują najdłuższego gotowania.
-> Gotuj na łagodnym ogniu, aż składniki będą miękkie. Delikatne warzywa, makaron lub owoce morza dodaj później, by ich nie rozgotować.
-> Dopraw pod koniec. Śmietanę, cytrynę lub zioła dodaj stopniowo, próbując smak po każdym dodatku.
+> Wieprzowinę pokrój na większe kawałki. W garnku obsmaż mięso z każdej strony, aby nabrało koloru, a następnie dodaj wodę lub bulion tak, by było przykryte.
+> Gotuj bardzo łagodnie 30–45 minut, aż mięso zacznie mięknąć; zdejmuj pianę z powierzchni. Dodaj odsączoną kukurydzę hominy i oregano.
+> Gotuj kolejne 15–20 minut, aż wieprzowina będzie miękka. Wyjmij mięso, rozdziel widelcami na włókna i włóż z powrotem do garnka.
+> Spróbuj wywaru i dopraw solą oraz oregano. Jeśli zupa jest zbyt gęsta, dolej trochę gorącej wody lub bulionu.
 > Podawaj gorące, dodając do każdej porcji pokrojoną rzodkiewkę i sok z limonki. Dopraw oregano tuż przed podaniem.
 
 # Mulligatawny
@@ -814,11 +814,11 @@ export const SEED_CURATED = `
 6 g | curry
 40 ml | mleko kokosowe
 20 g | jabłko
-> Warzywa i pozostałe składniki oczyść oraz pokrój. Jeśli receptura zawiera mięso lub aromaty, obsmaż je krótko przed dodaniem płynu.
-> Dodaj bulion lub wodę oraz twardsze składniki, które potrzebują najdłuższego gotowania.
-> Gotuj na łagodnym ogniu, aż składniki będą miękkie. Delikatne warzywa, makaron lub owoce morza dodaj później, by ich nie rozgotować.
-> Dopraw pod koniec. Śmietanę, cytrynę lub zioła dodaj stopniowo, próbując smak po każdym dodatku.
-> Dodaj mleko kokosowe i podgrzewaj delikatnie przez 2–3 minuty, nie dopuszczając do gwałtownego wrzenia. Spróbuj i skoryguj ilość curry.
+> Kurczaka pokrój w kostkę, jabłko obierz i pokrój, a soczewicę przepłucz. W garnku rozgrzej odrobinę oleju i obsmaż kurczaka przez 2–3 minuty.
+> Dodaj curry i mieszaj przez 30 sekund, aż przyprawa zacznie pachnieć. Wsyp soczewicę i jabłko, po czym wlej około 300 ml bulionu.
+> Gotuj łagodnie 18–22 minuty, aż soczewica zmięknie, a kurczak będzie całkowicie ugotowany. Mieszaj co kilka minut, aby soczewica nie przywarła.
+> Wlej mleko kokosowe i podgrzewaj jeszcze 2–3 minuty na małym ogniu. Jeśli zupa jest zbyt gęsta, dolej bulionu.
+> Spróbuj i skoryguj ilość curry oraz soli. Podawaj gorącą, najlepiej od razu po przygotowaniu.
 
 # Gulaszowa zupa
 @ cat=zupy servings=1 prep=24 cook=37 art=soup tags=tradycyjne,zupa
@@ -828,11 +828,11 @@ export const SEED_CURATED = `
 8 g | papryka słodka
 60 g | ziemniaki
 1 g | kminek
-> Warzywa i pozostałe składniki oczyść oraz pokrój. Jeśli receptura zawiera mięso lub aromaty, obsmaż je krótko przed dodaniem płynu.
-> Dodaj bulion lub wodę oraz twardsze składniki, które potrzebują najdłuższego gotowania.
-> Gotuj na łagodnym ogniu, aż składniki będą miękkie. Delikatne warzywa, makaron lub owoce morza dodaj później, by ich nie rozgotować.
-> Dopraw pod koniec. Śmietanę, cytrynę lub zioła dodaj stopniowo, próbując smak po każdym dodatku.
-> Gotuj do miękkości wołowiny i ziemniaków. Dopraw papryką, kminkiem, solą i pieprzem, a następnie podawaj bardzo gorącą.
+> Wołowinę pokrój w kostkę, cebulę posiekaj, a ziemniaki pokrój w większą kostkę. W garnku rozgrzej olej i obsmaż mięso partiami.
+> Dodaj cebulę i smaż 3–4 minuty, aż zmięknie. Zdejmij garnek na chwilę z ognia, wsyp paprykę i kminek, szybko wymieszaj, aby papryka nie zgorzkniała.
+> Wlej około 350 ml bulionu lub wody, zeskrob przypieczone drobiny z dna i duś pod przykryciem 35–50 minut, aż wołowina zacznie mięknąć.
+> Dodaj ziemniaki i gotuj kolejne 15–20 minut, aż mięso i ziemniaki będą miękkie. W razie potrzeby uzupełnij płyn.
+> Spróbuj, dopraw solą i pieprzem, a następnie podawaj bardzo gorącą.
 
 # Caprese
 @ cat=salatki origin=IT trad servings=1 prep=8 cook=12 art=food tags=tradycyjne,sałatka,świeże,kuchnia-włoska
@@ -856,11 +856,11 @@ export const SEED_CURATED = `
 40 g | fasolka szparagowa
 40 g | ziemniaki
 15 g | oliwki
-> Umyj i dokładnie osusz warzywa oraz zioła. Pokrój składniki na równe, wygodne do jedzenia kawałki.
-> Przygotuj dressing, łącząc składniki płynne i przyprawy. Wymieszaj lub wstrząśnij do uzyskania emulsji.
-> Jeśli receptura zawiera białko, ser lub pieczywo, przygotuj je osobno i ostudź przed połączeniem z delikatnymi liśćmi.
-> Połącz składniki tuż przed podaniem, aby sałatka zachowała świeżość i chrupkość.
-> Spróbuj, skoryguj sól i kwasowość, a następnie podawaj.
+> Ugotuj ziemniaki do miękkości, ostudź i pokrój. Fasolkę gotuj 3–4 minuty w osolonej wodzie, a następnie schłodź w zimnej wodzie, by zachowała kolor.
+> Jajko ugotuj na półtwardo lub twardo, zależnie od preferencji, obierz i przekrój. Tuńczyka odsącz; oliwki przekrój na połówki.
+> Z oliwy, soku z cytryny, soli i pieprzu przygotuj dressing, energicznie mieszając do połączenia.
+> Ułóż ziemniaki, fasolkę, tuńczyka, jajko i oliwki na talerzu. Polej dressingiem tuż przed podaniem, nie mieszając nadmiernie delikatnych składników.
+> Spróbuj i skoryguj sól oraz kwasowość. Podawaj od razu, zanim fasolka straci chrupkość.
 
 # Fattoush
 @ cat=salatki servings=1 prep=8 cook=12 art=food tags=tradycyjne,sałatka,świeże,kuchnia-śródziemnomorska
@@ -913,11 +913,11 @@ export const SEED_CURATED = `
 60 g | batat
 30 g | hummus
 30 g | jarmuż
-> Umyj i dokładnie osusz warzywa oraz zioła. Pokrój składniki na równe, wygodne do jedzenia kawałki.
-> Przygotuj dressing, łącząc składniki płynne i przyprawy. Wymieszaj lub wstrząśnij do uzyskania emulsji.
-> Jeśli receptura zawiera białko, ser lub pieczywo, przygotuj je osobno i ostudź przed połączeniem z delikatnymi liśćmi.
-> Połącz składniki tuż przed podaniem, aby sałatka zachowała świeżość i chrupkość.
-> Spróbuj, skoryguj sól i kwasowość, a następnie podawaj.
+> Komosę ryżową przepłucz na sicie i ugotuj w osolonej wodzie zgodnie z proporcją na opakowaniu; odstaw pod przykryciem na 5 minut, potem spulchnij widelcem.
+> Batat pokrój w kostkę, wymieszaj z odrobiną oleju i solą, a następnie piecz w 200°C przez 20–25 minut, aż będzie miękki i lekko zrumieniony.
+> Ciecierzycę odsącz i opłucz. Jarmuż porwij na kawałki, usuń twarde łodygi i krótko rozmasuj z odrobiną oliwy oraz szczyptą soli.
+> Rozrzedź hummus lub tahini odrobiną wody i soku z cytryny, aż powstanie sos dający się polać łyżką.
+> Do miski włóż komosę, batata, ciecierzycę i jarmuż. Dodaj hummusowy sos i podawaj, gdy batat jest jeszcze ciepły.
 
 # Sałatka z komosą i granatem
 @ cat=salatki servings=1 prep=8 cook=12 art=food tags=tradycyjne,sałatka,świeże,kuchnia-śródziemnomorska
@@ -928,11 +928,11 @@ export const SEED_CURATED = `
 10 g | pistacje
 0,3 szt. | cytryna
 12 ml | oliwa z oliwek
-> Umyj i dokładnie osusz warzywa oraz zioła. Pokrój składniki na równe, wygodne do jedzenia kawałki.
-> Przygotuj dressing, łącząc składniki płynne i przyprawy. Wymieszaj lub wstrząśnij do uzyskania emulsji.
-> Jeśli receptura zawiera białko, ser lub pieczywo, przygotuj je osobno i ostudź przed połączeniem z delikatnymi liśćmi.
-> Połącz składniki tuż przed podaniem, aby sałatka zachowała świeżość i chrupkość.
-> Spróbuj, skoryguj sól i kwasowość, a następnie podawaj.
+> Komosę przepłucz na sicie i ugotuj do miękkości zgodnie z instrukcją na opakowaniu. Odcedź w razie potrzeby i pozostaw do przestudzenia.
+> Wyłuskaj pestki granatu, pistacje posiekaj grubo, a miętę drobno posiekaj tuż przed użyciem.
+> Wymieszaj sok z cytryny z oliwą, szczyptą soli i pieprzem, aż powstanie prosty dressing.
+> Połącz przestudzoną komosę z pestkami granatu, miętą i pistacjami. Polej dressingiem i delikatnie wymieszaj.
+> Spróbuj i skoryguj kwasowość oraz sól. Podawaj od razu albo schłodź krótko, jeśli wolisz sałatkę na zimno.
 
 # Fondant czekoladowy
 @ cat=desery origin=FR trad servings=1 prep=18 cook=28 art=dessert tags=tradycyjne,deser,kuchnia-francuska
@@ -1165,11 +1165,11 @@ export const SEED_CURATED = `
 0,5 szt. | cebula
 1 g | kumin
 3 g | kolendra
-> Przygotuj wszystkie składniki i odmierz płyny. Jeśli używasz kaszy, ryżu lub komosy, opłucz je przed gotowaniem.
-> Ugotuj bazę w proporcji płynu do produktu odpowiedniej dla składnika, aż będzie miękka, ale nie rozgotowana.
-> Przygotuj dodatki osobno: owoce pokrój, orzechy podpraż krótko, a składniki wymagające smażenia zrumień na patelni.
-> Połącz składniki, dopraw i dostosuj konsystencję płynem z receptury.
-> Zrób w sosie małe wgłębienia, wbij jajko i przykryj patelnię. Duś na małym ogniu 5–7 minut, aż białko się zetnie, a żółtko pozostanie płynne lub osiągnie preferowany stopień ścięcia. Podawaj na gorąco.
+> Pokrój pomidora, paprykę i cebulę w drobną kostkę. Na patelni rozgrzej odrobinę oleju i smaż cebulę z papryką 5–6 minut, aż zmiękną.
+> Dodaj pomidora, kumin, kolendrę i sól. Duś 8–10 minut, mieszając, aż powstanie gęsty sos; jeśli patelnia wysycha, dolej 1–2 łyżki wody.
+> Spróbuj sosu i skoryguj przyprawy. Rozprowadź go równą warstwą i zrób łyżką małe wgłębienie.
+> Wbij jajko do wgłębienia, przykryj patelnię i duś na małym ogniu 5–7 minut, aż białko się zetnie, a żółtko pozostanie płynne lub osiągnie preferowany stopień ścięcia.
+> Podawaj na gorąco prosto z patelni, z pieczywem, jeśli masz je pod ręką.
 
 # Jajka po benedyktyńsku
 @ cat=inne origin=US trad servings=1 prep=4 cook=6 art=food tags=tradycyjne,śniadanie,kuchnia-amerykańska
@@ -1181,10 +1181,10 @@ export const SEED_CURATED = `
 10 g | masło
 0,3 szt. | cytryna
 > Przygotuj sos holenderski: ubij żółtko z sokiem z cytryny nad łagodną parą, po czym stopniowo wlewaj ciepłe, roztopione masło, cały czas ubijając, aż sos zgęstnieje.
-> Rozgrzej patelnię na małym lub średnim ogniu i dodaj masło albo olej z receptury.
-> Dodaj dodatki, które wymagają podsmażenia, i przygotuj je do miękkości. Wlej jajka lub masę jajeczną.
-> Smaż łagodnie, mieszając albo składając masę zależnie od dania. Zdejmij z ognia, gdy jajka są ścięte, ale nadal wilgotne.
-> Złóż danie: na przekrojonym i podpieczonym muffinie ułóż podgrzaną szynkę oraz jajko w koszulce. Polej sosem holenderskim przygotowanym z żółtka, masła i soku z cytryny; podawaj natychmiast.
+> Przekrój muffin angielski i podpiecz obie połówki na suchej patelni lub w tosterze. Szynkę podgrzej krótko na patelni.
+> W szerokim rondlu zagotuj wodę, po czym zmniejsz ogień do lekkiego wrzenia. Wbij jajko do miseczki i delikatnie wsuń do wody; gotuj 3–4 minuty.
+> Wyjmij jajko łyżką cedzakową i odsącz. Sprawdź, czy białko jest ścięte, a żółtko pozostaje miękkie.
+> Na podpieczonym muffinie ułóż szynkę i jajko w koszulce, polej sosem holenderskim i podawaj natychmiast.
 
 # Gofry brukselskie
 @ cat=inne servings=1 prep=6 cook=10 art=food tags=tradycyjne,śniadanie
@@ -1208,11 +1208,11 @@ export const SEED_CURATED = `
 0,4 szt. | banan
 8 g | miód
 8 g | orzechy
-> Przygotuj wszystkie składniki i odmierz płyny. Jeśli używasz kaszy, ryżu lub komosy, opłucz je przed gotowaniem.
-> Ugotuj bazę w proporcji płynu do produktu odpowiedniej dla składnika, aż będzie miękka, ale nie rozgotowana.
-> Przygotuj dodatki osobno: owoce pokrój, orzechy podpraż krótko, a składniki wymagające smażenia zrumień na patelni.
-> Połącz składniki, dopraw i dostosuj konsystencję płynem z receptury.
-> Przełóż owsiankę do miski. Dodaj pokrojonego banana, miód i posiekane orzechy; podawaj od razu, zanim płatki nadmiernie zgęstnieją.
+> Wsyp płatki do małego rondla, wlej mleko i dodaj szczyptę soli. Doprowadź do lekkiego wrzenia, często mieszając.
+> Zmniejsz ogień i gotuj 4–6 minut, aż płatki zmiękną, a owsianka osiągnie kremową konsystencję. W razie potrzeby dolej trochę mleka.
+> Zdejmij rondel z ognia i odstaw na minutę. W tym czasie pokrój banana, a orzechy grubo posiekaj.
+> Przełóż owsiankę do miski i dodaj banana oraz orzechy.
+> Polej miodem i podawaj od razu, zanim płatki nadmiernie zgęstnieją.
 
 # Granola bowl
 @ cat=inne origin=US trad servings=1 prep=8 cook=12 art=food tags=tradycyjne,śniadanie,kuchnia-amerykańska
@@ -1221,11 +1221,11 @@ export const SEED_CURATED = `
 35 g | granola
 50 g | owoce jagodowe
 5 g | nasiona chia
-> Przygotuj wszystkie składniki i odmierz płyny. Jeśli używasz kaszy, ryżu lub komosy, opłucz je przed gotowaniem.
-> Ugotuj bazę w proporcji płynu do produktu odpowiedniej dla składnika, aż będzie miękka, ale nie rozgotowana.
-> Przygotuj dodatki osobno: owoce pokrój, orzechy podpraż krótko, a składniki wymagające smażenia zrumień na patelni.
-> Połącz składniki, dopraw i dostosuj konsystencję płynem z receptury.
-> Nałóż jogurt do miski, posyp granolą, owocami jagodowymi i nasionami chia. Podawaj od razu, aby granola pozostała chrupiąca.
+> Nałóż jogurt naturalny do miski i wyrównaj powierzchnię łyżką.
+> Jeśli owoce jagodowe są świeże, delikatnie je opłucz i osusz; mrożone pozostaw na kilka minut do lekkiego rozmrożenia.
+> Rozsyp granolę na jogurcie, zostawiając część na wierzch, aby zachować chrupiącą teksturę.
+> Posyp owocami jagodowymi i nasionami chia. Jeśli jogurt jest bardzo gęsty, możesz dodać łyżkę mleka.
+> Podawaj od razu, aby granola nie nasiąkła jogurtem.
 
 # Tost z awokado
 @ cat=inne origin=US trad servings=1 prep=7 cook=10 art=food tags=tradycyjne,śniadanie,kuchnia-amerykańska
@@ -1249,10 +1249,10 @@ export const SEED_CURATED = `
 8 ml | mirin
 4 g | cukier
 > Roztrzep jajka z sosem sojowym, mirinem i cukrem, aż składniki się połączą. Przygotuj lekko natłuszczoną patelnię na małym ogniu.
-> Rozgrzej patelnię na małym lub średnim ogniu i dodaj masło albo olej z receptury.
-> Dodaj dodatki, które wymagają podsmażenia, i przygotuj je do miękkości. Wlej jajka lub masę jajeczną.
-> Smaż łagodnie, mieszając albo składając masę zależnie od dania. Zdejmij z ognia, gdy jajka są ścięte, ale nadal wilgotne.
-> Roztrzep jajka z sosem sojowym, mirinem i cukrem. Wlewaj cienkie warstwy na lekko natłuszczoną patelnię, każdą po ścięciu zwijaj w rulon i przesuwaj na brzeg. Powtarzaj do wykorzystania masy, następnie pokrój omlet w plastry.
+> Wlej cienką warstwę masy jajecznej i przechyl patelnię, aby pokryła dno. Gdy wierzch będzie jeszcze lekko wilgotny, zwiń omlet w rulon przy pomocy pałeczek lub łopatki.
+> Przesuń rulon na brzeg patelni, natłuść wolną część i wlej kolejną cienką warstwę, unosząc rulon, aby masa wpłynęła pod spód.
+> Gdy nowa warstwa prawie się zetnie, zwiń ją wokół istniejącego rulonu. Powtarzaj do wykorzystania masy, utrzymując niski ogień, by omlet nie przypalił się.
+> Przełóż na deskę, pozostaw na minutę i pokrój w grube plastry. Podawaj ciepłe lub w temperaturze pokojowej.
 
 # Onigiri z łososiem
 @ cat=inne origin=JP trad servings=1 prep=6 cook=10 art=food tags=tradycyjne,śniadanie,kuchnia-japońska
@@ -1275,11 +1275,11 @@ export const SEED_CURATED = `
 40 g | salsa
 30 g | fasola
 30 g | awokado
-> Przygotuj wszystkie składniki i odmierz płyny. Jeśli używasz kaszy, ryżu lub komosy, opłucz je przed gotowaniem.
-> Ugotuj bazę w proporcji płynu do produktu odpowiedniej dla składnika, aż będzie miękka, ale nie rozgotowana.
-> Przygotuj dodatki osobno: owoce pokrój, orzechy podpraż krótko, a składniki wymagające smażenia zrumień na patelni.
-> Połącz składniki, dopraw i dostosuj konsystencję płynem z receptury.
-> Podgrzej tortille na suchej patelni. Usmaż jajka, nałóż na tortille z salsą i fasolą, a na koniec dodaj pokrojone awokado. Podawaj na gorąco.
+> Podgrzej tortille na suchej patelni po 20–30 sekund z każdej strony i odłóż pod przykryciem, aby nie wyschły.
+> Podgrzej fasolę na małym ogniu z łyżką wody, mieszając, aż będzie gorąca. Salsę również lekko podgrzej lub podawaj w temperaturze pokojowej.
+> Na patelni rozgrzej niewielką ilość oleju i usmaż jajka sadzone, aż białka się zetną; żółtka pozostaw płynne lub smaż dłużej według uznania.
+> Ułóż tortille na talerzu, rozsmaruj fasolę i dodaj salsę. Na wierzchu umieść usmażone jajka.
+> Na koniec dodaj pokrojone awokado i podawaj od razu, zanim tortille zmiękną.
 
 # Croissant z masłem
 @ cat=inne origin=FR trad servings=1 prep=9 cook=13 art=food tags=tradycyjne,śniadanie,kuchnia-francuska
@@ -1300,11 +1300,11 @@ export const SEED_CURATED = `
 10 g | masło
 15 ml | śmietanka 30%
 3 g | szczypiorek
-> Roztrzep jajka ze śmietanką i szczyptą soli. Roztop masło na małym ogniu i przygotuj patelnię do powolnego ścinania jaj.
-> Rozgrzej patelnię na małym lub średnim ogniu i dodaj masło albo olej z receptury.
-> Dodaj dodatki, które wymagają podsmażenia, i przygotuj je do miękkości. Wlej jajka lub masę jajeczną.
-> Smaż łagodnie, mieszając albo składając masę zależnie od dania. Zdejmij z ognia, gdy jajka są ścięte, ale nadal wilgotne.
-> Wlewaj masę jajeczną na masło i mieszaj silikonową łopatką powoli, zgarniając ścięte fragmenty z dna. Zdejmij z ognia, gdy jajka będą kremowe i jeszcze lekko wilgotne; posyp szczypiorkiem.
+> Roztrzep jajka ze śmietanką i szczyptą soli. Roztop masło na małym ogniu, nie dopuszczając do zbrązowienia.
+> Wlej masę jajeczną na patelnię i mieszaj silikonową łopatką powoli, zgarniając ścięte fragmenty z dna i boków.
+> Utrzymuj mały ogień; jeśli jajka ścinają się zbyt szybko, na chwilę zdejmij patelnię z palnika i nadal mieszaj.
+> Gdy masa zacznie gęstnieć, ale pozostanie wilgotna i kremowa, zdejmij patelnię z ognia. Ciepło resztkowe dokończy ścinanie.
+> Posiekaj szczypiorek, wmieszaj połowę do jajek, a resztą posyp wierzch. Podawaj natychmiast.
 
 # Baguette
 @ cat=pieczywo origin=FR trad servings=1 prep=72 cook=108 art=bread tags=tradycyjne,pieczywo,pieczone,kuchnia-francuska
@@ -3165,10 +3165,10 @@ export const SEED_CURATED = `
 4 g | szczypiorek
 10 g | masło
 > Posiekaj szczypiorek i roztrzep jajka ze szczyptą soli. Roztop masło na patelni na średnio małym ogniu.
-> Rozgrzej patelnię na małym lub średnim ogniu i dodaj masło albo olej z receptury.
-> Dodaj dodatki, które wymagają podsmażenia, i przygotuj je do miękkości. Wlej jajka lub masę jajeczną.
-> Smaż łagodnie, mieszając albo składając masę zależnie od dania. Zdejmij z ognia, gdy jajka są ścięte, ale nadal wilgotne.
-> Roztrzep jajka ze szczyptą soli. Wlej na patelnię z roztopionym masłem i smaż na małym ogniu, delikatnie podważając brzegi. Złóż omlet, gdy wierzch będzie jeszcze lekko wilgotny, i posyp szczypiorkiem.
+> Wlej jajka na patelnię i poruszaj nią, aby masa równomiernie pokryła dno.
+> Gdy brzegi się zetną, delikatnie podważ je łopatką i przechyl patelnię, aby płynna masa spłynęła pod spód.
+> Posyp szczypiorkiem. Gdy wierzch będzie jeszcze lekko wilgotny, złóż omlet na pół i smaż jeszcze 20–30 sekund.
+> Przełóż na talerz i podawaj od razu, zanim omlet straci puszystość.
 
 # Omlet z pieczarkami
 @ cat=inne servings=1 prep=5 cook=7 art=food tags=jajka,śniadanie
@@ -3213,10 +3213,10 @@ export const SEED_CURATED = `
 10 g | masło
 3 g | sól
 > Przygotuj jajka i sól przy kuchence. Rozgrzej masło na patelni na średnio małym ogniu, uważając, by nie zaczęło brązowieć.
-> Rozgrzej patelnię na małym lub średnim ogniu i dodaj masło albo olej z receptury.
-> Dodaj dodatki, które wymagają podsmażenia, i przygotuj je do miękkości. Wlej jajka lub masę jajeczną.
-> Smaż łagodnie, mieszając albo składając masę zależnie od dania. Zdejmij z ognia, gdy jajka są ścięte, ale nadal wilgotne.
-> Rozgrzej masło na patelni na średnio małym ogniu. Wbij jajka, posól i smaż, aż białka się zetną; jeśli chcesz mocniej ścięte żółtka, przykryj patelnię na ostatnią minutę.
+> Wbij jajka ostrożnie, zostawiając odstęp między nimi. Zmniejsz ogień, aby białka ścinały się równomiernie bez przypalania spodu.
+> Smaż 3–4 minuty, aż białka będą prawie całkowicie ścięte. Posól białka, unikając posypywania żółtek, jeśli chcesz zachować ich połysk.
+> Jeśli wolisz bardziej ścięte żółtka, przykryj patelnię na ostatnią minutę lub delikatnie polewaj wierzch gorącym masłem.
+> Przełóż na talerz szeroką łopatką i podawaj od razu.
 
 # Jajka w koszulce
 @ cat=inne servings=1 prep=5 cook=7 art=food tags=jajka,śniadanie
@@ -3225,10 +3225,10 @@ export const SEED_CURATED = `
 5 ml | ocet
 3 g | sól
 > Zagotuj wodę w szerokim rondlu i dodaj ocet. Zmniejsz ogień tak, by woda tylko lekko drżała; jajko wbij do osobnej miseczki.
-> Rozgrzej patelnię na małym lub średnim ogniu i dodaj masło albo olej z receptury.
-> Dodaj dodatki, które wymagają podsmażenia, i przygotuj je do miękkości. Wlej jajka lub masę jajeczną.
-> Smaż łagodnie, mieszając albo składając masę zależnie od dania. Zdejmij z ognia, gdy jajka są ścięte, ale nadal wilgotne.
-> Zagotuj wodę z octem, po czym zmniejsz ogień do lekkiego wrzenia. Wbij jajko do miseczki i delikatnie wsuń do wody; gotuj 3–4 minuty, aż białko się zetnie, a żółtko pozostanie płynne.
+> Zamieszaj wodę, aby utworzyć delikatny wir, po czym ostrożnie wsuń jajko do środka. Nie wkładaj kilku jaj naraz, jeśli nie masz dużego rondla.
+> Gotuj 3–4 minuty, aż białko będzie ścięte, a żółtko pozostanie płynne. Nie doprowadzaj wody do gwałtownego wrzenia.
+> Wyjmij jajko łyżką cedzakową i dotknij delikatnie białka; powinno być sprężyste, bez surowych, przezroczystych fragmentów.
+> Odsącz na ręczniku papierowym i podawaj natychmiast. Powtórz z kolejnym jajkiem, utrzymując lekkie wrzenie wody.
 
 # Frittata z cukinią
 @ cat=inne servings=1 prep=5 cook=7 art=food tags=jajka,śniadanie
