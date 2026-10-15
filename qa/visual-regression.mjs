@@ -152,9 +152,9 @@ try {
     const old = root.getAttribute('data-tablabels');
     const labels = [...document.querySelectorAll('#tabbar .tab .tab-label')];
     root.setAttribute('data-tablabels', 'off');
-    const hiddenWhenOff = labels.length === 5 && labels.every((el) => getComputedStyle(el).display === 'none');
+    const hiddenWhenOff = labels.length === 6 && labels.every((el) => getComputedStyle(el).display === 'none');
     root.setAttribute('data-tablabels', 'on');
-    const shownWhenOn = labels.length === 5 && labels.every((el) => getComputedStyle(el).display !== 'none');
+    const shownWhenOn = labels.length === 6 && labels.every((el) => getComputedStyle(el).display !== 'none');
     const bar = document.querySelector('#tabbar').getBoundingClientRect();
     const labelsInsideBar = labels.every((el) => {
       const r = el.getBoundingClientRect();
@@ -174,7 +174,7 @@ try {
       return Math.abs((icon.left + icon.right) / 2 - (tab.getBoundingClientRect().left + tab.getBoundingClientRect().right) / 2);
     });
   });
-  assert(tabCentering.length === 5 && tabCentering.every((n) => n <= 1.5),
+  assert(tabCentering.length === 6 && tabCentering.every((n) => n <= 1.5),
     'Ikony zakładek nie są wycentrowane we własnych polach: ' + JSON.stringify(tabCentering));
 
   const tapTarget = page.locator('#tabbar .tab[data-tab="recipes"]');
