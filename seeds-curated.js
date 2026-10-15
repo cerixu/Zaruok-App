@@ -62,11 +62,11 @@ export const SEED_CURATED = `
 30 g | masło
 40 g | mąka pszenna
 2 g | skórka cytrynowa
-> Przygotuj spód z podanych składników. Jeśli używasz kruchego ciasta, schłodź je przed wałkowaniem.
-> Przygotuj nadzienie: owoce pokrój i dopraw, a masę serową wymieszaj tylko do połączenia składników.
-> Wyłóż formę, dodaj nadzienie i wyrównaj powierzchnię. Nie przepełniaj formy.
-> Piecz w temperaturze odpowiedniej dla rodzaju wypieku, aż środek się zetnie, a wierzch będzie złoty. Przy serniku środek może lekko drżeć.
-> Ostudź przed krojeniem; wypieki z kremowym nadzieniem schłodź w lodówce.
+> Zimne masło pokrój w kostkę i szybko rozetrzyj z mąką oraz połową cukru. Dodaj żółtko, jeśli oddzielisz je z jajka, zagnieć kruche ciasto i schłodź przez 20 minut.
+> Twaróg zmiel lub dokładnie rozgnieć. Wymieszaj z jajkiem, pozostałym cukrem i skórką cytrynową tylko do uzyskania gładkiej masy.
+> Ciasto wylep cienką warstwą na dnie małej formy wyłożonej papierem. Nakłuj widelcem, podpiecz 10 minut w 180°C, a następnie rozprowadź masę serową.
+> Piecz w 165–170°C przez około 35–45 minut, aż brzegi będą ścięte, a środek lekko sprężysty. Jeśli wierzch zbyt szybko się rumieni, przykryj luźno papierem.
+> Wyłącz piekarnik i pozostaw sernik przy uchylonych drzwiczkach przez 15 minut. Ostudź całkowicie przed krojeniem; przechowuj w lodówce.
 
 # Pączki różane
 @ cat=desery origin=PL trad servings=1 prep=60 cook=90 art=dessert tags=tradycyjne,tłusty-czwartek,drożdżowe,kuchnia-polska
@@ -79,11 +79,11 @@ export const SEED_CURATED = `
 10 g | cukier
 20 g | marmolada różana
 80 ml | olej do smażenia
-> Przygotuj wszystkie składniki i nagrzej piekarnik do temperatury odpowiedniej dla tego deseru.
-> Wymieszaj składniki suche osobno, a mokre połącz w drugim naczyniu, jeśli receptura zawiera obie grupy.
-> Połącz składniki delikatnie, tylko do uzyskania jednolitej masy. Przełóż do formy lub przygotuj porcje.
-> Piecz, gotuj albo schładzaj zgodnie z metodą właściwą dla danego deseru; kontroluj konsystencję, nie tylko czas.
-> Ostudź lub schłodź przed dekorowaniem. Podawaj w temperaturze odpowiedniej dla deseru.
+> Podgrzej mleko do letniej temperatury. Rozetrzyj drożdże z łyżeczką cukru i częścią mleka, po czym odstaw na 8–10 minut, aż zaczną pracować.
+> Do mąki dodaj pozostały cukier, jajko, zaczyn i resztę mleka. Wyrabiaj 5–7 minut, następnie dodaj miękkie masło i wyrabiaj, aż ciasto będzie elastyczne.
+> Przykryj miskę i pozostaw ciasto w ciepłym miejscu na 45–60 minut, aż wyraźnie zwiększy objętość. Podziel na porcje, spłaszcz i umieść na każdej marmoladę; dokładnie zlep.
+> Ułóż pączki złączeniem w dół, przykryj i pozostaw do napuszenia na 20–30 minut. Rozgrzej olej do 170–175°C i smaż partiami po około 2 minuty z każdej strony.
+> Osącz na kratce lub ręczniku papierowym. Po lekkim przestudzeniu oprósz cukrem pudrem; nie przepełniaj garnka i kontroluj temperaturę oleju.
 
 # Spaghetti Carbonara
 @ cat=pasta origin=IT trad servings=1 prep=18 cook=26 art=pasta tags=tradycyjne,włochy,makaron,kuchnia-włoska
@@ -970,11 +970,11 @@ export const SEED_CURATED = `
 44 g | jajko (roztrzepane)
 40 ml | śmietanka 30%
 25 g | czekolada
-> Przygotuj wszystkie składniki i nagrzej piekarnik do temperatury odpowiedniej dla tego deseru.
-> Wymieszaj składniki suche osobno, a mokre połącz w drugim naczyniu, jeśli receptura zawiera obie grupy.
-> Połącz składniki delikatnie, tylko do uzyskania jednolitej masy. Przełóż do formy lub przygotuj porcje.
-> Piecz, gotuj albo schładzaj zgodnie z metodą właściwą dla danego deseru; kontroluj konsystencję, nie tylko czas.
-> Ostudź lub schłodź przed dekorowaniem. Podawaj w temperaturze odpowiedniej dla deseru.
+> W garnku zagotuj 40 ml wody z masłem i szczyptą soli. Zdejmij z ognia, wsyp mąkę i energicznie mieszaj, aż powstanie jednolita kula odchodząca od ścianek.
+> Postaw garnek na małym ogniu i mieszaj ciasto przez 1–2 minuty, aby je odparować. Przełóż do miski i przestudź przez kilka minut.
+> Jajko dodawaj stopniowo, miksując po każdej porcji, aż ciasto będzie gładkie i będzie powoli spływać z łopatki. Przełóż do rękawa cukierniczego.
+> Wyciśnij małe porcje na blachę z papierem, zostawiając odstępy. Piecz w 200°C przez 10 minut, następnie obniż do 180°C i piecz kolejne 15–20 minut bez otwierania piekarnika.
+> Po upieczeniu nakłuj każdy ptyś i pozostaw w wyłączonym piekarniku z uchylonymi drzwiczkami na 5 minut. Po całkowitym ostudzeniu napełnij ubitą śmietanką i polej roztopioną czekoladą.
 
 # Brownie
 @ cat=desery origin=US trad servings=1 prep=33 cook=49 art=dessert tags=tradycyjne,deser,kuchnia-amerykańska
@@ -999,11 +999,11 @@ export const SEED_CURATED = `
 150 g | jabłko
 2 g | cynamon
 25 g | cukier
-> Przygotuj spód z podanych składników. Jeśli używasz kruchego ciasta, schłodź je przed wałkowaniem.
-> Przygotuj nadzienie: owoce pokrój i dopraw, a masę serową wymieszaj tylko do połączenia składników.
-> Wyłóż formę, dodaj nadzienie i wyrównaj powierzchnię. Nie przepełniaj formy.
-> Piecz w temperaturze odpowiedniej dla rodzaju wypieku, aż środek się zetnie, a wierzch będzie złoty. Przy serniku środek może lekko drżeć.
-> Ostudź przed krojeniem; wypieki z kremowym nadzieniem schłodź w lodówce.
+> Zagnieć mąkę z zimnym masłem, połową cukru i 1–2 łyżkami zimnej wody, tylko do połączenia. Spłaszcz ciasto i schłodź przez 20 minut.
+> Jabłka obierz, usuń gniazda nasienne i pokrój w cienkie plasterki. Wymieszaj z pozostałym cukrem i cynamonem; jeśli puszczą dużo soku, odlej jego nadmiar.
+> Większą częścią ciasta wylep małą formę, ułóż jabłka i przykryj pozostałym ciastem lub kratką. Zlep brzegi i natnij wierzch, by para mogła uchodzić.
+> Piecz w 190°C przez 35–45 minut, aż ciasto będzie złociste, a jabłka miękkie. Jeśli wierzch rumieni się zbyt szybko, przykryj go luźno folią.
+> Pozostaw w formie na co najmniej 20 minut, żeby nadzienie lekko zgęstniało. Podawaj ciepłą lub w temperaturze pokojowej.
 
 # Bułeczki cynamonowe
 @ cat=desery origin=US trad servings=1 prep=24 cook=36 art=dessert tags=tradycyjne,deser,kuchnia-amerykańska
@@ -1013,11 +1013,11 @@ export const SEED_CURATED = `
 20 g | masło
 4 g | cynamon
 20 g | cukier
-> Przygotuj wszystkie składniki i nagrzej piekarnik do temperatury odpowiedniej dla tego deseru.
-> Wymieszaj składniki suche osobno, a mokre połącz w drugim naczyniu, jeśli receptura zawiera obie grupy.
-> Połącz składniki delikatnie, tylko do uzyskania jednolitej masy. Przełóż do formy lub przygotuj porcje.
-> Piecz, gotuj albo schładzaj zgodnie z metodą właściwą dla danego deseru; kontroluj konsystencję, nie tylko czas.
-> Ostudź lub schłodź przed dekorowaniem. Podawaj w temperaturze odpowiedniej dla deseru.
+> Rozetrzyj drożdże z letnim mlekiem i łyżeczką cukru. Odstaw na 8–10 minut, aż zaczyn zacznie się pienić.
+> Połącz mąkę z pozostałym cukrem, dodaj zaczyn i wyrabiaj kilka minut. Wgnieć miękkie masło i wyrabiaj do uzyskania gładkiego, elastycznego ciasta.
+> Przykryj i pozostaw na 45–60 minut do podwojenia objętości. Rozwałkuj w prostokąt, posmaruj cienko masłem i posyp cynamonem wymieszanym z cukrem.
+> Zwiń ciasto w rulon, pokrój na równe kawałki i ułóż w natłuszczonej formie. Przykryj na 20–30 minut, a następnie piecz w 180°C przez 20–25 minut.
+> Wyjmij, gdy bułeczki będą złociste i wypieczone w środku. Po lekkim przestudzeniu polej lukrem, jeśli go przygotowujesz, i podawaj.
 
 # Mochi z matchą
 @ cat=desery origin=JP trad servings=1 prep=19 cook=29 art=dessert tags=tradycyjne,deser,kuchnia-japońska
@@ -1068,11 +1068,11 @@ export const SEED_CURATED = `
 40 ml | mleko skondensowane
 40 ml | mleko odtłuszczone
 30 ml | śmietanka 30%
-> Przygotuj wszystkie składniki i nagrzej piekarnik do temperatury odpowiedniej dla tego deseru.
-> Wymieszaj składniki suche osobno, a mokre połącz w drugim naczyniu, jeśli receptura zawiera obie grupy.
-> Połącz składniki delikatnie, tylko do uzyskania jednolitej masy. Przełóż do formy lub przygotuj porcje.
-> Piecz, gotuj albo schładzaj zgodnie z metodą właściwą dla danego deseru; kontroluj konsystencję, nie tylko czas.
-> Ostudź lub schłodź przed dekorowaniem. Podawaj w temperaturze odpowiedniej dla deseru.
+> Rozgrzej piekarnik do 175°C. Oddziel jajko, ubij białko na sztywną pianę, a żółtko utrzyj z częścią mleka skondensowanego.
+> Wsyp mąkę do żółtka i wymieszaj do połączenia. Delikatnie wmieszaj pianę w dwóch turach, by zachować puszystość.
+> Przełóż ciasto do małej natłuszczonej formy i piecz 18–22 minuty, aż wierzch będzie sprężysty, a patyczek wyjdzie bez surowego ciasta.
+> Wymieszaj mleko skondensowane, mleko odtłuszczone i śmietankę. Nakłuj ciepły biszkopt w wielu miejscach i powoli polej mieszanką, dając jej czas na wchłonięcie.
+> Ostudź, przykryj i schłodź w lodówce przez co najmniej 4 godziny. Kroić dopiero po schłodzeniu, aby biszkopt utrzymał kształt.
 
 # Baklava
 @ cat=desery servings=1 prep=14 cook=20 art=dessert tags=tradycyjne,deser,kuchnia-śródziemnomorska
@@ -1082,11 +1082,11 @@ export const SEED_CURATED = `
 25 g | masło
 25 g | miód
 1 g | cynamon
-> Przygotuj wszystkie składniki i nagrzej piekarnik do temperatury odpowiedniej dla tego deseru.
-> Wymieszaj składniki suche osobno, a mokre połącz w drugim naczyniu, jeśli receptura zawiera obie grupy.
-> Połącz składniki delikatnie, tylko do uzyskania jednolitej masy. Przełóż do formy lub przygotuj porcje.
-> Piecz, gotuj albo schładzaj zgodnie z metodą właściwą dla danego deseru; kontroluj konsystencję, nie tylko czas.
-> Ostudź lub schłodź przed dekorowaniem. Podawaj w temperaturze odpowiedniej dla deseru.
+> Posiekaj orzechy dość drobno i wymieszaj z cynamonem. Rozgrzej piekarnik do 180°C, a masło roztop i pozostaw w płynnej postaci.
+> Posmaruj małą formę masłem. Układaj arkusze filo warstwami, smarując każdy cienko masłem; po kilku arkuszach rozsyp część orzechów.
+> Powtarzaj warstwy filo i orzechów, kończąc kilkoma arkuszami ciasta posmarowanymi masłem. Ostrym nożem natnij porcje przed pieczeniem.
+> Piecz przez 25–35 minut, aż wierzch będzie głęboko złocisty i chrupiący. Jeśli brzegi rumienią się szybciej, obniż temperaturę do 170°C.
+> Podgrzej miód z 1–2 łyżkami wody, nie doprowadzając do mocnego wrzenia. Polej gorącą baklavę syropem i pozostaw do całkowitego ostygnięcia, by warstwy go wchłonęły.
 
 # Basbousa
 @ cat=desery servings=1 prep=16 cook=23 art=dessert tags=tradycyjne,deser,kuchnia-śródziemnomorska
@@ -1096,11 +1096,11 @@ export const SEED_CURATED = `
 25 g | cukier
 5 ml | woda różana
 10 g | migdały
-> Przygotuj wszystkie składniki i nagrzej piekarnik do temperatury odpowiedniej dla tego deseru.
-> Wymieszaj składniki suche osobno, a mokre połącz w drugim naczyniu, jeśli receptura zawiera obie grupy.
-> Połącz składniki delikatnie, tylko do uzyskania jednolitej masy. Przełóż do formy lub przygotuj porcje.
-> Piecz, gotuj albo schładzaj zgodnie z metodą właściwą dla danego deseru; kontroluj konsystencję, nie tylko czas.
-> Ostudź lub schłodź przed dekorowaniem. Podawaj w temperaturze odpowiedniej dla deseru.
+> Rozgrzej piekarnik do 180°C. Wymieszaj kaszę mannę z cukrem, a następnie dodaj jogurt i wodę różaną.
+> Połącz składniki tylko do uzyskania gęstej, równomiernej masy. Odstaw na 5–10 minut, aby kasza manna wchłonęła część wilgoci.
+> Przełóż masę do małej natłuszczonej formy i wyrównaj powierzchnię. Natnij w romby i umieść migdał na środku każdej porcji.
+> Piecz 25–30 minut, aż wierzch będzie złocisty, a środek całkowicie ścięty. W razie potrzeby dopiecz kilka minut pod górną grzałką, obserwując kolor.
+> Pozostaw na 5 minut, po czym polej cienko syropem cukrowym, jeśli został przygotowany, i odstaw do wchłonięcia. Pokrój wzdłuż nacięć po przestudzeniu.
 
 # Gulab jamun
 @ cat=desery origin=IN trad servings=1 prep=20 cook=29 art=dessert tags=tradycyjne,deser,kuchnia-indyjska
@@ -1137,11 +1137,11 @@ export const SEED_CURATED = `
 35 g | biszkopty
 18 g | cukier
 28 g | jajko (roztrzepane)
-> Przygotuj wszystkie składniki i nagrzej piekarnik do temperatury odpowiedniej dla tego deseru.
-> Wymieszaj składniki suche osobno, a mokre połącz w drugim naczyniu, jeśli receptura zawiera obie grupy.
-> Połącz składniki delikatnie, tylko do uzyskania jednolitej masy. Przełóż do formy lub przygotuj porcje.
-> Piecz, gotuj albo schładzaj zgodnie z metodą właściwą dla danego deseru; kontroluj konsystencję, nie tylko czas.
-> Ostudź lub schłodź przed dekorowaniem. Podawaj w temperaturze odpowiedniej dla deseru.
+> Przesiej matchę i wymieszaj z niewielką ilością gorącej, ale nie wrzącej wody, aż powstanie gładka pasta. Odstaw do ostygnięcia.
+> Oddziel jajko. Utrzyj żółtko z cukrem na jaśniejszą masę, a następnie krótko wmieszaj mascarpone, aby krem pozostał gładki.
+> Ubij białko na sztywną pianę i delikatnie połącz z kremem. Jeśli nie używasz jaj pasteryzowanych, wybierz bezpieczną obróbkę lub pomiń surowe białko.
+> Biszkopty szybko zanurzaj w rozcieńczonej matchy i ułóż warstwę w naczyniu. Przykryj częścią kremu, powtórz warstwy i wyrównaj wierzch.
+> Przykryj i schłodź w lodówce przez co najmniej 4 godziny. Przed podaniem oprósz cienką warstwą matchy.
 
 # Pavlova
 @ cat=desery servings=1 prep=14 cook=22 art=dessert tags=tradycyjne,deser
@@ -1840,7 +1840,7 @@ export const SEED_CURATED = `
 5 ml | sezamowy olej
 12 ml | olej rzepakowy
 > Filet z kurczaka pokrój w cienkie, równe paski lub niewielkie kawałki. Czosnek drobno posiekaj, a imbir zetrzyj lub pokrój w cienkie zapałki.
-> Rozgrzej wok z olejem i obsmaż białko; jeśli używasz tofu, zrumień je z każdej strony. Odłóż na bok.
+> Rozgrzej wok z olejem. Obsmaż kawałki mięsa w jednej warstwie, partiami jeśli trzeba, aż się zrumienią; odłóż na bok.
 > Zmniejsz nieco ogień, dodaj czosnek, imbir i pastę doubanjiang; smaż 20–30 sekund, aż uwolnią aromat.
 > Wlej olej sezamowy oraz 1–2 łyżki wody, po czym zeskrob z dna przyprawy i utwórz lekki sos.
 > Włóż filet z kurczaka z powrotem, dokładnie obtocz w sosie i podgrzej do pełnej gotowości. Podawaj od razu.
@@ -1899,11 +1899,11 @@ export const SEED_CURATED = `
 8 g | cukier
 30 g | ananas
 12 ml | olej rzepakowy
-> Wołowina pokrój w cienkie, równe paski lub niewielkie kawałki. Ananasa pokrój na niewielkie kawałki.
+> Wołowinę pokrój w cienkie, równe paski lub niewielkie kawałki. Ananasa pokrój na niewielkie kawałki.
 > W miseczce rozmieszaj ketchup, ocet ryżowy i cukier, aż kryształki cukru się rozpuszczą.
 > Mocno rozgrzej wok z olejem. Obsmaż partiami na mocnym ogniu, aż kawałki będą zrumienione i w pełni ugotowane; odłóż na talerz.
 > Wrzuć ananasa na patelnię i smaż około minuty; wlej przygotowany sos oraz 1–2 łyżki wody, jeśli trzeba go rozrzedzić.
-> Włóż wołowina z powrotem, wymieszaj i podgrzewaj do uzyskania błyszczącej glazury. Sprawdź wysmażenie i podawaj natychmiast.
+> Włóż wołowinę z powrotem, wymieszaj i podgrzewaj do uzyskania błyszczącej glazury. Sprawdź wysmażenie i podawaj natychmiast.
 
 # Wołowina kung pao
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -2214,11 +2214,11 @@ export const SEED_CURATED = `
 8 g | cukier
 30 g | ananas
 12 ml | olej rzepakowy
-> Wieprzowina pokrój w cienkie, równe paski lub niewielkie kawałki. Ananasa pokrój na niewielkie kawałki.
+> Wieprzowinę pokrój w cienkie, równe paski lub niewielkie kawałki. Ananasa pokrój na niewielkie kawałki.
 > W miseczce rozmieszaj ketchup, ocet ryżowy i cukier, aż kryształki cukru się rozpuszczą.
 > Mocno rozgrzej wok z olejem. Obsmaż partiami na mocnym ogniu, aż kawałki będą zrumienione i w pełni ugotowane; odłóż na talerz.
 > Wrzuć ananasa na patelnię i smaż około minuty; wlej przygotowany sos oraz 1–2 łyżki wody, jeśli trzeba go rozrzedzić.
-> Włóż wieprzowina z powrotem, wymieszaj i podgrzewaj do uzyskania błyszczącej glazury. Sprawdź wysmażenie i podawaj natychmiast.
+> Włóż wieprzowinę z powrotem, wymieszaj i podgrzewaj do uzyskania błyszczącej glazury. Sprawdź wysmażenie i podawaj natychmiast.
 
 # Wieprzowina kung pao
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -2319,11 +2319,11 @@ export const SEED_CURATED = `
 8 g | cukier
 30 g | ananas
 12 ml | olej rzepakowy
-> Kaczka pokrój w cienkie, równe paski lub niewielkie kawałki. Ananasa pokrój na niewielkie kawałki.
+> Kaczkę pokrój w cienkie, równe paski lub niewielkie kawałki. Ananasa pokrój na niewielkie kawałki.
 > W miseczce rozmieszaj ketchup, ocet ryżowy i cukier, aż kryształki cukru się rozpuszczą.
 > Mocno rozgrzej wok z olejem. Obsmaż partiami na mocnym ogniu, aż kawałki będą zrumienione i w pełni ugotowane; odłóż na talerz.
 > Wrzuć ananasa na patelnię i smaż około minuty; wlej przygotowany sos oraz 1–2 łyżki wody, jeśli trzeba go rozrzedzić.
-> Włóż kaczka z powrotem, wymieszaj i podgrzewaj do uzyskania błyszczącej glazury. Sprawdź wysmażenie i podawaj natychmiast.
+> Włóż kaczkę z powrotem, wymieszaj i podgrzewaj do uzyskania błyszczącej glazury. Sprawdź wysmażenie i podawaj natychmiast.
 
 # Kaczka kung pao
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
