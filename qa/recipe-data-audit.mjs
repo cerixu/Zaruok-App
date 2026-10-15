@@ -100,6 +100,35 @@ for (const block of curatedBlocks) {
   }
 }
 
+
+const criticalRecipes = new Map([
+  ['Sernik krakowski', [/temperaturze odpowiedniej dla rodzaju wypieku/i, /owoce pokrój i dopraw/i, /masę serową/i]],
+  ['Pączki różane', [/nagrzej piekarnik do temperatury odpowiedniej/i, /jeśli receptura zawiera/i, /piecz, gotuj albo schładzaj/i]],
+  ['Profiteroles', [/temperaturze odpowiedniej dla tego deseru/i, /jeśli receptura zawiera/i, /piecz, gotuj albo schładzaj/i]],
+  ['Amerykańska szarlotka', [/masę serową/i, /temperaturze odpowiedniej dla rodzaju wypieku/i]],
+  ['Bułeczki cynamonowe', [/temperaturze odpowiedniej dla tego deseru/i, /piecz, gotuj albo schładzaj/i]],
+  ['Tres leches', [/temperaturze odpowiedniej dla tego deseru/i, /piecz, gotuj albo schładzaj/i]],
+  ['Baklava', [/temperaturze odpowiedniej dla tego deseru/i, /piecz, gotuj albo schładzaj/i]],
+  ['Basbousa', [/temperaturze odpowiedniej dla tego deseru/i, /piecz, gotuj albo schładzaj/i]],
+  ['Matcha tiramisu', [/temperaturze odpowiedniej dla tego deseru/i, /piecz, gotuj albo schładzaj/i]],
+]);
+for (const [name, patterns] of criticalRecipes) {
+  const block = curatedBlocks.find((item) => item.startsWith('# ' + name + '\\n'));
+  if (!block) { issues.push('Brak receptury wymaganej w kontroli jakości: ' + name); continue; }
+  const steps = [...block.matchAll(/^> (.+)$/gm)].map((m) => m[1]);
+  for (const pattern of patterns) {
+    if (steps.some((step) => pattern.test(step))) issues.push('Pozostała instrukcja-szablon (' + pattern + '): ' + name);
+  }
+}
+for (const [name, badForm] of [
+  ['Wołowina po syczuańsku', /Wołowina pokrój|Włóż wołowina/],
+  ['Kaczka po syczuańsku', /Kaczka pokrój|Włóż kaczka/],
+  ['Wieprzowina po syczuańsku', /Wieprzowina pokrój|Włóż wieprzowina/],
+]) {
+  const block = curatedBlocks.find((item) => item.startsWith('# ' + name + '\\n')) || '';
+  if (badForm.test(block)) issues.push('Błąd odmiany w recepturze: ' + name);
+}
+
 const handSource = fs.readFileSync('recipes.js', 'utf8');
 const handIds = ['rcp_seed_pizza', 'rcp_seed_carbonara', 'rcp_seed_sos'];
 const handCount = handIds.filter((id) => handSource.includes("id: '" + id + "'")).length;
