@@ -796,17 +796,7 @@ export const SEED_CURATED = `
 > Dodaj ziemniaki i gotuj łagodnie 12–15 minut, aż zmiękną. Jeśli zupa jest zbyt gęsta, dolej trochę bulionu.
 > Dodaj małże na ostatnie 3–5 minut, tylko do ich ogrzania i pełnego ugotowania; nie gotuj długo, by nie stwardniały.
 > Dopraw pieprzem i solą po spróbowaniu, a następnie podawaj gorącą.
-: Kremowa zupa z małżami i ziemniakami.
-80 g | małże
-70 g | ziemniaki
-30 ml | śmietana 18%
-20 g | seler naciowy
-15 g | boczek
-> Pokrój cebulę, seler i ziemniaki w niewielką kostkę. Podsmaż cebulę i seler na maśle, aż zmiękną.
-> Jeśli receptura zawiera boczek, wytop go na początku i wykorzystaj tłuszcz do warzyw.
-> Wsyp mąkę, jeśli jest w składnikach, i mieszaj minutę. Stopniowo wlej bulion oraz mleko lub śmietankę, mieszając, aby nie powstały grudki.
-> Dodaj ziemniaki i gotuj, aż będą miękkie. Małże dodaj pod koniec i podgrzej krótko, aby nie stwardniały.
-> Dopraw i podawaj gorącą.
+
 
 # Pozole
 @ cat=zupy origin=MX trad servings=1 prep=25 cook=38 art=soup tags=tradycyjne,zupa,kuchnia-meksykańska
@@ -1144,16 +1134,7 @@ export const SEED_CURATED = `
 > Dodaj pastę pistacjową i gotuj bardzo łagodnie 8–10 minut, często mieszając, aż masa lekko zgęstnieje.
 > Ostudź, przelej do małych foremek i zamrażaj minimum 6 godzin. Po pierwszej godzinie przemieszaj masę, jeśli nie używasz foremek do kulfi.
 > Wyjmij z zamrażarki 5 minut przed podaniem i posyp odłożonymi pistacjami.
-: Indyjskie lody pistacjowe.
-150 ml | mleko pełne
-20 g | pistacje
-25 g | cukier
-1 g | kardamon
-> Podgrzej mleko lub śmietankę z cukrem i dodatkami aromatycznymi, mieszając do rozpuszczenia cukru.
-> Jeśli receptura zawiera orzechy, czekoladę lub pastę smakową, wmieszaj je w tym momencie.
-> Ostudź masę szybko, a następnie schłodź w lodówce, aż będzie zimna.
-> Przelej do maszyny do lodów albo pojemnika. W przypadku mrożenia bez maszyny mieszaj masę co 30–45 minut, aby ograniczyć kryształki lodu.
-> Zamrażaj do uzyskania odpowiedniej konsystencji i wyjmij kilka minut przed podaniem.
+
 
 # Matcha tiramisu
 @ cat=desery origin=JP trad servings=1 prep=28 cook=42 art=dessert tags=tradycyjne,deser,kuchnia-japońska
@@ -1292,16 +1273,7 @@ export const SEED_CURATED = `
 > Zwilż dłonie, oprósz je solą i uformuj porcję ryżu wokół łososia w trójkąt, dokładnie zamykając farsz.
 > Podziel arkusz nori na paski i owiń nimi onigiri bezpośrednio przed jedzeniem, żeby pozostały chrupiące.
 > Podawaj od razu lub przechowuj krótko w lodówce, szczelnie owinięte, aby ryż nie wysechł.
-: Kulki ryżowe z nadzieniem z łososia.
-90 g | ryż sushi
-30 g | łosoś
-1 szt. | nori
-1 g | sól
-> Ugotuj ryż krótkoziarnisty zgodnie z instrukcją, aż będzie kleisty. Ostudź tylko na tyle, by dało się go formować.
-> Przygotuj nadzienie z łososia i pozostałych składników z listy.
-> Zwilż dłonie wodą, oprósz solą i uformuj porcję ryżu wokół nadzienia w trójkąt lub owal.
-> Jeśli receptura zawiera nori, owiń nim onigiri tuż przed podaniem, aby nie straciło chrupkości.
-> Podawaj w temperaturze pokojowej.
+
 
 # Huevos rancheros
 @ cat=inne origin=MX trad servings=1 prep=7 cook=10 art=food tags=tradycyjne,śniadanie,kuchnia-meksykańska
@@ -1455,18 +1427,7 @@ export const SEED_CURATED = `
 > Podziel ciasto na trzy wałki, zapleć chałkę i przełóż na blachę z papierem do pieczenia.
 > Odstaw na 30–45 minut do napuszenia, posmaruj resztą jajka i piecz w 180°C przez około 20–25 minut, aż wierzch będzie złoty.
 > Przełóż na kratkę i ostudź przed krojeniem.
-: Zaplatana chałka z jajkiem.
-110 g | mąka pszenna
-28 g | jajko (roztrzepane)
-55 ml | woda
-10 g | cukier
-3 g | drożdże
-10 ml | olej
-> Połącz składniki i wyrób ciasto do uzyskania odpowiedniej elastyczności. Tłuszcz dodawaj stopniowo, jeśli przewidziano go w recepturze.
-> Przykryj ciasto i pozostaw do fermentacji lub odpoczynku, aż wyraźnie zwiększy objętość.
-> Podziel i uformuj pieczywo. Jeśli ciasto stawia opór, odstaw na kilka minut przed dalszym formowaniem.
-> Pozostaw do końcowego wyrośnięcia, a następnie piecz w temperaturze odpowiedniej dla danego rodzaju pieczywa, aż skórka będzie dobrze zrumieniona.
-> Studź na kratce przed krojeniem.
+
 
 # Sos pomidorowy napolitano
 @ cat=sosy origin=IT trad servings=1 prep=8 art=food tags=tradycyjne,sos,kuchnia-włoska
@@ -2716,16 +2677,7 @@ export const SEED_CURATED = `
 > Dodaj kurczaka i gotuj łagodnie 6–8 minut, aż będzie całkowicie ugotowany.
 > Wlej mleko kokosowe i sos rybny; podgrzewaj na małym ogniu bez gwałtownego wrzenia.
 > Zdejmij z ognia, dodaj sok z limonki, spróbuj i dopraw do zrównoważenia słodyczy, kwasowości i słoności.
-: Zupa tajska z mlekiem kokosowym — jedna głęboka miska.
-150 ml | mleko kokosowe
-60 g | kurczak
-6 g | trawa cytrynowa
-0,3 szt. | limonka
-> Warzywa i pozostałe składniki oczyść oraz pokrój. Jeśli receptura zawiera mięso lub aromaty, obsmaż je krótko przed dodaniem płynu.
-> Dodaj bulion lub wodę oraz twardsze składniki, które potrzebują najdłuższego gotowania.
-> Gotuj na łagodnym ogniu, aż składniki będą miękkie. Delikatne warzywa, makaron lub owoce morza dodaj później, by ich nie rozgotować.
-> Dopraw pod koniec. Śmietanę, cytrynę lub zioła dodaj stopniowo, próbując smak po każdym dodatku.
-> Dodaj mleko kokosowe i podgrzewaj na małym ogniu, nie doprowadzając do gwałtownego wrzenia. Dopraw sokiem z limonki i podawaj od razu, gdy kurczak jest całkowicie ugotowany.
+
 
 # Zupa miso z małżami
 @ cat=zupy origin=JP servings=1 prep=14 cook=21 art=soup tags=zupa,krem,kuchnia-japońska
@@ -2751,16 +2703,7 @@ export const SEED_CURATED = `
 > Pokrój pak choi na kawałki, dodaj białe części na 2 minuty, a liście na ostatnią minutę gotowania.
 > Wlej sos sojowy, spróbuj bulionu i w razie potrzeby dopraw odrobiną pieprzu lub kilku kroplami oleju sezamowego.
 > Przełóż wontony i warzywa do miski, zalej bulionem i podawaj natychmiast.
-: Zupa wonton — jedna głęboka miska.
-80 g | wonton
-220 ml | bulion
-40 g | pak choi
-8 ml | sos sojowy
-> Warzywa i pozostałe składniki oczyść oraz pokrój. Jeśli receptura zawiera mięso lub aromaty, obsmaż je krótko przed dodaniem płynu.
-> Dodaj bulion lub wodę oraz twardsze składniki, które potrzebują najdłuższego gotowania.
-> Gotuj na łagodnym ogniu, aż składniki będą miękkie. Delikatne warzywa, makaron lub owoce morza dodaj później, by ich nie rozgotować.
-> Dopraw pod koniec. Śmietanę, cytrynę lub zioła dodaj stopniowo, próbując smak po każdym dodatku.
-> Włóż wontony do delikatnie gotującego się bulionu i gotuj zgodnie z rodzajem farszu, zwykle 4–6 minut. Dodaj pak choi i sos sojowy pod koniec, aby warzywa pozostały jędrne.
+
 
 # Zupa ramen miso
 @ cat=zupy origin=JP servings=1 prep=14 cook=21 art=soup tags=zupa,krem,kuchnia-japońska
@@ -2787,16 +2730,7 @@ export const SEED_CURATED = `
 > Pokrój chashu cienko i podgrzej je przez chwilę w bulionie; nori potnij na paski.
 > Przełóż makaron do rozgrzanej miski, ułóż na nim chashu i nori, a następnie zalej gorącym bulionem.
 > Podawaj natychmiast, zanim makaron nasiąknie bulionem i straci sprężystość.
-: Zupa ramen tonkotsu — jedna głęboka miska.
-90 g | makaron ramen
-250 ml | bulion tonkotsu
-40 g | chashu
-1 szt. | nori
-> Przygotuj bulion i dodatki. Mięso pokrój cienko, warzywa oczyść, a jajko lub inne dodatki przygotuj osobno, jeśli wymaga tego receptura.
-> Podgrzewaj bulion z aromatami na małym ogniu, aby nabrał smaku. Nie pozwól mu gwałtownie odparować.
-> Ugotuj makaron osobno zgodnie z instrukcją i odcedź.
-> Ułóż makaron w misce, dodaj dodatki i zalej gorącym bulionem.
-> Wykończ ziołami, olejem aromatyzowanym lub przyprawami z listy i podawaj natychmiast.
+
 
 # Fusilli ze szpinakiem i ricottą
 @ cat=pasta origin=IT servings=1 prep=10 cook=15 art=pasta tags=makaron,kuchnia-włoska
@@ -3262,15 +3196,7 @@ export const SEED_CURATED = `
 > Roztrzep jajka z łyżeczką wody, wlej na patelnię i rozprowadź masę po całym dnie.
 > Smaż na małym ogniu, podważając brzegi, aż spód się zetnie, a wierzch pozostanie lekko wilgotny.
 > Złóż omlet na pół, dodaj pozostałe masło na wierzch i podawaj od razu.
-: Omlet z pieczarkami — szybkie śniadanie.
-2 szt. | jajko
-50 g | pieczarki
-10 g | masło
-> Oczyść pieczarki i pokrój je w cienkie plasterki. Roztrzep jajka ze szczyptą soli i przygotuj masło do smażenia.
-> Rozgrzej patelnię na małym lub średnim ogniu i dodaj masło albo olej z receptury.
-> Dodaj dodatki, które wymagają podsmażenia, i przygotuj je do miękkości. Wlej jajka lub masę jajeczną.
-> Smaż łagodnie, mieszając albo składając masę zależnie od dania. Zdejmij z ognia, gdy jajka są ścięte, ale nadal wilgotne.
-> Pokrój pieczarki i podsmaż je na części masła, aż odparują. Wlej roztrzepane jajka, smaż na małym ogniu do ścięcia spodu, złóż omlet i podawaj na gorąco.
+
 
 # Omlet ze szpinakiem
 @ cat=inne servings=1 prep=5 cook=7 art=food tags=jajka,śniadanie
@@ -3283,15 +3209,7 @@ export const SEED_CURATED = `
 > Wlej jajka na patelnię i rozprowadź je równomiernie wokół szpinaku.
 > Gdy spód zacznie się ścinać, posyp wierzch fetą i smaż na małym ogniu pod przykryciem, aż jajka będą ścięte.
 > Złóż omlet delikatnie na pół i podawaj natychmiast, zanim feta i szpinak puszczą dodatkową wilgoć.
-: Omlet ze szpinakiem — szybkie śniadanie.
-2 szt. | jajko
-40 g | szpinak
-20 g | feta
-> Opłucz szpinak i osusz go dokładnie. Pokrusz fetę, roztrzep jajka ze szczyptą soli i rozgrzej patelnię z masłem.
-> Rozgrzej patelnię na małym lub średnim ogniu i dodaj masło albo olej z receptury.
-> Dodaj dodatki, które wymagają podsmażenia, i przygotuj je do miękkości. Wlej jajka lub masę jajeczną.
-> Smaż łagodnie, mieszając albo składając masę zależnie od dania. Zdejmij z ognia, gdy jajka są ścięte, ale nadal wilgotne.
-> Krótko podsmaż szpinak i odparuj nadmiar płynu. Wlej roztrzepane jajka na patelnię z masłem, dodaj szpinak i pokruszoną fetę, a następnie smaż do ścięcia jaj.
+
 
 # Omlet z serem
 @ cat=inne servings=1 prep=5 cook=7 art=food tags=jajka,śniadanie
@@ -3304,15 +3222,7 @@ export const SEED_CURATED = `
 > Wlej jajka i smaż bez pośpiechu, podważając brzegi, aby płynna masa spływała pod spód.
 > Gdy wierzch będzie jeszcze lekko wilgotny, posyp omlet serem i przykryj patelnię na 30–60 sekund.
 > Złóż omlet na pół, poczekaj aż ser się roztopi i podawaj od razu.
-: Omlet z serem — szybkie śniadanie.
-2 szt. | jajko
-25 g | ser żółty
-10 g | masło
-> Zetrzyj ser na grubych oczkach. Roztrzep jajka ze szczyptą soli i roztop masło na patelni na średnio małym ogniu.
-> Rozgrzej patelnię na małym lub średnim ogniu i dodaj masło albo olej z receptury.
-> Dodaj dodatki, które wymagają podsmażenia, i przygotuj je do miękkości. Wlej jajka lub masę jajeczną.
-> Smaż łagodnie, mieszając albo składając masę zależnie od dania. Zdejmij z ognia, gdy jajka są ścięte, ale nadal wilgotne.
-> Roztrzep jajka i wlej na patelnię z roztopionym masłem. Gdy spód zacznie się ścinać, posyp serem, złóż omlet na pół i smaż jeszcze chwilę, aż ser się roztopi.
+
 
 # Jajka sadzone na maśle
 @ cat=inne servings=1 prep=5 cook=7 art=food tags=jajka,śniadanie
@@ -3349,15 +3259,7 @@ export const SEED_CURATED = `
 > Wlej jajka na cukinię, potrząśnij patelnią, aby masa równomiernie się rozlała, i posyp parmezanem.
 > Smaż pod przykryciem na małym ogniu 4–5 minut, aż brzegi będą ścięte, a środek prawie gotowy.
 > Dokończ pod gorącym grillem przez 1–2 minuty lub ostrożnie odwróć frittatę; odstaw na minutę przed podaniem.
-: Frittata z cukinią — szybkie śniadanie.
-2 szt. | jajko
-60 g | cukinia
-15 g | parmezan
-> Pokrój cukinię w cienkie półplasterki i zetrzyj parmezan. Roztrzep jajka ze szczyptą soli, przygotuj patelnię i rozgrzej ją na średnim ogniu.
-> Rozgrzej patelnię na małym lub średnim ogniu i dodaj masło albo olej z receptury.
-> Dodaj dodatki, które wymagają podsmażenia, i przygotuj je do miękkości. Wlej jajka lub masę jajeczną.
-> Smaż łagodnie, mieszając albo składając masę zależnie od dania. Zdejmij z ognia, gdy jajka są ścięte, ale nadal wilgotne.
-> Pokrój cukinię w cienkie półplasterki i podsmaż na patelni. Wlej roztrzepane jajka, posyp parmezanem i smaż na małym ogniu pod przykryciem, aż masa się zetnie; w razie potrzeby dopiecz krótko pod grillem.
+
 
 # Frittata z ziemniakami
 @ cat=inne servings=1 prep=5 cook=7 art=food tags=jajka,śniadanie
@@ -3370,13 +3272,4 @@ export const SEED_CURATED = `
 > Dodaj plastry ziemniaków i smaż jeszcze 2 minuty, żeby lekko się zrumieniły.
 > Wlej roztrzepane jajka, rozprowadź je między ziemniakami i smaż pod przykryciem na małym ogniu do ścięcia brzegów.
 > Ostrożnie obróć frittatę lub dopiecz jej wierzch pod grillem; odstaw na minutę przed pokrojeniem.
-: Frittata z ziemniakami — szybkie śniadanie.
-2 szt. | jajko
-70 g | ziemniaki
-0,5 szt. | cebula
-> Ugotowane ziemniaki pokrój w plastry, a cebulę w cienkie piórka. Roztrzep jajka ze szczyptą soli i przygotuj patelnię z odrobiną tłuszczu.
-> Rozgrzej patelnię na małym lub średnim ogniu i dodaj masło albo olej z receptury.
-> Dodaj dodatki, które wymagają podsmażenia, i przygotuj je do miękkości. Wlej jajka lub masę jajeczną.
-> Smaż łagodnie, mieszając albo składając masę zależnie od dania. Zdejmij z ognia, gdy jajka są ścięte, ale nadal wilgotne.
-> Ugotowane ziemniaki pokrój w plastry i podsmaż z cebulą. Wlej roztrzepane jajka, smaż pod przykryciem na małym ogniu do ścięcia, a następnie ostrożnie obróć lub dopiecz pod grillem.
-`;
+
