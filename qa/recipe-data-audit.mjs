@@ -122,7 +122,7 @@ for (const block of curatedBlocks) {
   if (/\btags=wok\b/.test(meta)) {
     const firstIngredient = ingredients[0]?.split('|').slice(1).join('|').trim() || '';
     const expectedCategory = /krewetki/i.test(firstIngredient) ? 'owoce-morza' : /tofu/i.test(firstIngredient) ? 'warzywa' : 'mieso';
-    if (!new RegExp('\bcat=' + expectedCategory + '\b').test(meta)) issues.push('Nieprawidłowa kategoria dania z woka: ' + name);
+    if (!new RegExp('\\bcat=' + expectedCategory + '\\b').test(meta)) issues.push('Nieprawidłowa kategoria dania z woka: ' + name);
   }
 }
 
