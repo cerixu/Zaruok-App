@@ -3285,4 +3285,4 @@ export const SEED_CURATED = `
 > Dodaj plastry ziemniaków i smaż jeszcze 2 minuty, żeby lekko się zrumieniły.
 > Wlej roztrzepane jajka, rozprowadź je między ziemniakami i smaż pod przykryciem na małym ogniu do ścięcia brzegów.
 > Ostrożnie obróć frittatę lub dopiecz jej wierzch pod grillem; odstaw na minutę przed pokrojeniem.
-
+`;
