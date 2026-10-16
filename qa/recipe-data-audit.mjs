@@ -103,14 +103,14 @@ const GENERIC_STEPS = [
   /Jeśli używasz shakera, napełnij go lodem i wstrząśnij do mocnego schłodzenia/i,
   /Przecedź do szkła z lodem lub do schłodzonego kieliszka, zgodnie ze sposobem podania/i,
   /Udekoruj składnikiem z listy i podawaj od razu/i,
-  /Przygotuj dodatki i pokrój je na równe kawałki\\. Jeśli używasz makaronu, ugotuj go osobno\\./i,
+  /Przygotuj dodatki i pokrój je na równe kawałki\. Jeśli używasz makaronu, ugotuj go osobno\./i,
   /Dodaj tofu, glony, warzywa lub owoce morza z receptury/i,
 ];
 for (const block of curatedBlocks) {
   const name = block.split('\n')[0].slice(2).trim();
   const ingredients = block.split('\n').filter((line) => line.includes('|') && !line.startsWith('@ '));
   const steps = [...block.matchAll(/^> (.+)$/gm)].map((m) => m[1].trim());
-  const hasTofuIngredient = ingredients.some((line) => /\\|\\s*tofu(?:\\s|$)/i.test(line));
+  const hasTofuIngredient = ingredients.some((line) => /\|\s*tofu(?:\s|$)/i.test(line));
   if (!hasTofuIngredient && steps.some((step) => /tofu odłóż na bok/i.test(step))) {
     issues.push('Krok odwołuje się do tofu, którego nie ma w składnikach: ' + name);
   }
