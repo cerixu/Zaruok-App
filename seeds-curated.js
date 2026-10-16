@@ -780,6 +780,22 @@ export const SEED_CURATED = `
 
 # Clam chowder
 @ cat=zupy origin=US trad servings=1 prep=20 cook=29 art=soup tags=tradycyjne,zupa,kuchnia-amerykańska
+: Kremowa zupa z małżami, ziemniakami i boczkiem.
+80 g | małże
+70 g | ziemniaki
+30 ml | śmietana 18%
+20 g | seler naciowy
+15 g | boczek
+8 g | masło
+8 g | mąka pszenna
+120 ml | bulion rybny lub drobiowy
+80 ml | mleko
+0,25 szt. | cebula
+> Pokrój cebulę, seler i ziemniaki w drobną kostkę. Boczek wytop w garnku, dodaj masło, cebulę i seler; smaż 3–4 minuty.
+> Wsyp mąkę i mieszaj przez minutę, następnie stopniowo wlewaj bulion, mleko i śmietanę, cały czas mieszając.
+> Dodaj ziemniaki i gotuj łagodnie 12–15 minut, aż zmiękną. Jeśli zupa jest zbyt gęsta, dolej trochę bulionu.
+> Dodaj małże na ostatnie 3–5 minut, tylko do ich ogrzania i pełnego ugotowania; nie gotuj długo, by nie stwardniały.
+> Dopraw pieprzem i solą po spróbowaniu, a następnie podawaj gorącą.
 : Kremowa zupa z małżami i ziemniakami.
 80 g | małże
 70 g | ziemniaki
@@ -1118,6 +1134,16 @@ export const SEED_CURATED = `
 
 # Kulfi pistacjowe
 @ cat=desery origin=IN trad servings=1 prep=18 cook=26 art=dessert tags=tradycyjne,deser,kuchnia-indyjska
+: Indyjskie lody pistacjowe z kardamonem.
+150 ml | mleko pełne
+20 g | pistacje
+25 g | cukier
+1 g | kardamon
+> Posiekaj pistacje drobno; odłóż łyżeczkę do dekoracji, a resztę utrzyj lub zmiksuj na pastę z odrobiną mleka.
+> Podgrzewaj mleko z cukrem i kardamonem na małym ogniu, mieszając, aż cukier się rozpuści.
+> Dodaj pastę pistacjową i gotuj bardzo łagodnie 8–10 minut, często mieszając, aż masa lekko zgęstnieje.
+> Ostudź, przelej do małych foremek i zamrażaj minimum 6 godzin. Po pierwszej godzinie przemieszaj masę, jeśli nie używasz foremek do kulfi.
+> Wyjmij z zamrażarki 5 minut przed podaniem i posyp odłożonymi pistacjami.
 : Indyjskie lody pistacjowe.
 150 ml | mleko pełne
 20 g | pistacje
@@ -1256,6 +1282,16 @@ export const SEED_CURATED = `
 
 # Onigiri z łososiem
 @ cat=inne origin=JP trad servings=1 prep=6 cook=10 art=food tags=tradycyjne,śniadanie,kuchnia-japońska
+: Japońskie kulki ryżowe z nadzieniem z łososia i nori.
+90 g | ryż sushi
+30 g | łosoś
+1 szt. | nori
+1 g | sól
+> Ugotuj ryż sushi w proporcji zalecanej na opakowaniu, aż będzie kleisty; odstaw pod przykryciem na 10 minut.
+> Upiecz łososia na patelni lub w piekarniku do pełnego ugotowania, ostudź i rozdrobnij widelcem.
+> Zwilż dłonie, oprósz je solą i uformuj porcję ryżu wokół łososia w trójkąt, dokładnie zamykając farsz.
+> Podziel arkusz nori na paski i owiń nimi onigiri bezpośrednio przed jedzeniem, żeby pozostały chrupiące.
+> Podawaj od razu lub przechowuj krótko w lodówce, szczelnie owinięte, aby ryż nie wysechł.
 : Kulki ryżowe z nadzieniem z łososia.
 90 g | ryż sushi
 30 g | łosoś
@@ -1406,7 +1442,19 @@ export const SEED_CURATED = `
 > Studź na kratce przed przekrojeniem.
 
 # Challah
-@ cat=pieczywo servings=1 prep=72 cook=108 art=bread tags=tradycyjne,pieczywo,pieczone
+@ cat=pieczywo servings=1 prep=72 cook=28 art=bread tags=tradycyjne,pieczywo,pieczone
+: Zaplatana chałka z jajkiem, delikatnie słodka i złocista.
+110 g | mąka pszenna
+28 g | jajko (roztrzepane)
+55 ml | woda
+10 g | cukier
+3 g | drożdże
+10 ml | olej
+> Wymieszaj wodę, cukier i drożdże, odstaw na 5 minut, następnie dodaj mąkę oraz większość jajka i wyrabiaj 5–7 minut.
+> Wlej olej cienkim strumieniem i wyrabiaj dalej, aż ciasto będzie gładkie i elastyczne. Przykryj i pozostaw do podwojenia objętości.
+> Podziel ciasto na trzy wałki, zapleć chałkę i przełóż na blachę z papierem do pieczenia.
+> Odstaw na 30–45 minut do napuszenia, posmaruj resztą jajka i piecz w 180°C przez około 20–25 minut, aż wierzch będzie złoty.
+> Przełóż na kratkę i ostudź przed krojeniem.
 : Zaplatana chałka z jajkiem.
 110 g | mąka pszenna
 28 g | jajko (roztrzepane)
@@ -2655,6 +2703,19 @@ export const SEED_CURATED = `
 
 # Zupa tajska z mlekiem kokosowym
 @ cat=zupy servings=1 prep=14 cook=21 art=soup tags=zupa,krem,kuchnia-azjatycka
+: Aromatyczna zupa kokosowa z kurczakiem, trawą cytrynową i limonką.
+150 ml | mleko kokosowe
+60 g | kurczak
+6 g | trawa cytrynowa
+0,3 szt. | limonka
+200 ml | bulion drobiowy
+5 g | imbir
+5 ml | sos rybny
+> Pokrój kurczaka w cienkie paski, rozgnieć trawę cytrynową i zetrzyj imbir. Z limonki wyciśnij sok, a skórkę zetrzyj.
+> Zagotuj bulion z trawą cytrynową i imbirem przez 5 minut, aby uwolnić aromat.
+> Dodaj kurczaka i gotuj łagodnie 6–8 minut, aż będzie całkowicie ugotowany.
+> Wlej mleko kokosowe i sos rybny; podgrzewaj na małym ogniu bez gwałtownego wrzenia.
+> Zdejmij z ognia, dodaj sok z limonki, spróbuj i dopraw do zrównoważenia słodyczy, kwasowości i słoności.
 : Zupa tajska z mlekiem kokosowym — jedna głęboka miska.
 150 ml | mleko kokosowe
 60 g | kurczak
@@ -2680,6 +2741,16 @@ export const SEED_CURATED = `
 
 # Zupa wonton
 @ cat=zupy servings=1 prep=14 cook=21 art=soup tags=zupa,krem,kuchnia-azjatycka
+: Delikatna zupa z pierożkami wonton i pak choi.
+80 g | wonton
+220 ml | bulion
+40 g | pak choi
+8 ml | sos sojowy
+> Zagotuj bulion, a następnie zmniejsz ogień, by tylko delikatnie pyrkał.
+> Włóż wontony do bulionu i gotuj zgodnie z instrukcją opakowania, zwykle 4–6 minut; nie mieszaj energicznie, żeby ich nie rozerwać.
+> Pokrój pak choi na kawałki, dodaj białe części na 2 minuty, a liście na ostatnią minutę gotowania.
+> Wlej sos sojowy, spróbuj bulionu i w razie potrzeby dopraw odrobiną pieprzu lub kilku kroplami oleju sezamowego.
+> Przełóż wontony i warzywa do miski, zalej bulionem i podawaj natychmiast.
 : Zupa wonton — jedna głęboka miska.
 80 g | wonton
 220 ml | bulion
@@ -2706,6 +2777,16 @@ export const SEED_CURATED = `
 
 # Zupa ramen tonkotsu
 @ cat=zupy origin=JP servings=1 prep=14 cook=21 art=soup tags=zupa,krem,kuchnia-japońska
+: Ramen na bogatym bulionie tonkotsu z chashu i nori.
+90 g | makaron ramen
+250 ml | bulion tonkotsu
+40 g | chashu
+1 szt. | nori
+> Podgrzej bulion tonkotsu w małym garnku, utrzymując delikatne wrzenie; nie redukuj go mocno, aby nie stał się zbyt słony.
+> Ugotuj makaron ramen osobno zgodnie z instrukcją na opakowaniu, odcedź i nie płucz, jeśli ma trafić od razu do miski.
+> Pokrój chashu cienko i podgrzej je przez chwilę w bulionie; nori potnij na paski.
+> Przełóż makaron do rozgrzanej miski, ułóż na nim chashu i nori, a następnie zalej gorącym bulionem.
+> Podawaj natychmiast, zanim makaron nasiąknie bulionem i straci sprężystość.
 : Zupa ramen tonkotsu — jedna głęboka miska.
 90 g | makaron ramen
 250 ml | bulion tonkotsu
@@ -3172,6 +3253,15 @@ export const SEED_CURATED = `
 
 # Omlet z pieczarkami
 @ cat=inne servings=1 prep=5 cook=7 art=food tags=jajka,śniadanie
+: Omlet z rumianymi pieczarkami.
+2 szt. | jajko
+50 g | pieczarki
+10 g | masło
+> Oczyść pieczarki i pokrój je w cienkie plasterki. Roztrzep jajka ze szczyptą soli.
+> Rozgrzej patelnię, dodaj połowę masła i smaż pieczarki 4–5 minut, aż odparują i lekko się zrumienią.
+> Roztrzep jajka z łyżeczką wody, wlej na patelnię i rozprowadź masę po całym dnie.
+> Smaż na małym ogniu, podważając brzegi, aż spód się zetnie, a wierzch pozostanie lekko wilgotny.
+> Złóż omlet na pół, dodaj pozostałe masło na wierzch i podawaj od razu.
 : Omlet z pieczarkami — szybkie śniadanie.
 2 szt. | jajko
 50 g | pieczarki
@@ -3184,6 +3274,15 @@ export const SEED_CURATED = `
 
 # Omlet ze szpinakiem
 @ cat=inne servings=1 prep=5 cook=7 art=food tags=jajka,śniadanie
+: Omlet ze szpinakiem i fetą.
+2 szt. | jajko
+40 g | szpinak
+20 g | feta
+> Opłucz szpinak i osusz go dokładnie. Pokrusz fetę i roztrzep jajka ze szczyptą soli.
+> Rozgrzej patelnię z odrobiną masła, dodaj szpinak i smaż 1–2 minuty, aż zwiędnie i odparuje nadmiar płynu.
+> Wlej jajka na patelnię i rozprowadź je równomiernie wokół szpinaku.
+> Gdy spód zacznie się ścinać, posyp wierzch fetą i smaż na małym ogniu pod przykryciem, aż jajka będą ścięte.
+> Złóż omlet delikatnie na pół i podawaj natychmiast, zanim feta i szpinak puszczą dodatkową wilgoć.
 : Omlet ze szpinakiem — szybkie śniadanie.
 2 szt. | jajko
 40 g | szpinak
@@ -3196,6 +3295,15 @@ export const SEED_CURATED = `
 
 # Omlet z serem
 @ cat=inne servings=1 prep=5 cook=7 art=food tags=jajka,śniadanie
+: Puszysty omlet z roztopionym serem.
+2 szt. | jajko
+25 g | ser żółty
+10 g | masło
+> Zetrzyj ser na grubych oczkach i roztrzep jajka ze szczyptą soli.
+> Rozgrzej patelnię na małym ogniu i roztop masło, nie dopuszczając do zbrązowienia.
+> Wlej jajka i smaż bez pośpiechu, podważając brzegi, aby płynna masa spływała pod spód.
+> Gdy wierzch będzie jeszcze lekko wilgotny, posyp omlet serem i przykryj patelnię na 30–60 sekund.
+> Złóż omlet na pół, poczekaj aż ser się roztopi i podawaj od razu.
 : Omlet z serem — szybkie śniadanie.
 2 szt. | jajko
 25 g | ser żółty
