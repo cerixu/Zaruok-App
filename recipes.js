@@ -501,12 +501,48 @@ export async function restoreSeeds() {
   return seeds.length;
 }
 
-/** Po aktualizacji aplikacji dokłada TYLKO nowe przykłady (usunięte przez użytkownika nie wracają). */
+/** Po aktualizacji dokłada nowe przykłady i odświeża tylko nieedytowane receptury wbudowane. */
+function seedContentSignature(r) {
+  return JSON.stringify({
+    name: r.name, category: r.category, description: r.description, servings: r.servings,
+    yieldAmount: r.yieldAmount, yieldUnit: r.yieldUnit, prepTime: r.prepTime, cookTime: r.cookTime,
+    fermentTime: r.fermentTime, temperature: r.temperature, bakers: r.bakers,
+    traditional: r.traditional, origin: r.origin, art: r.art, tags: r.tags,
+    sections: (r.sections || []).map((s) => ({
+      name: s.name,
+      ingredients: (s.ingredients || []).map((i) => [i.name, i.amount, i.unit]),
+    })),
+    steps: (r.steps || []).map((s) => s.text || ''),
+  });
+}
+
 async function addNewSeeds() {
   let added = getSetting('seedsAdded');
   if (!Array.isArray(added)) added = [...LEGACY_SEED_IDS];       // wersja 1.0 miała tylko te trzy
   const have = new Set(added);
   const all = seedRecipes();
+  const contentFields = [
+    'name', 'category', 'description', 'servings', 'yieldAmount', 'yieldUnit', 'prepTime', 'cookTime',
+    'fermentTime', 'temperature', 'bakers', 'traditional', 'origin', 'art', 'tags', 'sections', 'steps', 'source', 'sourceUrl',
+  ];
+  const migrations = [];
+  for (const seed of all) {
+    const existing = state.recipes.get(seed.id);
+    if (!existing || existing.source !== 'Przepis przykładowy — edytuj lub usuń') continue;
+    // SaveRecipe aktualizuje updatedAt; taki przepis traktujemy jako zmieniony przez użytkownika i nie nadpisujemy go.
+    if (existing.updatedAt !== existing.createdAt) continue;
+    if (seedContentSignature(existing) === seedContentSignature(seed)) continue;
+    const next = { ...seed, ...existing };
+    contentFields.forEach((field) => { next[field] = seed[field]; });
+    next.createdAt = existing.createdAt;
+    next.updatedAt = Date.now();
+    migrations.push(next);
+  }
+  if (migrations.length) {
+    await db.putMany('recipes', migrations);
+    migrations.forEach((r) => state.recipes.set(r.id, r));
+  }
+
   const existingNames = new Set([...state.recipes.values()].map((r) => norm(r.name)));
   const fresh = all.filter((r) => !have.has(r.id) && !state.recipes.has(r.id) && !existingNames.has(norm(r.name)));
   if (fresh.length) {
@@ -514,7 +550,8 @@ async function addNewSeeds() {
     fresh.forEach((r) => state.recipes.set(r.id, r));
   }
   const ids = all.map((r) => r.id);
-  if (fresh.length || !Array.isArray(getSetting('seedsAdded')) || ids.length !== added.length) await setSetting('seedsAdded', ids);
+  if (fresh.length || migrations.length || !Array.isArray(getSetting('seedsAdded')) || ids.length !== added.length) await setSetting('seedsAdded', ids);
+  if (fresh.length || migrations.length) emit('recipes');
 }
 
 export { kv };
