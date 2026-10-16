@@ -92,6 +92,13 @@ try {
   await page.goto(base, { waitUntil: 'domcontentloaded' });
   await ready();
   await page.waitForTimeout(1200);
+  const releaseSheet = page.locator('#overlays .overlay').first();
+  await releaseSheet.waitFor({ state: 'visible', timeout: 5000 });
+  const releaseCopy = await releaseSheet.innerText();
+  assert(/Co nowego w 1\.9\.24/.test(releaseCopy), 'Okno startowe nie pokazuje dziennika zmian dla wersji 1.9.24.');
+  assert(releaseCopy.includes('konkretne zmiany aktualnej wersji'), 'Okno startowe nadal wyświetla nieaktualny opis wydania.');
+  assert(releaseCopy.includes('dziewięciu receptur wokowych'), 'Brak informacji o poprawkach receptur wokowych w dzienniku zmian.');
+  assert(releaseCopy.includes('sos ostrygowy'), 'Brak opisu korekty wegetariańskiego tofu w dzienniku zmian.');
   await dismissWhatsNew();
 
   const designStylesLoaded = await page.evaluate(() => Array.from(document.styleSheets).some((s) => s.href && s.href.includes('claude-completion.css')));
