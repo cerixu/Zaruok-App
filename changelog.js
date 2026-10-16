@@ -5,6 +5,16 @@
    ========================================================================== */
 
 export const CHANGELOG = Object.freeze({
+  '1.9.25': Object.freeze({
+    intro: 'Dokładniejsze ilustracje receptur i dodatków.',
+    items: [
+      'Poprawiono ilustracje 25 pozycji, które wcześniej dziedziczyły zbyt ogólny lub mylący obrazek kategorii.',
+      'Wieprzowina, pierogi z mięsem, risotto, frytki, ziemniaki puree i pieczone, ryż jaśminowy oraz kasze otrzymały trafniejsze motywy.',
+      'Dopracowano ilustracje wybranych sosów i dodatków — m.in. pesto, beszamelu, aioli, chimichurri, satayu orzechowego, winegretu, gremolaty i colesława.',
+      'Rozszerzono automatyczny audyt przypisań ilustracji, aby wychwytywał te konkretne przypadki przy kolejnych zmianach.'
+    ],
+    footer: 'Ilustracje są wbudowane w aplikację i działają także bez połączenia z internetem.'
+  }),
   '1.9.24': Object.freeze({
     intro: 'Naprawiono informacje o wydaniu i uzupełniono brakujące podsumowanie ostatnich poprawek.',
     items: [
