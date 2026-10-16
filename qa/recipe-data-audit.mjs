@@ -83,7 +83,7 @@ for (const file of SOURCES) {
 
 const curatedText = fs.readFileSync('seeds-curated.js', 'utf8');
 const curatedBlocks = curatedText.split(/\n(?=# )/).filter((block) => block.startsWith('# '));
-const GENERIC_STEPS = /^(?:Przygotuj bazę\.|Dodaj dodatki\.|Podawaj od razu\.|Przygotuj składniki\.|Dopraw i podawaj\.)$/i;
+const GENERIC_STEPS = [/^(?:Przygotuj bazę\.|Dodaj dodatki\.|Podawaj od razu\.|Przygotuj składniki\.|Dopraw i podawaj\.)$/i];
 for (const block of curatedBlocks) {
   const name = block.split('\n')[0].slice(2).trim();
   const ingredients = block.split('\n').filter((line) => line.includes('|') && !line.startsWith('@ '));
