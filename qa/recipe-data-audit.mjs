@@ -158,6 +158,19 @@ for (const block of curatedBlocks) {
   }
 }
 
+const GENERIC_PROTEIN_STEP = /\bobsmaż białko\b|\bbiałko partiami\b/i;
+for (const block of curatedBlocks) {
+  const name = block.split('\n')[0].slice(2).trim();
+  const steps = [...block.matchAll(/^> (.+)$/gm)].map((m) => m[1]);
+  if (steps.some((step) => GENERIC_PROTEIN_STEP.test(step))) {
+    issues.push('Zbyt ogólna instrukcja smażenia białka: ' + name);
+  }
+}
+const tofuPepper = curatedBlocks.find((block) => block.startsWith('# Tofu z czarnym pieprzem\n')) || '';
+if (/sos ostrygowy/i.test(tofuPepper)) {
+  issues.push('Tofu z czarnym pieprzem nie może domyślnie zawierać sosu ostrygowego.');
+}
+
 const handSource = fs.readFileSync('recipes.js', 'utf8');
 const handIds = ['rcp_seed_pizza', 'rcp_seed_carbonara', 'rcp_seed_sos'];
 const handCount = handIds.filter((id) => handSource.includes("id: '" + id + "'")).length;
