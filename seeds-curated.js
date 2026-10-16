@@ -712,17 +712,17 @@ export const SEED_CURATED = `
 
 # Miso shiru
 @ cat=zupy origin=JP trad servings=1 prep=14 cook=20 art=soup tags=tradycyjne,zupa,kuchnia-japońska
-: Japońska zupa miso z tofu i wakame.
+: Klasyczna japońska zupa miso z tofu, wakame i dymką na aromatycznym bulionie dashi.
 18 g | pasta miso
 220 ml | dashi
 40 g | tofu
 3 g | wakame
 8 g | cebula dymka
-> Przygotuj dodatki i pokrój je na równe kawałki. Jeśli używasz makaronu, ugotuj go osobno.
-> Podgrzej bulion, ale nie doprowadzaj go do gwałtownego wrzenia.
-> Rozprowadź pastę miso w niewielkiej ilości gorącego bulionu i wlej z powrotem do garnka. Nie gotuj intensywnie po dodaniu miso.
-> Dodaj tofu, glony, warzywa lub owoce morza z receptury i podgrzej do gotowości.
-> Podawaj od razu; świeże zioła dodaj na sam koniec.
+> Pokrój tofu w niewielką kostkę. Wakame przygotuj zgodnie z instrukcją na opakowaniu, jeśli używasz suszonych wodorostów; dymkę drobno posiekaj.
+> Podgrzej dashi w garnku do gorącej temperatury, ale nie doprowadzaj do gwałtownego wrzenia.
+> Odlej kilka łyżek gorącego dashi do miseczki, dodaj pastę miso i mieszaj, aż całkowicie się rozpuści.
+> Zmniejsz ogień, wlej pastę miso z powrotem do garnka, dodaj tofu i wakame. Podgrzej delikatnie; nie gotuj intensywnie po dodaniu miso.
+> Przelej zupę do miski i posyp dymką. Podawaj od razu, gdy bulion jest gorący, a tofu pozostaje delikatne.
 
 # Tom yum
 @ cat=zupy servings=1 prep=24 cook=35 art=soup tags=tradycyjne,zupa,kuchnia-azjatycka
@@ -1824,7 +1824,7 @@ export const SEED_CURATED = `
 
 # Kurczak kung pao
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
-: Pikantne danie z woka z orzeszkami, chili i wyrazistym sosem na bazie sosu sojowego.
+: Kurczak smażony w woku w pikantnej glazurze sojowej z orzeszkami ziemnymi i pieprzem syczuańskim.
 140 g | filet z kurczaka
 15 g | orzeszki ziemne
 4 g | chilli
@@ -1832,10 +1832,10 @@ export const SEED_CURATED = `
 1 g | pieprz syczuański
 12 ml | olej rzepakowy
 > Filet z kurczaka pokrój w cienkie, równe paski lub niewielkie kawałki. Orzeszki ziemne przygotuj z wyprzedzeniem, a pieprz syczuański lekko rozgnieć.
-> Rozgrzej wok z olejem i obsmaż białko partiami; tofu odłóż na bok po zrumienieniu.
-> Wsyp chilli oraz pieprz syczuański i smaż przez 15–20 sekund, nie przypalając przypraw.
-> Dodaj sos sojowy i 1–2 łyżki wody, szybko zamieszaj, aby powstała aromatyczna glazura.
-> Dodaj filet z kurczaka oraz orzeszki ziemne, wymieszaj przez 30–60 sekund i od razu podawaj.
+> Rozgrzej wok na dużym ogniu i wlej olej. Obsmaż kurczaka partiami, aż się zrumieni i będzie w pełni usmażony; przełóż go na talerz.
+> Wsyp chilli oraz pieprz syczuański i smaż przez 15–20 sekund, uważając, by przyprawy się nie przypaliły.
+> Wlej sos sojowy i 1–2 łyżki wody. Szybko zamieszaj, aby powstała aromatyczna glazura.
+> Włóż kurczaka z powrotem do woka, dodaj orzeszki ziemne i szybko wymieszaj przez 30–60 sekund, aż składniki pokryją się glazurą. Podawaj od razu.
 
 # Kurczak z czarnym pieprzem
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -1929,18 +1929,18 @@ export const SEED_CURATED = `
 
 # Wołowina kung pao
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
-: Pikantne danie z woka z orzeszkami, chili i wyrazistym sosem na bazie sosu sojowego.
+: Wołowina smażona w woku w pikantnej glazurze sojowej z orzeszkami ziemnymi i pieprzem syczuańskim.
 130 g | wołowina
 15 g | orzeszki ziemne
 4 g | chilli
 12 ml | sos sojowy
 1 g | pieprz syczuański
 12 ml | olej rzepakowy
-> Wołowinę pokrój w cienkie, równe paski lub niewielkie kawałki. Orzeszki ziemne przygotuj z wyprzedzeniem, a pieprz syczuański lekko rozgnieć.
-> Rozgrzej wok z olejem i obsmaż białko partiami; tofu odłóż na bok po zrumienieniu.
-> Wsyp chilli oraz pieprz syczuański i smaż przez 15–20 sekund, nie przypalając przypraw.
-> Dodaj sos sojowy i 1–2 łyżki wody, szybko zamieszaj, aby powstała aromatyczna glazura.
-> Dodaj wołowina oraz orzeszki ziemne, wymieszaj przez 30–60 sekund i od razu podawaj.
+> Wołowinę pokrój w cienkie, równe paski. Orzeszki ziemne przygotuj z wyprzedzeniem, a pieprz syczuański lekko rozgnieć.
+> Rozgrzej wok na dużym ogniu i wlej olej. Obsmaż wołowinę partiami, aż się zrumieni i będzie usmażona; przełóż mięso na talerz.
+> Wsyp chilli oraz pieprz syczuański i smaż przez 15–20 sekund, uważając, by przyprawy się nie przypaliły.
+> Wlej sos sojowy i 1–2 łyżki wody. Szybko zamieszaj, aby powstała aromatyczna glazura.
+> Włóż wołowinę z powrotem do woka, dodaj orzeszki ziemne i wymieszaj przez 30–60 sekund, aż wszystko pokryje się sosem. Podawaj od razu.
 
 # Wołowina z czarnym pieprzem
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -1979,13 +1979,13 @@ export const SEED_CURATED = `
 8 g | bazylia tajska
 8 ml | sos rybny
 3 g | chilli
-1 szt. | czosnek
+1 ząbek | czosnek
 12 ml | olej rzepakowy
-> Wołowina pokrój w cienkie, równe paski lub niewielkie kawałki. Czosnek drobno posiekaj, chilli pokrój cienko, a bazylię tajską przygotuj do dodania na końcu.
-> Rozgrzej wok z olejem; czosnek i chilli smaż przez 15–20 sekund, tylko do uwolnienia aromatu.
-> Dodaj wołowina i smaż na mocnym ogniu, często mieszając, aż będzie w pełni ugotowane.
-> Dodaj sos rybny oraz łyżkę wody, jeśli składniki zaczynają przywierać; szybko wymieszaj.
-> Zdejmij wok z ognia, wmieszaj bazylię tajską i podawaj natychmiast, zanim liście stracą kolor.
+> Pokrój wołowinę w cienkie, równe paski. Drobno posiekaj czosnek i chilli; liście bazylii tajskiej oddziel od łodyżek i odłóż.
+> Rozgrzej wok na dużym ogniu i wlej olej. Dodaj czosnek oraz chilli i smaż przez 15–20 sekund, tylko do uwolnienia aromatu.
+> Dodaj wołowinę i smaż krótko, energicznie mieszając, aż paski się zrumienią i będą usmażone. Jeśli wok jest mały, smaż mięso w dwóch partiach.
+> Wlej sos rybny i łyżkę wody. Szybko wymieszaj, zbierając aromaty z dna woka; płyn powinien tylko lekko oblepić mięso.
+> Zdejmij wok z ognia, dodaj tajską bazylię i mieszaj do lekkiego zwiędnięcia liści. Podawaj od razu, gdy bazylia zachowuje świeży aromat.
 
 # Wołowina pad see ew
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -1996,11 +1996,11 @@ export const SEED_CURATED = `
 50 g | brokuł chiński
 28 g | jajko (roztrzepane)
 12 ml | olej rzepakowy
-> Makaron ryżowy przygotuj zgodnie z instrukcją na opakowaniu, odcedź i wołowina pokrój w cienkie, równe paski lub niewielkie kawałki.
-> Rozgrzej wok z olejem i obsmaż białko; odłóż je na bok, gdy będzie zrumienione lub w pełni ugotowane.
-> Dodaj brokuł chiński i smaż krótko, aż łodyżki zmiękną, ale zachowają jędrność.
-> Przesuń składniki na bok, wlej roztrzepane jajko i szybko mieszaj, aż się zetnie; dodaj makaron i ciemny sos sojowy.
-> Włóż wołowina z powrotem i wymieszaj na mocnym ogniu, aż makaron pokryje się sosem i będzie gorący.
+> Makaron ryżowy przygotuj zgodnie z instrukcją na opakowaniu, odcedź i odstaw. Wołowinę pokrój w cienkie, równe paski.
+> Rozgrzej wok na dużym ogniu i dodaj olej. Obsmaż wołowinę krótko, najlepiej partiami, aż się zrumieni; przełóż ją na talerz.
+> Dodaj brokuł chiński i smaż przez 1–2 minuty, zaczynając od grubszych łodyżek, aż lekko zmiękną, ale pozostaną jędrne.
+> Przesuń warzywa na bok. W wolne miejsce wlej roztrzepane jajko i mieszaj, aż się zetnie; dodaj makaron oraz ciemny sos sojowy.
+> Włóż wołowinę z powrotem do woka. Mieszaj energicznie przez 1–2 minuty, aż makaron będzie gorący i pokryje się sosem. Podawaj natychmiast.
 
 # Wołowina w sosie orzechowym
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -2011,11 +2011,11 @@ export const SEED_CURATED = `
 0,2 szt. | limonka
 8 ml | sos sojowy
 12 ml | olej rzepakowy
-> Wołowina pokrój w cienkie, równe paski lub niewielkie kawałki. Limonkę przekrój i wyciśnij sok.
-> W małej misce wymieszaj masło orzechowe, mleko kokosowe, sos sojowy i sok z limonki do uzyskania gładkiego sosu.
-> Rozgrzej wok z olejem. Obsmaż partiami na mocnym ogniu, aż kawałki będą zrumienione i w pełni ugotowane; odłóż na talerz.
-> Zmniejsz ogień i wlej sos orzechowy; mieszaj bez przerwy, aby nie przywarł ani się nie rozwarstwił.
-> Jeśli sos jest zbyt gęsty, dolej trochę wody. Włóż wołowina z powrotem, obtocz i podawaj na gorąco.
+> Pokrój wołowinę w cienkie, równe paski. Limonkę przekrój i wyciśnij z niej sok.
+> W misce połącz masło orzechowe, mleko kokosowe, sos sojowy i sok z limonki. Mieszaj, aż powstanie gładki sos.
+> Mocno rozgrzej wok i wlej olej. Obsmaż wołowinę partiami, aż paski się zrumienią i będą usmażone; przełóż mięso na talerz.
+> Zmniejsz ogień, wlej sos orzechowy i mieszaj, aż będzie gorący i gładki. Nie dopuszczaj do gwałtownego wrzenia, żeby sos się nie rozwarstwił.
+> Przełóż wołowinę z powrotem do woka i dokładnie obtocz ją w sosie. Jeśli sos jest zbyt gęsty, dodawaj wodę po łyżce, aż równomiernie pokryje mięso; podawaj od razu.
 
 # Krewetki w sosie słodko-kwaśnym
 @ cat=owoce-morza servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -2034,7 +2034,7 @@ export const SEED_CURATED = `
 
 # Krewetki kung pao
 @ cat=owoce-morza servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
-: Pikantne danie z woka z orzeszkami, chili i wyrazistym sosem na bazie sosu sojowego.
+: Krewetki z woka w pikantnej glazurze sojowej z orzeszkami ziemnymi i pieprzem syczuańskim.
 130 g | krewetki
 15 g | orzeszki ziemne
 4 g | chilli
@@ -2042,10 +2042,10 @@ export const SEED_CURATED = `
 1 g | pieprz syczuański
 12 ml | olej rzepakowy
 > Krewetki oczyść, usuń przewód pokarmowy, a następnie dokładnie osusz. Orzeszki ziemne przygotuj z wyprzedzeniem, a pieprz syczuański lekko rozgnieć.
-> Rozgrzej wok z olejem i obsmaż białko partiami; tofu odłóż na bok po zrumienieniu.
-> Wsyp chilli oraz pieprz syczuański i smaż przez 15–20 sekund, nie przypalając przypraw.
-> Dodaj sos sojowy i 1–2 łyżki wody, szybko zamieszaj, aby powstała aromatyczna glazura.
-> Dodaj krewetki oraz orzeszki ziemne, wymieszaj przez 30–60 sekund i od razu podawaj.
+> Rozgrzej wok na dużym ogniu i wlej olej. Smaż krewetki krótko, aż staną się różowe i nieprzezroczyste; przełóż je na talerz.
+> Wsyp chilli oraz pieprz syczuański i smaż przez 15–20 sekund, uważając, by przyprawy się nie przypaliły.
+> Wlej sos sojowy i 1–2 łyżki wody. Szybko zamieszaj, aby powstała aromatyczna glazura.
+> Włóż krewetki z powrotem do woka, dodaj orzeszki ziemne i szybko wymieszaj przez 30–60 sekund, aż składniki pokryją się glazurą. Podawaj od razu.
 
 # Krewetki z czarnym pieprzem
 @ cat=owoce-morza servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -2139,7 +2139,7 @@ export const SEED_CURATED = `
 
 # Tofu kung pao
 @ cat=warzywa servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
-: Pikantne danie z woka z orzeszkami, chili i wyrazistym sosem na bazie sosu sojowego.
+: Tofu smażone w woku w pikantnej glazurze sojowej z orzeszkami ziemnymi i pieprzem syczuańskim.
 140 g | tofu
 15 g | orzeszki ziemne
 4 g | chilli
@@ -2147,10 +2147,10 @@ export const SEED_CURATED = `
 1 g | pieprz syczuański
 12 ml | olej rzepakowy
 > Tofu osusz ręcznikiem i pokrój w równe kostki. Orzeszki ziemne przygotuj z wyprzedzeniem, a pieprz syczuański lekko rozgnieć.
-> Rozgrzej wok z olejem i obsmaż białko partiami; tofu odłóż na bok po zrumienieniu.
-> Wsyp chilli oraz pieprz syczuański i smaż przez 15–20 sekund, nie przypalając przypraw.
-> Dodaj sos sojowy i 1–2 łyżki wody, szybko zamieszaj, aby powstała aromatyczna glazura.
-> Dodaj tofu oraz orzeszki ziemne, wymieszaj przez 30–60 sekund i od razu podawaj.
+> Rozgrzej wok na dużym ogniu i wlej olej. Obsmaż tofu partiami, aż kostki zrumienią się z kilku stron; przełóż je na talerz.
+> Wsyp chilli oraz pieprz syczuański i smaż przez 15–20 sekund, uważając, by przyprawy się nie przypaliły.
+> Wlej sos sojowy i 1–2 łyżki wody. Szybko zamieszaj, aby powstała aromatyczna glazura.
+> Włóż tofu z powrotem do woka, dodaj orzeszki ziemne i wymieszaj przez 30–60 sekund, aż składniki pokryją się sosem. Podawaj od razu.
 
 # Tofu z czarnym pieprzem
 @ cat=warzywa servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -2244,18 +2244,18 @@ export const SEED_CURATED = `
 
 # Wieprzowina kung pao
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
-: Pikantne danie z woka z orzeszkami, chili i wyrazistym sosem na bazie sosu sojowego.
+: Wieprzowina smażona w woku w pikantnej glazurze sojowej z orzeszkami ziemnymi i pieprzem syczuańskim.
 130 g | wieprzowina
 15 g | orzeszki ziemne
 4 g | chilli
 12 ml | sos sojowy
 1 g | pieprz syczuański
 12 ml | olej rzepakowy
-> Wieprzowinę pokrój w cienkie, równe paski lub niewielkie kawałki. Orzeszki ziemne przygotuj z wyprzedzeniem, a pieprz syczuański lekko rozgnieć.
-> Rozgrzej wok z olejem i obsmaż białko partiami; tofu odłóż na bok po zrumienieniu.
-> Wsyp chilli oraz pieprz syczuański i smaż przez 15–20 sekund, nie przypalając przypraw.
-> Dodaj sos sojowy i 1–2 łyżki wody, szybko zamieszaj, aby powstała aromatyczna glazura.
-> Dodaj wieprzowina oraz orzeszki ziemne, wymieszaj przez 30–60 sekund i od razu podawaj.
+> Wieprzowinę pokrój w cienkie, równe paski. Orzeszki ziemne przygotuj z wyprzedzeniem, a pieprz syczuański lekko rozgnieć.
+> Rozgrzej wok na dużym ogniu i wlej olej. Obsmaż wieprzowinę partiami, aż się zrumieni i będzie usmażona; przełóż mięso na talerz.
+> Wsyp chilli oraz pieprz syczuański i smaż przez 15–20 sekund, uważając, by przyprawy się nie przypaliły.
+> Wlej sos sojowy i 1–2 łyżki wody. Szybko zamieszaj, aby powstała aromatyczna glazura.
+> Włóż wieprzowinę z powrotem do woka, dodaj orzeszki ziemne i wymieszaj przez 30–60 sekund, aż wszystko pokryje się sosem. Podawaj od razu.
 
 # Wieprzowina z czarnym pieprzem
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -2294,13 +2294,13 @@ export const SEED_CURATED = `
 8 g | bazylia tajska
 8 ml | sos rybny
 3 g | chilli
-1 szt. | czosnek
+1 ząbek | czosnek
 12 ml | olej rzepakowy
-> Wieprzowina pokrój w cienkie, równe paski lub niewielkie kawałki. Czosnek drobno posiekaj, chilli pokrój cienko, a bazylię tajską przygotuj do dodania na końcu.
-> Rozgrzej wok z olejem; czosnek i chilli smaż przez 15–20 sekund, tylko do uwolnienia aromatu.
-> Dodaj wieprzowina i smaż na mocnym ogniu, często mieszając, aż będzie w pełni ugotowane.
-> Dodaj sos rybny oraz łyżkę wody, jeśli składniki zaczynają przywierać; szybko wymieszaj.
-> Zdejmij wok z ognia, wmieszaj bazylię tajską i podawaj natychmiast, zanim liście stracą kolor.
+> Pokrój wieprzowinę w cienkie, równe paski. Drobno posiekaj czosnek i chilli; liście bazylii tajskiej oddziel od łodyżek i odłóż.
+> Rozgrzej wok na dużym ogniu i wlej olej. Dodaj czosnek oraz chilli i smaż przez 15–20 sekund, tylko do uwolnienia aromatu.
+> Dodaj wieprzowinę i smaż krótko, energicznie mieszając, aż paski się zrumienią i będą w pełni usmażone. Jeśli wok jest mały, smaż mięso w dwóch partiach.
+> Wlej sos rybny i łyżkę wody. Szybko wymieszaj, zbierając aromaty z dna woka; płyn powinien tylko lekko oblepić mięso.
+> Zdejmij wok z ognia, dodaj tajską bazylię i mieszaj do lekkiego zwiędnięcia liści. Podawaj od razu, gdy bazylia zachowuje świeży aromat.
 
 # Wieprzowina pad see ew
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -2311,11 +2311,11 @@ export const SEED_CURATED = `
 50 g | brokuł chiński
 28 g | jajko (roztrzepane)
 12 ml | olej rzepakowy
-> Makaron ryżowy przygotuj zgodnie z instrukcją na opakowaniu, odcedź i wieprzowina pokrój w cienkie, równe paski lub niewielkie kawałki.
-> Rozgrzej wok z olejem i obsmaż białko; odłóż je na bok, gdy będzie zrumienione lub w pełni ugotowane.
-> Dodaj brokuł chiński i smaż krótko, aż łodyżki zmiękną, ale zachowają jędrność.
-> Przesuń składniki na bok, wlej roztrzepane jajko i szybko mieszaj, aż się zetnie; dodaj makaron i ciemny sos sojowy.
-> Włóż wieprzowina z powrotem i wymieszaj na mocnym ogniu, aż makaron pokryje się sosem i będzie gorący.
+> Makaron ryżowy przygotuj zgodnie z instrukcją na opakowaniu, odcedź i odstaw. Wieprzowinę pokrój w cienkie, równe paski.
+> Rozgrzej wok na dużym ogniu i dodaj olej. Obsmaż wieprzowinę krótko, najlepiej partiami, aż się zrumieni i będzie usmażona; przełóż ją na talerz.
+> Dodaj brokuł chiński i smaż przez 1–2 minuty, zaczynając od grubszych łodyżek, aż lekko zmiękną, ale pozostaną jędrne.
+> Przesuń warzywa na bok. W wolne miejsce wlej roztrzepane jajko i mieszaj, aż się zetnie; dodaj makaron oraz ciemny sos sojowy.
+> Włóż wieprzowinę z powrotem do woka. Mieszaj energicznie przez 1–2 minuty, aż makaron będzie gorący i pokryje się sosem. Podawaj natychmiast.
 
 # Wieprzowina w sosie orzechowym
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -2326,11 +2326,11 @@ export const SEED_CURATED = `
 0,2 szt. | limonka
 8 ml | sos sojowy
 12 ml | olej rzepakowy
-> Wieprzowina pokrój w cienkie, równe paski lub niewielkie kawałki. Limonkę przekrój i wyciśnij sok.
-> W małej misce wymieszaj masło orzechowe, mleko kokosowe, sos sojowy i sok z limonki do uzyskania gładkiego sosu.
-> Rozgrzej wok z olejem. Obsmaż partiami na mocnym ogniu, aż kawałki będą zrumienione i w pełni ugotowane; odłóż na talerz.
-> Zmniejsz ogień i wlej sos orzechowy; mieszaj bez przerwy, aby nie przywarł ani się nie rozwarstwił.
-> Jeśli sos jest zbyt gęsty, dolej trochę wody. Włóż wieprzowina z powrotem, obtocz i podawaj na gorąco.
+> Pokrój wieprzowinę w cienkie, równe paski. Limonkę przekrój i wyciśnij z niej sok.
+> W misce połącz masło orzechowe, mleko kokosowe, sos sojowy i sok z limonki. Mieszaj, aż powstanie gładki sos.
+> Mocno rozgrzej wok i wlej olej. Obsmaż wieprzowinę partiami, aż paski się zrumienią i będą usmażone; przełóż mięso na talerz.
+> Zmniejsz ogień, wlej sos orzechowy i mieszaj, aż będzie gorący i gładki. Nie dopuszczaj do gwałtownego wrzenia, żeby sos się nie rozwarstwił.
+> Przełóż wieprzowinę z powrotem do woka i dokładnie obtocz ją w sosie. Jeśli sos jest zbyt gęsty, dodawaj wodę po łyżce, aż równomiernie pokryje mięso; podawaj od razu.
 
 # Kaczka w sosie słodko-kwaśnym
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -2349,18 +2349,18 @@ export const SEED_CURATED = `
 
 # Kaczka kung pao
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
-: Pikantne danie z woka z orzeszkami, chili i wyrazistym sosem na bazie sosu sojowego.
+: Kaczka smażona w woku w pikantnej glazurze sojowej z orzeszkami ziemnymi i pieprzem syczuańskim.
 130 g | kaczka
 15 g | orzeszki ziemne
 4 g | chilli
 12 ml | sos sojowy
 1 g | pieprz syczuański
 12 ml | olej rzepakowy
-> Kaczkę pokrój w cienkie, równe paski lub niewielkie kawałki. Orzeszki ziemne przygotuj z wyprzedzeniem, a pieprz syczuański lekko rozgnieć.
-> Rozgrzej wok z olejem i obsmaż białko partiami; tofu odłóż na bok po zrumienieniu.
-> Wsyp chilli oraz pieprz syczuański i smaż przez 15–20 sekund, nie przypalając przypraw.
-> Dodaj sos sojowy i 1–2 łyżki wody, szybko zamieszaj, aby powstała aromatyczna glazura.
-> Dodaj kaczka oraz orzeszki ziemne, wymieszaj przez 30–60 sekund i od razu podawaj.
+> Kaczkę pokrój w cienkie, równe paski. Orzeszki ziemne przygotuj z wyprzedzeniem, a pieprz syczuański lekko rozgnieć.
+> Rozgrzej wok na dużym ogniu i wlej olej. Obsmaż kaczkę partiami, aż się zrumieni i będzie w pełni usmażona; przełóż mięso na talerz.
+> Wsyp chilli oraz pieprz syczuański i smaż przez 15–20 sekund, uważając, by przyprawy się nie przypaliły.
+> Wlej sos sojowy i 1–2 łyżki wody. Szybko zamieszaj, aby powstała aromatyczna glazura.
+> Włóż kaczkę z powrotem do woka, dodaj orzeszki ziemne i wymieszaj przez 30–60 sekund, aż wszystko pokryje się sosem. Podawaj od razu.
 
 # Kaczka z czarnym pieprzem
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -2399,13 +2399,13 @@ export const SEED_CURATED = `
 8 g | bazylia tajska
 8 ml | sos rybny
 3 g | chilli
-1 szt. | czosnek
+1 ząbek | czosnek
 12 ml | olej rzepakowy
-> Kaczka pokrój w cienkie, równe paski lub niewielkie kawałki. Czosnek drobno posiekaj, chilli pokrój cienko, a bazylię tajską przygotuj do dodania na końcu.
-> Rozgrzej wok z olejem; czosnek i chilli smaż przez 15–20 sekund, tylko do uwolnienia aromatu.
-> Dodaj kaczka i smaż na mocnym ogniu, często mieszając, aż będzie w pełni ugotowane.
-> Dodaj sos rybny oraz łyżkę wody, jeśli składniki zaczynają przywierać; szybko wymieszaj.
-> Zdejmij wok z ognia, wmieszaj bazylię tajską i podawaj natychmiast, zanim liście stracą kolor.
+> Pokrój kaczkę w cienkie, równe paski. Drobno posiekaj czosnek i chilli; liście bazylii tajskiej oddziel od łodyżek i odłóż.
+> Rozgrzej wok na dużym ogniu i wlej olej. Dodaj czosnek oraz chilli i smaż przez 15–20 sekund, tylko do uwolnienia aromatu.
+> Dodaj kaczkę i smaż, energicznie mieszając, aż paski się zrumienią i będą całkowicie usmażone. Jeśli wok jest mały, smaż mięso w dwóch partiach.
+> Wlej sos rybny i łyżkę wody. Szybko wymieszaj, zbierając aromaty z dna woka; płyn powinien tylko lekko oblepić mięso.
+> Zdejmij wok z ognia, dodaj tajską bazylię i mieszaj do lekkiego zwiędnięcia liści. Podawaj od razu, gdy bazylia zachowuje świeży aromat.
 
 # Kaczka pad see ew
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -2416,11 +2416,11 @@ export const SEED_CURATED = `
 50 g | brokuł chiński
 28 g | jajko (roztrzepane)
 12 ml | olej rzepakowy
-> Makaron ryżowy przygotuj zgodnie z instrukcją na opakowaniu, odcedź i kaczka pokrój w cienkie, równe paski lub niewielkie kawałki.
-> Rozgrzej wok z olejem i obsmaż białko; odłóż je na bok, gdy będzie zrumienione lub w pełni ugotowane.
-> Dodaj brokuł chiński i smaż krótko, aż łodyżki zmiękną, ale zachowają jędrność.
-> Przesuń składniki na bok, wlej roztrzepane jajko i szybko mieszaj, aż się zetnie; dodaj makaron i ciemny sos sojowy.
-> Włóż kaczka z powrotem i wymieszaj na mocnym ogniu, aż makaron pokryje się sosem i będzie gorący.
+> Makaron ryżowy przygotuj zgodnie z instrukcją na opakowaniu, odcedź i odstaw. Kaczkę pokrój w cienkie, równe paski.
+> Rozgrzej wok na dużym ogniu i dodaj olej. Obsmaż kaczkę krótko, najlepiej partiami, aż się zrumieni i będzie usmażona; przełóż ją na talerz.
+> Dodaj brokuł chiński i smaż przez 1–2 minuty, zaczynając od grubszych łodyżek, aż lekko zmiękną, ale pozostaną jędrne.
+> Przesuń warzywa na bok. W wolne miejsce wlej roztrzepane jajko i mieszaj, aż się zetnie; dodaj makaron oraz ciemny sos sojowy.
+> Włóż kaczkę z powrotem do woka. Mieszaj energicznie przez 1–2 minuty, aż makaron będzie gorący i pokryje się sosem. Podawaj natychmiast.
 
 # Kaczka w sosie orzechowym
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -2431,11 +2431,11 @@ export const SEED_CURATED = `
 0,2 szt. | limonka
 8 ml | sos sojowy
 12 ml | olej rzepakowy
-> Kaczka pokrój w cienkie, równe paski lub niewielkie kawałki. Limonkę przekrój i wyciśnij sok.
-> W małej misce wymieszaj masło orzechowe, mleko kokosowe, sos sojowy i sok z limonki do uzyskania gładkiego sosu.
-> Rozgrzej wok z olejem. Obsmaż partiami na mocnym ogniu, aż kawałki będą zrumienione i w pełni ugotowane; odłóż na talerz.
-> Zmniejsz ogień i wlej sos orzechowy; mieszaj bez przerwy, aby nie przywarł ani się nie rozwarstwił.
-> Jeśli sos jest zbyt gęsty, dolej trochę wody. Włóż kaczka z powrotem, obtocz i podawaj na gorąco.
+> Pokrój kaczkę w cienkie, równe paski. Limonkę przekrój i wyciśnij z niej sok.
+> W misce połącz masło orzechowe, mleko kokosowe, sos sojowy i sok z limonki. Mieszaj, aż powstanie gładki sos.
+> Mocno rozgrzej wok i wlej olej. Obsmaż kaczkę partiami, aż paski się zrumienią i będą usmażone; przełóż mięso na talerz.
+> Zmniejsz ogień, wlej sos orzechowy i mieszaj, aż będzie gorący i gładki. Nie dopuszczaj do gwałtownego wrzenia, żeby sos się nie rozwarstwił.
+> Przełóż kaczkę z powrotem do woka i dokładnie obtocz ją w sosie. Jeśli sos jest zbyt gęsty, dodawaj wodę po łyżce, aż równomiernie pokryje mięso; podawaj od razu.
 
 # Ziemniaki puree
 @ cat=warzywa origin=PL trad servings=1 prep=10 cook=15 art=food tags=tradycyjne,dodatek,kuchnia-polska
@@ -2693,16 +2693,16 @@ export const SEED_CURATED = `
 
 
 # Zupa miso z małżami
-@ cat=zupy origin=JP servings=1 prep=14 cook=21 art=soup tags=zupa,krem,kuchnia-japońska
-: Zupa miso z małżami — jedna głęboka miska.
+@ cat=zupy origin=JP servings=1 prep=5 cook=8 art=soup tags=zupa,owoce-morza,kuchnia-japońska
+: Japońska zupa miso na bulionie dashi z małżami; pastę miso dodaj poza intensywnym wrzeniem, aby zachować jej aromat.
 18 g | pasta miso
 60 g | małże
 220 ml | dashi
-> Przygotuj dodatki i pokrój je na równe kawałki. Jeśli używasz makaronu, ugotuj go osobno.
-> Podgrzej bulion, ale nie doprowadzaj go do gwałtownego wrzenia.
-> Rozprowadź pastę miso w niewielkiej ilości gorącego bulionu i wlej z powrotem do garnka. Nie gotuj intensywnie po dodaniu miso.
-> Dodaj tofu, glony, warzywa lub owoce morza z receptury i podgrzej do gotowości.
-> Podawaj od razu; świeże zioła dodaj na sam koniec.
+> Jeśli małże są w muszlach, dokładnie je oczyść i odrzuć muszle uszkodzone lub otwarte, które nie zamykają się po stuknięciu. Oczyszczone mięso małży przepłucz i odcedź.
+> Podgrzej dashi w garnku. Dodaj małże i gotuj delikatnie do pełnej gotowości; małże w muszlach powinny się otworzyć. Odrzuć te, które po gotowaniu pozostały zamknięte.
+> Odlej kilka łyżek gorącego dashi do miseczki, dodaj pastę miso i mieszaj, aż powstanie gładka zawiesina bez grudek.
+> Zmniejsz ogień do minimum, wlej pastę miso do garnka i wymieszaj. Nie doprowadzaj zupy do intensywnego wrzenia po dodaniu miso.
+> Przelej zupę do miski i podawaj od razu, gdy bulion jest gorący, a małże są w pełni ugotowane.
 
 # Zupa wonton
 @ cat=zupy servings=1 prep=14 cook=21 art=soup tags=zupa,krem,kuchnia-azjatycka
@@ -2719,17 +2719,17 @@ export const SEED_CURATED = `
 
 
 # Zupa ramen miso
-@ cat=zupy origin=JP servings=1 prep=14 cook=21 art=soup tags=zupa,krem,kuchnia-japońska
-: Zupa ramen miso — jedna głęboka miska.
+@ cat=zupy origin=JP servings=1 prep=6 cook=10 art=soup tags=zupa,ramen,kuchnia-japońska
+: Japoński ramen miso z gorącym bulionem, makaronem ramen i jajkiem na miękko.
 90 g | makaron ramen
 18 g | pasta miso
 240 ml | bulion
 1 szt. | jajko
-> Przygotuj dodatki i pokrój je na równe kawałki. Jeśli używasz makaronu, ugotuj go osobno.
-> Podgrzej bulion, ale nie doprowadzaj go do gwałtownego wrzenia.
-> Rozprowadź pastę miso w niewielkiej ilości gorącego bulionu i wlej z powrotem do garnka. Nie gotuj intensywnie po dodaniu miso.
-> Dodaj tofu, glony, warzywa lub owoce morza z receptury i podgrzej do gotowości.
-> Podawaj od razu; świeże zioła dodaj na sam koniec.
+> Ugotuj makaron ramen zgodnie z instrukcją na opakowaniu i odcedź. W drugim garnku ugotuj jajko przez 6–7 minut; schłodź je w zimnej wodzie i obierz.
+> Podgrzej bulion w garnku, utrzymując go tuż poniżej wrzenia.
+> Odlej kilka łyżek gorącego bulionu do miseczki, dodaj pastę miso i mieszaj, aż będzie gładka. Wlej z powrotem do garnka; po dodaniu miso nie gotuj zupy intensywnie.
+> Dodaj odcedzony makaron ramen do bulionu i podgrzewaj przez 30–60 sekund, aż będzie gorący.
+> Przełóż makaron i bulion do głębokiej miski. Przekrój jajko na pół, ułóż na wierzchu i podawaj od razu.
 
 # Zupa ramen tonkotsu
 @ cat=zupy origin=JP servings=1 prep=14 cook=21 art=soup tags=zupa,krem,kuchnia-japońska
