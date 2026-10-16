@@ -84,7 +84,7 @@ for (const file of SOURCES) {
 const curatedText = fs.readFileSync('seeds-curated.js', 'utf8');
 const curatedBlocks = curatedText.split(/\n(?=# )/).filter((block) => block.startsWith('# '));
 const GENERIC_STEPS = [
-  /^(?:Przygotuj bazę\\.|Dodaj dodatki\\.|Podawaj od razu\\.|Przygotuj składniki\\.|Dopraw i podawaj\\.)$/i,
+  /^(?:Przygotuj bazę\.|Dodaj dodatki\.|Podawaj od razu\.|Przygotuj składniki\.|Dopraw i podawaj\.)$/i,
   /Jeśli receptura zawiera/i,
   /odpowiedniej dla (?:danego rodzaju|tego deseru|rodzaju wypieku)/i,
   /Przygotuj bazę napoju/i,
