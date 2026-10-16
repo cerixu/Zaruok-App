@@ -224,18 +224,21 @@ export const SEED_CURATED = `
 > Podawaj od razu, zanim masło z szałwią ostygnie.
 
 # Risotto z grzybami
-@ cat=warzywa origin=IT servings=1 prep=12 cook=17 art=food tags=włochy,makaron,kuchnia-włoska
-: Kremowe risotto z grzybami leśnymi.
+@ cat=warzywa origin=IT servings=1 prep=12 cook=22 art=food tags=włochy,ryż,kuchnia-włoska
+: Kremowe risotto z grzybami leśnymi, masłem i parmezanem.
 80 g | ryż arborio
 70 g | grzyby mieszane
 240 ml | bulion
 18 g | parmezan
 10 g | masło
-> Posiekaj cebulę i zeszklij na maśle lub oliwie. Wsyp ryż i mieszaj 1–2 minuty, aż ziarenka staną się lekko przezroczyste na brzegach.
-> Wlej wino, jeśli jest w składnikach, i odparuj. Dodaj szafran lub grzyby zgodnie z recepturą.
-> Dolewaj gorący bulion chochlami, mieszając i czekając, aż poprzednia porcja zostanie wchłonięta.
-> Gotuj do kremowej konsystencji z ryżem al dente. Zdejmij z ognia i wmieszaj masło oraz ser, jeśli są w składnikach.
-> Odstaw na minutę i podawaj od razu.
+0,25 szt. | cebula
+30 ml | białe wino wytrawne
+> Posiekaj cebulę, oczyść grzyby i pokrój większe sztuki. Zeszklij cebulę na połowie masła, dodaj grzyby i smaż 3–4 minuty.
+> Wsyp ryż arborio i mieszaj 1–2 minuty, aż ziarenka staną się lekko przezroczyste na brzegach.
+> Wlej białe wino i odparuj, następnie dolewaj gorący bulion po jednej chochli, często mieszając i czekając na wchłonięcie płynu.
+> Gotuj około 16–18 minut, aż ryż będzie kremowy, ale pozostanie al dente; w razie potrzeby dolej odrobinę bulionu.
+> Zdejmij z ognia, wmieszaj resztę masła i parmezan, odstaw na minutę i podawaj od razu.
+
 
 # Penne alla vodka
 @ cat=pasta origin=IT servings=1 prep=15 cook=22 art=pasta tags=włochy,makaron,kuchnia-włoska
@@ -1315,17 +1318,18 @@ export const SEED_CURATED = `
 > Posiekaj szczypiorek, wmieszaj połowę do jajek, a resztą posyp wierzch. Podawaj natychmiast.
 
 # Baguette
-@ cat=pieczywo origin=FR trad servings=1 prep=72 cook=108 art=bread tags=tradycyjne,pieczywo,pieczone,kuchnia-francuska
-: Francuska bagietka o chrupiącej skórce.
+@ cat=pieczywo origin=FR trad servings=1 prep=180 cook=24 art=bread tags=tradycyjne,pieczywo,pieczone,kuchnia-francuska
+: Francuska bagietka o chrupiącej skórce i sprężystym miękiszu.
 120 g | mąka pszenna
 78 ml | woda
 1 g | drożdże
 2,4 g | sól
-> Połącz mąkę, wodę, drożdże lub zakwas i sól. Wyrabiaj do uzyskania elastycznego ciasta, a następnie prowadź fermentację zgodnie z recepturą.
-> Podziel ciasto na porcje i wstępnie zaokrąglij. Odstaw na 15–20 minut, aby gluten się rozluźnił.
-> Uformuj podłużne bagietki, dokładnie zamykając łączenie. Przenieś na płótno lub perforowaną blachę do wyrastania.
-> Po wyrośnięciu natnij żyletką pod kątem i piecz w mocno nagrzanym piekarniku z parą na początku wypieku.
-> Studź na kratce, zanim pokroisz — skórka i miękisz ustabilizują się podczas stygnięcia.
+> Wymieszaj mąkę z wodą i odstaw na 20 minut. Dodaj drożdże oraz sól i wyrabiaj, aż ciasto stanie się gładkie i elastyczne.
+> Przykryj ciasto i fermentuj około 90 minut, wykonując dwa delikatne składania w odstępach 30 minut.
+> Uformuj podłużną bagietkę, zamknij łączenie i pozostaw na płótnie do wyrośnięcia przez 30–45 minut.
+> Nagrzej piekarnik do 240°C z blachą w środku. Natnij bagietkę pod kątem 3–4 razy i wstaw do piekarnika, wytwarzając parę na początku wypieku.
+> Piecz 20–24 minuty, aż skórka będzie głęboko złota i chrupiąca. Studź na kratce przed krojeniem.
+
 
 # Ciabatta
 @ cat=pieczywo origin=IT trad servings=1 prep=72 cook=108 art=bread tags=tradycyjne,pieczywo,pieczone,kuchnia-włoska
@@ -1342,18 +1346,20 @@ export const SEED_CURATED = `
 > Studź na kratce; nie krój gorącego pieczywa.
 
 # Precel bawarski
-@ cat=pieczywo servings=1 prep=72 cook=108 art=bread tags=tradycyjne,pieczywo,pieczone
+@ cat=pieczywo servings=1 prep=90 cook=15 art=bread tags=tradycyjne,pieczywo,pieczone
 : Miękki precel z charakterystyczną, ciemnobrązową skórką.
 110 g | mąka pszenna
 65 ml | woda
 3 g | drożdże
-5 g | soda
+5 g | soda oczyszczona
 3 g | sól gruba
-> Przygotuj elastyczne ciasto drożdżowe i pozostaw do krótkiego wyrośnięcia, zgodnie z recepturą.
-> Podziel ciasto na porcje, rozwałkuj na wałki grubsze na środku i cieńsze na końcach, a następnie uformuj precle.
-> Schłodź uformowane precle, aby lepiej zachowały kształt. Zanurz je w odpowiednim roztworze do precli tylko zgodnie z instrukcją i zasadami bezpieczeństwa produktu.
-> Posyp solą gruboziarnistą i piecz w 220°C, aż będą głęboko brązowe.
-> Studź na kratce i podawaj świeże.
+250 ml | woda do kąpieli
+> Wymieszaj mąkę, 65 ml wody i drożdże, dodaj sól i wyrabiaj 5–7 minut, aż ciasto będzie sprężyste.
+> Przykryj i pozostaw na 45–60 minut, aż lekko zwiększy objętość. Podziel na porcje, rozwałkuj na wałki cieńsze na końcach i uformuj precle.
+> Schłodź uformowane precle przez 10–15 minut, aby lepiej zachowały kształt. Zagotuj 250 ml wody, rozpuść w niej sodę i zdejmij z ognia.
+> Zanurz każdy precel w kąpieli sodowej na 15–20 sekund, wyjmij łyżką cedzakową i ułóż na blasze wyłożonej papierem.
+> Posyp grubą solą i piecz w 220°C przez 12–15 minut, aż skórka będzie głęboko brązowa. Studź na kratce.
+
 
 # Pita
 @ cat=pieczywo servings=1 prep=72 cook=108 art=bread tags=tradycyjne,pieczywo,pieczone,kuchnia-śródziemnomorska
@@ -1669,30 +1675,32 @@ export const SEED_CURATED = `
 > Podawaj natychmiast, zanim lód nadmiernie rozcieńczy napój.
 
 # Lemoniada cytrynowa
-@ cat=cocktaile servings=1 prep=3 cook=5 art=drink tags=napój
-: Lemoniada cytrynowa — jedna szklanka.
+@ cat=cocktaile servings=1 prep=5 cook=0 art=drink tags=napój
+: Orzeźwiająca lemoniada ze świeżego soku cytrynowego i mięty.
 1 szt. | cytryna
 15 g | cukier
 250 ml | woda
 3 g | mięta
-> Przygotuj sok lub owoce zgodnie z recepturą. Jeśli używasz cytrusów, wyciśnij sok i usuń pestki.
-> Rozpuść cukier w niewielkiej ilości ciepłej wody albo przygotuj syrop, jeśli przewidziano go w składnikach.
-> Połącz sok, wodę i pozostałe składniki. Spróbuj i dopasuj słodycz do kwasowości owoców.
-> Schłodź napój w lodówce. Lód dodawaj bezpośrednio przed podaniem.
-> Podawaj w schłodzonych szklankach, z owocami lub ziołami z listy.
+> Wyciśnij sok z cytryny i usuń pestki; kilka cienkich plasterków zachowaj do dekoracji.
+> Wymieszaj cukier z 30 ml ciepłej wody, aż całkowicie się rozpuści, po czym ostudź syrop.
+> Wlej syrop i sok cytrynowy do dzbanka, dolej pozostałą zimną wodę i dokładnie wymieszaj.
+> Lekko ugnieć liście mięty w dłoniach, dodaj do lemoniady i schłodź przez 10–15 minut.
+> Podawaj w schłodzonej szklance z plasterkiem cytryny; lód dodaj tuż przed podaniem.
+
 
 # Lemoniada ogórkowa
-@ cat=cocktaile servings=1 prep=3 cook=5 art=drink tags=napój
-: Lemoniada ogórkowa — jedna szklanka.
+@ cat=cocktaile servings=1 prep=5 cook=0 art=drink tags=napój
+: Lekka lemoniada ogórkowa z cytryną i miodem.
 60 g | ogórek
 0,5 szt. | cytryna
 250 ml | woda
 10 g | miód
-> Przygotuj sok lub owoce zgodnie z recepturą. Jeśli używasz cytrusów, wyciśnij sok i usuń pestki.
-> Rozpuść cukier w niewielkiej ilości ciepłej wody albo przygotuj syrop, jeśli przewidziano go w składnikach.
-> Połącz sok, wodę i pozostałe składniki. Spróbuj i dopasuj słodycz do kwasowości owoców.
-> Schłodź napój w lodówce. Lód dodawaj bezpośrednio przed podaniem.
-> Podawaj w schłodzonych szklankach, z owocami lub ziołami z listy.
+> Pokrój ogórek w cienkie plasterki, a z cytryny wyciśnij sok i usuń pestki.
+> Rozmieszaj miód w 2–3 łyżkach letniej wody, aż stanie się płynny.
+> Połącz wodę, sok cytrynowy i miód w dzbanku; mieszaj, aż smak będzie równomierny.
+> Dodaj ogórek i schłodź napój przez co najmniej 15 minut, aby woda nabrała świeżego aromatu.
+> Podawaj z plasterkami ogórka i lodem tuż przed podaniem.
+
 
 # Smoothie jagodowe
 @ cat=cocktaile servings=1 prep=3 cook=5 art=drink tags=napój
@@ -1773,29 +1781,31 @@ export const SEED_CURATED = `
 
 
 # Mors
-@ cat=cocktaile servings=1 prep=3 cook=5 art=drink tags=napój
-: Mors — jedna szklanka.
+@ cat=cocktaile servings=1 prep=5 cook=8 art=drink tags=napój
+: Domowy mors żurawinowy o wyraźnym, owocowym smaku.
 50 g | żurawina
 220 ml | woda
 12 g | cukier
-> Przygotuj sok lub owoce zgodnie z recepturą. Jeśli używasz cytrusów, wyciśnij sok i usuń pestki.
-> Rozpuść cukier w niewielkiej ilości ciepłej wody albo przygotuj syrop, jeśli przewidziano go w składnikach.
-> Połącz sok, wodę i pozostałe składniki. Spróbuj i dopasuj słodycz do kwasowości owoców.
-> Schłodź napój w lodówce. Lód dodawaj bezpośrednio przed podaniem.
-> Podawaj w schłodzonych szklankach, z owocami lub ziołami z listy.
+> Rozgnieć żurawinę widelcem lub tłuczkiem, aby popękały owoce i uwolniły sok.
+> Przełóż owoce do garnka, zalej wodą i gotuj na małym ogniu 5–7 minut.
+> Przecedź napar przez drobne sitko, dociskając owoce łyżką, a następnie wyrzuć wytłoki.
+> Dodaj cukier do gorącego płynu i mieszaj do rozpuszczenia; spróbuj i w razie potrzeby skoryguj słodycz.
+> Podawaj ciepły albo schłodzony. W wersji zimnej ostudź przed wstawieniem do lodówki.
+
 
 # Orzeźwiająca woda z owocami
-@ cat=cocktaile servings=1 prep=3 cook=5 art=drink tags=napój
-: Orzeźwiająca woda z owocami — jedna szklanka.
+@ cat=cocktaile servings=1 prep=5 cook=0 art=drink tags=napój
+: Woda smakowa z cytryną, ogórkiem i świeżą miętą.
 300 ml | woda
 0,3 szt. | cytryna
 20 g | ogórek
 4 g | mięta
-> Przygotuj sok lub owoce zgodnie z recepturą. Jeśli używasz cytrusów, wyciśnij sok i usuń pestki.
-> Rozpuść cukier w niewielkiej ilości ciepłej wody albo przygotuj syrop, jeśli przewidziano go w składnikach.
-> Połącz sok, wodę i pozostałe składniki. Spróbuj i dopasuj słodycz do kwasowości owoców.
-> Schłodź napój w lodówce. Lód dodawaj bezpośrednio przed podaniem.
-> Podawaj w schłodzonych szklankach, z owocami lub ziołami z listy.
+> Pokrój ogórek w cienkie plasterki, a cytrynę w półplasterki, usuwając pestki.
+> Uderz lekko liście mięty dłonią, aby uwolnić aromat, ale nie rozrywaj ich na drobne kawałki.
+> Włóż owoce, ogórek i miętę do szklanki lub małego dzbanka, a następnie zalej zimną wodą.
+> Odstaw do lodówki na 10–15 minut, aby woda nabrała smaku; nie trzymaj mięty zbyt długo, bo może zgorzknieć.
+> Podawaj mocno schłodzoną z lodem dodanym bezpośrednio przed piciem.
+
 
 # Kurczak w sosie słodko-kwaśnym
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
