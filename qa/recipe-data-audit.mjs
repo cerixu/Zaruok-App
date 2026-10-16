@@ -4,7 +4,43 @@ import { artKindFor } from '../art.js';
 const SOURCES = ['seeds.js', 'seeds-pl.js', 'seeds-world.js', 'seeds-more.js', 'seeds-curated.js'];
 
 if (artKindFor({ name: 'Baba ganoush', category: 'sauce', art: 'sauce:tomato' }) !== 'dip:eggplant') throw new Error('Baba ganoush musi używać ilustracji dipu z bakłażana, nawet jeśli ma stary wariant grafiki.');
+
 if (artKindFor({ name: 'Pizza Margherita', category: 'main', art: 'plate' }) !== 'pizza') throw new Error('Pizza Margherita musi używać ilustracji pizzy.');
+
+const ART_MAPPING_EXPECTATIONS = [
+  ['Pierogi z mięsem', 'cat-mieso', 'dumpling'],
+  ['Risotto z grzybami', 'cat-warzywa', 'risotto'],
+  ['Pesto alla genovese', 'cat-sosy-bazowe', 'sauce:green'],
+  ['Beszamel', 'cat-sosy-bazowe', 'sauce:white'],
+  ['Salsa roja', 'cat-sosy-bazowe', 'sauce'],
+  ['Satay orzechowy', 'cat-sosy-bazowe', 'sauce:brown'],
+  ['Chimichurri', 'cat-sosy-bazowe', 'sauce:green'],
+  ['Aioli', 'cat-sosy-bazowe', 'sauce:mayo'],
+  ['Winegret klasyczny', 'cat-sosy-bazowe', 'sauce:oil'],
+  ['Gremolata', 'cat-sosy-bazowe', 'sauce:green'],
+  ['Wieprzowina w sosie słodko-kwaśnym', 'cat-mieso', 'pork'],
+  ['Wieprzowina kung pao', 'cat-mieso', 'pork'],
+  ['Wieprzowina z czarnym pieprzem', 'cat-mieso', 'pork'],
+  ['Wieprzowina po syczuańsku', 'cat-mieso', 'pork'],
+  ['Wieprzowina z bazylią tajską', 'cat-mieso', 'pork'],
+  ['Wieprzowina w sosie orzechowym', 'cat-mieso', 'pork'],
+  ['Ziemniaki puree', 'cat-warzywa', 'potato:mash'],
+  ['Ziemniaki pieczone', 'cat-warzywa', 'potato:roasted'],
+  ['Frytki', 'cat-warzywa', 'fries'],
+  ['Ryż jaśminowy', 'cat-warzywa', 'rice'],
+  ['Kasza gryczana', 'cat-warzywa', 'grain:buckwheat'],
+  ['Kasza jaglana', 'cat-warzywa', 'grain:millet'],
+  ['Grillowane warzywa', 'cat-warzywa', 'veg'],
+  ['Fasolka szparagowa z migdałami', 'cat-warzywa', 'beans'],
+  ['Colesław', 'cat-warzywa', 'salad:slaw'],
+];
+for (const [name, category, expected] of ART_MAPPING_EXPECTATIONS) {
+  const actual = artKindFor({ name, category, art: 'food' });
+  if (actual !== expected) {
+    throw new Error('Zła ilustracja receptury "' + name + '": oczekiwano "' + expected + '", otrzymano "' + actual + '".');
+  }
+}
+
 const EXPECTED_SOURCE_COUNT = 453;
 const EXPECTED_HAND_COUNT = 3;
 const BAD_ENGLISH = /\b(almonds|butter|flour|sugar|cream|cheese|milk|cup|cups|tbsp|tsp|tablespoon|teaspoon|yellow)\b/i;
