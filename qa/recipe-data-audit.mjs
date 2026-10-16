@@ -83,7 +83,23 @@ for (const file of SOURCES) {
 
 const curatedText = fs.readFileSync('seeds-curated.js', 'utf8');
 const curatedBlocks = curatedText.split(/\n(?=# )/).filter((block) => block.startsWith('# '));
-const GENERIC_STEPS = [/^(?:Przygotuj bazę\.|Dodaj dodatki\.|Podawaj od razu\.|Przygotuj składniki\.|Dopraw i podawaj\.)$/i];
+const GENERIC_STEPS = [
+  /^(?:Przygotuj bazę\\.|Dodaj dodatki\\.|Podawaj od razu\\.|Przygotuj składniki\\.|Dopraw i podawaj\\.)$/i,
+  /Jeśli receptura zawiera/i,
+  /odpowiedniej dla (?:danego rodzaju|tego deseru|rodzaju wypieku)/i,
+  /Przygotuj bazę napoju/i,
+  /Dodaj dodatki, które wymagają/i,
+  /Warzywa i pozostałe składniki oczyść/i,
+  /piecz, gotuj albo schładzaj/i,
+  /temperatury odpowiedniej/i,
+  /jeśli przewidziano go w recepturze/i,
+  /wykończ ziołami, olejem aromatyzowanym lub przyprawami z listy/i,
+  /z dekoracją przewidzianą w recepturze/i,
+  /przygotuj sok lub owoce zgodnie/i,
+  /przygotuj elastyczne ciasto/i,
+  /wymieszaj mąkę, wodę, drożdże lub zakwas/i,
+  /zgodnie z recepturą/i,
+];
 for (const block of curatedBlocks) {
   const name = block.split('\n')[0].slice(2).trim();
   const ingredients = block.split('\n').filter((line) => line.includes('|') && !line.startsWith('@ '));
