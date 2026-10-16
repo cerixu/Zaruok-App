@@ -3232,6 +3232,15 @@ export const SEED_CURATED = `
 
 # Frittata z cukinią
 @ cat=inne servings=1 prep=5 cook=7 art=food tags=jajka,śniadanie
+: Frittata z cukinią i parmezanem — szybkie danie z patelni.
+2 szt. | jajko
+60 g | cukinia
+15 g | parmezan
+> Pokrój cukinię w cienkie półplasterki, zetrzyj parmezan i roztrzep jajka ze szczyptą soli.
+> Rozgrzej patelnię z odrobiną oliwy, dodaj cukinię i smaż 3–4 minuty, aż zmięknie i lekko się zrumieni.
+> Wlej jajka na cukinię, potrząśnij patelnią, aby masa równomiernie się rozlała, i posyp parmezanem.
+> Smaż pod przykryciem na małym ogniu 4–5 minut, aż brzegi będą ścięte, a środek prawie gotowy.
+> Dokończ pod gorącym grillem przez 1–2 minuty lub ostrożnie odwróć frittatę; odstaw na minutę przed podaniem.
 : Frittata z cukinią — szybkie śniadanie.
 2 szt. | jajko
 60 g | cukinia
@@ -3244,6 +3253,15 @@ export const SEED_CURATED = `
 
 # Frittata z ziemniakami
 @ cat=inne servings=1 prep=5 cook=7 art=food tags=jajka,śniadanie
+: Frittata z ziemniakami i cebulą — sycące danie z patelni.
+2 szt. | jajko
+70 g | ziemniaki
+0,5 szt. | cebula
+> Ugotowane ziemniaki pokrój w plastry, a cebulę w cienkie piórka. Roztrzep jajka ze szczyptą soli.
+> Podsmaż cebulę na patelni z odrobiną oliwy przez 3–4 minuty, aż zmięknie.
+> Dodaj plastry ziemniaków i smaż jeszcze 2 minuty, żeby lekko się zrumieniły.
+> Wlej roztrzepane jajka, rozprowadź je między ziemniakami i smaż pod przykryciem na małym ogniu do ścięcia brzegów.
+> Ostrożnie obróć frittatę lub dopiecz jej wierzch pod grillem; odstaw na minutę przed pokrojeniem.
 : Frittata z ziemniakami — szybkie śniadanie.
 2 szt. | jajko
 70 g | ziemniaki
