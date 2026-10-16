@@ -1951,7 +1951,7 @@ export const SEED_CURATED = `
 0,5 szt. | cebula
 40 g | papryka
 12 ml | olej rzepakowy
-> Wołowina pokrój w cienkie, równe paski lub niewielkie kawałki. Cebulę pokrój w piórka, a paprykę w cienkie paski; pieprz grubo rozgnieć.
+> Pokrój wołowinę w cienkie, równe paski lub niewielkie kawałki. Cebulę pokrój w piórka, a paprykę w cienkie paski; pieprz grubo rozgnieć.
 > Rozgrzej wok z olejem. Obsmaż białko partiami, aż się zrumieni, i przełóż na talerz.
 > Na tej samej patelni krótko smaż cebulę i paprykę, aby zmiękły, ale pozostały jędrne.
 > Rozmieszaj sos ostrygowy z 1–2 łyżkami wody, wlej do woka i zagotuj krótko.
@@ -1970,7 +1970,7 @@ export const SEED_CURATED = `
 > Rozgrzej wok mocno z olejem. Obsmaż wołowinę krótko, partiami, aż się zrumieni, ale nie przesusz; odłóż na bok.
 > Zmniejsz nieco ogień, dodaj czosnek, imbir i pastę doubanjiang; smaż 20–30 sekund, aż uwolnią aromat.
 > Wlej olej sezamowy oraz 1–2 łyżki wody, po czym zeskrob z dna przyprawy i utwórz lekki sos.
-> Włóż wołowina z powrotem, dokładnie obtocz w sosie i podgrzej do pełnej gotowości. Podawaj od razu.
+> Włóż wołowinę z powrotem, dokładnie obtocz w sosie i podgrzej do pełnej gotowości. Podawaj od razu.
 
 # Wołowina z bazylią tajską
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -2266,7 +2266,7 @@ export const SEED_CURATED = `
 0,5 szt. | cebula
 40 g | papryka
 12 ml | olej rzepakowy
-> Wieprzowina pokrój w cienkie, równe paski lub niewielkie kawałki. Cebulę pokrój w piórka, a paprykę w cienkie paski; pieprz grubo rozgnieć.
+> Pokrój wieprzowinę w cienkie, równe paski lub niewielkie kawałki. Cebulę pokrój w piórka, a paprykę w cienkie paski; pieprz grubo rozgnieć.
 > Rozgrzej wok z olejem. Obsmaż białko partiami, aż się zrumieni, i przełóż na talerz.
 > Na tej samej patelni krótko smaż cebulę i paprykę, aby zmiękły, ale pozostały jędrne.
 > Rozmieszaj sos ostrygowy z 1–2 łyżkami wody, wlej do woka i zagotuj krótko.
@@ -2285,7 +2285,7 @@ export const SEED_CURATED = `
 > Rozgrzej wok z olejem. Obsmaż wieprzowinę w cienkich paskach, partiami jeśli trzeba, aż się zrumieni; odłóż na bok.
 > Zmniejsz nieco ogień, dodaj czosnek, imbir i pastę doubanjiang; smaż 20–30 sekund, aż uwolnią aromat.
 > Wlej olej sezamowy oraz 1–2 łyżki wody, po czym zeskrob z dna przyprawy i utwórz lekki sos.
-> Włóż wieprzowina z powrotem, dokładnie obtocz w sosie i podgrzej do pełnej gotowości. Podawaj od razu.
+> Włóż wieprzowinę z powrotem, dokładnie obtocz w sosie i podgrzej do pełnej gotowości. Podawaj od razu.
 
 # Wieprzowina z bazylią tajską
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
@@ -2371,7 +2371,7 @@ export const SEED_CURATED = `
 0,5 szt. | cebula
 40 g | papryka
 12 ml | olej rzepakowy
-> Kaczka pokrój w cienkie, równe paski lub niewielkie kawałki. Cebulę pokrój w piórka, a paprykę w cienkie paski; pieprz grubo rozgnieć.
+> Pokrój kaczkę w cienkie, równe paski lub niewielkie kawałki. Cebulę pokrój w piórka, a paprykę w cienkie paski; pieprz grubo rozgnieć.
 > Rozgrzej wok z olejem. Obsmaż białko partiami, aż się zrumieni, i przełóż na talerz.
 > Na tej samej patelni krótko smaż cebulę i paprykę, aby zmiękły, ale pozostały jędrne.
 > Rozmieszaj sos ostrygowy z 1–2 łyżkami wody, wlej do woka i zagotuj krótko.
@@ -2390,7 +2390,7 @@ export const SEED_CURATED = `
 > Rozgrzej wok z olejem. Obsmaż kaczkę w cienkich paskach, partiami jeśli trzeba, aż się zrumieni i będzie prawie gotowa; odłóż na bok.
 > Zmniejsz nieco ogień, dodaj czosnek, imbir i pastę doubanjiang; smaż 20–30 sekund, aż uwolnią aromat.
 > Wlej olej sezamowy oraz 1–2 łyżki wody, po czym zeskrob z dna przyprawy i utwórz lekki sos.
-> Włóż kaczka z powrotem, dokładnie obtocz w sosie i podgrzej do pełnej gotowości. Podawaj od razu.
+> Włóż kaczkę z powrotem, dokładnie obtocz w sosie i podgrzej do pełnej gotowości. Podawaj od razu.
 
 # Kaczka z bazylią tajską
 @ cat=mieso servings=1 prep=8 cook=12 art=food tags=wok,azja,kuchnia-azjatycka
