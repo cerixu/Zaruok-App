@@ -158,15 +158,15 @@ for (const block of curatedBlocks) {
   }
 }
 
-const GENERIC_PROTEIN_STEP = /\\bobsmaż białko\\b|\\bbiałko partiami\\b/i;
+const GENERIC_PROTEIN_STEP = /\bobsmaż białko\b|\bbiałko partiami\b/i;
 for (const block of curatedBlocks) {
-  const name = block.split('\\n')[0].slice(2).trim();
+  const name = block.split('\n')[0].slice(2).trim();
   const steps = [...block.matchAll(/^> (.+)$/gm)].map((m) => m[1]);
   if (steps.some((step) => GENERIC_PROTEIN_STEP.test(step))) {
     issues.push('Zbyt ogólna instrukcja smażenia białka: ' + name);
   }
 }
-const tofuPepper = curatedBlocks.find((block) => block.startsWith('# Tofu z czarnym pieprzem\\n')) || '';
+const tofuPepper = curatedBlocks.find((block) => block.startsWith('# Tofu z czarnym pieprzem\n')) || '';
 if (/sos ostrygowy/i.test(tofuPepper)) {
   issues.push('Tofu z czarnym pieprzem nie może domyślnie zawierać sosu ostrygowego.');
 }
