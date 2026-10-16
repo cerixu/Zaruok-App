@@ -99,6 +99,10 @@ const GENERIC_STEPS = [
   /przygotuj elastyczne ciasto/i,
   /wymieszaj mąkę, wodę, drożdże lub zakwas/i,
   /zgodnie z recepturą/i,
+  /Połącz składniki w shakerze lub szklanicy barmańskiej, zgodnie z charakterem napoju/i,
+  /Jeśli używasz shakera, napełnij go lodem i wstrząśnij do mocnego schłodzenia/i,
+  /Przecedź do szkła z lodem lub do schłodzonego kieliszka, zgodnie ze sposobem podania/i,
+  /Udekoruj składnikiem z listy i podawaj od razu/i,
 ];
 for (const block of curatedBlocks) {
   const name = block.split('\n')[0].slice(2).trim();
