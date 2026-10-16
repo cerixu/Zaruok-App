@@ -1656,11 +1656,11 @@ export const SEED_CURATED = `
 8 g | imbir
 10 g | miód
 20 ml | sok z cytryny
-> Odmierz wszystkie składniki przed rozpoczęciem przygotowania i schłodź szkło, jeśli napój podaje się na zimno.
-> Połącz składniki w shakerze lub szklanicy barmańskiej, zgodnie z charakterem napoju: koktajle z sokiem zwykle wstrząsa się, a klarowne na bazie alkoholu miesza.
-> Jeśli używasz shakera, napełnij go lodem i wstrząśnij do mocnego schłodzenia. Klarowne koktajle mieszaj z lodem, aby zachować przejrzystość.
-> Przecedź do szkła z lodem lub do schłodzonego kieliszka, zgodnie ze sposobem podania.
-> Udekoruj składnikiem z listy i podawaj od razu.
+> Do szklanicy włóż drobno starty imbir, dodaj miód i sok z cytryny. Wymieszaj, aż miód się rozpuści, po czym dolej whisky.
+> Napełnij shaker lodem i energicznie wstrząsaj przez 10–12 sekund, aby napój dobrze się schłodził, a imbir oddał aromat.
+> Przecedź dokładnie przez drobne sitko do niskiej szklanki wypełnionej świeżym lodem, żeby zatrzymać włókna imbiru.
+> Spróbuj; jeśli imbir dominuje, następnym razem użyj go mniej, a jeśli napój jest zbyt ostry, dodaj odrobinę wody.
+> Podawaj od razu, gdy lód jest jeszcze twardy, a aromat imbiru i cytryny pozostaje wyraźny.
 
 # Americano
 @ cat=cocktaile servings=1 prep=3 cook=5 art=drink tags=koktajl,bar
@@ -2879,11 +2879,11 @@ export const SEED_CURATED = `
 40 ml | wódka
 20 ml | likier kawowy
 20 ml | śmietanka 30%
-> Odmierz wszystkie składniki przed rozpoczęciem przygotowania i schłodź szkło, jeśli napój podaje się na zimno.
-> Połącz składniki w shakerze lub szklanicy barmańskiej, zgodnie z charakterem napoju: koktajle z sokiem zwykle wstrząsa się, a klarowne na bazie alkoholu miesza.
-> Jeśli używasz shakera, napełnij go lodem i wstrząśnij do mocnego schłodzenia. Klarowne koktajle mieszaj z lodem, aby zachować przejrzystość.
-> Przecedź do szkła z lodem lub do schłodzonego kieliszka, zgodnie ze sposobem podania.
-> Udekoruj składnikiem z listy i podawaj od razu.
+> Napełnij niską szklankę świeżym lodem. Wlej wódkę i likier kawowy.
+> Zamieszaj przez kilka sekund łyżką barmańską, aby schłodzić bazę bez nadmiernego rozcieńczania.
+> Powoli wlej śmietankę po grzbiecie łyżki, aby utworzyła jasną warstwę na powierzchni.
+> Jeśli gość woli jednolity smak, pozwól mu wymieszać napój tuż przed piciem; nie wstrząsaj śmietanki razem z resztą.
+> Podawaj od razu w niskiej szklance z krótką słomką lub bez niej.
 
 # Tequila Sunrise
 @ cat=cocktaile servings=1 prep=3 cook=5 art=drink tags=koktajl
@@ -2891,11 +2891,11 @@ export const SEED_CURATED = `
 45 ml | tequila
 90 ml | sok pomarańczowy
 10 ml | grenadyna
-> Odmierz wszystkie składniki przed rozpoczęciem przygotowania i schłodź szkło, jeśli napój podaje się na zimno.
-> Połącz składniki w shakerze lub szklanicy barmańskiej, zgodnie z charakterem napoju: koktajle z sokiem zwykle wstrząsa się, a klarowne na bazie alkoholu miesza.
-> Jeśli używasz shakera, napełnij go lodem i wstrząśnij do mocnego schłodzenia. Klarowne koktajle mieszaj z lodem, aby zachować przejrzystość.
-> Przecedź do szkła z lodem lub do schłodzonego kieliszka, zgodnie ze sposobem podania.
-> Udekoruj składnikiem z listy i podawaj od razu.
+> Wypełnij wysoką szklankę lodem i wlej tequilę oraz sok pomarańczowy.
+> Delikatnie zamieszaj, aby połączyć bazę, nie rozbijając lodu.
+> Wlej grenadynę powoli po wewnętrznej ściance szklanki; powinna opaść na dno i utworzyć czerwono-pomarańczowy gradient.
+> Nie mieszaj ponownie po dodaniu grenadyny — to zachowa charakterystyczny efekt wschodu słońca.
+> Podawaj natychmiast, zanim lód rozcieńczy sok.
 
 # Blue Lagoon
 @ cat=cocktaile servings=1 prep=3 cook=5 art=drink tags=koktajl
@@ -2903,11 +2903,11 @@ export const SEED_CURATED = `
 40 ml | wódka
 20 ml | blue curaçao
 80 ml | lemoniada
-> Odmierz wszystkie składniki przed rozpoczęciem przygotowania i schłodź szkło, jeśli napój podaje się na zimno.
-> Połącz składniki w shakerze lub szklanicy barmańskiej, zgodnie z charakterem napoju: koktajle z sokiem zwykle wstrząsa się, a klarowne na bazie alkoholu miesza.
-> Jeśli używasz shakera, napełnij go lodem i wstrząśnij do mocnego schłodzenia. Klarowne koktajle mieszaj z lodem, aby zachować przejrzystość.
-> Przecedź do szkła z lodem lub do schłodzonego kieliszka, zgodnie ze sposobem podania.
-> Udekoruj składnikiem z listy i podawaj od razu.
+> Wypełnij wysoką szklankę świeżym lodem.
+> Wlej wódkę i blue curaçao, po czym krótko zamieszaj, aby równomiernie rozprowadzić kolor.
+> Dopełnij lemoniadą i delikatnie zamieszaj od dna ku górze, nie pozbawiając napoju gazu.
+> Spróbuj i w razie potrzeby skoryguj proporcje lemoniady, nie dodając składników spoza receptury.
+> Podawaj od razu, gdy napój jest mocno schłodzony i musujący.
 
 # Sex on the Beach
 @ cat=cocktaile servings=1 prep=3 cook=5 art=drink tags=koktajl
@@ -2916,11 +2916,11 @@ export const SEED_CURATED = `
 20 ml | likier brzoskwiniowy
 40 ml | sok pomarańczowy
 40 ml | sok żurawinowy
-> Odmierz wszystkie składniki przed rozpoczęciem przygotowania i schłodź szkło, jeśli napój podaje się na zimno.
-> Połącz składniki w shakerze lub szklanicy barmańskiej, zgodnie z charakterem napoju: koktajle z sokiem zwykle wstrząsa się, a klarowne na bazie alkoholu miesza.
-> Jeśli używasz shakera, napełnij go lodem i wstrząśnij do mocnego schłodzenia. Klarowne koktajle mieszaj z lodem, aby zachować przejrzystość.
-> Przecedź do szkła z lodem lub do schłodzonego kieliszka, zgodnie ze sposobem podania.
-> Udekoruj składnikiem z listy i podawaj od razu.
+> Wlej wódkę, likier brzoskwiniowy, sok pomarańczowy i sok żurawinowy do shakera wypełnionego lodem.
+> Wstrząsaj energicznie przez 10–12 sekund, aż shaker będzie wyraźnie zimny.
+> Napełnij wysoką szklankę świeżym lodem i przecedź do niej koktajl.
+> Krótko zamieszaj, aby połączyć oba soki i uzyskać jednolity, różowo-pomarańczowy kolor.
+> Podawaj natychmiast, zanim lód nadmiernie rozcieńczy napój.
 
 # Long Island
 @ cat=cocktaile servings=1 prep=3 cook=5 art=drink tags=koktajl
@@ -2931,11 +2931,11 @@ export const SEED_CURATED = `
 15 ml | tequila
 15 ml | triple sec
 40 ml | cola
-> Odmierz wszystkie składniki przed rozpoczęciem przygotowania i schłodź szkło, jeśli napój podaje się na zimno.
-> Połącz składniki w shakerze lub szklanicy barmańskiej, zgodnie z charakterem napoju: koktajle z sokiem zwykle wstrząsa się, a klarowne na bazie alkoholu miesza.
-> Jeśli używasz shakera, napełnij go lodem i wstrząśnij do mocnego schłodzenia. Klarowne koktajle mieszaj z lodem, aby zachować przejrzystość.
-> Przecedź do szkła z lodem lub do schłodzonego kieliszka, zgodnie ze sposobem podania.
-> Udekoruj składnikiem z listy i podawaj od razu.
+> Napełnij wysoką szklankę świeżym lodem.
+> Wlej wódkę, gin, rum, tequilę i triple sec. Zamieszaj krótko, aby połączyć alkohole i schłodzić bazę.
+> Dopełnij colą i delikatnie zamieszaj od dna ku górze, zachowując możliwie dużo gazu.
+> Spróbuj przed podaniem; przy tej proporcji cola łagodzi mocny, wieloskładnikowy alkoholowy profil.
+> Podawaj od razu w wysokiej szklance, zanim lód zacznie nadmiernie rozcieńczać koktajl.
 
 # Cuba Libre
 @ cat=cocktaile servings=1 prep=3 cook=5 art=drink tags=koktajl
@@ -2955,11 +2955,11 @@ export const SEED_CURATED = `
 50 ml | rum ciemny
 120 ml | piwo imbirowe
 0,2 szt. | limonka
-> Odmierz wszystkie składniki przed rozpoczęciem przygotowania i schłodź szkło, jeśli napój podaje się na zimno.
-> Połącz składniki w shakerze lub szklanicy barmańskiej, zgodnie z charakterem napoju: koktajle z sokiem zwykle wstrząsa się, a klarowne na bazie alkoholu miesza.
-> Jeśli używasz shakera, napełnij go lodem i wstrząśnij do mocnego schłodzenia. Klarowne koktajle mieszaj z lodem, aby zachować przejrzystość.
-> Przecedź do szkła z lodem lub do schłodzonego kieliszka, zgodnie ze sposobem podania.
-> Udekoruj składnikiem z listy i podawaj od razu.
+> Wypełnij wysoką szklankę lodem i wyciśnij do niej sok z limonki, a następnie wrzuć kawałek owocu, jeśli pozostał po wyciskaniu.
+> Wlej piwo imbirowe i delikatnie zamieszaj, aby schłodzić napój bez utraty nadmiaru gazu.
+> Powoli dolej ciemny rum po grzbiecie łyżki, aby utworzył ciemniejszą warstwę na wierzchu.
+> Przed pierwszym łykiem lekko zamieszaj, jeśli chcesz uzyskać równomierny smak rumu i imbiru.
+> Podawaj natychmiast, mocno schłodzone.
 
 # Irish Coffee
 @ cat=cocktaile servings=1 prep=3 cook=5 art=drink tags=koktajl
@@ -2968,11 +2968,11 @@ export const SEED_CURATED = `
 30 ml | whisky irlandzka
 8 g | cukier
 20 ml | śmietanka 30%
-> Odmierz wszystkie składniki przed rozpoczęciem przygotowania i schłodź szkło, jeśli napój podaje się na zimno.
-> Połącz składniki w shakerze lub szklanicy barmańskiej, zgodnie z charakterem napoju: koktajle z sokiem zwykle wstrząsa się, a klarowne na bazie alkoholu miesza.
-> Jeśli używasz shakera, napełnij go lodem i wstrząśnij do mocnego schłodzenia. Klarowne koktajle mieszaj z lodem, aby zachować przejrzystość.
-> Przecedź do szkła z lodem lub do schłodzonego kieliszka, zgodnie ze sposobem podania.
-> Udekoruj składnikiem z listy i podawaj od razu.
+> Podgrzej żaroodporną szklankę gorącą wodą, po chwili ją wylej i osusz.
+> Do gorącej kawy dodaj cukier i mieszaj, aż całkowicie się rozpuści. Wlej whisky i ponownie krótko zamieszaj.
+> Śmietankę lekko ubij, tak aby była płynna, ale gęstsza od mleka.
+> Powoli przelej śmietankę po grzbiecie łyżki na powierzchnię kawy; nie mieszaj warstwy śmietankowej z kawą.
+> Podawaj od razu, gdy kawa jest gorąca, a śmietanka utrzymuje się na wierzchu.
 
 # Hot Toddy
 @ cat=cocktaile servings=1 prep=3 cook=5 art=drink tags=koktajl
@@ -2981,11 +2981,11 @@ export const SEED_CURATED = `
 120 ml | woda
 12 g | miód
 0,2 szt. | cytryna
-> Odmierz wszystkie składniki przed rozpoczęciem przygotowania i schłodź szkło, jeśli napój podaje się na zimno.
-> Połącz składniki w shakerze lub szklanicy barmańskiej, zgodnie z charakterem napoju: koktajle z sokiem zwykle wstrząsa się, a klarowne na bazie alkoholu miesza.
-> Jeśli używasz shakera, napełnij go lodem i wstrząśnij do mocnego schłodzenia. Klarowne koktajle mieszaj z lodem, aby zachować przejrzystość.
-> Przecedź do szkła z lodem lub do schłodzonego kieliszka, zgodnie ze sposobem podania.
-> Udekoruj składnikiem z listy i podawaj od razu.
+> Wlej gorącą, ale nie gwałtownie wrzącą wodę do odpornego na temperaturę kubka.
+> Dodaj miód i mieszaj, aż całkowicie się rozpuści.
+> Wlej whisky i sok wyciśnięty z cytryny, po czym wymieszaj delikatnie.
+> Spróbuj ostrożnie; jeśli napój jest zbyt kwaśny, dodaj odrobinę miodu z podanej ilości, jeśli pozostał.
+> Podawaj od razu na ciepło, zanim napój ostygnie.
 
 # Sazerac
 @ cat=cocktaile servings=1 prep=3 cook=5 art=drink tags=koktajl
@@ -2994,11 +2994,11 @@ export const SEED_CURATED = `
 3 ml | absynt
 4 g | cukier
 2 ml | bitters Peychaud’s
-> Odmierz wszystkie składniki przed rozpoczęciem przygotowania i schłodź szkło, jeśli napój podaje się na zimno.
-> Połącz składniki w shakerze lub szklanicy barmańskiej, zgodnie z charakterem napoju: koktajle z sokiem zwykle wstrząsa się, a klarowne na bazie alkoholu miesza.
-> Jeśli używasz shakera, napełnij go lodem i wstrząśnij do mocnego schłodzenia. Klarowne koktajle mieszaj z lodem, aby zachować przejrzystość.
-> Przecedź do szkła z lodem lub do schłodzonego kieliszka, zgodnie ze sposobem podania.
-> Udekoruj składnikiem z listy i podawaj od razu.
+> Schłodź małą szklankę. Wlej absynt, obróć naczynie, aby zwilżyć jego wnętrze, a nadmiar płynu wylej.
+> W szklanicy barmańskiej połącz cukier z bittersami Peychaud’s i dodaj odrobinę wody, aby cukier zaczął się rozpuszczać.
+> Dodaj whisky żytnią oraz lód i mieszaj przez 20–30 sekund, aż koktajl będzie dobrze schłodzony.
+> Przecedź bez lodu do przygotowanej szklanki z absyntowym aromatem.
+> Podawaj od razu; ten koktajl tradycyjnie serwuje się bez lodu i bez dodatkowej dekoracji.
 
 # Winegret klasyczny
 @ cat=sosy origin=FR servings=1 prep=3 art=food tags=sos,dressing,kuchnia-francuska
