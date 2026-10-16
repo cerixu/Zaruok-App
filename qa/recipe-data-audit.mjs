@@ -116,7 +116,7 @@ for (const block of curatedBlocks) {
   if (/\btags=wok\b/.test(meta)) {
     const firstIngredient = ingredients[0]?.split('|').slice(1).join('|').trim() || '';
     const expectedCategory = /krewetki/i.test(firstIngredient) ? 'owoce-morza' : /tofu/i.test(firstIngredient) ? 'warzywa' : 'mieso';
-    if (!new RegExp('\\bcat=' + expectedCategory + '\\b').test(meta)) issues.push('Nieprawidłowa kategoria dania z woka: ' + name);
+    if (!new RegExp('\bcat=' + expectedCategory + '\b').test(meta)) issues.push('Nieprawidłowa kategoria dania z woka: ' + name);
   }
 }
 
@@ -141,11 +141,11 @@ for (const [name, patterns] of criticalRecipes) {
   }
 }
 const BAD_MEAT_FORMS = [
-  /\\b(?:wołowina|wieprzowina|kaczka)\\s+pokrój\\b/i,
-  /\\b(?:dodaj|włóż)\\s+(?:wołowina|wieprzowina|kaczka)\\b/i,
+  /\b(?:wołowina|wieprzowina|kaczka)\s+pokrój\b/i,
+  /\b(?:dodaj|włóż)\s+(?:wołowina|wieprzowina|kaczka)\b/i,
 ];
 for (const block of curatedBlocks) {
-  const name = block.split('\\n')[0].slice(2).trim();
+  const name = block.split('\n')[0].slice(2).trim();
   const steps = [...block.matchAll(/^> (.+)$/gm)].map((m) => m[1]);
   if (steps.some((step) => BAD_MEAT_FORMS.some((pattern) => pattern.test(step)))) {
     issues.push('Błędna odmiana mięsa w instrukcji: ' + name);
