@@ -1734,40 +1734,43 @@ export const SEED_CURATED = `
 
 # Herbata matcha latte
 @ cat=cocktaile servings=1 prep=3 cook=5 art=drink tags=napój
-: Herbata matcha latte — jedna szklanka.
+: Kremowa matcha z mlekiem, przygotowana na gorąco.
 3 g | matcha
 180 ml | mleko
 40 ml | woda
-> Przygotuj bazę napoju: zaparz kawę lub herbatę, albo podgrzej mleko zgodnie z recepturą.
-> Rozpuść słodzik lub proszek w niewielkiej ilości gorącego płynu, aby uniknąć grudek.
-> Połącz składniki i spień mleko, jeśli napój tego wymaga.
-> Przelej do filiżanki lub szklanki. W wersji na zimno dodaj lód dopiero po ostudzeniu bazy.
-> Podawaj od razu, z dekoracją przewidzianą w recepturze.
+> Przesiej matchę do małej miseczki, aby rozbić grudki.
+> Podgrzej wodę do około 75–80°C, wlej ją do matchy i ubij bambusową miotełką lub spieniaczem, aż powstanie gładka pianka.
+> Podgrzej mleko do około 60–65°C, nie doprowadzając do wrzenia, i spień je.
+> Wlej matchę do szklanki, a następnie powoli dolej mleko.
+> Podawaj od razu; jeśli chcesz, zachowaj odrobinę pianki mlecznej na wierzch.
+
 
 # Herbata imbirowa
-@ cat=cocktaile servings=1 prep=3 cook=5 art=drink tags=napój
-: Herbata imbirowa — jedna szklanka.
+@ cat=cocktaile servings=1 prep=3 cook=8 art=drink tags=napój
+: Rozgrzewający napar ze świeżego imbiru, miodu i cytryny.
 12 g | imbir
 250 ml | woda
 10 g | miód
 0,2 szt. | cytryna
-> Przygotuj bazę napoju: zaparz kawę lub herbatę, albo podgrzej mleko zgodnie z recepturą.
-> Rozpuść słodzik lub proszek w niewielkiej ilości gorącego płynu, aby uniknąć grudek.
-> Połącz składniki i spień mleko, jeśli napój tego wymaga.
-> Przelej do filiżanki lub szklanki. W wersji na zimno dodaj lód dopiero po ostudzeniu bazy.
-> Podawaj od razu, z dekoracją przewidzianą w recepturze.
+> Obierz imbir i pokrój go w cienkie plasterki; wyciśnij sok z cytryny.
+> Zalej imbir wodą, doprowadź do lekkiego wrzenia i gotuj łagodnie 5–7 minut.
+> Zdejmij napar z ognia i odstaw na minutę, aby osad opadł.
+> Przecedź do kubka i poczekaj, aż płyn lekko przestygnie.
+> Dodaj miód i sok z cytryny, wymieszaj i podawaj gorące.
+
 
 # Kakao na mleku
 @ cat=cocktaile servings=1 prep=3 cook=5 art=drink tags=napój
-: Kakao na mleku — jedna szklanka.
+: Gładkie, ciepłe kakao na mleku.
 10 g | kakao
 200 ml | mleko
 8 g | cukier
-> Przygotuj bazę napoju: zaparz kawę lub herbatę, albo podgrzej mleko zgodnie z recepturą.
-> Rozpuść słodzik lub proszek w niewielkiej ilości gorącego płynu, aby uniknąć grudek.
-> Połącz składniki i spień mleko, jeśli napój tego wymaga.
-> Przelej do filiżanki lub szklanki. W wersji na zimno dodaj lód dopiero po ostudzeniu bazy.
-> Podawaj od razu, z dekoracją przewidzianą w recepturze.
+> W małym garnku wymieszaj kakao z cukrem i 2 łyżkami zimnego mleka, aż powstanie gładka pasta.
+> Stopniowo dolej resztę mleka, cały czas mieszając trzepaczką.
+> Podgrzewaj na małym ogniu przez 3–4 minuty, nie dopuszczając do wrzenia i przypalenia dna.
+> Spróbuj kakao; jeśli chcesz intensywniejszy smak, dodaj niewielką ilość kakao i dokładnie rozprowadź.
+> Przelej do kubka i podawaj od razu.
+
 
 # Mors
 @ cat=cocktaile servings=1 prep=3 cook=5 art=drink tags=napój
