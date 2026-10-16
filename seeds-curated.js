@@ -1847,8 +1847,8 @@ export const SEED_CURATED = `
 40 g | papryka
 12 ml | olej rzepakowy
 > Filet z kurczaka pokrój w cienkie, równe paski lub niewielkie kawałki. Cebulę pokrój w piórka, a paprykę w cienkie paski; pieprz grubo rozgnieć.
-> Rozgrzej wok z olejem. Obsmaż białko partiami, aż się zrumieni, i przełóż na talerz.
-> Na tej samej patelni krótko smaż cebulę i paprykę, aby zmiękły, ale pozostały jędrne.
+> Rozgrzej wok z olejem. Obsmaż paski kurczaka partiami, aż się zetną i lekko zrumienią; przełóż je na talerz.
+> W tym samym woku krótko smaż cebulę i paprykę, aby zmiękły, ale pozostały jędrne.
 > Rozmieszaj sos ostrygowy z 1–2 łyżkami wody, wlej do woka i zagotuj krótko.
 > Włóż filet z kurczaka z powrotem, dodaj pieprz i wymieszaj, aż sos pokryje składniki cienką warstwą.
 
@@ -1891,8 +1891,8 @@ export const SEED_CURATED = `
 50 g | brokuł chiński
 28 g | jajko (roztrzepane)
 12 ml | olej rzepakowy
-> Makaron ryżowy przygotuj zgodnie z instrukcją na opakowaniu, odcedź i filet z kurczaka pokrój w cienkie, równe paski lub niewielkie kawałki.
-> Rozgrzej wok z olejem i obsmaż białko; odłóż je na bok, gdy będzie zrumienione lub w pełni ugotowane.
+> Makaron ryżowy przygotuj zgodnie z instrukcją na opakowaniu i odcedź. Filet z kurczaka pokrój w cienkie, równe paski.
+> Rozgrzej wok z olejem. Obsmaż paski kurczaka, aż się zrumienią i będą w pełni usmażone; przełóż je na talerz.
 > Dodaj brokuł chiński i smaż krótko, aż łodyżki zmiękną, ale zachowają jędrność.
 > Przesuń składniki na bok, wlej roztrzepane jajko i szybko mieszaj, aż się zetnie; dodaj makaron i ciemny sos sojowy.
 > Włóż filet z kurczaka z powrotem i wymieszaj na mocnym ogniu, aż makaron pokryje się sosem i będzie gorący.
@@ -1952,8 +1952,8 @@ export const SEED_CURATED = `
 40 g | papryka
 12 ml | olej rzepakowy
 > Pokrój wołowinę w cienkie, równe paski lub niewielkie kawałki. Cebulę pokrój w piórka, a paprykę w cienkie paski; pieprz grubo rozgnieć.
-> Rozgrzej wok z olejem. Obsmaż białko partiami, aż się zrumieni, i przełóż na talerz.
-> Na tej samej patelni krótko smaż cebulę i paprykę, aby zmiękły, ale pozostały jędrne.
+> Rozgrzej wok z olejem. Obsmaż paski wołowiny partiami na mocnym ogniu, aż się zrumienią; przełóż je na talerz.
+> W tym samym woku krótko smaż cebulę i paprykę, aby zmiękły, ale pozostały jędrne.
 > Rozmieszaj sos ostrygowy z 1–2 łyżkami wody, wlej do woka i zagotuj krótko.
 > Włóż wołowinę z powrotem, dodaj pieprz i wymieszaj, aż sos pokryje składniki cienką warstwą.
 
@@ -2057,8 +2057,8 @@ export const SEED_CURATED = `
 40 g | papryka
 12 ml | olej rzepakowy
 > Krewetki oczyść, usuń przewód pokarmowy, a następnie dokładnie osusz. Cebulę pokrój w piórka, a paprykę w cienkie paski; pieprz grubo rozgnieć.
-> Rozgrzej wok z olejem. Obsmaż białko partiami, aż się zrumieni, i przełóż na talerz.
-> Na tej samej patelni krótko smaż cebulę i paprykę, aby zmiękły, ale pozostały jędrne.
+> Rozgrzej wok z olejem. Smaż krewetki krótko, około 1–2 minut, aż staną się różowe i nieprzezroczyste; przełóż je na talerz.
+> W tym samym woku krótko smaż cebulę i paprykę, aby zmiękły, ale pozostały jędrne.
 > Rozmieszaj sos ostrygowy z 1–2 łyżkami wody, wlej do woka i zagotuj krótko.
 > Włóż krewetki z powrotem, dodaj pieprz i wymieszaj, aż sos pokryje składniki cienką warstwą.
 
@@ -2101,8 +2101,8 @@ export const SEED_CURATED = `
 50 g | brokuł chiński
 28 g | jajko (roztrzepane)
 12 ml | olej rzepakowy
-> Makaron ryżowy przygotuj zgodnie z instrukcją na opakowaniu, odcedź i krewetki oczyść, usuń przewód pokarmowy, a następnie dokładnie osusz.
-> Rozgrzej wok z olejem i obsmaż białko; odłóż je na bok, gdy będzie zrumienione lub w pełni ugotowane.
+> Makaron ryżowy przygotuj zgodnie z instrukcją na opakowaniu i odcedź. Krewetki oczyść, usuń przewód pokarmowy i dokładnie osusz.
+> Rozgrzej wok z olejem. Smaż krewetki krótko, aż staną się różowe i nieprzezroczyste; przełóż je na talerz.
 > Dodaj brokuł chiński i smaż krótko, aż łodyżki zmiękną, ale zachowają jędrność.
 > Przesuń składniki na bok, wlej roztrzepane jajko i szybko mieszaj, aż się zetnie; dodaj makaron i ciemny sos sojowy.
 > Włóż krewetki z powrotem i wymieszaj na mocnym ogniu, aż makaron pokryje się sosem i będzie gorący.
@@ -2157,14 +2157,14 @@ export const SEED_CURATED = `
 : Danie z woka z mocnym aromatem świeżo mielonego pieprzu i wytrawnym sosem.
 140 g | tofu
 3 g | pieprz czarny
-12 ml | sos ostrygowy
+12 ml | sos sojowy jasny
 0,5 szt. | cebula
 40 g | papryka
 12 ml | olej rzepakowy
 > Tofu osusz ręcznikiem i pokrój w równe kostki. Cebulę pokrój w piórka, a paprykę w cienkie paski; pieprz grubo rozgnieć.
-> Rozgrzej wok z olejem. Obsmaż białko partiami, aż się zrumieni, i przełóż na talerz.
-> Na tej samej patelni krótko smaż cebulę i paprykę, aby zmiękły, ale pozostały jędrne.
-> Rozmieszaj sos ostrygowy z 1–2 łyżkami wody, wlej do woka i zagotuj krótko.
+> Rozgrzej wok z olejem. Obsmaż kostki tofu partiami, aż zrumienią się z kilku stron; przełóż je na talerz.
+> W tym samym woku krótko smaż cebulę i paprykę, aby zmiękły, ale pozostały jędrne.
+> Wymieszaj sos sojowy z 1–2 łyżkami wody. Wlej do woka i krótko podgrzej, aż sos zacznie lekko oblepiać składniki.
 > Włóż tofu z powrotem, dodaj pieprz i wymieszaj, aż sos pokryje składniki cienką warstwą.
 
 # Tofu po syczuańsku
@@ -2206,8 +2206,8 @@ export const SEED_CURATED = `
 50 g | brokuł chiński
 28 g | jajko (roztrzepane)
 12 ml | olej rzepakowy
-> Makaron ryżowy przygotuj zgodnie z instrukcją na opakowaniu, odcedź i tofu osusz ręcznikiem i pokrój w równe kostki.
-> Rozgrzej wok z olejem i obsmaż białko; odłóż je na bok, gdy będzie zrumienione lub w pełni ugotowane.
+> Makaron ryżowy przygotuj zgodnie z instrukcją na opakowaniu i odcedź. Tofu osusz ręcznikiem i pokrój w równe kostki.
+> Rozgrzej wok z olejem. Obsmaż kostki tofu, aż zrumienią się z kilku stron; przełóż je na talerz.
 > Dodaj brokuł chiński i smaż krótko, aż łodyżki zmiękną, ale zachowają jędrność.
 > Przesuń składniki na bok, wlej roztrzepane jajko i szybko mieszaj, aż się zetnie; dodaj makaron i ciemny sos sojowy.
 > Włóż tofu z powrotem i wymieszaj na mocnym ogniu, aż makaron pokryje się sosem i będzie gorący.
@@ -2267,8 +2267,8 @@ export const SEED_CURATED = `
 40 g | papryka
 12 ml | olej rzepakowy
 > Pokrój wieprzowinę w cienkie, równe paski lub niewielkie kawałki. Cebulę pokrój w piórka, a paprykę w cienkie paski; pieprz grubo rozgnieć.
-> Rozgrzej wok z olejem. Obsmaż białko partiami, aż się zrumieni, i przełóż na talerz.
-> Na tej samej patelni krótko smaż cebulę i paprykę, aby zmiękły, ale pozostały jędrne.
+> Rozgrzej wok z olejem. Obsmaż paski wieprzowiny partiami, aż się zrumienią i będą w pełni usmażone; przełóż je na talerz.
+> W tym samym woku krótko smaż cebulę i paprykę, aby zmiękły, ale pozostały jędrne.
 > Rozmieszaj sos ostrygowy z 1–2 łyżkami wody, wlej do woka i zagotuj krótko.
 > Włóż wieprzowinę z powrotem, dodaj pieprz i wymieszaj, aż sos pokryje składniki cienką warstwą.
 
@@ -2372,8 +2372,8 @@ export const SEED_CURATED = `
 40 g | papryka
 12 ml | olej rzepakowy
 > Pokrój kaczkę w cienkie, równe paski lub niewielkie kawałki. Cebulę pokrój w piórka, a paprykę w cienkie paski; pieprz grubo rozgnieć.
-> Rozgrzej wok z olejem. Obsmaż białko partiami, aż się zrumieni, i przełóż na talerz.
-> Na tej samej patelni krótko smaż cebulę i paprykę, aby zmiękły, ale pozostały jędrne.
+> Rozgrzej wok z olejem. Obsmaż paski kaczki partiami, aż się zrumienią i będą w pełni usmażone; przełóż je na talerz.
+> W tym samym woku krótko smaż cebulę i paprykę, aby zmiękły, ale pozostały jędrne.
 > Rozmieszaj sos ostrygowy z 1–2 łyżkami wody, wlej do woka i zagotuj krótko.
 > Włóż kaczkę z powrotem, dodaj pieprz i wymieszaj, aż sos pokryje składniki cienką warstwą.
 
