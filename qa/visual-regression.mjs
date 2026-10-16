@@ -1,5 +1,7 @@
 import { chromium } from 'playwright';
 import fs from 'node:fs';
+import { APP_VERSION } from '../util.js';
+import { CHANGELOG } from '../changelog.js';
 
 const base = process.env.BASE_URL || 'http://127.0.0.1:4173/';
 fs.mkdirSync('qa-shots', { recursive: true });
@@ -95,10 +97,16 @@ try {
   const releaseSheet = page.locator('#overlays .overlay').first();
   await releaseSheet.waitFor({ state: 'visible', timeout: 5000 });
   const releaseCopy = await releaseSheet.innerText();
-  assert(/Co nowego w 1\.9\.24/.test(releaseCopy), 'Okno startowe nie pokazuje dziennika zmian dla wersji 1.9.24.');
-  assert(releaseCopy.includes('konkretne zmiany aktualnej wersji'), 'Okno startowe nadal wyświetla nieaktualny opis wydania.');
-  assert(releaseCopy.includes('dziewięciu receptur wokowych'), 'Brak informacji o poprawkach receptur wokowych w dzienniku zmian.');
-  assert(releaseCopy.includes('sos ostrygowy'), 'Brak opisu korekty wegetariańskiego tofu w dzienniku zmian.');
+  const release = CHANGELOG[APP_VERSION];
+  assert(release && Array.isArray(release.items) && release.items.length > 0,
+    'Brak wpisu w changelog.js dla bieżącej wersji ' + APP_VERSION + '.');
+  assert(releaseCopy.includes('Co nowego w ' + APP_VERSION),
+    'Okno startowe nie pokazuje aktualnego numeru wersji ' + APP_VERSION + '.');
+  if (release.intro) assert(releaseCopy.includes(release.intro), 'Okno startowe nie pokazuje wprowadzenia z bieżącego changeloga.');
+  for (const item of release.items) {
+    assert(releaseCopy.includes(item), 'Okno startowe nie pokazuje pełnego wpisu changeloga: ' + item);
+  }
+  if (release.footer) assert(releaseCopy.includes(release.footer), 'Okno startowe nie pokazuje stopki bieżącego changeloga.');
   await dismissWhatsNew();
 
   const designStylesLoaded = await page.evaluate(() => Array.from(document.styleSheets).some((s) => s.href && s.href.includes('claude-completion.css')));
