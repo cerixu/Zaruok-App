@@ -140,13 +140,16 @@ for (const [name, patterns] of criticalRecipes) {
     if (steps.some((step) => pattern.test(step))) issues.push('Pozostała instrukcja-szablon (' + pattern + '): ' + name);
   }
 }
-for (const [name, badForm] of [
-  ['Wołowina po syczuańsku', /Wołowina pokrój|Włóż wołowina/],
-  ['Kaczka po syczuańsku', /Kaczka pokrój|Włóż kaczka/],
-  ['Wieprzowina po syczuańsku', /Wieprzowina pokrój|Włóż wieprzowina/],
-]) {
-  const block = curatedBlocks.find((item) => item.startsWith('# ' + name + '\n')) || '';
-  if (badForm.test(block)) issues.push('Błąd odmiany w recepturze: ' + name);
+const BAD_MEAT_FORMS = [
+  /\\b(?:wołowina|wieprzowina|kaczka)\\s+pokrój\\b/i,
+  /\\b(?:dodaj|włóż)\\s+(?:wołowina|wieprzowina|kaczka)\\b/i,
+];
+for (const block of curatedBlocks) {
+  const name = block.split('\\n')[0].slice(2).trim();
+  const steps = [...block.matchAll(/^> (.+)$/gm)].map((m) => m[1]);
+  if (steps.some((step) => BAD_MEAT_FORMS.some((pattern) => pattern.test(step)))) {
+    issues.push('Błędna odmiana mięsa w instrukcji: ' + name);
+  }
 }
 
 const handSource = fs.readFileSync('recipes.js', 'utf8');
