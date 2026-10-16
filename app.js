@@ -6,6 +6,7 @@ import { openDB } from './db.js';
 import { loadAll, state, subscribe, getSetting, DEFAULT_SETTINGS, DEFAULT_CATEGORIES } from './recipes.js';
 import { h, icon, toast, $, openSheet } from './ui.js';
 import { APP_VERSION } from './util.js';
+import { CHANGELOG } from './changelog.js';
 import { setSetting } from './recipes.js';
 import { route, startRouter, navigate } from './router.js';
 import { registerSW, requestPersist } from './pwa.js';
@@ -169,15 +170,18 @@ function whatsNew() {
   // WebKit can finish more than one startup hydration path; show this release sheet once per page.
   if (whatsNewOpened || getSetting('seenVersion') === APP_VERSION || document.querySelector('.overlay')) return;
   whatsNewOpened = true;
-  const li = (t) => h('li', null, t);
+  const release = CHANGELOG[APP_VERSION];
+  const items = release && Array.isArray(release.items) && release.items.length
+    ? release.items
+    : ['Brakuje wpisu w dzienniku zmian dla tej wersji.'];
   openSheet({
     title: `Co nowego w ${APP_VERSION}`, variant: 'sheet',
     body: h('div', { class: 'stack' },
-      h('ul', { class: 'whatsnew' },
-        li('Spójny wygląd Liquid Glass obejmuje wszystkie główne ekrany iPhone’a, z czytelniejszymi kartami, ikonami i arkuszami.'),
-        li('Nowy Magazyn zapisuje stany lokalnie, pokazuje niskie zapasy i tygodniowe straty oraz pozwala dodać braki do zakupów.'),
-        li('Po zakończeniu trybu „Prowadź mnie” dopasowane składniki są odliczane z magazynu; dodano skaner EAN z opcjonalnym rozpoznaniem produktu online.')),
-      h('p', { class: 'muted small' }, 'Wszystkie stany i receptury zostają na tym urządzeniu. Alerty niskiego stanu można wyłączyć w Magazynie.')),
+      release && release.intro ? h('p', { class: 'muted small' }, release.intro) : null,
+      h('ul', { class: 'whatsnew' }, ...items.map((t) => h('li', null, t))),
+      h('p', { class: 'muted small' }, release && release.footer
+        ? release.footer
+        : 'Opis tej wersji nie został jeszcze uzupełniony.')),
     actions: [{ label: 'Zaczynamy', kind: 'primary' }],
     onClose: () => setSetting('seenVersion', APP_VERSION),
   });

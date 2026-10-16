@@ -30,6 +30,7 @@ claude-completion.css   spójna warstwa Liquid Glass dla wszystkich widoków mob
 manifest.webmanifest    manifest PWA
 sw.js                   service worker (cache offline + wykrywanie aktualizacji)
 app.js                  start, motyw, nawigacja dolna, klawiatura iOS, trasy
+changelog.js            wpisy „Co nowego” dla każdej wersji — źródło okna po aktualizacji
 router.js               router po hashu (#/…), pamięć przewijania
 pwa.js                  rejestracja SW, „Nowa wersja → Odśwież", trwały magazyn
 db.js                   IndexedDB (recipes, ingredients, categories, shoppingItems, inventoryItems, inventoryMovements, settings, history)
@@ -137,11 +138,12 @@ Skutki: dane jednego telefonu nie pojawią się na drugim (przenoś kopią JSON)
 - Kopia obejmuje receptury, katalog składników z cenami, kategorie, uwagi, ulubione, ustawienia, zakupy i historię zmian. Szkice edytora nie są w niej zapisywane.
 - Aplikacja przypomina o kopii, gdy ostatnia ma ponad 14 dni.
 
-## Aktualizacje aplikacji
+## Aktualizacje aplikacji i dziennik zmian
 
-1. Zmień pliki, podbij wersję w **`sw.js`** (`VERSION = 'zaruok-1.9.0'`) i w **`util.js`** (`APP_VERSION = '1.9.0'`) — muszą być zgodne.
-2. Wypchnij zmiany na GitHub.
-3. Telefon wykryje nową wersję i pokaże: **„Nowa wersja Żarłoka jest dostępna” → Odśwież**. Ręcznie: Ustawienia → Sprawdź aktualizacje.
+1. Przy **każdym wydaniu** dopisz konkretne, widoczne dla użytkownika zmiany w **`changelog.js`** pod nowym numerem wersji. To z tego pliku startowe okno **„Co nowego”** pobiera treść; nie zostawiaj ogólnych opisów z poprzedniej wersji.
+2. Ustaw ten sam numer w **`util.js`** (`APP_VERSION`) i **`sw.js`** (`VERSION = 'zaruok-X.Y.Z'`). Dodaj nowe pliki uruchomieniowe do listy `CORE` service workera i odśwież numer wersji w adresach zasobów w `index.html`, gdy ich używasz.
+3. Uruchom testy GitHub Actions i nie scalaj zmian, dopóki kontrola mobilna, interakcji, magazynu, offline i dziennika zmian nie zakończy się sukcesem.
+4. Po publikacji telefon wykryje nową wersję i pokaże: **„Nowa wersja Żarłoka jest dostępna” → Odśwież**. Ręcznie: Ustawienia → Sprawdź aktualizacje.
 
 Service worker pobiera pliki z sieci w pierwszej kolejności (z krótkim limitem czasu), więc po stronie telefonu nic nie „zalega” przez dni; offline używa zapisanej kopii.
 

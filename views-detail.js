@@ -24,7 +24,7 @@ import { recipeArtUrl } from './art.js';
 
 const KIND_LABEL = { flour: 'mąka', water: 'woda', salt: 'sól', yeast: 'drożdże', fat: 'tłuszcz', other: '' };
 
-function ingredientGlyph(name) {
+export function ingredientGlyph(name) {
   const n = String(name || '').toLocaleLowerCase('pl');
   const ns = 'http://www.w3.org/2000/svg';
   const attrs = (node, values) => { Object.entries(values).forEach(([key, value]) => { if (value != null) node.setAttribute(key, String(value)); }); return node; };
@@ -40,6 +40,24 @@ function ingredientGlyph(name) {
   if (/oliw|olej|smalec|tłuszcz/.test(n)) return svg(
     path('M19 11 L19 7 Q19 5 22 5 H27 Q29 5 29 7 V11 L33 16 V39 Q33 42 30 42 H18 Q15 42 15 39 V16 Z', { fill: 'currentColor', 'fill-opacity': '.13' }),
     path('M19 11 H29 M16 21 H32'), path('M22 28 Q24 25 26 28 Q26 32 24 33 Q22 32 22 28 Z', { fill: 'currentColor', stroke: 'none' })
+  );
+  // Odróżniaj świeże zioła od przypraw w proszku: bazylia nie może wyglądać jak solniczka.
+  if (/(bazyl|oregano|tymian|rozmaryn|rukol|szpinak|sałat|pietruszk|szczypiorek|koperek|mięta|kapust|liść laurowy|liść kafiru|liście kolendry|kolendra (?:świeża|liściasta)|świeża kolendra|herb|leaf)/.test(n)) return svg(
+    path('M11 36 C9 17 24 8 38 10 C38 26 28 38 11 36 Z', { fill: 'currentColor', 'fill-opacity': '.16' }),
+    path('M11 36 Q22 24 34 14 M20 28 L19 20 M27 22 L33 23')
+  );
+  // Papryka warzywna ma własną ikonę; przyprawy paprykowe nadal używają shakera.
+  if (/papryk/.test(n) && /(słodk|wędzon|ostr|mielon|proszk|płatki)/.test(n)) return svg(
+    path('M16 16 H32 L30 41 H18 Z', { fill: 'currentColor', 'fill-opacity': '.12' }),
+    path('M18 16 L20 10 H28 L30 16 Z'), path('M22 7 H26'), circle(21, 23, 1, { fill: 'currentColor', stroke: 'none' }), circle(27, 27, 1, { fill: 'currentColor', stroke: 'none' }), circle(22, 33, 1, { fill: 'currentColor', stroke: 'none' })
+  );
+  if (/papryk/.test(n)) return svg(
+    path('M22 12 C19 9 12 10 11 18 C10 25 14 33 20 39 C22 41 25 41 27 39 C33 33 37 25 36 18 C35 10 28 9 25 12 L24 16 Z', { fill: 'currentColor', 'fill-opacity': '.16' }),
+    path('M24 15 C23 10 20 8 17 8 M24 15 C26 10 29 8 32 8')
+  );
+  if (/sól|salt|pieprz|przypraw|cynamon|kurkum|kumin|chili|chilli|gałka|kardamon|goździk|szafran|kolendra mielona|mielona kolendra/.test(n)) return svg(
+    path('M16 16 H32 L30 41 H18 Z', { fill: 'currentColor', 'fill-opacity': '.12' }),
+    path('M18 16 L20 10 H28 L30 16 Z'), path('M22 7 H26'), circle(21, 23, 1, { fill: 'currentColor', stroke: 'none' }), circle(27, 27, 1, { fill: 'currentColor', stroke: 'none' }), circle(22, 33, 1, { fill: 'currentColor', stroke: 'none' })
   );
   if (/sól|salt|pieprz|papryk|przypraw|cynamon|kurkum|kumin|oregano|bazylia|tymianek|rozmaryn|chili|chilli|gałka|kardamon|goździk|szafran/.test(n)) return svg(
     path('M16 16 H32 L30 41 H18 Z', { fill: 'currentColor', 'fill-opacity': '.12' }),
@@ -132,7 +150,7 @@ function ingredientGlyph(name) {
     path('M12 20 L24 13 L36 20 L24 27 Z', { fill: 'currentColor', 'fill-opacity': '.17' }),
     path('M12 20 V32 L24 39 L36 32 V20 M24 27 V39 M18 17 L30 24')
   );
-  if (/rukol|szpinak|sałat|kapust|bazylia|pietruszk|szczypiorek|kolendra|herb|leaf/.test(n)) return svg(
+  if (/kolendra|liść laurowy/.test(n)) return svg(
     path('M11 36 C9 17 24 8 38 10 C38 26 28 38 11 36 Z', { fill: 'currentColor', 'fill-opacity': '.16' }),
     path('M11 36 Q22 24 34 14 M20 28 L19 20 M27 22 L33 23')
   );
@@ -163,7 +181,7 @@ function portionLabel(value) {
   return shown + ' porcji';
 }
 
-function ingredientKind(name) {
+export function ingredientKind(name) {
   const n = String(name || '').toLocaleLowerCase('pl');
   if (/(wołow|wieprz|kurcz|indyk|boczek|szynk|guanciale|mięso|salami|kiełbas|jagnię|baranin|prosciutto)/i.test(n)) return 'meat';
   if (/(ryb|łosoś|tuńczyk|dorsz|krewet|małż|ośmiornic|kalm|anchois|sardyn|śledź|makrel|pstrąg)/i.test(n)) return 'fish';
@@ -171,7 +189,9 @@ function ingredientKind(name) {
   if (/(mąk|ryż|makaron|kasz|płatki|chleb|bułk|ciasto|drożdż|zakwas|semolina|spaghetti|fusilli|penne|farfalle|panko|bułka tarta)/i.test(n)) return 'grain';
   if (/(ser|mleko|śmietan|masło|jogurt|kefir|ricotta|mozzarella|pecorino|parmezan|jajk|żółtk|twaróg|śmietank)/i.test(n)) return 'dairy';
   if (/(oliw|olej|smalec|tłuszcz)/i.test(n)) return 'oil';
-  if (/(sól|pieprz|papryk[aię]|cynamon|kurkum|kumin|oregano|bazylia|tymianek|rozmaryn|przypraw|gałka|kardamon|goździk|szafran|chili|chilli|kolendra|kminek)/i.test(n)) return 'spice';
+  if (/(bazyl|oregano|tymian|rozmaryn|rukol|szpinak|sałat|kapust|pietruszk|szczypiorek|koperek|mięta|liście kolendry|kolendra (?:świeża|liściasta)|świeża kolendra|liść laurowy|liść kafiru|herb|leaf)/i.test(n)) return 'vegetable';
+  if (/papryk.*(słodk|wędzon|ostr|mielon|proszk|płatki)|(słodk|wędzon|ostr|mielon|proszk|płatki).*papryk/i.test(n)) return 'spice';
+  if (/(sól|pieprz|cynamon|kurkum|kumin|przypraw|gałka|kardamon|goździk|szafran|chili|chilli|kolendra mielona|mielona kolendra|kminek)/i.test(n)) return 'spice';
   if (/(cytryn|pomarańcz|limonk|jabłk|gruszk|banan|mango|ananas|winogron|owoc|truskawk|malin|borówk|żurawin|brzoskwini)/i.test(n)) return 'fruit';
   if (/(warzyw|bakłażan|cebula|czosnek|marchew|seler|pietruszk|ziemniak|papryka|cukinia|ogórek|sałat|rukol|szpinak|brokuł|kalafior|kapust|fasol|groch|ciecierzyc|soczewic|grzyb|pieczark|kurk|oliwk|szparag|burak|kukurydz|dynia|pomidor|pomidory|rzodkiew|por\b)/i.test(n)) return 'vegetable';
   return 'other';

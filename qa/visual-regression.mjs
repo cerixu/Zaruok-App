@@ -92,8 +92,70 @@ try {
   await page.goto(base, { waitUntil: 'domcontentloaded' });
   await ready();
   await page.waitForTimeout(1200);
+  const releaseSheet = page.locator('#overlays .overlay').first();
+  await releaseSheet.waitFor({ state: 'visible', timeout: 5000 });
+  const releaseCopy = await releaseSheet.innerText();
+  const utilSource = fs.readFileSync(new URL('../util.js', import.meta.url), 'utf8');
+  const versionMatch = utilSource.match(/export const APP_VERSION = '([^']+)'/);
+  assert(versionMatch, 'Nie udało się odczytać numeru APP_VERSION z util.js.');
+  const currentVersion = versionMatch[1];
+  const changelogSource = fs.readFileSync(new URL('../changelog.js', import.meta.url), 'utf8');
+  const releaseMarker = "'" + currentVersion + "': Object.freeze({";
+  const releaseStart = changelogSource.indexOf(releaseMarker);
+  assert(releaseStart >= 0, 'Brak wpisu w changelog.js dla bieżącej wersji ' + currentVersion + '.');
+  const laterRelease = changelogSource.indexOf("\n  '", releaseStart + releaseMarker.length);
+  const releaseEnd = laterRelease >= 0 ? laterRelease : changelogSource.indexOf('\n});', releaseStart);
+  const releaseSource = changelogSource.slice(releaseStart, releaseEnd >= 0 ? releaseEnd : changelogSource.length);
+  const expectedReleaseText = [...releaseSource.matchAll(/'([^']*)'/g)]
+    .map((match) => match[1]).filter((value) => value !== currentVersion);
+  assert(expectedReleaseText.length >= 3, 'Aktualny wpis changeloga jest pusty lub niepełny.');
+  assert(releaseCopy.includes('Co nowego w ' + currentVersion),
+    'Okno startowe nie pokazuje aktualnego numeru wersji ' + currentVersion + '.');
+  for (const expectedText of expectedReleaseText) {
+    assert(releaseCopy.includes(expectedText), 'Okno startowe nie pokazuje wpisu changeloga: ' + expectedText);
+  }
   await dismissWhatsNew();
 
+  const semanticIcons = await page.evaluate(async () => {
+    const mod = await import(new URL('views-detail.js', location.href).href);
+    const paths = (name) => [...mod.ingredientGlyph(name).querySelectorAll('path')].map((p) => p.getAttribute('d') || '');
+    return {
+      basilKind: mod.ingredientKind('Świeża bazylia'),
+      basilLeaf: paths('Świeża bazylia')[0]?.startsWith('M11 36 C9 17 24 8 38 10'),
+      pepperKind: mod.ingredientKind('Papryka czerwona'),
+      pepperShape: paths('Papryka czerwona')[0]?.startsWith('M22 12 C19 9 12 10 11 18'),
+      powderKind: mod.ingredientKind('Papryka słodka'),
+      powderShaker: paths('Papryka słodka')[0]?.startsWith('M16 16 H32 L30 41 H18 Z'),
+    };
+  });
+  assert(semanticIcons.basilKind === 'vegetable' && semanticIcons.basilLeaf,
+    'Bazylia nie ma już semantycznej kategorii zioła/liście.');
+  assert(semanticIcons.pepperKind === 'vegetable' && semanticIcons.pepperShape,
+    'Świeża papryka nie ma własnej ikony warzywa.');
+  assert(semanticIcons.powderKind === 'spice' && semanticIcons.powderShaker,
+    'Papryka słodka/mielona powinna zachować ikonę przyprawy.');
+
+  const artworkAudit = await page.evaluate(async () => {
+    const art = await import(new URL('art.js', location.href).href);
+    const kind = (name, category, explicit = 'food') => art.artKindFor({ name, category, art: explicit });
+    return {
+      tofu: kind('Tofu z czarnym pieprzem', 'cat-mieso'),
+      duck: kind('Kaczka z czarnym pieprzem', 'cat-mieso'),
+      noodles: kind('Kurczak Pad See Ew', 'cat-mieso'),
+      friedRice: kind('Wok-fried rice z warzywami i jajkiem', 'cat-warzywa'),
+      curry: kind('Zielone curry tajskie', 'cat-mieso', 'curry'),
+      cocktail: kind('Aperol Spritz', 'cat-sosy-bazowe'),
+      currywurst: kind('Currywurst', 'cat-mieso'),
+    };
+  });
+  assert(artworkAudit.tofu === 'tofu', 'Tofu nadal dostaje przypadkową ilustrację z kategorii mięsa.');
+  assert(artworkAudit.duck === 'duck', 'Kaczka nadal dostaje ilustrację steku wołowego.');
+  assert(artworkAudit.noodles === 'pasta:asia', 'Pad See Ew nie używa wariantu azjatyckiego makaronu.');
+  assert(artworkAudit.friedRice === 'rice', 'Smażony ryż nie używa ilustracji ryżu.');
+  assert(artworkAudit.curry === 'curry', 'Curry nie używa dedykowanego motywu.');
+  assert(artworkAudit.cocktail === 'cocktail', 'Nazwa koktajlu nie nadpisuje błędnej kategorii obrazu.');
+  assert(artworkAudit.currywurst === 'sausage', 'Currywurst błędnie używa ilustracji curry zamiast kiełbasy.');
+  
   const designStylesLoaded = await page.evaluate(() => Array.from(document.styleSheets).some((s) => s.href && s.href.includes('claude-completion.css')));
   assert(designStylesLoaded, 'Brak pełnej warstwy stylu Claude / Liquid Glass.');
 
