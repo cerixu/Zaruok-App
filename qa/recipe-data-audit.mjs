@@ -113,7 +113,7 @@ const criticalRecipes = new Map([
   ['Matcha tiramisu', [/temperaturze odpowiedniej dla tego deseru/i, /piecz, gotuj albo schładzaj/i]],
 ]);
 for (const [name, patterns] of criticalRecipes) {
-  const block = curatedBlocks.find((item) => item.startsWith('# ' + name + '\\n'));
+  const block = curatedBlocks.find((item) => item.startsWith('# ' + name + '\n'));
   if (!block) { issues.push('Brak receptury wymaganej w kontroli jakości: ' + name); continue; }
   const steps = [...block.matchAll(/^> (.+)$/gm)].map((m) => m[1]);
   for (const pattern of patterns) {
@@ -125,7 +125,7 @@ for (const [name, badForm] of [
   ['Kaczka po syczuańsku', /Kaczka pokrój|Włóż kaczka/],
   ['Wieprzowina po syczuańsku', /Wieprzowina pokrój|Włóż wieprzowina/],
 ]) {
-  const block = curatedBlocks.find((item) => item.startsWith('# ' + name + '\\n')) || '';
+  const block = curatedBlocks.find((item) => item.startsWith('# ' + name + '\n')) || '';
   if (badForm.test(block)) issues.push('Błąd odmiany w recepturze: ' + name);
 }
 
