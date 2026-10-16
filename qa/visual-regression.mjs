@@ -116,6 +116,25 @@ try {
   }
   await dismissWhatsNew();
 
+  const semanticIcons = await page.evaluate(async () => {
+    const mod = await import(new URL('views-detail.js', location.href).href);
+    const paths = (name) => [...mod.ingredientGlyph(name).querySelectorAll('path')].map((p) => p.getAttribute('d') || '');
+    return {
+      basilKind: mod.ingredientKind('Świeża bazylia'),
+      basilLeaf: paths('Świeża bazylia')[0]?.startsWith('M11 36 C9 17 24 8 38 10'),
+      pepperKind: mod.ingredientKind('Papryka czerwona'),
+      pepperShape: paths('Papryka czerwona')[0]?.startsWith('M22 12 C19 9 12 10 11 18'),
+      powderKind: mod.ingredientKind('Papryka słodka'),
+      powderShaker: paths('Papryka słodka')[0]?.startsWith('M16 16 H32 L30 41 H18 Z'),
+    };
+  });
+  assert(semanticIcons.basilKind === 'vegetable' && semanticIcons.basilLeaf,
+    'Bazylia nie ma już semantycznej kategorii zioła/liście.');
+  assert(semanticIcons.pepperKind === 'vegetable' && semanticIcons.pepperShape,
+    'Świeża papryka nie ma własnej ikony warzywa.');
+  assert(semanticIcons.powderKind === 'spice' && semanticIcons.powderShaker,
+    'Papryka słodka/mielona powinna zachować ikonę przyprawy.');
+  
   const designStylesLoaded = await page.evaluate(() => Array.from(document.styleSheets).some((s) => s.href && s.href.includes('claude-completion.css')));
   assert(designStylesLoaded, 'Brak pełnej warstwy stylu Claude / Liquid Glass.');
 
