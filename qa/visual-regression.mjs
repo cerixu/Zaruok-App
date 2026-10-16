@@ -1,7 +1,5 @@
 import { chromium } from 'playwright';
 import fs from 'node:fs';
-import { APP_VERSION } from '../util.js';
-import { CHANGELOG } from '../changelog.js';
 
 const base = process.env.BASE_URL || 'http://127.0.0.1:4173/';
 fs.mkdirSync('qa-shots', { recursive: true });
@@ -97,16 +95,25 @@ try {
   const releaseSheet = page.locator('#overlays .overlay').first();
   await releaseSheet.waitFor({ state: 'visible', timeout: 5000 });
   const releaseCopy = await releaseSheet.innerText();
-  const release = CHANGELOG[APP_VERSION];
-  assert(release && Array.isArray(release.items) && release.items.length > 0,
-    'Brak wpisu w changelog.js dla bieżącej wersji ' + APP_VERSION + '.');
-  assert(releaseCopy.includes('Co nowego w ' + APP_VERSION),
-    'Okno startowe nie pokazuje aktualnego numeru wersji ' + APP_VERSION + '.');
-  if (release.intro) assert(releaseCopy.includes(release.intro), 'Okno startowe nie pokazuje wprowadzenia z bieżącego changeloga.');
-  for (const item of release.items) {
-    assert(releaseCopy.includes(item), 'Okno startowe nie pokazuje pełnego wpisu changeloga: ' + item);
+  const utilSource = fs.readFileSync(new URL('../util.js', import.meta.url), 'utf8');
+  const versionMatch = utilSource.match(/export const APP_VERSION = '([^']+)'/);
+  assert(versionMatch, 'Nie udało się odczytać numeru APP_VERSION z util.js.');
+  const currentVersion = versionMatch[1];
+  const changelogSource = fs.readFileSync(new URL('../changelog.js', import.meta.url), 'utf8');
+  const releaseMarker = "'" + currentVersion + "': Object.freeze({";
+  const releaseStart = changelogSource.indexOf(releaseMarker);
+  assert(releaseStart >= 0, 'Brak wpisu w changelog.js dla bieżącej wersji ' + currentVersion + '.');
+  const laterRelease = changelogSource.indexOf("\n  '", releaseStart + releaseMarker.length);
+  const releaseEnd = laterRelease >= 0 ? laterRelease : changelogSource.indexOf('\n});', releaseStart);
+  const releaseSource = changelogSource.slice(releaseStart, releaseEnd >= 0 ? releaseEnd : changelogSource.length);
+  const expectedReleaseText = [...releaseSource.matchAll(/'([^']*)'/g)]
+    .map((match) => match[1]).filter((value) => value !== currentVersion);
+  assert(expectedReleaseText.length >= 3, 'Aktualny wpis changeloga jest pusty lub niepełny.');
+  assert(releaseCopy.includes('Co nowego w ' + currentVersion),
+    'Okno startowe nie pokazuje aktualnego numeru wersji ' + currentVersion + '.');
+  for (const expectedText of expectedReleaseText) {
+    assert(releaseCopy.includes(expectedText), 'Okno startowe nie pokazuje wpisu changeloga: ' + expectedText);
   }
-  if (release.footer) assert(releaseCopy.includes(release.footer), 'Okno startowe nie pokazuje stopki bieżącego changeloga.');
   await dismissWhatsNew();
 
   const designStylesLoaded = await page.evaluate(() => Array.from(document.styleSheets).some((s) => s.href && s.href.includes('claude-completion.css')));
