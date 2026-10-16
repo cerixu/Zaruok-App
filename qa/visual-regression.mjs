@@ -134,6 +134,27 @@ try {
     'Świeża papryka nie ma własnej ikony warzywa.');
   assert(semanticIcons.powderKind === 'spice' && semanticIcons.powderShaker,
     'Papryka słodka/mielona powinna zachować ikonę przyprawy.');
+
+  const artworkAudit = await page.evaluate(async () => {
+    const art = await import(new URL('art.js', location.href).href);
+    const kind = (name, category, explicit = 'food') => art.artKindFor({ name, category, art: explicit });
+    return {
+      tofu: kind('Tofu z czarnym pieprzem', 'cat-mieso'),
+      duck: kind('Kaczka z czarnym pieprzem', 'cat-mieso'),
+      noodles: kind('Kurczak Pad See Ew', 'cat-mieso'),
+      friedRice: kind('Wok-fried rice z warzywami i jajkiem', 'cat-warzywa'),
+      curry: kind('Zielone curry tajskie', 'cat-mieso', 'curry'),
+      cocktail: kind('Aperol Spritz', 'cat-sosy-bazowe'),
+      currywurst: kind('Currywurst', 'cat-mieso'),
+    };
+  });
+  assert(artworkAudit.tofu === 'tofu', 'Tofu nadal dostaje przypadkową ilustrację z kategorii mięsa.');
+  assert(artworkAudit.duck === 'duck', 'Kaczka nadal dostaje ilustrację steku wołowego.');
+  assert(artworkAudit.noodles === 'pasta:asia', 'Pad See Ew nie używa wariantu azjatyckiego makaronu.');
+  assert(artworkAudit.friedRice === 'rice', 'Smażony ryż nie używa ilustracji ryżu.');
+  assert(artworkAudit.curry === 'curry', 'Curry nie używa dedykowanego motywu.');
+  assert(artworkAudit.cocktail === 'cocktail', 'Nazwa koktajlu nie nadpisuje błędnej kategorii obrazu.');
+  assert(artworkAudit.currywurst === 'sausage', 'Currywurst błędnie używa ilustracji curry zamiast kiełbasy.');
   
   const designStylesLoaded = await page.evaluate(() => Array.from(document.styleSheets).some((s) => s.href && s.href.includes('claude-completion.css')));
   assert(designStylesLoaded, 'Brak pełnej warstwy stylu Claude / Liquid Glass.');

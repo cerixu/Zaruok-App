@@ -11,7 +11,8 @@ export const CHANGELOG = Object.freeze({
       'Okno „Co nowego” opisuje teraz konkretne zmiany aktualnej wersji zamiast stale powtarzać nieaktualną listę starszych funkcji.',
       'Uzupełniono opis dziewięciu receptur wokowych: instrukcje smażenia są dopasowane do produktu, a kroki Pad See Ew mają czytelniejszą kolejność.',
       'W „Tofu z czarnym pieprzem” sos ostrygowy zastąpiono sosem sojowym; automatyczny audyt sprawdza, czy wegetariańska receptura nie zawiera sosu ostrygowego.',
-      'Poprawiono semantyczne ikony składników: bazylia i świeże zioła mają ikonę liści, a świeża papryka jest odróżniona od papryki mielonej i wędzonej.'
+      'Poprawiono semantyczne ikony składników: bazylia i świeże zioła mają ikonę liści, a świeża papryka jest odróżniona od papryki mielonej i wędzonej.',
+      'Dopracowano dobór ilustracji receptur: tofu i kaczka mają własne motywy, dania Pad See Ew/Pad Thai używają ilustracji makaronu azjatyckiego, a smażony ryż — ilustracji ryżu.'
     ],
     footer: 'Twoje zapisane receptury, ustawienia i magazyn pozostają na tym urządzeniu.'
   }),
