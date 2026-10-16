@@ -1966,7 +1966,7 @@ export const SEED_CURATED = `
 5 g | imbir
 5 ml | sezamowy olej
 12 ml | olej rzepakowy
-> Wołowina pokrój w cienkie, równe paski lub niewielkie kawałki. Czosnek drobno posiekaj, a imbir zetrzyj lub pokrój w cienkie zapałki.
+> Pokrój wołowinę w cienkie, równe paski lub niewielkie kawałki. Czosnek drobno posiekaj, a imbir zetrzyj lub pokrój w cienkie zapałki.
 > Rozgrzej wok mocno z olejem. Obsmaż wołowinę krótko, partiami, aż się zrumieni, ale nie przesusz; odłóż na bok.
 > Zmniejsz nieco ogień, dodaj czosnek, imbir i pastę doubanjiang; smaż 20–30 sekund, aż uwolnią aromat.
 > Wlej olej sezamowy oraz 1–2 łyżki wody, po czym zeskrob z dna przyprawy i utwórz lekki sos.
@@ -2281,7 +2281,7 @@ export const SEED_CURATED = `
 5 g | imbir
 5 ml | sezamowy olej
 12 ml | olej rzepakowy
-> Wieprzowina pokrój w cienkie, równe paski lub niewielkie kawałki. Czosnek drobno posiekaj, a imbir zetrzyj lub pokrój w cienkie zapałki.
+> Pokrój wieprzowinę w cienkie, równe paski lub niewielkie kawałki. Czosnek drobno posiekaj, a imbir zetrzyj lub pokrój w cienkie zapałki.
 > Rozgrzej wok z olejem. Obsmaż wieprzowinę w cienkich paskach, partiami jeśli trzeba, aż się zrumieni; odłóż na bok.
 > Zmniejsz nieco ogień, dodaj czosnek, imbir i pastę doubanjiang; smaż 20–30 sekund, aż uwolnią aromat.
 > Wlej olej sezamowy oraz 1–2 łyżki wody, po czym zeskrob z dna przyprawy i utwórz lekki sos.
@@ -2386,7 +2386,7 @@ export const SEED_CURATED = `
 5 g | imbir
 5 ml | sezamowy olej
 12 ml | olej rzepakowy
-> Kaczka pokrój w cienkie, równe paski lub niewielkie kawałki. Czosnek drobno posiekaj, a imbir zetrzyj lub pokrój w cienkie zapałki.
+> Pokrój kaczkę w cienkie, równe paski lub niewielkie kawałki. Czosnek drobno posiekaj, a imbir zetrzyj lub pokrój w cienkie zapałki.
 > Rozgrzej wok z olejem. Obsmaż kaczkę w cienkich paskach, partiami jeśli trzeba, aż się zrumieni i będzie prawie gotowa; odłóż na bok.
 > Zmniejsz nieco ogień, dodaj czosnek, imbir i pastę doubanjiang; smaż 20–30 sekund, aż uwolnią aromat.
 > Wlej olej sezamowy oraz 1–2 łyżki wody, po czym zeskrob z dna przyprawy i utwórz lekki sos.
