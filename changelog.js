@@ -5,6 +5,16 @@
    ========================================================================== */
 
 export const CHANGELOG = Object.freeze({
+  '2.0.1': Object.freeze({
+    intro: 'Żarłok 2.0.1 — fotograficzny interfejs i 38 zdjęć potraw dostępnych offline.',
+    items: [
+      'Dodano 38 lokalnych fotografii potraw: od pizzy, makaronów i zup po pierogi, pieczywo, desery, dania azjatyckie i koktajle.',
+      'Ekran Start, karty receptur, szczegóły dań i widok Gotuję korzystają z większych zdjęć dopasowanych do potraw.',
+      'Własne zdjęcia zapisane przy recepturze nadal mają pierwszeństwo, a lokalna ilustracja SVG pozostaje awaryjnym fallbackiem.',
+      'Wszystkie fotografie są zapisane w aplikacji i buforowane przez Service Workera, także do pracy offline.',
+      'Zachowano zapisane receptury, ustawienia i magazyn; zmiany dotyczą warstwy wizualnej i zdjęć.'
+    ],
+  }),
   '2.0.0': Object.freeze({
     intro: 'Żarłok 2.0 — prawdziwe zdjęcia potraw działające także offline.',
     items: [
