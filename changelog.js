@@ -5,6 +5,15 @@
    ========================================================================== */
 
 export const CHANGELOG = Object.freeze({
+  '1.9.28': Object.freeze({
+    intro: 'Lepsza kontrola kosztów strat w magazynie.',
+    items: [
+      'Nowy raport pokazuje straty z ostatnich 7 dni pogrupowane według przyczyny.',
+      'Każda przyczyna ma koszt łączny i liczbę wpisów, a raport pokazuje także sumę wszystkich strat.',
+      'Zestawienie korzysta z zapisanej historii strat i działa offline.'
+    ],
+    footer: 'Raport obejmuje wyłącznie straty zarejestrowane w Żarłoku; nie szacuje niezapisanych strat.'
+  }),
   '1.9.27': Object.freeze({
     intro: 'Pilnuj terminów przydatności bezpośrednio w magazynie.',
     items: [

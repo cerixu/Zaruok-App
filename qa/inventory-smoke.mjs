@@ -65,6 +65,16 @@ try {
   await page.waitForTimeout(250);
   await expectText('Mąka testowa', 'Nie zapisano produktu w magazynie.');
   await expectText('Niski stan', 'Nie pokazano ostrzeżenia o niskim stanie.');
+
+  // Weekly waste report must group recorded loss by reason and calculate its cost.
+  await page.getByRole('button', { name: 'Zarejestruj stratę: Mąka testowa' }).click();
+  await page.getByLabel('Ilość straty').fill('0.5');
+  await page.getByLabel('Powód').selectOption({ label: 'Zepsute' });
+  await page.getByRole('button', { name: 'Zapisz stratę' }).click();
+  await page.waitForTimeout(250);
+  await expectText('Raport strat · 7 dni', 'Nie pokazano raportu strat z ostatniego tygodnia.');
+  await expectText('Zepsute', 'Raport strat nie grupuje wpisu według przyczyny.');
+  await expectText('1,75 zł', 'Raport strat nie wyliczył kosztu 0,5 kg przy cenie 3,50 zł/kg.');
   const search = page.getByLabel('Szukaj w magazynie');
   await search.fill('Mąka');
   await expectText('Mąka testowa', 'Wyszukiwanie magazynu nie znalazło produktu.');
