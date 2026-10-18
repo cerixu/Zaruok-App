@@ -1082,3 +1082,27 @@ body.kb-open #tabbar { display: none; }
   font-size: .75rem;
   white-space: nowrap;
 }
+
+/* Żarłok 2.1.1 — reset zagnieżdżonego pola wyszukiwania magazynu. */
+.inventory-search > input.input {
+  min-width: 0;
+  width: 100%;
+  min-height: 0;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: var(--text) !important;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.inventory-search > input.input:focus,
+.inventory-search > input.input:focus-visible {
+  outline: none;
+  box-shadow: none !important;
+}
+.inventory-search > input.input::placeholder {
+  color: var(--text-soft);
+  opacity: 1;
+}
