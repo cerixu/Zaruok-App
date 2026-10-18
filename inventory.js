@@ -60,7 +60,11 @@ function displayQty(n, unit) { return fmtAmount(n) + (unit ? ' ' + unit : ''); }
 function inflectionStem(word) {
   const w = norm(word);
   if (w.length < 4) return w;
-  return w.replace(/(?:owymi|owych|owego|owej|owej|owie|ami|ach|ech|ich|ych|ego|emu|owa|owe|owy|ów|om|em|ie|ku|ka|ki|kę|ek|y|i|e|a|u)$/, '') || w;
+  // Kilka bardzo częstych składników ma nieregularne rdzenie w polskiej odmianie.
+  if (/^ogor(?:ek|ka|ku|ki|kow|kiem)?$/.test(w)) return 'ogor';
+  if (w === 'czosnek' || w === 'czosnku') return 'czosn';
+  // norm() usuwa polskie znaki, więc "ów" zapisuje się tu jako "ow".
+  return w.replace(/(?:owymi|owych|owego|owej|owie|ami|ach|ech|ich|ych|ego|emu|owa|owe|owy|owi|ow|om|em|iej|ej|ie|ku|ek|y|i|e|a|u|o)$/, '') || w;
 }
 
 function sameInflectedName(a, b) {
