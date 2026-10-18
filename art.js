@@ -251,10 +251,10 @@ export const artKindFor = (r) => {
 // Własne zdjęcia wygenerowane w Adobe Firefly — używane jako właściwe miniatury receptur,
 // a nie jako makiety. Gdy sieć nie działa, komponent przełącza się na lokalną ilustrację SVG.
 const GENERATED_PHOTOS = [
-  [/pizza/i, 'https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:59b41c99-1ed2-4b7a-989e-3896b22cd39a'],
-  [/carbonara/i, 'https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:95b40fd5-41c9-4672-b8e1-1d5bda6f0f12'],
-  [/^risotto\\b/i, 'https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:ea78bf32-684f-4d93-837e-30a8bea9fbe1'],
-  [/łosoś|salmon/i, 'https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:deb7aafe-2cfa-4cb1-81c5-b3fe1d0cae5e'],
+  [/pizza/i, 'https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:f49439b9-26c4-45a1-8ece-1f1679c134d8'],
+  [/carbonara/i, 'https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:d213e975-4316-4872-8f9c-ef2d354ed979'],
+  [/^risotto\b/i, 'https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:a04b34e4-077e-49ff-b340-08d3f411b0e5'],
+  [/łosoś|salmon/i, 'https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:fb538acb-125e-4511-a4bc-e9c4ede518a2'],
 ];
 export const recipeArtFallbackUrl = (r) => artUrl(artKindFor(r), r.name || r.id || '');
 export const recipeArtUrl = (r) => {
