@@ -30,6 +30,18 @@ const PHOTO_FILES = Object.freeze({
   cocktail: 'assets/food/cocktail.jpg.b64',
   'asian-noodles': 'assets/food/asian-noodles.jpg.b64',
   'fried-rice': 'assets/food/fried-rice.jpg.b64',
+  barszcz: 'assets/food/barszcz.jpg.b64',
+  bigos: 'assets/food/bigos.jpg.b64',
+  'bbq-ribs': 'assets/food/bbq-ribs.jpg.b64',
+  'beef-stew': 'assets/food/beef-stew.jpg.b64',
+  brownie: 'assets/food/brownie.jpg.b64',
+  'creme-brulee': 'assets/food/creme-brulee.jpg.b64',
+  crepes: 'assets/food/crepes.jpg.b64',
+  bagel: 'assets/food/bagel.jpg.b64',
+  bibimbap: 'assets/food/bibimbap.jpg.b64',
+  'curry-chickpea': 'assets/food/curry-chickpea.jpg.b64',
+  bruschetta: 'assets/food/bruschetta.jpg.b64',
+  aperol: 'assets/food/aperol.jpg.b64',
 });
 
 const CATEGORY_PHOTOS = Object.freeze({
@@ -43,7 +55,7 @@ const CATEGORY_PHOTOS = Object.freeze({
   'cat-pieczywo': 'sourdough',
   'cat-zupy': 'soup-clear',
   'cat-salatki': 'salad',
-  'cat-cocktaile': 'cocktail',
+  'cat-cocktaile': 'aperol',
 });
 
 const normalise = (value) => String(value || '')
@@ -62,6 +74,18 @@ const RECIPE_RULES = [
   ['steak', /\b(stek|steak|antrykot|ribeye|rostbef|t bone)\b/],
   ['dessert', /\b(tiramisu|deser kawowy)\b/],
   ['salad', /\b(burrata|caprese|salatka|salad)\b/],
+  ['aperol', /\baperol spritz\b/],
+  ['barszcz', /\bbarszcz (czerwony|ukrainski)\b/],
+  ['bigos', /\bbigos\b/],
+  ['bbq-ribs', /\b(bbq ribs|zeberka bbq|zeberka w sosie bbq|zeberka grillowane)\b/],
+  ['beef-stew', /\b(boeuf bourguignon|gulasz wegierski|gulasz wolowy)\b/],
+  ['brownie', /\bbrownie\b/],
+  ['creme-brulee', /\bcreme brulee\b/],
+  ['crepes', /\b(crepes|nalesniki)\b/],
+  ['bagel', /\b(bagel z lososiem|bagel.*losos)\b/],
+  ['bibimbap', /\bbibimbap\b/],
+  ['curry-chickpea', /\b(curry z ciecierzycy|chickpea curry)\b/],
+  ['bruschetta', /\bbruschetta\b/],
   ['cocktail', /\bmoscow mule\b/],
   ['lasagna', /\b(lasagna|lasagne)\b/],
   ['chicken-curry', /\b(tikka masala|butter chicken|chicken curry)\b/],
