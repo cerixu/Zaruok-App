@@ -9,18 +9,23 @@
    ZMIANA WERSJI: podbij VERSION (i APP_VERSION w util.js) przy każdej
    aktualizacji plików, żeby urządzenia wykryły nową wersję.
    ========================================================================== */
-const VERSION = 'zaruok-1.9.31';
+const VERSION = 'zaruok-2.0.0';
 const NETWORK_TIMEOUT = 3500;
 
 const CORE = [
   './',
   'index.html',
-  'styles.css', 'start-final.css', 'visual-system.css', 'visual-redesign.css', 'generated-art.css', 'claude-completion.css', 'kucharzyna-visual.css',
+  'styles.css', 'start-final.css', 'visual-system.css', 'visual-redesign.css', 'generated-art.css', 'zarlok-2-0.css', 'claude-completion.css', 'kucharzyna-visual.css',
   'manifest.webmanifest',
   'app.js', 'changelog.js', 'router.js', 'start-final.css', 'inventory.js', 'barcode.js', 'pwa.js', 'ui.js', 'util.js', 'db.js', 'recipes.js', 'calculator.js', 'importer.js', 'backup.js',
-  'components.js', 'shopping.js', 'art.js', 'art-kit.js', 'art-extra.js', 'nutrition.js', 'seeds.js', 'seeds-pl.js', 'seeds-world.js', 'seeds-more.js', 'seeds-curated.js', 'timers.js', 'kitchen.js', 'tools-data.js', 'calc-kit.js', 'search.js',
+  'components.js', 'shopping.js', 'art.js', 'firefly-assets.js', 'art-kit.js', 'art-extra.js', 'nutrition.js', 'seeds.js', 'seeds-pl.js', 'seeds-world.js', 'seeds-more.js', 'seeds-curated.js', 'timers.js', 'kitchen.js', 'tools-data.js', 'calc-kit.js', 'search.js',
   'views-start.js', 'views-recipes.js', 'views-detail.js', 'views-editor.js', 'views-cook.js', 'views-cook-home.js', 'views-more.js', 'views-calc.js', 'views-tools.js', 'views-guide.js', 'views-search.js', 'views-import.js', 'views-settings.js',
   'apple-touch-icon.png', 'icon-192.png', 'icon-512.png', 'icon-maskable-512.png',
+  'assets/food/pizza-margherita.jpg', 'assets/food/pasta-carbonara.jpg', 'assets/food/mushroom-risotto.jpg',
+  'assets/food/salmon-lemon.jpg', 'assets/food/burger-fries.jpg', 'assets/food/ramen-bowl.jpg',
+  'assets/food/tomato-soup.jpg', 'assets/food/greek-salad.jpg', 'assets/food/tiramisu.jpg',
+  'assets/food/chicken-thighs.jpg', 'assets/food/steak-potatoes.jpg', 'assets/food/pierogi-ruskie.jpg',
+  'assets/food/focaccia.jpg',
   'poppins-300.woff', 'poppins-400.woff', 'poppins-500.woff', 'poppins-700.woff',
 ];
 
