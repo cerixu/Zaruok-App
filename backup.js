@@ -13,14 +13,14 @@ const BACKUP_DUE_DAYS = 14;
 
 /** Zbiera całą zawartość bazy. */
 export async function collectData() {
-  const [recipes, ingredients, categories, shoppingItems, settingsRaw, history, inventoryItems, inventoryMovements] = await Promise.all([
+  const [recipes, ingredients, categories, shoppingItems, settingsRaw, history, inventoryItems, inventoryMovements, inventoryLots] = await Promise.all([
     db.getAll('recipes'), db.getAll('ingredients'), db.getAll('categories'), db.getAll('shoppingItems'),
-    db.getAll('settings'), db.getAll('history'), db.getAll('inventoryItems'), db.getAll('inventoryMovements'),
+    db.getAll('settings'), db.getAll('history'), db.getAll('inventoryItems'), db.getAll('inventoryMovements'), db.getAll('inventoryLots'),
   ]);
   // Do kopii trafiają ustawienia i postęp gotowania/kalkulatory; szkice pomijamy.
   const SECRET = new Set(['googleKey']);          // klucz API zostaje tylko w tym telefonie
   const settings = settingsRaw.filter((s) => !String(s.key).startsWith('draft:') && !SECRET.has(s.key));
-  return { recipes, ingredients, categories, shoppingItems, settings, history, inventoryItems, inventoryMovements };
+  return { recipes, ingredients, categories, shoppingItems, settings, history, inventoryItems, inventoryMovements, inventoryLots };
 }
 
 export async function buildBackup() {
@@ -94,13 +94,13 @@ export function parseBackup(text) {
     recipes: arr(d.recipes).filter((r) => r && r.id), ingredients: arr(d.ingredients).filter((r) => r && r.id),
     categories: arr(d.categories).filter((r) => r && r.id), shoppingItems: arr(d.shoppingItems).filter((r) => r && r.id),
     settings: arr(d.settings).filter((r) => r && r.key && !String(r.key).startsWith('draft:')), history: arr(d.history).filter((r) => r && r.id),
-    inventoryItems: arr(d.inventoryItems).filter((r) => r && r.id), inventoryMovements: arr(d.inventoryMovements).filter((r) => r && r.id),
+    inventoryItems: arr(d.inventoryItems).filter((r) => r && r.id), inventoryMovements: arr(d.inventoryMovements).filter((r) => r && r.id), inventoryLots: arr(d.inventoryLots).filter((r) => r && r.id),
   };
   return {
     backup: { ...obj, data },
     summary: {
       recipes: data.recipes.length, categories: data.categories.length, shopping: data.shoppingItems.length,
-      history: data.history.length, inventoryItems: data.inventoryItems.length, inventoryMovements: data.inventoryMovements.length,
+      history: data.history.length, inventoryItems: data.inventoryItems.length, inventoryMovements: data.inventoryMovements.length, inventoryLots: data.inventoryLots.length,
       exportedAt: obj.exportedAt ? new Date(obj.exportedAt) : null,
     },
   };
@@ -115,11 +115,12 @@ export async function importBackup(backup, mode) {
   const d = backup.data;
   const inventoryItems = Array.isArray(d.inventoryItems) ? d.inventoryItems.filter((r) => r && r.id) : [];
   const inventoryMovements = Array.isArray(d.inventoryMovements) ? d.inventoryMovements.filter((r) => r && r.id) : [];
+  const inventoryLots = Array.isArray(d.inventoryLots) ? d.inventoryLots.filter((r) => r && r.id) : [];
   const recipes = d.recipes.map((r) => normalizeRecipe(r));
 
   if (mode === 'replace') {
-    await db.tx(['recipes', 'ingredients', 'categories', 'shoppingItems', 'settings', 'history', 'inventoryItems', 'inventoryMovements'], (t) => {
-      ['recipes', 'ingredients', 'categories', 'shoppingItems', 'settings', 'history', 'inventoryItems', 'inventoryMovements'].forEach((s) => t.clear(s));
+    await db.tx(['recipes', 'ingredients', 'categories', 'shoppingItems', 'settings', 'history', 'inventoryItems', 'inventoryMovements', 'inventoryLots'], (t) => {
+      ['recipes', 'ingredients', 'categories', 'shoppingItems', 'settings', 'history', 'inventoryItems', 'inventoryMovements', 'inventoryLots'].forEach((s) => t.clear(s));
       recipes.forEach((r) => t.put('recipes', r));
       d.ingredients.forEach((r) => t.put('ingredients', r));
       d.categories.forEach((r) => t.put('categories', r));
@@ -128,6 +129,7 @@ export async function importBackup(backup, mode) {
       d.history.forEach((r) => t.put('history', r));
       inventoryItems.forEach((r) => t.put('inventoryItems', r));
       inventoryMovements.forEach((r) => t.put('inventoryMovements', r));
+      inventoryLots.forEach((r) => t.put('inventoryLots', r));
       t.put('settings', { key: 'seeded', value: true });
     });
   } else {
@@ -138,7 +140,8 @@ export async function importBackup(backup, mode) {
     const catalog = new Map(state.catalog);
     const inventoryExisting = new Map((await db.getAll('inventoryItems')).map((x) => [x.id, x]));
     const movementIds = new Set((await db.getAll('inventoryMovements')).map((x) => x.id));
-    await db.tx(['recipes', 'ingredients', 'categories', 'shoppingItems', 'history', 'inventoryItems', 'inventoryMovements'], (t) => {
+    const existingLots = new Map((await db.getAll('inventoryLots')).map((x) => [x.id, x]));
+    await db.tx(['recipes', 'ingredients', 'categories', 'shoppingItems', 'history', 'inventoryItems', 'inventoryMovements', 'inventoryLots'], (t) => {
       recipes.forEach((r) => {
         const cur = existing.get(r.id);
         if (!cur || (r.updatedAt || 0) > (cur.updatedAt || 0)) t.put('recipes', r);
@@ -157,19 +160,28 @@ export async function importBackup(backup, mode) {
       inventoryMovements.forEach((x) => {
         if (!movementIds.has(x.id)) { t.put('inventoryMovements', x); movementIds.add(x.id); }
       });
+      inventoryLots.forEach((x) => {
+        const cur = existingLots.get(x.id);
+        const incomingTime = Number(x.updatedAt || x.createdAt || 0);
+        const currentTime = Number(cur?.updatedAt || cur?.createdAt || 0);
+        if (!cur || incomingTime > currentTime) {
+          t.put('inventoryLots', x);
+          existingLots.set(x.id, x);
+        }
+      });
     });
   }
   await loadAll();
   // Domyślne wartości dla brakujących ustawień.
   Object.keys(DEFAULT_SETTINGS).forEach((k) => { if (!(k in state.settings)) state.settings[k] = DEFAULT_SETTINGS[k]; });
   emit('settings'); emit('recipes'); emit('categories'); emit('shopping');
-  return { recipes: state.recipes.size, inventoryItems: inventoryItems.length, inventoryMovements: inventoryMovements.length };
+  return { recipes: state.recipes.size, inventoryItems: inventoryItems.length, inventoryMovements: inventoryMovements.length, inventoryLots: inventoryLots.length };
 }
 
 /** Kasuje wszystko i przywraca stan początkowy (bez przykładowych receptur — zależnie od flagi). */
 export async function wipeAll({ keepSeeds = false } = {}) {
-  await db.tx(['recipes', 'ingredients', 'categories', 'shoppingItems', 'settings', 'history', 'inventoryItems', 'inventoryMovements'], (t) => {
-    ['recipes', 'ingredients', 'categories', 'shoppingItems', 'settings', 'history', 'inventoryItems', 'inventoryMovements'].forEach((s) => t.clear(s));
+  await db.tx(['recipes', 'ingredients', 'categories', 'shoppingItems', 'settings', 'history', 'inventoryItems', 'inventoryMovements', 'inventoryLots'], (t) => {
+    ['recipes', 'ingredients', 'categories', 'shoppingItems', 'settings', 'history', 'inventoryItems', 'inventoryMovements', 'inventoryLots'].forEach((s) => t.clear(s));
     if (!keepSeeds) t.put('settings', { key: 'seeded', value: true });
   });
   await loadAll();

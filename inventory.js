@@ -107,17 +107,54 @@ function expiryText(item, now = new Date()) {
 function lowStock(item) { return Number(item.minStock || 0) > 0 && Number(item.stock || 0) <= Number(item.minStock || 0); }
 
 async function loadData() {
-  const [items, movements] = await Promise.all([db.getAll('inventoryItems'), db.getAll('inventoryMovements')]);
+  const [items, movements, storedLots] = await Promise.all([
+    db.getAll('inventoryItems'), db.getAll('inventoryMovements'), db.getAll('inventoryLots'),
+  ]);
+  // Bezpieczna migracja: dotychczasowy stan staje się jedną partią tylko raz.
+  const knownItems = new Set(storedLots.map((lot) => lot.inventoryId));
+  const legacyLots = items.filter((item) => !knownItems.has(item.id) && Number(item.stock || 0) > 0).map((item) => ({
+    id: uid('lot_'), inventoryId: item.id, name: item.name, quantity: Number(item.stock || 0),
+    unit: item.unit || 'kg', expiryDate: item.expiryDate || '', receivedAt: item.createdAt || Date.now(),
+    unitPrice: Number(item.pricePerUnit || 0), createdAt: Date.now(), legacy: true,
+  }));
+  if (legacyLots.length) await db.putMany('inventoryLots', legacyLots);
+  const lots = [...storedLots, ...legacyLots];
   return {
     items: items.sort((a, b) => String(a.name).localeCompare(String(b.name), 'pl')),
     movements: movements.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0)),
+    lots: lots.sort((a, b) => (a.expiryDate || '9999-12-31').localeCompare(b.expiryDate || '9999-12-31') || (a.receivedAt || 0) - (b.receivedAt || 0)),
+  };
+}
+function consumeFromLots(item, lots, amount) {
+  let remaining = Math.max(0, Number(amount) || 0);
+  const eligible = lots.filter((lot) => lot.inventoryId === item.id && Number(lot.quantity || 0) > 0)
+    .sort((a, b) => (a.expiryDate || '9999-12-31').localeCompare(b.expiryDate || '9999-12-31') || (a.receivedAt || 0) - (b.receivedAt || 0));
+  const allocations = [];
+  let cost = 0;
+  for (const lot of eligible) {
+    if (remaining <= 0.000001) break;
+    const take = Math.min(Number(lot.quantity), remaining);
+    lot.quantity = Math.round((Number(lot.quantity) - take) * 10000) / 10000;
+    lot.updatedAt = Date.now();
+    remaining = Math.round((remaining - take) * 10000) / 10000;
+    allocations.push({ lotId: lot.id, amount: take });
+    cost += take * Number(lot.unitPrice ?? item.pricePerUnit ?? 0);
+  }
+  return { allocations, shortage: remaining, cost };
+}
+function addStockLot(item, quantity, options = {}) {
+  return {
+    id: uid('lot_'), inventoryId: item.id, name: item.name, quantity: Number(quantity), unit: item.unit,
+    expiryDate: options.expiryDate || '', receivedAt: options.receivedAt || Date.now(),
+    unitPrice: options.unitPrice == null ? Number(item.pricePerUnit || 0) : Number(options.unitPrice),
+    createdAt: Date.now(),
   };
 }
 
 export async function deductRecipeIngredients(recipe, factor = 1) {
   factor = Number(factor);
   if (!Number.isFinite(factor) || factor <= 0) throw new Error('Nieprawidłowa skala receptury.');
-  const { items } = await loadData();
+  const { items, lots } = await loadData();
   const changed = [], movements = [], missing = [];
   const ingredients = (recipe.sections || []).flatMap((s) => s.ingredients || []);
   for (const ing of ingredients) {
@@ -126,23 +163,26 @@ export async function deductRecipeIngredients(recipe, factor = 1) {
     if (!item) { missing.push(ing.name); continue; }
     const amount = convertInventoryAmount(Number(ing.amount) * factor, ing.unit, item.unit, ing.name);
     if (amount == null) { missing.push(ing.name + ' (inna jednostka)'); continue; }
+    const allocation = consumeFromLots(item, lots, amount);
     item.stock = Math.round((Number(item.stock || 0) - amount) * 10000) / 10000;
     item.updatedAt = Date.now();
     changed.push(item);
     movements.push({
       id: uid('mov_'), inventoryId: item.id, name: item.name, type: 'cook',
-      amount: -amount, unit: item.unit, cost: amount * Number(item.pricePerUnit || 0),
+      amount: -amount, unit: item.unit, cost: allocation.cost + allocation.shortage * Number(item.pricePerUnit || 0),
+      allocations: allocation.allocations, shortage: allocation.shortage,
       reason: recipe.name || 'Gotowanie', recipeId: recipe.id || '', createdAt: Date.now() + movements.length,
     });
   }
   if (changed.length) await db.putMany('inventoryItems', changed);
+  if (lots.length) await db.putMany('inventoryLots', lots);
   if (movements.length) await db.putMany('inventoryMovements', movements);
   return { deducted: changed.length, missing: [...new Set(missing)], low: changed.filter(lowStock).map((x) => x.name) };
 }
 
 export function inventoryView() {
   let active = true;
-  let data = { items: [], movements: [] };
+  let data = { items: [], movements: [], lots: [] };
   const right = h('div', { class: 'row gap inventory-head-actions' },
     iconBtn('scan', 'Skanuj kod EAN', openScanner),
     iconBtn('plus', 'Dodaj produkt do magazynu', () => openItemSheet()));
@@ -169,16 +209,40 @@ export function inventoryView() {
   }
 
   async function saveItem(item) {
+    const previous = data.items.find((x) => x.id === item.id);
+    if (previous) {
+      const delta = Math.round((Number(item.stock || 0) - Number(previous.stock || 0)) * 10000) / 10000;
+      if (delta > 0) await db.put('inventoryLots', addStockLot(item, delta, { expiryDate: item.expiryDate || '' }));
+      else if (delta < 0) {
+        const { lots } = await loadData();
+        consumeFromLots(previous, lots, Math.abs(delta));
+        if (lots.length) await db.putMany('inventoryLots', lots);
+      }
+      if (item.expiryDate !== previous.expiryDate) {
+        const { lots } = await loadData();
+        const legacy = lots.filter((lot) => lot.inventoryId === item.id && lot.legacy);
+        legacy.forEach((lot) => { lot.expiryDate = item.expiryDate || ''; lot.updatedAt = Date.now(); });
+        if (legacy.length) await db.putMany('inventoryLots', legacy);
+      }
+    }
     await db.put('inventoryItems', item);
     await reload();
     if (getSetting('inventoryLowAlerts') !== false && lowStock(item)) toast('Niski stan: ' + item.name, { type: 'error' });
   }
   async function adjust(item, delta) {
     const next = { ...item, stock: Math.round((Number(item.stock || 0) + delta) * 10000) / 10000, updatedAt: Date.now() };
+    let movementCost = delta * Number(item.pricePerUnit || 0);
+    if (delta > 0) await db.put('inventoryLots', addStockLot(next, delta));
+    else {
+      const { lots } = await loadData();
+      const allocation = consumeFromLots(item, lots, Math.abs(delta));
+      movementCost = -(allocation.cost + allocation.shortage * Number(item.pricePerUnit || 0));
+      if (lots.length) await db.putMany('inventoryLots', lots);
+    }
     await db.put('inventoryItems', next);
     await db.put('inventoryMovements', {
       id: uid('mov_'), inventoryId: item.id, name: item.name, type: 'adjustment',
-      amount: delta, unit: item.unit, cost: delta * Number(item.pricePerUnit || 0),
+      amount: delta, unit: item.unit, cost: movementCost,
       reason: delta > 0 ? 'Ręczne dodanie' : 'Ręczne odjęcie', createdAt: Date.now(),
     });
     await reload();
@@ -200,9 +264,9 @@ export function inventoryView() {
       fieldLabel('Nazwa produktu', name), fieldLabel('Kategoria', category),
       h('div', { class: 'grid two' }, fieldLabel('Stan', stock), fieldLabel('Jednostka', unit)),
       h('div', { class: 'grid two' }, fieldLabel('Próg niskiego stanu', minimum), fieldLabel('Cena za jednostkę', price)),
-      fieldLabel('Termin przydatności (cały wpis)', expiry),
+      fieldLabel('Termin dla stanu początkowego', expiry),
       fieldLabel('Kod EAN', barcode), fieldLabel('Nazwy alternatywne', aliases),
-      h('p', { class: 'muted small' }, 'Termin dotyczy całej pozycji magazynu, a nie osobnych partii. Nazwy alternatywne pomagają dopasować składniki z receptur.'));
+      h('p', { class: 'muted small' }, 'Termin przy pozycji dotyczy stanu początkowego/partii legacy. Nowe dostawy dodawaj jako osobne partie, każda z własnym terminem. Nazwy alternatywne pomagają dopasować składniki z receptur.'));
     const sh = openSheet({
       title: old.id ? 'Edytuj produkt' : 'Dodaj do magazynu', variant: 'sheet', body,
       actions: [
@@ -225,6 +289,37 @@ export function inventoryView() {
     });
     return sh;
   }
+  function openBatchSheet(item) {
+    const quantity = textInput({ value: '1', label: 'Ilość przyjęta (' + item.unit + ')', inputmode: 'decimal' });
+    const expiry = h('input', { type: 'date', class: 'input', value: '', 'aria-label': 'Termin przydatności partii' });
+    const received = h('input', { type: 'date', class: 'input', value: new Date().getFullYear() + '-' + String(new Date().getMonth()+1).padStart(2,'0') + '-' + String(new Date().getDate()).padStart(2,'0'), 'aria-label': 'Data przyjęcia partii' });
+    const price = textInput({ value: String(item.pricePerUnit || ''), label: 'Cena za jednostkę (zł)', inputmode: 'decimal', placeholder: 'Opcjonalnie' });
+    return openSheet({
+      title: 'Nowa partia · ' + item.name, variant: 'sheet',
+      body: h('div', { class: 'stack inventory-edit-form' },
+        h('p', { class: 'muted small' }, 'Stan partii jest prowadzony osobno. Przy gotowaniu Żarłok zużywa najpierw partie z najbliższym terminem (FEFO), a potem starsze partie (FIFO).'),
+        fieldLabel('Ilość (' + item.unit + ')', quantity),
+        fieldLabel('Termin przydatności partii', expiry),
+        fieldLabel('Data przyjęcia', received),
+        fieldLabel('Cena za jednostkę (zł)', price)),
+      actions: [
+        { label: 'Anuluj', kind: 'ghost' },
+        { label: 'Przyjmij partię', kind: 'primary', onClick: async () => {
+          const qty = parseNum(quantity.value), priceVal = parseNum(price.value);
+          if (qty == null || qty <= 0) { quantity.focus(); toast('Podaj ilość większą od zera', { type: 'error' }); return false; }
+          const parts = String(received.value || '').split('-').map(Number);
+          const receivedAt = parts.length === 3 ? new Date(parts[0], parts[1]-1, parts[2]).getTime() : Date.now();
+          const lot = addStockLot(item, qty, { expiryDate: expiry.value, receivedAt, unitPrice: priceVal == null ? item.pricePerUnit : priceVal });
+          const next = { ...item, stock: Math.round((Number(item.stock || 0) + qty) * 10000) / 10000, updatedAt: Date.now() };
+          await db.put('inventoryLots', lot);
+          await db.put('inventoryItems', next);
+          await db.put('inventoryMovements', { id: uid('mov_'), inventoryId: item.id, lotId: lot.id, name: item.name, type: 'receive', amount: qty, unit: item.unit, cost: qty * Number(lot.unitPrice || 0), reason: 'Przyjęcie partii', createdAt: Date.now() });
+          await reload(); toast('Przyjęto partię: ' + item.name); return true;
+        } },
+      ],
+    });
+  }
+
   function fieldLabel(label, control) { return h('label', { class: 'field' }, h('span', { class: 'field-label' }, label), control); }
 
   async function recordWaste(item) {
@@ -241,13 +336,15 @@ export function inventoryView() {
           const n = parseNum(amount.value);
           if (n == null || n <= 0) { toast('Podaj ilość większą od zera', { type: 'error' }); return false; }
           const next = { ...item, stock: Math.round((Number(item.stock || 0) - n) * 10000) / 10000, updatedAt: Date.now() };
+          const { lots } = await loadData(); const allocation = consumeFromLots(item, lots, n); if (lots.length) await db.putMany('inventoryLots', lots);
+          const wasteCost = allocation.cost + allocation.shortage * Number(item.pricePerUnit || 0);
           await db.put('inventoryItems', next);
           await db.put('inventoryMovements', {
             id: uid('wst_'), inventoryId: item.id, name: item.name, type: 'waste', amount: -n, unit: item.unit,
-            cost: n * Number(item.pricePerUnit || 0), reason: reason.value, createdAt: Date.now(),
+            cost: wasteCost, allocations: allocation.allocations, shortage: allocation.shortage, reason: reason.value, createdAt: Date.now(),
           });
           await reload();
-          toast('Zapisano stratę: ' + money(n * Number(item.pricePerUnit || 0)));
+          toast('Zapisano stratę: ' + money(wasteCost));
           return true;
         } },
       ],
@@ -257,7 +354,9 @@ export function inventoryView() {
 
   async function deleteItem(item) {
     if (!await confirmDialog({ title: 'Usunąć z magazynu?', message: item.name + ' zostanie usunięty z listy stanów. Historia strat pozostanie.', confirmText: 'Usuń', danger: true })) return;
-    await db.delete('inventoryItems', item.id);
+    const lots = data.lots.filter((lot) => lot.inventoryId === item.id);
+    if (lots.length) await db.tx(['inventoryItems', 'inventoryLots'], (t) => { t.delete('inventoryItems', item.id); lots.forEach((lot) => t.delete('inventoryLots', lot.id)); });
+    else await db.delete('inventoryItems', item.id);
     await reload();
     toast('Usunięto z magazynu');
   }
@@ -467,15 +566,23 @@ export function inventoryView() {
 
   function itemCard(item) {
     const low = lowStock(item);
-    const expiry = inventoryExpiryStatus(item.expiryDate);
+    const itemLots = data.lots.filter((lot) => lot.inventoryId === item.id).sort((a, b) => (a.expiryDate || '9999-12-31').localeCompare(b.expiryDate || '9999-12-31') || (a.receivedAt || 0) - (b.receivedAt || 0));
+    const datedLots = itemLots.filter((lot) => Number(lot.quantity || 0) > 0 && lot.expiryDate);
+    const expiryLot = datedLots[0];
+    const expiry = inventoryExpiryStatus(expiryLot ? expiryLot.expiryDate : (itemLots.length ? '' : item.expiryDate));
     const expiryClass = expiry.status === 'expired' ? ' is-expired' : ['today', 'soon'].includes(expiry.status) ? ' is-expiring' : '';
-    const expiryLabel = expiryText(item);
+    const expiryLabel = expiryText(expiryLot || item);
     return h('article', { class: 'inventory-item' + (low ? ' is-low' : '') + expiryClass },
       h('div', { class: 'inventory-item-main' },
         h('div', { class: 'inventory-item-title' }, h('span', { class: 'inventory-item-glyph', 'aria-hidden': 'true' }, ingEmoji(item.name)), h('strong', null, item.name), low ? h('span', { class: 'inventory-low-badge' }, 'Niski stan') : null,
           expiry.status === 'expired' ? h('span', { class: 'inventory-expiry-badge is-expired' }, 'Po terminie') : ['today', 'soon'].includes(expiry.status) ? h('span', { class: 'inventory-expiry-badge is-expiring' }, expiry.status === 'today' ? 'Termin dziś' : 'Termin blisko') : null),
         h('p', { class: 'muted small' }, [item.category || 'Inne', item.barcode ? 'EAN ' + item.barcode : ''].filter(Boolean).join(' · ')),
         expiryLabel ? h('p', { class: 'inventory-expiry-text' }, icon('calendar-clock', 14), expiryLabel) : null,
+        itemLots.length ? h('div', { class: 'inventory-lots-mini' },
+          h('div', { class: 'row between' }, h('span', { class: 'muted small' }, 'Partie: ' + itemLots.filter((lot) => Number(lot.quantity || 0) > 0).length), h('span', { class: 'muted small' }, 'FEFO')),
+          itemLots.filter((lot) => Number(lot.quantity || 0) > 0).slice(0, 2).map((lot) => h('div', { class: 'inventory-lot-mini' },
+            h('span', null, lot.expiryDate ? expiryText({ expiryDate: lot.expiryDate }) : 'Bez terminu'),
+            h('strong', null, displayQty(lot.quantity, lot.unit || item.unit))))) : null,
         item.pricePerUnit ? h('p', { class: 'muted small' }, money(item.pricePerUnit) + ' / ' + item.unit) : null),
       h('div', { class: 'inventory-stock' },
         h('strong', null, displayQty(item.stock, item.unit)),
@@ -484,14 +591,15 @@ export function inventoryView() {
         iconBtn('minus', 'Odejmij 1 ' + item.unit, () => adjust(item, -1), 'quiet'),
         iconBtn('plus', 'Dodaj 1 ' + item.unit, () => adjust(item, 1), 'quiet'),
         iconBtn('trash', 'Zarejestruj stratę: ' + item.name, () => recordWaste(item), 'quiet'),
+        iconBtn('plus-circle', 'Dodaj partię: ' + item.name, () => openBatchSheet(item), 'quiet'),
         iconBtn('edit', 'Edytuj: ' + item.name, () => openItemSheet(item), 'quiet'),
         iconBtn('x', 'Usuń produkt: ' + item.name, () => deleteItem(item), 'quiet')));
   }
 
   function paint() {
     const low = lowItems();
-    const expiring = data.items.filter((item) => ['today', 'soon'].includes(inventoryExpiryStatus(item.expiryDate).status));
-    const expired = data.items.filter((item) => inventoryExpiryStatus(item.expiryDate).status === 'expired');
+    const expiring = data.lots.filter((lot) => Number(lot.quantity || 0) > 0 && ['today', 'soon'].includes(inventoryExpiryStatus(lot.expiryDate).status));
+    const expired = data.lots.filter((lot) => Number(lot.quantity || 0) > 0 && inventoryExpiryStatus(lot.expiryDate).status === 'expired');
     const query = clean(searchIn.value);
     const filteredItems = data.items.filter((item) => (selectedCategory === 'Wszystkie' || (item.category || 'Inne') === selectedCategory) && (!query || clean([item.name, ...(item.aliases || []), item.barcode].join(' ')).includes(query)));
     filterButtons.forEach((b, i) => { b.classList.toggle('on', ['Wszystkie', ...CATEGORIES][i] === selectedCategory); });
@@ -501,8 +609,8 @@ export function inventoryView() {
     const summary = h('div', { class: 'inventory-summary' },
       summaryCard('Produkty', String(data.items.length), 'inventory-stat-products'),
       summaryCard('Niski stan', String(low.length), low.length ? 'inventory-stat-low' : 'inventory-stat-ok'),
-      summaryCard('Po terminie', String(expired.length), expired.length ? 'inventory-stat-expired' : 'inventory-stat-ok'),
-      summaryCard('Termin ≤ 3 dni', String(expiring.length), expiring.length ? 'inventory-stat-expiring' : 'inventory-stat-ok'),
+      summaryCard('Partie po terminie', String(expired.length), expired.length ? 'inventory-stat-expired' : 'inventory-stat-ok'),
+      summaryCard('Partie ≤ 3 dni', String(expiring.length), expiring.length ? 'inventory-stat-expiring' : 'inventory-stat-ok'),
       summaryCard('Straty · 7 dni', money(weeklyWaste()), 'inventory-stat-waste'));
     const alertToggle = button('Alerty niskiego stanu: ' + (alertsOn ? 'włączone' : 'wyłączone'), {
       kind: 'ghost', block: true, icon: 'bell', onClick: async () => { await setSetting('inventoryLowAlerts', !alertsOn); paint(); },
@@ -516,11 +624,14 @@ export function inventoryView() {
       });
       kids.push(h('section', { class: 'inventory-expiry-panel card stack' },
         h('div', { class: 'row between' }, h('h2', { class: 'card-title' }, icon('calendar-clock', 20), 'Terminy do sprawdzenia'), h('span', { class: 'pill' }, String(urgent.length))),
-        h('p', { class: 'muted small' }, 'Sprawdź te produkty przed użyciem. Termin dotyczy całej pozycji magazynowej.'),
-        urgent.slice(0, 8).map((item) => h('div', { class: 'inventory-expiry-row' },
-          h('span', { class: 'inventory-expiry-dot ' + (inventoryExpiryStatus(item.expiryDate).status === 'expired' ? 'is-expired' : 'is-expiring') }),
-          h('div', { class: 'grow' }, h('strong', null, item.name), h('p', { class: 'muted small' }, expiryText(item))),
-          h('strong', { class: 'num' }, displayQty(item.stock, item.unit))))));
+        h('p', { class: 'muted small' }, 'Sprawdź konkretne partie przed użyciem. Przy gotowaniu zużywana jest najpierw partia z najbliższym terminem.'),
+        urgent.slice(0, 8).map((lot) => {
+          const item = data.items.find((x) => x.id === lot.inventoryId);
+          return h('div', { class: 'inventory-expiry-row' },
+            h('span', { class: 'inventory-expiry-dot ' + (inventoryExpiryStatus(lot.expiryDate).status === 'expired' ? 'is-expired' : 'is-expiring') }),
+            h('div', { class: 'grow' }, h('strong', null, item ? item.name : lot.name), h('p', { class: 'muted small' }, expiryText({ expiryDate: lot.expiryDate }))),
+            h('strong', { class: 'num' }, displayQty(lot.quantity, lot.unit)));
+        })));
     }
     if (low.length) {
       kids.push(h('section', { class: 'inventory-low-panel card stack' },

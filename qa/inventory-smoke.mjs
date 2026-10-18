@@ -180,6 +180,65 @@ try {
   await dismiss();
   await expectText('970 g', 'Klasyczna lista kontrolna nie odjęła dokładnie 15 g albo odjęła składniki podwójnie.');
 
+  // Separate inventory batches keep their own dates and are included in the aggregate stock.
+  await page.getByRole('button', { name: 'Dodaj partię: Mąka pszenna' }).click();
+  await page.getByLabel('Ilość przyjęta (g)').fill('5');
+  const soonDate = new Date(Date.now() + 2 * 86400000);
+  const expiryValue = soonDate.getFullYear() + '-' + String(soonDate.getMonth() + 1).padStart(2, '0') + '-' + String(soonDate.getDate()).padStart(2, '0');
+  await page.getByLabel('Termin przydatności partii').fill(expiryValue);
+  await page.getByLabel('Cena za jednostkę (zł)').fill('0.03');
+  await page.getByRole('button', { name: 'Przyjmij partię' }).click();
+  await page.waitForTimeout(250);
+  await expectText('975 g', 'Przyjęcie nowej partii nie zwiększyło łącznego stanu magazynu.');
+  const flourLots = await page.evaluate(() => new Promise((resolve, reject) => {
+    const request = indexedDB.open('zaruok-app-db');
+    request.onerror = () => reject(request.error);
+    request.onsuccess = () => {
+      const db = request.result;
+      const tx = db.transaction('inventoryLots', 'readonly');
+      const all = tx.objectStore('inventoryLots').getAll();
+      all.onsuccess = () => { const rows = all.result.filter((x) => x.name === 'Mąka pszenna'); db.close(); resolve(rows); };
+      all.onerror = () => reject(all.error);
+    };
+  }));
+  if (!flourLots.some((lot) => lot.quantity === 5 && lot.expiryDate === expiryValue)) {
+    throw new Error('Partia nie zachowała własnej ilości i terminu przydatności.');
+  }
+
+  // Cooking must consume the closest-expiry batch before the older, undated legacy stock.
+  await page.goto(base + recipeHref, { waitUntil: 'domcontentloaded' });
+  await ready();
+  await dismiss();
+  await page.getByRole('button', { name: 'GOTUJĘ' }).first().click();
+  await page.waitForSelector('.guide-next', { state: 'visible', timeout: 5000 });
+  for (let step = 0; step < 12; step++) {
+    const next = page.locator('.guide-next');
+    const label = (await next.textContent()).trim();
+    await next.click();
+    if (label === 'Zakończ') break;
+    await page.waitForTimeout(100);
+  }
+  await page.waitForTimeout(300);
+  await page.goto(base + '#/inventory', { waitUntil: 'domcontentloaded' });
+  await ready();
+  await dismiss();
+  await expectText('960 g', 'Zużycie partii FEFO nie zachowało prawidłowego łącznego stanu magazynu.');
+  const remainingLots = await page.evaluate(() => new Promise((resolve, reject) => {
+    const request = indexedDB.open('zaruok-app-db');
+    request.onerror = () => reject(request.error);
+    request.onsuccess = () => {
+      const db = request.result;
+      const tx = db.transaction('inventoryLots', 'readonly');
+      const all = tx.objectStore('inventoryLots').getAll();
+      all.onsuccess = () => { const rows = all.result.filter((x) => x.name === 'Mąka pszenna'); db.close(); resolve(rows); };
+      all.onerror = () => reject(all.error);
+    };
+  }));
+  const expiringBatch = remainingLots.find((lot) => lot.expiryDate === expiryValue);
+  if (!expiringBatch || expiringBatch.quantity !== 0) {
+    throw new Error('Gotowanie nie zużyło najpierw partii z najbliższym terminem (FEFO).');
+  }
+
   await page.getByRole('button', { name: 'Skanuj kod EAN' }).click();
   await page.waitForSelector('.scanner-frame', { timeout: 5000 });
   if (!(await page.locator('.scanner-line').count())) throw new Error('Brak animowanej linii skanowania EAN.');
