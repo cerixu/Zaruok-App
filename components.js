@@ -96,7 +96,7 @@ export function recipeTile(r, { onFav } = {}) {
     h('div', { class: 'rtile-heart' }, heartBtn(r, onFav)));
 }
 
-/** /** Okrągła kafelka kategorii (ilustracja + nazwa + liczba). */
+/** Okrągła kafelka kategorii (ilustracja + nazwa + liczba). */
 export function catTile(cat, count, onClick) {
   const img = h('img', { class: 'art', src: categoryArtUrl(cat.id), alt: '', loading: 'lazy', decoding: 'async' });
   attachCategoryPhoto(img, cat.id);
@@ -105,7 +105,7 @@ export function catTile(cat, count, onClick) {
     h('span', { class: 'ctile-name' }, cat.name), h('span', { class: 'ctile-n' }, String(count)));
 }
 
-/** /** Karta receptury (lista, ekran startowy). */
+/** Karta receptury (lista, ekran startowy). */
 export function recipeCard(r, { onFav } = {}) {
   return h('div', { class: 'rcard' + (r.traditional ? ' trad-card' : '') },
     h('a', { class: 'rcard-main', href: '#/recipe/' + encodeURIComponent(r.id), 'aria-label': r.name,
