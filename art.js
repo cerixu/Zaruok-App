@@ -250,16 +250,12 @@ export const artKindFor = (r) => {
 };
 // Własne zdjęcia wygenerowane w Adobe Firefly — używane jako właściwe miniatury receptur,
 // a nie jako makiety. Gdy sieć nie działa, komponent przełącza się na lokalną ilustrację SVG.
-const GENERATED_PHOTOS = [
-  [/pizza|margherita|marinara/i, './assets/food/pizza-margherita.jpg'],
-  [/carbonara/i, './assets/food/tagliatelle-carbonara.jpg'],
-  [/^risotto\b/i, './assets/food/mushroom-risotto.jpg'],
-  [/łosoś|salmon/i, './assets/food/salmon-lemon-butter.jpg'],
-];
+// Żarłok 2.0: prawdziwe fotografie dań wygenerowane specjalnie dla aplikacji.
+ // Mapujemy zdjęcia tylko do pasujących potraw; reszta zachowuje lokalny fallback SVG.
+// Wszystkie fotografie Żarłoka 2.0 są ładowane lokalnie przez food-photos.js.
+// Ten moduł pozostaje niezależnym fallbackiem SVG i nie wymaga internetu.
+export const recipeArtPhotoUrl = () => '';
+export const recipeArtIsPhoto = () => false;
 export const recipeArtFallbackUrl = (r) => artUrl(artKindFor(r), r.name || r.id || '');
-export const recipeArtUrl = (r) => {
-  const name = String(r.name || '');
-  const generated = GENERATED_PHOTOS.find(([pattern]) => pattern.test(name));
-  return generated ? generated[1] : recipeArtFallbackUrl(r);
-};
+export const recipeArtUrl = (r) => recipeArtFallbackUrl(r);
 export const categoryArtUrl = (catId) => artUrl(CATEGORY_ART[catId] || 'plate', catId);
