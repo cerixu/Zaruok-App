@@ -9,7 +9,7 @@
    ========================================================================== */
 
 const DB_NAME = 'zaruok-app-db';
-const DB_VERSION = 3;
+const DB_VERSION = 4;
 
 export const STORES = {
   recipes: 'id',
@@ -20,6 +20,7 @@ export const STORES = {
   history: 'id',
   inventoryItems: 'id',
   inventoryMovements: 'id',
+  inventoryLots: 'id',
 };
 
 let dbPromise = null;
