@@ -207,6 +207,22 @@ export function inventoryView() {
   }
 
   async function saveItem(item) {
+    const previous = data.items.find((x) => x.id === item.id);
+    if (previous) {
+      const delta = Math.round((Number(item.stock || 0) - Number(previous.stock || 0)) * 10000) / 10000;
+      if (delta > 0) await db.put('inventoryLots', addStockLot(item, delta, { expiryDate: item.expiryDate || '' }));
+      else if (delta < 0) {
+        const { lots } = await loadData();
+        consumeFromLots(previous, lots, Math.abs(delta));
+        if (lots.length) await db.putMany('inventoryLots', lots);
+      }
+      if (item.expiryDate !== previous.expiryDate) {
+        const { lots } = await loadData();
+        const legacy = lots.filter((lot) => lot.inventoryId === item.id && lot.legacy);
+        legacy.forEach((lot) => { lot.expiryDate = item.expiryDate || ''; lot.updatedAt = Date.now(); });
+        if (legacy.length) await db.putMany('inventoryLots', legacy);
+      }
+    }
     await db.put('inventoryItems', item);
     await reload();
     if (getSetting('inventoryLowAlerts') !== false && lowStock(item)) toast('Niski stan: ' + item.name, { type: 'error' });
@@ -244,9 +260,9 @@ export function inventoryView() {
       fieldLabel('Nazwa produktu', name), fieldLabel('Kategoria', category),
       h('div', { class: 'grid two' }, fieldLabel('Stan', stock), fieldLabel('Jednostka', unit)),
       h('div', { class: 'grid two' }, fieldLabel('Próg niskiego stanu', minimum), fieldLabel('Cena za jednostkę', price)),
-      fieldLabel('Termin przydatności (cały wpis)', expiry),
+      fieldLabel('Termin dla stanu początkowego', expiry),
       fieldLabel('Kod EAN', barcode), fieldLabel('Nazwy alternatywne', aliases),
-      h('p', { class: 'muted small' }, 'Termin dotyczy całej pozycji magazynu, a nie osobnych partii. Nazwy alternatywne pomagają dopasować składniki z receptur.'));
+      h('p', { class: 'muted small' }, 'Termin przy pozycji dotyczy stanu początkowego/partii legacy. Nowe dostawy dodawaj jako osobne partie, każda z własnym terminem. Nazwy alternatywne pomagają dopasować składniki z receptur.'));
     const sh = openSheet({
       title: old.id ? 'Edytuj produkt' : 'Dodaj do magazynu', variant: 'sheet', body,
       actions: [
@@ -548,7 +564,7 @@ export function inventoryView() {
     const expiryLot = datedLots[0];
     const expiry = inventoryExpiryStatus(expiryLot ? expiryLot.expiryDate : item.expiryDate);
     const expiryClass = expiry.status === 'expired' ? ' is-expired' : ['today', 'soon'].includes(expiry.status) ? ' is-expiring' : '';
-    const expiryLabel = expiryText(item);
+    const expiryLabel = expiryText(expiryLot || item);
     return h('article', { class: 'inventory-item' + (low ? ' is-low' : '') + expiryClass },
       h('div', { class: 'inventory-item-main' },
         h('div', { class: 'inventory-item-title' }, h('span', { class: 'inventory-item-glyph', 'aria-hidden': 'true' }, ingEmoji(item.name)), h('strong', null, item.name), low ? h('span', { class: 'inventory-low-badge' }, 'Niski stan') : null,
@@ -586,8 +602,8 @@ export function inventoryView() {
     const summary = h('div', { class: 'inventory-summary' },
       summaryCard('Produkty', String(data.items.length), 'inventory-stat-products'),
       summaryCard('Niski stan', String(low.length), low.length ? 'inventory-stat-low' : 'inventory-stat-ok'),
-      summaryCard('Po terminie', String(expired.length), expired.length ? 'inventory-stat-expired' : 'inventory-stat-ok'),
-      summaryCard('Termin ≤ 3 dni', String(expiring.length), expiring.length ? 'inventory-stat-expiring' : 'inventory-stat-ok'),
+      summaryCard('Partie po terminie', String(expired.length), expired.length ? 'inventory-stat-expired' : 'inventory-stat-ok'),
+      summaryCard('Partie ≤ 3 dni', String(expiring.length), expiring.length ? 'inventory-stat-expiring' : 'inventory-stat-ok'),
       summaryCard('Straty · 7 dni', money(weeklyWaste()), 'inventory-stat-waste'));
     const alertToggle = button('Alerty niskiego stanu: ' + (alertsOn ? 'włączone' : 'wyłączone'), {
       kind: 'ghost', block: true, icon: 'bell', onClick: async () => { await setSetting('inventoryLowAlerts', !alertsOn); paint(); },
