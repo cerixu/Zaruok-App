@@ -164,14 +164,17 @@ try {
       { name: 'Risotto ai funghi', expected: './assets/food/mushroom-risotto.jpg' },
       { name: 'Łosoś z masłem cytrynowym', expected: './assets/food/salmon-lemon-butter.jpg' },
     ];
-    return Promise.all(cases.map(async (item) => {
+    const photos = await Promise.all(cases.map(async (item) => {
       const src = art.recipeArtUrl({ name: item.name });
       const response = await fetch(new URL(src, location.href));
       return { name: item.name, src, expected: item.expected, ok: response.ok, type: response.headers.get('content-type') };
     }));
+    return { photos, genericPizza: art.recipeArtUrl({ name: 'Pizza Nduja z miodem' }) };
   });
-  assert(photoAudit.every((item) => item.src === item.expected && item.ok && (item.type || '').startsWith('image/')),
-    'Zdjęcia receptur muszą być lokalne, dostępne i serwowane jako obrazy: ' + JSON.stringify(photoAudit));
+  assert(photoAudit.photos.every((item) => item.src === item.expected && item.ok && (item.type || '').startsWith('image/')),
+    'Zdjęcia receptur muszą być lokalne, dostępne i serwowane jako obrazy: ' + JSON.stringify(photoAudit.photos));
+  assert(!photoAudit.genericPizza.endsWith('/assets/food/pizza-margherita.jpg'),
+    'Pizza Nduja nie może otrzymać zdjęcia pizzy Margherita.');
   
   const designStylesLoaded = await page.evaluate(() => Array.from(document.styleSheets).some((s) => s.href && s.href.includes('claude-completion.css')));
   assert(designStylesLoaded, 'Brak pełnej warstwy stylu Claude / Liquid Glass.');
