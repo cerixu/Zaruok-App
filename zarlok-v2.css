@@ -67,9 +67,9 @@ input,textarea,select,.field input,.field textarea,.field select{border-radius:1
 }
 .start-final .zf-feature::before{display:none!important}
 .start-final .zf-feature::after{display:none}
-.start-final .zf-feature-ring{display:block!important;position:absolute;inset:0;width:auto;height:auto;max-width:none;z-index:0;border:0;border-radius:0;padding:0;background:transparent;box-shadow:none}
-.start-final .zf-feature-img{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:0;background:#242322}
-.start-final .zf-feature-img img{display:block;width:100%;height:100%;object-fit:cover!important;object-position:center;border-radius:0!important;padding:0!important;opacity:1!important;visibility:visible!important;transform:none!important;filter:saturate(.98) contrast(1.03)}
+.start-final .zf-feature-ring{display:block!important;position:absolute!important;top:0!important;right:0!important;bottom:0!important;left:0!important;width:100%!important;height:100%!important;max-width:none;z-index:0;transform:none!important;border:0;border-radius:0;padding:0;background:transparent;box-shadow:none}
+.start-final .zf-feature-img{display:block!important;position:absolute!important;top:0!important;right:0!important;bottom:0!important;left:0!important;width:100%!important;height:100%!important;transform:none!important;border:0;border-radius:0;background:#242322}
+.start-final .zf-feature-img img{display:block!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center;border-radius:0!important;padding:0!important;opacity:1!important;visibility:visible!important;transform:none!important;filter:saturate(.98) contrast(1.03)}
 .start-final .zf-feature-img img.art{object-fit:cover!important;border-radius:0!important;padding:0!important;transform:none!important}
 .start-final .zf-feature-copy{position:absolute;z-index:2;left:0;right:0;bottom:0;padding:24px 22px 22px;color:#fff;display:flex;align-items:flex-start;flex-direction:column;gap:8px;background:linear-gradient(180deg,transparent,rgba(8,9,9,.88))}
 .start-final .zf-feature-copy .zf-kicker{color:#f1c49a;letter-spacing:.17em;font-size:.68rem;font-weight:750}
