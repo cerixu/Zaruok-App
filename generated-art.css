@@ -13,8 +13,8 @@
 .heart.on{animation:zarlok-heart-pop .32s cubic-bezier(.2,.8,.2,1)}
 @keyframes zarlok-heart-pop{0%{transform:scale(.82)}55%{transform:scale(1.18)}100%{transform:scale(1)}}
 #tabbar .tab .tab-ico{transition:transform .24s cubic-bezier(.2,.8,.2,1),filter .2s ease;transform-origin:center}
-#tabbar .tab:active .tab-ico{transform:scale(.91)}
-#tabbar .tab.on .tab-ico{transform:translateY(-1px) scale(1.045);filter:drop-shadow(0 3px 8px var(--accent-glow))}
+#tabbar .tab:active .tab-ico{transform:scale(.91)!important}
+#tabbar .tab.on .tab-ico{transform:translateY(-1px) scale(1.045)!important;filter:drop-shadow(0 3px 8px var(--accent-glow))}
 .btn:focus-visible,.iconbtn:focus-visible,.heart:focus-visible,.tab:focus-visible{outline:2px solid var(--accent-strong);outline-offset:3px}
 .rthumb img.art,.rtile-img img.art,.ctile-img img.art{animation:none}
 @media(prefers-reduced-motion:reduce){
