@@ -72,6 +72,33 @@ try {
   await expectText('Brak wyników', 'Nie pokazano pustego stanu dla wyszukiwarki magazynu.');
   await search.fill('');
 
+  // Expiry tracking: an expired item and an item expiring in two days must be visible and prioritized.
+  const expiryDates = await page.evaluate(() => {
+    const iso = (d) => [d.getFullYear(), String(d.getMonth() + 1).padStart(2, '0'), String(d.getDate()).padStart(2, '0')].join('-');
+    const past = new Date(); past.setDate(past.getDate() - 1);
+    const soon = new Date(); soon.setDate(soon.getDate() + 2);
+    return { past: iso(past), soon: iso(soon) };
+  });
+  await page.getByRole('button', { name: 'Dodaj produkt do magazynu' }).click();
+  await page.getByLabel('Nazwa produktu').fill('Produkt testowy po terminie');
+  await page.getByLabel('Aktualny stan').fill('2');
+  await page.getByLabel('Jednostka stanu').selectOption('kg');
+  await page.getByLabel('Termin przydatności (cały wpis)').fill(expiryDates.past);
+  await page.getByRole('button', { name: 'Zapisz', exact: true }).click();
+  await page.waitForTimeout(300);
+  await page.getByRole('button', { name: 'Dodaj produkt do magazynu' }).click();
+  await page.getByLabel('Nazwa produktu').fill('Produkt testowy na jutro');
+  await page.getByLabel('Aktualny stan').fill('1');
+  await page.getByLabel('Jednostka stanu').selectOption('kg');
+  await page.getByLabel('Termin przydatności (cały wpis)').fill(expiryDates.soon);
+  await page.getByRole('button', { name: 'Zapisz', exact: true }).click();
+  await page.waitForTimeout(300);
+  await expectText('Terminy do sprawdzenia', 'Brak panelu alertów o terminach.');
+  await expectText('Po terminie', 'Nie pokazano produktu po terminie.');
+  await expectText('Termin blisko', 'Nie pokazano produktu z terminem w ciągu 3 dni.');
+  if (!(await page.locator('.inventory-item.is-expired').filter({ hasText: 'Produkt testowy po terminie' }).count())) throw new Error('Produkt po terminie nie otrzymał ostrzegawczego stylu.');
+  if (!(await page.locator('.inventory-item.is-expiring').filter({ hasText: 'Produkt testowy na jutro' }).count())) throw new Error('Produkt z krótkim terminem nie otrzymał ostrzegawczego stylu.');
+
   await page.reload({ waitUntil: 'networkidle' });
   await ready();
   await dismiss();
@@ -187,4 +214,4 @@ if (errors.length) {
   console.error('Błędy przeglądarki:\n' + errors.join('\n'));
   process.exit(1);
 }
-console.log('PASS: inventory, waste cost, shopping handoff, and EAN scanner UI');
+console.log('PASS: inventory, expiry alerts, waste cost, shopping handoff, and EAN scanner UI');

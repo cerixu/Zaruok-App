@@ -5,6 +5,16 @@
    ========================================================================== */
 
 export const CHANGELOG = Object.freeze({
+  '1.9.27': Object.freeze({
+    intro: 'Pilnuj terminów przydatności bezpośrednio w magazynie.',
+    items: [
+      'Do produktu magazynowego można dodać termin przydatności.',
+      'Magazyn pokazuje osobne liczniki produktów po terminie i z terminem w ciągu 3 dni.',
+      'Pilne pozycje mają wyróżnione ostrzeżenia na kartach i w panelu „Terminy do sprawdzenia”.',
+      'Panel i oznaczenia działają lokalnie, również bez połączenia z internetem.'
+    ],
+    footer: 'Termin jest przypisany do całego wpisu produktu, a nie do poszczególnych partii.'
+  }),
   '1.9.26': Object.freeze({
     intro: 'Bezpieczniejsze kopie i bardziej precyzyjny magazyn.',
     items: [

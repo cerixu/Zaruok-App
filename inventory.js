@@ -84,6 +84,26 @@ export function inventoryNamesMatch(item, name) {
     return candidate === target || sameInflectedName(candidate, target);
   });
 }
+/** Status terminu ważności liczony według lokalnej daty, bez przesunięć UTC. */
+export function inventoryExpiryStatus(expiryDate, now = new Date()) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(String(expiryDate || ''))) return { status: 'none', days: null };
+  const [year, month, day] = String(expiryDate).split('-').map(Number);
+  const expiry = new Date(year, month - 1, day);
+  if (expiry.getFullYear() !== year || expiry.getMonth() !== month - 1 || expiry.getDate() !== day) return { status: 'none', days: null };
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const days = Math.round((expiry.getTime() - today.getTime()) / 86400000);
+  return { status: days < 0 ? 'expired' : days === 0 ? 'today' : days <= 3 ? 'soon' : 'ok', days };
+}
+function expiryText(item, now = new Date()) {
+  const info = inventoryExpiryStatus(item.expiryDate, now);
+  if (info.status === 'none') return '';
+  const date = (() => { const [y, m, d] = item.expiryDate.split('-').map(Number); return new Date(y, m - 1, d).toLocaleDateString('pl-PL'); })();
+  if (info.status === 'expired') return 'Po terminie · ' + date;
+  if (info.status === 'today') return 'Termin dzisiaj · ' + date;
+  if (info.days === 1) return 'Termin jutro · ' + date;
+  if (info.status === 'soon') return 'Termin za ' + info.days + ' dni · ' + date;
+  return 'Termin: ' + date;
+}
 function lowStock(item) { return Number(item.minStock || 0) > 0 && Number(item.stock || 0) <= Number(item.minStock || 0); }
 
 async function loadData() {
@@ -175,12 +195,14 @@ export function inventoryView() {
     const price = textInput({ value: String(old.pricePerUnit ?? ''), label: 'Cena za jednostkę (zł)', inputmode: 'decimal', placeholder: 'Opcjonalnie' });
     const barcode = textInput({ value: prefill.barcode || old.barcode || '', label: 'Kod EAN', inputmode: 'numeric', placeholder: 'Opcjonalnie' });
     const aliases = textInput({ value: (old.aliases || []).join(', '), label: 'Nazwy alternatywne', placeholder: 'Oddziel przecinkami' });
+    const expiry = h('input', { type: 'date', class: 'input', value: old.expiryDate || '', 'aria-label': 'Termin przydatności (cały wpis)' });
     const body = h('div', { class: 'stack inventory-edit-form' },
       fieldLabel('Nazwa produktu', name), fieldLabel('Kategoria', category),
       h('div', { class: 'grid two' }, fieldLabel('Stan', stock), fieldLabel('Jednostka', unit)),
       h('div', { class: 'grid two' }, fieldLabel('Próg niskiego stanu', minimum), fieldLabel('Cena za jednostkę', price)),
+      fieldLabel('Termin przydatności (cały wpis)', expiry),
       fieldLabel('Kod EAN', barcode), fieldLabel('Nazwy alternatywne', aliases),
-      h('p', { class: 'muted small' }, 'Nazwy alternatywne pozwalają bezpiecznie dopasować składniki z receptur do pozycji magazynu.'));
+      h('p', { class: 'muted small' }, 'Termin dotyczy całej pozycji magazynu, a nie osobnych partii. Nazwy alternatywne pomagają dopasować składniki z receptur.'));
     const sh = openSheet({
       title: old.id ? 'Edytuj produkt' : 'Dodaj do magazynu', variant: 'sheet', body,
       actions: [
@@ -194,6 +216,7 @@ export function inventoryView() {
             stock: stockVal == null ? 0 : stockVal, unit: unit.value || 'kg',
             minStock: minVal == null ? 0 : minVal, pricePerUnit: priceVal == null ? 0 : priceVal,
             barcode: barcode.value.trim(), aliases: aliases.value.split(',').map((x) => x.trim()).filter(Boolean),
+            expiryDate: expiry.value || '',
             updatedAt: Date.now(), createdAt: old.createdAt || Date.now(),
           };
           await saveItem(item); toast('Zapisano: ' + n); return true;
@@ -444,10 +467,15 @@ export function inventoryView() {
 
   function itemCard(item) {
     const low = lowStock(item);
-    return h('article', { class: 'inventory-item' + (low ? ' is-low' : '') },
+    const expiry = inventoryExpiryStatus(item.expiryDate);
+    const expiryClass = expiry.status === 'expired' ? ' is-expired' : ['today', 'soon'].includes(expiry.status) ? ' is-expiring' : '';
+    const expiryLabel = expiryText(item);
+    return h('article', { class: 'inventory-item' + (low ? ' is-low' : '') + expiryClass },
       h('div', { class: 'inventory-item-main' },
-        h('div', { class: 'inventory-item-title' }, h('span', { class: 'inventory-item-glyph', 'aria-hidden': 'true' }, ingEmoji(item.name)), h('strong', null, item.name), low ? h('span', { class: 'inventory-low-badge' }, 'Niski stan') : null),
+        h('div', { class: 'inventory-item-title' }, h('span', { class: 'inventory-item-glyph', 'aria-hidden': 'true' }, ingEmoji(item.name)), h('strong', null, item.name), low ? h('span', { class: 'inventory-low-badge' }, 'Niski stan') : null,
+          expiry.status === 'expired' ? h('span', { class: 'inventory-expiry-badge is-expired' }, 'Po terminie') : ['today', 'soon'].includes(expiry.status) ? h('span', { class: 'inventory-expiry-badge is-expiring' }, expiry.status === 'today' ? 'Termin dziś' : 'Termin blisko') : null),
         h('p', { class: 'muted small' }, [item.category || 'Inne', item.barcode ? 'EAN ' + item.barcode : ''].filter(Boolean).join(' · ')),
+        expiryLabel ? h('p', { class: 'inventory-expiry-text' }, icon('calendar-clock', 14), expiryLabel) : null,
         item.pricePerUnit ? h('p', { class: 'muted small' }, money(item.pricePerUnit) + ' / ' + item.unit) : null),
       h('div', { class: 'inventory-stock' },
         h('strong', null, displayQty(item.stock, item.unit)),
@@ -462,6 +490,8 @@ export function inventoryView() {
 
   function paint() {
     const low = lowItems();
+    const expiring = data.items.filter((item) => ['today', 'soon'].includes(inventoryExpiryStatus(item.expiryDate).status));
+    const expired = data.items.filter((item) => inventoryExpiryStatus(item.expiryDate).status === 'expired');
     const query = clean(searchIn.value);
     const filteredItems = data.items.filter((item) => (selectedCategory === 'Wszystkie' || (item.category || 'Inne') === selectedCategory) && (!query || clean([item.name, ...(item.aliases || []), item.barcode].join(' ')).includes(query)));
     filterButtons.forEach((b, i) => { b.classList.toggle('on', ['Wszystkie', ...CATEGORIES][i] === selectedCategory); });
@@ -471,11 +501,27 @@ export function inventoryView() {
     const summary = h('div', { class: 'inventory-summary' },
       summaryCard('Produkty', String(data.items.length), 'inventory-stat-products'),
       summaryCard('Niski stan', String(low.length), low.length ? 'inventory-stat-low' : 'inventory-stat-ok'),
+      summaryCard('Po terminie', String(expired.length), expired.length ? 'inventory-stat-expired' : 'inventory-stat-ok'),
+      summaryCard('Termin ≤ 3 dni', String(expiring.length), expiring.length ? 'inventory-stat-expiring' : 'inventory-stat-ok'),
       summaryCard('Straty · 7 dni', money(weeklyWaste()), 'inventory-stat-waste'));
     const alertToggle = button('Alerty niskiego stanu: ' + (alertsOn ? 'włączone' : 'wyłączone'), {
       kind: 'ghost', block: true, icon: 'bell', onClick: async () => { await setSetting('inventoryLowAlerts', !alertsOn); paint(); },
     });
     const kids = [summary, alertToggle];
+    if (expired.length || expiring.length) {
+      const urgent = [...expired, ...expiring].sort((a, b) => {
+        const da = inventoryExpiryStatus(a.expiryDate).days ?? 99999;
+        const db = inventoryExpiryStatus(b.expiryDate).days ?? 99999;
+        return da - db;
+      });
+      kids.push(h('section', { class: 'inventory-expiry-panel card stack' },
+        h('div', { class: 'row between' }, h('h2', { class: 'card-title' }, icon('calendar-clock', 20), 'Terminy do sprawdzenia'), h('span', { class: 'pill' }, String(urgent.length))),
+        h('p', { class: 'muted small' }, 'Sprawdź te produkty przed użyciem. Termin dotyczy całej pozycji magazynowej.'),
+        urgent.slice(0, 8).map((item) => h('div', { class: 'inventory-expiry-row' },
+          h('span', { class: 'inventory-expiry-dot ' + (inventoryExpiryStatus(item.expiryDate).status === 'expired' ? 'is-expired' : 'is-expiring') }),
+          h('div', { class: 'grow' }, h('strong', null, item.name), h('p', { class: 'muted small' }, expiryText(item))),
+          h('strong', { class: 'num' }, displayQty(item.stock, item.unit))))));
+    }
     if (low.length) {
       kids.push(h('section', { class: 'inventory-low-panel card stack' },
         h('div', { class: 'row between' }, h('h2', { class: 'card-title' }, icon('alert', 20), 'Do uzupełnienia'), h('span', { class: 'pill' }, String(low.length))),
