@@ -269,6 +269,37 @@ export function inventoryView() {
     });
     return sh;
   }
+  function openBatchSheet(item) {
+    const quantity = textInput({ value: '1', label: 'Ilość przyjęta (' + item.unit + ')', inputmode: 'decimal' });
+    const expiry = h('input', { type: 'date', class: 'input', value: '', 'aria-label': 'Termin przydatności partii' });
+    const received = h('input', { type: 'date', class: 'input', value: new Date().getFullYear() + '-' + String(new Date().getMonth()+1).padStart(2,'0') + '-' + String(new Date().getDate()).padStart(2,'0'), 'aria-label': 'Data przyjęcia partii' });
+    const price = textInput({ value: String(item.pricePerUnit || ''), label: 'Cena za jednostkę (zł)', inputmode: 'decimal', placeholder: 'Opcjonalnie' });
+    return openSheet({
+      title: 'Nowa partia · ' + item.name, variant: 'sheet',
+      body: h('div', { class: 'stack inventory-edit-form' },
+        h('p', { class: 'muted small' }, 'Stan partii jest prowadzony osobno. Przy gotowaniu Żarłok zużywa najpierw partie z najbliższym terminem (FEFO), a potem starsze partie (FIFO).'),
+        fieldLabel('Ilość (' + item.unit + ')', quantity),
+        fieldLabel('Termin przydatności partii', expiry),
+        fieldLabel('Data przyjęcia', received),
+        fieldLabel('Cena za jednostkę (zł)', price)),
+      actions: [
+        { label: 'Anuluj', kind: 'ghost' },
+        { label: 'Przyjmij partię', kind: 'primary', onClick: async () => {
+          const qty = parseNum(quantity.value), priceVal = parseNum(price.value);
+          if (qty == null || qty <= 0) { quantity.focus(); toast('Podaj ilość większą od zera', { type: 'error' }); return false; }
+          const parts = String(received.value || '').split('-').map(Number);
+          const receivedAt = parts.length === 3 ? new Date(parts[0], parts[1]-1, parts[2]).getTime() : Date.now();
+          const lot = addStockLot(item, qty, { expiryDate: expiry.value, receivedAt, unitPrice: priceVal == null ? item.pricePerUnit : priceVal });
+          const next = { ...item, stock: Math.round((Number(item.stock || 0) + qty) * 10000) / 10000, updatedAt: Date.now() };
+          await db.put('inventoryLots', lot);
+          await db.put('inventoryItems', next);
+          await db.put('inventoryMovements', { id: uid('mov_'), inventoryId: item.id, lotId: lot.id, name: item.name, type: 'receive', amount: qty, unit: item.unit, cost: qty * Number(lot.unitPrice || 0), reason: 'Przyjęcie partii', createdAt: Date.now() });
+          await reload(); toast('Przyjęto partię: ' + item.name); return true;
+        } },
+      ],
+    });
+  }
+
   function fieldLabel(label, control) { return h('label', { class: 'field' }, h('span', { class: 'field-label' }, label), control); }
 
   async function recordWaste(item) {
@@ -512,7 +543,10 @@ export function inventoryView() {
 
   function itemCard(item) {
     const low = lowStock(item);
-    const expiry = inventoryExpiryStatus(item.expiryDate);
+    const itemLots = data.lots.filter((lot) => lot.inventoryId === item.id).sort((a, b) => (a.expiryDate || '9999-12-31').localeCompare(b.expiryDate || '9999-12-31') || (a.receivedAt || 0) - (b.receivedAt || 0));
+    const datedLots = itemLots.filter((lot) => Number(lot.quantity || 0) > 0 && lot.expiryDate);
+    const expiryLot = datedLots[0];
+    const expiry = inventoryExpiryStatus(expiryLot ? expiryLot.expiryDate : item.expiryDate);
     const expiryClass = expiry.status === 'expired' ? ' is-expired' : ['today', 'soon'].includes(expiry.status) ? ' is-expiring' : '';
     const expiryLabel = expiryText(item);
     return h('article', { class: 'inventory-item' + (low ? ' is-low' : '') + expiryClass },
@@ -521,6 +555,11 @@ export function inventoryView() {
           expiry.status === 'expired' ? h('span', { class: 'inventory-expiry-badge is-expired' }, 'Po terminie') : ['today', 'soon'].includes(expiry.status) ? h('span', { class: 'inventory-expiry-badge is-expiring' }, expiry.status === 'today' ? 'Termin dziś' : 'Termin blisko') : null),
         h('p', { class: 'muted small' }, [item.category || 'Inne', item.barcode ? 'EAN ' + item.barcode : ''].filter(Boolean).join(' · ')),
         expiryLabel ? h('p', { class: 'inventory-expiry-text' }, icon('calendar-clock', 14), expiryLabel) : null,
+        itemLots.length ? h('div', { class: 'inventory-lots-mini' },
+          h('div', { class: 'row between' }, h('span', { class: 'muted small' }, 'Partie: ' + itemLots.filter((lot) => Number(lot.quantity || 0) > 0).length), h('span', { class: 'muted small' }, 'FEFO')),
+          itemLots.filter((lot) => Number(lot.quantity || 0) > 0).slice(0, 2).map((lot) => h('div', { class: 'inventory-lot-mini' },
+            h('span', null, lot.expiryDate ? expiryText({ expiryDate: lot.expiryDate }) : 'Bez terminu'),
+            h('strong', null, displayQty(lot.quantity, lot.unit || item.unit))))) : null,
         item.pricePerUnit ? h('p', { class: 'muted small' }, money(item.pricePerUnit) + ' / ' + item.unit) : null),
       h('div', { class: 'inventory-stock' },
         h('strong', null, displayQty(item.stock, item.unit)),
@@ -529,14 +568,15 @@ export function inventoryView() {
         iconBtn('minus', 'Odejmij 1 ' + item.unit, () => adjust(item, -1), 'quiet'),
         iconBtn('plus', 'Dodaj 1 ' + item.unit, () => adjust(item, 1), 'quiet'),
         iconBtn('trash', 'Zarejestruj stratę: ' + item.name, () => recordWaste(item), 'quiet'),
+        iconBtn('plus-circle', 'Dodaj partię: ' + item.name, () => openBatchSheet(item), 'quiet'),
         iconBtn('edit', 'Edytuj: ' + item.name, () => openItemSheet(item), 'quiet'),
         iconBtn('x', 'Usuń produkt: ' + item.name, () => deleteItem(item), 'quiet')));
   }
 
   function paint() {
     const low = lowItems();
-    const expiring = data.items.filter((item) => ['today', 'soon'].includes(inventoryExpiryStatus(item.expiryDate).status));
-    const expired = data.items.filter((item) => inventoryExpiryStatus(item.expiryDate).status === 'expired');
+    const expiring = data.lots.filter((lot) => Number(lot.quantity || 0) > 0 && ['today', 'soon'].includes(inventoryExpiryStatus(lot.expiryDate).status));
+    const expired = data.lots.filter((lot) => Number(lot.quantity || 0) > 0 && inventoryExpiryStatus(lot.expiryDate).status === 'expired');
     const query = clean(searchIn.value);
     const filteredItems = data.items.filter((item) => (selectedCategory === 'Wszystkie' || (item.category || 'Inne') === selectedCategory) && (!query || clean([item.name, ...(item.aliases || []), item.barcode].join(' ')).includes(query)));
     filterButtons.forEach((b, i) => { b.classList.toggle('on', ['Wszystkie', ...CATEGORIES][i] === selectedCategory); });
@@ -561,11 +601,14 @@ export function inventoryView() {
       });
       kids.push(h('section', { class: 'inventory-expiry-panel card stack' },
         h('div', { class: 'row between' }, h('h2', { class: 'card-title' }, icon('calendar-clock', 20), 'Terminy do sprawdzenia'), h('span', { class: 'pill' }, String(urgent.length))),
-        h('p', { class: 'muted small' }, 'Sprawdź te produkty przed użyciem. Termin dotyczy całej pozycji magazynowej.'),
-        urgent.slice(0, 8).map((item) => h('div', { class: 'inventory-expiry-row' },
-          h('span', { class: 'inventory-expiry-dot ' + (inventoryExpiryStatus(item.expiryDate).status === 'expired' ? 'is-expired' : 'is-expiring') }),
-          h('div', { class: 'grow' }, h('strong', null, item.name), h('p', { class: 'muted small' }, expiryText(item))),
-          h('strong', { class: 'num' }, displayQty(item.stock, item.unit))))));
+        h('p', { class: 'muted small' }, 'Sprawdź konkretne partie przed użyciem. Przy gotowaniu zużywana jest najpierw partia z najbliższym terminem.'),
+        urgent.slice(0, 8).map((lot) => {
+          const item = data.items.find((x) => x.id === lot.inventoryId);
+          return h('div', { class: 'inventory-expiry-row' },
+            h('span', { class: 'inventory-expiry-dot ' + (inventoryExpiryStatus(lot.expiryDate).status === 'expired' ? 'is-expired' : 'is-expiring') }),
+            h('div', { class: 'grow' }, h('strong', null, item ? item.name : lot.name), h('p', { class: 'muted small' }, expiryText({ expiryDate: lot.expiryDate }))),
+            h('strong', { class: 'num' }, displayQty(lot.quantity, lot.unit)));
+        })));
     }
     if (low.length) {
       kids.push(h('section', { class: 'inventory-low-panel card stack' },
