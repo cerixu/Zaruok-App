@@ -10,7 +10,8 @@ import { recipeTile, catTile, sectionHead, metaLine } from './components.js';
 import { pendingCount } from './shopping.js';
 import { db } from './db.js';
 import { backupDue, daysSinceBackup } from './backup.js';
-import { recipeArtUrl } from './art.js';
+import { recipeArtUrl, recipeArtFallbackUrl } from './art.js';
+import { attachRecipePhoto, hasFoodPhoto } from './food-photos.js';
 
 const plural = (n) => n === 1 ? '1 receptura' :
   (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? n + ' receptury' : n + ' receptur');
@@ -43,6 +44,22 @@ function actionRow(a, badge = 0) {
 
 function featureRecipe(r) {
   if (!r) return h('div', { class: 'zf-feature-empty' }, icon('chef', 34), h('span', null, 'Dodaj pierwszą recepturę'));
+  const custom = r.thumb || r.photo;
+  const img = h('img', {
+    class: custom ? '' : 'art',
+    src: custom || recipeArtUrl(r),
+    alt: 'Zdjęcie: ' + (r.name || 'receptura'),
+    loading: 'eager',
+    decoding: 'async',
+    onError: (e) => {
+      const el = e.currentTarget;
+      if (el.dataset.artFallback) return;
+      el.dataset.artFallback = '1';
+      el.classList.add('art');
+      el.src = recipeArtFallbackUrl(r);
+    },
+  });
+  if (!custom) attachRecipePhoto(img, r);
   return h('a', {
     class: 'zf-feature',
     href: '#/recipe/' + encodeURIComponent(r.id),
@@ -50,13 +67,12 @@ function featureRecipe(r) {
     'aria-label': 'Otwórz recepturę: ' + r.name,
   },
     h('div', { class: 'zf-feature-ring' },
-      h('div', { class: 'zf-feature-img' },
-        h('img', { class: r.thumb ? '' : 'art', src: r.thumb || recipeArtUrl(r), alt: '', decoding: 'async' }))),
+      h('div', { class: 'zf-feature-img' }, img)),
     h('div', { class: 'zf-feature-copy' },
-      h('span', { class: 'zf-kicker' }, 'DZIŚ'),
+      h('span', { class: 'zf-kicker' }, 'POLECANE NA DZIŚ'),
       h('h2', null, r.name || 'Bez nazwy'),
       h('p', null, metaLine(r) || 'Twoja receptura'),
-      h('span', { class: 'zf-feature-open' }, 'Otwórz', icon('right', 16)))
+      h('span', { class: 'zf-feature-open' }, 'Otwórz przepis', icon('right', 16)))
   );
 }
 
@@ -93,7 +109,7 @@ export function startView() {
 
     const sorted = [...all].sort((a, b) =>
       (b.updatedAt || 0) - (a.updatedAt || 0) || String(a.name).localeCompare(String(b.name), 'pl'));
-    const feature = sorted.find((r) => r.favorite) || sorted[0] || null;
+    const feature = sorted.find((r) => r.favorite && hasFoodPhoto(r)) || sorted.find((r) => hasFoodPhoto(r)) || sorted.find((r) => r.favorite) || sorted[0] || null;
 
     const kids = [
       h('div', { class: 'zf-head' },
