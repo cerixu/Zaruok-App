@@ -10,7 +10,7 @@ import { recipeTile, catTile, sectionHead, metaLine } from './components.js';
 import { pendingCount } from './shopping.js';
 import { db } from './db.js';
 import { backupDue, daysSinceBackup } from './backup.js';
-import { recipeArtUrl } from './art.js';
+import { recipeArtUrl, recipeArtFallbackUrl, recipeArtIsPhoto } from './art.js';
 
 const plural = (n) => n === 1 ? '1 receptura' :
   (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? n + ' receptury' : n + ' receptur');
@@ -51,7 +51,7 @@ function featureRecipe(r) {
   },
     h('div', { class: 'zf-feature-ring' },
       h('div', { class: 'zf-feature-img' },
-        h('img', { class: r.thumb ? '' : 'art', src: r.thumb || recipeArtUrl(r), alt: '', decoding: 'async' }))),
+        h('img', { class: (r.thumb || recipeArtIsPhoto(r)) ? '' : 'art', src: r.thumb || recipeArtUrl(r), alt: '', decoding: 'async', onError: (e) => { const el = e.currentTarget; if (el.dataset.artFallback) return; el.dataset.artFallback = '1'; el.classList.add('art'); el.src = recipeArtFallbackUrl(r); } }))),
     h('div', { class: 'zf-feature-copy' },
       h('span', { class: 'zf-kicker' }, 'DZIŚ'),
       h('h2', null, r.name || 'Bez nazwy'),
