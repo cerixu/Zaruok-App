@@ -49,8 +49,10 @@ export function heartBtn(r, onToggle) {
 
 /** Miniatura: własne zdjęcie, a gdy go brak — ilustracja potrawy rysowana w kodzie. */
 export function thumbEl(r, cls = '') {
-  const img = h('img', { class: r.thumb ? '' : 'art', src: r.thumb || recipeArtUrl(r), alt: r.name ? 'Zdjęcie: ' + r.name : '', loading: 'lazy', decoding: 'async',
-    onError: (e) => { const el = e.currentTarget; if (el.dataset.artFallback) return; el.dataset.artFallback = '1'; el.classList.add('art'); el.src = recipeArtFallbackUrl(r); } });
+  const src = r.thumb || recipeArtUrl(r);
+  const isPhoto = !!r.thumb || src.includes('assets/food/');
+  const img = h('img', { class: isPhoto ? 'photo' : 'art', src, alt: r.name ? 'Zdjęcie: ' + r.name : '', loading: 'lazy', decoding: 'async',
+    onError: (e) => { const el = e.currentTarget; if (el.dataset.artFallback) return; el.dataset.artFallback = '1'; el.classList.remove('photo'); el.classList.add('art'); el.src = recipeArtFallbackUrl(r); } });
   return h('div', { class: 'rthumb ' + cls }, img);
 }
 
@@ -67,9 +69,11 @@ export function sideInfo(r) {
 /** Duża karta receptury z okrągłym zdjęciem (Start, siatka receptur) — styl z makiety. */
 export function recipeTile(r, { onFav } = {}) {
   const href = '/recipe/' + encodeURIComponent(r.id);
+  const src = r.thumb || recipeArtUrl(r);
+  const isPhoto = !!r.thumb || src.includes('assets/food/');
   return h('div', { class: 'rtile' + (r.traditional ? ' trad-tile' : '') },
     h('a', { class: 'rtile-link', href: '#' + href, 'aria-label': r.name, onClick: (e) => { e.preventDefault(); navigate(href); } },
-      h('div', { class: 'rtile-img' }, h('img', { class: r.thumb ? '' : 'art', src: r.thumb || recipeArtUrl(r), alt: r.name ? 'Zdjęcie: ' + r.name : '', loading: 'lazy', decoding: 'async', onError: (e) => { const el = e.currentTarget; if (el.dataset.artFallback) return; el.dataset.artFallback = '1'; el.classList.add('art'); el.src = recipeArtFallbackUrl(r); } })),
+      h('div', { class: 'rtile-img' }, h('img', { class: isPhoto ? 'photo' : 'art', src, alt: r.name ? 'Zdjęcie: ' + r.name : '', loading: 'lazy', decoding: 'async', onError: (e) => { const el = e.currentTarget; if (el.dataset.artFallback) return; el.dataset.artFallback = '1'; el.classList.remove('photo'); el.classList.add('art'); el.src = recipeArtFallbackUrl(r); } })),
       h('div', { class: 'rtile-row' },
         h('div', { class: 'rtile-name' }, r.traditional ? h('span', { class: 'rtile-trad' }, tradMark(r)) : null, r.name || 'Bez nazwy'),
         sideInfo(r))),
