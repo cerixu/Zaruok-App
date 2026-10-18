@@ -6,6 +6,7 @@ import { navigate } from './router.js';
 import { catName, catIcon, ORIGINS, toggleFavorite } from './recipes.js';
 import { fmtMinutes, fmtAmount, fmtKitchenAmount, fmtNum, fmtUnit } from './util.js';
 import { recipeArtUrl, recipeArtFallbackUrl, categoryArtUrl } from './art.js';
+import { attachRecipePhoto, attachCategoryPhoto } from './food-photos.js';
 import { estimateKcal } from './nutrition.js';
 
 export const originOf = (code) => ORIGINS.find((o) => o.code === code);
@@ -47,11 +48,30 @@ export function heartBtn(r, onToggle) {
   return b;
 }
 
-/** Miniatura: własne zdjęcie, a gdy go brak — ilustracja potrawy rysowana w kodzie. */
+/** Tworzy miniaturę: zdjęcie użytkownika, zdjęcie Firefly dobrane po nazwie albo SVG. */
+function recipeImageEl(r, alt = '') {
+  const custom = r.thumb || r.photo;
+  const img = h('img', {
+    class: custom ? '' : 'art',
+    src: custom || recipeArtUrl(r),
+    alt: alt || (r.name ? 'Zdjęcie: ' + r.name : ''),
+    loading: 'lazy',
+    decoding: 'async',
+    onError: (e) => {
+      const el = e.currentTarget;
+      if (el.dataset.artFallback) return;
+      el.dataset.artFallback = '1';
+      el.classList.add('art');
+      el.src = recipeArtFallbackUrl(r);
+    },
+  });
+  if (!custom) attachRecipePhoto(img, r);
+  return img;
+}
+
+/** Miniatura: własne zdjęcie ma pierwszeństwo, następnie zdjęcie potrawy i SVG. */
 export function thumbEl(r, cls = '') {
-  const img = h('img', { class: r.thumb ? '' : 'art', src: r.thumb || recipeArtUrl(r), alt: r.name ? 'Zdjęcie: ' + r.name : '', loading: 'lazy', decoding: 'async',
-    onError: (e) => { const el = e.currentTarget; if (el.dataset.artFallback) return; el.dataset.artFallback = '1'; el.classList.add('art'); el.src = recipeArtFallbackUrl(r); } });
-  return h('div', { class: 'rthumb ' + cls }, img);
+  return h('div', { class: 'rthumb ' + cls }, recipeImageEl(r));
 }
 
 /** Prawa kolumna karty (jak „4.8 ★ / 350 kcal” na makiecie): ocena albo czas, pod spodem kalorie. */
@@ -69,21 +89,23 @@ export function recipeTile(r, { onFav } = {}) {
   const href = '/recipe/' + encodeURIComponent(r.id);
   return h('div', { class: 'rtile' + (r.traditional ? ' trad-tile' : '') },
     h('a', { class: 'rtile-link', href: '#' + href, 'aria-label': r.name, onClick: (e) => { e.preventDefault(); navigate(href); } },
-      h('div', { class: 'rtile-img' }, h('img', { class: r.thumb ? '' : 'art', src: r.thumb || recipeArtUrl(r), alt: r.name ? 'Zdjęcie: ' + r.name : '', loading: 'lazy', decoding: 'async', onError: (e) => { const el = e.currentTarget; if (el.dataset.artFallback) return; el.dataset.artFallback = '1'; el.classList.add('art'); el.src = recipeArtFallbackUrl(r); } })),
+      h('div', { class: 'rtile-img' }, recipeImageEl(r)),
       h('div', { class: 'rtile-row' },
         h('div', { class: 'rtile-name' }, r.traditional ? h('span', { class: 'rtile-trad' }, tradMark(r)) : null, r.name || 'Bez nazwy'),
         sideInfo(r))),
     h('div', { class: 'rtile-heart' }, heartBtn(r, onFav)));
 }
 
-/** Okrągła kafelka kategorii (ilustracja + nazwa + liczba). */
+/** /** Okrągła kafelka kategorii (ilustracja + nazwa + liczba). */
 export function catTile(cat, count, onClick) {
+  const img = h('img', { class: 'art', src: categoryArtUrl(cat.id), alt: '', loading: 'lazy', decoding: 'async' });
+  attachCategoryPhoto(img, cat.id);
   return h('button', { type: 'button', class: 'ctile', onClick, 'aria-label': `${cat.name}: ${count}` },
-    h('span', { class: 'ctile-img' }, h('img', { class: 'art', src: categoryArtUrl(cat.id), alt: '', loading: 'lazy', decoding: 'async' })),
+    h('span', { class: 'ctile-img' }, img),
     h('span', { class: 'ctile-name' }, cat.name), h('span', { class: 'ctile-n' }, String(count)));
 }
 
-/** Karta receptury (lista, ekran startowy). */
+/** /** Karta receptury (lista, ekran startowy). */
 export function recipeCard(r, { onFav } = {}) {
   return h('div', { class: 'rcard' + (r.traditional ? ' trad-card' : '') },
     h('a', { class: 'rcard-main', href: '#/recipe/' + encodeURIComponent(r.id), 'aria-label': r.name,
