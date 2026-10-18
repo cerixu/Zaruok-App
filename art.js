@@ -250,16 +250,27 @@ export const artKindFor = (r) => {
 };
 // Własne zdjęcia wygenerowane w Adobe Firefly — używane jako właściwe miniatury receptur,
 // a nie jako makiety. Gdy sieć nie działa, komponent przełącza się na lokalną ilustrację SVG.
+// Żarłok 2.0: prawdziwe fotografie dań wygenerowane specjalnie dla aplikacji.
+ // Mapujemy zdjęcia tylko do pasujących potraw; reszta zachowuje lokalny fallback SVG.
 const GENERATED_PHOTOS = [
-  [/pizza/i, 'https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:59b41c99-1ed2-4b7a-989e-3896b22cd39a'],
-  [/carbonara/i, 'https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:95b40fd5-41c9-4672-b8e1-1d5bda6f0f12'],
-  [/^risotto\\b/i, 'https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:ea78bf32-684f-4d93-837e-30a8bea9fbe1'],
-  [/łosoś|salmon/i, 'https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:deb7aafe-2cfa-4cb1-81c5-b3fe1d0cae5e'],
+  [/pizza|margherita|marinara pizza/i, 'https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:c8e80e3d-c84b-49d2-85fb-632918551092'],
+  [/carbonara/i, 'https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:78df2b16-334d-42b9-b449-dabc86ddea95'],
+  [/ramen|tonkotsu/i, 'https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:b08bdc82-72b1-4d06-8c28-63b29673901a'],
+  [/^risotto\b/i, 'https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:bbad83c3-b782-4951-b6f2-5b775979c765'],
+  [/łosoś|salmon/i, 'https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:abbefedd-f1ca-4a46-994b-0512dea4d700'],
+  [/burger|hamburger|cheeseburger/i, 'https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:629a0ca4-33fd-4163-b8f6-ce2726257f3d'],
+  [/stek|steak|ribeye|antrykot|rostbef/i, 'https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:cf93a56e-e350-4af6-979b-bad401b3c062'],
+  [/sałatka|salad|burrata|caprese/i, 'https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:519a1e24-1f43-4457-b531-44caa93db372'],
+  [/tiramisu/i, 'https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:6c6b2edc-c942-451c-8e6c-2abfc7c3c6aa'],
+  [/makaron|pasta|spaghetti|tagliatelle|rigatoni|penne|lasagne|lasagna|ravioli|tortellini|gnocchi/i, 'https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:59405553-dfef-43cf-a7bd-43fc0186d9c6'],
+  [/kurczak|chicken|pollo|drób/i, 'https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:fc47e55b-ba0e-48d4-b81b-20f0831fa41a'],
+  [/focaccia/i, 'https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:6301823a-02d4-4684-b0d9-218311b3310d'],
 ];
 export const recipeArtFallbackUrl = (r) => artUrl(artKindFor(r), r.name || r.id || '');
-export const recipeArtUrl = (r) => {
+export const recipeArtPhotoUrl = (r) => {
   const name = String(r.name || '');
-  const generated = GENERATED_PHOTOS.find(([pattern]) => pattern.test(name));
-  return generated ? generated[1] : recipeArtFallbackUrl(r);
+  return GENERATED_PHOTOS.find(([pattern]) => pattern.test(name))?.[1] || '';
 };
+export const recipeArtIsPhoto = (r) => !!recipeArtPhotoUrl(r);
+export const recipeArtUrl = (r) => recipeArtPhotoUrl(r) || recipeArtFallbackUrl(r);
 export const categoryArtUrl = (catId) => artUrl(CATEGORY_ART[catId] || 'plate', catId);
