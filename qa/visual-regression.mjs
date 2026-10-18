@@ -126,6 +126,8 @@ try {
       copy:snap(img.closest('.zf-feature')?.querySelector('.zf-feature-copy')),feature:snap(img.closest('.zf-feature'))};
   });
   console.log('HERO_PHOTO_DEBUG ' + JSON.stringify(heroPhotoDebug));
+  assert(heroPhotoDebug.photoSource && heroPhotoDebug.naturalWidth > 0 && heroPhotoDebug.image.width > 100 && heroPhotoDebug.wrapper.width > 100,
+    'Zdjęcie wyróżnionej receptury nie wypełnia karty: ' + JSON.stringify(heroPhotoDebug));
 
   const semanticIcons = await page.evaluate(async () => {
     const mod = await import(new URL('views-detail.js', location.href).href);
