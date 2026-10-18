@@ -273,6 +273,13 @@ try {
   const grid = await box('.rgrid, .rail');
   assert(grid.width > 300, 'Lista/siatka receptur nie zajmuje prawidłowej szerokości.');
 
+  // 2.0 musi pokazywać prawdziwe zdjęcia również na liście, nie tylko na ekranie Start.
+  await page.waitForFunction(() => [...document.querySelectorAll('.rtile-img img[data-photo-source]')]
+    .some((img) => img.complete && img.naturalWidth > 0), null, { timeout: 15000 });
+  const visibleRecipePhotos = await page.locator('.rtile-img img[data-photo-source]').evaluateAll((imgs) =>
+    imgs.filter((img) => img.complete && img.naturalWidth > 0).length);
+  assert(visibleRecipePhotos >= 1, 'Brak prawdziwych zdjęć potraw na liście receptur.');
+
   for (const width of [375, 390, 932]) {
     await page.setViewportSize({ width, height: width === 932 ? 430 : 844 });
     await page.waitForTimeout(100);
