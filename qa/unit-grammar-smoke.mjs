@@ -11,8 +11,19 @@ async function ready() {
   await page.waitForFunction(() => window.__kucharzyna?.ready === true, null, { timeout: 15000 });
 }
 async function dismiss() {
+  // The release sheet is scheduled shortly after IndexedDB hydration. Do not
+  // race its delayed entrance: an early dismiss can return before it exists,
+  // leaving the sheet to intercept the next interaction.
+  await page.waitForTimeout(1100);
+  const overlay = page.locator('#overlays .overlay').first();
+  if (!(await overlay.count()) || !(await overlay.isVisible().catch(() => false))) return;
   const start = page.getByRole('button', { name: 'Zaczynamy' }).first();
-  if (await start.count() && await start.isVisible().catch(() => false)) await start.click();
+  if (await start.count() && await start.isVisible().catch(() => false)) {
+    await start.click({ timeout: 5000 });
+  } else {
+    await page.keyboard.press('Escape');
+  }
+  await overlay.waitFor({ state: 'hidden', timeout: 5000 });
 }
 
 try {
