@@ -9,8 +9,8 @@
   "scope": "./",
   "display": "standalone",
   "orientation": "any",
-  "background_color": "#1b1a19",
-  "theme_color": "#1b1a19",
+  "background_color": "#100e0c",
+  "theme_color": "#100e0c",
   "categories": [
     "food",
     "lifestyle",
