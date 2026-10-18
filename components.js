@@ -69,7 +69,7 @@ export function recipeTile(r, { onFav } = {}) {
   const href = '/recipe/' + encodeURIComponent(r.id);
   return h('div', { class: 'rtile' + (r.traditional ? ' trad-tile' : '') },
     h('a', { class: 'rtile-link', href: '#' + href, 'aria-label': r.name, onClick: (e) => { e.preventDefault(); navigate(href); } },
-      h('div', { class: 'rtile-img' }, h('img', { class: r.thumb ? '' : 'art', src: r.thumb || recipeArtUrl(r), alt: r.name ? 'Zdjęcie: ' + r.name : '', loading: 'lazy', decoding: 'async', onError: (e) => { const el = e.currentTarget; if (el.dataset.artFallback) return; el.dataset.artFallback = '1'; el.classList.add('art'); el.src = recipeArtFallbackUrl(r); } })),
+      h('div', { class: 'rtile-img' }, h('img', { class: (r.thumb || recipeArtIsPhoto(r)) ? '' : 'art', src: r.thumb || recipeArtUrl(r), alt: r.name ? 'Zdjęcie: ' + r.name : '', loading: 'lazy', decoding: 'async', onError: (e) => { const el = e.currentTarget; if (el.dataset.artFallback) return; el.dataset.artFallback = '1'; el.classList.add('art'); el.src = recipeArtFallbackUrl(r); } })),
       h('div', { class: 'rtile-row' },
         h('div', { class: 'rtile-name' }, r.traditional ? h('span', { class: 'rtile-trad' }, tradMark(r)) : null, r.name || 'Bez nazwy'),
         sideInfo(r))),
