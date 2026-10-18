@@ -5,6 +5,16 @@
    ========================================================================== */
 
 export const CHANGELOG = Object.freeze({
+  '1.9.30': Object.freeze({
+    intro: 'Dopracowane animacje i płynniejsze reakcje interfejsu.',
+    items: [
+      'Sekcje pojawiają się łagodnie, a aktywne zakładki i ulubione mają krótką animację sprężystą.',
+      'Karty receptur, kategorie i okna dialogowe reagują subtelniej na dotyk.',
+      'Animacje respektują systemowe ustawienie „Ogranicz ruch”.',
+      'Dotychczasowe ilustracje SVG pozostają dostępne jako niezależny od sieci fallback.'
+    ],
+  }),
+
   '1.9.29': Object.freeze({
     intro: 'Nowa, spójna szata graficzna Żarłoka — dopracowana pod iPhone’a.',
     items: [
