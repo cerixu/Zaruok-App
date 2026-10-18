@@ -330,3 +330,8 @@ body { -webkit-tap-highlight-color: transparent; }
 @media (prefers-reduced-transparency: reduce) {
   #tabbar, .topbar, .overlay.sheet .panel, .overlay.center .panel { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
 }
+
+/* Modale i arkusz „Co nowego” muszą stać nad pływającym dockiem na iPhonie. */
+#overlays { position: relative; z-index: 10000 !important; }
+#overlays .overlay { z-index: 10001 !important; }
+#tabbar { z-index: 20 !important; }
