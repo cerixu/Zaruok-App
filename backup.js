@@ -140,7 +140,7 @@ export async function importBackup(backup, mode) {
     const catalog = new Map(state.catalog);
     const inventoryExisting = new Map((await db.getAll('inventoryItems')).map((x) => [x.id, x]));
     const movementIds = new Set((await db.getAll('inventoryMovements')).map((x) => x.id));
-    const lotIds = new Set((await db.getAll('inventoryLots')).map((x) => x.id));
+    const existingLots = new Map((await db.getAll('inventoryLots')).map((x) => [x.id, x]));
     await db.tx(['recipes', 'ingredients', 'categories', 'shoppingItems', 'history', 'inventoryItems', 'inventoryMovements', 'inventoryLots'], (t) => {
       recipes.forEach((r) => {
         const cur = existing.get(r.id);
@@ -160,7 +160,15 @@ export async function importBackup(backup, mode) {
       inventoryMovements.forEach((x) => {
         if (!movementIds.has(x.id)) { t.put('inventoryMovements', x); movementIds.add(x.id); }
       });
-      inventoryLots.forEach((x) => { if (!lotIds.has(x.id)) { t.put('inventoryLots', x); lotIds.add(x.id); } });
+      inventoryLots.forEach((x) => {
+        const cur = existingLots.get(x.id);
+        const incomingTime = Number(x.updatedAt || x.createdAt || 0);
+        const currentTime = Number(cur?.updatedAt || cur?.createdAt || 0);
+        if (!cur || incomingTime > currentTime) {
+          t.put('inventoryLots', x);
+          existingLots.set(x.id, x);
+        }
+      });
     });
   }
   await loadAll();
