@@ -16,6 +16,7 @@
 .rthumb img.art,.rtile-img img.art,.ctile-img img.art{animation:none}
 
 /* Dolna nawigacja: kapsuła zakładki stoi w miejscu, reaguje wyłącznie ikona. */
+#tabbar .tab{transform:none!important}
 #tabbar .tab:active{transform:none!important}
 #tabbar .tab:active .tab-ico{transform:scale(.92)!important}
 
