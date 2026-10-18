@@ -113,6 +113,8 @@ export function settingsView() {
           h('div', { class: 'kv-row' }, h('span', null, 'Kategorie'), h('span', { class: 'num' }, String(summary.categories))),
           h('div', { class: 'kv-row' }, h('span', null, 'Pozycje zakupów'), h('span', { class: 'num' }, String(summary.shopping))),
           h('div', { class: 'kv-row' }, h('span', null, 'Wpisy historii'), h('span', { class: 'num' }, String(summary.history))),
+          h('div', { class: 'kv-row' }, h('span', null, 'Produkty w magazynie'), h('span', { class: 'num' }, String(summary.inventoryItems || 0))),
+          h('div', { class: 'kv-row' }, h('span', null, 'Ruchy magazynowe'), h('span', { class: 'num' }, String(summary.inventoryMovements || 0))),
           summary.exportedAt ? h('div', { class: 'kv-row' }, h('span', null, 'Zrobiona'), h('span', { class: 'num' }, fmtDateTime(summary.exportedAt))) : null),
         h('p', { class: 'muted small' }, '„Połącz” dodaje brakujące receptury i zostawia nowszą wersję każdej z nich. „Zastąp” usuwa obecne dane i wczytuje tylko kopię.')),
       actions: [

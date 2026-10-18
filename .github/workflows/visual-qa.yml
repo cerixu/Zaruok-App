@@ -87,6 +87,8 @@ jobs:
         run: python3 -m http.server 4173 >/tmp/zaruok-http.log 2>&1 &
       - name: Run persistence smoke
         run: node qa/persistence-smoke.mjs
+      - name: Run backup and inventory conversion smoke
+        run: node qa/backup-smoke.mjs
 
   indexeddb-recovery:
     needs: persistence-smoke

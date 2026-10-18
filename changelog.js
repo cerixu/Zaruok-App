@@ -5,6 +5,16 @@
    ========================================================================== */
 
 export const CHANGELOG = Object.freeze({
+  '1.9.26': Object.freeze({
+    intro: 'Bezpieczniejsze kopie i bardziej precyzyjny magazyn.',
+    items: [
+      'Kopie zapasowe obejmują teraz produkty magazynowe i pełną historię ruchów; import, scalanie i czyszczenie uwzględniają oba magazyny danych.',
+      'Przy scalaniu kopii nowszy stan produktu wygrywa, a istniejące ruchy nie są duplikowane. Starsze kopie bez magazynu nadal można importować.',
+      'Dopasowanie nazw rozpoznaje typowe odmiany polskie, a sztuki można przeliczyć na gramy tylko dla produktów z oszacowaną masą pojedynczej sztuki.',
+      'Karty magazynu zyskały spójne piktogramy składników, również w jasnym motywie.'
+    ],
+    footer: 'Masa pojedynczej sztuki jest orientacyjna. Gdy nie ma wiarygodnego przelicznika, Żarłok nie zgaduje konwersji.'
+  }),
   '1.9.25': Object.freeze({
     intro: 'Dokładniejsze ilustracje receptur i dodatków.',
     items: [

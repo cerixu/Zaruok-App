@@ -1008,3 +1008,29 @@ body.kb-open #tabbar { display: none; }
 @media (max-width: 350px) {
   .guide-speech-actions { grid-template-columns: 1fr; gap: 8px; }
 }
+
+
+/* Żarłok 1.9.26 — delikatne piktogramy produktów w kartach magazynu. */
+.inventory-item-title { gap: 9px; }
+.inventory-item-glyph {
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 39px;
+  width: 39px;
+  height: 39px;
+  border: 1px solid var(--zc-glass-edge);
+  border-radius: 14px;
+  background: radial-gradient(circle at 28% 18%, rgba(255,255,255,.12), transparent 68%), var(--surface-2);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 5px 13px rgba(0,0,0,.09);
+  font-size: 1.35rem;
+  line-height: 1;
+}
+.inventory-item-title > strong { flex: 1 1 90px; min-width: 0; }
+:root[data-theme="light"] .inventory-item-glyph {
+  border-color: rgba(30,32,38,.09);
+  background: radial-gradient(circle at 28% 18%, rgba(255,255,255,.9), transparent 68%), rgba(255,255,255,.7);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.9), 0 4px 12px rgba(25,30,40,.055);
+}
+@media (max-width: 360px) {
+  .inventory-item-glyph { flex-basis: 35px; width: 35px; height: 35px; font-size: 1.2rem; }
+}
