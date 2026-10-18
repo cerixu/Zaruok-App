@@ -138,7 +138,7 @@ function consumeFromLots(item, lots, amount) {
     lot.updatedAt = Date.now();
     remaining = Math.round((remaining - take) * 10000) / 10000;
     allocations.push({ lotId: lot.id, amount: take });
-    cost += take * Number(lot.unitPrice || item.pricePerUnit || 0);
+    cost += take * Number(lot.unitPrice ?? item.pricePerUnit ?? 0);
   }
   return { allocations, shortage: remaining, cost };
 }
