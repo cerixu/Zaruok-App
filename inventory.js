@@ -569,7 +569,7 @@ export function inventoryView() {
     const itemLots = data.lots.filter((lot) => lot.inventoryId === item.id).sort((a, b) => (a.expiryDate || '9999-12-31').localeCompare(b.expiryDate || '9999-12-31') || (a.receivedAt || 0) - (b.receivedAt || 0));
     const datedLots = itemLots.filter((lot) => Number(lot.quantity || 0) > 0 && lot.expiryDate);
     const expiryLot = datedLots[0];
-    const expiry = inventoryExpiryStatus(expiryLot ? expiryLot.expiryDate : item.expiryDate);
+    const expiry = inventoryExpiryStatus(expiryLot ? expiryLot.expiryDate : (itemLots.length ? '' : item.expiryDate));
     const expiryClass = expiry.status === 'expired' ? ' is-expired' : ['today', 'soon'].includes(expiry.status) ? ' is-expiring' : '';
     const expiryLabel = expiryText(expiryLot || item);
     return h('article', { class: 'inventory-item' + (low ? ' is-low' : '') + expiryClass },
