@@ -5,6 +5,16 @@
    ========================================================================== */
 
 export const CHANGELOG = Object.freeze({
+  '1.9.28': Object.freeze({
+    intro: 'Magazyn rozpoznaje osobne partie produktów i pilnuje kolejności zużycia.',
+    items: [
+      'Każda nowa dostawa może być zapisana jako osobna partia z własną ilością, datą przyjęcia, terminem i ceną.',
+      'Podczas gotowania składniki są odliczane najpierw z partii z najbliższym terminem (FEFO), a przy remisie ze starszej dostawy (FIFO).',
+      'Stary stan magazynowy jest automatycznie zachowywany jako partia legacy; dotychczasowe dane nie są zerowane.',
+      'Kopie zapasowe, import, scalanie i czyszczenie obejmują również partie magazynowe.'
+    ],
+    footer: 'Stan widoczny na karcie produktu nadal jest sumą wszystkich partii. Stare pozycje bez terminu pozostają bez daty do czasu dodania partii z terminem.'
+  }),
   '1.9.27': Object.freeze({
     intro: 'Pilnuj terminów przydatności bezpośrednio w magazynie.',
     items: [
