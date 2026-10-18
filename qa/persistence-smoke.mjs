@@ -11,6 +11,18 @@ async function ready() {
   await page.waitForFunction(() => window.__kucharzyna?.ready === true, null, { timeout: 15000 });
 }
 async function dismiss() {
+  // The 2.0 release notes are intentionally shown once on first launch.
+  // Wait for startup hydration before trying to close them; ready() can fire a
+  // moment before the changelog sheet appears.
+  await page.waitForTimeout(300);
+  const releasePanel = page.locator('.overlay .panel[aria-label^="Co nowego w"]').last();
+  if (await releasePanel.count() && await releasePanel.isVisible().catch(() => false)) {
+    const confirm = releasePanel.locator('.panel-foot button').last();
+    if (await confirm.count()) {
+      await confirm.click();
+      await page.locator('.overlay').waitFor({ state: 'hidden', timeout: 3000 }).catch(() => {});
+    }
+  }
   const start = page.getByRole('button', { name: 'Zaczynamy' }).first();
   if (await start.count() && await start.isVisible().catch(() => false)) await start.click();
 }
