@@ -251,6 +251,12 @@ try {
   await page.mouse.up();
   assert(pressTransforms.tab === 'none' && pressTransforms.icon !== 'none',
     'Naciśnięcie nawigacji powinno animować tylko kapsułę ikony, bez przesuwania całej zakładki: ' + JSON.stringify(pressTransforms));
+  // Żarłok 2.0 must render a real generated photo, not only the SVG art fallback.
+  await page.waitForFunction(() => [...document.querySelectorAll('.zf-feature img, .rtile-img img, .ctile-img img')]
+    .some((img) => img.dataset.photoSource && img.complete && img.naturalWidth > 0), null, { timeout: 15000 });
+  const actualFoodPhotos = await page.locator('img[data-photo-source]').evaluateAll((imgs) =>
+    imgs.filter((img) => img.complete && img.naturalWidth > 0).map((img) => img.dataset.photoSource));
+  assert(actualFoodPhotos.length > 0, 'Żarłok 2.0 nie pokazał żadnego prawdziwego zdjęcia potrawy na ekranie Start.');
   await shot('01-start.png');
 
   // Responsive overflow sweep: horizontal rails may scroll internally, but the page itself must not widen.
