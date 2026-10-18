@@ -22,3 +22,20 @@
 
 /* Znak aplikacji — oryginalna grafika wygenerowana w Adobe Firefly. */
 .boot-shell-mark{background-image:url("https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:8b0e4f74-1852-4cbe-9492-e2422fcaba04");background-position:center;background-size:cover;background-repeat:no-repeat;border-color:rgba(217,151,97,.4);color:transparent;font-size:0;box-shadow:0 0 0 8px rgba(217,151,97,.035),0 12px 34px rgba(0,0,0,.25)}
+
+/* ŻARŁOK 2.0 — fotografie są fotografiami, nie ilustracjami SVG. */
+.rthumb,.rtile-img,.zf-feature-img,.hero-circle,.recipe-modal-photo{overflow:hidden;position:relative}
+.rthumb img:not(.art),.rtile-img img:not(.art),.zf-feature-img img:not(.art),.hero-circle img:not(.art),.recipe-modal-photo:not(.art){
+  display:block;width:100%;height:100%;object-fit:cover;object-position:center;
+}
+.rthumb img:not(.art),.rtile-img img:not(.art),.zf-feature-img img:not(.art){
+  filter:saturate(1.04) contrast(1.02);
+}
+.rthumb::after,.rtile-img::after,.zf-feature-img::after{
+  content:"";position:absolute;inset:45% 0 0;pointer-events:none;
+  background:linear-gradient(180deg,transparent,rgba(8,9,10,.16));
+}
+.hero-circle img:not(.art){border-radius:inherit}
+@media(prefers-reduced-motion:reduce){
+  .rthumb img,.rtile-img img,.zf-feature-img img,.heart{animation:none!important;transition:none!important}
+}
