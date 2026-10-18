@@ -131,7 +131,7 @@ body{color:var(--z-copy)}
 :root[data-theme="light"] .overlay.sheet .panel,:root[data-theme="light"] .overlay.center .panel{background:rgba(255,250,244,.97)!important}
 
 /* Pływający dock — mniej ciężki, lepszy kontrast aktywnej zakładki. */
-#tabbar{width:min(calc(100% - 24px),480px)!important;min-height:68px!important;padding:7px!important;bottom:max(8px,env(safe-area-inset-bottom,0px))!important;border-radius:25px!important;border:1px solid rgba(255,255,255,.14)!important;background:rgba(20,22,24,.88)!important;-webkit-backdrop-filter:blur(30px) saturate(1.45)!important;backdrop-filter:blur(30px) saturate(1.45)!important;box-shadow:0 18px 48px rgba(0,0,0,.38),inset 0 1px rgba(255,255,255,.1)!important}
+#tabbar{width:min(calc(100% - 24px),480px)!important;min-height:68px!important;padding:7px!important;bottom:max(8px,env(safe-area-inset-bottom,0px))!important;border-radius:25px!important;border:1px solid rgba(255,255,255,.14)!important;background:rgba(20,22,24,.97)!important;-webkit-backdrop-filter:blur(30px) saturate(1.45)!important;backdrop-filter:blur(30px) saturate(1.45)!important;box-shadow:0 18px 48px rgba(0,0,0,.38),inset 0 1px rgba(255,255,255,.1)!important}
 #tabbar .tab{min-width:0!important;border-radius:18px!important}
 #tabbar .tab.on{background:linear-gradient(145deg,rgba(223,156,104,.18),rgba(223,156,104,.06))!important;color:var(--z-copper-hi)!important}
 #tabbar .tab .tab-ico{width:38px!important;height:37px!important}
