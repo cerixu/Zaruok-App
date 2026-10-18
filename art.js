@@ -259,7 +259,12 @@ const GENERATED_PHOTOS = [
   [/burger|hamburger/i, 'https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:582ebee8-7c74-4008-aad8-7f951db64dcf'],
   [/ramen/i, 'https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:68b06d91-0273-40ee-a553-148583d27e86'],
   [/ciasto czekoladowe|tort czekoladowy|chocolate cake|brownie/i, 'https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:fcde9b26-a44b-4f29-9c33-f20e7e3e7744'],
+  [/amerykańska szarlotka|apple pie|szarlotka/i, 'https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:63c14058-22a8-4707-a478-e0ddd9bac28c'],
+  [/baba ghanoush|baba ganoush|mutabbal/i, 'https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:17588d6d-922d-43e8-8120-4f0599da225a'],
+  [/babka piaskowa|sand cake/i, 'https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:a08d06b3-5838-4151-a21b-8ecb1a2d1534'],
+  [/baguette/i, 'https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:d1a9e793-cef4-4072-b684-00e49e390161'],
 ];
+export const hasGeneratedPhoto = (r) => GENERATED_PHOTOS.some(([pattern]) => pattern.test(String(r && r.name || '')));
 export const recipeArtFallbackUrl = (r) => artUrl(artKindFor(r), r.name || r.id || '');
 export const recipeArtUrl = (r) => {
   const name = String(r.name || '');
