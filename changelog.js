@@ -5,6 +5,15 @@
    ========================================================================== */
 
 export const CHANGELOG = Object.freeze({
+  '2.0.0': Object.freeze({
+    intro: 'Żarłok 2.0 — prawdziwe zdjęcia potraw działające także offline.',
+    items: [
+      'Dodano cztery oryginalne zdjęcia potraw: pizzę Margherita, carbonarę, risotto ai funghi i łososia z masłem cytrynowym.',
+      'Zdjęcia są przechowywane lokalnie w aplikacji zamiast na zewnętrznym serwerze, więc działają stabilniej i po utracie połączenia.',
+      'Nowe zdjęcia są wstępnie buforowane przez Service Workera i mają lokalne ilustracje SVG jako awaryjny fallback.',
+      'Poprawiono dopasowanie zdjęcia risotta i odświeżono cache aplikacji do wersji 2.0.0.'
+    ],
+  }),
   '1.9.31': Object.freeze({
     intro: 'Oryginalne zdjęcia potraw i bardziej dopracowane mikroanimacje.',
     items: [

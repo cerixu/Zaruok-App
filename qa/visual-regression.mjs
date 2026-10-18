@@ -155,6 +155,23 @@ try {
   assert(artworkAudit.curry === 'curry', 'Curry nie używa dedykowanego motywu.');
   assert(artworkAudit.cocktail === 'cocktail', 'Nazwa koktajlu nie nadpisuje błędnej kategorii obrazu.');
   assert(artworkAudit.currywurst === 'sausage', 'Currywurst błędnie używa ilustracji curry zamiast kiełbasy.');
+
+  const photoAudit = await page.evaluate(async () => {
+    const art = await import(new URL('art.js', location.href).href);
+    const cases = [
+      { name: 'Pizza Margherita', expected: './assets/food/pizza-margherita.jpg' },
+      { name: 'Spaghetti alla carbonara', expected: './assets/food/tagliatelle-carbonara.jpg' },
+      { name: 'Risotto ai funghi', expected: './assets/food/mushroom-risotto.jpg' },
+      { name: 'Łosoś z masłem cytrynowym', expected: './assets/food/salmon-lemon-butter.jpg' },
+    ];
+    return Promise.all(cases.map(async (item) => {
+      const src = art.recipeArtUrl({ name: item.name });
+      const response = await fetch(new URL(src, location.href));
+      return { name: item.name, src, expected: item.expected, ok: response.ok, type: response.headers.get('content-type') };
+    }));
+  });
+  assert(photoAudit.every((item) => item.src === item.expected && item.ok && (item.type || '').startsWith('image/')),
+    'Zdjęcia receptur muszą być lokalne, dostępne i serwowane jako obrazy: ' + JSON.stringify(photoAudit));
   
   const designStylesLoaded = await page.evaluate(() => Array.from(document.styleSheets).some((s) => s.href && s.href.includes('claude-completion.css')));
   assert(designStylesLoaded, 'Brak pełnej warstwy stylu Claude / Liquid Glass.');
