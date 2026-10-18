@@ -28,6 +28,7 @@ const CORE = [
   'assets/food/barszcz.jpg.b64', 'assets/food/bigos.jpg.b64', 'assets/food/bbq-ribs.jpg.b64', 'assets/food/beef-stew.jpg.b64',
   'assets/food/brownie.jpg.b64', 'assets/food/creme-brulee.jpg.b64', 'assets/food/crepes.jpg.b64', 'assets/food/bagel.jpg.b64',
   'assets/food/bibimbap.jpg.b64', 'assets/food/curry-chickpea.jpg.b64', 'assets/food/bruschetta.jpg.b64', 'assets/food/aperol.jpg.b64',
+  'assets/food/babka-piaskowa.jpg.b64', 'assets/food/baba-ganoush.jpg.b64',
   'apple-touch-icon.png', 'icon-192.png', 'icon-512.png', 'icon-maskable-512.png',
   'poppins-300.woff', 'poppins-400.woff', 'poppins-500.woff', 'poppins-700.woff',
 ];
