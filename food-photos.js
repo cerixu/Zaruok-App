@@ -86,7 +86,7 @@ const RECIPE_RULES = [
   ['bibimbap', /\bbibimbap\b/],
   ['curry-chickpea', /\b(curry z ciecierzycy|chickpea curry)\b/],
   ['bruschetta', /\bbruschetta\b/],
-  ['cocktail', /\bmoscow mule\b/],
+  ['cocktail', /\b(moscow mule|mojito|negroni|margarita|koktajl|cocktail|drink)\b/],
   ['lasagna', /\b(lasagna|lasagne)\b/],
   ['chicken-curry', /\b(tikka masala|butter chicken|chicken curry)\b/],
   ['schnitzel', /\b(kotlet schabowy|schabowy|wiener schnitzel|schnitzel)\b/],
@@ -96,8 +96,8 @@ const RECIPE_RULES = [
   ['pasta-tomato', /\b(spaghetti al pomodoro|sos pomidorowy do makaronu|pasta pomodoro|pasta marinara|spaghetti all amatriciana)\b/],
   ['asian-noodles', /\b(pad thai|pad see ew|pad see|mie goreng|chow mein)\b/],
   ['fried-rice', /\b(fried rice|smazony ryz|nasi goreng)\b/],
-  ['cake', /\b(szarlotka|apple pie)\b/],
-  ['sourdough', /\b(chleb na zakwasie|sourdough|chleb zytni|chleb pszenny na drozdzach|bagietka)\b/],
+  ['cake', /\b(szarlotka|apple pie|babka( piaskowa)?|sernik|ciasto|tort|cake|cheesecake)\b/],
+  ['sourdough', /\b(chleb na zakwasie|sourdough|chleb zytni|chleb pszenny na drozdzach|bagietka|baguette|bread)\b/],
   ['soup', /\b(zurek)\b/],
   ['seafood', /\b(vongole|malze|mussels|krewetki|krewetka|frutti di mare|owoce morza)\b/],
   ['pierogi', /\b(pierogi|pierog|uszka)\b/],
@@ -113,7 +113,9 @@ function recipePhotoKey(recipe) {
   for (const [key, pattern] of RECIPE_RULES) {
     if (pattern.test(name)) return key;
   }
-  return null;
+  // Zdjęcie kategorii jest lepszym, spójnym fallbackiem niż ilustracja,
+  // gdy nazwa potrawy nie ma jeszcze własnej fotografii.
+  return CATEGORY_PHOTOS[recipe.category] || null;
 }
 
 function loadPhoto(key) {
