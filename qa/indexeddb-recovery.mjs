@@ -30,6 +30,14 @@ try {
   const start = page.locator('.zf-head').first();
   if (!(await start.count())) throw new Error('Start nie wyrenderował się po recovery IndexedDB');
 
+  // A major version bump opens the release sheet for a fresh profile.
+  // Dismiss it before interacting with the navigation underneath.
+  const welcome = page.getByRole('button', { name: 'Zaczynamy' }).first();
+  if (await welcome.count() && await welcome.isVisible().catch(() => false)) {
+    await welcome.click();
+    await page.waitForTimeout(150);
+  }
+
   const recipes = page.locator('.tab[data-tab="recipes"]').first();
   await recipes.click();
   await page.waitForFunction(() => location.hash === '#/recipes', null, { timeout: 5000 });

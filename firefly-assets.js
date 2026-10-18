@@ -3,10 +3,10 @@
  * Gdy oryginalne PNG trafią do assets/food, można przypisać je przepisom.
  */
 export const FIREFLY_FOOD_ASSETS = Object.freeze({
-  pizza: './assets/food/pizza-margherita.png',
-  carbonara: './assets/food/tagliatelle-carbonara.png',
-  risotto: './assets/food/mushroom-risotto.png',
-  salmon: './assets/food/salmon-lemon-butter.png'
+  pizza: './assets/food/pizza-margherita.jpg',
+  carbonara: './assets/food/tagliatelle-carbonara.jpg',
+  risotto: './assets/food/mushroom-risotto.jpg',
+  salmon: './assets/food/salmon-lemon-butter.jpg'
 });
 
 const MATCHERS = [
