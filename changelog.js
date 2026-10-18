@@ -5,6 +5,16 @@
    ========================================================================== */
 
 export const CHANGELOG = Object.freeze({
+  '1.9.29': Object.freeze({
+    intro: 'Nowa, spójna szata graficzna Żarłoka — dopracowana pod iPhone’a.',
+    items: [
+      'Ujednolicono szkło Liquid Glass, tła, karty i obramowania w całej aplikacji.',
+      'Zdjęcia receptur otrzymały bardziej dopracowaną oprawę, a typografia wyraźniejszą hierarchię.',
+      'Dolna nawigacja stała się pływającym, czytelnym dokiem; główne przyciski mają spójny miedziany akcent.',
+      'Dopracowano pola, okna, magazyn i zachowanie na wąskich ekranach. Funkcje aplikacji pozostają bez zmian.'
+    ],
+  }),
+
   '1.9.28': Object.freeze({
     intro: 'Magazyn rozpoznaje osobne partie produktów i pilnuje kolejności zużycia.',
     items: [
