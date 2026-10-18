@@ -85,12 +85,14 @@ try {
   await page.getByLabel('Jednostka stanu').selectOption('kg');
   await page.getByLabel('Termin przydatności (cały wpis)').fill(expiryDates.past);
   await page.getByRole('button', { name: 'Zapisz', exact: true }).click();
+  await page.waitForTimeout(300);
   await page.getByRole('button', { name: 'Dodaj produkt do magazynu' }).click();
   await page.getByLabel('Nazwa produktu').fill('Produkt testowy na jutro');
   await page.getByLabel('Aktualny stan').fill('1');
   await page.getByLabel('Jednostka stanu').selectOption('kg');
   await page.getByLabel('Termin przydatności (cały wpis)').fill(expiryDates.soon);
   await page.getByRole('button', { name: 'Zapisz', exact: true }).click();
+  await page.waitForTimeout(300);
   await expectText('Terminy do sprawdzenia', 'Brak panelu alertów o terminach.');
   await expectText('Po terminie', 'Nie pokazano produktu po terminie.');
   await expectText('Termin blisko', 'Nie pokazano produktu z terminem w ciągu 3 dni.');
