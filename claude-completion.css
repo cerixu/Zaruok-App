@@ -1057,3 +1057,28 @@ body.kb-open #tabbar { display: none; }
 :root[data-theme="light"] .inventory-item.is-expired { background:rgba(190,45,45,.035); }
 :root[data-theme="light"] .inventory-item.is-expiring { background:rgba(170,110,0,.035); }
 @media(max-width:360px) { .inventory-expiry-row { gap:7px; } .inventory-expiry-row > strong { font-size:.8rem; } }
+
+
+/* Partie magazynowe — osobne terminy i czytelna rotacja FEFO na iPhonie. */
+.inventory-lots-mini {
+  display: grid;
+  gap: 6px;
+  margin-top: 9px;
+  padding: 9px 10px;
+  border: 1px solid color-mix(in srgb, var(--line) 72%, transparent);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--surface-2) 48%, transparent);
+}
+.inventory-lot-mini {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: .72rem;
+  color: var(--muted);
+}
+.inventory-lot-mini strong {
+  color: var(--text);
+  font-size: .75rem;
+  white-space: nowrap;
+}
