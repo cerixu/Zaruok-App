@@ -5,6 +5,17 @@
    ========================================================================== */
 
 export const CHANGELOG = Object.freeze({
+  '2.0.0': Object.freeze({
+    intro: 'Żarłok 2.0 — nowa odsłona wizualna i zdjęcia potraw zapisane w aplikacji.',
+    items: [
+      'Dodano 13 lokalnych zdjęć potraw wygenerowanych w Adobe Firefly: pizza, makarony, risotto, łosoś, burger, ramen, zupy, sałatki, desery, kurczak, stek, pierogi i focaccia.',
+      'Zdjęcia są częścią aplikacji i ładują się także offline — nie zależą od zewnętrznych linków.',
+      'Przebudowano ekran startowy: duże zdjęcie polecanej receptury, wyraźniejsze skróty i spójne miedziane akcenty.',
+      'Karty receptur i widok szczegółów mocniej eksponują zdjęcia, a interfejs ma czytelniejszą hierarchię na iPhonie.',
+      'Zaktualizowano cache PWA i numer wydania do 2.0.0; dotychczasowe zapisane receptury i ustawienia pozostają na miejscu.'
+    ],
+    footer: 'Zdjęcia możesz też zastąpić własną fotografią w edytorze receptury.'
+  }),
   '1.9.31': Object.freeze({
     intro: 'Oryginalne zdjęcia potraw i bardziej dopracowane mikroanimacje.',
     items: [
