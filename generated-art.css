@@ -39,3 +39,11 @@
 @media(prefers-reduced-motion:reduce){
   .rthumb img,.rtile-img img,.zf-feature-img img,.heart{animation:none!important;transition:none!important}
 }
+
+/* 2.0 — nazwy kart nie mogą wypadać poza szerokość kolumny na iPhonie. */
+.rtile-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:start;gap:7px;min-width:0}
+.rtile-name{min-width:0;max-width:100%;overflow:hidden;overflow-wrap:anywhere;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2}
+.rt-side{min-width:0;max-width:84px;flex-shrink:0;text-align:right;white-space:nowrap}
+.rt-rate,.rt-sub{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rtile-link{min-width:0}
+@media(max-width:390px){.rt-side{max-width:66px}.rtile-name{font-size:.91rem}}
