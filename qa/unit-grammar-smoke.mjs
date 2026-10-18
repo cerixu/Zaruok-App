@@ -11,8 +11,22 @@ async function ready() {
   await page.waitForFunction(() => window.__kucharzyna?.ready === true, null, { timeout: 15000 });
 }
 async function dismiss() {
+  const overlay = page.locator('#overlays .overlay').first();
   const start = page.getByRole('button', { name: 'Zaczynamy' }).first();
-  if (await start.count() && await start.isVisible().catch(() => false)) await start.click();
+
+  // The first-run release sheet may appear just after the app signals ready.
+  // Wait for it; otherwise a later navigation can leave it intercepting taps.
+  const appeared = await overlay.waitFor({ state: 'visible', timeout: 2500 })
+    .then(() => true).catch(() => false);
+  if (!appeared) return;
+
+  if (await start.count() && await start.isVisible().catch(() => false)) {
+    await start.click({ force: true, timeout: 2000 }).catch(() => {});
+  }
+  if (await overlay.isVisible().catch(() => false)) {
+    await page.keyboard.press('Escape').catch(() => {});
+  }
+  await overlay.waitFor({ state: 'hidden', timeout: 3000 }).catch(() => {});
 }
 
 try {

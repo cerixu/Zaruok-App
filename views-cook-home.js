@@ -3,7 +3,8 @@ import { h, icon, screen, iconBtn, textInput, emptyState } from './ui.js';
 import { listRecipes, searchText, catName } from './recipes.js';
 import { navigate } from './router.js';
 import { openTimersSheet } from './timers.js';
-import { recipeArtUrl } from './art.js';
+import { recipeArtUrl, recipeArtFallbackUrl } from './art.js';
+import { attachRecipePhoto } from './food-photos.js';
 import { norm } from './util.js';
 
 export function cookEntryView() {
@@ -44,7 +45,25 @@ export function cookEntryView() {
       onClick: () => navigate('/cook/' + encodeURIComponent(r.id)),
       'aria-label': 'Rozpocznij gotowanie: ' + r.name,
     },
-      h('span', { class: 'cook-entry-art' }, h('img', { src: r.thumb || recipeArtUrl(r), alt: '', loading: 'lazy', decoding: 'async' })),
+      h('span', { class: 'cook-entry-art' }, (() => {
+        const custom = r.thumb || r.photo;
+        const img = h('img', {
+          class: custom ? '' : 'art',
+          src: custom || recipeArtUrl(r),
+          alt: r.name ? 'Zdjęcie: ' + r.name : '',
+          loading: 'lazy',
+          decoding: 'async',
+          onError: (e) => {
+            const el = e.currentTarget;
+            if (el.dataset.artFallback) return;
+            el.dataset.artFallback = '1';
+            el.classList.add('art');
+            el.src = recipeArtFallbackUrl(r);
+          },
+        });
+        if (!custom) attachRecipePhoto(img, r);
+        return img;
+      })()),
       h('span', { class: 'cook-entry-copy' },
         h('strong', null, r.name),
         h('span', { class: 'muted small' }, catName(r.category)),

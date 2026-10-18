@@ -115,6 +115,19 @@ try {
     assert(releaseCopy.includes(expectedText), 'Okno startowe nie pokazuje wpisu changeloga: ' + expectedText);
   }
   await dismissWhatsNew();
+  const heroPhotoDebug = await page.locator('.zf-feature-img img').first().evaluate((img) => {
+    const snap = (el) => {
+      const s = getComputedStyle(el), r = el.getBoundingClientRect();
+      return {tag:el.tagName,cls:el.className,display:s.display,visibility:s.visibility,opacity:s.opacity,zIndex:s.zIndex,position:s.position,
+        width:Math.round(r.width),height:Math.round(r.height),top:Math.round(r.top),left:Math.round(r.left),borderRadius:s.borderRadius,background:s.backgroundColor,overflow:s.overflow};
+    };
+    return {alt:img.alt,complete:img.complete,naturalWidth:img.naturalWidth,photoRequested:img.dataset.photoRequested||'',photoSource:img.dataset.photoSource||'',
+      srcPrefix:String(img.currentSrc||img.src||'').slice(0,70),image:snap(img),wrapper:snap(img.parentElement),ring:snap(img.parentElement.parentElement),
+      copy:snap(img.closest('.zf-feature')?.querySelector('.zf-feature-copy')),feature:snap(img.closest('.zf-feature'))};
+  });
+  console.log('HERO_PHOTO_DEBUG ' + JSON.stringify(heroPhotoDebug));
+  assert(heroPhotoDebug.photoSource && heroPhotoDebug.naturalWidth > 0 && heroPhotoDebug.image.width > 100 && heroPhotoDebug.wrapper.width > 100,
+    'Zdjęcie wyróżnionej receptury nie wypełnia karty: ' + JSON.stringify(heroPhotoDebug));
 
   const semanticIcons = await page.evaluate(async () => {
     const mod = await import(new URL('views-detail.js', location.href).href);
@@ -155,24 +168,21 @@ try {
   assert(artworkAudit.curry === 'curry', 'Curry nie używa dedykowanego motywu.');
   assert(artworkAudit.cocktail === 'cocktail', 'Nazwa koktajlu nie nadpisuje błędnej kategorii obrazu.');
   assert(artworkAudit.currywurst === 'sausage', 'Currywurst błędnie używa ilustracji curry zamiast kiełbasy.');
+  
 
-  const photoAudit = await page.evaluate(async () => {
-    const art = await import(new URL('art.js', location.href).href);
-    const cases = [
-      { name: 'Pizza Margherita', expected: './assets/food/pizza-margherita.jpg' },
-      { name: 'Spaghetti alla carbonara', expected: './assets/food/tagliatelle-carbonara.jpg' },
-      { name: 'Risotto ai funghi', expected: './assets/food/mushroom-risotto.jpg' },
-      { name: 'Łosoś z masłem cytrynowym', expected: './assets/food/salmon-lemon-butter.jpg' },
-    ];
-    return Promise.all(cases.map(async (item) => {
-      const src = art.recipeArtUrl({ name: item.name });
-      const response = await fetch(new URL(src, location.href));
-      return { name: item.name, src, expected: item.expected, ok: response.ok, type: response.headers.get('content-type') };
+  const localPhotoAudit = await page.evaluate(async () => {
+    const names = ["food-aperol.jpg.b64","food-asian-noodles.jpg.b64","food-baba-ganoush.jpg.b64","food-babka-piaskowa.jpg.b64","food-bagel.jpg.b64","food-barszcz.jpg.b64","food-bbq-ribs.jpg.b64","food-beef-stew.jpg.b64","food-bibimbap.jpg.b64","food-bigos.jpg.b64","food-brownie.jpg.b64","food-bruschetta.jpg.b64","food-burger.jpg.b64","food-cake.jpg.b64","food-carbonara.jpg.b64","food-chicken-curry.jpg.b64","food-cocktail.jpg.b64","food-creme-brulee.jpg.b64","food-crepes.jpg.b64","food-curry-chickpea.jpg.b64","food-dessert.jpg.b64","food-focaccia.jpg.b64","food-fried-rice.jpg.b64","food-lasagna.jpg.b64","food-pasta-tomato.jpg.b64","food-pierogi.jpg.b64","food-pizza.jpg.b64","food-risotto.jpg.b64","food-salad.jpg.b64","food-salmon.jpg.b64","food-schnitzel.jpg.b64","food-seafood.jpg.b64","food-soup-clear.jpg.b64","food-soup-pumpkin.jpg.b64","food-soup-tomato.jpg.b64","food-soup.jpg.b64","food-sourdough.jpg.b64","food-steak.jpg.b64"];
+    return Promise.all(names.map(async (name) => {
+      const response = await fetch(new URL(name, location.href));
+      const body = response.ok ? (await response.text()).trim() : '';
+      return { name, ok: response.ok, valid: body.startsWith('/9j/') && body.length > 1000 };
     }));
   });
-  assert(photoAudit.every((item) => item.src === item.expected && item.ok && (item.type || '').startsWith('image/')),
-    'Zdjęcia receptur muszą być lokalne, dostępne i serwowane jako obrazy: ' + JSON.stringify(photoAudit));
-  
+  assert(localPhotoAudit.length === 38 && localPhotoAudit.every((item) => item.ok && item.valid),
+    'Każde z 38 zdjęć musi być dostępne i zawierać poprawne dane JPEG: ' + JSON.stringify(localPhotoAudit.filter((item) => !item.ok || !item.valid)));
+  const photoFirstStylesLoaded = await page.evaluate(() => Array.from(document.styleSheets).some((s) => s.href && s.href.includes('zarlok-v2.css')));
+  assert(photoFirstStylesLoaded, 'Brak nowej warstwy graficznej foto-first.');
+
   const designStylesLoaded = await page.evaluate(() => Array.from(document.styleSheets).some((s) => s.href && s.href.includes('claude-completion.css')));
   assert(designStylesLoaded, 'Brak pełnej warstwy stylu Claude / Liquid Glass.');
 
