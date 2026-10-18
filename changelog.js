@@ -5,6 +5,14 @@
    ========================================================================== */
 
 export const CHANGELOG = Object.freeze({
+  '2.1.1': Object.freeze({
+    intro: 'Żarłok 2.1.1 — pewniejsze przygotowanie aplikacji do pracy offline.',
+    items: [
+      'Brak pojedynczego zdjęcia, ikony lub fontu nie blokuje już instalacji całego Service Workera.',
+      'Pliki niezbędne do uruchomienia aplikacji nadal są wymagane podczas aktualizacji — nie ukrywamy braków kodu.',
+      'Nie zmieniono receptur, stanów magazynowych ani formatu kopii zapasowych.'
+    ],
+  }),
   '2.1.0': Object.freeze({
     intro: 'Żarłok 2.1 — przebudowany interfejs na iPhone, oparty na zdjęciach i wyraźnej hierarchii.',
     items: [
