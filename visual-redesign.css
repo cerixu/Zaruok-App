@@ -42,3 +42,41 @@ body.no-tabs #tabbar,body.kb-open #tabbar{display:none}
 @media(max-width:370px){.rtile{width:142px}.start-final .zf-action{padding-inline:11px}#tabbar{width:calc(100% - 14px);left:50%!important;right:auto!important;transform:translateX(-50%);padding-inline:4px}#tabbar .tab .tab-ico{width:35px}#tabbar .tab .tab-label{font-size:.58rem}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
 @media(prefers-reduced-transparency:reduce){#tabbar,.topbar,.overlay.sheet .panel,.overlay.center .panel{-webkit-backdrop-filter:none;backdrop-filter:none;background:var(--surface)}}
+
+
+/* Żarłok 1.9.30 — refined motion system */
+:root{--z-motion-snap:cubic-bezier(.2,.8,.2,1);--z-motion-spring:cubic-bezier(.22,1,.36,1)}
+@media(prefers-reduced-motion:no-preference){
+  #view>.screen>.scroll>.content>*{animation:zarlok-enter 420ms var(--z-motion-spring) both}
+  #view>.screen>.scroll>.content>*:nth-child(2){animation-delay:24ms}
+  #view>.screen>.scroll>.content>*:nth-child(3){animation-delay:48ms}
+  #view>.screen>.scroll>.content>*:nth-child(4){animation-delay:72ms}
+  #view>.screen>.scroll>.content>*:nth-child(5){animation-delay:96ms}
+  #view>.screen>.scroll>.content>*:nth-child(n+6){animation-delay:110ms}
+  .rtile,.rcard,.ctile,.zf-action,.zf-tool,.zf-status-card,.inventory-item,.card,.tile,.bigcard{
+    transition:transform 160ms var(--z-motion-snap),border-color 240ms ease,box-shadow 240ms ease,background 240ms ease;
+    transform-origin:center
+  }
+  .rtile:active,.rcard:active,.ctile:active,.zf-action:active,.zf-tool:active,.zf-status-card:active,.inventory-item:active{transform:scale(.975)}
+  .rtile-img img,.rthumb img,.ctile-img img,.zf-feature-img img{transition:transform 460ms var(--z-motion-spring),filter 260ms ease;will-change:transform}
+  .rtile-link:active .rtile-img img,.rcard-main:active .rthumb img,.ctile:active .ctile-img img{transform:scale(1.05)}
+  #tabbar .tab{transition:color 180ms ease,background 220ms ease,transform 180ms var(--z-motion-snap)}
+  #tabbar .tab:active{transform:scale(.94)}
+  #tabbar .tab.on .tab-ico{animation:zarlok-tab-pop 340ms var(--z-motion-spring) both}
+  .btn,.iconbtn,.heart,.chip,.seg button,.ctab{transition:transform 140ms var(--z-motion-snap),background 180ms ease,border-color 180ms ease,box-shadow 180ms ease}
+  .heart.on svg{animation:zarlok-heart-pop 320ms var(--z-motion-spring) both}
+  .overlay.sheet .panel,.overlay.center .panel{animation:zarlok-panel-in 300ms var(--z-motion-spring) both;transform-origin:50% 100%}
+  .overlay.center .panel{transform-origin:50% 50%}
+  .zf-mark-dot{animation:zarlok-pulse 2.8s ease-in-out infinite}
+}
+@keyframes zarlok-enter{from{opacity:0;transform:translate3d(0,9px,0);filter:blur(1.5px)}to{opacity:1;transform:translate3d(0,0,0);filter:blur(0)}}
+@keyframes zarlok-tab-pop{0%{transform:scale(.84)}55%{transform:scale(1.09)}100%{transform:scale(1)}}
+@keyframes zarlok-heart-pop{0%{transform:scale(.74)}55%{transform:scale(1.2)}100%{transform:scale(1)}}
+@keyframes zarlok-panel-in{from{opacity:0;transform:translate3d(0,15px,0) scale(.98)}to{opacity:1;transform:translate3d(0,0,0) scale(1)}}
+@keyframes zarlok-pulse{0%,100%{opacity:.82;box-shadow:0 0 10px rgba(217,151,97,.4)}50%{opacity:1;box-shadow:0 0 17px rgba(217,151,97,.8)}}
+@media(prefers-reduced-motion:reduce){
+  #view>.screen>.scroll>.content>*,.zf-mark-dot{animation:none!important}
+  .rtile,.rcard,.ctile,.zf-action,.zf-tool,.zf-status-card,.inventory-item,.card,.tile,.bigcard,.rtile-img img,.rthumb img,.ctile-img img,.zf-feature-img img,#tabbar .tab,.btn,.iconbtn,.heart,.chip,.seg button,.ctab{transition:none!important}
+}
+.rtile-img img:not(.art),.rthumb img:not(.art),.ctile-img img:not(.art),.zf-feature-img img:not(.art){display:block;width:100%;height:100%;object-fit:cover}
+.rtile-img,.rthumb,.ctile-img,.zf-feature-img{overflow:hidden}
