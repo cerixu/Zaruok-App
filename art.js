@@ -255,6 +255,10 @@ const GENERATED_PHOTOS = [
   [/carbonara/i, 'https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:d213e975-4316-4872-8f9c-ef2d354ed979'],
   [/^risotto\b/i, 'https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:a04b34e4-077e-49ff-b340-08d3f411b0e5'],
   [/łosoś|salmon/i, 'https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:fb538acb-125e-4511-a4bc-e9c4ede518a2'],
+  [/pierogi/i, 'https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:44027cd3-9f8c-4eb1-8275-2f6968e04ed8'],
+  [/burger|hamburger/i, 'https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:582ebee8-7c74-4008-aad8-7f951db64dcf'],
+  [/ramen/i, 'https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:68b06d91-0273-40ee-a553-148583d27e86'],
+  [/ciasto czekoladowe|tort czekoladowy|chocolate cake|brownie/i, 'https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:fcde9b26-a44b-4f29-9c33-f20e7e3e7744'],
 ];
 export const recipeArtFallbackUrl = (r) => artUrl(artKindFor(r), r.name || r.id || '');
 export const recipeArtUrl = (r) => {
