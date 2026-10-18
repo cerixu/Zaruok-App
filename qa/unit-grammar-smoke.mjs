@@ -12,6 +12,9 @@ async function ready() {
 }
 async function dismiss() {
   const start = page.getByRole('button', { name: 'Zaczynamy' }).first();
+  // The 2.0 release sheet can open just after IndexedDB hydration, a beat after ready().
+  // Wait briefly so it cannot sit over the recipe and intercept the next click.
+  await start.waitFor({ state: 'visible', timeout: 1800 }).catch(() => {});
   if (await start.count() && await start.isVisible().catch(() => false)) await start.click();
 }
 

@@ -251,6 +251,12 @@ try {
   await page.mouse.up();
   assert(pressTransforms.tab === 'none' && pressTransforms.icon !== 'none',
     'Naciśnięcie nawigacji powinno animować tylko kapsułę ikony, bez przesuwania całej zakładki: ' + JSON.stringify(pressTransforms));
+  // Żarłok 2.0 must render a real generated photo, not only the SVG art fallback.
+  await page.waitForFunction(() => [...document.querySelectorAll('.zf-feature img, .rtile-img img, .ctile-img img')]
+    .some((img) => img.dataset.photoSource && img.complete && img.naturalWidth > 0), null, { timeout: 15000 });
+  const actualFoodPhotos = await page.locator('img[data-photo-source]').evaluateAll((imgs) =>
+    imgs.filter((img) => img.complete && img.naturalWidth > 0).map((img) => img.dataset.photoSource));
+  assert(actualFoodPhotos.length > 0, 'Żarłok 2.0 nie pokazał żadnego prawdziwego zdjęcia potrawy na ekranie Start.');
   await shot('01-start.png');
 
   // Responsive overflow sweep: horizontal rails may scroll internally, but the page itself must not widen.
@@ -266,6 +272,13 @@ try {
   await dismissWhatsNew();
   const grid = await box('.rgrid, .rail');
   assert(grid.width > 300, 'Lista/siatka receptur nie zajmuje prawidłowej szerokości.');
+
+  // 2.0 musi pokazywać prawdziwe zdjęcia również na liście, nie tylko na ekranie Start.
+  await page.waitForFunction(() => [...document.querySelectorAll('.rtile-img img[data-photo-source]')]
+    .some((img) => img.complete && img.naturalWidth > 0), null, { timeout: 15000 });
+  const visibleRecipePhotos = await page.locator('.rtile-img img[data-photo-source]').evaluateAll((imgs) =>
+    imgs.filter((img) => img.complete && img.naturalWidth > 0).length);
+  assert(visibleRecipePhotos >= 1, 'Brak prawdziwych zdjęć potraw na liście receptur.');
 
   for (const width of [375, 390, 932]) {
     await page.setViewportSize({ width, height: width === 932 ? 430 : 844 });
