@@ -8,6 +8,12 @@
   --z-bg:#f3eee7;--z-panel:#fffaf4;--z-panel-hi:#f5ece2;--z-edge:rgba(51,37,25,.12);
   --z-copy:#251d17;--z-muted:#75695f;--z-copper:#a75f32;--z-copper-hi:#8e4d25;
 }
+@media(prefers-color-scheme:light){
+  :root[data-theme="auto"]{
+    --z-bg:#f3eee7;--z-panel:#fffaf4;--z-panel-hi:#f5ece2;--z-edge:rgba(51,37,25,.12);
+    --z-copy:#251d17;--z-muted:#75695f;--z-copper:#a75f32;--z-copper-hi:#8e4d25;
+  }
+}
 html,body,#app{background:var(--z-bg)!important}
 body{color:var(--z-copy)}
 #view{isolation:isolate}
