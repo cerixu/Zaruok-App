@@ -496,7 +496,16 @@ export function inventoryView() {
     const filteredItems = data.items.filter((item) => (selectedCategory === 'Wszystkie' || (item.category || 'Inne') === selectedCategory) && (!query || clean([item.name, ...(item.aliases || []), item.barcode].join(' ')).includes(query)));
     filterButtons.forEach((b, i) => { b.classList.toggle('on', ['Wszystkie', ...CATEGORIES][i] === selectedCategory); });
     const from = Date.now() - WEEK;
-    const recentWaste = data.movements.filter((m) => m.type === 'waste' && (m.createdAt || 0) >= from).slice(0, 5);
+    const weeklyWasteMoves = data.movements.filter((m) => m.type === 'waste' && (m.createdAt || 0) >= from);
+    const recentWaste = weeklyWasteMoves.slice(0, 5);
+    const wasteByReason = [...weeklyWasteMoves.reduce((groups, movement) => {
+      const reason = movement.reason || 'Inne';
+      const entry = groups.get(reason) || { reason, cost: 0, count: 0 };
+      entry.cost += Number(movement.cost || 0);
+      entry.count += 1;
+      groups.set(reason, entry);
+      return groups;
+    }, new Map()).values()].sort((a, b) => b.cost - a.cost);
     const alertsOn = getSetting('inventoryLowAlerts') !== false;
     const summary = h('div', { class: 'inventory-summary' },
       summaryCard('Produkty', String(data.items.length), 'inventory-stat-products'),
@@ -508,6 +517,17 @@ export function inventoryView() {
       kind: 'ghost', block: true, icon: 'bell', onClick: async () => { await setSetting('inventoryLowAlerts', !alertsOn); paint(); },
     });
     const kids = [summary, alertToggle];
+    if (weeklyWasteMoves.length) {
+      kids.push(h('section', { class: 'inventory-waste-panel card stack' },
+        h('div', { class: 'row between' },
+          h('h2', { class: 'card-title' }, icon('chart-no-axes-column', 20), 'Raport strat · 7 dni'),
+          h('span', { class: 'pill' }, String(weeklyWasteMoves.length) + (weeklyWasteMoves.length === 1 ? ' wpis' : ' wpisów'))),
+        h('p', { class: 'muted small' }, 'Koszt strat pogrupowany według przyczyny. Dane wynikają z zapisanych wpisów strat.'),
+        h('div', { class: 'inventory-waste-total' }, h('span', { class: 'muted small' }, 'Łączny koszt'), h('strong', null, money(weeklyWaste()))),
+        ...wasteByReason.map((entry) => h('div', { class: 'inventory-waste-row' },
+          h('div', { class: 'grow' }, h('strong', null, entry.reason), h('p', { class: 'muted small' }, String(entry.count) + (entry.count === 1 ? ' wpis' : ' wpisów'))),
+          h('strong', { class: 'num' }, money(entry.cost))))));
+    }
     if (expired.length || expiring.length) {
       const urgent = [...expired, ...expiring].sort((a, b) => {
         const da = inventoryExpiryStatus(a.expiryDate).days ?? 99999;
