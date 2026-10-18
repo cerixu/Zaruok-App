@@ -132,8 +132,8 @@ input,textarea,select,.field input,.field textarea,.field select{border-radius:1
 .recipe-modal-title{letter-spacing:-.045em}
 .recipe-modal-section{border-top:1px solid var(--line-soft)}
 /* Glass dock, spacing and interaction polish */
-#tabbar{background:rgba(20,22,23,.88)!important;border:1px solid rgba(255,255,255,.12)!important;box-shadow:0 14px 42px rgba(0,0,0,.32),inset 0 1px 0 rgba(255,255,255,.07)!important;-webkit-backdrop-filter:blur(28px) saturate(150%)!important;backdrop-filter:blur(28px) saturate(150%)!important}
-:root[data-theme="light"] #tabbar{background:rgba(255,253,249,.91)!important;border-color:rgba(44,34,25,.12)!important;box-shadow:0 14px 36px rgba(50,35,20,.12),inset 0 1px 0 rgba(255,255,255,.9)!important}
+#tabbar{background:rgba(20,22,23,.95)!important;border:1px solid rgba(255,255,255,.12)!important;box-shadow:0 14px 42px rgba(0,0,0,.32),inset 0 1px 0 rgba(255,255,255,.07)!important;-webkit-backdrop-filter:blur(28px) saturate(150%)!important;backdrop-filter:blur(28px) saturate(150%)!important}
+:root[data-theme="light"] #tabbar{background:rgba(255,253,249,.95)!important;border-color:rgba(44,34,25,.12)!important;box-shadow:0 14px 36px rgba(50,35,20,.12),inset 0 1px 0 rgba(255,255,255,.9)!important}
 #tabbar .tab{border-radius:15px!important}
 #tabbar .tab.active{background:var(--accent-soft)!important;color:var(--accent-text)!important}
 #tabbar .tab.active .tab-ico{color:var(--accent-text)!important}
