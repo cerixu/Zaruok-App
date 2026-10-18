@@ -10,7 +10,7 @@ import { recipeTile, catTile, sectionHead, metaLine } from './components.js';
 import { pendingCount } from './shopping.js';
 import { db } from './db.js';
 import { backupDue, daysSinceBackup } from './backup.js';
-import { recipeArtUrl, recipeArtFallbackUrl } from './art.js';
+import { recipeArtUrl, recipeArtFallbackUrl, hasGeneratedPhoto } from './art.js';
 
 const plural = (n) => n === 1 ? '1 receptura' :
   (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? n + ' receptury' : n + ' receptur');
@@ -94,7 +94,7 @@ export function startView() {
 
     const sorted = [...all].sort((a, b) =>
       (b.updatedAt || 0) - (a.updatedAt || 0) || String(a.name).localeCompare(String(b.name), 'pl'));
-    const feature = sorted.find((r) => r.favorite) || sorted[0] || null;
+    const feature = sorted.find((r) => r.favorite && hasGeneratedPhoto(r)) || sorted.find(hasGeneratedPhoto) || sorted.find((r) => r.favorite) || sorted[0] || null;
 
     const kids = [
       h('div', { class: 'zf-head' },
