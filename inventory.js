@@ -107,17 +107,52 @@ function expiryText(item, now = new Date()) {
 function lowStock(item) { return Number(item.minStock || 0) > 0 && Number(item.stock || 0) <= Number(item.minStock || 0); }
 
 async function loadData() {
-  const [items, movements] = await Promise.all([db.getAll('inventoryItems'), db.getAll('inventoryMovements')]);
+  const [items, movements, storedLots] = await Promise.all([
+    db.getAll('inventoryItems'), db.getAll('inventoryMovements'), db.getAll('inventoryLots'),
+  ]);
+  // Bezpieczna migracja: dotychczasowy stan staje się jedną partią tylko raz.
+  const knownItems = new Set(storedLots.map((lot) => lot.inventoryId));
+  const legacyLots = items.filter((item) => !knownItems.has(item.id) && Number(item.stock || 0) > 0).map((item) => ({
+    id: uid('lot_'), inventoryId: item.id, name: item.name, quantity: Number(item.stock || 0),
+    unit: item.unit || 'kg', expiryDate: item.expiryDate || '', receivedAt: item.createdAt || Date.now(),
+    unitPrice: Number(item.pricePerUnit || 0), createdAt: Date.now(), legacy: true,
+  }));
+  if (legacyLots.length) await db.putMany('inventoryLots', legacyLots);
+  const lots = [...storedLots, ...legacyLots];
   return {
     items: items.sort((a, b) => String(a.name).localeCompare(String(b.name), 'pl')),
     movements: movements.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0)),
+    lots: lots.sort((a, b) => (a.expiryDate || '9999-12-31').localeCompare(b.expiryDate || '9999-12-31') || (a.receivedAt || 0) - (b.receivedAt || 0)),
+  };
+}
+function consumeFromLots(item, lots, amount) {
+  let remaining = Math.max(0, Number(amount) || 0);
+  const eligible = lots.filter((lot) => lot.inventoryId === item.id && Number(lot.quantity || 0) > 0)
+    .sort((a, b) => (a.expiryDate || '9999-12-31').localeCompare(b.expiryDate || '9999-12-31') || (a.receivedAt || 0) - (b.receivedAt || 0));
+  const allocations = [];
+  for (const lot of eligible) {
+    if (remaining <= 0.000001) break;
+    const take = Math.min(Number(lot.quantity), remaining);
+    lot.quantity = Math.round((Number(lot.quantity) - take) * 10000) / 10000;
+    lot.updatedAt = Date.now();
+    remaining = Math.round((remaining - take) * 10000) / 10000;
+    allocations.push({ lotId: lot.id, amount: take });
+  }
+  return { allocations, shortage: remaining };
+}
+function addStockLot(item, quantity, options = {}) {
+  return {
+    id: uid('lot_'), inventoryId: item.id, name: item.name, quantity: Number(quantity), unit: item.unit,
+    expiryDate: options.expiryDate || '', receivedAt: options.receivedAt || Date.now(),
+    unitPrice: options.unitPrice == null ? Number(item.pricePerUnit || 0) : Number(options.unitPrice),
+    createdAt: Date.now(),
   };
 }
 
 export async function deductRecipeIngredients(recipe, factor = 1) {
   factor = Number(factor);
   if (!Number.isFinite(factor) || factor <= 0) throw new Error('Nieprawidłowa skala receptury.');
-  const { items } = await loadData();
+  const { items, lots } = await loadData();
   const changed = [], movements = [], missing = [];
   const ingredients = (recipe.sections || []).flatMap((s) => s.ingredients || []);
   for (const ing of ingredients) {
@@ -126,23 +161,26 @@ export async function deductRecipeIngredients(recipe, factor = 1) {
     if (!item) { missing.push(ing.name); continue; }
     const amount = convertInventoryAmount(Number(ing.amount) * factor, ing.unit, item.unit, ing.name);
     if (amount == null) { missing.push(ing.name + ' (inna jednostka)'); continue; }
+    const allocation = consumeFromLots(item, lots, amount);
     item.stock = Math.round((Number(item.stock || 0) - amount) * 10000) / 10000;
     item.updatedAt = Date.now();
     changed.push(item);
     movements.push({
       id: uid('mov_'), inventoryId: item.id, name: item.name, type: 'cook',
       amount: -amount, unit: item.unit, cost: amount * Number(item.pricePerUnit || 0),
+      allocations: allocation.allocations, shortage: allocation.shortage,
       reason: recipe.name || 'Gotowanie', recipeId: recipe.id || '', createdAt: Date.now() + movements.length,
     });
   }
   if (changed.length) await db.putMany('inventoryItems', changed);
+  if (lots.length) await db.putMany('inventoryLots', lots);
   if (movements.length) await db.putMany('inventoryMovements', movements);
   return { deducted: changed.length, missing: [...new Set(missing)], low: changed.filter(lowStock).map((x) => x.name) };
 }
 
 export function inventoryView() {
   let active = true;
-  let data = { items: [], movements: [] };
+  let data = { items: [], movements: [], lots: [] };
   const right = h('div', { class: 'row gap inventory-head-actions' },
     iconBtn('scan', 'Skanuj kod EAN', openScanner),
     iconBtn('plus', 'Dodaj produkt do magazynu', () => openItemSheet()));
@@ -175,6 +213,12 @@ export function inventoryView() {
   }
   async function adjust(item, delta) {
     const next = { ...item, stock: Math.round((Number(item.stock || 0) + delta) * 10000) / 10000, updatedAt: Date.now() };
+    if (delta > 0) await db.put('inventoryLots', addStockLot(next, delta));
+    else {
+      const { lots } = await loadData();
+      consumeFromLots(item, lots, Math.abs(delta));
+      if (lots.length) await db.putMany('inventoryLots', lots);
+    }
     await db.put('inventoryItems', next);
     await db.put('inventoryMovements', {
       id: uid('mov_'), inventoryId: item.id, name: item.name, type: 'adjustment',
@@ -241,6 +285,7 @@ export function inventoryView() {
           const n = parseNum(amount.value);
           if (n == null || n <= 0) { toast('Podaj ilość większą od zera', { type: 'error' }); return false; }
           const next = { ...item, stock: Math.round((Number(item.stock || 0) - n) * 10000) / 10000, updatedAt: Date.now() };
+          const { lots } = await loadData(); consumeFromLots(item, lots, n); if (lots.length) await db.putMany('inventoryLots', lots);
           await db.put('inventoryItems', next);
           await db.put('inventoryMovements', {
             id: uid('wst_'), inventoryId: item.id, name: item.name, type: 'waste', amount: -n, unit: item.unit,
