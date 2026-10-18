@@ -183,6 +183,9 @@ try {
   const photoFirstStylesLoaded = await page.evaluate(() => Array.from(document.styleSheets).some((s) => s.href && s.href.includes('zarlok-v2.css')));
   assert(photoFirstStylesLoaded, 'Brak nowej warstwy graficznej foto-first.');
 
+  const redesignStylesLoaded = await page.evaluate(() => Array.from(document.styleSheets).some((s) => s.href && s.href.includes('design-overhaul.css')));
+  assert(redesignStylesLoaded, 'Brak przebudowanego układu Żarłoka 2.1.0.');
+
   const designStylesLoaded = await page.evaluate(() => Array.from(document.styleSheets).some((s) => s.href && s.href.includes('claude-completion.css')));
   assert(designStylesLoaded, 'Brak pełnej warstwy stylu Claude / Liquid Glass.');
 
