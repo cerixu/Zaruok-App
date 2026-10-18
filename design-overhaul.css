@@ -27,8 +27,8 @@ body{color:var(--z-copy)}
 /* START — pełnoekranowa karta dania, kafle działań i czytelne skróty. */
 .start-final .scroll{background:transparent!important}
 .start-final .content{width:100%;max-width:760px;padding:12px var(--z-gutter) calc(116px + env(safe-area-inset-bottom,0px))!important;gap:0!important}
-.start-final .zf-head{align-items:center;padding:20px 2px 12px;gap:12px}
-.start-final .zf-kicker{font-size:.61rem;letter-spacing:.19em;color:var(--z-copper-hi)!important}
+.start-final .zf-head{align-items:center;padding:20px 2px 12px;gap:12px;margin-top:0!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important}
+.start-final .zf-head::after{display:none!important}.start-final .zf-kicker{font-size:.61rem;letter-spacing:.19em;color:var(--z-copper-hi)!important}
 .start-final .zf-head h1{font-size:clamp(2.6rem,11vw,3.6rem)!important;font-weight:650!important;letter-spacing:-.075em!important;line-height:.98}
 .start-final .zf-head p{font-size:.9rem;color:var(--z-muted)!important;margin-top:11px}
 .start-final .zf-head-meta{display:block;margin-top:9px;color:var(--z-muted);font-size:.69rem}
