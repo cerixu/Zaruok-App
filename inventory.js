@@ -520,7 +520,7 @@ export function inventoryView() {
     if (weeklyWasteMoves.length) {
       kids.push(h('section', { class: 'inventory-waste-panel card stack' },
         h('div', { class: 'row between' },
-          h('h2', { class: 'card-title' }, icon('chart-no-axes-column', 20), 'Raport strat · 7 dni'),
+          h('h2', { class: 'card-title' }, icon('alert', 20), 'Raport strat · 7 dni'),
           h('span', { class: 'pill' }, String(weeklyWasteMoves.length) + (weeklyWasteMoves.length === 1 ? ' wpis' : ' wpisów'))),
         h('p', { class: 'muted small' }, 'Koszt strat pogrupowany według przyczyny. Dane wynikają z zapisanych wpisów strat.'),
         h('div', { class: 'inventory-waste-total' }, h('span', { class: 'muted small' }, 'Łączny koszt'), h('strong', null, money(weeklyWaste()))),
