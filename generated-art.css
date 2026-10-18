@@ -12,13 +12,13 @@
 .heart{transform-origin:center;transition:transform .22s cubic-bezier(.2,.8,.2,1),color .18s ease,background .18s ease}
 .heart.on{animation:zarlok-heart-pop .32s cubic-bezier(.2,.8,.2,1)}
 @keyframes zarlok-heart-pop{0%{transform:scale(.82)}55%{transform:scale(1.18)}100%{transform:scale(1)}}
-#tabbar .tab:active{transform:translateY(1px) scale(.96)}
-#tabbar .tab .tab-icon{transition:transform .24s cubic-bezier(.2,.8,.2,1),filter .2s ease}
-#tabbar .tab.active .tab-icon{transform:translateY(-1px) scale(1.045);filter:drop-shadow(0 3px 8px var(--accent-glow))}
+#tabbar .tab .tab-ico{transition:transform .24s cubic-bezier(.2,.8,.2,1),filter .2s ease;transform-origin:center}
+#tabbar .tab:active .tab-ico{transform:scale(.91)}
+#tabbar .tab.on .tab-ico{transform:translateY(-1px) scale(1.045);filter:drop-shadow(0 3px 8px var(--accent-glow))}
 .btn:focus-visible,.iconbtn:focus-visible,.heart:focus-visible,.tab:focus-visible{outline:2px solid var(--accent-strong);outline-offset:3px}
 .rthumb img.art,.rtile-img img.art,.ctile-img img.art{animation:none}
 @media(prefers-reduced-motion:reduce){
-  .rthumb img,.rtile-img img,.ctile-img img,.zf-feature-img img,.rcard,.rtile,.ctile,.inventory-item,.zf-action,.zf-tool,.heart,#tabbar .tab,#tabbar .tab .tab-icon{animation:none!important;transition:none!important;transform:none!important;filter:none!important}
+  .rthumb img,.rtile-img img,.ctile-img img,.zf-feature-img img,.rcard,.rtile,.ctile,.inventory-item,.zf-action,.zf-tool,.heart,#tabbar .tab,#tabbar .tab .tab-ico{animation:none!important;transition:none!important;transform:none!important;filter:none!important}
 }
 
 /* Znak aplikacji — oryginalna grafika wygenerowana w Adobe Firefly. */
