@@ -5,6 +5,15 @@
    ========================================================================== */
 
 export const CHANGELOG = Object.freeze({
+  '1.9.31': Object.freeze({
+    intro: 'Oryginalne zdjęcia potraw i bardziej dopracowane mikroanimacje.',
+    items: [
+      'Wygenerowane w Adobe Firefly zdjęcia pizzy, carbonary, risotta i łososia są przypisane do pasujących receptur.',
+      'Jeśli zdjęcie nie załaduje się lub aplikacja działa offline, automatycznie wraca ilustracja SVG.',
+      'Dodano subtelne wejście zdjęć, zoom kart, sprężyste serca ulubionych i lepsze stany fokusu.',
+      'Ustawienie systemowe „Ogranicz ruch” wyłącza dodatkowe animacje.'
+    ],
+  }),
   '1.9.30': Object.freeze({
     intro: 'Dopracowane animacje i płynniejsze reakcje interfejsu.',
     items: [
