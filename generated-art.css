@@ -18,7 +18,7 @@
 .btn:focus-visible,.iconbtn:focus-visible,.heart:focus-visible,.tab:focus-visible{outline:2px solid var(--accent-strong);outline-offset:3px}
 .rthumb img.art,.rtile-img img.art,.ctile-img img.art{animation:none}
 @media(prefers-reduced-motion:reduce){
-  .rthumb img,.rtile-img img,.ctile-img img,.zf-feature-img img,.rcard,.rtile,.ctile,.inventory-item,.zf-action,.zf-tool,.heart,#tabbar .tab,#tabbar .tab .tab-ico{animation:none!important;transition:none!important;transform:none!important;filter:none!important}
+  .rthumb img,.rtile-img img,.ctile-img img,.zf-feature-img img,.rcard,.rtile,.ctile,.inventory-item,.zf-action,.zf-tool,.heart,#tabbar .tab,#tabbar .tab .tab-ico{animation:none!important;transition:none!important;filter:none!important}
 }
 
 /* Znak aplikacji — oryginalna grafika wygenerowana w Adobe Firefly. */
