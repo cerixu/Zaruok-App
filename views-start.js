@@ -93,7 +93,14 @@ export function startView() {
 
     const sorted = [...all].sort((a, b) =>
       (b.updatedAt || 0) - (a.updatedAt || 0) || String(a.name).localeCompare(String(b.name), 'pl'));
-    const feature = sorted.find((r) => r.favorite) || sorted[0] || null;
+    // Hero ma pokazywać zdjęcie, jeśli aplikacja ma dla dania prawdziwy obraz.
+    // Nie wybieraj ilustracji SVG dla samego faktu, że receptura była ostatnio zmieniona.
+    const hasPhoto = (r) => !!r.thumb || recipeArtUrl(r).startsWith('./assets/food/');
+    const feature = sorted.find((r) => r.favorite && hasPhoto(r))
+      || sorted.find(hasPhoto)
+      || sorted.find((r) => r.favorite)
+      || sorted[0]
+      || null;
 
     const kids = [
       h('div', { class: 'zf-head' },
