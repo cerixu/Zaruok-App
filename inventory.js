@@ -96,11 +96,13 @@ export function inventoryExpiryStatus(expiryDate, now = new Date()) {
 }
 function expiryText(item, now = new Date()) {
   const info = inventoryExpiryStatus(item.expiryDate, now);
-  if (info.status === 'none' || info.status === 'ok') return '';
-  if (info.status === 'expired') { const [y, m, d] = item.expiryDate.split('-').map(Number); return 'Po terminie · ' + new Date(y, m - 1, d).toLocaleDateString('pl-PL'); }
+  if (info.status === 'none') return '';
   const date = (() => { const [y, m, d] = item.expiryDate.split('-').map(Number); return new Date(y, m - 1, d).toLocaleDateString('pl-PL'); })();
+  if (info.status === 'expired') return 'Po terminie · ' + date;
   if (info.status === 'today') return 'Termin dzisiaj · ' + date;
-  return 'Termin za ' + info.days + ' dni · ' + date;
+  if (info.days === 1) return 'Termin jutro · ' + date;
+  if (info.status === 'soon') return 'Termin za ' + info.days + ' dni · ' + date;
+  return 'Termin: ' + date;
 }
 function lowStock(item) { return Number(item.minStock || 0) > 0 && Number(item.stock || 0) <= Number(item.minStock || 0); }
 
