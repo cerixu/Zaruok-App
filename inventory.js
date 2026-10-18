@@ -84,6 +84,24 @@ export function inventoryNamesMatch(item, name) {
     return candidate === target || sameInflectedName(candidate, target);
   });
 }
+/** Status terminu ważności liczony według lokalnej daty, bez przesunięć UTC. */
+export function inventoryExpiryStatus(expiryDate, now = new Date()) {
+  if (!/^\\d{4}-\\d{2}-\\d{2}$/.test(String(expiryDate || ''))) return { status: 'none', days: null };
+  const [year, month, day] = String(expiryDate).split('-').map(Number);
+  const expiry = new Date(year, month - 1, day);
+  if (expiry.getFullYear() !== year || expiry.getMonth() !== month - 1 || expiry.getDate() !== day) return { status: 'none', days: null };
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const days = Math.round((expiry.getTime() - today.getTime()) / 86400000);
+  return { status: days < 0 ? 'expired' : days === 0 ? 'today' : days <= 3 ? 'soon' : 'ok', days };
+}
+function expiryText(item, now = new Date()) {
+  const info = inventoryExpiryStatus(item.expiryDate, now);
+  if (info.status === 'none' || info.status === 'ok') return '';
+  if (info.status === 'expired') return 'Po terminie · ' + new Date(...item.expiryDate.split('-').map((v, i) => i === 1 ? Number(v) - 1 : Number(v))).toLocaleDateString('pl-PL');
+  const date = (() => { const [y, m, d] = item.expiryDate.split('-').map(Number); return new Date(y, m - 1, d).toLocaleDateString('pl-PL'); })();
+  if (info.status === 'today') return 'Termin dzisiaj · ' + date;
+  return 'Termin za ' + info.days + ' dni · ' + date;
+}
 function lowStock(item) { return Number(item.minStock || 0) > 0 && Number(item.stock || 0) <= Number(item.minStock || 0); }
 
 async function loadData() {
