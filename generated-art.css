@@ -20,5 +20,5 @@
 #tabbar .tab:active{transform:none!important}
 #tabbar .tab:active .tab-ico{transform:scale(.92)!important}
 
-/* Znak aplikacji — oryginalna grafika wygenerowana w Adobe Firefly. */
-.boot-shell-mark{background-image:url("https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:8b0e4f74-1852-4cbe-9492-e2422fcaba04");background-position:center;background-size:cover;background-repeat:no-repeat;border-color:rgba(217,151,97,.4);color:transparent;font-size:0;box-shadow:0 0 0 8px rgba(217,151,97,.035),0 12px 34px rgba(0,0,0,.25)}
+/* Znak aplikacji: lokalny, lekki splash bez zależności od sieci. */
+.boot-shell-mark{background:linear-gradient(145deg,rgba(230,165,107,.22),rgba(169,99,55,.08) 72%),#171311;background-position:center;background-size:cover;background-repeat:no-repeat;border-color:rgba(217,151,97,.4);color:#f3c18f;font-size:30px;box-shadow:0 0 0 8px rgba(217,151,97,.035),0 12px 34px rgba(0,0,0,.25)}
