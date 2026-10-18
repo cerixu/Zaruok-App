@@ -6,6 +6,8 @@ import { navigate } from './router.js';
 import { catName, catIcon, ORIGINS, toggleFavorite } from './recipes.js';
 import { fmtMinutes, fmtAmount, fmtKitchenAmount, fmtNum, fmtUnit } from './util.js';
 import { recipeArtUrl, recipeArtFallbackUrl, categoryArtUrl } from './art.js';
+
+const isSvgArt = (src) => String(src || '').startsWith('data:image/svg+xml');
 import { estimateKcal } from './nutrition.js';
 
 export const originOf = (code) => ORIGINS.find((o) => o.code === code);
@@ -49,7 +51,8 @@ export function heartBtn(r, onToggle) {
 
 /** Miniatura: własne zdjęcie, a gdy go brak — ilustracja potrawy rysowana w kodzie. */
 export function thumbEl(r, cls = '') {
-  const img = h('img', { class: r.thumb ? '' : 'art', src: r.thumb || recipeArtUrl(r), alt: r.name ? 'Zdjęcie: ' + r.name : '', loading: 'lazy', decoding: 'async',
+  const src = r.thumb || recipeArtUrl(r);
+  const img = h('img', { class: isSvgArt(src) ? 'art' : '', src, alt: r.name ? 'Zdjęcie: ' + r.name : '', loading: 'lazy', decoding: 'async',
     onError: (e) => { const el = e.currentTarget; if (el.dataset.artFallback) return; el.dataset.artFallback = '1'; el.classList.add('art'); el.src = recipeArtFallbackUrl(r); } });
   return h('div', { class: 'rthumb ' + cls }, img);
 }
@@ -69,7 +72,7 @@ export function recipeTile(r, { onFav } = {}) {
   const href = '/recipe/' + encodeURIComponent(r.id);
   return h('div', { class: 'rtile' + (r.traditional ? ' trad-tile' : '') },
     h('a', { class: 'rtile-link', href: '#' + href, 'aria-label': r.name, onClick: (e) => { e.preventDefault(); navigate(href); } },
-      h('div', { class: 'rtile-img' }, h('img', { class: r.thumb ? '' : 'art', src: r.thumb || recipeArtUrl(r), alt: r.name ? 'Zdjęcie: ' + r.name : '', loading: 'lazy', decoding: 'async', onError: (e) => { const el = e.currentTarget; if (el.dataset.artFallback) return; el.dataset.artFallback = '1'; el.classList.add('art'); el.src = recipeArtFallbackUrl(r); } })),
+      h('div', { class: 'rtile-img' }, (() => { const src = r.thumb || recipeArtUrl(r); return h('img', { class: isSvgArt(src) ? 'art' : '', src, alt: r.name ? 'Zdjęcie: ' + r.name : '', loading: 'lazy', decoding: 'async', onError: (e) => { const el = e.currentTarget; if (el.dataset.artFallback) return; el.dataset.artFallback = '1'; el.classList.add('art'); el.src = recipeArtFallbackUrl(r); } }); })()),
       h('div', { class: 'rtile-row' },
         h('div', { class: 'rtile-name' }, r.traditional ? h('span', { class: 'rtile-trad' }, tradMark(r)) : null, r.name || 'Bez nazwy'),
         sideInfo(r))),
