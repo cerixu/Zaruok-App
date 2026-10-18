@@ -1057,3 +1057,15 @@ body.kb-open #tabbar { display: none; }
 :root[data-theme="light"] .inventory-item.is-expired { background:rgba(190,45,45,.035); }
 :root[data-theme="light"] .inventory-item.is-expiring { background:rgba(170,110,0,.035); }
 @media(max-width:360px) { .inventory-expiry-row { gap:7px; } .inventory-expiry-row > strong { font-size:.8rem; } }
+
+
+/* Żarłok 1.9.28 — tygodniowy raport strat według przyczyny */
+.inventory-waste-panel { border-color:rgba(255,91,91,.18); background:linear-gradient(145deg,rgba(255,91,91,.045),rgba(255,255,255,.008)),var(--surface); }
+.inventory-waste-total { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:11px 12px; border-radius:13px; background:rgba(255,91,91,.07); }
+.inventory-waste-total strong { font-size:1.05rem; letter-spacing:-.025em; }
+.inventory-waste-row { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 0; border-bottom:1px solid var(--zc-glass-edge); }
+.inventory-waste-row:last-child { border-bottom:0; padding-bottom:0; }
+.inventory-waste-row .grow { min-width:0; }
+.inventory-waste-row .grow strong { overflow-wrap:anywhere; }
+.inventory-waste-row p { margin:3px 0 0; }
+@media(max-width:360px) { .inventory-waste-row { gap:8px; } .inventory-waste-row > strong { font-size:.85rem; } }
