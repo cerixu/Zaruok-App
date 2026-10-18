@@ -172,8 +172,8 @@ export async function importBackup(backup, mode) {
 
 /** Kasuje wszystko i przywraca stan początkowy (bez przykładowych receptur — zależnie od flagi). */
 export async function wipeAll({ keepSeeds = false } = {}) {
-  await db.tx(['recipes', 'ingredients', 'categories', 'shoppingItems', 'settings', 'history', 'inventoryItems', 'inventoryMovements'], (t) => {
-    ['recipes', 'ingredients', 'categories', 'shoppingItems', 'settings', 'history', 'inventoryItems', 'inventoryMovements'].forEach((s) => t.clear(s));
+  await db.tx(['recipes', 'ingredients', 'categories', 'shoppingItems', 'settings', 'history', 'inventoryItems', 'inventoryMovements', 'inventoryLots'], (t) => {
+    ['recipes', 'ingredients', 'categories', 'shoppingItems', 'settings', 'history', 'inventoryItems', 'inventoryMovements', 'inventoryLots'].forEach((s) => t.clear(s));
     if (!keepSeeds) t.put('settings', { key: 'seeded', value: true });
   });
   await loadAll();
