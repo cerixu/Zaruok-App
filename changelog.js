@@ -5,6 +5,18 @@
    ========================================================================== */
 
 export const CHANGELOG = Object.freeze({
+  '2.0.0': Object.freeze({
+    intro: 'Żarłok 2.0 — nowy, fotograficzny wygląd zaprojektowany pod iPhone’a.',
+    items: [
+      'Nowy układ ekranu głównego z dużą kartą dania i czytelniejszą nawigacją.',
+      '38 lokalnych fotografii potraw — od pizzy, makaronów i zup po pierogi, pieczywo, desery, dania azjatyckie i koktajle.',
+      'Karty receptur i ekran szczegółów pokazują szerokie zdjęcia zamiast okrągłych miniaturek.',
+      'Naprawiono oznaczanie zdjęć jako ilustracji, przez które fotografia była niepotrzebnie powiększana.',
+      'Nowa paleta grafitowa i miedziana, dopracowane przyciski, karty oraz dolny pasek.',
+      'Zdjęcia są zapisane lokalnie i działają offline; jeśli konkretne zdjęcie nie pasuje do receptury, zostaje lokalna ilustracja zastępcza. Dane i funkcje receptur pozostają bez zmian.'
+    ],
+  }),
+
   '1.9.31': Object.freeze({
     intro: 'Oryginalne zdjęcia potraw i bardziej dopracowane mikroanimacje.',
     items: [

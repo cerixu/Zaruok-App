@@ -115,6 +115,19 @@ try {
     assert(releaseCopy.includes(expectedText), 'Okno startowe nie pokazuje wpisu changeloga: ' + expectedText);
   }
   await dismissWhatsNew();
+  const heroPhotoDebug = await page.locator('.zf-feature-img img').first().evaluate((img) => {
+    const snap = (el) => {
+      const s = getComputedStyle(el), r = el.getBoundingClientRect();
+      return {tag:el.tagName,cls:el.className,display:s.display,visibility:s.visibility,opacity:s.opacity,zIndex:s.zIndex,position:s.position,
+        width:Math.round(r.width),height:Math.round(r.height),top:Math.round(r.top),left:Math.round(r.left),borderRadius:s.borderRadius,background:s.backgroundColor,overflow:s.overflow};
+    };
+    return {alt:img.alt,complete:img.complete,naturalWidth:img.naturalWidth,photoRequested:img.dataset.photoRequested||'',photoSource:img.dataset.photoSource||'',
+      srcPrefix:String(img.currentSrc||img.src||'').slice(0,70),image:snap(img),wrapper:snap(img.parentElement),ring:snap(img.parentElement.parentElement),
+      copy:snap(img.closest('.zf-feature')?.querySelector('.zf-feature-copy')),feature:snap(img.closest('.zf-feature'))};
+  });
+  console.log('HERO_PHOTO_DEBUG ' + JSON.stringify(heroPhotoDebug));
+  assert(heroPhotoDebug.photoSource && heroPhotoDebug.naturalWidth > 0 && heroPhotoDebug.image.width > 100 && heroPhotoDebug.wrapper.width > 100,
+    'Zdjęcie wyróżnionej receptury nie wypełnia karty: ' + JSON.stringify(heroPhotoDebug));
 
   const semanticIcons = await page.evaluate(async () => {
     const mod = await import(new URL('views-detail.js', location.href).href);
