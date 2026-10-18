@@ -115,6 +115,12 @@ try {
     assert(releaseCopy.includes(expectedText), 'Okno startowe nie pokazuje wpisu changeloga: ' + expectedText);
   }
   await dismissWhatsNew();
+  const heroPhotoDebug = await page.locator('.zf-feature-img img').first().evaluate((img) => ({
+    alt: img.alt, className: img.className, complete: img.complete, naturalWidth: img.naturalWidth,
+    photoRequested: img.dataset.photoRequested || '', photoSource: img.dataset.photoSource || '',
+    srcPrefix: String(img.currentSrc || img.src || '').slice(0, 90),
+  }));
+  console.log('HERO_PHOTO_DEBUG ' + JSON.stringify(heroPhotoDebug));
 
   const semanticIcons = await page.evaluate(async () => {
     const mod = await import(new URL('views-detail.js', location.href).href);
