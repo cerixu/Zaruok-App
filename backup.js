@@ -141,7 +141,7 @@ export async function importBackup(backup, mode) {
     const inventoryExisting = new Map((await db.getAll('inventoryItems')).map((x) => [x.id, x]));
     const movementIds = new Set((await db.getAll('inventoryMovements')).map((x) => x.id));
     const lotIds = new Set((await db.getAll('inventoryLots')).map((x) => x.id));
-    await db.tx(['recipes', 'ingredients', 'categories', 'shoppingItems', 'history', 'inventoryItems', 'inventoryMovements'], (t) => {
+    await db.tx(['recipes', 'ingredients', 'categories', 'shoppingItems', 'history', 'inventoryItems', 'inventoryMovements', 'inventoryLots'], (t) => {
       recipes.forEach((r) => {
         const cur = existing.get(r.id);
         if (!cur || (r.updatedAt || 0) > (cur.updatedAt || 0)) t.put('recipes', r);
