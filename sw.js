@@ -21,7 +21,7 @@ const CORE = [
   'components.js', 'shopping.js', 'art.js', 'art-kit.js', 'art-extra.js', 'nutrition.js', 'seeds.js', 'seeds-pl.js', 'seeds-world.js', 'seeds-more.js', 'seeds-curated.js', 'timers.js', 'kitchen.js', 'tools-data.js', 'calc-kit.js', 'search.js',
   'views-start.js', 'views-recipes.js', 'views-detail.js', 'views-editor.js', 'views-cook.js', 'views-cook-home.js', 'views-more.js', 'views-calc.js', 'views-tools.js', 'views-guide.js', 'views-search.js', 'views-import.js', 'views-settings.js',
   'apple-touch-icon.png', 'icon-192.png', 'icon-512.png', 'icon-maskable-512.png',
-  'assets/food/pizza-margherita.jpg', 'assets/food/tagliatelle-carbonara.jpg', 'assets/food/mushroom-risotto.jpg', 'assets/food/salmon-lemon-butter.jpg',
+  'assets/food/pizza-margherita.jpg', 'assets/food/tagliatelle-carbonara.jpg', 'assets/food/mushroom-risotto.jpg', 'assets/food/salmon-lemon-butter.jpg', 'assets/brand/mark.jpg',
   'poppins-300.woff', 'poppins-400.woff', 'poppins-500.woff', 'poppins-700.woff',
 ];
 
