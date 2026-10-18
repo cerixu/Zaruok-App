@@ -5,7 +5,7 @@ import { h, icon, toast } from './ui.js';
 import { navigate } from './router.js';
 import { catName, catIcon, ORIGINS, toggleFavorite } from './recipes.js';
 import { fmtMinutes, fmtAmount, fmtKitchenAmount, fmtNum, fmtUnit } from './util.js';
-import { recipeArtUrl, recipeArtFallbackUrl, categoryArtUrl } from './art.js';
+import { recipeArtUrl, recipeArtFallbackUrl, recipeArtIsPhoto, categoryArtUrl } from './art.js';
 import { estimateKcal } from './nutrition.js';
 
 export const originOf = (code) => ORIGINS.find((o) => o.code === code);
@@ -49,7 +49,7 @@ export function heartBtn(r, onToggle) {
 
 /** Miniatura: własne zdjęcie, a gdy go brak — ilustracja potrawy rysowana w kodzie. */
 export function thumbEl(r, cls = '') {
-  const img = h('img', { class: r.thumb ? '' : 'art', src: r.thumb || recipeArtUrl(r), alt: r.name ? 'Zdjęcie: ' + r.name : '', loading: 'lazy', decoding: 'async',
+  const img = h('img', { class: (r.thumb || recipeArtIsPhoto(r)) ? '' : 'art', src: r.thumb || recipeArtUrl(r), alt: r.name ? 'Zdjęcie: ' + r.name : '', loading: 'lazy', decoding: 'async',
     onError: (e) => { const el = e.currentTarget; if (el.dataset.artFallback) return; el.dataset.artFallback = '1'; el.classList.add('art'); el.src = recipeArtFallbackUrl(r); } });
   return h('div', { class: 'rthumb ' + cls }, img);
 }
