@@ -57,7 +57,7 @@ const CATEGORY_PHOTOS = Object.freeze({
   'cat-pieczywo': 'sourdough',
   'cat-zupy': 'soup-clear',
   'cat-salatki': 'salad',
-  'cat-cocktaile': 'aperol',
+  'cat-cocktaile': 'cocktail',
 });
 
 const normalise = (value) => String(value || '')
@@ -88,7 +88,7 @@ const RECIPE_RULES = [
   ['bibimbap', /\bbibimbap\b/],
   ['curry-chickpea', /\b(curry z ciecierzycy|chickpea curry)\b/],
   ['bruschetta', /\bbruschetta\b/],
-  ['cocktail', /\b(moscow mule|mojito|negroni|margarita|koktajl|cocktail|drink)\b/],
+  ['cocktail', /\b(americano|old fashioned|whiskey sour|gin tonic|moscow mule|mojito|negroni|margarita|koktajl|cocktail|drink)\b/],
   ['lasagna', /\b(lasagna|lasagne)\b/],
   ['chicken-curry', /\b(tikka masala|butter chicken|chicken curry)\b/],
   ['schnitzel', /\b(kotlet schabowy|schabowy|wiener schnitzel|schnitzel)\b/],
