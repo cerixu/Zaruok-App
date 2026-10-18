@@ -22,6 +22,9 @@ const CORE = [
   'views-start.js', 'views-recipes.js', 'views-detail.js', 'views-editor.js', 'views-cook.js', 'views-cook-home.js', 'views-more.js', 'views-calc.js', 'views-tools.js', 'views-guide.js', 'views-search.js', 'views-import.js', 'views-settings.js',
   'assets/food/pizza.jpg.b64', 'assets/food/carbonara.jpg.b64', 'assets/food/risotto.jpg.b64', 'assets/food/salmon.jpg.b64', 'assets/food/steak.jpg.b64', 'assets/food/dessert.jpg.b64',
   'assets/food/salad.jpg.b64', 'assets/food/soup.jpg.b64', 'assets/food/seafood.jpg.b64', 'assets/food/pierogi.jpg.b64', 'assets/food/burger.jpg.b64', 'assets/food/focaccia.jpg.b64',
+  'assets/food/pasta-tomato.jpg.b64', 'assets/food/lasagna.jpg.b64', 'assets/food/chicken-curry.jpg.b64', 'assets/food/schnitzel.jpg.b64',
+  'assets/food/soup-tomato.jpg.b64', 'assets/food/soup-clear.jpg.b64', 'assets/food/soup-pumpkin.jpg.b64', 'assets/food/sourdough.jpg.b64',
+  'assets/food/cake.jpg.b64', 'assets/food/cocktail.jpg.b64', 'assets/food/asian-noodles.jpg.b64', 'assets/food/fried-rice.jpg.b64',
   'apple-touch-icon.png', 'icon-192.png', 'icon-512.png', 'icon-maskable-512.png',
   'poppins-300.woff', 'poppins-400.woff', 'poppins-500.woff', 'poppins-700.woff',
 ];
