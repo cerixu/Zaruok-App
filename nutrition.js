@@ -29,7 +29,7 @@ const SPOON = { 'łyżka': 15, 'łyżeczka': 5, szczypta: 0.4 };
 /** Szacunkowa masa jednej całej sztuki w gramach albo null, gdy brak wiarygodnego dopasowania. */
 export function pieceGrams(name) {
   const n = norm(name);
-  if (!n || /mielon|proszek|suszon|koncentrat|passata|sos(?:\\s|$)|przypraw|w kostce|w plastr|posiek|start/.test(n)) return null;
+  if (!n || /mielon|proszek|suszon|koncentrat|passata|sos|przypraw|w kostce|w plastr|posiek|start/.test(n)) return null;
   const row = T.find(([re, , grams]) => Number.isFinite(grams) && grams > 0 && re.test(n));
   return row ? row[2] : null;
 }
