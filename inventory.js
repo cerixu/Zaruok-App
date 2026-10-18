@@ -130,6 +130,7 @@ function consumeFromLots(item, lots, amount) {
   const eligible = lots.filter((lot) => lot.inventoryId === item.id && Number(lot.quantity || 0) > 0)
     .sort((a, b) => (a.expiryDate || '9999-12-31').localeCompare(b.expiryDate || '9999-12-31') || (a.receivedAt || 0) - (b.receivedAt || 0));
   const allocations = [];
+  let cost = 0;
   for (const lot of eligible) {
     if (remaining <= 0.000001) break;
     const take = Math.min(Number(lot.quantity), remaining);
@@ -137,8 +138,9 @@ function consumeFromLots(item, lots, amount) {
     lot.updatedAt = Date.now();
     remaining = Math.round((remaining - take) * 10000) / 10000;
     allocations.push({ lotId: lot.id, amount: take });
+    cost += take * Number(lot.unitPrice || item.pricePerUnit || 0);
   }
-  return { allocations, shortage: remaining };
+  return { allocations, shortage: remaining, cost };
 }
 function addStockLot(item, quantity, options = {}) {
   return {
@@ -167,7 +169,7 @@ export async function deductRecipeIngredients(recipe, factor = 1) {
     changed.push(item);
     movements.push({
       id: uid('mov_'), inventoryId: item.id, name: item.name, type: 'cook',
-      amount: -amount, unit: item.unit, cost: amount * Number(item.pricePerUnit || 0),
+      amount: -amount, unit: item.unit, cost: allocation.cost + allocation.shortage * Number(item.pricePerUnit || 0),
       allocations: allocation.allocations, shortage: allocation.shortage,
       reason: recipe.name || 'Gotowanie', recipeId: recipe.id || '', createdAt: Date.now() + movements.length,
     });
@@ -229,16 +231,18 @@ export function inventoryView() {
   }
   async function adjust(item, delta) {
     const next = { ...item, stock: Math.round((Number(item.stock || 0) + delta) * 10000) / 10000, updatedAt: Date.now() };
+    let movementCost = delta * Number(item.pricePerUnit || 0);
     if (delta > 0) await db.put('inventoryLots', addStockLot(next, delta));
     else {
       const { lots } = await loadData();
-      consumeFromLots(item, lots, Math.abs(delta));
+      const allocation = consumeFromLots(item, lots, Math.abs(delta));
+      movementCost = -(allocation.cost + allocation.shortage * Number(item.pricePerUnit || 0));
       if (lots.length) await db.putMany('inventoryLots', lots);
     }
     await db.put('inventoryItems', next);
     await db.put('inventoryMovements', {
       id: uid('mov_'), inventoryId: item.id, name: item.name, type: 'adjustment',
-      amount: delta, unit: item.unit, cost: delta * Number(item.pricePerUnit || 0),
+      amount: delta, unit: item.unit, cost: movementCost,
       reason: delta > 0 ? 'Ręczne dodanie' : 'Ręczne odjęcie', createdAt: Date.now(),
     });
     await reload();
@@ -332,14 +336,15 @@ export function inventoryView() {
           const n = parseNum(amount.value);
           if (n == null || n <= 0) { toast('Podaj ilość większą od zera', { type: 'error' }); return false; }
           const next = { ...item, stock: Math.round((Number(item.stock || 0) - n) * 10000) / 10000, updatedAt: Date.now() };
-          const { lots } = await loadData(); consumeFromLots(item, lots, n); if (lots.length) await db.putMany('inventoryLots', lots);
+          const { lots } = await loadData(); const allocation = consumeFromLots(item, lots, n); if (lots.length) await db.putMany('inventoryLots', lots);
+          const wasteCost = allocation.cost + allocation.shortage * Number(item.pricePerUnit || 0);
           await db.put('inventoryItems', next);
           await db.put('inventoryMovements', {
             id: uid('wst_'), inventoryId: item.id, name: item.name, type: 'waste', amount: -n, unit: item.unit,
-            cost: n * Number(item.pricePerUnit || 0), reason: reason.value, createdAt: Date.now(),
+            cost: wasteCost, allocations: allocation.allocations, shortage: allocation.shortage, reason: reason.value, createdAt: Date.now(),
           });
           await reload();
-          toast('Zapisano stratę: ' + money(n * Number(item.pricePerUnit || 0)));
+          toast('Zapisano stratę: ' + money(wasteCost));
           return true;
         } },
       ],
@@ -349,7 +354,9 @@ export function inventoryView() {
 
   async function deleteItem(item) {
     if (!await confirmDialog({ title: 'Usunąć z magazynu?', message: item.name + ' zostanie usunięty z listy stanów. Historia strat pozostanie.', confirmText: 'Usuń', danger: true })) return;
-    await db.delete('inventoryItems', item.id);
+    const lots = data.lots.filter((lot) => lot.inventoryId === item.id);
+    if (lots.length) await db.tx(['inventoryItems', 'inventoryLots'], (t) => { t.delete('inventoryItems', item.id); lots.forEach((lot) => t.delete('inventoryLots', lot.id)); });
+    else await db.delete('inventoryItems', item.id);
     await reload();
     toast('Usunięto z magazynu');
   }
