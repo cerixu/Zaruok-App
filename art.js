@@ -11,6 +11,7 @@ const PALETTES = [
 
 import { hash, shadow, plate, leaf, dots } from './art-kit.js';
 import { EXTRA, VARIANT_SPECS } from './art-extra.js';
+import { fireflyAssetForRecipe } from './firefly-assets.js';
 
 const MOTIFS = {
   pizza: () => `${plate(74)}<circle cx="100" cy="100" r="64" fill="#e3a352"/><circle cx="100" cy="100" r="58" fill="#cf8a3a"/><circle cx="100" cy="100" r="53" fill="#d9412b"/>
@@ -248,5 +249,6 @@ export const artKindFor = (r) => {
   if (matched) return matched[1];
   return explicit || CATEGORY_ART[r.category] || 'plate';
 };
-export const recipeArtUrl = (r) => artUrl(artKindFor(r), r.name || r.id || '');
+export const recipePhotoUrl = (r) => fireflyAssetForRecipe(r);
+export const recipeArtUrl = (r) => recipePhotoUrl(r) || artUrl(artKindFor(r), r.name || r.id || '');
 export const categoryArtUrl = (catId) => artUrl(CATEGORY_ART[catId] || 'plate', catId);

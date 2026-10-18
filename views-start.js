@@ -10,7 +10,7 @@ import { recipeTile, catTile, sectionHead, metaLine } from './components.js';
 import { pendingCount } from './shopping.js';
 import { db } from './db.js';
 import { backupDue, daysSinceBackup } from './backup.js';
-import { recipeArtUrl } from './art.js';
+import { recipeArtUrl, recipePhotoUrl } from './art.js';
 
 const plural = (n) => n === 1 ? '1 receptura' :
   (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? n + ' receptury' : n + ' receptur');
@@ -51,7 +51,7 @@ function featureRecipe(r) {
   },
     h('div', { class: 'zf-feature-ring' },
       h('div', { class: 'zf-feature-img' },
-        h('img', { class: r.thumb ? '' : 'art', src: r.thumb || recipeArtUrl(r), alt: '', decoding: 'async' }))),
+        h('img', { class: (r.thumb || recipePhotoUrl(r)) ? '' : 'art', src: r.thumb || recipeArtUrl(r), alt: '', decoding: 'async' }))),
     h('div', { class: 'zf-feature-copy' },
       h('span', { class: 'zf-kicker' }, 'DZIŚ'),
       h('h2', null, r.name || 'Bez nazwy'),
@@ -103,7 +103,7 @@ export function startView() {
           h('p', null, 'Co dziś gotujemy?'),
           h('small', { class: 'zf-head-meta' }, plural(all.length) + ' · tylko na tym telefonie')),
         h('div', { class: 'zf-head-mark', 'aria-hidden': 'true' },
-          h('span', { class: 'zf-mark-dot' }),
+          h('img', { class: 'zf-brand-icon', src: './assets/brand/zarlok-chef-icon.jpg', alt: '', 'aria-hidden': 'true' }),
           h('span', null, 'PRO'))),
 
       h('div', { class: 'zf-feature-wrap' }, featureRecipe(feature)),

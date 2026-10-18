@@ -5,6 +5,16 @@
    ========================================================================== */
 
 export const CHANGELOG = Object.freeze({
+  '1.9.31': Object.freeze({
+    intro: 'Oryginalne zdjęcia potraw i dedykowany znak Żarłoka.',
+    items: [
+      'Dodano cztery autorskie fotografie wygenerowane w Adobe Firefly: pizzę Margherita, carbonarę, risotto z grzybami i pieczonego łososia z cytryną.',
+      'Zdjęcia są lokalnymi plikami aplikacji, przypisanymi wyłącznie do zgodnych receptur; pozostałe nadal używają swoich ilustracji.',
+      'Dodano miedziany znak noża i rozmarynu do nagłówka aplikacji.',
+      'Nowe grafiki trafiają do cache Service Workera i są dostępne również offline.'
+    ],
+  }),
+
   '1.9.30': Object.freeze({
     intro: 'Dopracowane animacje i płynniejsze reakcje interfejsu.',
     items: [
