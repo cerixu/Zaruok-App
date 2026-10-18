@@ -9,7 +9,7 @@
    ZMIANA WERSJI: podbij VERSION (i APP_VERSION w util.js) przy każdej
    aktualizacji plików, żeby urządzenia wykryły nową wersję.
    ========================================================================== */
-const VERSION = 'zaruok-2.1.0';
+const VERSION = 'zaruok-2.1.1';
 const NETWORK_TIMEOUT = 3500;
 
 const CORE = [
@@ -31,8 +31,17 @@ const INDEX = () => scopeUrl('index.html');
 self.addEventListener('install', (event) => {
   event.waitUntil((async () => {
     const cache = await caches.open(VERSION);
-    // cache:'reload' omija pamięć HTTP przeglądarki — w cache lądują świeże pliki.
-    await cache.addAll([...new Set(CORE)].map((p) => new Request(scopeUrl(p), { cache: 'reload' })));
+    // Pliki aplikacji są wymagane: jeśli któregoś brakuje, aktualizacja nie może
+    // udawać gotowej. Pojedynczy brak zdjęcia/fontu nie może jednak zablokować
+    // instalacji całego Service Workera (Cache.addAll jest operacją atomową).
+    const uniqueCore = [...new Set(CORE)];
+    const optionalAsset = (p) => /\.(?:png|jpe?g|webp|avif|woff2?|b64)$/i.test(p);
+    const required = uniqueCore.filter((p) => !optionalAsset(p));
+    const optional = uniqueCore.filter(optionalAsset);
+    await cache.addAll(required.map((p) => new Request(scopeUrl(p), { cache: 'reload' })));
+    await Promise.allSettled(optional.map((p) =>
+      cache.add(new Request(scopeUrl(p), { cache: 'reload' }))
+    ));
     // Pierwsza instalacja może aktywować się od razu; aktualizacje czekają,
     // aż użytkownik wybierze „Odśwież” w powiadomieniu.
     if (!self.registration.active) await self.skipWaiting();
