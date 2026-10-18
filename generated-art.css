@@ -20,3 +20,6 @@
 @media(prefers-reduced-motion:reduce){
   .rthumb img,.rtile-img img,.ctile-img img,.zf-feature-img img,.rcard,.rtile,.ctile,.inventory-item,.zf-action,.zf-tool,.heart,#tabbar .tab,#tabbar .tab .tab-icon{animation:none!important;transition:none!important;transform:none!important;filter:none!important}
 }
+
+/* Znak aplikacji — oryginalna grafika wygenerowana w Adobe Firefly. */
+.boot-shell-mark{background-image:url("https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:8b0e4f74-1852-4cbe-9492-e2422fcaba04");background-position:center;background-size:cover;background-repeat:no-repeat;border-color:rgba(217,151,97,.4);color:transparent;font-size:0;box-shadow:0 0 0 8px rgba(217,151,97,.035),0 12px 34px rgba(0,0,0,.25)}
