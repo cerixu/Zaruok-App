@@ -183,6 +183,23 @@ try {
   const photoFirstStylesLoaded = await page.evaluate(() => Array.from(document.styleSheets).some((s) => s.href && s.href.includes('zarlok-v2.css')));
   assert(photoFirstStylesLoaded, 'Brak nowej warstwy graficznej foto-first.');
 
+  const redesignStylesLoaded = await page.evaluate(() => Array.from(document.styleSheets).some((s) => s.href && s.href.includes('design-overhaul.css')));
+  assert(redesignStylesLoaded, 'Brak przebudowanego układu Żarłoka 2.1.0.');
+
+  await page.emulateMedia({ colorScheme: 'light' });
+  const automaticLightTheme = await page.evaluate(() => {
+    const root = document.documentElement;
+    const previous = root.getAttribute('data-theme');
+    root.setAttribute('data-theme', 'auto');
+    const background = getComputedStyle(root).getPropertyValue('--z-bg').trim();
+    if (previous === null) root.removeAttribute('data-theme');
+    else root.setAttribute('data-theme', previous);
+    return background;
+  });
+  await page.emulateMedia({ colorScheme: 'dark' });
+  assert(automaticLightTheme === '#f3eee7',
+    'Motyw automatyczny nie przełącza nowego designu na jasny przy jasnym wyglądzie iOS: ' + automaticLightTheme);
+
   const designStylesLoaded = await page.evaluate(() => Array.from(document.styleSheets).some((s) => s.href && s.href.includes('claude-completion.css')));
   assert(designStylesLoaded, 'Brak pełnej warstwy stylu Claude / Liquid Glass.');
 

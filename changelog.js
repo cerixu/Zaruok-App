@@ -5,6 +5,15 @@
    ========================================================================== */
 
 export const CHANGELOG = Object.freeze({
+  '2.1.0': Object.freeze({
+    intro: 'Żarłok 2.1 — przebudowany interfejs na iPhone, oparty na zdjęciach i wyraźnej hierarchii.',
+    items: [
+      'Ekran Start ma teraz duży fotograficzny panel dania, skróty w kaflach i czytelniejsze karty magazynu oraz zakupów.',
+      'Receptury i kategorie korzystają z większych, uporządkowanych kafli zamiast drobnych, okrągłych elementów.',
+      'Karta receptury, pola, okna i dolny dock otrzymały jeden spójny system powierzchni, odstępów i akcentów.',
+      'Zachowano dotychczasową logikę, zapis danych, wyszukiwanie, magazyn i działanie offline.'
+    ],
+  }),
   '2.0.1': Object.freeze({
     intro: 'Żarłok 2.0.1 — fotograficzny interfejs i 38 zdjęć potraw dostępnych offline.',
     items: [
