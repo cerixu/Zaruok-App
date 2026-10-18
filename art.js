@@ -251,7 +251,7 @@ export const artKindFor = (r) => {
 // Własne zdjęcia wygenerowane w Adobe Firefly — używane jako właściwe miniatury receptur,
 // a nie jako makiety. Gdy sieć nie działa, komponent przełącza się na lokalną ilustrację SVG.
 const GENERATED_PHOTOS = [
-  [/pizza|margherita|marinara/i, './assets/food/pizza-margherita.jpg'],
+  [/(?:pizza\\s+)?margherita|marinara/i, './assets/food/pizza-margherita.jpg'],
   [/carbonara/i, './assets/food/tagliatelle-carbonara.jpg'],
   [/^risotto\b/i, './assets/food/mushroom-risotto.jpg'],
   [/łosoś|salmon/i, './assets/food/salmon-lemon-butter.jpg'],
