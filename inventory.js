@@ -7,6 +7,8 @@ import { uid, norm, fmtAmount, parseNum } from './util.js';
 import { getSetting, setSetting } from './recipes.js';
 import { addItems } from './shopping.js';
 import { decodeEAN13Frame } from './barcode.js';
+import { pieceGrams } from './nutrition.js';
+import { ingEmoji } from './kitchen.js';
 import { h, icon, screen, button, iconBtn, toast, openSheet, confirmDialog, emptyState, textInput, selectEl } from './ui.js';
 
 const CATEGORIES = ['Warzywa i owoce', 'Mięso i ryby', 'Nabiał i jaja', 'Suche i przyprawy', 'Mrożonki', 'Inne'];
@@ -41,12 +43,42 @@ function convert(value, from, to) {
   if (a.kind !== b.kind) return null;
   return fromBase(a.value, to);
 }
+
+/** Konwersja ilości do jednostki magazynu; sztuki ↔ masa tylko przy znanej masie sztuki. */
+export function convertInventoryAmount(value, from, to, ingredientName) {
+  if (!Number.isFinite(Number(value))) return null;
+  const exact = convert(Number(value), from, to);
+  if (exact != null) return Number.isFinite(exact) ? exact : null;
+  const source = baseAmount(Number(value), from), target = baseAmount(1, to);
+  if (!((source.kind === 'count' && target.kind === 'mass') || (source.kind === 'mass' && target.kind === 'count'))) return null;
+  const grams = pieceGrams(ingredientName);
+  if (!Number.isFinite(grams) || grams <= 0) return null;
+  if (source.kind === 'count') return fromBase(source.value * grams, to);
+  return source.value / grams;
+}
 function displayQty(n, unit) { return fmtAmount(n) + (unit ? ' ' + unit : ''); }
-function matches(item, name) {
+function inflectionStem(word) {
+  const w = norm(word);
+  if (w.length < 4) return w;
+  return w.replace(/(?:owymi|owych|owego|owej|owej|owie|ami|ach|ech|ich|ych|ego|emu|owa|owe|owy|ów|om|em|ie|ku|ka|ki|kę|ek|y|i|e|a|u)$/, '') || w;
+}
+
+function sameInflectedName(a, b) {
+  const left = clean(a).split(' ').filter(Boolean);
+  const right = clean(b).split(' ').filter(Boolean);
+  if (!left.length || left.length !== right.length) return false;
+  return left.every((word, i) => word.length >= 4 && right[i].length >= 4 && inflectionStem(word) === inflectionStem(right[i]));
+}
+
+/** Dopasowanie nazwy produktu lub aliasu z uwzględnieniem typowych polskich odmian. */
+export function inventoryNamesMatch(item, name) {
   const target = clean(name);
   if (!target) return false;
   const names = [item.name, ...(Array.isArray(item.aliases) ? item.aliases : [])];
-  return names.some((n) => clean(n) === target);
+  return names.some((value) => {
+    const candidate = clean(value);
+    return candidate === target || sameInflectedName(candidate, target);
+  });
 }
 function lowStock(item) { return Number(item.minStock || 0) > 0 && Number(item.stock || 0) <= Number(item.minStock || 0); }
 
@@ -59,14 +91,16 @@ async function loadData() {
 }
 
 export async function deductRecipeIngredients(recipe, factor = 1) {
+  factor = Number(factor);
+  if (!Number.isFinite(factor) || factor <= 0) throw new Error('Nieprawidłowa skala receptury.');
   const { items } = await loadData();
   const changed = [], movements = [], missing = [];
   const ingredients = (recipe.sections || []).flatMap((s) => s.ingredients || []);
   for (const ing of ingredients) {
     if (!ing.name || !Number.isFinite(Number(ing.amount)) || ing.amount == null || Number(ing.amount) <= 0) continue;
-    const item = items.find((x) => matches(x, ing.name));
+    const item = items.find((x) => inventoryNamesMatch(x, ing.name));
     if (!item) { missing.push(ing.name); continue; }
-    const amount = convert(Number(ing.amount) * factor, ing.unit, item.unit);
+    const amount = convertInventoryAmount(Number(ing.amount) * factor, ing.unit, item.unit, ing.name);
     if (amount == null) { missing.push(ing.name + ' (inna jednostka)'); continue; }
     item.stock = Math.round((Number(item.stock || 0) - amount) * 10000) / 10000;
     item.updatedAt = Date.now();
@@ -408,7 +442,7 @@ export function inventoryView() {
     const low = lowStock(item);
     return h('article', { class: 'inventory-item' + (low ? ' is-low' : '') },
       h('div', { class: 'inventory-item-main' },
-        h('div', { class: 'inventory-item-title' }, h('strong', null, item.name), low ? h('span', { class: 'inventory-low-badge' }, 'Niski stan') : null),
+        h('div', { class: 'inventory-item-title' }, h('span', { class: 'inventory-item-glyph', 'aria-hidden': 'true' }, ingEmoji(item.name)), h('strong', null, item.name), low ? h('span', { class: 'inventory-low-badge' }, 'Niski stan') : null),
         h('p', { class: 'muted small' }, [item.category || 'Inne', item.barcode ? 'EAN ' + item.barcode : ''].filter(Boolean).join(' · ')),
         item.pricePerUnit ? h('p', { class: 'muted small' }, money(item.pricePerUnit) + ' / ' + item.unit) : null),
       h('div', { class: 'inventory-stock' },
