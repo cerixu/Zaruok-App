@@ -608,7 +608,10 @@ export function detailView({ id }) {
           h('img', {
             class: 'recipe-modal-photo' + ((r.photo || r.thumb || recipeArtUrl(r)).startsWith('data:image/svg+xml') ? ' art' : ''),
             src: r.photo || r.thumb || recipeArtUrl(r),
-            alt: r.photo ? `Zdjęcie: ${r.name}` : '',
+            alt: r.name ? `Zdjęcie: ${r.name}` : '',
+            loading: 'lazy',
+            decoding: 'async',
+            onError: (e) => { const el = e.currentTarget; if (el.dataset.artFallback) return; el.dataset.artFallback = '1'; el.classList.add('art'); el.src = recipeArtFallbackUrl(r); },
           })),
         h('div', { class: 'recipe-modal-heading' },
           h('div', { class: 'recipe-modal-kicker' }, catName(r.category)),
