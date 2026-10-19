@@ -264,13 +264,13 @@ try {
       widths: tabs.map((tab) => tab.getBoundingClientRect().width),
     };
   });
-  assert(tabBox.height >= 50 && tabBox.height <= 80, 'Dolna nawigacja ma nieprawidłową wysokość: ' + JSON.stringify(tabMetrics));
-  assert(tabMetrics.position === 'absolute' && tabMetrics.width < tabMetrics.viewport && tabMetrics.x > 0 && tabMetrics.centerError <= 2 && tabMetrics.leftGap >= 8 && tabMetrics.rightGap >= 8,
-    'Dolna nawigacja nie jest równo wycentrowaną pływającą kapsułą: ' + JSON.stringify(tabMetrics));
+  assert(tabBox.height >= 50 && tabBox.height <= 120, 'Dolna nawigacja ma nieprawidłową wysokość: ' + JSON.stringify(tabMetrics));
+  assert(tabMetrics.position === 'relative' && tabMetrics.width >= tabMetrics.viewport - 2 && Math.abs(tabMetrics.x) <= 1 && tabMetrics.centerError <= 2 && Math.abs(tabMetrics.leftGap) <= 1 && Math.abs(tabMetrics.rightGap) <= 1,
+    'Dolna nawigacja powinna zajmować szerokość ekranu i uczestniczyć w układzie, zamiast przykrywać listę: ' + JSON.stringify(tabMetrics));
   assert(tabMetrics.backgroundColor.includes('0.95') || tabMetrics.backgroundColor.includes('0.97'),
     'Dolna nawigacja jest zbyt przezroczysta i przepuszcza tekst/karty spod spodu: ' + JSON.stringify(tabMetrics));
-  assert(tabMetrics.bottomGap >= 5 && tabMetrics.bottomGap < 70,
-    'Dolna nawigacja koliduje z dolnym obszarem bezpiecznym: ' + JSON.stringify(tabMetrics));
+  assert(tabMetrics.bottomGap >= -1 && tabMetrics.bottomGap <= 2,
+    'Dolna nawigacja nie jest osadzona na dole układu: ' + JSON.stringify(tabMetrics));
   assert(tabMetrics.tabs === 6 && tabMetrics.widths.every((w) => w >= 45) && tabMetrics.iconsInside,
     'Ikony lub zakładki dolnej nawigacji są ściśnięte albo wychodzą poza pasek: ' + JSON.stringify(tabMetrics));
   assert(tabMetrics.firstIconShiftX !== null && Math.abs(tabMetrics.firstIconShiftX) <= 0.1,
@@ -388,6 +388,7 @@ try {
     const bar = document.querySelector('#tabbar');
     const frameRect = frame?.getBoundingClientRect();
     const barRect = bar?.getBoundingClientRect();
+    const scrollRect = scroll?.getBoundingClientRect();
     const scrollStyle = scroll ? getComputedStyle(scroll) : null;
     const ratio = frameRect && frameRect.height ? frameRect.width / frameRect.height : 0;
     const vv = window.visualViewport;
@@ -397,6 +398,7 @@ try {
       imageRatio: ratio,
       imageAnimation: image ? getComputedStyle(image).animationName : '',
       scrollBottomPadding: scrollStyle ? parseFloat(scrollStyle.paddingBottom) : 0,
+      scrollDockGap: scrollRect && barRect ? barRect.top - scrollRect.bottom : null,
       dockHeight: barRect ? barRect.height : 0,
       dockBottomGap: barRect ? innerHeight - barRect.bottom : 0,
       keyboardClass: document.body.classList.contains('kb-open'),
@@ -407,10 +409,12 @@ try {
     'Zdjęcia receptur nie mają wspólnego, lekko poziomego kadru 4:3: ' + JSON.stringify(recipeComposition));
   assert(recipeComposition.imageAnimation === 'none',
     'Miniatury receptur nie powinny rozmywać się podczas ładowania: ' + JSON.stringify(recipeComposition));
-  assert(recipeComposition.scrollBottomPadding >= 110,
-    'Lista nie rezerwuje miejsca na dolny dock — ostatnie receptury będą pod nim: ' + JSON.stringify(recipeComposition));
-  assert(recipeComposition.dockHeight >= 50 && recipeComposition.dockHeight <= 80 &&
-    recipeComposition.dockBottomGap >= 5 && recipeComposition.dockBottomGap < 70,
+  assert(recipeComposition.scrollBottomPadding >= 16 && recipeComposition.scrollBottomPadding <= 80,
+    'Lista ma nieprawidłowy margines końcowy po przeniesieniu docka do układu: ' + JSON.stringify(recipeComposition));
+  assert(recipeComposition.scrollDockGap !== null && recipeComposition.scrollDockGap >= -1 && recipeComposition.scrollDockGap <= 2,
+    'Dolny dock nadal nachodzi na obszar przewijania receptur: ' + JSON.stringify(recipeComposition));
+  assert(recipeComposition.dockHeight >= 50 && recipeComposition.dockHeight <= 120 &&
+    recipeComposition.dockBottomGap >= -1 && recipeComposition.dockBottomGap <= 2,
     'Dolny dock ma nieprawidłowe wymiary albo położenie: ' + JSON.stringify(recipeComposition));
   assert(!recipeComposition.keyboardClass || recipeComposition.keyboardActuallyVisible,
     'Stan klawiatury iOS pozostał aktywny, mimo że klawiatura nie jest otwarta: ' + JSON.stringify(recipeComposition));
