@@ -365,6 +365,39 @@ try {
   const chipRgb = (recipeUi.chipColor.match(/\d+/g) || []).slice(0, 3).map(Number);
   assert(chipRgb.length === 3 && chipRgb[0] > 180 && chipRgb[1] > 150,
     'Aktywny filtr ma zbyt ciemny tekst zamiast jasnego kontrastu: ' + JSON.stringify(recipeUi));
+  const recipeComposition = await page.evaluate(() => {
+    const frame = document.querySelector('.recipes .rtile-img');
+    const image = frame?.querySelector('img');
+    const scroll = document.querySelector('.recipes .scroll');
+    const bar = document.querySelector('#tabbar');
+    const frameRect = frame?.getBoundingClientRect();
+    const barRect = bar?.getBoundingClientRect();
+    const scrollStyle = scroll ? getComputedStyle(scroll) : null;
+    const ratio = frameRect && frameRect.height ? frameRect.width / frameRect.height : 0;
+    const vv = window.visualViewport;
+    const active = document.activeElement;
+    const editing = active instanceof HTMLElement && /^(INPUT|TEXTAREA|SELECT)$/.test(active.tagName);
+    return {
+      imageRatio: ratio,
+      imageAnimation: image ? getComputedStyle(image).animationName : '',
+      scrollBottomPadding: scrollStyle ? parseFloat(scrollStyle.paddingBottom) : 0,
+      dockHeight: barRect ? barRect.height : 0,
+      dockBottomGap: barRect ? innerHeight - barRect.bottom : 0,
+      keyboardClass: document.body.classList.contains('kb-open'),
+      keyboardActuallyVisible: !!(editing && vv && innerHeight - vv.height > 140),
+    };
+  });
+  assert(recipeComposition.imageRatio > 1.25 && recipeComposition.imageRatio < 1.42,
+    'Zdjęcia receptur nie mają wspólnego, lekko poziomego kadru 4:3: ' + JSON.stringify(recipeComposition));
+  assert(recipeComposition.imageAnimation === 'none',
+    'Miniatury receptur nie powinny rozmywać się podczas ładowania: ' + JSON.stringify(recipeComposition));
+  assert(recipeComposition.scrollBottomPadding >= 110,
+    'Lista nie rezerwuje miejsca na dolny dock — ostatnie receptury będą pod nim: ' + JSON.stringify(recipeComposition));
+  assert(recipeComposition.dockHeight >= 50 && recipeComposition.dockHeight <= 80 &&
+    recipeComposition.dockBottomGap >= 5 && recipeComposition.dockBottomGap < 70,
+    'Dolny dock ma nieprawidłowe wymiary albo położenie: ' + JSON.stringify(recipeComposition));
+  assert(!recipeComposition.keyboardClass || recipeComposition.keyboardActuallyVisible,
+    'Stan klawiatury iOS pozostał aktywny, mimo że klawiatura nie jest otwarta: ' + JSON.stringify(recipeComposition));
   await shot('02-recipes-list.png');
 
   const recipeLinks = await page.locator('a[href^="#/recipe/"]').evaluateAll((els) =>
