@@ -5,6 +5,15 @@
    ========================================================================== */
 
 export const CHANGELOG = Object.freeze({
+  '2.1.9': Object.freeze({
+    intro: 'Żarłok 2.1.9 — nowy, autorski zestaw fotografii dań przygotowany w Adobe Firefly.',
+    items: [
+      'Wymieniono 39 lokalnych fotografii na osobno wygenerowane zdjęcia dopasowane do konkretnych potraw.',
+      'Zdjęcia są przechowywane lokalnie w aplikacji i mogą działać offline po zapisaniu w pamięci podręcznej.',
+      'Zachowano ilustrację zastępczą, gdy brak pewnego dopasowania do konkretnej potrawy.',
+      'Odświeżono wersję aplikacji i pamięci podręcznej, aby pobrać nowy zestaw zdjęć.'
+    ]
+  }),
   '2.1.8': Object.freeze({
     intro: 'Żarłok 2.1.8 — spójniejsze zdjęcia i bezpieczniejsze dopasowanie potraw.',
     items: [
