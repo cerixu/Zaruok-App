@@ -281,12 +281,26 @@ button { -webkit-appearance: none; appearance: none; }
 
 /* Pływający dock: mniejszy, czytelny i nie może przykrywać ostatniej receptury. */
 #tabbar {
-  width: min(calc(100% - 24px), 460px) !important;
-  min-height: 60px !important;
+  position: relative !important;
+  top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  transform: none !important;
+  margin: 0 !important;
+  width: 100% !important;
+  max-width: none !important;
+  min-height: 62px !important;
   height: auto !important;
-  padding: 4px !important;
+  padding: 5px max(10px, env(safe-area-inset-left, 0px)) calc(5px + env(safe-area-inset-bottom, 0px)) max(10px, env(safe-area-inset-right, 0px)) !important;
   gap: 3px !important;
-  border-radius: 22px !important;
+  border: 1px solid rgba(255,255,255,.11) !important;
+  border-bottom: 0 !important;
+  border-radius: 22px 22px 0 0 !important;
+  background: rgba(18,20,21,.97) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(1.3) !important;
+  backdrop-filter: blur(24px) saturate(1.3) !important;
+  box-shadow: 0 -12px 34px rgba(0,0,0,.24), inset 0 1px rgba(255,255,255,.07) !important;
 }
 #tabbar .tab {
   min-width: 0 !important;
@@ -331,7 +345,7 @@ button { -webkit-appearance: none; appearance: none; }
 
 /* Odstęp odpowiada rzeczywistej wysokości docka + strefie bezpiecznej iPhone'a. */
 body:not(.no-tabs):not(.kb-open) .screen .scroll {
-  padding-bottom: calc(116px + env(safe-area-inset-bottom, 0px)) !important;
+  padding-bottom: calc(18px + env(safe-area-inset-bottom, 0px)) !important;
 }
 body.kb-open .screen .scroll {
   padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px)) !important;
@@ -339,6 +353,11 @@ body.kb-open .screen .scroll {
 .recipes .content { padding-bottom: 8px !important; }
 
 /* Jasny motyw zachowuje tę samą geometrię, bez ciemnej plamy pod ikoną. */
+:root[data-theme="light"] #tabbar {
+  background: rgba(255,250,244,.97) !important;
+  border-color: rgba(51,37,25,.13) !important;
+  box-shadow: 0 -10px 28px rgba(50,35,20,.08), inset 0 1px rgba(255,255,255,.9) !important;
+}
 :root[data-theme="light"] #tabbar .tab.on {
   color: #814a29 !important;
   background: rgba(196,126,78,.12) !important;
@@ -351,7 +370,7 @@ body.kb-open #toasts {
   bottom: auto;
 }
 @media (max-width: 360px) {
-  #tabbar { width: calc(100% - 14px) !important; }
+  #tabbar { width: 100% !important; padding-inline: 6px !important; }
   #tabbar .tab .tab-label { font-size: 8.8px !important; }
   .recipes .rgrid { gap: 9px !important; }
 }
