@@ -58,6 +58,10 @@ const CATEGORY_PHOTOS = Object.freeze({
   'cat-pieczywo': 'sourdough',
   'cat-zupy': 'soup-clear',
   'cat-salatki': 'salad',
+  'cat-sosy': 'pasta-tomato',
+  'cat-sosy-bazowe': 'soup-tomato',
+  'cat-prep': 'salad',
+  'cat-inne': 'dessert',
 });
 
 const normalise = (value) => String(value || '')
@@ -121,7 +125,9 @@ export function recipePhotoKey(recipe) {
   }
   // Zdjęcie kategorii jest lepszym, spójnym fallbackiem niż ilustracja,
   // gdy nazwa potrawy nie ma jeszcze własnej fotografii.
-  return CATEGORY_PHOTOS[recipe.category] || null;
+  // Każda receptura dostaje zdjęcie nawet wtedy, gdy nazwa nie pasuje do reguły.
+  // Najpierw próbujemy kategorii, a na końcu używamy neutralnego zdjęcia potrawy.
+  return CATEGORY_PHOTOS[recipe.category] || 'dessert';
 }
 
 function loadPhoto(key) {
