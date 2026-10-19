@@ -130,6 +130,8 @@ jobs:
           node-version: 20
       - name: Run recipe data audit
         run: node qa/recipe-data-audit.mjs
+      - name: Run food photo mapping and JPEG audit
+        run: node qa/food-photo-audit.mjs
 
   unit-grammar-smoke:
     needs: recipe-data-audit
