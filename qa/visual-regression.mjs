@@ -362,6 +362,17 @@ try {
   assert(recipeUi, 'Brakuje wyszukiwarki lub aktywnego filtra na liście receptur.');
   assert(recipeUi.radius >= 16, 'Pole wyszukiwania nie ma zaokrąglonego kształtu: ' + JSON.stringify(recipeUi));
   assert(recipeUi.inputBorder === 0, 'Wyszukiwarka ma dodatkową ramkę wewnątrz szklanego kontenera: ' + JSON.stringify(recipeUi));
+  const updateNoticeLayout = await page.evaluate(() => {
+    const header = document.querySelector('.screen .topbar');
+    if (!header) return null;
+    const before = parseFloat(getComputedStyle(header).paddingTop);
+    document.body.classList.add('has-update-notice');
+    const reserved = parseFloat(getComputedStyle(header).paddingTop);
+    document.body.classList.remove('has-update-notice');
+    return { before, reserved, extra: reserved - before };
+  });
+  assert(updateNoticeLayout && updateNoticeLayout.extra >= 50,
+    'Powiadomienie o aktualizacji nie rezerwuje miejsca nad wyszukiwarką: ' + JSON.stringify(updateNoticeLayout));
   const chipRgb = (recipeUi.chipColor.match(/\d+/g) || []).slice(0, 3).map(Number);
   assert(chipRgb.length === 3 && chipRgb[0] > 180 && chipRgb[1] > 150,
     'Aktywny filtr ma zbyt ciemny tekst zamiast jasnego kontrastu: ' + JSON.stringify(recipeUi));
