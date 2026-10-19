@@ -325,6 +325,9 @@ button { -webkit-appearance: none; appearance: none; }
   background: transparent !important;
 }
 #tabbar .tab.on .tab-label { font-weight: 750 !important; }
+#tabbar .tab:active .tab-ico {
+  transform: scale(.92) !important;
+}
 
 /* Odstęp odpowiada rzeczywistej wysokości docka + strefie bezpiecznej iPhone'a. */
 body:not(.no-tabs):not(.kb-open) .screen .scroll {
