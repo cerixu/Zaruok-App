@@ -9,13 +9,13 @@
    ZMIANA WERSJI: podbij VERSION (i APP_VERSION w util.js) przy każdej
    aktualizacji plików, żeby urządzenia wykryły nową wersję.
    ========================================================================== */
-const VERSION = 'zaruok-2.1.1';
+const VERSION = 'zaruok-2.1.2';
 const NETWORK_TIMEOUT = 3500;
 
 const CORE = [
   './',
   'index.html',
-  'styles.css', 'start-final.css', 'visual-system.css', 'visual-redesign.css', 'generated-art.css', 'zarlok-v2.css', 'design-overhaul.css', 'food-photos.js', 'claude-completion.css', 'kucharzyna-visual.css',
+  'styles.css', 'start-final.css', 'visual-system.css', 'visual-redesign.css', 'generated-art.css', 'zarlok-v2.css', 'design-overhaul.css', 'mobile-polish.css', 'food-photos.js', 'claude-completion.css', 'kucharzyna-visual.css',
   'manifest.webmanifest',
   'app.js', 'changelog.js', 'router.js', 'start-final.css', 'inventory.js', 'barcode.js', 'pwa.js', 'ui.js', 'util.js', 'db.js', 'recipes.js', 'calculator.js', 'importer.js', 'backup.js',
   'components.js', 'shopping.js', 'art.js', 'art-kit.js', 'art-extra.js', 'nutrition.js', 'seeds.js', 'seeds-pl.js', 'seeds-world.js', 'seeds-more.js', 'seeds-curated.js', 'timers.js', 'kitchen.js', 'tools-data.js', 'calc-kit.js', 'search.js',
