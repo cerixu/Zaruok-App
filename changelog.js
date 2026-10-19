@@ -5,6 +5,15 @@
    ========================================================================== */
 
 export const CHANGELOG = Object.freeze({
+  '2.1.3': Object.freeze({
+    intro: 'Żarłok 2.1.3 — spójniejsze ikony i dokładniejsze dopasowanie zdjęć.',
+    items: [
+      'Kafelki kategorii korzystają z jednego zestawu ikon SVG zamiast mieszaniny emoji.',
+      'Cynamon, sól i pieprz mają odrębne symbole składników.',
+      'Zdjęcie Moscow Mule nie jest już przypisywane do innych koktajli; Aperol Spritz zachowuje własną fotografię.',
+      'Poprawki grafiki nie zmieniają receptur ani stanów magazynowych.'
+    ],
+  }),
   '2.1.2': Object.freeze({
     intro: 'Żarłok 2.1.2 — dopracowany interfejs mobilny.',
     items: [
