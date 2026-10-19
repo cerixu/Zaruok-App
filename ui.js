@@ -99,6 +99,7 @@ const ICONS = {
   pasta: '<path d="M5 8c3-4 5 4 8 0s5 4 8 0M4 13c3-4 5 4 8 0s5 4 8 0M5 18c3-4 5 4 8 0s5 4 8 0"/>',
   sauce: '<path d="M9 3h6v3l3 3v11a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V9l3-3z"/><path d="M9 6h6M6 12h12"/>',
   meat: '<path d="M7 8c4-5 11-3 13 1 3 1 4 5 1 8-2 5-9 5-12 2-5 1-7-5-4-8z"/><ellipse cx="13" cy="14" rx="3.5" ry="2.5"/>',
+  fish: '<path d="M3 12c5-7 12-7 17 0-5 7-12 7-17 0z"/><path d="M20 12l3-4v8z"/><circle cx="8" cy="11" r="1" fill="currentColor"/>',
   shrimp: '<path d="M5 15c0-6 7-9 12-5 5 4 3 10-2 11-4 1-7-2-6-5 1-2 4-2 5 0"/><path d="M5 15 2 12v6zM16 9l2-4M19 10l4-3"/>',
   carrot: '<path d="M7 10l15 4-10 9z"/><path d="M8 10 5 5M11 11l1-7M14 12l5-5"/>',
   cake: '<path d="M4 13h16v7H4z"/><path d="M4 13c0-3 4-3 4-1 0-4 6-4 6 0 1-3 6-2 6 1M8 20v2M16 20v2"/>',
