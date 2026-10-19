@@ -13,6 +13,7 @@ const PHOTO_FILES = Object.freeze({
   steak: 'food-steak.jpg.b64',
   dessert: 'food-dessert.jpg.b64',
   salad: 'food-salad.jpg.b64',
+  sauce: 'food-sauce.jpg.b64',
   soup: 'food-soup.jpg.b64',
   seafood: 'food-seafood.jpg.b64',
   pierogi: 'food-pierogi.jpg.b64',
