@@ -1977,3 +1977,43 @@
     scroll-behavior: auto !important;
   }
 }
+
+
+/* 2.1.6 — hero photo: eliminate the visible inset/square edge in composite food shots.
+   The source photo must fill the rounded hero without an inner frame. A restrained
+   crop hides the baked-in dark matte on older composite images; text stays above it. */
+.start-final .zf-feature {
+  isolation: isolate;
+  background: #171719;
+}
+.start-final .zf-feature-img,
+.start-final .zf-feature-ring {
+  overflow: hidden !important;
+  border-radius: inherit !important;
+}
+.start-final .zf-feature-img img {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: inherit !important;
+  object-fit: cover !important;
+  object-position: center 54% !important;
+  transform: scale(1.16);
+  transform-origin: center center;
+  mix-blend-mode: normal;
+}
+.start-final .zf-feature::before {
+  border-radius: inherit;
+}
+.start-final .zf-feature-copy {
+  background: transparent !important;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .start-final .zf-feature-img img { transform: none; }
+}
