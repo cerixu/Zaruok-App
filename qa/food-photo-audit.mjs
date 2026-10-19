@@ -17,6 +17,7 @@ if (duplicates.length) throw new Error('Powtórzone klucze RECIPE_RULES: ' + [..
 for (const key of [...ruleKeys, ...categoryKeys.map((match) => match[2])]) {
   if (!photoFiles.has(key)) throw new Error('Reguła wskazuje nieistniejący klucz zdjęcia: ' + key);
 }
+const assetContents = new Map();
 for (const [key, file] of photoFiles) {
   if (!fs.existsSync(file)) throw new Error('Brak pliku zdjęcia ' + key + ': ' + file);
   const raw = fs.readFileSync(file, 'utf8').trim();
@@ -25,6 +26,9 @@ for (const [key, file] of photoFiles) {
   if (bytes.length < 500 || bytes[0] !== 0xff || bytes[1] !== 0xd8 || bytes[bytes.length - 2] !== 0xff || bytes[bytes.length - 1] !== 0xd9) {
     throw new Error('Uszkodzony strumień JPEG: ' + file);
   }
+  const duplicateOf = assetContents.get(raw);
+  if (duplicateOf) throw new Error('Dwa pliki zawierają identyczną fotografię: ' + duplicateOf + ' oraz ' + file);
+  assetContents.set(raw, file);
 }
 if (/return CATEGORY_PHOTOS\[recipe\.category\] \|\| 'dessert'/.test(photosSource)) {
   throw new Error('Nieznana receptura nie może domyślnie dostawać zdjęcia deseru.');
