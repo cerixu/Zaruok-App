@@ -99,8 +99,21 @@ function setActiveTab(meta) {
 function watchViewport() {
   const vv = window.visualViewport;
   const update = () => {
-    if (!vv) return;
-    const kb = window.innerHeight - vv.height > 150;
+    if (!vv) {
+      document.body.classList.remove('kb-open');
+      root.style.removeProperty('--app-h');
+      root.style.removeProperty('--vv-top');
+      return;
+    }
+    // iOS może raportować zmniejszony visualViewport także po schowaniu klawiatury.
+    // Uznawaj klawiaturę za otwartą tylko wtedy, gdy fokus nadal jest w polu edycji.
+    const active = document.activeElement;
+    const editing = active instanceof HTMLElement &&
+      /^(INPUT|TEXTAREA|SELECT)$/.test(active.tagName) &&
+      !active.hasAttribute('readonly') &&
+      !active.hasAttribute('disabled');
+    const viewportGap = window.innerHeight - vv.height;
+    const kb = editing && viewportGap > 140;
     document.body.classList.toggle('kb-open', kb);
     if (kb) {
       root.style.setProperty('--app-h', vv.height + 'px');
@@ -119,6 +132,8 @@ function watchViewport() {
     if (!(t instanceof HTMLElement) || !/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)) return;
     setTimeout(() => { try { t.scrollIntoView({ block: 'center', behavior: 'smooth' }); } catch (_) { /* */ } }, 320);
   });
+  // Po zamknięciu klawiatury Safari nie zawsze wysyła resize; czyść stan po blur.
+  document.addEventListener('focusout', () => setTimeout(update, 80));
   // Safari↔aplikacja: po powrocie odśwież wymiary.
   document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') setTimeout(update, 100); });
   window.addEventListener('pageshow', () => setTimeout(update, 50));
