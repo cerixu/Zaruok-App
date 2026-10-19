@@ -352,3 +352,25 @@ body.kb-open #toasts {
   #tabbar .tab .tab-label { font-size: 8.8px !important; }
   .recipes .rgrid { gap: 9px !important; }
 }
+
+
+/* Wersja update ma własne miejsce — baner nie nachodzi na wyszukiwarkę i filtry. */
+body.has-update-notice .screen .topbar {
+  padding-top: calc(env(safe-area-inset-top, 0px) + 68px) !important;
+}
+.toast.toast-update-notice {
+  max-width: min(calc(100% - 8px), 520px);
+  padding: 10px 14px;
+  gap: 10px;
+  border-radius: 22px;
+  font-size: .86rem;
+  line-height: 1.25;
+  box-shadow: 0 10px 32px rgba(0,0,0,.32), inset 0 1px rgba(255,255,255,.08);
+}
+.toast.toast-update-notice .toast-msg { min-width: 0; }
+.toast.toast-update-notice .toast-act {
+  min-height: 40px;
+  padding-inline: 8px;
+  font-size: .86rem;
+  white-space: nowrap;
+}
