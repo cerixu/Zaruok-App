@@ -5,6 +5,15 @@
    ========================================================================== */
 
 export const CHANGELOG = Object.freeze({
+  '2.1.2': Object.freeze({
+    intro: 'Żarłok 2.1.2 — dopracowany interfejs mobilny.',
+    items: [
+      'Ujednolicono odstępy, pola wyszukiwania, filtry i siatkę receptur na iPhonie.',
+      'Poprawiono czytelność aktywnych filtrów i głównego przycisku oraz zachowanie elementów dotykowych.',
+      'Dopracowano kontrast w jasnym motywie i uwzględniono ustawienie ograniczenia animacji.',
+      'Bez zmian w recepturach, magazynie, kalkulatorach i formacie danych.'
+    ],
+  }),
   '2.1.1': Object.freeze({
     intro: 'Żarłok 2.1.1 — pewniejsze przygotowanie aplikacji do pracy offline.',
     items: [
