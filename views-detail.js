@@ -82,7 +82,7 @@ export function ingredientGlyph(name) {
     path('M10 27 L25 9 Q28 6 31 9 Q34 12 31 15 L16 33 Q13 36 10 33 Q8 30 10 27 Z', { fill: 'currentColor', 'fill-opacity': '.1' }),
     path('M13 27 L27 11 M17 35 L34 15')
   );
-  if (/\\b(sól|salt)\\b/.test(n)) return svg(
+  if (/sól|salt/.test(n)) return svg(
     path('M16 18 H32 L30 40 H18 Z', { fill: 'currentColor', 'fill-opacity': '.1' }),
     path('M18 18 L20 11 H28 L30 18 Z'),
     ...[[21,25],[27,28],[22,33],[28,36],[25,22]].map(([x,y]) => path(`M${x} ${y} l1.3 -1.5`, { stroke: 'currentColor', 'stroke-width': 1.5 }))
