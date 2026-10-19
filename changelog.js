@@ -11,6 +11,7 @@ export const CHANGELOG = Object.freeze({
       'Usunięto powtórzone reguły przypisywania zdjęć do receptur.',
       'Nieznana potrawa nie dostaje już automatycznie zdjęcia deseru — pozostaje jej ilustracja zastępcza.',
       'Ujednolicono kadrowanie, tła i obramowania zdjęć w kartach na iPhonie.',
+      'Kategorie bez pasującej fotografii, takie jak sosy bazowe i prep, zachowują ilustrację zamiast pokazywać przypadkowe danie.',
       'Odświeżono wersję pamięci podręcznej dla aktualizacji aplikacji i pracy offline.'
     ]
   }),
