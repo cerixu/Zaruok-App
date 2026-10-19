@@ -176,9 +176,9 @@ export const emptyState = (emoji, title, text, ...actions) =>
 export function toast(msg, o = {}) {
   const box = $('#toasts');
   if (!box) return { dismiss() {} };
-  const t = h('div', { class: 'toast ' + (o.type || ''), role: 'status' }, h('span', { class: 'toast-msg' }, msg));
+  const t = h('div', { class: 'toast ' + (o.type || '') + (o.className ? ' ' + o.className : ''), role: 'status' }, h('span', { class: 'toast-msg' }, msg));
   let timer;
-  const dismiss = () => { clearTimeout(timer); t.classList.remove('in'); setTimeout(() => t.remove(), 200); };
+  const dismiss = () => { clearTimeout(timer); t.classList.remove('in'); setTimeout(() => { t.remove(); if (typeof o.onDismiss === 'function') o.onDismiss(); }, 200); };
   if (o.action) t.appendChild(h('button', { type: 'button', class: 'toast-act', onClick: () => { dismiss(); o.action.fn(); } }, o.action.label));
   box.appendChild(t);
   while (box.children.length > 3) box.firstChild.remove();
