@@ -73,9 +73,25 @@ const normalise = (value) => String(value || '')
   .trim();
 
 const RECIPE_RULES = [
+  // Najpierw konkretne potrawy i składniki, dopiero później szerokie kategorie.
   ['pizza', /\b(pizza|pinsa|margherita|diavola|capricciosa|napoletana|quattro formaggi)\b/],
   ['carbonara', /\b(carbonara)\b/],
   ['risotto', /\b(risotto)\b/],
+  ['baba-ganoush', /\b(baba ganoush|baba ghanoush|mutabal|pasta z baklazana)\b/],
+  ['bruschetta', /\b(bruschetta|grzanki z pomidorami)\b/],
+  ['babka-piaskowa', /\b(babka piaskowa|babka cytrynowa|babka drozdzowa)\b/],
+  ['brownie', /\b(brownie|ciasto czekoladowe)\b/],
+  ['creme-brulee', /\b(creme brulee|krem katalonski)\b/],
+  ['crepes', /\b(nalesniki|crepes|crepe)\b/],
+  ['bagel', /\b(bagel|bajgiel)\b/],
+  ['bibimbap', /\b(bibimbap)\b/],
+  ['curry-chickpea', /\b(curry z ciecierzycy|ciecierzyca curry|chickpea curry)\b/],
+  ['fried-rice', /\b(smazony ryz|fried rice|nasi goreng)\b/],
+  ['asian-noodles', /\b(pad thai|pad see ew|mie goreng|chow mein|makaron po azjatycku)\b/],
+  ['barszcz', /\b(barszcz)\b/],
+  ['bigos', /\b(bigos)\b/],
+  ['bbq-ribs', /\b(zeberka|bbq ribs)\b/],
+  ['beef-stew', /\b(gulasz wolowy|boeuf bourguignon|wolowina duszona)\b/],
   ['salmon', /\b(losos|salmon)\b/],
   ['steak', /\b(stek|steak|antrykot|ribeye|rostbef|t bone)\b/],
   ['dessert', /\b(tiramisu|deser kawowy)\b/],
