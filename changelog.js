@@ -9,6 +9,7 @@ export const CHANGELOG = Object.freeze({
     intro: 'Żarłok 2.1.4 — uporządkowany ekran receptur na iPhonie.',
     items: [
       'Zdjęcia receptur mają wspólne proporcje, stabilne kadrowanie i spokojniejszą obróbkę kolorów.',
+      'Bagietka ma teraz osobną fotografię zamiast zdjęcia okrągłego bochenka na zakwasie.',
       'Wyłączono rozmycie animowane przy ładowaniu zdjęć.',
       'Dolna nawigacja jest niższa, ma bardziej czytelne zakładki i nie zasłania końca listy.',
       'Poprawiono wykrywanie klawiatury iOS, aby komunikaty aktualizacji nie pojawiały się nad wyszukiwarką.'
