@@ -30,6 +30,10 @@ for (const [key, file] of photoFiles) {
   if (duplicateOf) throw new Error('Dwa pliki zawierają identyczną fotografię: ' + duplicateOf + ' oraz ' + file);
   assetContents.set(raw, file);
 }
+const sauceCategory = categoryKeys.find((match) => match[1].replace(/[\'\"]/g, '') === 'cat-sosy');
+if (!sauceCategory || sauceCategory[2] !== 'sauce') {
+  throw new Error('Kategoria sosów musi korzystać z dedykowanego zdjęcia sosu, nie zdjęcia makaronu.');
+}
 if (/return CATEGORY_PHOTOS\[recipe\.category\] \|\| 'dessert'/.test(photosSource)) {
   throw new Error('Nieznana receptura nie może domyślnie dostawać zdjęcia deseru.');
 }
