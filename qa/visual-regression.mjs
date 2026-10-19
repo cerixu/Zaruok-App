@@ -433,6 +433,13 @@ try {
   await captureSurface('/categories', '11-category-tiles.png', 'Kategorie');
   assert(await page.locator('.category-tile-grid').count() === 1, 'Brak siatki kafelków kategorii.');
   assert(await page.locator('.category-tile').count() >= 4, 'Ekran kategorii powinien pokazywać co najmniej cztery skróty.');
+  const categoryIconAudit = await page.evaluate(() => ({
+    total: document.querySelectorAll('.category-tile-icon').length,
+    svg: document.querySelectorAll('.category-tile-icon svg').length,
+    emojiOnly: [...document.querySelectorAll('.category-tile-icon')].filter((el) => !el.querySelector('svg')).length,
+  }));
+  assert(categoryIconAudit.total > 0 && categoryIconAudit.svg === categoryIconAudit.total && categoryIconAudit.emojiOnly === 0,
+    'Kafelki kategorii muszą używać spójnych ikon SVG, a nie mieszaniny emoji i ikon: ' + JSON.stringify(categoryIconAudit));
   const categoryGridMetrics = await page.locator('.category-tile-grid').evaluate((el) => {
     const grid = el.getBoundingClientRect();
     const tiles = [...el.querySelectorAll('.category-tile')].slice(0, 2).map((t) => t.getBoundingClientRect());
