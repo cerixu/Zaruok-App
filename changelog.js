@@ -5,6 +5,14 @@
    ========================================================================== */
 
 export const CHANGELOG = Object.freeze({
+  '2.1.7': Object.freeze({
+    intro: 'Dokładniejsze dopasowanie fotografii do przepisów.',
+    items: [
+      'Usunięto powtórzone reguły przypisywania zdjęć.',
+      'Nierozpoznane potrawy nie dostają już automatycznie zdjęcia deseru.',
+      'Zwiększono numer wersji pamięci podręcznej dla Safari i trybu offline.'
+    ]
+  }),
   '2.1.6': Object.freeze({
     intro: 'Poprawiona fotografia na ekranie Start — bez widocznej ciemnej ramki i nakładki.',
     items: [

@@ -140,3 +140,35 @@ button, [role="button"], a, input, select, textarea {
     animation-iteration-count: 1 !important;
   }
 }
+
+
+/* Fix 2.1.7 — category thumbnails: no nested dark tile behind food photography.
+   The source image is already a square crop; it must fill the rounded frame. */
+.start-final .ctile-img {
+  display: block;
+  overflow: hidden;
+  isolation: isolate;
+  background: transparent !important;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.09) !important;
+}
+.start-final .ctile-img img,
+.start-final .ctile-img img.art {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: inherit !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  filter: none !important;
+  transform: none !important;
+  image-rendering: auto;
+}
+.start-final .ctile-img img.art {
+  animation: none !important;
+}
