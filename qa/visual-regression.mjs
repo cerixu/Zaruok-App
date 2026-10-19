@@ -184,6 +184,9 @@ try {
       americano: key('Americano', 'cat-cocktaile'),
       mojito: key('Mojito', 'cat-cocktaile'),
       aperol: key('Aperol Spritz', 'cat-cocktaile'),
+      baguette: key('Baguette', 'cat-pieczywo'),
+      baguettePl: key('Bagietka francuska', 'cat-pieczywo'),
+      sourdough: key('Chleb na zakwasie', 'cat-pieczywo'),
       tomatoSauce: key('Sos pomidorowy', 'cat-sosy'),
     };
   });
@@ -191,19 +194,22 @@ try {
   assert(photoRouting.americano !== 'cocktail' && photoRouting.mojito !== 'cocktail',
     'Zdjęcie Moscow Mule nie może być używane dla Americano ani Mojito.');
   assert(photoRouting.aperol === 'aperol', 'Aperol Spritz powinien używać własnego zdjęcia.');
+  assert(photoRouting.baguette === 'baguette' && photoRouting.baguettePl === 'baguette',
+    'Baguette/Bagietka musi mieć dedykowane zdjęcie podłużnego chleba, nie bochenka na zakwasie.');
+  assert(photoRouting.sourdough === 'sourdough', 'Chleb na zakwasie powinien zachować zdjęcie okrągłego bochenka.');
   assert(photoRouting.tomatoSauce !== 'cocktail', 'Sos pomidorowy nie może odziedziczyć zdjęcia koktajlu.');
   
 
   const localPhotoAudit = await page.evaluate(async () => {
-    const names = ["food-aperol.jpg.b64","food-asian-noodles.jpg.b64","food-baba-ganoush.jpg.b64","food-babka-piaskowa.jpg.b64","food-bagel.jpg.b64","food-barszcz.jpg.b64","food-bbq-ribs.jpg.b64","food-beef-stew.jpg.b64","food-bibimbap.jpg.b64","food-bigos.jpg.b64","food-brownie.jpg.b64","food-bruschetta.jpg.b64","food-burger.jpg.b64","food-cake.jpg.b64","food-carbonara.jpg.b64","food-chicken-curry.jpg.b64","food-cocktail.jpg.b64","food-creme-brulee.jpg.b64","food-crepes.jpg.b64","food-curry-chickpea.jpg.b64","food-dessert.jpg.b64","food-focaccia.jpg.b64","food-fried-rice.jpg.b64","food-lasagna.jpg.b64","food-pasta-tomato.jpg.b64","food-pierogi.jpg.b64","food-pizza.jpg.b64","food-risotto.jpg.b64","food-salad.jpg.b64","food-salmon.jpg.b64","food-schnitzel.jpg.b64","food-seafood.jpg.b64","food-soup-clear.jpg.b64","food-soup-pumpkin.jpg.b64","food-soup-tomato.jpg.b64","food-soup.jpg.b64","food-sourdough.jpg.b64","food-steak.jpg.b64"];
+    const names = ["food-aperol.jpg.b64","food-asian-noodles.jpg.b64","food-baba-ganoush.jpg.b64","food-babka-piaskowa.jpg.b64","food-bagel.jpg.b64","food-barszcz.jpg.b64","food-bbq-ribs.jpg.b64","food-beef-stew.jpg.b64","food-bibimbap.jpg.b64","food-bigos.jpg.b64","food-brownie.jpg.b64","food-bruschetta.jpg.b64","food-burger.jpg.b64","food-cake.jpg.b64","food-carbonara.jpg.b64","food-chicken-curry.jpg.b64","food-cocktail.jpg.b64","food-creme-brulee.jpg.b64","food-crepes.jpg.b64","food-curry-chickpea.jpg.b64","food-dessert.jpg.b64","food-focaccia.jpg.b64","food-fried-rice.jpg.b64","food-lasagna.jpg.b64","food-pasta-tomato.jpg.b64","food-pierogi.jpg.b64","food-pizza.jpg.b64","food-risotto.jpg.b64","food-salad.jpg.b64","food-salmon.jpg.b64","food-schnitzel.jpg.b64","food-seafood.jpg.b64","food-soup-clear.jpg.b64","food-soup-pumpkin.jpg.b64","food-soup-tomato.jpg.b64","food-soup.jpg.b64","food-sourdough.jpg.b64","food-baguette.jpg.b64","food-steak.jpg.b64"];
     return Promise.all(names.map(async (name) => {
       const response = await fetch(new URL(name, location.href));
       const body = response.ok ? (await response.text()).trim() : '';
       return { name, ok: response.ok, valid: body.startsWith('/9j/') && body.length > 1000 };
     }));
   });
-  assert(localPhotoAudit.length === 38 && localPhotoAudit.every((item) => item.ok && item.valid),
-    'Każde z 38 zdjęć musi być dostępne i zawierać poprawne dane JPEG: ' + JSON.stringify(localPhotoAudit.filter((item) => !item.ok || !item.valid)));
+  assert(localPhotoAudit.length === 39 && localPhotoAudit.every((item) => item.ok && item.valid),
+    'Każde z 39 zdjęć musi być dostępne i zawierać poprawne dane JPEG: ' + JSON.stringify(localPhotoAudit.filter((item) => !item.ok || !item.valid)));
   const photoFirstStylesLoaded = await page.evaluate(() => Array.from(document.styleSheets).some((s) => s.href && s.href.includes('zarlok-v2.css')));
   assert(photoFirstStylesLoaded, 'Brak nowej warstwy graficznej foto-first.');
 
