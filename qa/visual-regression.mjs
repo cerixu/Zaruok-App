@@ -176,6 +176,22 @@ try {
   assert(artworkAudit.curry === 'curry', 'Curry nie używa dedykowanego motywu.');
   assert(artworkAudit.cocktail === 'cocktail', 'Nazwa koktajlu nie nadpisuje błędnej kategorii obrazu.');
   assert(artworkAudit.currywurst === 'sausage', 'Currywurst błędnie używa ilustracji curry zamiast kiełbasy.');
+  const photoRouting = await page.evaluate(async () => {
+    const photos = await import(new URL('food-photos.js', location.href).href);
+    const key = (name, category) => photos.recipePhotoKey({ name, category });
+    return {
+      moscowMule: key('Moscow Mule', 'cat-cocktaile'),
+      americano: key('Americano', 'cat-cocktaile'),
+      mojito: key('Mojito', 'cat-cocktaile'),
+      aperol: key('Aperol Spritz', 'cat-cocktaile'),
+      tomatoSauce: key('Sos pomidorowy', 'cat-sosy'),
+    };
+  });
+  assert(photoRouting.moscowMule === 'cocktail', 'Zdjęcie Moscow Mule musi pozostać przypisane do właściwego drinka.');
+  assert(photoRouting.americano !== 'cocktail' && photoRouting.mojito !== 'cocktail',
+    'Zdjęcie Moscow Mule nie może być używane dla Americano ani Mojito.');
+  assert(photoRouting.aperol === 'aperol', 'Aperol Spritz powinien używać własnego zdjęcia.');
+  assert(photoRouting.tomatoSauce !== 'cocktail', 'Sos pomidorowy nie może odziedziczyć zdjęcia koktajlu.');
   
 
   const localPhotoAudit = await page.evaluate(async () => {
