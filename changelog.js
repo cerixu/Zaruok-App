@@ -4,7 +4,7 @@
    odpowiadający APP_VERSION; test mobilny sprawdza jego obecność.
    ========================================================================== */
 
-export const CHANGELOG = Object.freeze({
+export const CHANGELOG = Object.freeze({\n  '2.1.5': Object.freeze({\n    intro: 'Żarłok 2.1.5 — nowy kierunek graficzny inspirowany iOS i szkłem.',\n    items: [\n      'Dodano spójną warstwę graficzną: grafitowe powierzchnie, miedziane akcenty i subtelne szkło.',\n      'Dopracowano stany aktywne, pola formularzy, kafelki, przyciski i dolną nawigację.',\n      'Zachowano tryb offline, lokalne zasoby i obsługę ograniczenia animacji.',\n      'Przygotowano autorskie materiały art direction w Adobe Firefly do dalszej integracji.'\n    ]\n  }),
   '2.1.4': Object.freeze({
     intro: 'Żarłok 2.1.4 — uporządkowany ekran receptur na iPhonie.',
     items: [
