@@ -209,6 +209,11 @@ try {
 
   const redesignStylesLoaded = await page.evaluate(() => Array.from(document.styleSheets).some((s) => s.href && s.href.includes('design-overhaul.css')));
   assert(redesignStylesLoaded, 'Brak przebudowanego układu Żarłoka 2.1.0.');
+  const mobilePolishLoaded = await page.evaluate(() => {
+    const link = document.querySelector('head link[href*="mobile-polish.css"]');
+    return !!(link && link.sheet && link.sheet.cssRules && link.parentElement === document.head);
+  });
+  assert(mobilePolishLoaded, 'Arkusz mobile-polish.css musi być poprawnie załadowany w sekcji head.');
 
   await page.emulateMedia({ colorScheme: 'light' });
   const automaticLightTheme = await page.evaluate(() => {
