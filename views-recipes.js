@@ -275,15 +275,21 @@ export function categoriesView() {
     const q = norm(search.value.trim());
     const all = listRecipes();
     const specials = [
-      { id: 'all', label: 'Wszystkie receptury', icon: '📚', count: all.length, path: '/recipes' },
-      { id: 'fav', label: 'Ulubione', icon: '❤️', count: all.filter((r) => r.favorite).length, path: '/recipes?f=fav' },
-      { id: 'recent', label: 'Ostatnio otwierane', icon: '🕘', count: all.filter((r) => r.lastOpenedAt).length, path: '/recipes?f=recent' },
-      { id: 'trad', label: 'Tradycyjne', icon: '⭐', count: all.filter((r) => r.traditional).length, path: '/recipes?f=trad' },
+      { id: 'all', label: 'Wszystkie receptury', icon: 'book', count: all.length, path: '/recipes' },
+      { id: 'fav', label: 'Ulubione', icon: 'heart', count: all.filter((r) => r.favorite).length, path: '/recipes?f=fav' },
+      { id: 'recent', label: 'Ostatnio otwierane', icon: 'clock', count: all.filter((r) => r.lastOpenedAt).length, path: '/recipes?f=recent' },
+      { id: 'trad', label: 'Tradycyjne', icon: 'star', count: all.filter((r) => r.traditional).length, path: '/recipes?f=trad' },
     ];
+    const categoryGlyphs = {
+      'cat-pizza': 'pizza', 'cat-pasta': 'pasta', 'cat-sosy': 'sauce', 'cat-sosy-bazowe': 'sauce',
+      'cat-mieso': 'meat', 'cat-ryby': 'fish', 'cat-owoce-morza': 'shrimp', 'cat-warzywa': 'carrot',
+      'cat-desery': 'cake', 'cat-pieczywo': 'bread', 'cat-zupy': 'pot', 'cat-salatki': 'salad',
+      'cat-cocktaile': 'cocktail', 'cat-prep': 'knife', 'cat-inne': 'utensils',
+    };
     const tiles = [
       ...specials.map((c) => ({ ...c, special: true })),
       ...state.categories.map((c) => ({
-        id: c.id, label: c.name, icon: catIcon(c.id) || c.icon || '🍽️',
+        id: c.id, label: c.name, icon: categoryGlyphs[c.id] || 'grid',
         count: count(c.id), path: '/recipes?cat=' + encodeURIComponent(c.id),
       })),
     ].filter((c) => !q || norm(c.label).includes(q));
@@ -296,7 +302,7 @@ export function categoriesView() {
           navigate(c.path);
         },
       },
-        h('span', { class: 'category-tile-icon', 'aria-hidden': 'true' }, c.icon),
+        h('span', { class: 'category-tile-icon', 'aria-hidden': 'true' }, icon(c.icon, 28)),
         h('span', { class: 'category-tile-name' }, c.label),
         h('span', { class: 'category-tile-count' }, recipeCountLabel(c.count)),
         h('span', { class: 'category-tile-arrow', 'aria-hidden': 'true' }, icon('chevron-right', 17)));
