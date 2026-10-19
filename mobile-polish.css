@@ -244,3 +244,111 @@ button { -webkit-appearance: none; appearance: none; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; }
 }
+
+
+/* ==========================================================================
+   ŻARŁOK 2.1.4 · dopięcie ekranu iPhone
+   Jedne proporcje zdjęć, brak rozmywania podczas ładowania, treść poniżej docka.
+   ========================================================================== */
+
+/* Karty receptur: wspólny kadr i spokojniejsza obróbka niezależnie od zdjęcia. */
+.recipes .rtile-img {
+  aspect-ratio: 4 / 3 !important;
+  height: auto !important;
+  overflow: hidden;
+  background: #191a1b;
+  border-radius: 0 !important;
+}
+.recipes .rtile-img img,
+.recipes .rtile-img img:not(.art) {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover !important;
+  object-position: center 48%;
+}
+.recipes .rtile-img img:not(.art) {
+  filter: saturate(.88) contrast(1.045) brightness(.95) !important;
+  animation: none !important;
+  transform: none !important;
+  will-change: auto !important;
+}
+.recipes .rtile-img img.art {
+  filter: none !important;
+  animation: none !important;
+  transform: none !important;
+}
+
+/* Pływający dock: mniejszy, czytelny i nie może przykrywać ostatniej receptury. */
+#tabbar {
+  width: min(calc(100% - 24px), 460px) !important;
+  min-height: 60px !important;
+  height: auto !important;
+  padding: 4px !important;
+  gap: 3px !important;
+  border-radius: 22px !important;
+}
+#tabbar .tab {
+  min-width: 0 !important;
+  min-height: 54px !important;
+  height: 54px !important;
+  padding: 3px 1px !important;
+  gap: 1px !important;
+  justify-content: center !important;
+  border-radius: 17px !important;
+  transform: none !important;
+}
+#tabbar .tab .tab-ico {
+  width: 32px !important;
+  height: 28px !important;
+  flex: 0 0 28px !important;
+  background: transparent !important;
+  transform: none !important;
+}
+#tabbar .tab .tab-ico svg {
+  width: 21px !important;
+  height: 21px !important;
+}
+#tabbar .tab .tab-label {
+  max-width: 100% !important;
+  font-size: 9.5px !important;
+  line-height: 1.15 !important;
+  letter-spacing: -.025em !important;
+  font-weight: 600 !important;
+}
+#tabbar .tab.on {
+  color: var(--zp-copper-bright) !important;
+  background: rgba(217,154,104,.105) !important;
+}
+#tabbar .tab.on .tab-ico {
+  color: var(--zp-copper-bright) !important;
+  background: transparent !important;
+}
+#tabbar .tab.on .tab-label { font-weight: 750 !important; }
+
+/* Odstęp odpowiada rzeczywistej wysokości docka + strefie bezpiecznej iPhone'a. */
+body:not(.no-tabs):not(.kb-open) .screen .scroll {
+  padding-bottom: calc(116px + env(safe-area-inset-bottom, 0px)) !important;
+}
+body.kb-open .screen .scroll {
+  padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px)) !important;
+}
+.recipes .content { padding-bottom: 8px !important; }
+
+/* Jasny motyw zachowuje tę samą geometrię, bez ciemnej plamy pod ikoną. */
+:root[data-theme="light"] #tabbar .tab.on {
+  color: #814a29 !important;
+  background: rgba(196,126,78,.12) !important;
+}
+:root[data-theme="light"] #tabbar .tab.on .tab-ico { color: #814a29 !important; }
+
+/* Powiadomienia aktualizacji nie powinny trafiać nad wyszukiwarkę przy błędnym stanie klawiatury. */
+body.kb-open #toasts {
+  top: calc(var(--vv-top, 0px) + env(safe-area-inset-top, 0px) + 8px);
+  bottom: auto;
+}
+@media (max-width: 360px) {
+  #tabbar { width: calc(100% - 14px) !important; }
+  #tabbar .tab .tab-label { font-size: 8.8px !important; }
+  .recipes .rgrid { gap: 9px !important; }
+}
