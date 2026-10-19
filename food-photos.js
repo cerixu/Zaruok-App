@@ -124,11 +124,9 @@ export function recipePhotoKey(recipe) {
   for (const [key, pattern] of RECIPE_RULES) {
     if (pattern.test(name)) return key;
   }
-  // Zdjęcie kategorii jest lepszym, spójnym fallbackiem niż ilustracja,
-  // gdy nazwa potrawy nie ma jeszcze własnej fotografii.
-  // Każda receptura dostaje zdjęcie nawet wtedy, gdy nazwa nie pasuje do reguły.
-  // Najpierw próbujemy kategorii, a na końcu używamy neutralnego zdjęcia potrawy.
-  return CATEGORY_PHOTOS[recipe.category] || 'dessert';
+  // Nie przypisuj nieznanej potrawie przypadkowego zdjęcia deseru.
+  // Jeśli kategoria nie ma mapowania, pozostaw ilustrację SVG receptury.
+  return CATEGORY_PHOTOS[recipe.category] || null;
 }
 
 function loadPhoto(key) {
