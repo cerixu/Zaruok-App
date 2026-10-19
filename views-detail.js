@@ -76,13 +76,26 @@ export function ingredientGlyph(name) {
     path('M22 12 C19 9 12 10 11 18 C10 25 14 33 20 39 C22 41 25 41 27 39 C33 33 37 25 36 18 C35 10 28 9 25 12 L24 16 Z', { fill: 'currentColor', 'fill-opacity': '.16' }),
     path('M24 15 C23 10 20 8 17 8 M24 15 C26 10 29 8 32 8')
   );
-  if (/sól|salt|pieprz|przypraw|cynamon|kurkum|kumin|chili|chilli|gałka|kardamon|goździk|szafran|kolendra mielona|mielona kolendra/.test(n)) return svg(
-    path('M16 16 H32 L30 41 H18 Z', { fill: 'currentColor', 'fill-opacity': '.12' }),
-    path('M18 16 L20 10 H28 L30 16 Z'), path('M22 7 H26'), circle(21, 23, 1, { fill: 'currentColor', stroke: 'none' }), circle(27, 27, 1, { fill: 'currentColor', stroke: 'none' }), circle(22, 33, 1, { fill: 'currentColor', stroke: 'none' })
+  // Każda podstawowa przyprawa ma własny kształt — nie używamy jednego shakera do wszystkiego.
+  if (/cynamon|cinnamon/.test(n)) return svg(
+    path('M13 34 L31 12 Q34 9 37 12 Q40 15 37 18 L19 39 Q16 42 13 39 Q11 37 13 34 Z', { fill: 'currentColor', 'fill-opacity': '.15' }),
+    path('M10 27 L25 9 Q28 6 31 9 Q34 12 31 15 L16 33 Q13 36 10 33 Q8 30 10 27 Z', { fill: 'currentColor', 'fill-opacity': '.1' }),
+    path('M13 27 L27 11 M17 35 L34 15')
   );
-  if (/sól|salt|pieprz|papryk|przypraw|cynamon|kurkum|kumin|oregano|bazylia|tymianek|rozmaryn|chili|chilli|gałka|kardamon|goździk|szafran/.test(n)) return svg(
+  if (/sól|salt/.test(n)) return svg(
+    path('M16 18 H32 L30 40 H18 Z', { fill: 'currentColor', 'fill-opacity': '.1' }),
+    path('M18 18 L20 11 H28 L30 18 Z'),
+    ...[[21,25],[27,28],[22,33],[28,36],[25,22]].map(([x,y]) => path(`M${x} ${y} l1.3 -1.5`, { stroke: 'currentColor', 'stroke-width': 1.5 }))
+  );
+  if (/pieprz|pepper/.test(n)) return svg(
+    path('M20 9 H28 L30 15 L33 19 V39 Q24 44 15 39 V19 L18 15 Z', { fill: 'currentColor', 'fill-opacity': '.12' }),
+    path('M18 15 H30 M21 8 V5 H27 V8'),
+    ...[[21,23],[27,25],[23,31],[28,35]].map(([x,y]) => circle(x,y,1.4,{fill:'currentColor',stroke:'none'}))
+  );
+  if (/kurkum|kumin|przypraw|chili|chilli|gałka|kardamon|goździk|szafran|kolendra mielona|mielona kolendra/.test(n)) return svg(
     path('M16 16 H32 L30 41 H18 Z', { fill: 'currentColor', 'fill-opacity': '.12' }),
-    path('M18 16 L20 10 H28 L30 16 Z'), path('M22 7 H26'), circle(21, 23, 1, { fill: 'currentColor', stroke: 'none' }), circle(27, 27, 1, { fill: 'currentColor', stroke: 'none' }), circle(22, 33, 1, { fill: 'currentColor', stroke: 'none' })
+    path('M18 16 L20 10 H28 L30 16 Z'), path('M22 7 H26'),
+    circle(21, 23, 1, { fill: 'currentColor', stroke: 'none' }), circle(27, 27, 1, { fill: 'currentColor', stroke: 'none' }), circle(22, 33, 1, { fill: 'currentColor', stroke: 'none' })
   );
   if (/mąk|płatk|chleb|bułk|makaron|spaghetti|penne|fusilli|kasz|ryż|drożdż|zakwas|semolina|farfalle/.test(n)) {
     if (/makaron|spaghetti|penne|fusilli|farfalle/.test(n)) return svg(
