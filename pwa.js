@@ -21,8 +21,12 @@ export const isIOS = () => /iPhone|iPad|iPod/.test(navigator.userAgent) || (navi
 function promptUpdate(worker) {
   if (updateShown) return;
   updateShown = true;
+  // Zarezerwuj miejsce w nagłówku, by przypięte powiadomienie nie zasłaniało wyszukiwarki.
+  document.body.classList.add('has-update-notice');
   toast('Nowa wersja Żarłoka jest dostępna', {
     sticky: true,
+    className: 'toast-update-notice',
+    onDismiss: () => document.body.classList.remove('has-update-notice'),
     action: {
       label: 'Odśwież',
       fn: () => { userAskedForUpdate = true; worker.postMessage({ type: 'SKIP_WAITING' }); },
