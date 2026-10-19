@@ -115,8 +115,12 @@ input,textarea,select,.field input,.field textarea,.field select{border-radius:1
 .rtitle{font-size:.94rem;font-weight:650;letter-spacing:-.025em}
 .rmeta{font-size:.73rem;color:var(--muted)}
 /* Categories remain clear and tactile */
-.ctile{border:1px solid var(--line);border-radius:18px;background:var(--surface);padding:10px}
-.ctile-img{border-radius:14px;overflow:hidden}
+.ctile{border:1px solid var(--line);border-radius:20px;background:linear-gradient(155deg,rgba(255,255,255,.035),rgba(255,255,255,.012)),var(--surface);padding:10px;overflow:hidden;box-shadow:0 10px 26px rgba(0,0,0,.16),inset 0 1px 0 rgba(255,255,255,.035)}
+.ctile-img{display:block;position:relative;isolation:isolate;width:100%;aspect-ratio:1/1;overflow:hidden;border-radius:16px;background:radial-gradient(ellipse at 50% 44%,rgba(217,154,104,.09),transparent 68%),linear-gradient(145deg,#242526,#191a1b);border:1px solid rgba(255,255,255,.055);box-shadow:inset 0 1px 0 rgba(255,255,255,.035)}
+.ctile-img img{display:block;width:100%;height:100%;object-fit:cover;object-position:center;border:0!important;border-radius:inherit!important;padding:0!important;margin:0!important;background:transparent!important;box-shadow:none!important;filter:none!important;transform:none!important;mix-blend-mode:normal}
+.ctile-img img.art{object-fit:cover!important;object-position:center!important;border-radius:inherit!important;padding:0!important;background:transparent!important;box-shadow:none!important;filter:none!important;transform:none!important}
+:root[data-theme="light"] .ctile-img{background:radial-gradient(ellipse at 50% 44%,rgba(169,95,49,.08),transparent 68%),linear-gradient(145deg,#f4eee7,#e9e1d8);border-color:rgba(44,34,25,.07)}
+
 .ctile-name{font-size:.79rem;font-weight:650}
 .ctile-n{color:var(--muted)}
 /* Recipe detail — hero image becomes a wide editorial photo */
