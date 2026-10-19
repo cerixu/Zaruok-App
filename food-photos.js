@@ -57,7 +57,6 @@ const CATEGORY_PHOTOS = Object.freeze({
   'cat-pieczywo': 'sourdough',
   'cat-zupy': 'soup-clear',
   'cat-salatki': 'salad',
-  'cat-cocktaile': 'cocktail',
 });
 
 const normalise = (value) => String(value || '')
@@ -88,7 +87,8 @@ const RECIPE_RULES = [
   ['bibimbap', /\bbibimbap\b/],
   ['curry-chickpea', /\b(curry z ciecierzycy|chickpea curry)\b/],
   ['bruschetta', /\bbruschetta\b/],
-  ['cocktail', /\b(americano|old fashioned|whiskey sour|gin tonic|moscow mule|mojito|negroni|margarita|koktajl|cocktail|drink)\b/],
+  // Zdjęcie z miedzianym kubkiem przedstawia Moscow Mule — nie przypisuj go wszystkim drinkom.
+  ['cocktail', /\bmoscow mule\b/],
   ['lasagna', /\b(lasagna|lasagne)\b/],
   ['chicken-curry', /\b(tikka masala|butter chicken|chicken curry)\b/],
   ['schnitzel', /\b(kotlet schabowy|schabowy|wiener schnitzel|schnitzel)\b/],
@@ -111,7 +111,7 @@ const RECIPE_RULES = [
 
 const photoPromises = new Map();
 
-function recipePhotoKey(recipe) {
+export function recipePhotoKey(recipe) {
   if (!recipe || recipe.thumb || recipe.photo) return null;
   const name = normalise(recipe.name);
   for (const [key, pattern] of RECIPE_RULES) {
