@@ -97,17 +97,6 @@ const RECIPE_RULES = [
   ['dessert', /\b(tiramisu|deser kawowy)\b/],
   ['salad', /\b(burrata|caprese|salatka|salad)\b/],
   ['aperol', /\baperol spritz\b/],
-  ['barszcz', /\bbarszcz (czerwony|ukrainski)\b/],
-  ['bigos', /\bbigos\b/],
-  ['bbq-ribs', /\b(bbq ribs|zeberka bbq|zeberka w sosie bbq|zeberka grillowane)\b/],
-  ['beef-stew', /\b(boeuf bourguignon|gulasz wegierski|gulasz wolowy)\b/],
-  ['brownie', /\bbrownie\b/],
-  ['creme-brulee', /\bcreme brulee\b/],
-  ['crepes', /\b(crepes|nalesniki)\b/],
-  ['bagel', /\b(bagel z lososiem|bagel.*losos)\b/],
-  ['bibimbap', /\bbibimbap\b/],
-  ['curry-chickpea', /\b(curry z ciecierzycy|chickpea curry)\b/],
-  ['bruschetta', /\bbruschetta\b/],
   // Zdjęcie z miedzianym kubkiem przedstawia Moscow Mule — nie przypisuj go wszystkim drinkom.
   ['cocktail', /\bmoscow mule\b/],
   ['lasagna', /\b(lasagna|lasagne)\b/],
@@ -141,9 +130,9 @@ export function recipePhotoKey(recipe) {
   }
   // Zdjęcie kategorii jest lepszym, spójnym fallbackiem niż ilustracja,
   // gdy nazwa potrawy nie ma jeszcze własnej fotografii.
-  // Każda receptura dostaje zdjęcie nawet wtedy, gdy nazwa nie pasuje do reguły.
-  // Najpierw próbujemy kategorii, a na końcu używamy neutralnego zdjęcia potrawy.
-  return CATEGORY_PHOTOS[recipe.category] || 'dessert';
+  // Nie przypisuj losowego zdjęcia deseru do nierozpoznanej potrawy.
+  // Widok pokaże wtedy ilustrację SVG zamiast mylącej fotografii.
+  return CATEGORY_PHOTOS[recipe.category] || null;
 }
 
 function loadPhoto(key) {
