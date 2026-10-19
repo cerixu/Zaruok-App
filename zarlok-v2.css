@@ -154,3 +154,42 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 @media(prefers-reduced-motion:reduce){
  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
 }
+
+
+/* Żarłok 2.1.8 — spójne zdjęcia i karty, bez ciemnych „kwadratów” w środku zdjęć. */
+:root{
+  --food-frame: color-mix(in srgb,var(--surface) 86%,transparent);
+  --food-frame-line: color-mix(in srgb,var(--line) 82%,transparent);
+}
+.ctile,.rtile,.rcard{
+  -webkit-tap-highlight-color:transparent;
+  background:linear-gradient(155deg,color-mix(in srgb,var(--surface) 96%,white 4%),var(--surface));
+  border-color:var(--food-frame-line);
+  box-shadow:0 9px 25px rgba(0,0,0,.13),inset 0 1px 0 rgba(255,255,255,.025);
+}
+.ctile-img,.rtile-img,.rthumb{
+  background:var(--food-frame);
+  overflow:hidden;
+  isolation:isolate;
+}
+.ctile-img img,.rtile-img img,.rthumb img,.zf-feature-img img{
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+}
+.ctile-img img.art,.rtile-img img.art,.rthumb img.art{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover!important;
+  object-position:center!important;
+  padding:0!important;
+  margin:0!important;
+  border:0!important;
+  border-radius:inherit!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  mix-blend-mode:normal!important;
+}
+@media(prefers-reduced-motion:reduce){
+  .ctile,.rtile,.rcard,.ctile-img img,.rtile-img img,.rthumb img{transition:none!important;animation:none!important}
+}
