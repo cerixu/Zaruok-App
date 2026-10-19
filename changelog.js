@@ -5,6 +5,15 @@
    ========================================================================== */
 
 export const CHANGELOG = Object.freeze({
+  '2.1.8': Object.freeze({
+    intro: 'Żarłok 2.1.8 — spójniejsze zdjęcia i bezpieczniejsze dopasowanie potraw.',
+    items: [
+      'Usunięto powtórzone reguły przypisywania zdjęć do receptur.',
+      'Nieznana potrawa nie dostaje już automatycznie zdjęcia deseru — pozostaje jej ilustracja zastępcza.',
+      'Ujednolicono kadrowanie, tła i obramowania zdjęć w kartach na iPhonie.',
+      'Odświeżono wersję pamięci podręcznej dla aktualizacji aplikacji i pracy offline.'
+    ]
+  }),
   '2.1.6': Object.freeze({
     intro: 'Poprawiona fotografia na ekranie Start — bez widocznej ciemnej ramki i nakładki.',
     items: [
