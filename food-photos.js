@@ -58,6 +58,10 @@ const CATEGORY_PHOTOS = Object.freeze({
   'cat-pieczywo': 'sourdough',
   'cat-zupy': 'soup-clear',
   'cat-salatki': 'salad',
+  'cat-sosy': 'pasta-tomato',
+  'cat-sosy-bazowe': 'soup-tomato',
+  'cat-prep': 'salad',
+  'cat-inne': 'dessert',
 });
 
 const normalise = (value) => String(value || '')
@@ -69,9 +73,25 @@ const normalise = (value) => String(value || '')
   .trim();
 
 const RECIPE_RULES = [
+  // Najpierw konkretne potrawy i składniki, dopiero później szerokie kategorie.
   ['pizza', /\b(pizza|pinsa|margherita|diavola|capricciosa|napoletana|quattro formaggi)\b/],
   ['carbonara', /\b(carbonara)\b/],
   ['risotto', /\b(risotto)\b/],
+  ['baba-ganoush', /\b(baba ganoush|baba ghanoush|mutabal|pasta z baklazana)\b/],
+  ['bruschetta', /\b(bruschetta|grzanki z pomidorami)\b/],
+  ['babka-piaskowa', /\b(babka piaskowa|babka cytrynowa|babka drozdzowa)\b/],
+  ['brownie', /\b(brownie|ciasto czekoladowe)\b/],
+  ['creme-brulee', /\b(creme brulee|krem katalonski)\b/],
+  ['crepes', /\b(nalesniki|crepes|crepe)\b/],
+  ['bagel', /\b(bagel|bajgiel)\b/],
+  ['bibimbap', /\b(bibimbap)\b/],
+  ['curry-chickpea', /\b(curry z ciecierzycy|ciecierzyca curry|chickpea curry)\b/],
+  ['fried-rice', /\b(smazony ryz|fried rice|nasi goreng)\b/],
+  ['asian-noodles', /\b(pad thai|pad see ew|mie goreng|chow mein|makaron po azjatycku)\b/],
+  ['barszcz', /\b(barszcz)\b/],
+  ['bigos', /\b(bigos)\b/],
+  ['bbq-ribs', /\b(zeberka|bbq ribs)\b/],
+  ['beef-stew', /\b(gulasz wolowy|boeuf bourguignon|wolowina duszona)\b/],
   ['salmon', /\b(losos|salmon)\b/],
   ['steak', /\b(stek|steak|antrykot|ribeye|rostbef|t bone)\b/],
   ['dessert', /\b(tiramisu|deser kawowy)\b/],
@@ -121,7 +141,9 @@ export function recipePhotoKey(recipe) {
   }
   // Zdjęcie kategorii jest lepszym, spójnym fallbackiem niż ilustracja,
   // gdy nazwa potrawy nie ma jeszcze własnej fotografii.
-  return CATEGORY_PHOTOS[recipe.category] || null;
+  // Każda receptura dostaje zdjęcie nawet wtedy, gdy nazwa nie pasuje do reguły.
+  // Najpierw próbujemy kategorii, a na końcu używamy neutralnego zdjęcia potrawy.
+  return CATEGORY_PHOTOS[recipe.category] || 'dessert';
 }
 
 function loadPhoto(key) {

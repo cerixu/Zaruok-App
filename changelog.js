@@ -5,6 +5,15 @@
    ========================================================================== */
 
 export const CHANGELOG = Object.freeze({
+  '2.1.5': Object.freeze({
+    intro: 'Żarłok 2.1.5 — nowy kierunek graficzny inspirowany iOS i szkłem.',
+    items: [
+      'Dodano spójną warstwę graficzną: grafitowe powierzchnie, miedziane akcenty i subtelne szkło.',
+      'Dopracowano stany aktywne, pola formularzy, kafelki, przyciski i dolną nawigację.',
+      'Zachowano tryb offline, lokalne zasoby i obsługę ograniczenia animacji.',
+      'Przygotowano autorskie materiały art direction w Adobe Firefly do dalszej integracji.'
+    ]
+  }),
   '2.1.4': Object.freeze({
     intro: 'Żarłok 2.1.4 — uporządkowany ekran receptur na iPhonie.',
     items: [
