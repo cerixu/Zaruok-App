@@ -139,6 +139,10 @@ try {
       pepperShape: paths('Papryka czerwona')[0]?.startsWith('M22 12 C19 9 12 10 11 18'),
       powderKind: mod.ingredientKind('Papryka słodka'),
       powderShaker: paths('Papryka słodka')[0]?.startsWith('M16 16 H32 L30 41 H18 Z'),
+      cinnamonKind: mod.ingredientKind('Cynamon'),
+      cinnamonSticks: paths('Cynamon')[0]?.startsWith('M13 34 L31 12'),
+      saltCrystals: paths('Sól morska')[0]?.startsWith('M16 18 H32 L30 40 H18 Z'),
+      pepperMill: paths('Pieprz czarny')[0]?.startsWith('M20 9 H28 L30 15'),
     };
   });
   assert(semanticIcons.basilKind === 'vegetable' && semanticIcons.basilLeaf,
@@ -147,6 +151,10 @@ try {
     'Świeża papryka nie ma własnej ikony warzywa.');
   assert(semanticIcons.powderKind === 'spice' && semanticIcons.powderShaker,
     'Papryka słodka/mielona powinna zachować ikonę przyprawy.');
+  assert(semanticIcons.cinnamonKind === 'spice' && semanticIcons.cinnamonSticks,
+    'Cynamon powinien mieć osobną ikonę lasek cynamonu, a nie ogólny shaker.');
+  assert(semanticIcons.saltCrystals && semanticIcons.pepperMill,
+    'Sól i pieprz muszą mieć osobne, semantycznie czytelne ikony.');
 
   const artworkAudit = await page.evaluate(async () => {
     const art = await import(new URL('art.js', location.href).href);
@@ -168,6 +176,22 @@ try {
   assert(artworkAudit.curry === 'curry', 'Curry nie używa dedykowanego motywu.');
   assert(artworkAudit.cocktail === 'cocktail', 'Nazwa koktajlu nie nadpisuje błędnej kategorii obrazu.');
   assert(artworkAudit.currywurst === 'sausage', 'Currywurst błędnie używa ilustracji curry zamiast kiełbasy.');
+  const photoRouting = await page.evaluate(async () => {
+    const photos = await import(new URL('food-photos.js', location.href).href);
+    const key = (name, category) => photos.recipePhotoKey({ name, category });
+    return {
+      moscowMule: key('Moscow Mule', 'cat-cocktaile'),
+      americano: key('Americano', 'cat-cocktaile'),
+      mojito: key('Mojito', 'cat-cocktaile'),
+      aperol: key('Aperol Spritz', 'cat-cocktaile'),
+      tomatoSauce: key('Sos pomidorowy', 'cat-sosy'),
+    };
+  });
+  assert(photoRouting.moscowMule === 'cocktail', 'Zdjęcie Moscow Mule musi pozostać przypisane do właściwego drinka.');
+  assert(photoRouting.americano !== 'cocktail' && photoRouting.mojito !== 'cocktail',
+    'Zdjęcie Moscow Mule nie może być używane dla Americano ani Mojito.');
+  assert(photoRouting.aperol === 'aperol', 'Aperol Spritz powinien używać własnego zdjęcia.');
+  assert(photoRouting.tomatoSauce !== 'cocktail', 'Sos pomidorowy nie może odziedziczyć zdjęcia koktajlu.');
   
 
   const localPhotoAudit = await page.evaluate(async () => {
@@ -409,6 +433,13 @@ try {
   await captureSurface('/categories', '11-category-tiles.png', 'Kategorie');
   assert(await page.locator('.category-tile-grid').count() === 1, 'Brak siatki kafelków kategorii.');
   assert(await page.locator('.category-tile').count() >= 4, 'Ekran kategorii powinien pokazywać co najmniej cztery skróty.');
+  const categoryIconAudit = await page.evaluate(() => ({
+    total: document.querySelectorAll('.category-tile-icon').length,
+    svg: document.querySelectorAll('.category-tile-icon svg').length,
+    emojiOnly: [...document.querySelectorAll('.category-tile-icon')].filter((el) => !el.querySelector('svg')).length,
+  }));
+  assert(categoryIconAudit.total > 0 && categoryIconAudit.svg === categoryIconAudit.total && categoryIconAudit.emojiOnly === 0,
+    'Kafelki kategorii muszą używać spójnych ikon SVG, a nie mieszaniny emoji i ikon: ' + JSON.stringify(categoryIconAudit));
   const categoryGridMetrics = await page.locator('.category-tile-grid').evaluate((el) => {
     const grid = el.getBoundingClientRect();
     const tiles = [...el.querySelectorAll('.category-tile')].slice(0, 2).map((t) => t.getBoundingClientRect());
