@@ -345,10 +345,10 @@ button { -webkit-appearance: none; appearance: none; }
 
 /* Odstęp odpowiada rzeczywistej wysokości docka + strefie bezpiecznej iPhone'a. */
 body:not(.no-tabs):not(.kb-open) .screen .scroll {
-  padding-bottom: calc(18px + env(safe-area-inset-bottom, 0px)) !important;
+  padding-bottom: 18px !important;
 }
 body.kb-open .screen .scroll {
-  padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px)) !important;
+  padding-bottom: 16px !important;
 }
 .recipes .content { padding-bottom: 8px !important; }
 
