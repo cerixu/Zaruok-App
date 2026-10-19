@@ -96,6 +96,18 @@ const ICONS = {
   moon: '<path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/>',
   coins: '<circle cx="12" cy="12" r="9"/><path d="M14.5 9a3 3 0 0 0-2.5-1.3c-1.7 0-3 .9-3 2.3s1.3 2 3 2.4 3 1 3 2.4-1.3 2.3-3 2.3A3 3 0 0 1 9.5 15M12 6v1.7M12 16.3V18"/>',
   percent: '<path d="M19 5L5 19"/><circle cx="7" cy="7" r="2.3"/><circle cx="17" cy="17" r="2.3"/>',
+  pasta: '<path d="M5 8c3-4 5 4 8 0s5 4 8 0M4 13c3-4 5 4 8 0s5 4 8 0M5 18c3-4 5 4 8 0s5 4 8 0"/>',
+  sauce: '<path d="M9 3h6v3l3 3v11a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V9l3-3z"/><path d="M9 6h6M6 12h12"/>',
+  meat: '<path d="M7 8c4-5 11-3 13 1 3 1 4 5 1 8-2 5-9 5-12 2-5 1-7-5-4-8z"/><ellipse cx="13" cy="14" rx="3.5" ry="2.5"/>',
+  fish: '<path d="M3 12c5-7 12-7 17 0-5 7-12 7-17 0z"/><path d="M20 12l3-4v8z"/><circle cx="8" cy="11" r="1" fill="currentColor"/>',
+  shrimp: '<path d="M5 15c0-6 7-9 12-5 5 4 3 10-2 11-4 1-7-2-6-5 1-2 4-2 5 0"/><path d="M5 15 2 12v6zM16 9l2-4M19 10l4-3"/>',
+  carrot: '<path d="M7 10l15 4-10 9z"/><path d="M8 10 5 5M11 11l1-7M14 12l5-5"/>',
+  cake: '<path d="M4 13h16v7H4z"/><path d="M4 13c0-3 4-3 4-1 0-4 6-4 6 0 1-3 6-2 6 1M8 20v2M16 20v2"/>',
+  bread: '<path d="M4 12c0-5 4-8 8-8s8 3 8 8v8H4z"/><path d="M9 8l2 3M15 8l-2 3M9 15v2M15 15v2"/>',
+  salad: '<path d="M4 16c0-6 5-10 11-10 4 0 6 3 5 7-1 5-6 8-12 7z"/><path d="M4 20 17 8M10 15l-1-5M14 12l5 1"/>',
+  cocktail: '<path d="M4 5h16l-6 7v6h-4v-6z"/><path d="M10 21h4M12 18v3M15 5l3-3"/>',
+  knife: '<path d="M7 3c5 2 8 7 8 12H7z"/><path d="M7 15v6"/>',
+  utensils: '<path d="M5 3v7M2 3v4a3 3 0 0 0 6 0V3M5 10v11M16 3c-3 4-3 9 0 11h2V3M18 14v7"/>',
   pizza: '<circle cx="12" cy="12" r="9"/><circle cx="9" cy="9" r="1.2"/><circle cx="15" cy="10" r="1.2"/><circle cx="11" cy="15" r="1.2"/>',
   list: '<path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/>',
   refresh: '<path d="M20 11a8 8 0 0 0-14-4L4 9M4 4v5h5M4 13a8 8 0 0 0 14 4l2-2M20 20v-5h-5"/>',
@@ -164,9 +176,9 @@ export const emptyState = (emoji, title, text, ...actions) =>
 export function toast(msg, o = {}) {
   const box = $('#toasts');
   if (!box) return { dismiss() {} };
-  const t = h('div', { class: 'toast ' + (o.type || ''), role: 'status' }, h('span', { class: 'toast-msg' }, msg));
+  const t = h('div', { class: 'toast ' + (o.type || '') + (o.className ? ' ' + o.className : ''), role: 'status' }, h('span', { class: 'toast-msg' }, msg));
   let timer;
-  const dismiss = () => { clearTimeout(timer); t.classList.remove('in'); setTimeout(() => t.remove(), 200); };
+  const dismiss = () => { clearTimeout(timer); t.classList.remove('in'); setTimeout(() => { t.remove(); if (typeof o.onDismiss === 'function') o.onDismiss(); }, 200); };
   if (o.action) t.appendChild(h('button', { type: 'button', class: 'toast-act', onClick: () => { dismiss(); o.action.fn(); } }, o.action.label));
   box.appendChild(t);
   while (box.children.length > 3) box.firstChild.remove();

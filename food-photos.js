@@ -26,6 +26,7 @@ const PHOTO_FILES = Object.freeze({
   'soup-clear': 'food-soup-clear.jpg.b64',
   'soup-pumpkin': 'food-soup-pumpkin.jpg.b64',
   sourdough: 'food-sourdough.jpg.b64',
+  baguette: 'food-baguette.jpg.b64',
   cake: 'food-cake.jpg.b64',
   'babka-piaskowa': 'food-babka-piaskowa.jpg.b64',
   'baba-ganoush': 'food-baba-ganoush.jpg.b64',
@@ -57,7 +58,6 @@ const CATEGORY_PHOTOS = Object.freeze({
   'cat-pieczywo': 'sourdough',
   'cat-zupy': 'soup-clear',
   'cat-salatki': 'salad',
-  'cat-cocktaile': 'cocktail',
 });
 
 const normalise = (value) => String(value || '')
@@ -88,7 +88,8 @@ const RECIPE_RULES = [
   ['bibimbap', /\bbibimbap\b/],
   ['curry-chickpea', /\b(curry z ciecierzycy|chickpea curry)\b/],
   ['bruschetta', /\bbruschetta\b/],
-  ['cocktail', /\b(americano|old fashioned|whiskey sour|gin tonic|moscow mule|mojito|negroni|margarita|koktajl|cocktail|drink)\b/],
+  // Zdjęcie z miedzianym kubkiem przedstawia Moscow Mule — nie przypisuj go wszystkim drinkom.
+  ['cocktail', /\bmoscow mule\b/],
   ['lasagna', /\b(lasagna|lasagne)\b/],
   ['chicken-curry', /\b(tikka masala|butter chicken|chicken curry)\b/],
   ['schnitzel', /\b(kotlet schabowy|schabowy|wiener schnitzel|schnitzel)\b/],
@@ -101,7 +102,8 @@ const RECIPE_RULES = [
   ['cake', /\b(szarlotka|apple pie)\b/],
   ['babka-piaskowa', /\b(babka piaskowa|babka cytrynowa|babka drozdzowa)\b/],
   ['baba-ganoush', /\b(baba ganoush|baba ghanoush|mutabal)\b/],
-  ['sourdough', /\b(chleb na zakwasie|sourdough|chleb zytni|chleb pszenny na drozdzach|bagietka|baguette|bread)\b/],
+  ['baguette', /\b(baguette|bagietka|bagietki)\b/],
+  ['sourdough', /\b(chleb na zakwasie|sourdough|chleb zytni|chleb pszenny na drozdzach|bread|bochenek chleba)\b/],
   ['soup', /\b(zurek)\b/],
   ['seafood', /\b(vongole|malze|mussels|krewetki|krewetka|frutti di mare|owoce morza)\b/],
   ['pierogi', /\b(pierogi|pierog|uszka)\b/],
@@ -111,7 +113,7 @@ const RECIPE_RULES = [
 
 const photoPromises = new Map();
 
-function recipePhotoKey(recipe) {
+export function recipePhotoKey(recipe) {
   if (!recipe || recipe.thumb || recipe.photo) return null;
   const name = normalise(recipe.name);
   for (const [key, pattern] of RECIPE_RULES) {

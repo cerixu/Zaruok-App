@@ -5,6 +5,25 @@
    ========================================================================== */
 
 export const CHANGELOG = Object.freeze({
+  '2.1.4': Object.freeze({
+    intro: 'Żarłok 2.1.4 — uporządkowany ekran receptur na iPhonie.',
+    items: [
+      'Zdjęcia receptur mają wspólne proporcje, stabilne kadrowanie i spokojniejszą obróbkę kolorów.',
+      'Bagietka ma teraz osobną fotografię zamiast zdjęcia okrągłego bochenka na zakwasie.',
+      'Wyłączono rozmycie animowane przy ładowaniu zdjęć.',
+      'Dolna nawigacja jest niższa, ma bardziej czytelne zakładki i nie zasłania końca listy.',
+      'Poprawiono wykrywanie klawiatury iOS, aby komunikaty aktualizacji nie pojawiały się nad wyszukiwarką.'
+    ],
+  }),
+  '2.1.3': Object.freeze({
+    intro: 'Żarłok 2.1.3 — spójniejsze ikony i dokładniejsze dopasowanie zdjęć.',
+    items: [
+      'Kafelki kategorii korzystają z jednego zestawu ikon SVG zamiast mieszaniny emoji.',
+      'Cynamon, sól i pieprz mają odrębne symbole składników.',
+      'Zdjęcie Moscow Mule nie jest już przypisywane do innych koktajli; Aperol Spritz zachowuje własną fotografię.',
+      'Poprawki grafiki nie zmieniają receptur ani stanów magazynowych.'
+    ],
+  }),
   '2.1.2': Object.freeze({
     intro: 'Żarłok 2.1.2 — dopracowany interfejs mobilny.',
     items: [

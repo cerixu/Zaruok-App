@@ -139,6 +139,10 @@ try {
       pepperShape: paths('Papryka czerwona')[0]?.startsWith('M22 12 C19 9 12 10 11 18'),
       powderKind: mod.ingredientKind('Papryka słodka'),
       powderShaker: paths('Papryka słodka')[0]?.startsWith('M16 16 H32 L30 41 H18 Z'),
+      cinnamonKind: mod.ingredientKind('Cynamon'),
+      cinnamonSticks: paths('Cynamon')[0]?.startsWith('M13 34 L31 12'),
+      saltCrystals: paths('Sól morska')[0]?.startsWith('M16 18 H32 L30 40 H18 Z'),
+      pepperMill: paths('Pieprz czarny')[0]?.startsWith('M20 9 H28 L30 15'),
     };
   });
   assert(semanticIcons.basilKind === 'vegetable' && semanticIcons.basilLeaf,
@@ -147,6 +151,10 @@ try {
     'Świeża papryka nie ma własnej ikony warzywa.');
   assert(semanticIcons.powderKind === 'spice' && semanticIcons.powderShaker,
     'Papryka słodka/mielona powinna zachować ikonę przyprawy.');
+  assert(semanticIcons.cinnamonKind === 'spice' && semanticIcons.cinnamonSticks,
+    'Cynamon powinien mieć osobną ikonę lasek cynamonu, a nie ogólny shaker.');
+  assert(semanticIcons.saltCrystals && semanticIcons.pepperMill,
+    'Sól i pieprz muszą mieć osobne, semantycznie czytelne ikony.');
 
   const artworkAudit = await page.evaluate(async () => {
     const art = await import(new URL('art.js', location.href).href);
@@ -168,23 +176,50 @@ try {
   assert(artworkAudit.curry === 'curry', 'Curry nie używa dedykowanego motywu.');
   assert(artworkAudit.cocktail === 'cocktail', 'Nazwa koktajlu nie nadpisuje błędnej kategorii obrazu.');
   assert(artworkAudit.currywurst === 'sausage', 'Currywurst błędnie używa ilustracji curry zamiast kiełbasy.');
+  const photoRouting = await page.evaluate(async () => {
+    const photos = await import(new URL('food-photos.js', location.href).href);
+    const key = (name, category) => photos.recipePhotoKey({ name, category });
+    return {
+      moscowMule: key('Moscow Mule', 'cat-cocktaile'),
+      americano: key('Americano', 'cat-cocktaile'),
+      mojito: key('Mojito', 'cat-cocktaile'),
+      aperol: key('Aperol Spritz', 'cat-cocktaile'),
+      baguette: key('Baguette', 'cat-pieczywo'),
+      baguettePl: key('Bagietka francuska', 'cat-pieczywo'),
+      sourdough: key('Chleb na zakwasie', 'cat-pieczywo'),
+      tomatoSauce: key('Sos pomidorowy', 'cat-sosy'),
+    };
+  });
+  assert(photoRouting.moscowMule === 'cocktail', 'Zdjęcie Moscow Mule musi pozostać przypisane do właściwego drinka.');
+  assert(photoRouting.americano !== 'cocktail' && photoRouting.mojito !== 'cocktail',
+    'Zdjęcie Moscow Mule nie może być używane dla Americano ani Mojito.');
+  assert(photoRouting.aperol === 'aperol', 'Aperol Spritz powinien używać własnego zdjęcia.');
+  assert(photoRouting.baguette === 'baguette' && photoRouting.baguettePl === 'baguette',
+    'Baguette/Bagietka musi mieć dedykowane zdjęcie podłużnego chleba, nie bochenka na zakwasie.');
+  assert(photoRouting.sourdough === 'sourdough', 'Chleb na zakwasie powinien zachować zdjęcie okrągłego bochenka.');
+  assert(photoRouting.tomatoSauce !== 'cocktail', 'Sos pomidorowy nie może odziedziczyć zdjęcia koktajlu.');
   
 
   const localPhotoAudit = await page.evaluate(async () => {
-    const names = ["food-aperol.jpg.b64","food-asian-noodles.jpg.b64","food-baba-ganoush.jpg.b64","food-babka-piaskowa.jpg.b64","food-bagel.jpg.b64","food-barszcz.jpg.b64","food-bbq-ribs.jpg.b64","food-beef-stew.jpg.b64","food-bibimbap.jpg.b64","food-bigos.jpg.b64","food-brownie.jpg.b64","food-bruschetta.jpg.b64","food-burger.jpg.b64","food-cake.jpg.b64","food-carbonara.jpg.b64","food-chicken-curry.jpg.b64","food-cocktail.jpg.b64","food-creme-brulee.jpg.b64","food-crepes.jpg.b64","food-curry-chickpea.jpg.b64","food-dessert.jpg.b64","food-focaccia.jpg.b64","food-fried-rice.jpg.b64","food-lasagna.jpg.b64","food-pasta-tomato.jpg.b64","food-pierogi.jpg.b64","food-pizza.jpg.b64","food-risotto.jpg.b64","food-salad.jpg.b64","food-salmon.jpg.b64","food-schnitzel.jpg.b64","food-seafood.jpg.b64","food-soup-clear.jpg.b64","food-soup-pumpkin.jpg.b64","food-soup-tomato.jpg.b64","food-soup.jpg.b64","food-sourdough.jpg.b64","food-steak.jpg.b64"];
+    const names = ["food-aperol.jpg.b64","food-asian-noodles.jpg.b64","food-baba-ganoush.jpg.b64","food-babka-piaskowa.jpg.b64","food-bagel.jpg.b64","food-barszcz.jpg.b64","food-bbq-ribs.jpg.b64","food-beef-stew.jpg.b64","food-bibimbap.jpg.b64","food-bigos.jpg.b64","food-brownie.jpg.b64","food-bruschetta.jpg.b64","food-burger.jpg.b64","food-cake.jpg.b64","food-carbonara.jpg.b64","food-chicken-curry.jpg.b64","food-cocktail.jpg.b64","food-creme-brulee.jpg.b64","food-crepes.jpg.b64","food-curry-chickpea.jpg.b64","food-dessert.jpg.b64","food-focaccia.jpg.b64","food-fried-rice.jpg.b64","food-lasagna.jpg.b64","food-pasta-tomato.jpg.b64","food-pierogi.jpg.b64","food-pizza.jpg.b64","food-risotto.jpg.b64","food-salad.jpg.b64","food-salmon.jpg.b64","food-schnitzel.jpg.b64","food-seafood.jpg.b64","food-soup-clear.jpg.b64","food-soup-pumpkin.jpg.b64","food-soup-tomato.jpg.b64","food-soup.jpg.b64","food-sourdough.jpg.b64","food-baguette.jpg.b64","food-steak.jpg.b64"];
     return Promise.all(names.map(async (name) => {
       const response = await fetch(new URL(name, location.href));
       const body = response.ok ? (await response.text()).trim() : '';
       return { name, ok: response.ok, valid: body.startsWith('/9j/') && body.length > 1000 };
     }));
   });
-  assert(localPhotoAudit.length === 38 && localPhotoAudit.every((item) => item.ok && item.valid),
-    'Każde z 38 zdjęć musi być dostępne i zawierać poprawne dane JPEG: ' + JSON.stringify(localPhotoAudit.filter((item) => !item.ok || !item.valid)));
+  assert(localPhotoAudit.length === 39 && localPhotoAudit.every((item) => item.ok && item.valid),
+    'Każde z 39 zdjęć musi być dostępne i zawierać poprawne dane JPEG: ' + JSON.stringify(localPhotoAudit.filter((item) => !item.ok || !item.valid)));
   const photoFirstStylesLoaded = await page.evaluate(() => Array.from(document.styleSheets).some((s) => s.href && s.href.includes('zarlok-v2.css')));
   assert(photoFirstStylesLoaded, 'Brak nowej warstwy graficznej foto-first.');
 
   const redesignStylesLoaded = await page.evaluate(() => Array.from(document.styleSheets).some((s) => s.href && s.href.includes('design-overhaul.css')));
   assert(redesignStylesLoaded, 'Brak przebudowanego układu Żarłoka 2.1.0.');
+  const mobilePolishLoaded = await page.evaluate(() => {
+    const link = document.querySelector('head link[href*="mobile-polish.css"]');
+    return !!(link && link.sheet && link.sheet.cssRules && link.parentElement === document.head);
+  });
+  assert(mobilePolishLoaded, 'Arkusz mobile-polish.css musi być poprawnie załadowany w sekcji head.');
 
   await page.emulateMedia({ colorScheme: 'light' });
   const automaticLightTheme = await page.evaluate(() => {
@@ -235,13 +270,13 @@ try {
       widths: tabs.map((tab) => tab.getBoundingClientRect().width),
     };
   });
-  assert(tabBox.height >= 50 && tabBox.height <= 80, 'Dolna nawigacja ma nieprawidłową wysokość: ' + JSON.stringify(tabMetrics));
-  assert(tabMetrics.position === 'absolute' && tabMetrics.width < tabMetrics.viewport && tabMetrics.x > 0 && tabMetrics.centerError <= 2 && tabMetrics.leftGap >= 8 && tabMetrics.rightGap >= 8,
-    'Dolna nawigacja nie jest równo wycentrowaną pływającą kapsułą: ' + JSON.stringify(tabMetrics));
+  assert(tabBox.height >= 50 && tabBox.height <= 120, 'Dolna nawigacja ma nieprawidłową wysokość: ' + JSON.stringify(tabMetrics));
+  assert(tabMetrics.position === 'relative' && tabMetrics.width >= tabMetrics.viewport - 2 && Math.abs(tabMetrics.x) <= 1 && tabMetrics.centerError <= 2 && Math.abs(tabMetrics.leftGap) <= 1 && Math.abs(tabMetrics.rightGap) <= 1,
+    'Dolna nawigacja powinna zajmować szerokość ekranu i uczestniczyć w układzie, zamiast przykrywać listę: ' + JSON.stringify(tabMetrics));
   assert(tabMetrics.backgroundColor.includes('0.95') || tabMetrics.backgroundColor.includes('0.97'),
     'Dolna nawigacja jest zbyt przezroczysta i przepuszcza tekst/karty spod spodu: ' + JSON.stringify(tabMetrics));
-  assert(tabMetrics.bottomGap >= 5 && tabMetrics.bottomGap < 70,
-    'Dolna nawigacja koliduje z dolnym obszarem bezpiecznym: ' + JSON.stringify(tabMetrics));
+  assert(tabMetrics.bottomGap >= -1 && tabMetrics.bottomGap <= 2,
+    'Dolna nawigacja nie jest osadzona na dole układu: ' + JSON.stringify(tabMetrics));
   assert(tabMetrics.tabs === 6 && tabMetrics.widths.every((w) => w >= 45) && tabMetrics.iconsInside,
     'Ikony lub zakładki dolnej nawigacji są ściśnięte albo wychodzą poza pasek: ' + JSON.stringify(tabMetrics));
   assert(tabMetrics.firstIconShiftX !== null && Math.abs(tabMetrics.firstIconShiftX) <= 0.1,
@@ -338,9 +373,57 @@ try {
   assert(recipeUi, 'Brakuje wyszukiwarki lub aktywnego filtra na liście receptur.');
   assert(recipeUi.radius >= 16, 'Pole wyszukiwania nie ma zaokrąglonego kształtu: ' + JSON.stringify(recipeUi));
   assert(recipeUi.inputBorder === 0, 'Wyszukiwarka ma dodatkową ramkę wewnątrz szklanego kontenera: ' + JSON.stringify(recipeUi));
+  const updateNoticeLayout = await page.evaluate(() => {
+    const header = document.querySelector('.screen .topbar');
+    if (!header) return null;
+    const before = parseFloat(getComputedStyle(header).paddingTop);
+    document.body.classList.add('has-update-notice');
+    const reserved = parseFloat(getComputedStyle(header).paddingTop);
+    document.body.classList.remove('has-update-notice');
+    return { before, reserved, extra: reserved - before };
+  });
+  assert(updateNoticeLayout && updateNoticeLayout.extra >= 50,
+    'Powiadomienie o aktualizacji nie rezerwuje miejsca nad wyszukiwarką: ' + JSON.stringify(updateNoticeLayout));
   const chipRgb = (recipeUi.chipColor.match(/\d+/g) || []).slice(0, 3).map(Number);
   assert(chipRgb.length === 3 && chipRgb[0] > 180 && chipRgb[1] > 150,
     'Aktywny filtr ma zbyt ciemny tekst zamiast jasnego kontrastu: ' + JSON.stringify(recipeUi));
+  const recipeComposition = await page.evaluate(() => {
+    const frame = document.querySelector('.recipes .rtile-img');
+    const image = frame?.querySelector('img');
+    const scroll = document.querySelector('.recipes .scroll');
+    const bar = document.querySelector('#tabbar');
+    const frameRect = frame?.getBoundingClientRect();
+    const barRect = bar?.getBoundingClientRect();
+    const scrollRect = scroll?.getBoundingClientRect();
+    const scrollStyle = scroll ? getComputedStyle(scroll) : null;
+    const ratio = frameRect && frameRect.height ? frameRect.width / frameRect.height : 0;
+    const vv = window.visualViewport;
+    const active = document.activeElement;
+    const editing = active instanceof HTMLElement && /^(INPUT|TEXTAREA|SELECT)$/.test(active.tagName);
+    return {
+      imageRatio: ratio,
+      imageAnimation: image ? getComputedStyle(image).animationName : '',
+      scrollBottomPadding: scrollStyle ? parseFloat(scrollStyle.paddingBottom) : 0,
+      scrollDockGap: scrollRect && barRect ? barRect.top - scrollRect.bottom : null,
+      dockHeight: barRect ? barRect.height : 0,
+      dockBottomGap: barRect ? innerHeight - barRect.bottom : 0,
+      keyboardClass: document.body.classList.contains('kb-open'),
+      keyboardActuallyVisible: !!(editing && vv && innerHeight - vv.height > 140),
+    };
+  });
+  assert(recipeComposition.imageRatio > 1.25 && recipeComposition.imageRatio < 1.42,
+    'Zdjęcia receptur nie mają wspólnego, lekko poziomego kadru 4:3: ' + JSON.stringify(recipeComposition));
+  assert(recipeComposition.imageAnimation === 'none',
+    'Miniatury receptur nie powinny rozmywać się podczas ładowania: ' + JSON.stringify(recipeComposition));
+  assert(recipeComposition.scrollBottomPadding >= 16 && recipeComposition.scrollBottomPadding <= 80,
+    'Lista ma nieprawidłowy margines końcowy po przeniesieniu docka do układu: ' + JSON.stringify(recipeComposition));
+  assert(recipeComposition.scrollDockGap !== null && recipeComposition.scrollDockGap >= -1 && recipeComposition.scrollDockGap <= 2,
+    'Dolny dock nadal nachodzi na obszar przewijania receptur: ' + JSON.stringify(recipeComposition));
+  assert(recipeComposition.dockHeight >= 50 && recipeComposition.dockHeight <= 120 &&
+    recipeComposition.dockBottomGap >= -1 && recipeComposition.dockBottomGap <= 2,
+    'Dolny dock ma nieprawidłowe wymiary albo położenie: ' + JSON.stringify(recipeComposition));
+  assert(!recipeComposition.keyboardClass || recipeComposition.keyboardActuallyVisible,
+    'Stan klawiatury iOS pozostał aktywny, mimo że klawiatura nie jest otwarta: ' + JSON.stringify(recipeComposition));
   await shot('02-recipes-list.png');
 
   const recipeLinks = await page.locator('a[href^="#/recipe/"]').evaluateAll((els) =>
@@ -409,6 +492,13 @@ try {
   await captureSurface('/categories', '11-category-tiles.png', 'Kategorie');
   assert(await page.locator('.category-tile-grid').count() === 1, 'Brak siatki kafelków kategorii.');
   assert(await page.locator('.category-tile').count() >= 4, 'Ekran kategorii powinien pokazywać co najmniej cztery skróty.');
+  const categoryIconAudit = await page.evaluate(() => ({
+    total: document.querySelectorAll('.category-tile-icon').length,
+    svg: document.querySelectorAll('.category-tile-icon svg').length,
+    emojiOnly: [...document.querySelectorAll('.category-tile-icon')].filter((el) => !el.querySelector('svg')).length,
+  }));
+  assert(categoryIconAudit.total > 0 && categoryIconAudit.svg === categoryIconAudit.total && categoryIconAudit.emojiOnly === 0,
+    'Kafelki kategorii muszą używać spójnych ikon SVG, a nie mieszaniny emoji i ikon: ' + JSON.stringify(categoryIconAudit));
   const categoryGridMetrics = await page.locator('.category-tile-grid').evaluate((el) => {
     const grid = el.getBoundingClientRect();
     const tiles = [...el.querySelectorAll('.category-tile')].slice(0, 2).map((t) => t.getBoundingClientRect());
