@@ -59,7 +59,7 @@ const CATEGORY_PHOTOS = Object.freeze({
   'cat-pieczywo': 'sourdough',
   'cat-zupy': 'soup-clear',
   'cat-salatki': 'salad',
-  'cat-sosy': 'pasta-tomato',
+  'cat-sosy': 'sauce',
 });
 
 const normalise = (value) => String(value || '')
