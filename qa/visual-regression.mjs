@@ -139,6 +139,10 @@ try {
       pepperShape: paths('Papryka czerwona')[0]?.startsWith('M22 12 C19 9 12 10 11 18'),
       powderKind: mod.ingredientKind('Papryka słodka'),
       powderShaker: paths('Papryka słodka')[0]?.startsWith('M16 16 H32 L30 41 H18 Z'),
+      cinnamonKind: mod.ingredientKind('Cynamon'),
+      cinnamonSticks: paths('Cynamon')[0]?.startsWith('M13 34 L31 12'),
+      saltCrystals: paths('Sól morska')[0]?.startsWith('M16 18 H32 L30 40 H18 Z'),
+      pepperMill: paths('Pieprz czarny')[0]?.startsWith('M20 9 H28 L30 15'),
     };
   });
   assert(semanticIcons.basilKind === 'vegetable' && semanticIcons.basilLeaf,
@@ -147,6 +151,10 @@ try {
     'Świeża papryka nie ma własnej ikony warzywa.');
   assert(semanticIcons.powderKind === 'spice' && semanticIcons.powderShaker,
     'Papryka słodka/mielona powinna zachować ikonę przyprawy.');
+  assert(semanticIcons.cinnamonKind === 'spice' && semanticIcons.cinnamonSticks,
+    'Cynamon powinien mieć osobną ikonę lasek cynamonu, a nie ogólny shaker.');
+  assert(semanticIcons.saltCrystals && semanticIcons.pepperMill,
+    'Sól i pieprz muszą mieć osobne, semantycznie czytelne ikony.');
 
   const artworkAudit = await page.evaluate(async () => {
     const art = await import(new URL('art.js', location.href).href);
