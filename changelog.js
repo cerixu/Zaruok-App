@@ -5,6 +5,14 @@
    ========================================================================== */
 
 export const CHANGELOG = Object.freeze({
+  '2.1.6': Object.freeze({
+    intro: 'Poprawiona fotografia na ekranie Start — bez widocznej ciemnej ramki i nakładki.',
+    changes: [
+      'Zdjęcie wyróżnionego przepisu wypełnia cały zaokrąglony kafel.',
+      'Usunięto dodatkowe tło spod tekstu i skorygowano kadr fotografii.',
+      'Zaktualizowano pamięć podręczną dla Safari i trybu offline.'
+    ]
+  }),
   '2.1.5': Object.freeze({
     intro: 'Żarłok 2.1.5 — nowy kierunek graficzny inspirowany iOS i szkłem.',
     items: [
