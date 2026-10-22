@@ -79,6 +79,9 @@ try {
   await more.click();
   const detailPanel = page.locator('.detail-more').first();
   await detailPanel.waitFor({ state: 'visible', timeout: 5000 });
+  const detailsToggle = page.getByRole('button', { name: 'Ukryj szczegóły' }).first();
+  if ((await detailsToggle.getAttribute('aria-expanded')) !== 'true') throw new Error('Przycisk szczegółów nie zgłasza stanu otwartego');
+  if ((await detailsToggle.getAttribute('aria-controls')) !== (await detailPanel.getAttribute('id'))) throw new Error('Przycisk szczegółów nie wskazuje panelu przez aria-controls');
   if (!(await page.locator('.ingredients').count())) throw new Error('Brak listy składników w panelu szczegółów');
   const hideDetails = page.getByRole('button', { name: 'Ukryj szczegóły' }).first();
   if (!(await hideDetails.count())) throw new Error('Brak przycisku zamykania szczegółów');
