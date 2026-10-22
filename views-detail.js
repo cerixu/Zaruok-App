@@ -570,9 +570,8 @@ export function detailView({ id }) {
       picked.push(i);
       if (picked.length >= 5) break;
     }
-    // Liczymy unikalne składniki możliwe do pokazania; powtarzające się glify nie zawyżają „+N”.
-    const uniqueCount = new Set(ings.map((i) => ingEmoji(i.name))).size;
-    const more = Math.max(0, uniqueCount - picked.length);
+    // Liczba wszystkich składników niewidocznych na łuku, także tych z powtarzającą się ikoną.
+    const more = Math.max(0, ings.length - picked.length);
     const items = [
       ...picked.map((i) => ({ ing: i })),
       { more, full: true },
@@ -596,89 +595,19 @@ export function detailView({ id }) {
           style: { left: x + '%', top: y + 'px' },
           'aria-label': label,
           title: it.full ? 'Otwórz całą recepturę' : it.ing.name,
-          onClick: () => openFullRecipe(r),
+          onClick: async () => {
+            await setSetting('detailOpen', true);
+            setTimeout(() => {
+              const target = s.content.querySelector('.ingredients');
+              if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 120);
+          },
         },
           h('span', { class: 'orb-dot' + (it.full ? ' orb-dot-more' : ''), 'data-kind': it.ing ? ingredientKind(it.ing.name) : null }, it.full ? (it.more > 0 ? `+${it.more}` : '…') : ingredientGlyph(it.ing.name)),
           h('span', { class: 'orb-name' }, it.full ? 'więcej' : it.ing.name.replace(/\s*\(.*\)\s*/, '').split(/[\s,]+/)[0]),
           it.ing ? h('span', { class: 'orb-amt num' }, [q.num, q.unit].filter(Boolean).join('\u00a0')) : null);
       }));
     return h('div', { class: 'orbit-wrap' }, h('div', { class: 'orbit-title' }, 'Składniki'), el);
-  }
-
-  function openFullRecipe(r) {
-    const kc = estimateKcal(r);
-    const ings = allIngredients(r).filter((i) => i.name && i.unit !== '%');
-    const hasSections = (r.sections || []).some((sec) => sec.name);
-    const ingredientGroups = (r.sections || []).filter((sec) => sec.ingredients && sec.ingredients.length);
-
-    const modalIngredient = (i) => {
-      const q = qtyParts(i);
-      return h('div', { class: 'recipe-modal-ing' },
-        h('span', { class: 'recipe-modal-ing-icon', 'data-kind': ingredientKind(i.name), 'aria-hidden': 'true' }, ingredientGlyph(i.name)),
-        h('div', { class: 'recipe-modal-ing-main' },
-          h('span', { class: 'recipe-modal-ing-name' }, i.name),
-          hasSections ? h('span', { class: 'recipe-modal-ing-section' }, ((r.sections || []).find((sec) => sec.ingredients && sec.ingredients.some((x) => x.id === i.id)) || {}).name || 'Składnik') : null),
-        h('span', { class: 'recipe-modal-ing-qty num' }, q.num || '—'),
-        h('span', { class: 'recipe-modal-ing-unit' }, q.unit || ''));
-    };
-
-    const modalSections = [];
-    if (ingredientGroups.length) {
-      ingredientGroups.forEach((sec) => {
-        modalSections.push(h('div', { class: 'recipe-modal-group' },
-          sec.name ? h('div', { class: 'recipe-modal-group-title' }, sec.name) : null,
-          h('div', { class: 'recipe-modal-ingredients' }, sec.ingredients.filter((i) => i.name && i.unit !== '%').map(modalIngredient))));
-      });
-    } else {
-      modalSections.push(h('div', { class: 'recipe-modal-ingredients' }, ings.map(modalIngredient)));
-    }
-
-    const facts = [
-      r.servings ? portionLabel(r.servings) : '',
-      r.prepTime ? `przyg. ${fmtMinutes(r.prepTime)}` : '',
-      r.cookTime ? `gotow. ${fmtMinutes(r.cookTime)}` : '',
-      r.temperature ? r.temperature : '',
-    ].filter(Boolean);
-
-    const body = h('div', { class: 'recipe-modal' },
-      h('div', { class: 'recipe-modal-hero' },
-        h('div', { class: 'recipe-modal-photo-wrap' }, recipePhotoImage(r, 'recipe-modal-photo')),
-        h('div', { class: 'recipe-modal-heading' },
-          h('div', { class: 'recipe-modal-kicker' }, catName(r.category)),
-          h('h3', { class: 'recipe-modal-title' }, r.name || 'Receptura'),
-          facts.length ? h('div', { class: 'recipe-modal-facts' }, facts.map((x) => h('span', null, x))) : null,
-          kc ? h('div', { class: 'recipe-modal-kcal' }, `ok. ${kc.perServing} kcal / porcja`) : null)),
-      r.description ? h('p', { class: 'recipe-modal-desc' }, r.description) : null,
-      h('section', { class: 'recipe-modal-section' },
-        h('div', { class: 'recipe-modal-section-head' },
-          h('span', { class: 'recipe-modal-index' }, '01'),
-          h('div', null, h('div', { class: 'recipe-modal-eyebrow' }, 'LISTA'), h('h3', null, 'Składniki')),
-          h('span', { class: 'recipe-modal-count' }, String(ings.length))),
-        ...modalSections),
-      h('section', { class: 'recipe-modal-section' },
-        h('div', { class: 'recipe-modal-section-head' },
-          h('span', { class: 'recipe-modal-index' }, '02'),
-          h('div', null, h('div', { class: 'recipe-modal-eyebrow' }, 'KROK PO KROKU'), h('h3', null, 'Przygotowanie')),
-          h('span', { class: 'recipe-modal-count' }, String((r.steps || []).length))),
-        r.steps && r.steps.length
-          ? h('ol', { class: 'recipe-modal-steps' }, r.steps.map((st) => h('li', null, h('span', { class: 'recipe-modal-step-text' }, st.text))))
-          : h('p', { class: 'muted' }, 'Brak kroków. Dodaj je w edytorze.')),
-      r.notes ? h('section', { class: 'recipe-modal-section recipe-modal-notes' },
-        h('div', { class: 'recipe-modal-section-head' },
-          h('span', { class: 'recipe-modal-index' }, '03'),
-          h('div', null, h('div', { class: 'recipe-modal-eyebrow' }, 'NOTATKA'), h('h3', null, 'Własne uwagi'))),
-        h('p', null, r.notes)) : null);
-
-    openSheet({
-      title: 'Pełna receptura',
-      variant: 'center',
-      cls: 'recipe-full-modal',
-      body,
-      actions: [
-        { label: 'Zamknij', kind: 'ghost' },
-        { label: 'GOTUJĘ', kind: 'primary', icon: 'chef', onClick: () => navigate('/guide/' + id) },
-      ],
-    });
   }
 
   function paint() {
@@ -722,7 +651,21 @@ export function detailView({ id }) {
       onClick: () => navigate('/cook/' + id),
     }));
 
-    const open = false;
+    const open = !!getSetting('detailOpen') || !!scaled;
+    kids.push(h('button', {
+      type: 'button',
+      class: 'more-toggle' + (open ? ' open' : ''),
+      'aria-expanded': open,
+      onClick: async () => {
+        const opening = !getSetting('detailOpen');
+        await setSetting('detailOpen', opening);
+        if (opening) setTimeout(() => {
+          const target = s.content.querySelector('.detail-more');
+          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 120);
+      },
+    }, icon('chev', 22), h('span', null, open ? 'Ukryj szczegóły' : 'Pokaż szczegóły')));
+
     const det = [];
     det.push(h('div', { class: 'detail-head' },
       h('div', { class: 'row wrap gap' }, tradMark(rr) ? h('span', { class: 'trad-big' }, tradMark(rr), originOf(rr.origin) ? originOf(rr.origin).name : 'Tradycyjna') : null,
@@ -775,9 +718,10 @@ export function detailView({ id }) {
     det.push(h('div', { class: 'meta-foot muted small' }, src));
     det.push(h('div', { class: 'row center' }, button('Historia zmian', { icon: 'history', kind: 'ghost', onClick: openHistory })));
 
-    // Pełna receptura jest dostępna z okrągłego „więcej” i nie zajmuje miejsca na ekranie głównym. 
-    // Szczegóły nie są już renderowane inline.
-
+    kids.push(h('div', {
+      class: 'detail-more' + (open ? ' open' : ''),
+      hidden: !open,
+    }, ...det.filter(Boolean)));
     s.content.replaceChildren(...kids.filter(Boolean));
   }
 
