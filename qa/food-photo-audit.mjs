@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import { recipePhotoKey } from '../food-photos.js';
 
 const photosSource = fs.readFileSync('food-photos.js', 'utf8');
 const photoFiles = new Map(
@@ -34,7 +35,18 @@ const sauceCategory = categoryKeys.find((match) => match[1].replace(/[\'\"]/g, '
 if (!sauceCategory || sauceCategory[2] !== 'sauce') {
   throw new Error('Kategoria sosów musi korzystać z dedykowanego zdjęcia sosu, nie zdjęcia makaronu.');
 }
-if (/return CATEGORY_PHOTOS\[recipe\.category\] \|\| 'dessert'/.test(photosSource)) {
-  throw new Error('Nieznana receptura nie może domyślnie dostawać zdjęcia deseru.');
+const recipesThatMustKeepIllustrations = [
+  { name: 'Gołąbki w sosie pomidorowym', category: 'cat-mieso' },
+  { name: 'Sernik klasyczny', category: 'cat-desery' },
+  { name: 'Spaghetti aglio e olio', category: 'cat-pasta' },
+  { name: 'Pesto genovese', category: 'cat-sosy' },
+];
+for (const recipe of recipesThatMustKeepIllustrations) {
+  if (recipePhotoKey(recipe) !== null) {
+    throw new Error('Niepasujące zdjęcie kategorii zostało użyte dla receptury: ' + recipe.name);
+  }
+}
+if (recipePhotoKey({ name: 'Pizza Margherita', category: 'cat-pizza' }) !== 'pizza') {
+  throw new Error('Dopasowanie zdjęcia konkretnej potrawy przestało działać.');
 }
 console.log('Photo mapping QA passed: ' + photoFiles.size + ' zdjęć, ' + ruleKeys.length + ' unikalnych reguł, ' + categoryKeys.length + ' zdjęć kategorii.');
