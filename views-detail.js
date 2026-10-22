@@ -527,14 +527,16 @@ export function detailView({ id }) {
   let notesEl = null;
 
   function ingredientsCard(r, table) {
-    const showPct = !!(table && table.ok && r.bakers);
-    const pct = new Map(table && table.ok ? table.rows.map((x) => [x.id, x]) : []);
-    const secs = r.sections.filter((sec) => sec.ingredients.length || sec.name);
+    const showPct = !!(table && table.ok && r.bakers && !amateur());
+    const pctRows = table && table.ok && Array.isArray(table.rows) ? table.rows : [];
+    const pct = new Map(pctRows.map((x) => [x.id, x]));
+    const sections = Array.isArray(r.sections) ? r.sections : [];
+    const secs = sections.filter((sec) => sec && Array.isArray(sec.ingredients) && (sec.ingredients.length || sec.name));
     return h('section', { class: 'card ingredients' },
       h('h2', { class: 'card-title' }, icon('list', 20), 'Składniki'),
       secs.length ? secs.map((sec) => h('div', { class: 'ing-section' },
         sec.name ? h('div', { class: 'tape' }, sec.name) : null,
-        h('ul', { class: 'ing-list' }, sec.ingredients.map((i) => {
+        h('ul', { class: 'ing-list' }, sec.ingredients.filter(Boolean).map((i) => {
           const q = qtyParts(i);
           const p = pct.get(i.id);
           return h('li', { class: 'ing' },
@@ -548,7 +550,7 @@ export function detailView({ id }) {
   }
 
   function bakersCard(r, table) {
-    if (!r.bakers || !table.ok) return null;
+    if (!r.bakers || amateur() || !table || !table.ok) return null;
     const kv = (k, v) => h('div', { class: 'stat' }, h('span', { class: 'stat-k' }, k), h('span', { class: 'stat-v num' }, v));
     return h('section', { class: 'card' },
       h('h2', { class: 'card-title' }, icon('percent', 20), 'Procenty piekarskie'),
@@ -568,7 +570,9 @@ export function detailView({ id }) {
       picked.push(i);
       if (picked.length >= 5) break;
     }
-    const more = Math.max(0, ings.length - picked.length);
+    // Liczymy unikalne składniki możliwe do pokazania; powtarzające się glify nie zawyżają „+N”.
+    const uniqueCount = new Set(ings.map((i) => ingEmoji(i.name))).size;
+    const more = Math.max(0, uniqueCount - picked.length);
     const items = [
       ...picked.map((i) => ({ ing: i })),
       { more, full: true },
