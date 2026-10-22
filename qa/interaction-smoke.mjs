@@ -73,17 +73,22 @@ try {
   await assertRoute('/recipe/' + href.split('/recipe/')[1]);
   await page.waitForSelector('.detail', { state: 'visible', timeout: 5000 });
 
-  // Test „więcej” i zamknięcia pełnej receptury.
+  // Test łuku składników i rozwijanego panelu szczegółów.
   const more = page.locator('.orb-more').first();
   if (!(await more.count())) throw new Error('Brak przycisku „więcej”');
   await more.click();
-  if (!(await page.locator('.recipe-full-modal').count())) throw new Error('Nie otworzył się modal pełnej receptury');
-
-  await page.keyboard.press('Escape');
-  await page.waitForTimeout(250);
-  if (await page.locator('.recipe-full-modal').count() && await page.locator('.recipe-full-modal').first().isVisible().catch(() => false)) {
-    throw new Error('Modal pełnej receptury nie zamknął się');
-  }
+  const detailPanel = page.locator('.detail-more').first();
+  await detailPanel.waitFor({ state: 'visible', timeout: 5000 });
+  if (!(await page.locator('.ingredients').count())) throw new Error('Brak listy składników w panelu szczegółów');
+  const hideDetails = page.getByRole('button', { name: 'Ukryj szczegóły' }).first();
+  if (!(await hideDetails.count())) throw new Error('Brak przycisku zamykania szczegółów');
+  await hideDetails.click();
+  await page.waitForTimeout(200);
+  if (!(await detailPanel.isHidden())) throw new Error('Panel szczegółów nie zamknął się');
+  const showDetails = page.getByRole('button', { name: 'Pokaż szczegóły' }).first();
+  if (!(await showDetails.count())) throw new Error('Brak przycisku ponownego otwierania szczegółów');
+  await showDetails.click();
+  await detailPanel.waitFor({ state: 'visible', timeout: 5000 });
 
   // Przywróć stan ulubionych do stanu sprzed testu.
   await page.goto(base + '#/recipes', { waitUntil: 'networkidle' });
