@@ -122,9 +122,9 @@ export function recipePhotoKey(recipe) {
   for (const [key, pattern] of RECIPE_RULES) {
     if (pattern.test(name)) return key;
   }
-  // Nie przypisuj nieznanej potrawie przypadkowego zdjęcia deseru.
-  // Jeśli kategoria nie ma mapowania, pozostaw ilustrację SVG receptury.
-  return CATEGORY_PHOTOS[recipe.category] || null;
+  // Zdjęcia kategorii są tylko dla kafli kategorii, nigdy jako substytut zdjęcia dania.
+  // Jeśli nazwa nie pasuje do konkretnego zdjęcia, zachowaj ilustrację SVG receptury.
+  return null;
 }
 
 function loadPhoto(key) {
