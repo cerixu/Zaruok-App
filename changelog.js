@@ -5,6 +5,14 @@
    ========================================================================== */
 
 export const CHANGELOG = Object.freeze({
+  '2.1.11': Object.freeze({
+    intro: 'Żarłok 2.1.11 — cztery nowe fotografie konkretnych dań.',
+    items: [
+      'Dodano autorskie, lokalne zdjęcia gołąbków, sernika, spaghetti aglio e olio oraz sałatki Cezar.',
+      'Nowe fotografie są dostępne bez internetu i mają osobne reguły dopasowania do receptur.',
+      'Pozostałe dania bez pewnego dopasowania zachowują właściwe ilustracje SVG.'
+    ]
+  }),
   '2.1.10': Object.freeze({
     intro: 'Żarłok 2.1.10 — dokładniejsze zdjęcia i wygodniejsze szczegóły receptur.',
     items: [

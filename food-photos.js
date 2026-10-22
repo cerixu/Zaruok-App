@@ -46,6 +46,10 @@ const PHOTO_FILES = Object.freeze({
   'curry-chickpea': 'food-curry-chickpea.jpg.b64',
   bruschetta: 'food-bruschetta.jpg.b64',
   aperol: 'food-aperol.jpg.b64',
+  'golabki': 'food-golabki.jpg.b64',
+  'sernik': 'food-sernik.jpg.b64',
+  'aglio-olio': 'food-aglio-olio.jpg.b64',
+  'caesar-salad': 'food-caesar-salad.jpg.b64',
 });
 
 const CATEGORY_PHOTOS = Object.freeze({
@@ -94,6 +98,10 @@ const RECIPE_RULES = [
   ['steak', /\b(stek|steak|antrykot|ribeye|rostbef|t bone)\b/],
   ['dessert', /\b(tiramisu|deser kawowy)\b/],
   ['salad', /\b(burrata|caprese)\b/],
+  ['golabki', /\b(golabki|cabbage rolls)\b/],
+  ['sernik', /\b(sernik|polish cheesecake)\b/],
+  ['aglio-olio', /\b(spaghetti aglio e olio|aglio e olio)\b/],
+  ['caesar-salad', /\b(salatka cezar|caesar salad)\b/],
   ['aperol', /\baperol spritz\b/],
   // Zdjęcie z miedzianym kubkiem przedstawia Moscow Mule — nie przypisuj go wszystkim drinkom.
   ['cocktail', /\bmoscow mule\b/],
