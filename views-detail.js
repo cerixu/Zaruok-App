@@ -527,7 +527,7 @@ export function detailView({ id }) {
   let notesEl = null;
 
   function ingredientsCard(r, table) {
-    const showPct = !!(table && table.ok && r.bakers && !amateur());
+    const showPct = !!(table && table.ok && r.bakers);
     const pctRows = table && table.ok && Array.isArray(table.rows) ? table.rows : [];
     const pct = new Map(pctRows.map((x) => [x.id, x]));
     const sections = Array.isArray(r.sections) ? r.sections : [];
@@ -550,7 +550,7 @@ export function detailView({ id }) {
   }
 
   function bakersCard(r, table) {
-    if (!r.bakers || amateur() || !table || !table.ok) return null;
+    if (!r.bakers || !table || !table.ok) return null;
     const kv = (k, v) => h('div', { class: 'stat' }, h('span', { class: 'stat-k' }, k), h('span', { class: 'stat-v num' }, v));
     return h('section', { class: 'card' },
       h('h2', { class: 'card-title' }, icon('percent', 20), 'Procenty piekarskie'),
