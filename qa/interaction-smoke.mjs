@@ -93,6 +93,21 @@ try {
   await showDetails.click();
   await detailPanel.waitFor({ state: 'visible', timeout: 5000 });
 
+  // Przeliczenie przez główną akcję musi otworzyć panel ze skalowanym podglądem.
+  await page.getByRole('button', { name: 'Ukryj szczegóły' }).first().click();
+  if (!(await detailPanel.isHidden())) throw new Error('Nie można zamknąć szczegółów przed przeliczeniem');
+  await page.getByRole('button', { name: 'Przelicz', exact: true }).first().click();
+  const doubleScale = page.getByRole('button', { name: '×2', exact: true }).first();
+  await doubleScale.waitFor({ state: 'visible', timeout: 3000 });
+  await doubleScale.click();
+  await detailPanel.waitFor({ state: 'visible', timeout: 5000 });
+  if (!(await page.locator('.detail-more .scale-banner').count())) throw new Error('Przeliczenie nie pokazuje podglądu w szczegółach receptury');
+  if ((await page.getByRole('button', { name: 'Ukryj szczegóły' }).first().getAttribute('aria-expanded')) !== 'true') {
+    throw new Error('Panel po przeliczeniu nie aktualizuje aria-expanded');
+  }
+  await page.getByRole('button', { name: 'Reset', exact: true }).first().click();
+  await detailPanel.waitFor({ state: 'visible', timeout: 3000 });
+
   // Przywróć stan ulubionych do stanu sprzed testu.
   await page.goto(base + '#/recipes', { waitUntil: 'networkidle' });
   await ready();
