@@ -36,6 +36,26 @@ try {
   });
   await page.waitForFunction(() => !!navigator.serviceWorker.controller, null, { timeout: 10000 });
 
+  const recipePhotoFiles = [
+    'food-golabki.jpg.b64', 'food-sernik.jpg.b64', 'food-aglio-olio.jpg.b64', 'food-caesar-salad.jpg.b64',
+    'food-pizza-diavola.jpg.b64', 'food-vegan-burger.jpg.b64', 'food-risotto-milanese.jpg.b64', 'food-pesto-genovese.jpg.b64',
+  ];
+  async function assertRecipePhotosCached(label) {
+    const cached = await page.evaluate(async (files) => {
+      const cacheName = 'zaruok-2.1.12';
+      const names = await caches.keys();
+      if (!names.includes(cacheName)) throw new Error('Brak cache Service Workera: ' + cacheName);
+      const cache = await caches.open(cacheName);
+      return Promise.all(files.map(async (path) => ({
+        path,
+        cached: !!(await cache.match(new URL(path, location.href).href)),
+      })));
+    }, recipePhotoFiles);
+    const missing = cached.filter((item) => !item.cached).map((item) => item.path);
+    if (missing.length) throw new Error(label + ': brak zdjęć receptur w cache offline: ' + missing.join(', '));
+  }
+  await assertRecipePhotosCached('Przed odłączeniem sieci');
+
   const onlineCount = await page.locator('a[href^="#/recipe/"]').count();
   const href = await page.locator('a[href^="#/recipe/"]').first().getAttribute('href');
   if (onlineCount < 1 || !href) throw new Error('Brak receptury do testu offline.');
@@ -46,6 +66,7 @@ try {
   await ready();
   await dismiss();
   await page.waitForSelector('a[href^="#/recipe/"]', { state: 'visible', timeout: 12000 });
+  await assertRecipePhotosCached('Po odłączeniu sieci');
 
   const offlineCount = await page.locator('a[href^="#/recipe/"]').count();
   if (offlineCount < onlineCount) {

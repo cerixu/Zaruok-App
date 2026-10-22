@@ -5,6 +5,14 @@
    ========================================================================== */
 
 export const CHANGELOG = Object.freeze({
+  '2.1.12': Object.freeze({
+    intro: 'Żarłok 2.1.12 — cztery kolejne zdjęcia przypisane do konkretnych receptur.',
+    items: [
+      'Dodano lokalne zdjęcia pizzy Diavola, burgera z czarnej fasoli, risotto alla milanese i pesto genovese.',
+      'Test offline sprawdza teraz obecność wszystkich ośmiu nowych zdjęć w cache Service Workera.',
+      'Audyt dopasowania kontroluje również cztery nowe pary receptura–fotografia.'
+    ]
+  }),
   '2.1.11': Object.freeze({
     intro: 'Żarłok 2.1.11 — cztery nowe fotografie konkretnych dań.',
     items: [

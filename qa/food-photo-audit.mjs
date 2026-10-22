@@ -36,11 +36,7 @@ if (!sauceCategory || sauceCategory[2] !== 'sauce') {
   throw new Error('Kategoria sosów musi korzystać z dedykowanego zdjęcia sosu, nie zdjęcia makaronu.');
 }
 const recipesThatMustKeepIllustrations = [
-  { name: 'Pesto genovese', category: 'cat-sosy' },
-  { name: 'Pizza Diavola', category: 'cat-pizza' },
   { name: 'Krewetki kung pao', category: 'cat-owoce-morza' },
-  { name: 'Burger wegański z czarnej fasoli', category: 'cat-mieso' },
-  { name: 'Risotto alla milanese', category: 'cat-pasta' },
   { name: 'Matcha tiramisu', category: 'cat-desery' },
   { name: 'Sos carbonara', category: 'cat-sosy' },
   { name: 'Chleb pszenny na drożdżach', category: 'cat-pieczywo' },
@@ -51,6 +47,10 @@ for (const recipe of recipesThatMustKeepIllustrations) {
   }
 }
 const correctPhotoCases = [
+  [{ name: 'Pizza Diavola', category: 'cat-pizza' }, 'pizza-diavola'],
+  [{ name: 'Burger wegański z czarnej fasoli', category: 'cat-mieso' }, 'vegan-burger'],
+  [{ name: 'Risotto alla milanese', category: 'cat-pasta' }, 'risotto-milanese'],
+  [{ name: 'Pesto genovese', category: 'cat-sosy' }, 'pesto-genovese'],
   [{ name: 'Gołąbki w sosie pomidorowym', category: 'cat-mieso' }, 'golabki'],
   [{ name: 'Sernik klasyczny', category: 'cat-desery' }, 'sernik'],
   [{ name: 'Spaghetti aglio e olio', category: 'cat-pasta' }, 'aglio-olio'],
