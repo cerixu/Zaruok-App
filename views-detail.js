@@ -559,7 +559,7 @@ export function detailView({ id }) {
       button('Przelicz ciasto', { icon: 'swap', block: true, onClick: openBakers }));
   }
 
-  /* Składniki na łuku — szybki podgląd. „Więcej” otwiera pełną recepturę w osobnym oknie. */
+  /* Składniki na łuku — szybki podgląd. „Więcej” rozwija szczegóły receptury w tym samym widoku. */
   function orbit(r) {
     const ings = allIngredients(r).filter((i) => i.name && i.unit !== '%');
     const picked = [], used = new Set();
