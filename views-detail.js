@@ -634,6 +634,18 @@ export function detailView({ id }) {
     kids.push(h('div', { class: 'detail-title-row' },
       h('h1', { class: 'detail-title' }, r.name || 'Receptura'),
       sideInfo({ ...rr, servings: r.servings, sections: r.sections })));
+    const origin = originOf(rr.origin);
+    const sourceText = rr.sourceUrl ? (hostOf(rr.sourceUrl) || rr.sourceUrl) : (rr.source || 'Źródło własne');
+    kids.push(h('div', { class: 'detail-from' },
+      origin && origin.name ? h('a', {
+        class: 'from-chip',
+        href: '#/recipes?origin=' + encodeURIComponent(rr.origin || ''),
+        onClick: (e) => { e.preventDefault(); navigate('/recipes?origin=' + encodeURIComponent(rr.origin || '')); },
+      }, origin.name) : null,
+      h('span', { class: 'from-chip soft' }, icon('book', 14), rr.sourceUrl
+        ? h('a', { href: rr.sourceUrl, target: '_blank', rel: 'noopener noreferrer' }, sourceText)
+        : sourceText),
+      h('span', { class: 'from-chip soft' }, catName(rr.category))));
     if (r.description) kids.push(h('p', { class: 'desc' }, r.description));
     kids.push(orbit(r));
     kids.push(h('div', { class: 'actions-primary' },
