@@ -694,11 +694,7 @@ export function detailView({ id }) {
         iconBtn('minus', 'Mniej porcji', () => { const cs = r.servings || rr.servings; const t = Math.max(0.5, cs > 1 ? cs - 1 : cs / 2); applyFactor(t / rr.servings, portionLabel(t)); }, 'glassy'),
         h('div', { class: 'stepper-val' }, h('strong', { class: 'num' }, fmtNum(r.servings, 1))),
         iconBtn('plus', 'Więcej porcji', () => { const cs = r.servings || rr.servings; const t = cs + 1; applyFactor(t / rr.servings, `${fmtNum(t, 1)} porcji`); }, 'glassy'))));
-    det.push(h('div', { class: 'actions-row' },
-      button('Przelicz', { icon: 'swap', onClick: openScale }),
-      button('Do zakupów', { icon: 'cart', onClick: () => openAddToShopping(r, 1) }),
-      button('Edytuj', { icon: 'edit', onClick: () => navigate('/edit/' + id) })),
-      button('Lista kontrolna', { block: true, icon: 'list', kind: 'ghost', onClick: () => navigate('/cook/' + id) }));
+    // Główne akcje są już dostępne nad panelem szczegółów — nie dublujemy ich tutaj.
 
     if (scaled) {
       det.push(h('div', { class: 'banner scale-banner', role: 'status' },
