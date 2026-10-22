@@ -78,16 +78,19 @@ try {
   await dismiss();
   await page.waitForSelector('.detail', { state: 'visible', timeout: 8000 });
 
-  await page.locator('.orb-more').first().click();
-  await page.waitForSelector('.recipe-full-modal', { state: 'visible', timeout: 5000 });
-  const unitRows = await page.locator('.recipe-full-modal .recipe-modal-ing').evaluateAll((els) => els.map((el) => ({
-    amount: el.querySelector('.recipe-modal-ing-qty')?.textContent?.trim() || '',
-    unit: el.querySelector('.recipe-modal-ing-unit')?.textContent?.trim() || '',
+  const more = page.locator('.orb-more').first();
+  if (!(await more.count())) throw new Error('Brak przycisku rozwijania szczegółów receptury.');
+  await more.click();
+  const details = page.locator('.detail-more').first();
+  await details.waitFor({ state: 'visible', timeout: 5000 });
+  const unitRows = await details.locator('.ingredients .ing').evaluateAll((els) => els.map((el) => ({
+    amount: el.querySelector('.amt')?.textContent?.trim() || '',
+    unit: el.querySelector('.unit')?.textContent?.trim() || '',
   })));
-  if (!unitRows.length) throw new Error('Brak ilości składników w pełnej recepturze.');
-  const visibleForms = unitRows.map((x) => x.amount + ' ' + x.unit);
+  if (!unitRows.length) throw new Error('Brak ilości składników w szczegółach receptury.');
+  const visibleForms = unitRows.map((x) => (x.amount + ' ' + x.unit).trim());
   if (!visibleForms.includes('⅛ łyżki') || !visibleForms.includes('¼ łyżki')) {
-    throw new Error('Nieprawidłowa odmiana łyżki w pełnej recepturze: ' + JSON.stringify(visibleForms));
+    throw new Error('Nieprawidłowa odmiana łyżki w szczegółach receptury: ' + JSON.stringify(visibleForms));
   }
 
   console.log('PASS: Polish unit grammar runtime + recipe rendering');
