@@ -40,13 +40,34 @@ const recipesThatMustKeepIllustrations = [
   { name: 'Sernik klasyczny', category: 'cat-desery' },
   { name: 'Spaghetti aglio e olio', category: 'cat-pasta' },
   { name: 'Pesto genovese', category: 'cat-sosy' },
+  { name: 'Pizza Diavola', category: 'cat-pizza' },
+  { name: 'Sałatka Cezar', category: 'cat-salatki' },
+  { name: 'Krewetki kung pao', category: 'cat-owoce-morza' },
+  { name: 'Burger wegański z czarnej fasoli', category: 'cat-mieso' },
+  { name: 'Risotto alla milanese', category: 'cat-pasta' },
+  { name: 'Matcha tiramisu', category: 'cat-desery' },
+  { name: 'Sos carbonara', category: 'cat-sosy' },
+  { name: 'Chleb pszenny na drożdżach', category: 'cat-pieczywo' },
 ];
 for (const recipe of recipesThatMustKeepIllustrations) {
   if (recipePhotoKey(recipe) !== null) {
-    throw new Error('Niepasujące zdjęcie kategorii zostało użyte dla receptury: ' + recipe.name);
+    throw new Error('Niepasujące zdjęcie zostało użyte dla receptury: ' + recipe.name + ' → ' + recipePhotoKey(recipe));
   }
 }
-if (recipePhotoKey({ name: 'Pizza Margherita', category: 'cat-pizza' }) !== 'pizza') {
-  throw new Error('Dopasowanie zdjęcia konkretnej potrawy przestało działać.');
+const correctPhotoCases = [
+  [{ name: 'Pizza Margherita', category: 'cat-pizza' }, 'pizza'],
+  [{ name: 'Caprese', category: 'cat-salatki' }, 'salad'],
+  [{ name: 'Spaghetti Carbonara', category: 'cat-pasta' }, 'carbonara'],
+  [{ name: 'Risotto z grzybami', category: 'cat-pasta' }, 'risotto'],
+  [{ name: 'Spaghetti alle vongole', category: 'cat-owoce-morza' }, 'seafood'],
+  [{ name: 'Burger domowy', category: 'cat-mieso' }, 'burger'],
+  [{ name: 'Sos pomidorowy do makaronu', category: 'cat-sosy' }, 'sauce'],
+  [{ name: 'Łosoś pieczony z cytryną', category: 'cat-ryby' }, 'salmon'],
+];
+for (const [recipe, expected] of correctPhotoCases) {
+  const actual = recipePhotoKey(recipe);
+  if (actual !== expected) {
+    throw new Error('Brak poprawnego dopasowania zdjęcia dla "' + recipe.name + '": oczekiwano ' + expected + ', otrzymano ' + actual);
+  }
 }
 console.log('Photo mapping QA passed: ' + photoFiles.size + ' zdjęć, ' + ruleKeys.length + ' unikalnych reguł, ' + categoryKeys.length + ' zdjęć kategorii.');
