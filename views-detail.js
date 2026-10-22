@@ -664,6 +664,7 @@ export function detailView({ id }) {
       type: 'button',
       class: 'more-toggle' + (open ? ' open' : ''),
       'aria-expanded': open,
+      'aria-controls': 'detail-more-' + id,
       onClick: async () => {
         const opening = !getSetting('detailOpen');
         await setSetting('detailOpen', opening);
@@ -723,6 +724,7 @@ export function detailView({ id }) {
     det.push(h('div', { class: 'row center' }, button('Historia zmian', { icon: 'history', kind: 'ghost', onClick: openHistory })));
 
     kids.push(h('div', {
+      id: 'detail-more-' + id,
       class: 'detail-more' + (open ? ' open' : ''),
       hidden: !open,
     }, ...det.filter(Boolean)));
