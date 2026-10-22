@@ -6,8 +6,8 @@ Wszystkie dane są w pamięci Twojego urządzenia.
 
 ## Co potrafi
 
-- **Wygląd mobilny (1.9.0):** ciemny grafit, szare karty z miedzianą krawędzią i światłem u dołu, **okrągłe zdjęcia dań**, ocena ★ i kalorie po prawej stronie karty, pasek ikon bez podpisów, font Poppins. Szczegóły receptury: duża ilustracja lub własne zdjęcie, tytuł z oceną, **składniki na łuku z wektorowymi ikonami SVG**, a pełna receptura otwiera się w osobnym szklanym arkuszu po naciśnięciu „Więcej”. Suwak „Przezroczystość szkła” i podpisy pod ikonami paska są dostępne w Ustawieniach.
-- **228 przykładowych receptur:** polska kuchnia (zupy, mięsa, pierogi, ciasta, wigilijne), kuchnie świata (Włochy, Francja, Hiszpania, Grecja, Meksyk, USA, Azja, Bliski Wschód…), śniadania, wege i wegańskie, desery, sosy bazowe, prep, przetwory, ponad 20 drinków. Tradycyjne są oznaczone gwiazdką i flagą kraju. Każdą receptura możesz edytować lub usunąć; usunięta nie wraca po aktualizacji, a „Przywróć przykładowe receptury” w Ustawieniach przywraca brakujące.
+- **Wygląd mobilny (1.9.0):** ciemny grafit, szare karty z miedzianą krawędzią i światłem u dołu, **okrągłe zdjęcia dań**, ocena ★ i kalorie po prawej stronie karty, pasek ikon bez podpisów, font Poppins. Szczegóły receptury: duża ilustracja lub własne zdjęcie, tytuł z oceną, **składniki na łuku z wektorowymi ikonami SVG**, a pełne szczegóły rozwijają się w tym samym widoku po naciśnięciu „Pokaż szczegóły”; łuk składników prowadzi bezpośrednio do listy. Suwak „Przezroczystość szkła” i podpisy pod ikonami paska są dostępne w Ustawieniach.
+- **453 przykładowe receptury:** polska kuchnia (zupy, mięsa, pierogi, ciasta, wigilijne), kuchnie świata (Włochy, Francja, Hiszpania, Grecja, Meksyk, USA, Azja, Bliski Wschód…), śniadania, wege i wegańskie, desery, sosy bazowe, prep, przetwory, ponad 20 drinków. Tradycyjne są oznaczone gwiazdką i flagą kraju. Każdą receptura możesz edytować lub usunąć; usunięta nie wraca po aktualizacji, a „Przywróć przykładowe receptury” w Ustawieniach przywraca brakujące.
 - **Ilustracje dań** rysowane w kodzie (ok. 90 wariantów: zupy, makarony, mięsa, desery, drinki…) na ciemnej porcelanie — wszędzie tam, gdzie receptura nie ma własnego zdjęcia. Własne zdjęcie dodajesz w edytorze (kompresowane lokalnie).
 - **Szacunek kalorii na porcję** z tabel wartości odżywczej (pokazywany tylko, gdy rozpoznano ≥ 70% składników; to przybliżenie).
 - **Lista receptur:** kafelki lub lista, wczytywanie partiami po 40, wyszukiwarka bez względu na polskie znaki, kategorie, tagi (stuknij tag w recepturze), filtry, sortowanie, ulubione, ostatnie, „Polecane na dziś”, kategorie na Starcie.
@@ -36,8 +36,8 @@ pwa.js                  rejestracja SW, „Nowa wersja → Odśwież", trwały m
 db.js                   IndexedDB (recipes, ingredients, categories, shoppingItems, inventoryItems, inventoryMovements, settings, history)
 recipes.js              model danych, zapis, historia, kategorie, dane startowe
 calculator.js           przeliczanie, procenty piekarskie, pizza, food cost
-seeds.js                format receptur startowych + parser + pierwsze 60 receptur
-seeds-pl.js, seeds-world.js, seeds-more.js   kolejne 160+ receptur (polska, świat, śniadania/wege/desery/drinki)
+seeds.js, seeds-pl.js, seeds-world.js, seeds-more.js, seeds-curated.js   parser i 453 przykładowe receptury (polska, kuchnie świata, śniadania, wege, desery, sosy i drinki)
+
 nutrition.js            szacunek kalorii na porcję
 art-kit.js, art-extra.js   klocki i warianty ilustracji dań
 poppins-300/400/500/700.woff   font Poppins (podzbiór łacińsko-polski, bez internetu)
