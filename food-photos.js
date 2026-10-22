@@ -72,46 +72,47 @@ const normalise = (value) => String(value || '')
 
 const RECIPE_RULES = [
   // Najpierw konkretne potrawy i składniki, dopiero później szerokie kategorie.
-  ['pizza', /\b(pizza|pinsa|margherita|diavola|capricciosa|napoletana|quattro formaggi)\b/],
-  ['carbonara', /\b(carbonara)\b/],
-  ['risotto', /\b(risotto)\b/],
+  ['pizza', /\b(pizza margherita|pizza napoletana|margherita classica|napoletana classica)\b/],
+  ['carbonara', /\b(spaghetti carbonara|carbonara tradycyjna|carbonara klasyczna)\b/],
+  ['risotto', /\b(risotto ai funghi|risotto z grzybami|risotto funghi)\b/],
   ['baba-ganoush', /\b(baba ganoush|baba ghanoush|mutabal|pasta z baklazana)\b/],
   ['bruschetta', /\b(bruschetta|grzanki z pomidorami)\b/],
-  ['babka-piaskowa', /\b(babka piaskowa|babka cytrynowa|babka drozdzowa)\b/],
-  ['brownie', /\b(brownie|ciasto czekoladowe)\b/],
+  ['babka-piaskowa', /\b(babka piaskowa|babka cytrynowa)\b/],
+  ['brownie', /\b(brownie)\b/],
   ['creme-brulee', /\b(creme brulee|krem katalonski)\b/],
   ['crepes', /\b(nalesniki|crepes|crepe)\b/],
-  ['bagel', /\b(bagel|bajgiel)\b/],
+  ['bagel', /\b(bagel z lososiem|bajgiel z lososiem)\b/],
   ['bibimbap', /\b(bibimbap)\b/],
   ['curry-chickpea', /\b(curry z ciecierzycy|ciecierzyca curry|chickpea curry)\b/],
   ['fried-rice', /\b(smazony ryz|fried rice|nasi goreng)\b/],
-  ['asian-noodles', /\b(pad thai|pad see ew|mie goreng|chow mein|makaron po azjatycku)\b/],
+  ['asian-noodles', /\b(pad thai)\b/],
   ['barszcz', /\b(barszcz)\b/],
   ['bigos', /\b(bigos)\b/],
   ['bbq-ribs', /\b(zeberka|bbq ribs)\b/],
   ['beef-stew', /\b(gulasz wolowy|boeuf bourguignon|wolowina duszona)\b/],
-  ['salmon', /\b(losos|salmon)\b/],
+  ['salmon', /\b(losos pieczony|salmon fillet|fillet of salmon)\b/],
   ['steak', /\b(stek|steak|antrykot|ribeye|rostbef|t bone)\b/],
   ['dessert', /\b(tiramisu|deser kawowy)\b/],
-  ['salad', /\b(burrata|caprese|salatka|salad)\b/],
+  ['salad', /\b(burrata|caprese)\b/],
   ['aperol', /\baperol spritz\b/],
   // Zdjęcie z miedzianym kubkiem przedstawia Moscow Mule — nie przypisuj go wszystkim drinkom.
   ['cocktail', /\bmoscow mule\b/],
   ['lasagna', /\b(lasagna|lasagne)\b/],
-  ['chicken-curry', /\b(tikka masala|butter chicken|chicken curry)\b/],
+  ['chicken-curry', /\b(tikka masala|butter chicken)\b/],
   ['schnitzel', /\b(kotlet schabowy|schabowy|wiener schnitzel|schnitzel)\b/],
   ['soup-tomato', /\b(zupa pomidorowa|pomidorowa|tomato soup)\b/],
   ['soup-clear', /\b(rosol|bulion drobiowy|chicken broth|chicken stock)\b/],
   ['soup-pumpkin', /\b(krem z dyni|zupa dyniowa|pumpkin soup)\b/],
-  ['pasta-tomato', /\b(spaghetti al pomodoro|sos pomidorowy do makaronu|pasta pomodoro|pasta marinara|spaghetti all amatriciana)\b/],
+  ['pasta-tomato', /\b(spaghetti al pomodoro|spaghetti pomodoro|pasta pomodoro|pasta marinara)\b/],
   ['cake', /\b(szarlotka|apple pie)\b/],
   ['baguette', /\b(baguette|bagietka|bagietki)\b/],
-  ['sourdough', /\b(chleb na zakwasie|sourdough|chleb zytni|chleb pszenny na drozdzach|bread|bochenek chleba)\b/],
+  ['sourdough', /\b(chleb na zakwasie|sourdough|chleb zytni)\b/],
   ['soup', /\b(zurek)\b/],
-  ['seafood', /\b(vongole|malze|mussels|krewetki|krewetka|frutti di mare|owoce morza)\b/],
-  ['pierogi', /\b(pierogi|pierog|uszka)\b/],
-  ['burger', /\b(burger|hamburger)\b/],
-  ['focaccia', /\b(focaccia|ciabatta)\b/],
+  ['sauce', /\b(sos pomidorowy|passata pomidorowa|sugo al pomodoro|tomato sauce)\b/],
+  ['seafood', /\b(spaghetti alle vongole|linguine ai frutti di mare|pasta frutti di mare)\b/],
+  ['pierogi', /\b(pierogi ruskie|pierogi z kapusta i grzybami|pierogi z miesem)\b/],
+  ['burger', /\b(burger domowy|burger wolowy|hamburger wolowy)\b/],
+  ['focaccia', /\b(focaccia)\b/],
 ];
 
 const photoPromises = new Map();
@@ -119,6 +120,8 @@ const photoPromises = new Map();
 export function recipePhotoKey(recipe) {
   if (!recipe || recipe.thumb || recipe.photo) return null;
   const name = normalise(recipe.name);
+  // Matcha tiramisu ma inny wygląd niż klasyczne tiramisu na zdjęciu.
+  if (/\bmatcha tiramisu\b/.test(name)) return null;
   for (const [key, pattern] of RECIPE_RULES) {
     if (pattern.test(name)) return key;
   }
