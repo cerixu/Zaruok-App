@@ -54,6 +54,10 @@ const PHOTO_FILES = Object.freeze({
   'vegan-burger': 'food-vegan-burger.jpg.b64',
   'risotto-milanese': 'food-risotto-milanese.jpg.b64',
   'pesto-genovese': 'food-pesto-genovese.jpg.b64',
+  'tom-yum': 'food-tom-yum.jpg.b64',
+  'ramen-tonkotsu': 'food-ramen-tonkotsu.jpg.b64',
+  'sushi-maki': 'food-sushi-maki.jpg.b64',
+  'pho-bo': 'food-pho-bo.jpg.b64',
 });
 
 const CATEGORY_PHOTOS = Object.freeze({
@@ -110,6 +114,10 @@ const RECIPE_RULES = [
   ['vegan-burger', /\b(burger weganski z czarnej fasoli|black bean vegan burger|vegan black bean burger)\b/],
   ['risotto-milanese', /\b(risotto alla milanese|risotto milanese)\b/],
   ['pesto-genovese', /\b(pesto genovese|pesto alla genovese|pesto ligure)\b/],
+  ['tom-yum', /\b(tom yum z krewetkami|tom yum goong|tom yum)\b/],
+  ['ramen-tonkotsu', /\b(zupa ramen tonkotsu|ramen tonkotsu|tonkotsu ramen)\b/],
+  ['sushi-maki', /\b(sushi maki z ogorkiem i lososiem|salmon cucumber maki)\b/],
+  ['pho-bo', /\b(pho bo)\b/],
   ['aperol', /\baperol spritz\b/],
   // Zdjęcie z miedzianym kubkiem przedstawia Moscow Mule — nie przypisuj go wszystkim drinkom.
   ['cocktail', /\bmoscow mule\b/],

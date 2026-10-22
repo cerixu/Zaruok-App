@@ -5,6 +5,14 @@
    ========================================================================== */
 
 export const CHANGELOG = Object.freeze({
+  '2.1.13': Object.freeze({
+    intro: 'Żarłok 2.1.13 — osobne fotografie dla czterech dań azjatyckich.',
+    items: [
+      'Dodano lokalne zdjęcia tom yum z krewetkami, ramen tonkotsu, sushi maki z ogórkiem i łososiem oraz pho bo.',
+      'Audyt zdjęć sprawdza dokładne dopasowanie tych dań.',
+      'Test offline sprawdza teraz cache wszystkich dwunastu nowych fotografii.'
+    ]
+  }),
   '2.1.12': Object.freeze({
     intro: 'Żarłok 2.1.12 — cztery kolejne zdjęcia przypisane do konkretnych receptur.',
     items: [

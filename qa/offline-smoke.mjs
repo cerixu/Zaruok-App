@@ -39,10 +39,14 @@ try {
   const recipePhotoFiles = [
     'food-golabki.jpg.b64', 'food-sernik.jpg.b64', 'food-aglio-olio.jpg.b64', 'food-caesar-salad.jpg.b64',
     'food-pizza-diavola.jpg.b64', 'food-vegan-burger.jpg.b64', 'food-risotto-milanese.jpg.b64', 'food-pesto-genovese.jpg.b64',
+    'food-tom-yum.jpg.b64',
+    'food-ramen-tonkotsu.jpg.b64',
+    'food-sushi-maki.jpg.b64',
+    'food-pho-bo.jpg.b64',
   ];
   async function assertRecipePhotosCached(label) {
     const cached = await page.evaluate(async (files) => {
-      const cacheName = 'zaruok-2.1.12';
+      const cacheName = 'zaruok-2.1.13';
       const names = await caches.keys();
       if (!names.includes(cacheName)) throw new Error('Brak cache Service Workera: ' + cacheName);
       const cache = await caches.open(cacheName);
