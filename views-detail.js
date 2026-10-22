@@ -258,7 +258,13 @@ export function detailView({ id }) {
   function applyScaled(r, label) {
     const b = base();
     const same = JSON.stringify(allIngredients(r).map((i) => i.amount)) === JSON.stringify(allIngredients(b).map((i) => i.amount)) && r.servings === b.servings;
-    if (same) { scaled = null; scaleLabel = ''; } else { scaled = r; scaleLabel = label; }
+    if (same) { scaled = null; scaleLabel = ''; }
+    else {
+      scaled = r;
+      scaleLabel = label;
+      // Wynik przeliczenia pokazujemy w rozwiniętych szczegółach; użytkownik nadal może je zamknąć.
+      setSetting('detailOpen', true);
+    }
     paint();
     if (scaled) s.scroll.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -659,7 +665,7 @@ export function detailView({ id }) {
       onClick: () => navigate('/cook/' + id),
     }));
 
-    const open = !!getSetting('detailOpen') || !!scaled;
+    const open = !!getSetting('detailOpen');
     kids.push(h('button', {
       type: 'button',
       class: 'more-toggle' + (open ? ' open' : ''),
