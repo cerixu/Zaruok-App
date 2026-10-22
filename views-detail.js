@@ -637,11 +637,7 @@ export function detailView({ id }) {
     const origin = originOf(rr.origin);
     const sourceText = rr.sourceUrl ? (hostOf(rr.sourceUrl) || rr.sourceUrl) : (rr.source || 'Źródło własne');
     kids.push(h('div', { class: 'detail-from' },
-      origin && origin.name ? h('a', {
-        class: 'from-chip',
-        href: '#/recipes?origin=' + encodeURIComponent(rr.origin || ''),
-        onClick: (e) => { e.preventDefault(); navigate('/recipes?origin=' + encodeURIComponent(rr.origin || '')); },
-      }, origin.name) : null,
+      origin && origin.name ? h('span', { class: 'from-chip' }, origin.name) : null,
       h('span', { class: 'from-chip soft' }, icon('book', 14), rr.sourceUrl
         ? h('a', { href: rr.sourceUrl, target: '_blank', rel: 'noopener noreferrer' }, sourceText)
         : sourceText),
