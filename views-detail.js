@@ -669,7 +669,7 @@ export function detailView({ id }) {
     kids.push(h('button', {
       type: 'button',
       class: 'more-toggle' + (open ? ' open' : ''),
-      'aria-expanded': open,
+      'aria-expanded': String(open),
       'aria-controls': 'detail-more-' + id,
       onClick: async () => {
         const opening = !getSetting('detailOpen');
