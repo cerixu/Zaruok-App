@@ -5,6 +5,15 @@
    ========================================================================== */
 
 export const CHANGELOG = Object.freeze({
+  '2.1.10': Object.freeze({
+    intro: 'Żarłok 2.1.10 — dokładniejsze zdjęcia i wygodniejsze szczegóły receptur.',
+    items: [
+      'Pełne szczegóły receptury rozwijają się w bieżącym widoku i można je ponownie zamknąć.',
+      'Przeliczanie porcji otwiera panel z podglądem wyniku; dodano test interakcji tego przepływu.',
+      'Zdjęcie kategorii nie zastępuje już fotografii konkretnego dania — przy braku dopasowania zostaje ilustracja SVG.',
+      'Poprawiono opisy aplikacji i testy mobilne dla nowego panelu receptury.'
+    ]
+  }),
   '2.1.9': Object.freeze({
     intro: 'Żarłok 2.1.9 — nowy, autorski zestaw fotografii dań przygotowany w Adobe Firefly.',
     items: [
