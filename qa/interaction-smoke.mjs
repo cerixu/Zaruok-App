@@ -95,6 +95,7 @@ try {
 
   // Przeliczenie przez główną akcję musi otworzyć panel ze skalowanym podglądem.
   await page.getByRole('button', { name: 'Ukryj szczegóły' }).first().click();
+  await detailPanel.waitFor({ state: 'hidden', timeout: 3000 });
   if (!(await detailPanel.isHidden())) throw new Error('Nie można zamknąć szczegółów przed przeliczeniem');
   await page.getByRole('button', { name: 'Przelicz', exact: true }).first().click();
   const doubleScale = page.getByRole('button', { name: '×2', exact: true }).first();
