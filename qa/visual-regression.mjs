@@ -455,22 +455,23 @@ try {
   await more.click();
   await page.waitForTimeout(250);
 
-  const modal = await box('.recipe-full-modal');
-  const modalFacts = await page.locator('.recipe-modal-facts').innerText();
-  assert(modalFacts.includes('1 porcja'), 'Receptura nie otwiera się domyślnie na jedną porcję.');
-  assert(modal.width >= 330 && modal.width <= 390, 'Modal pełnej receptury ma nieprawidłową szerokość.');
-  assert(await page.locator('.recipe-modal-ing-icon[data-kind]').count() > 0, 'Brak ikon składników z kolorami semantycznymi w pełnej recepturze.');
-  assert(await page.locator('.recipe-modal-ing-icon svg').count() > 0, 'Ikony składników nie są renderowane jako wektorowe grafiki SVG.');
-  assert(await page.locator('.recipe-modal-ing-icon svg').first().evaluate((el) => el.namespaceURI) === 'http://www.w3.org/2000/svg', 'Ikony pełnej receptury muszą używać przestrzeni nazw SVG.');
-  const ingredientIconRadius = await page.locator('.recipe-modal-ing-icon').first().evaluate((el) => getComputedStyle(el).borderRadius);
-  assert(['13px', '14px'].includes(ingredientIconRadius), 'Warstwa Liquid Glass nie wystylowała ikon składników.');
-  await shot('03-full-recipe.png');
+  const detailPanel = page.locator('.detail-more').first();
+  assert(await detailPanel.count(), 'Brak rozwijanego panelu szczegółów receptury.');
+  await detailPanel.waitFor({ state: 'visible', timeout: 5000 });
+  assert(await page.locator('.ingredients').count() > 0, 'W panelu szczegółów brakuje listy składników.');
+  assert(await page.locator('.detail-more .stepper-val').count() > 0, 'Receptura nie pokazuje przelicznika porcji w szczegółach.');
+  assert(await page.locator('.detail-more .ingredients [data-kind] svg').count() > 0, 'Ikony składników nie są renderowane jako SVG w panelu szczegółów.');
+  assert(await page.locator('.detail-more .ingredients [data-kind] svg').first().evaluate((el) => el.namespaceURI) === 'http://www.w3.org/2000/svg',
+    'Ikony składników muszą używać przestrzeni nazw SVG.');
+  const detailPanelBox = await detailPanel.boundingBox();
+  assert(detailPanelBox && detailPanelBox.width >= 300, 'Panel szczegółów ma nieprawidłową szerokość.');
+  await shot('03-recipe-details.png');
 
-  const modalScroll = await page.locator('.recipe-full-modal .scroll').first().evaluate((el) => ({
-    scrollHeight: el.scrollHeight,
-    clientHeight: el.clientHeight,
-  })).catch(() => null);
-  if (modalScroll) assert(modalScroll.scrollHeight >= modalScroll.clientHeight, 'Modal ma uszkodzony obszar przewijania.');
+  const hideDetails = page.getByRole('button', { name: 'Ukryj szczegóły' }).first();
+  assert(await hideDetails.count(), 'Brak przycisku zamykania szczegółów receptury.');
+  await hideDetails.click();
+  await page.waitForTimeout(150);
+  assert(await page.locator('.detail-more').first().isHidden(), 'Panel szczegółów nie zamknął się po naciśnięciu „Ukryj szczegóły”.');
   // Additional mobile surfaces: design QA must cover the whole app, not only Start.
   async function captureSurface(path, name, label) {
     await page.goto(base + '#' + path, { waitUntil: 'domcontentloaded' });
