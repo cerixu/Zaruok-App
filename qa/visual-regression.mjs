@@ -469,6 +469,10 @@ try {
 
   const hideDetails = page.getByRole('button', { name: 'Ukryj szczegóły' }).first();
   assert(await hideDetails.count(), 'Brak przycisku zamykania szczegółów receptury.');
+  assert(await hideDetails.getAttribute('aria-controls') === await detailPanel.getAttribute('id'),
+    'Przycisk szczegółów nie wskazuje panelu przez aria-controls.');
+  assert(await hideDetails.getAttribute('aria-expanded') === 'true',
+    'Przycisk szczegółów nie zgłasza otwartego panelu.');
   await hideDetails.click();
   await page.waitForTimeout(150);
   assert(await page.locator('.detail-more').first().isHidden(), 'Panel szczegółów nie zamknął się po naciśnięciu „Ukryj szczegóły”.');
