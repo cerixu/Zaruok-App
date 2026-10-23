@@ -129,8 +129,7 @@ const RECIPE_RULES = [
   ['bbq-ribs', /\b(skrzydelka buffalo|zeberka|bbq ribs)\b/],
   ['bagel', /\b(bagel z lososiem|bajgiel z lososiem)\b/],
   ['aperol', /\b(aperol spritz)\b/],
-  ['cocktail', /\b(mojito|hugo|bloody mary|grzaniec|lemoniada domowa)\b/],
-  // Najpierw konkretne potrawy i składniki, dopiero później szerokie kategorie.
+    // Najpierw konkretne potrawy i składniki, dopiero później szerokie kategorie.
   ['pizza', /\b(pizza margherita|pizza napoletana|margherita classica|napoletana classica)\b/],
   ['carbonara', /\b(spaghetti carbonara|carbonara tradycyjna|carbonara klasyczna)\b/],
   ['risotto', /\b(risotto ai funghi|risotto z grzybami|risotto funghi)\b/],
