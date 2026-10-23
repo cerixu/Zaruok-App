@@ -243,6 +243,8 @@ export function detailView({ id }) {
   // Receptura otwiera się na jedną porcję; oryginalne dane pozostają nietknięte.
   let scaled = base0.servings > 1 ? scaleRecipe(base0, 1 / base0.servings) : null;
   let scaleLabel = scaled ? portionLabel(1) : '';
+  // Stan rozwinięcia dotyczy tylko bieżącej receptury, nie całej aplikacji.
+  let detailOpen = false;
   let skipPaint = false;
   const base = () => getRecipe(id);
   const cur = () => scaled || base();
@@ -263,7 +265,7 @@ export function detailView({ id }) {
       scaled = r;
       scaleLabel = label;
       // Wynik przeliczenia pokazujemy w rozwiniętych szczegółach; użytkownik nadal może je zamknąć.
-      setSetting('detailOpen', true);
+      detailOpen = true;
     }
     paint();
     if (scaled) s.scroll.scrollTo({ top: 0, behavior: 'smooth' });
@@ -602,7 +604,8 @@ export function detailView({ id }) {
           'aria-label': label,
           title: it.full ? 'Otwórz całą recepturę' : it.ing.name,
           onClick: async () => {
-            await setSetting('detailOpen', true);
+            detailOpen = true;
+            paint();
             setTimeout(() => {
               const target = s.content.querySelector('.ingredients');
               if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -665,15 +668,16 @@ export function detailView({ id }) {
       onClick: () => navigate('/cook/' + id),
     }));
 
-    const open = !!getSetting('detailOpen');
+    const open = detailOpen;
     kids.push(h('button', {
       type: 'button',
       class: 'more-toggle' + (open ? ' open' : ''),
       'aria-expanded': String(open),
       'aria-controls': 'detail-more-' + id,
-      onClick: async () => {
-        const opening = !getSetting('detailOpen');
-        await setSetting('detailOpen', opening);
+      onClick: () => {
+        const opening = !detailOpen;
+        detailOpen = opening;
+        paint();
         if (opening) setTimeout(() => {
           const target = s.content.querySelector('.detail-more');
           if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
