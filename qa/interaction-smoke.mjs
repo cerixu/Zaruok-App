@@ -109,6 +109,20 @@ try {
   await page.getByRole('button', { name: 'Reset', exact: true }).first().click();
   await detailPanel.waitFor({ state: 'visible', timeout: 3000 });
 
+  // Otworzenie innej receptury nie może odziedziczyć rozwinięcia poprzedniej.
+  await page.goto(base + '#/recipes', { waitUntil: 'networkidle' });
+  await ready();
+  await dismiss();
+  const otherRecipe = page.locator('a[href^="#/recipe/"]').filter({ hasNot: page.locator('a[href="' + href + '"]') }).first();
+  const otherHref = await otherRecipe.getAttribute('href');
+  if (!otherHref || otherHref === href) throw new Error('Brak drugiej receptury do sprawdzenia izolacji stanu szczegółów');
+  await otherRecipe.click();
+  await page.waitForSelector('.detail', { state: 'visible', timeout: 5000 });
+  const otherPanel = page.locator('.detail-more').first();
+  if (!(await otherPanel.isHidden())) throw new Error('Nowa receptura odziedziczyła otwarty panel szczegółów');
+  const otherToggle = page.getByRole('button', { name: 'Pokaż szczegóły' }).first();
+  if ((await otherToggle.getAttribute('aria-expanded')) !== 'false') throw new Error('Nowa receptura nie zaczyna ze stanem aria-expanded=false');
+
   // Przywróć stan ulubionych do stanu sprzed testu.
   await page.goto(base + '#/recipes', { waitUntil: 'networkidle' });
   await ready();
