@@ -8,7 +8,7 @@ import {
 import { navigate, goBack } from './router.js';
 import {
   subscribe, getRecipe, markOpened, patchRecipe, saveRecipe, deleteRecipe, duplicateRecipe, getHistory, restoreVersion,
-  cloneRecipe, allIngredients, getSetting, setSetting, catName,
+  cloneRecipe, allIngredients, getSetting, catName,
 } from './recipes.js';
 import {
   scaleRecipe, factorFromServings, factorFromYield, factorFromIngredient, effectiveYield, bakersTable, bakersRecalc, recipeCost,
