@@ -113,10 +113,10 @@ try {
   await page.goto(base + '#/recipes', { waitUntil: 'networkidle' });
   await ready();
   await dismiss();
-  const otherRecipe = page.locator('a[href^="#/recipe/"]').filter({ hasNot: page.locator('a[href="' + href + '"]') }).first();
-  const otherHref = await otherRecipe.getAttribute('href');
+  const otherHref = await page.locator('a[href^="#/recipe/"]').evaluateAll((links, currentHref) =>
+    links.find((link) => link.getAttribute('href') !== currentHref)?.getAttribute('href') || null, href);
   if (!otherHref || otherHref === href) throw new Error('Brak drugiej receptury do sprawdzenia izolacji stanu szczegółów');
-  await otherRecipe.click();
+  await page.locator('a[href="' + otherHref + '"]').first().click();
   await page.waitForSelector('.detail', { state: 'visible', timeout: 5000 });
   const otherPanel = page.locator('.detail-more').first();
   if (!(await otherPanel.isHidden())) throw new Error('Nowa receptura odziedziczyła otwarty panel szczegółów');
