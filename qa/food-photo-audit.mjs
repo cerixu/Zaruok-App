@@ -71,6 +71,14 @@ const mustNotUseUnrelatedPhotos = [
   { name: 'Quesadilla z serem i kurczakiem', category: 'cat-przekaski' },
   { name: 'Tacos al pastor', category: 'cat-mieso' },
   { name: 'Skrzydełka Buffalo', category: 'cat-mieso' },
+  { name: 'Zielone curry tajskie', category: 'cat-mieso' },
+  { name: 'Kurczak kung pao', category: 'cat-mieso' },
+  { name: 'Gyoza', category: 'cat-przekaski' },
+  { name: 'Nigiri z łososiem', category: 'cat-ryby' },
+  { name: 'Pho ga', category: 'cat-zupy' },
+  { name: 'Bun cha', category: 'cat-mieso' },
+  { name: 'Gnocchi z masłem szałwiowym', category: 'cat-pasta' },
+  { name: 'Orecchiette z brokułem', category: 'cat-pasta' },
 ];
 for (const recipe of mustNotUseUnrelatedPhotos) {
   if (recipePhotoKey(recipe) !== null) {
