@@ -147,8 +147,15 @@ const photoPromises = new Map();
 export function recipePhotoKey(recipe) {
   if (!recipe || recipe.thumb || recipe.photo) return null;
   const name = normalise(recipe.name);
-  // Matcha tiramisu ma inny wygląd niż klasyczne tiramisu na zdjęciu.
-  if (/\bmatcha tiramisu\b/.test(name)) return null;
+  // Te receptury nie mają jeszcze fotografii, która wiernie przedstawia konkretne danie.
+  // Nie przypisuj im zdjęć ogólnych (np. owoców morza) tylko dlatego, że pasuje składnik.
+  const illustrationOnly = [
+    /\bkrewetki kung pao\b/,
+    /\bmatcha tiramisu\b/,
+    /\bsos carbonara\b/,
+    /\bchleb pszenny na drozdzach\b/,
+  ];
+  if (illustrationOnly.some((pattern) => pattern.test(name))) return null;
   for (const [key, pattern] of RECIPE_RULES) {
     if (pattern.test(name)) return key;
   }
