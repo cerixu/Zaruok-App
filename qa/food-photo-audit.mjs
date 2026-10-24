@@ -49,6 +49,16 @@ for (const recipe of recipesThatMustKeepIllustrations) {
 const mustNotUseUnrelatedPhotos = [
   { name: 'Krem z brokułów', category: 'cat-zupy' },
   { name: 'Zupa z soczewicy', category: 'cat-zupy' },
+  { name: 'Spätzle z serem', category: 'cat-pasta' },
+  { name: 'Moussaka', category: 'cat-mieso' },
+  { name: 'Tatar wołowy', category: 'cat-mieso' },
+  { name: 'Kotlet mielony', category: 'cat-mieso' },
+  { name: 'Kotlet de volaille', category: 'cat-mieso' },
+  { name: 'Flatbread', category: 'cat-pieczywo' },
+  { name: 'Biryani z kurczakiem', category: 'cat-mieso' },
+  { name: 'Poke bowl', category: 'cat-ryby' },
+  { name: 'Krem z brokułów', category: 'cat-zupy' },
+  { name: 'Zupa z soczewicy', category: 'cat-zupy' },
   { name: 'Kurczak teriyaki', category: 'cat-mieso' },
   { name: 'Fettuccine Alfredo', category: 'cat-pasta' },
   { name: 'Shepherd’s pie', category: 'cat-mieso' },
@@ -108,6 +118,7 @@ for (const recipe of mustNotUseUnrelatedPhotos) {
   }
 }
 const correctPhotoCases = [
+  [{ name: 'Focaccia', category: 'cat-pieczywo' }, 'focaccia'],
   [{ name: 'Pizza Diavola', category: 'cat-pizza' }, 'pizza-diavola'],
   [{ name: 'Burger wegański z czarnej fasoli', category: 'cat-mieso' }, 'vegan-burger'],
   [{ name: 'Risotto alla milanese', category: 'cat-pasta' }, 'risotto-milanese'],
