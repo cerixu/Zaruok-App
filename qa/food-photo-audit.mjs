@@ -79,6 +79,16 @@ const mustNotUseUnrelatedPhotos = [
   { name: 'Bun cha', category: 'cat-mieso' },
   { name: 'Gnocchi z masłem szałwiowym', category: 'cat-pasta' },
   { name: 'Orecchiette z brokułem', category: 'cat-pasta' },
+  { name: 'Pstrąg z masłem i migdałami', category: 'cat-ryby' },
+  { name: 'Ryba po grecku', category: 'cat-ryby' },
+  { name: 'Karp smażony', category: 'cat-ryby' },
+  { name: 'Śledź w oleju z cebulą', category: 'cat-ryby' },
+  { name: 'Kopytka', category: 'cat-pasta' },
+  { name: 'Kluski śląskie', category: 'cat-pasta' },
+  { name: 'Ravioli ricotta e spinaci', category: 'cat-pasta' },
+  { name: 'Panzanella', category: 'cat-salatki' },
+  { name: 'Croque monsieur', category: 'cat-przekaski' },
+  { name: 'Pico de gallo', category: 'cat-sosy' },
 ];
 for (const recipe of mustNotUseUnrelatedPhotos) {
   if (recipePhotoKey(recipe) !== null) {
