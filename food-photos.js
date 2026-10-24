@@ -83,6 +83,8 @@ const normalise = (value) => String(value || '')
   .trim();
 
 const RECIPE_RULES = [
+  // Zdjęcie cocktail przedstawia Moscow Mule — nie przypisuj go innym drinkom.
+  ['cocktail', /\bmoscow mule\b/],
   // Rozszerzone, konkretne dopasowania dla pozostałych przepisów z bazy.
   // Wybieraj zdjęcie po nazwie dania; nie używaj przypadkowego zdjęcia kategorii.
   ['barszcz', /\b(barszcz czerwony|barszcz ukrainski|barszcz wigilijny|uszka do barszczu)\b/],
@@ -220,7 +222,6 @@ const RECIPE_RULES = [
   ['burger', /\b(burger klasyczny|cheeseburger|burger wolowy|hamburger wolowy|burger z kurczakiem)\b/],
   ['bbq-ribs', /\b(bbq ribs|zeberka w miodzie|zeberka bbq|skrzydelka buffalo)\b/],
   ['bagel', /\b(bagel z lososiem|bajgiel z lososiem)\b/],
-  ['cocktail', /\b(mojito|hugo|bloody mary|lemoniada domowa)\b/],
   ['aperol', /\b(aperol spritz)\b/],
   ['salmon', /\b(kaczka pieczona z jablkami|kurczak pieczony|watrobka z cebula|saltimbocca alla romana|souvlaki z kurczaka|tagine z kurczakiem i morelami)\b/],
   ['beef-stew', /\b(boeuf stroganow|shepherd s pie|albóndigas|albondigas|mussaka|kofta z jagnięciny|kofta z jagnięciny|gulaszowa zupa)\b/],
@@ -242,7 +243,6 @@ const RECIPE_RULES = [
   ['dessert', /\b(lody waniliowe domowe|mus czekoladowy|mochi z matcha|kulfi pistacjowe|dorayaki|churros|tres leches|baklava|basbousa|gulab jamun|pavlova)\b/],
   ['crepes', /\b(nalesniki|racuchy z jablkami|pancakes|crepes|tosty francuskie|gofry brukselskie|placuszki bananowe)\b/],
   ['bagel', /\b(bajgiel|bagel|onigiri z lososiem)\b/],
-  ['cocktail', /\b(cosmopolitan|daiquiri|pina colada|whisky sour|gin tonic|caipirinha|grzaniec|manhattan|mai tai|paloma|french 75|sidecar|penicillin|americano|lemoniada cytrynowa|lemoniada ogorkowa|smoothie jagodowe|smoothie zielone|smoothie mango kokos|herbata matcha latte|herbata imbirowa|kakao na mleku|mors|woda z owocami)\b/],
   // Najpierw konkretne potrawy i składniki, dopiero później szerokie kategorie.
   ['pizza', /\b(pizza margherita|pizza napoletana|margherita classica|napoletana classica)\b/],
   ['carbonara', /\b(spaghetti carbonara|carbonara tradycyjna|carbonara klasyczna)\b/],
@@ -280,7 +280,6 @@ const RECIPE_RULES = [
   ['pho-bo', /\b(pho bo)\b/],
   ['aperol', /\baperol spritz\b/],
   // Zdjęcie z miedzianym kubkiem przedstawia Moscow Mule — nie przypisuj go wszystkim drinkom.
-  ['cocktail', /\bmoscow mule\b/],
   ['lasagna', /\b(lasagna|lasagne)\b/],
   ['chicken-curry', /\b(tikka masala|butter chicken)\b/],
   ['schnitzel', /\b(kotlet schabowy|schabowy|wiener schnitzel|schnitzel)\b/],
