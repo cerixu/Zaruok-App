@@ -54,6 +54,7 @@ const mustNotUseUnrelatedPhotos = [
   { name: 'Shepherd’s pie', category: 'cat-mieso' },
   { name: 'Croissant z masłem', category: 'cat-pieczywo' },
   { name: 'Quiche Lorraine', category: 'cat-desery' },
+  { name: 'Onigiri z łososiem', category: 'cat-ryby' },
 ];
 for (const recipe of mustNotUseUnrelatedPhotos) {
   if (recipePhotoKey(recipe) !== null) {
