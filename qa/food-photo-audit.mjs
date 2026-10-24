@@ -46,6 +46,20 @@ for (const recipe of recipesThatMustKeepIllustrations) {
     throw new Error('Niepasujące zdjęcie zostało użyte dla receptury: ' + recipe.name + ' → ' + recipePhotoKey(recipe));
   }
 }
+const mustNotUseUnrelatedPhotos = [
+  { name: 'Krem z brokułów', category: 'cat-zupy' },
+  { name: 'Zupa z soczewicy', category: 'cat-zupy' },
+  { name: 'Kurczak teriyaki', category: 'cat-mieso' },
+  { name: 'Fettuccine Alfredo', category: 'cat-pasta' },
+  { name: 'Shepherd’s pie', category: 'cat-mieso' },
+  { name: 'Croissant z masłem', category: 'cat-pieczywo' },
+  { name: 'Quiche Lorraine', category: 'cat-desery' },
+];
+for (const recipe of mustNotUseUnrelatedPhotos) {
+  if (recipePhotoKey(recipe) !== null) {
+    throw new Error('Niepasujące zdjęcie zostało użyte dla receptury: ' + recipe.name + ' → ' + recipePhotoKey(recipe));
+  }
+}
 const correctPhotoCases = [
   [{ name: 'Pizza Diavola', category: 'cat-pizza' }, 'pizza-diavola'],
   [{ name: 'Burger wegański z czarnej fasoli', category: 'cat-mieso' }, 'vegan-burger'],
