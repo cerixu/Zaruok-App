@@ -154,8 +154,18 @@ export function recipePhotoKey(recipe) {
     /\bmatcha tiramisu\b/,
     /\bsos carbonara\b/,
     /\bchleb pszenny na drozdzach\b/,
+    // Brak zdjęcia wiernie pokazującego te dania — unikaj fotografii innej potrawy.
+    /\bkrem z brokulow\b/,
+    /\bzupa z soczewicy\b/,
+    /\bkurczak teriyaki\b/,
+    /\bfettuccine alfredo\b/,
+    /\bshepherd s pie\b/,
+    /\bcroissant z maslem\b/,
+    /\bquiche lorraine\b/,
   ];
   if (illustrationOnly.some((pattern) => pattern.test(name))) return null;
+  // Focaccia ma własne zdjęcie; wyprzedza szerszą regułę pieczywa.
+  if (/\bfocaccia\b/.test(name)) return 'focaccia';
   for (const [key, pattern] of RECIPE_RULES) {
     if (pattern.test(name)) return key;
   }
