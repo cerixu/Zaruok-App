@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import { recipePhotoKey } from '../food-photos.js';
 
 const photosSource = fs.readFileSync('food-photos.js', 'utf8');
 const photoFiles = new Map(
@@ -34,7 +35,58 @@ const sauceCategory = categoryKeys.find((match) => match[1].replace(/[\'\"]/g, '
 if (!sauceCategory || sauceCategory[2] !== 'sauce') {
   throw new Error('Kategoria sosów musi korzystać z dedykowanego zdjęcia sosu, nie zdjęcia makaronu.');
 }
-if (/return CATEGORY_PHOTOS\[recipe\.category\] \|\| 'dessert'/.test(photosSource)) {
-  throw new Error('Nieznana receptura nie może domyślnie dostawać zdjęcia deseru.');
+const recipesThatMustKeepIllustrations = [
+  { name: 'Krewetki kung pao', category: 'cat-owoce-morza' },
+  { name: 'Matcha tiramisu', category: 'cat-desery' },
+  { name: 'Sos carbonara', category: 'cat-sosy' },
+  { name: 'Chleb pszenny na drożdżach', category: 'cat-pieczywo' },
+];
+for (const recipe of recipesThatMustKeepIllustrations) {
+  if (recipePhotoKey(recipe) !== null) {
+    throw new Error('Niepasujące zdjęcie zostało użyte dla receptury: ' + recipe.name + ' → ' + recipePhotoKey(recipe));
+  }
+}
+const mustNotUseUnrelatedPhotos = [
+  { name: 'Krem z brokułów', category: 'cat-zupy' },
+  { name: 'Zupa z soczewicy', category: 'cat-zupy' },
+  { name: 'Kurczak teriyaki', category: 'cat-mieso' },
+  { name: 'Fettuccine Alfredo', category: 'cat-pasta' },
+  { name: 'Shepherd’s pie', category: 'cat-mieso' },
+  { name: 'Croissant z masłem', category: 'cat-pieczywo' },
+  { name: 'Quiche Lorraine', category: 'cat-desery' },
+  { name: 'Onigiri z łososiem', category: 'cat-ryby' },
+];
+for (const recipe of mustNotUseUnrelatedPhotos) {
+  if (recipePhotoKey(recipe) !== null) {
+    throw new Error('Niepasujące zdjęcie zostało użyte dla receptury: ' + recipe.name + ' → ' + recipePhotoKey(recipe));
+  }
+}
+const correctPhotoCases = [
+  [{ name: 'Pizza Diavola', category: 'cat-pizza' }, 'pizza-diavola'],
+  [{ name: 'Burger wegański z czarnej fasoli', category: 'cat-mieso' }, 'vegan-burger'],
+  [{ name: 'Risotto alla milanese', category: 'cat-pasta' }, 'risotto-milanese'],
+  [{ name: 'Pesto genovese', category: 'cat-sosy' }, 'pesto-genovese'],
+  [{ name: 'Tom yum z krewetkami', category: 'cat-zupy' }, 'tom-yum'],
+  [{ name: 'Zupa ramen tonkotsu', category: 'cat-zupy' }, 'ramen-tonkotsu'],
+  [{ name: 'Sushi maki z ogórkiem i łososiem', category: 'cat-ryby' }, 'sushi-maki'],
+  [{ name: 'Pho bo', category: 'cat-zupy' }, 'pho-bo'],
+  [{ name: 'Gołąbki w sosie pomidorowym', category: 'cat-mieso' }, 'golabki'],
+  [{ name: 'Sernik klasyczny', category: 'cat-desery' }, 'sernik'],
+  [{ name: 'Spaghetti aglio e olio', category: 'cat-pasta' }, 'aglio-olio'],
+  [{ name: 'Sałatka Cezar', category: 'cat-salatki' }, 'caesar-salad'],
+  [{ name: 'Pizza Margherita', category: 'cat-pizza' }, 'pizza'],
+  [{ name: 'Caprese', category: 'cat-salatki' }, 'salad'],
+  [{ name: 'Spaghetti Carbonara', category: 'cat-pasta' }, 'carbonara'],
+  [{ name: 'Risotto z grzybami', category: 'cat-pasta' }, 'risotto'],
+  [{ name: 'Spaghetti alle vongole', category: 'cat-owoce-morza' }, 'seafood'],
+  [{ name: 'Burger domowy', category: 'cat-mieso' }, 'burger'],
+  [{ name: 'Sos pomidorowy do makaronu', category: 'cat-sosy' }, 'sauce'],
+  [{ name: 'Łosoś pieczony z cytryną', category: 'cat-ryby' }, 'salmon'],
+];
+for (const [recipe, expected] of correctPhotoCases) {
+  const actual = recipePhotoKey(recipe);
+  if (actual !== expected) {
+    throw new Error('Brak poprawnego dopasowania zdjęcia dla "' + recipe.name + '": oczekiwano ' + expected + ', otrzymano ' + actual);
+  }
 }
 console.log('Photo mapping QA passed: ' + photoFiles.size + ' zdjęć, ' + ruleKeys.length + ' unikalnych reguł, ' + categoryKeys.length + ' zdjęć kategorii.');

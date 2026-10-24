@@ -5,6 +5,39 @@
    ========================================================================== */
 
 export const CHANGELOG = Object.freeze({
+  '2.1.13': Object.freeze({
+    intro: 'Żarłok 2.1.13 — osobne fotografie dla czterech dań azjatyckich.',
+    items: [
+      'Dodano lokalne zdjęcia tom yum z krewetkami, ramen tonkotsu, sushi maki z ogórkiem i łososiem oraz pho bo.',
+      'Audyt zdjęć sprawdza dokładne dopasowanie tych dań.',
+      'Test offline sprawdza teraz cache wszystkich dwunastu nowych fotografii.'
+    ]
+  }),
+  '2.1.12': Object.freeze({
+    intro: 'Żarłok 2.1.12 — cztery kolejne zdjęcia przypisane do konkretnych receptur.',
+    items: [
+      'Dodano lokalne zdjęcia pizzy Diavola, burgera z czarnej fasoli, risotto alla milanese i pesto genovese.',
+      'Test offline sprawdza teraz obecność wszystkich ośmiu nowych zdjęć w cache Service Workera.',
+      'Audyt dopasowania kontroluje również cztery nowe pary receptura–fotografia.'
+    ]
+  }),
+  '2.1.11': Object.freeze({
+    intro: 'Żarłok 2.1.11 — cztery nowe fotografie konkretnych dań.',
+    items: [
+      'Dodano autorskie, lokalne zdjęcia gołąbków, sernika, spaghetti aglio e olio oraz sałatki Cezar.',
+      'Nowe fotografie są dostępne bez internetu i mają osobne reguły dopasowania do receptur.',
+      'Pozostałe dania bez pewnego dopasowania zachowują właściwe ilustracje SVG.'
+    ]
+  }),
+  '2.1.10': Object.freeze({
+    intro: 'Żarłok 2.1.10 — dokładniejsze zdjęcia i wygodniejsze szczegóły receptur.',
+    items: [
+      'Pełne szczegóły receptury rozwijają się w bieżącym widoku i można je ponownie zamknąć.',
+      'Przeliczanie porcji otwiera panel z podglądem wyniku; dodano test interakcji tego przepływu.',
+      'Zdjęcie kategorii nie zastępuje już fotografii konkretnego dania — przy braku dopasowania zostaje ilustracja SVG.',
+      'Poprawiono opisy aplikacji i testy mobilne dla nowego panelu receptury.'
+    ]
+  }),
   '2.1.9': Object.freeze({
     intro: 'Żarłok 2.1.9 — nowy, autorski zestaw fotografii dań przygotowany w Adobe Firefly.',
     items: [

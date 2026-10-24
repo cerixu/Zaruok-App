@@ -30,9 +30,10 @@ try {
     if (await more.count()) {
       await more.click();
       await page.waitForTimeout(250);
-      await shot('04-full-recipe');
-      if (!(await page.locator('.recipe-full-modal').first().count())) failures.push('Pełna receptura nie otworzyła się w modalu.');
-      if ((await page.locator('.recipe-modal-ing-icon').count()) === 0) failures.push('Modal receptury nie zawiera ikon składników.');
+      await page.locator('.detail-more').waitFor({ state: 'visible', timeout: 5000 });
+      await shot('04-recipe-details');
+      if (!(await page.locator('.detail-more').first().count())) failures.push('Szczegóły receptury nie otworzyły się w panelu inline.');
+      if ((await page.locator('.detail-more .ingredients .ing-icon[data-kind] svg').count()) === 0) failures.push('Szczegóły receptury nie zawierają ikon składników SVG.');
     }
   } else {
     failures.push('Nie znaleziono żadnej receptury do testu.');

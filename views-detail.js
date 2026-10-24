@@ -8,7 +8,7 @@ import {
 import { navigate, goBack } from './router.js';
 import {
   subscribe, getRecipe, markOpened, patchRecipe, saveRecipe, deleteRecipe, duplicateRecipe, getHistory, restoreVersion,
-  cloneRecipe, allIngredients, getSetting, setSetting, catName,
+  cloneRecipe, allIngredients, getSetting, catName,
 } from './recipes.js';
 import {
   scaleRecipe, factorFromServings, factorFromYield, factorFromIngredient, effectiveYield, bakersTable, bakersRecalc, recipeCost,
@@ -243,6 +243,8 @@ export function detailView({ id }) {
   // Receptura otwiera się na jedną porcję; oryginalne dane pozostają nietknięte.
   let scaled = base0.servings > 1 ? scaleRecipe(base0, 1 / base0.servings) : null;
   let scaleLabel = scaled ? portionLabel(1) : '';
+  // Stan rozwinięcia dotyczy tylko bieżącej receptury, nie całej aplikacji.
+  let detailOpen = false;
   let skipPaint = false;
   const base = () => getRecipe(id);
   const cur = () => scaled || base();
@@ -258,7 +260,13 @@ export function detailView({ id }) {
   function applyScaled(r, label) {
     const b = base();
     const same = JSON.stringify(allIngredients(r).map((i) => i.amount)) === JSON.stringify(allIngredients(b).map((i) => i.amount)) && r.servings === b.servings;
-    if (same) { scaled = null; scaleLabel = ''; } else { scaled = r; scaleLabel = label; }
+    if (same) { scaled = null; scaleLabel = ''; }
+    else {
+      scaled = r;
+      scaleLabel = label;
+      // Wynik przeliczenia pokazujemy w rozwiniętych szczegółach; użytkownik nadal może je zamknąć.
+      detailOpen = true;
+    }
     paint();
     if (scaled) s.scroll.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -528,13 +536,15 @@ export function detailView({ id }) {
 
   function ingredientsCard(r, table) {
     const showPct = !!(table && table.ok && r.bakers);
-    const pct = new Map(table && table.ok ? table.rows.map((x) => [x.id, x]) : []);
-    const secs = r.sections.filter((sec) => sec.ingredients.length || sec.name);
+    const pctRows = table && table.ok && Array.isArray(table.rows) ? table.rows : [];
+    const pct = new Map(pctRows.map((x) => [x.id, x]));
+    const sections = Array.isArray(r.sections) ? r.sections : [];
+    const secs = sections.filter((sec) => sec && Array.isArray(sec.ingredients) && (sec.ingredients.length || sec.name));
     return h('section', { class: 'card ingredients' },
       h('h2', { class: 'card-title' }, icon('list', 20), 'Składniki'),
       secs.length ? secs.map((sec) => h('div', { class: 'ing-section' },
         sec.name ? h('div', { class: 'tape' }, sec.name) : null,
-        h('ul', { class: 'ing-list' }, sec.ingredients.map((i) => {
+        h('ul', { class: 'ing-list' }, sec.ingredients.filter(Boolean).map((i) => {
           const q = qtyParts(i);
           const p = pct.get(i.id);
           return h('li', { class: 'ing' },
@@ -548,7 +558,7 @@ export function detailView({ id }) {
   }
 
   function bakersCard(r, table) {
-    if (!r.bakers || !table.ok) return null;
+    if (!r.bakers || !table || !table.ok) return null;
     const kv = (k, v) => h('div', { class: 'stat' }, h('span', { class: 'stat-k' }, k), h('span', { class: 'stat-v num' }, v));
     return h('section', { class: 'card' },
       h('h2', { class: 'card-title' }, icon('percent', 20), 'Procenty piekarskie'),
@@ -557,7 +567,7 @@ export function detailView({ id }) {
       button('Przelicz ciasto', { icon: 'swap', block: true, onClick: openBakers }));
   }
 
-  /* Składniki na łuku — szybki podgląd. „Więcej” otwiera pełną recepturę w osobnym oknie. */
+  /* Składniki na łuku — szybki podgląd. „Więcej” rozwija szczegóły receptury w tym samym widoku. */
   function orbit(r) {
     const ings = allIngredients(r).filter((i) => i.name && i.unit !== '%');
     const picked = [], used = new Set();
@@ -568,6 +578,7 @@ export function detailView({ id }) {
       picked.push(i);
       if (picked.length >= 5) break;
     }
+    // Liczba wszystkich składników niewidocznych na łuku, także tych z powtarzającą się ikoną.
     const more = Math.max(0, ings.length - picked.length);
     const items = [
       ...picked.map((i) => ({ ing: i })),
@@ -592,89 +603,20 @@ export function detailView({ id }) {
           style: { left: x + '%', top: y + 'px' },
           'aria-label': label,
           title: it.full ? 'Otwórz całą recepturę' : it.ing.name,
-          onClick: () => openFullRecipe(r),
+          onClick: async () => {
+            detailOpen = true;
+            paint();
+            setTimeout(() => {
+              const target = s.content.querySelector('.ingredients');
+              if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 120);
+          },
         },
           h('span', { class: 'orb-dot' + (it.full ? ' orb-dot-more' : ''), 'data-kind': it.ing ? ingredientKind(it.ing.name) : null }, it.full ? (it.more > 0 ? `+${it.more}` : '…') : ingredientGlyph(it.ing.name)),
           h('span', { class: 'orb-name' }, it.full ? 'więcej' : it.ing.name.replace(/\s*\(.*\)\s*/, '').split(/[\s,]+/)[0]),
           it.ing ? h('span', { class: 'orb-amt num' }, [q.num, q.unit].filter(Boolean).join('\u00a0')) : null);
       }));
     return h('div', { class: 'orbit-wrap' }, h('div', { class: 'orbit-title' }, 'Składniki'), el);
-  }
-
-  function openFullRecipe(r) {
-    const kc = estimateKcal(r);
-    const ings = allIngredients(r).filter((i) => i.name && i.unit !== '%');
-    const hasSections = (r.sections || []).some((sec) => sec.name);
-    const ingredientGroups = (r.sections || []).filter((sec) => sec.ingredients && sec.ingredients.length);
-
-    const modalIngredient = (i) => {
-      const q = qtyParts(i);
-      return h('div', { class: 'recipe-modal-ing' },
-        h('span', { class: 'recipe-modal-ing-icon', 'data-kind': ingredientKind(i.name), 'aria-hidden': 'true' }, ingredientGlyph(i.name)),
-        h('div', { class: 'recipe-modal-ing-main' },
-          h('span', { class: 'recipe-modal-ing-name' }, i.name),
-          hasSections ? h('span', { class: 'recipe-modal-ing-section' }, ((r.sections || []).find((sec) => sec.ingredients && sec.ingredients.some((x) => x.id === i.id)) || {}).name || 'Składnik') : null),
-        h('span', { class: 'recipe-modal-ing-qty num' }, q.num || '—'),
-        h('span', { class: 'recipe-modal-ing-unit' }, q.unit || ''));
-    };
-
-    const modalSections = [];
-    if (ingredientGroups.length) {
-      ingredientGroups.forEach((sec) => {
-        modalSections.push(h('div', { class: 'recipe-modal-group' },
-          sec.name ? h('div', { class: 'recipe-modal-group-title' }, sec.name) : null,
-          h('div', { class: 'recipe-modal-ingredients' }, sec.ingredients.filter((i) => i.name && i.unit !== '%').map(modalIngredient))));
-      });
-    } else {
-      modalSections.push(h('div', { class: 'recipe-modal-ingredients' }, ings.map(modalIngredient)));
-    }
-
-    const facts = [
-      r.servings ? portionLabel(r.servings) : '',
-      r.prepTime ? `przyg. ${fmtMinutes(r.prepTime)}` : '',
-      r.cookTime ? `gotow. ${fmtMinutes(r.cookTime)}` : '',
-      r.temperature ? r.temperature : '',
-    ].filter(Boolean);
-
-    const body = h('div', { class: 'recipe-modal' },
-      h('div', { class: 'recipe-modal-hero' },
-        h('div', { class: 'recipe-modal-photo-wrap' }, recipePhotoImage(r, 'recipe-modal-photo')),
-        h('div', { class: 'recipe-modal-heading' },
-          h('div', { class: 'recipe-modal-kicker' }, catName(r.category)),
-          h('h3', { class: 'recipe-modal-title' }, r.name || 'Receptura'),
-          facts.length ? h('div', { class: 'recipe-modal-facts' }, facts.map((x) => h('span', null, x))) : null,
-          kc ? h('div', { class: 'recipe-modal-kcal' }, `ok. ${kc.perServing} kcal / porcja`) : null)),
-      r.description ? h('p', { class: 'recipe-modal-desc' }, r.description) : null,
-      h('section', { class: 'recipe-modal-section' },
-        h('div', { class: 'recipe-modal-section-head' },
-          h('span', { class: 'recipe-modal-index' }, '01'),
-          h('div', null, h('div', { class: 'recipe-modal-eyebrow' }, 'LISTA'), h('h3', null, 'Składniki')),
-          h('span', { class: 'recipe-modal-count' }, String(ings.length))),
-        ...modalSections),
-      h('section', { class: 'recipe-modal-section' },
-        h('div', { class: 'recipe-modal-section-head' },
-          h('span', { class: 'recipe-modal-index' }, '02'),
-          h('div', null, h('div', { class: 'recipe-modal-eyebrow' }, 'KROK PO KROKU'), h('h3', null, 'Przygotowanie')),
-          h('span', { class: 'recipe-modal-count' }, String((r.steps || []).length))),
-        r.steps && r.steps.length
-          ? h('ol', { class: 'recipe-modal-steps' }, r.steps.map((st) => h('li', null, h('span', { class: 'recipe-modal-step-text' }, st.text))))
-          : h('p', { class: 'muted' }, 'Brak kroków. Dodaj je w edytorze.')),
-      r.notes ? h('section', { class: 'recipe-modal-section recipe-modal-notes' },
-        h('div', { class: 'recipe-modal-section-head' },
-          h('span', { class: 'recipe-modal-index' }, '03'),
-          h('div', null, h('div', { class: 'recipe-modal-eyebrow' }, 'NOTATKA'), h('h3', null, 'Własne uwagi'))),
-        h('p', null, r.notes)) : null);
-
-    openSheet({
-      title: 'Pełna receptura',
-      variant: 'center',
-      cls: 'recipe-full-modal',
-      body,
-      actions: [
-        { label: 'Zamknij', kind: 'ghost' },
-        { label: 'GOTUJĘ', kind: 'primary', icon: 'chef', onClick: () => navigate('/guide/' + id) },
-      ],
-    });
   }
 
   function paint() {
@@ -701,6 +643,14 @@ export function detailView({ id }) {
     kids.push(h('div', { class: 'detail-title-row' },
       h('h1', { class: 'detail-title' }, r.name || 'Receptura'),
       sideInfo({ ...rr, servings: r.servings, sections: r.sections })));
+    const origin = originOf(rr.origin);
+    const sourceText = rr.sourceUrl ? (hostOf(rr.sourceUrl) || rr.sourceUrl) : (rr.source || 'Źródło własne');
+    kids.push(h('div', { class: 'detail-from' },
+      origin && origin.name ? h('span', { class: 'from-chip' }, origin.name) : null,
+      h('span', { class: 'from-chip soft' }, icon('book', 14), rr.sourceUrl
+        ? h('a', { href: rr.sourceUrl, target: '_blank', rel: 'noopener noreferrer' }, sourceText)
+        : sourceText),
+      h('span', { class: 'from-chip soft' }, catName(rr.category))));
     if (r.description) kids.push(h('p', { class: 'desc' }, r.description));
     kids.push(orbit(r));
     kids.push(h('div', { class: 'actions-primary' },
@@ -718,7 +668,23 @@ export function detailView({ id }) {
       onClick: () => navigate('/cook/' + id),
     }));
 
-    const open = false;
+    const open = detailOpen;
+    kids.push(h('button', {
+      type: 'button',
+      class: 'more-toggle' + (open ? ' open' : ''),
+      'aria-expanded': String(open),
+      'aria-controls': 'detail-more-' + id,
+      onClick: () => {
+        const opening = !detailOpen;
+        detailOpen = opening;
+        paint();
+        if (opening) setTimeout(() => {
+          const target = s.content.querySelector('.detail-more');
+          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 120);
+      },
+    }, icon('chev', 22), h('span', null, open ? 'Ukryj szczegóły' : 'Pokaż szczegóły')));
+
     const det = [];
     det.push(h('div', { class: 'detail-head' },
       h('div', { class: 'row wrap gap' }, tradMark(rr) ? h('span', { class: 'trad-big' }, tradMark(rr), originOf(rr.origin) ? originOf(rr.origin).name : 'Tradycyjna') : null,
@@ -735,11 +701,7 @@ export function detailView({ id }) {
         iconBtn('minus', 'Mniej porcji', () => { const cs = r.servings || rr.servings; const t = Math.max(0.5, cs > 1 ? cs - 1 : cs / 2); applyFactor(t / rr.servings, portionLabel(t)); }, 'glassy'),
         h('div', { class: 'stepper-val' }, h('strong', { class: 'num' }, fmtNum(r.servings, 1))),
         iconBtn('plus', 'Więcej porcji', () => { const cs = r.servings || rr.servings; const t = cs + 1; applyFactor(t / rr.servings, `${fmtNum(t, 1)} porcji`); }, 'glassy'))));
-    det.push(h('div', { class: 'actions-row' },
-      button('Przelicz', { icon: 'swap', onClick: openScale }),
-      button('Do zakupów', { icon: 'cart', onClick: () => openAddToShopping(r, 1) }),
-      button('Edytuj', { icon: 'edit', onClick: () => navigate('/edit/' + id) })),
-      button('Lista kontrolna', { block: true, icon: 'list', kind: 'ghost', onClick: () => navigate('/cook/' + id) }));
+    // Główne akcje są już dostępne nad panelem szczegółów — nie dublujemy ich tutaj.
 
     if (scaled) {
       det.push(h('div', { class: 'banner scale-banner', role: 'status' },
@@ -771,9 +733,11 @@ export function detailView({ id }) {
     det.push(h('div', { class: 'meta-foot muted small' }, src));
     det.push(h('div', { class: 'row center' }, button('Historia zmian', { icon: 'history', kind: 'ghost', onClick: openHistory })));
 
-    // Pełna receptura jest dostępna z okrągłego „więcej” i nie zajmuje miejsca na ekranie głównym. 
-    // Szczegóły nie są już renderowane inline.
-
+    kids.push(h('div', {
+      id: 'detail-more-' + id,
+      class: 'detail-more' + (open ? ' open' : ''),
+      hidden: !open,
+    }, ...det.filter(Boolean)));
     s.content.replaceChildren(...kids.filter(Boolean));
   }
 
