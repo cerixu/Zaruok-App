@@ -55,6 +55,11 @@ const mustNotUseUnrelatedPhotos = [
   { name: 'Croissant z masłem', category: 'cat-pieczywo' },
   { name: 'Quiche Lorraine', category: 'cat-desery' },
   { name: 'Onigiri z łososiem', category: 'cat-ryby' },
+  { name: 'Mojito', category: 'cat-napoje' },
+  { name: 'Kurczak pieczony', category: 'cat-mieso' },
+  { name: 'Ciabatta', category: 'cat-pieczywo' },
+  { name: 'Naan', category: 'cat-pieczywo' },
+  { name: 'Brioche', category: 'cat-pieczywo' },
 ];
 for (const recipe of mustNotUseUnrelatedPhotos) {
   if (recipePhotoKey(recipe) !== null) {
