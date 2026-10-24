@@ -201,15 +201,15 @@ jobs:
             await openRecipe.click();
             await expect(page.getByRole('heading', { name: /Ciasto na pizzę/ })).toBeVisible({ timeout: 5000 });
 
-            // Ingredient details intentionally live in the dedicated full-recipe sheet,
-            // not in the compact orbit preview on the redesigned detail screen.
-            const openFullRecipe = page.getByRole('button', { name: /Otwórz całą recepturę/ });
-            await expect(openFullRecipe).toBeVisible({ timeout: 5000 });
-            await openFullRecipe.click();
-            await expect(page.getByText('Pełna receptura')).toBeVisible({ timeout: 5000 });
-            await expect(page.getByText('Zakwas macierzysty', { exact: true })).toBeVisible({ timeout: 5000 });
-            await expect(page.getByText('Mąka pszenna do zakwasu', { exact: true })).toBeVisible();
-            await expect(page.getByText('Woda do zakwasu', { exact: true })).toBeVisible();
+            // Ingredient details expand inline on the current recipe screen.
+            const showDetails = page.getByRole('button', { name: 'Pokaż szczegóły' });
+            await expect(showDetails).toBeVisible({ timeout: 5000 });
+            await showDetails.click();
+            const detailPanel = page.locator('.detail-more');
+            await expect(detailPanel).toBeVisible({ timeout: 5000 });
+            await expect(detailPanel.getByText('Zakwas macierzysty', { exact: true })).toBeVisible({ timeout: 5000 });
+            await expect(detailPanel.getByText('Mąka pszenna do zakwasu', { exact: true })).toBeVisible();
+            await expect(detailPanel.getByText('Woda do zakwasu', { exact: true })).toBeVisible();
           });
           EOF
 
