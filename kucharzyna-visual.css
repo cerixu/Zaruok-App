@@ -692,7 +692,6 @@ img {
 }
 #tabbar {
   z-index: 50;
-  padding-bottom: max(7px, env(safe-area-inset-bottom, 0px));
 }
 .tab {
   min-height: var(--ios-touch-target);
@@ -701,9 +700,6 @@ img {
   overflow-wrap: anywhere;
 }
 @media (max-width: 390px) {
-  .content, .scroll > .content {
-    padding-inline: var(--ios-content-gutter);
-  }
   .rtile-name, .rname, .category-tile-name {
     overflow-wrap: anywhere;
   }
