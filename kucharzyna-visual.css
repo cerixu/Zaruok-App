@@ -621,3 +621,94 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .category-tile { transition: none; }
 }
+
+
+/* Dopracowanie przeniesionego stylu na wąskich ekranach iOS. */
+:root {
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+body {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+button, a, input, select, textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+button:focus-visible, a:focus-visible, input:focus-visible,
+select:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+.card, .tile, .bigcard, .rcard, .sr-card, .shop-list, .result,
+.rtile, .stat, .ing-edit, .step-edit, .sec-card, .pantry-item,
+.sub-card, .guide-card, .cook-row, .category-tile {
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+@media (max-width: 390px) {
+  .content { gap: 11px; }
+  .card, .tile, .bigcard, .rcard, .sr-card, .shop-list, .result {
+    border-radius: 24px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+
+/* iPhone polish: stabilne cele dotykowe, przewidywalny scroll i formularze. */
+:root {
+  --ios-touch-target: 44px;
+  --ios-content-gutter: clamp(14px, 4vw, 22px);
+}
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: max(12px, env(safe-area-inset-top, 0px));
+  scroll-padding-bottom: calc(var(--tab-h) + var(--tab-gap) + 18px);
+}
+body {
+  overscroll-behavior-y: none;
+}
+button, [role="button"], .tab, .linkbtn, .heart {
+  touch-action: manipulation;
+}
+input, textarea, select {
+  min-height: var(--ios-touch-target);
+  scroll-margin-block: 20px;
+}
+textarea {
+  line-height: 1.5;
+}
+img {
+  -webkit-user-drag: none;
+}
+#view, .scroll, .content {
+  min-width: 0;
+}
+#tabbar {
+  z-index: 50;
+}
+.tab {
+  min-height: var(--ios-touch-target);
+}
+.rtile, .rcard, .category-tile, .zf-action, .zf-tool {
+  overflow-wrap: anywhere;
+}
+@media (max-width: 390px) {
+  .rtile-name, .rname, .category-tile-name {
+    overflow-wrap: anywhere;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  .rtile, .category-tile, .zf-action, .zf-tool {
+    transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+  }
+  .rtile:hover, .category-tile:hover, .zf-action:hover, .zf-tool:hover {
+    border-color: var(--rim);
+  }
+}
