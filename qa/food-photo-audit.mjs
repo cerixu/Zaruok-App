@@ -81,6 +81,7 @@ const mustNotUseUnrelatedPhotos = [
   { name: 'Orecchiette z brokułem', category: 'cat-pasta' },
   { name: 'Tagliatelle al ragù', category: 'cat-pasta' },
   { name: 'Cannelloni ricotta', category: 'cat-pasta' },
+  { name: 'Ragù alla bolognese', category: 'cat-sosy' },
   { name: 'Kurczak w sosie słodko-kwaśnym', category: 'cat-mieso' },
   { name: 'Wołowina kung pao', category: 'cat-mieso' },
   { name: 'Pstrąg z masłem i migdałami', category: 'cat-ryby' },
