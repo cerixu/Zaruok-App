@@ -96,7 +96,7 @@ const RECIPE_RULES = [
   ['steak', /(?:\b(tatar wolowy|tatar wolowy klasyczny|stek wolowy|stek z antrykotu|rostbef)\b)|(?:\b(tatar wolowy|stek wolowy|stek z antrykotu|rostbef|stek z polędwicy|stek z poledwicy)\b)|(?:\b(tatar wolowy|stek wolowy|stek z antrykotu|stek z polędwicy|stek z poledwicy|rostbef)\b)|(?:\b(stek|steak|antrykot|ribeye|rostbef|t bone)\b)/],
   ['salmon', /\b(losos pieczony|losos z pieca|losos teriyaki|losos z warzywami|salmon fillet|fillet of salmon)\b/],
   ['seafood', /\b(moules mariniere|paella z owocami morza|paella|krewetki w czosnku|krewetki|mule w winie|risotto z owocami morza|owoce morza|calamari|kalmary|ceviche|bouillabaisse|spaghetti alle vongole|linguine ai frutti di mare|pasta frutti di mare)\b/],
-  ['pierogi', /\b(pierogi z jagodami|pierogi leniwe|pierogi z serem|pierogi ruskie|pierogi z kapusta i grzybami|pierogi z miesem|uszka z grzybami|pierogi)\b/],
+  ['pierogi', /\b(pierogi z jagodami|pierogi leniwe|pierogi z serem|pierogi ruskie|pierogi z kapusta i grzybami|pierogi z miesem|uszka z grzybami)\b/],
   ['bigos', /(?:\b(bigos|kapusta zasmazana|lazanki z kapusta)\b)|(?:\b(bigos staropolski|bigos mysliwski|bigos)\b)|(?:\b(bigos)\b)/],
   ['golabki', /(?:\b(golabki|cabbage rolls)\b)|(?:\b(golabki|golabki z kasza|golabki wegetarianskie|cabbage rolls)\b)/],
   ['sourdough', /(?:\b(chleb na zakwasie|chleb zytni|chleb wiejski)\b)|(?:\b(chleb na zakwasie|chleb zytni|chleb wiejski|chleb razowy)\b)|(?:\b(chleb na zakwasie|sourdough|chleb zytni)\b)/],
