@@ -60,6 +60,17 @@ const mustNotUseUnrelatedPhotos = [
   { name: 'Ciabatta', category: 'cat-pieczywo' },
   { name: 'Naan', category: 'cat-pieczywo' },
   { name: 'Brioche', category: 'cat-pieczywo' },
+  { name: 'Falafel', category: 'cat-przekaski' },
+  { name: 'Hummus', category: 'cat-przekaski' },
+  { name: 'Chaczapuri adżarskie', category: 'cat-pieczywo' },
+  { name: 'Spanakopita', category: 'cat-przekaski' },
+  { name: 'Tosty francuskie', category: 'cat-sniadania' },
+  { name: 'Gofry brukselskie', category: 'cat-desery' },
+  { name: 'Jajecznica na maśle', category: 'cat-sniadania' },
+  { name: 'Pulled pork', category: 'cat-mieso' },
+  { name: 'Quesadilla z serem i kurczakiem', category: 'cat-przekaski' },
+  { name: 'Tacos al pastor', category: 'cat-mieso' },
+  { name: 'Skrzydełka Buffalo', category: 'cat-mieso' },
 ];
 for (const recipe of mustNotUseUnrelatedPhotos) {
   if (recipePhotoKey(recipe) !== null) {
