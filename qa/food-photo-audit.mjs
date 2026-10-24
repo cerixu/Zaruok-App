@@ -86,6 +86,7 @@ const mustNotUseUnrelatedPhotos = [
   { name: 'Kopytka', category: 'cat-pasta' },
   { name: 'Kluski śląskie', category: 'cat-pasta' },
   { name: 'Ravioli ricotta e spinaci', category: 'cat-pasta' },
+  { name: 'Ciasto na pierogi', category: 'cat-pasta' },
   { name: 'Panzanella', category: 'cat-salatki' },
   { name: 'Croque monsieur', category: 'cat-przekaski' },
   { name: 'Pico de gallo', category: 'cat-sosy' },
