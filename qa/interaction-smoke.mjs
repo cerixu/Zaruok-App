@@ -73,17 +73,55 @@ try {
   await assertRoute('/recipe/' + href.split('/recipe/')[1]);
   await page.waitForSelector('.detail', { state: 'visible', timeout: 5000 });
 
-  // Test „więcej” i zamknięcia pełnej receptury.
+  // Test łuku składników i rozwijanego panelu szczegółów.
   const more = page.locator('.orb-more').first();
   if (!(await more.count())) throw new Error('Brak przycisku „więcej”');
   await more.click();
-  if (!(await page.locator('.recipe-full-modal').count())) throw new Error('Nie otworzył się modal pełnej receptury');
+  const detailPanel = page.locator('.detail-more').first();
+  await detailPanel.waitFor({ state: 'visible', timeout: 5000 });
+  const detailsToggle = page.getByRole('button', { name: 'Ukryj szczegóły' }).first();
+  if ((await detailsToggle.getAttribute('aria-expanded')) !== 'true') throw new Error('Przycisk szczegółów nie zgłasza stanu otwartego');
+  if ((await detailsToggle.getAttribute('aria-controls')) !== (await detailPanel.getAttribute('id'))) throw new Error('Przycisk szczegółów nie wskazuje panelu przez aria-controls');
+  if (!(await page.locator('.ingredients').count())) throw new Error('Brak listy składników w panelu szczegółów');
+  const hideDetails = page.getByRole('button', { name: 'Ukryj szczegóły' }).first();
+  if (!(await hideDetails.count())) throw new Error('Brak przycisku zamykania szczegółów');
+  await hideDetails.click();
+  await page.waitForTimeout(200);
+  if (!(await detailPanel.isHidden())) throw new Error('Panel szczegółów nie zamknął się');
+  const showDetails = page.getByRole('button', { name: 'Pokaż szczegóły' }).first();
+  if (!(await showDetails.count())) throw new Error('Brak przycisku ponownego otwierania szczegółów');
+  await showDetails.click();
+  await detailPanel.waitFor({ state: 'visible', timeout: 5000 });
 
-  await page.keyboard.press('Escape');
-  await page.waitForTimeout(250);
-  if (await page.locator('.recipe-full-modal').count() && await page.locator('.recipe-full-modal').first().isVisible().catch(() => false)) {
-    throw new Error('Modal pełnej receptury nie zamknął się');
+  // Przeliczenie przez główną akcję musi otworzyć panel ze skalowanym podglądem.
+  await page.getByRole('button', { name: 'Ukryj szczegóły' }).first().click();
+  await detailPanel.waitFor({ state: 'hidden', timeout: 3000 });
+  if (!(await detailPanel.isHidden())) throw new Error('Nie można zamknąć szczegółów przed przeliczeniem');
+  await page.getByRole('button', { name: 'Przelicz', exact: true }).first().click();
+  const doubleScale = page.getByRole('button', { name: '×2', exact: true }).first();
+  await doubleScale.waitFor({ state: 'visible', timeout: 3000 });
+  await doubleScale.click();
+  await detailPanel.waitFor({ state: 'visible', timeout: 5000 });
+  if (!(await page.locator('.detail-more .scale-banner').count())) throw new Error('Przeliczenie nie pokazuje podglądu w szczegółach receptury');
+  if ((await page.getByRole('button', { name: 'Ukryj szczegóły' }).first().getAttribute('aria-expanded')) !== 'true') {
+    throw new Error('Panel po przeliczeniu nie aktualizuje aria-expanded');
   }
+  await page.getByRole('button', { name: 'Reset', exact: true }).first().click();
+  await detailPanel.waitFor({ state: 'visible', timeout: 3000 });
+
+  // Otworzenie innej receptury nie może odziedziczyć rozwinięcia poprzedniej.
+  await page.goto(base + '#/recipes', { waitUntil: 'networkidle' });
+  await ready();
+  await dismiss();
+  const otherHref = await page.locator('a[href^="#/recipe/"]').evaluateAll((links, currentHref) =>
+    links.find((link) => link.getAttribute('href') !== currentHref)?.getAttribute('href') || null, href);
+  if (!otherHref || otherHref === href) throw new Error('Brak drugiej receptury do sprawdzenia izolacji stanu szczegółów');
+  await page.locator('a[href="' + otherHref + '"]').first().click();
+  await page.waitForSelector('.detail', { state: 'visible', timeout: 5000 });
+  const otherPanel = page.locator('.detail-more').first();
+  if (!(await otherPanel.isHidden())) throw new Error('Nowa receptura odziedziczyła otwarty panel szczegółów');
+  const otherToggle = page.getByRole('button', { name: 'Pokaż szczegóły' }).first();
+  if ((await otherToggle.getAttribute('aria-expanded')) !== 'false') throw new Error('Nowa receptura nie zaczyna ze stanem aria-expanded=false');
 
   // Przywróć stan ulubionych do stanu sprzed testu.
   await page.goto(base + '#/recipes', { waitUntil: 'networkidle' });

@@ -1118,3 +1118,47 @@ body.kb-open #tabbar { display: none; }
   color: #21150d !important;
   background: linear-gradient(135deg, #f4c77d, #d99761 70%, #c47c4b) !important;
 }
+
+/* Claude recipe-detail metadata chips — adapted to Żarłok's existing tokens. */
+.detail-from {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  width: 100%;
+  margin: 10px 0 14px;
+}
+.from-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  max-width: 100%;
+  min-height: 30px;
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--text);
+  background: color-mix(in srgb, var(--surface) 82%, transparent);
+  font-size: 11px;
+  line-height: 1.25;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+.from-chip.soft {
+  color: var(--muted);
+  background: color-mix(in srgb, var(--surface-2) 70%, transparent);
+}
+.from-chip a {
+  color: inherit;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+.from-chip:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+@media (max-width: 360px) {
+  .detail-from { gap: 5px; }
+  .from-chip { padding: 5px 8px; font-size: 10px; }
+}
