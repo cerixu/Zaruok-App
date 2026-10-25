@@ -26,6 +26,8 @@ jobs:
         run: node qa/architecture-audit.mjs
       - name: JS compatibility audit
         run: node qa/js-compat.mjs
+      - name: SVG illustration audit
+        run: node qa/svg-illustration-smoke.mjs
       - name: Mobile visual regression smoke
         run: node qa/visual-regression.mjs
       - name: Upload screenshots
