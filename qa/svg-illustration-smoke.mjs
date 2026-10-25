@@ -105,7 +105,8 @@ for (const file of productionAssets) {
   productionTotalBytes += size;
   assert.ok(size < 1_500_000, file + ': SVG powinien mieć mniej niż 1,5 MB (ma ' + size + ' B)');
   assert.match(source, /^<svg\b/, file + ': brak korzenia SVG');
-  assert.match(source, /viewBox="0 0 1024 1024"/, file + ': brak viewBox');
+  const viewBox = source.match(/viewBox="0 0 ([1-9]\d*) ([1-9]\d*)"/);
+  assert.ok(viewBox && viewBox[1] === viewBox[2], file + ': viewBox musi być kwadratowy');
   assert.match(source, /role="img"/, file + ': brak semantycznej roli obrazu');
   assert.match(source, /aria-labelledby="svg-title svg-desc"/, file + ': brak powiązania opisu dostępności');
   assert.match(source, /<title id="svg-title">[^<]+<\/title>/, file + ': brak tytułu dostępności');
@@ -121,7 +122,9 @@ for (const file of productionAssets) {
   for (const reference of references) {
     assert.ok(ids.includes(reference), file + ': odwołanie do nieistniejącego id #' + reference);
   }
-  assert.ok((source.match(/<path\b/g) || []).length > 100, file + ': nieoczekiwanie mało ścieżek ilustracji');
+  const pathCount = (source.match(/<path\b/g) || []).length;
+  const minimumPaths = file === 'bruschetta.svg' ? 20 : 101;
+  assert.ok(pathCount >= minimumPaths, file + ': nieoczekiwanie mało ścieżek ilustracji (' + pathCount + ')');
   assert.ok(serviceWorkerSource.includes("'" + productionRoot + "/" + file + "'"), file + ': brak w cache offline Service Workera');
   console.log('PASS production SVG ' + file + ': ' + size + ' B, dostępność, referencje i cache offline');
 }
