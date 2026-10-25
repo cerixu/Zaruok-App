@@ -5,6 +5,14 @@
    ========================================================================== */
 
 export const CHANGELOG = Object.freeze({
+  '2.1.17': Object.freeze({
+    intro: 'Żarłok 2.1.17 — pierwsza migracja produkcyjnej ilustracji SVG na przezroczysty wzorzec hybrydowy.',
+    items: [
+      'Zastąpiono ciężką ilustrację bruschetty lekkim, lokalnym SVG z przezroczystym tłem.',
+      'Zachowano istniejące dopasowanie receptury i dodano regresyjny test przezroczystości produkcyjnej grafiki.',
+      'Zaktualizowano cache Service Workera, wersję aplikacji i zasoby z parametrem cache-busting.'
+    ]
+  }),
   '2.1.16': Object.freeze({
     intro: 'Żarłok 2.1.16 — lżejsze, samodzielne ilustracje SVG.',
     items: [
