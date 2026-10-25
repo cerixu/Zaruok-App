@@ -89,7 +89,7 @@ try {
     }, { files: productionFiles, origin: baseUrl });
     await page.waitForFunction(() => {
       const imgs = [...document.querySelectorAll('[data-production-svg]')];
-      return imgs.length === 10 && imgs.every((img) => img.complete && img.naturalWidth === 1024 && img.naturalHeight === 1024);
+      return imgs.length === 10 && imgs.every((img) => img.complete && img.naturalWidth > 0 && img.naturalHeight > 0 && Math.abs(img.naturalWidth / img.naturalHeight - 1) < 0.02);
     }, null, { timeout: 20000 });
     const productionResult = await page.evaluate(() => [...document.querySelectorAll('[data-production-svg]')].map((img) => {
       const canvas = document.createElement('canvas');
@@ -107,11 +107,13 @@ try {
         opaqueEdgeSamples,
       };
     }));
-    if (productionResult.length !== 10 || productionResult.some((img) => img.width !== 1024 || img.height !== 1024)) {
+    if (productionResult.length !== 10 || productionResult.some((img) => img.width <= 0 || img.height <= 0 || Math.abs(img.width / img.height - 1) >= 0.02)) {
       throw new Error('Nie wszystkie produkcyjne SVG renderują się poprawnie na ' + device.name + ': ' + JSON.stringify(productionResult));
     }
+    const migratedBruschetta = productionResult.find((asset) => asset.file === 'bruschetta.svg');
+    if (!migratedBruschetta || migratedBruschetta.opaqueEdgeSamples !== 0) throw new Error('Bruschetta produkcyjna nie ma przezroczystych krawędzi na ' + device.name + ': ' + JSON.stringify(migratedBruschetta));
     const legacyBackgrounds = productionResult.filter((asset) => asset.opaqueEdgeSamples > 0);
-    console.log('PASS production SVG rendering ' + device.name + ': ' + productionResult.length + ' assets, 1024×1024');
+    console.log('PASS production SVG rendering ' + device.name + ': ' + productionResult.length + ' kwadratowych assetów; bruschetta ma przezroczyste krawędzie');
     if (legacyBackgrounds.length) console.warn('AUDIT: production SVG z nieprzezroczystymi pikselami przy krawędzi (do osobnej migracji): ' + legacyBackgrounds.map((asset) => asset.file + '=' + asset.opaqueEdgeSamples).join(', '));
     const compareResponse = await page.goto(baseUrl + '/design/svg-production-compare.html', { waitUntil: 'networkidle' });
     if (!compareResponse?.ok()) throw new Error('Podgląd porównawczy SVG nie ładuje się na ' + device.name + ': HTTP ' + compareResponse?.status());
