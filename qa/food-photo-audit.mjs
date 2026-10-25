@@ -163,6 +163,8 @@ const correctSvgCases = [
   ['Gnocchi al pomodoro', 'gnocchi-pomodoro'],
   ['Tagliatelle al ragù', 'tagliatelle-ragu'],
   ['Tiramisù', 'tiramisu'],
+  ['Tiramisu klasyczne', 'tiramisu'],
+  ['Tiramisu tradycyjne', 'tiramisu'],
   ['Panna cotta waniliowa', 'panna-cotta'],
   ['Bruschetta al pomodoro', 'bruschetta'],
   ['Ravioli ricotta e spinaci', 'ravioli-ricotta-spinaci'],
@@ -172,8 +174,9 @@ for (const [name, expected] of correctSvgCases) {
   if (actual !== expected) throw new Error('Błędne dopasowanie SVG dla "' + name + '": oczekiwano ' + expected + ', otrzymano ' + actual);
 }
 const svgMustNotMatch = [
-  'Matcha tiramisu', 'Tiramisu pistacjowe', 'Pizza Diavola',
-  'Gnocchi z masłem szałwiowym', 'Ravioli z mięsem',
+  'Matcha tiramisu', 'Tiramisu pistacjowe', 'Tiramisu al pistacchio',
+  'Tiramisu truskawkowe', 'Tiramisu z malinami', 'Tiramisu cytrynowe',
+  'Pizza Diavola', 'Gnocchi z masłem szałwiowym', 'Ravioli z mięsem',
 ];
 for (const name of svgMustNotMatch) {
   if (recipeSvgKey({ name }) !== null) throw new Error('Ilustracja SVG nie pasuje do wariantu: ' + name);

@@ -218,7 +218,7 @@ const SVG_RECIPE_RULES = [
   ['risotto-funghi', /\b(risotto ai funghi|risotto funghi|risotto z grzybami|risotto grzybowe|risotto z pieczarkami)\b/],
   ['gnocchi-pomodoro', /\b(gnocchi al pomodoro|gnocchi w sosie pomidorowym|gnocchi z sosem pomidorowym)\b/],
   ['tagliatelle-ragu', /\b(tagliatelle al ragu|tagliatelle z ragu|tagliatelle bolognese|tagliatelle z sosem bolognese)\b/],
-  ['tiramisu', /\b(tiramisu|tiramisù)\b(?!.*\b(matcha|pistacj|truskawk|malin|cytryn)\b)/],
+  ['tiramisu', /^(?!.*\b(?:matcha|pistac\w*|truskawk\w*|malin\w*|cytryn\w*)\b).*?\btiramisu\b/],
   ['panna-cotta', /\b(panna cotta|panna cotta klasyczna|panna cotta waniliowa)\b/],
   ['bruschetta', /\b(bruschetta al pomodoro|bruschetta z pomidorami|bruschetta pomidorowa|bruschetta klasyczna)\b/],
   ['ravioli-ricotta-spinaci', /\b(ravioli ricotta e spinaci|ravioli ze szpinakiem i ricotta|ravioli z ricotta i szpinakiem|ravioli ricotta szpinak)\b/],

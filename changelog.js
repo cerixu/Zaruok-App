@@ -5,6 +5,14 @@
    ========================================================================== */
 
 export const CHANGELOG = Object.freeze({
+  '2.1.15': Object.freeze({
+    intro: 'Żarłok 2.1.15 — precyzyjniejsze dopasowanie ilustracji SVG.',
+    items: [
+      'Warianty tiramisu z matchą, pistacją, truskawkami, malinami lub cytryną nie dostają ilustracji klasycznego tiramisu.',
+      'Rozszerzono audyt dopasowania SVG o warianty z nazwami polskimi i włoskimi.',
+      'Zachowano lokalne ilustracje i obsługę offline.'
+    ]
+  }),
   '2.1.14': Object.freeze({
     intro: 'Żarłok 2.1.14 — lokalne ilustracje SVG i pewniejsze aktualizacje offline.',
     items: [
