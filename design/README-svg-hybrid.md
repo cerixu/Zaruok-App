@@ -9,7 +9,7 @@ To jest **prototyp koncepcyjny**, niezmieniający głównej aplikacji. Zestaw pr
 - wspólna paleta, kontrolowane cienie i rozpoznawalne składniki;
 - prototypy są wersjonowane w repozytorium, ale nie są podłączone do aktywnego interfejsu i nie zastępują zdjęć.
 
-## Wzorcowe ilustracje — 18 osobnych plików SVG
+## Wzorcowe ilustracje — 20 osobnych plików SVG
 - [Carbonara](svg-hybrid/carbonara.svg)
 - [Pizza Margherita](svg-hybrid/margherita.svg)
 - [Krem pomidorowy](svg-hybrid/tomato-soup.svg)
@@ -28,10 +28,12 @@ To jest **prototyp koncepcyjny**, niezmieniający głównej aplikacji. Zestaw pr
 - [Pierogi ruskie z cebulką](svg-hybrid/pierogi-ruskie.svg)
 - [Sałatka Cezar](svg-hybrid/caesar-salad.svg)
 - [Krem z grzybów](svg-hybrid/mushroom-soup.svg)
+- [Bruschetta al pomodoro](svg-hybrid/bruschetta.svg)
+- [Tagliatelle al ragù](svg-hybrid/tagliatelle-ragu.svg)
 
 Każdy plik ma własny kwadratowy `viewBox`, tytuł i opis dostępności, lokalne definicje kolorów oraz przezroczyste tło. Ilustracje nie pobierają zewnętrznych zasobów.
 - Podgląd obu teł znajduje się w `design/svg-hybrid-preview.html`; to strona kontrolna, nie element aktywnego interfejsu.
-- `design/svg-production-compare.html` zestawia 10 produkcyjnych SVG i 18 prototypów na szachownicy przezroczystości oraz na jasnym i ciemnym tle; wszystkie źródła są lokalne.
+- `design/svg-production-compare.html` zestawia 10 produkcyjnych SVG i 20 prototypów na szachownicy przezroczystości oraz na jasnym i ciemnym tle; wszystkie źródła są lokalne.
 
 ## Kontrola jakości
 - `qa/svg-illustration-smoke.mjs` sprawdza strukturę plików, opisy, referencje SVG, rozmiar, wyróżniki dania oraz typowe pełnoekranowe tła narysowane ścieżką.
