@@ -165,6 +165,9 @@ const correctSvgCases = [
   ['Tiramisù', 'tiramisu'],
   ['Tiramisu klasyczne', 'tiramisu'],
   ['Tiramisu tradycyjne', 'tiramisu'],
+  ['Panna cotta', 'panna-cotta'],
+  ['Panna cotta klasyczna', 'panna-cotta'],
+  ['Panna cotta tradycyjna', 'panna-cotta'],
   ['Panna cotta waniliowa', 'panna-cotta'],
   ['Bruschetta al pomodoro', 'bruschetta'],
   ['Ravioli ricotta e spinaci', 'ravioli-ricotta-spinaci'],
@@ -176,6 +179,9 @@ for (const [name, expected] of correctSvgCases) {
 const svgMustNotMatch = [
   'Matcha tiramisu', 'Tiramisu pistacjowe', 'Tiramisu al pistacchio',
   'Tiramisu truskawkowe', 'Tiramisu z malinami', 'Tiramisu cytrynowe',
+  'Panna cotta pistacjowa', 'Panna cotta al limone', 'Panna cotta truskawkowa',
+  'Panna cotta z malinami', 'Panna cotta czekoladowa', 'Panna cotta matcha',
+  'Panna cotta waniliowa z malinami',
   'Pizza Diavola', 'Gnocchi z masłem szałwiowym', 'Ravioli z mięsem',
 ];
 for (const name of svgMustNotMatch) {
