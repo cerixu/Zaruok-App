@@ -211,16 +211,16 @@ function attach(img, key) {
 
 // Lokalny zestaw ilustracji SVG premium. Pliki są zapisywane w repo i działają offline.
 const SVG_RECIPE_RULES = [
-  ['carbonara', /\\b(spaghetti carbonara|carbonara tradycyjna|carbonara klasyczna)\\b/],
-  ['pizza-margherita', /\\b(pizza margherita|margherita neapolitanska|neapolitan margherita)\\b/],
-  ['lasagna', /\\b(lasagne alla bolognese|lasagna bolognese|lasagne bolognese)\\b/],
-  ['risotto-funghi', /\\b(risotto ai funghi|risotto funghi|risotto z grzybami)\\b/],
-  ['gnocchi-pomodoro', /\\b(gnocchi al pomodoro|gnocchi w sosie pomidorowym)\\b/],
-  ['tagliatelle-ragu', /\\b(tagliatelle al ragu|tagliatelle z ragu|tagliatelle bolognese)\\b/],
-  ['tiramisu', /\\b(tiramisu|tiramisù)\\b/],
-  ['panna-cotta', /\\b(panna cotta)\\b/],
-  ['bruschetta', /\\b(bruschetta al pomodoro|bruschetta z pomidorami)\\b/],
-  ['ravioli-ricotta-spinaci', /\\b(ravioli ricotta e spinaci|ravioli ze szpinakiem i ricotta)\\b/],
+  ['carbonara', /\b(spaghetti carbonara|carbonara tradycyjna|carbonara klasyczna)\b/],
+  ['pizza-margherita', /\b(pizza margherita|margherita neapolitanska|neapolitan margherita)\b/],
+  ['lasagna', /\b(lasagne alla bolognese|lasagna bolognese|lasagne bolognese)\b/],
+  ['risotto-funghi', /\b(risotto ai funghi|risotto funghi|risotto z grzybami)\b/],
+  ['gnocchi-pomodoro', /\b(gnocchi al pomodoro|gnocchi w sosie pomidorowym)\b/],
+  ['tagliatelle-ragu', /\b(tagliatelle al ragu|tagliatelle z ragu|tagliatelle bolognese)\b/],
+  ['tiramisu', /\b(tiramisu|tiramisù)\b/],
+  ['panna-cotta', /\b(panna cotta)\b/],
+  ['bruschetta', /\b(bruschetta al pomodoro|bruschetta z pomidorami)\b/],
+  ['ravioli-ricotta-spinaci', /\b(ravioli ricotta e spinaci|ravioli ze szpinakiem i ricotta)\b/],
 ];
 
 const SVG_FILES = Object.freeze({
