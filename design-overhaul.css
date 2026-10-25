@@ -164,3 +164,47 @@ body{color:var(--z-copy)}
   .start-final .zf-feature:active,.start-final .zf-status-card:active,.start-final .zf-action:active,.recipes .rtile:active,.ctile:active{transform:scale(.985)}
 }
 @media(prefers-reduced-motion:reduce){.start-final .zf-feature,.start-final .zf-status-card,.start-final .zf-action,.recipes .rtile,.ctile{transition:none!important}}
+
+
+/* ==========================================================================
+   Carbonara — integracja ilustracji z ciemnym interfejsem
+   Usuwa podwójną ramkę/kartę i wtapia ciemne tło we własne tło aplikacji.
+   ========================================================================== */
+.detail .detail-hero:has(.hero-circle img[data-photo-source="svg:carbonara"]) {
+  display: block;
+  width: 100%;
+  max-width: 680px;
+  margin-inline: auto;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible;
+}
+.detail .hero-circle:has(img[data-photo-source="svg:carbonara"]) {
+  width: 100% !important;
+  max-width: none !important;
+  aspect-ratio: 1427 / 1102 !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: hidden;
+}
+.detail .hero-circle img[data-photo-source="svg:carbonara"] {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  object-fit: contain !important;
+  object-position: center;
+  mix-blend-mode: multiply;
+  filter: brightness(1.42) saturate(1.12) contrast(1.035) !important;
+  transform: none !important;
+}
