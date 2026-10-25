@@ -5,6 +5,14 @@
    ========================================================================== */
 
 export const CHANGELOG = Object.freeze({
+  '2.1.26': Object.freeze({
+    intro: 'Żarłok 2.1.26 — kolejnych dziesięć ilustracji SVG działa bezpośrednio w recepturach.',
+    items: [
+      'Dodano produkcyjne ilustracje gnocchi z masłem szałwiowym, puttanesca, amatriciana, ragù alla bolognese, penne all’arrabbiata, fettuccine Alfredo, minestrone, panzanella, parmigiana di melanzane i pizzy pepperoni.',
+      'Każda grafika ma precyzyjne mapowanie nazwy receptury i lokalny plik SVG.',
+      'Zaktualizowano cache offline oraz wersję aplikacji.'
+    ]
+  }),
   '2.1.25': Object.freeze({
     intro: 'Żarłok 2.1.25 — dziesięć nowych ilustracji SVG trafia bezpośrednio do receptur.',
     items: [
