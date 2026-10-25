@@ -48,8 +48,9 @@ Każdy plik ma własny kwadratowy `viewBox`, tytuł i opis dostępności, lokaln
 - `assets/food-svg/pizza-margherita.svg` jest czwartą produkcyjną ilustracją przeniesioną na ten wzorzec w wersji 2.1.21.
 - `assets/food-svg/panna-cotta.svg` jest piątą produkcyjną ilustracją przeniesioną na ten wzorzec w wersji 2.1.22.
 - `assets/food-svg/ravioli-ricotta-spinaci.svg` jest szóstą produkcyjną ilustracją przeniesioną na ten wzorzec w wersji 2.1.23.
-- Reguły dopasowania wszystkich sześciu receptur pozostają bez zmian; zastąpiono wyłącznie lokalne pliki SVG.
-- Wszystkie sześć assetów jest uwzględnionych w precache Service Workera i kontrolowanych testami przezroczystości.
+- `assets/food-svg/risotto-funghi.svg` jest siódmą produkcyjną ilustracją przeniesioną na ten wzorzec w wersji 2.1.24.
+- Reguły dopasowania wszystkich siedmiu receptur pozostają bez zmian; zastąpiono wyłącznie lokalne pliki SVG.
+- Wszystkie siedem assetów jest uwzględnionych w precache Service Workera i kontrolowanych testami przezroczystości.
 
 ## Następny krok
 Po zaliczeniu CI ocenić kolejną produkcyjną ilustrację na jasnym, ciemnym i szachownicowym tle. Migrować pojedynczo, bez masowej podmiany, z testem przezroczystości i mapowania receptury.

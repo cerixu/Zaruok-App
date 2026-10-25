@@ -5,6 +5,14 @@
    ========================================================================== */
 
 export const CHANGELOG = Object.freeze({
+  '2.1.24': Object.freeze({
+    intro: 'Żarłok 2.1.24 — risotto ai funghi przeniesione na lekkie, przezroczyste SVG.',
+    items: [
+      'Zastąpiono ciężką ilustrację risotto lokalnym SVG hybrydowym z przezroczystym tłem.',
+      'Zachowano mapowanie receptury i dodano kontrolę rozmiaru oraz przezroczystości.',
+      'Odświeżono wersję aplikacji i cache Service Workera, aby ilustracja działała również offline.'
+    ]
+  }),
   '2.1.23': Object.freeze({
     intro: 'Żarłok 2.1.23 — ravioli ricotta e spinaci przeniesione na lekkie, przezroczyste SVG.',
     items: [

@@ -103,6 +103,7 @@ assert.ok(photoMappingSource.includes("  lasagna: 'lasagna.svg',"), 'Lasagne all
 assert.ok(photoMappingSource.includes("  'pizza-margherita': 'pizza-margherita.svg',"), 'Pizza Margherita musi zachować dedykowane mapowanie produkcyjnego SVG');
 assert.ok(photoMappingSource.includes("  'panna-cotta': 'panna-cotta.svg',"), 'Panna cotta musi zachować dedykowane mapowanie produkcyjnego SVG');
 assert.ok(photoMappingSource.includes("  'ravioli-ricotta-spinaci': 'ravioli-ricotta-spinaci.svg',"), 'Ravioli ricotta e spinaci musi zachować dedykowane mapowanie produkcyjnego SVG');
+assert.ok(photoMappingSource.includes("  'risotto-funghi': 'risotto-funghi.svg',"), 'Risotto ai funghi musi zachować dedykowane mapowanie produkcyjnego SVG');
 let productionTotalBytes = 0;
 for (const file of productionAssets) {
   const path = productionRoot + '/' + file;
@@ -135,7 +136,7 @@ for (const file of productionAssets) {
     assert.ok(ids.includes(reference), file + ': odwołanie do nieistniejącego id #' + reference);
   }
   const pathCount = (source.match(/<path\b/g) || []).length;
-  const minimumPaths = file === 'panna-cotta.svg' ? 5 : file === 'pizza-margherita.svg' ? 4 : file === 'lasagna.svg' ? 10 : file === 'carbonara.svg' ? 10 : file === 'bruschetta.svg' ? 20 : file === 'tagliatelle-ragu.svg' ? 18 : file === 'ravioli-ricotta-spinaci.svg' ? 4 : 101;
+  const minimumPaths = file === 'panna-cotta.svg' ? 5 : file === 'pizza-margherita.svg' ? 4 : file === 'lasagna.svg' ? 10 : file === 'carbonara.svg' ? 10 : file === 'bruschetta.svg' ? 20 : file === 'tagliatelle-ragu.svg' ? 18 : file === 'ravioli-ricotta-spinaci.svg' ? 4 : file === 'risotto-funghi.svg' ? 10 : 101;
   assert.ok(pathCount >= minimumPaths, file + ': nieoczekiwanie mało ścieżek ilustracji (' + pathCount + ')');
   assert.ok(serviceWorkerSource.includes("'" + productionRoot + "/" + file + "'"), file + ': brak w cache offline Service Workera');
   console.log('PASS production SVG ' + file + ': ' + size + ' B, dostępność, referencje i cache offline');
