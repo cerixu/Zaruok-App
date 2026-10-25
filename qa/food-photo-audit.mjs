@@ -142,11 +142,11 @@ const svgAssets = [
   'panna-cotta.svg', 'pizza-margherita.svg', 'ravioli-ricotta-spinaci.svg',
   'risotto-funghi.svg', 'tagliatelle-ragu.svg', 'tiramisu.svg',
 ];
-const svgRulesBlock = photosSource.match(/const SVG_RECIPE_RULES = \[([\\s\\S]*?)\\n\];/);
-const svgFilesBlock = photosSource.match(/const SVG_FILES = Object\\.freeze\\(\\{([\\s\\S]*?)\\n\\}\\);/);
+const svgRulesBlock = photosSource.match(/const SVG_RECIPE_RULES = \[([\s\S]*?)\n\];/);
+const svgFilesBlock = photosSource.match(/const SVG_FILES = Object\.freeze\(\{([\s\S]*?)\n\}\);/);
 if (!svgRulesBlock || !svgFilesBlock) throw new Error('Nie znaleziono mapy ilustracji SVG.');
-const svgRuleKeys = [...svgRulesBlock[1].matchAll(/^\\s*\\['([^']+)'\\s*,/gm)].map((match) => match[1]);
-const svgFileNames = [...svgFilesBlock[1].matchAll(/:\\s*'([^']+\\.svg)'/g)].map((match) => match[1]);
+const svgRuleKeys = [...svgRulesBlock[1].matchAll(/^\s*\['([^']+)'\s*,/gm)].map((match) => match[1]);
+const svgFileNames = [...svgFilesBlock[1].matchAll(/:\s*'([^']+\.svg)'/g)].map((match) => match[1]);
 if (new Set(svgRuleKeys).size !== svgRuleKeys.length) throw new Error('Powtórzone klucze reguł SVG.');
 for (const file of svgAssets) {
   const path = 'assets/food-svg/' + file;
