@@ -1,5 +1,5 @@
 import fs from 'node:fs';
-import { recipePhotoKey, recipeSvgKey } from '../food-photos.js';
+import { attachRecipePhoto, recipePhotoKey, recipeSvgKey } from '../food-photos.js';
 
 const photosSource = fs.readFileSync('food-photos.js', 'utf8');
 const photoFiles = new Map(
@@ -177,6 +177,33 @@ const svgMustNotMatch = [
 ];
 for (const name of svgMustNotMatch) {
   if (recipeSvgKey({ name }) !== null) throw new Error('Ilustracja SVG nie pasuje do wariantu: ' + name);
+}
+
+
+function mockImage() {
+  return {
+    dataset: {},
+    src: '',
+    isConnected: true,
+    classList: { remove() {}, add() {} },
+  };
+}
+for (const [name, expected] of correctSvgCases) {
+  const img = mockImage();
+  attachRecipePhoto(img, { name, thumb: 'custom-thumb.jpg', photo: 'custom-photo.jpg' });
+  if (img.dataset.photoSource !== 'svg:' + expected) {
+    throw new Error('Dedykowane SVG nie ma pierwszeństwa dla "' + name + '" przy istniejącym zdjęciu.');
+  }
+  if (!img.src.endsWith('/assets/food-svg/' + expected + '.svg')) {
+    throw new Error('Nieprawidłowa ścieżka SVG dla "' + name + '": ' + img.src);
+  }
+}
+for (const name of svgMustNotMatch) {
+  const img = mockImage();
+  attachRecipePhoto(img, { name, thumb: 'custom-thumb.jpg' });
+  if (img.src !== '' || img.dataset.photoSource) {
+    throw new Error('Niepasująca ilustracja nadpisała zdjęcie własne dla "' + name + '".');
+  }
 }
 
 console.log('Photo and SVG mapping QA passed: ' + photoFiles.size + ' zdjęć, ' + ruleKeys.length + ' unikalnych reguł, ' + categoryKeys.length + ' zdjęć kategorii.');
