@@ -89,7 +89,7 @@ try {
     }, { files: productionFiles, origin: baseUrl });
     await page.waitForFunction(() => {
       const imgs = [...document.querySelectorAll('[data-production-svg]')];
-      return imgs.length === 10 && imgs.every((img) => img.complete && img.naturalWidth > 0 && img.naturalHeight > 0 && Math.abs(img.naturalWidth / img.naturalHeight - 1) < 0.02);
+      return imgs.length === 10 && imgs.every((img) => { const ratio = img.naturalWidth / img.naturalHeight; const expected = img.dataset.productionSvg === 'carbonara.svg' ? (1427 / 1102) : 1; return img.complete && img.naturalWidth > 0 && img.naturalHeight > 0 && Math.abs(ratio - expected) < 0.02; });
     }, null, { timeout: 20000 });
     const productionResult = await page.evaluate(() => [...document.querySelectorAll('[data-production-svg]')].map((img) => {
       const canvas = document.createElement('canvas');
@@ -107,7 +107,7 @@ try {
         opaqueEdgeSamples,
       };
     }));
-    if (productionResult.length !== 10 || productionResult.some((img) => img.width <= 0 || img.height <= 0 || Math.abs(img.width / img.height - 1) >= 0.02)) {
+    if (productionResult.length !== 10 || productionResult.some((img) => img.width <= 0 || img.height <= 0 || Math.abs(img.width / img.height - (img.file === 'carbonara.svg' ? (1427 / 1102) : 1)) >= 0.02)) {
       throw new Error('Nie wszystkie produkcyjne SVG renderują się poprawnie na ' + device.name + ': ' + JSON.stringify(productionResult));
     }
     const migratedBruschetta = productionResult.find((asset) => asset.file === 'bruschetta.svg');
@@ -127,7 +127,7 @@ try {
     const migratedRisotto = productionResult.find((asset) => asset.file === 'risotto-funghi.svg');
     if (!migratedRisotto || migratedRisotto.opaqueEdgeSamples !== 0) throw new Error('Risotto ai funghi nie ma przezroczystych krawędzi na ' + device.name + ': ' + JSON.stringify(migratedRisotto));
     const legacyBackgrounds = productionResult.filter((asset) => asset.opaqueEdgeSamples > 0);
-    console.log('PASS production SVG rendering ' + device.name + ': ' + productionResult.length + ' kwadratowych assetów; bruschetta, tagliatelle, carbonara, lasagne, pizza Margherita, panna cotta, ravioli i risotto mają przezroczyste krawędzie');
+    console.log('PASS production SVG rendering ' + device.name + ': ' + productionResult.length + ' assetów; Carbonara zachowuje proporcje 1427×1102, pozostałe są kwadratowe; bruschetta, tagliatelle, carbonara, lasagne, pizza Margherita, panna cotta, ravioli i risotto mają przezroczyste krawędzie');
     if (legacyBackgrounds.length) console.warn('AUDIT: production SVG z nieprzezroczystymi pikselami przy krawędzi (do osobnej migracji): ' + legacyBackgrounds.map((asset) => asset.file + '=' + asset.opaqueEdgeSamples).join(', '));
     const compareResponse = await page.goto(baseUrl + '/design/svg-production-compare.html', { waitUntil: 'networkidle' });
     if (!compareResponse?.ok()) throw new Error('Podgląd porównawczy SVG nie ładuje się na ' + device.name + ': HTTP ' + compareResponse?.status());
