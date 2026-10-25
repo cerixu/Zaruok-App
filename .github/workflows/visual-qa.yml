@@ -28,6 +28,8 @@ jobs:
         run: node qa/js-compat.mjs
       - name: SVG illustration audit
         run: node qa/svg-illustration-smoke.mjs
+      - name: SVG prototype rendering at desktop and iPhone sizes
+        run: node qa/svg-illustration-visual.mjs
       - name: Mobile visual regression smoke
         run: node qa/visual-regression.mjs
       - name: Upload screenshots
