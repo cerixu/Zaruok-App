@@ -45,8 +45,9 @@ Każdy plik ma własny kwadratowy `viewBox`, tytuł i opis dostępności, lokaln
 - `assets/food-svg/bruschetta.svg` jest pierwszą produkcyjną ilustracją przeniesioną na zatwierdzony wzorzec hybrydowy w wersji 2.1.17.
 - `assets/food-svg/tagliatelle-ragu.svg` jest drugą produkcyjną ilustracją przeniesioną na ten wzorzec w wersji 2.1.18.
 - `assets/food-svg/lasagna.svg` jest trzecią produkcyjną ilustracją przeniesioną na ten wzorzec w wersji 2.1.20.
-- Reguły dopasowania wszystkich trzech receptur pozostają bez zmian; zastąpiono wyłącznie lokalne pliki SVG.
-- Wszystkie trzy assety są uwzględnione w precache Service Workera i kontrolowane testami przezroczystości.
+- `assets/food-svg/pizza-margherita.svg` jest czwartą produkcyjną ilustracją przeniesioną na ten wzorzec w wersji 2.1.21.
+- Reguły dopasowania wszystkich czterech receptur pozostają bez zmian; zastąpiono wyłącznie lokalne pliki SVG.
+- Wszystkie cztery assety są uwzględnione w precache Service Workera i kontrolowane testami przezroczystości.
 
 ## Następny krok
 Po zaliczeniu CI ocenić kolejną produkcyjną ilustrację na jasnym, ciemnym i szachownicowym tle. Migrować pojedynczo, bez masowej podmiany, z testem przezroczystości i mapowania receptury.
