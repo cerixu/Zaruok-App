@@ -5,6 +5,14 @@
    ========================================================================== */
 
 export const CHANGELOG = Object.freeze({
+  '2.1.30': Object.freeze({
+    intro: 'Żarłok 2.1.30 — szczegółowa ilustracja Carbonary działa z przezroczystym tłem.',
+    items: [
+      'Usunięto białą podkładkę i dodano przezroczysty margines, aby ilustracja dobrze wyglądała na ciemnym interfejsie.',
+      'Zachowano 4434 ścieżki ilustracji, zoptymalizowane do około 1,43 MB bez obcięcia dania.',
+      'Zaktualizowano cache offline i wizualne testy proporcji Carbonary.'
+    ]
+  }),
   '2.1.29': Object.freeze({
     intro: 'Żarłok 2.1.29 — ilustracja Carbonary lepiej wtapia się w ciemny interfejs.',
     items: [
