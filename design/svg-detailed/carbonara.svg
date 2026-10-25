@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+<title id="title">Spaghetti carbonara</title><desc id="desc">Szczegółowa wektorowa ilustracja spaghetti carbonara z guanciale, pecorino i pieprzem w ceramicznej misce. Bez bazylii. Przezroczyste tło.</desc>
+<defs>
+<linearGradient id="ceramic" x1="0" y1="0" x2=".2" y2="1"><stop stop-color="#363a3d"/><stop offset=".25" stop-color="#24282b"/><stop offset=".72" stop-color="#111315"/><stop offset="1" stop-color="#292c2f"/></linearGradient>
+<linearGradient id="terracotta" x1="0" y1="0" x2=".15" y2="1"><stop stop-color="#666a6c"/><stop offset=".16" stop-color="#3c4043"/><stop offset=".48" stop-color="#24272a"/><stop offset=".82" stop-color="#0d0f11"/><stop offset="1" stop-color="#303437"/></linearGradient>
+<linearGradient id="noodle" x1="0" y1="0" x2=".1" y2="1"><stop stop-color="#fff7b8"/><stop offset=".24" stop-color="#ffe16b"/><stop offset=".6" stop-color="#f9b92b"/><stop offset=".83" stop-color="#e88d13"/><stop offset="1" stop-color="#ffdb5b"/></linearGradient>
+<linearGradient id="glow" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fffbd7"/><stop offset=".5" stop-color="#ffe879"/><stop offset="1" stop-color="#f6b62b"/></linearGradient>
+<linearGradient id="guanciale" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffd1a4"/><stop offset=".24" stop-color="#e7775e"/><stop offset=".56" stop-color="#b94235"/><stop offset=".82" stop-color="#8e3029"/><stop offset="1" stop-color="#f5a17d"/></linearGradient>
+<clipPath id="food"><ellipse cx="256" cy="205" rx="184" ry="80"/></clipPath>
+<filter id="shade" x="-20%" y="-20%" width="140%" height="150%"><feGaussianBlur stdDeviation="6"/></filter>
+</defs>
+<ellipse cx="256" cy="413" rx="165" ry="16" fill="#39231c" opacity=".2" filter="url(#shade)"/>
+<path d="M39 197 C54 313 126 390 256 393 C386 390 458 313 473 197 L448 226 C422 310 357 351 256 355 C155 351 90 310 64 226Z" fill="url(#terracotta)" stroke="#935b49" stroke-width="2"/>
+<path d="M56 213 C78 294 149 347 256 351 C363 347 434 294 456 213" fill="none" stroke="#85898b" stroke-width="4" opacity=".8"/>
+<ellipse cx="256" cy="202" rx="218" ry="108" fill="url(#terracotta)" stroke="#4a4e51" stroke-width="2"/>
+<ellipse cx="256" cy="201" rx="204" ry="96" fill="#34383b"/>
+<ellipse cx="256" cy="201" rx="196" ry="90" fill="url(#ceramic)" stroke="#74787b" stroke-width="3"/>
+<path d="M81 164 C112 119 171 102 225 109" fill="none" stroke="#b7bcbd" stroke-width="7" stroke-linecap="round" opacity=".9"/>
+<path d="M102 148 C132 122 160 114 184 114" fill="none" stroke="#f1f2ee" stroke-width="2.5" stroke-linecap="round" opacity=".66"/>
+<ellipse cx="256" cy="205" rx="184" ry="80" fill="#edaa2c"/>
+<g clip-path="url(#food)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+<!-- shadow edges keep every strand distinct -->
+<g stroke="#ce7910" stroke-width="19">
+<path d="M91 217 C91 171 134 145 174 165 S221 217 188 239 S126 238 144 207 S194 194 214 221 S272 264 311 234 S336 177 304 165 S251 179 265 204"/>
+<path d="M115 191 C139 148 196 144 227 178 S237 239 205 248 S143 232 157 205 S194 184 213 205 S263 245 297 239 S357 211 343 180"/>
+<path d="M142 246 C164 207 184 186 214 195 S250 237 277 235 S329 207 319 180 S283 150 265 170"/>
+<path d="M124 169 C153 150 181 160 198 188 S230 226 251 213 S272 171 299 162 S353 177 358 203"/>
+<path d="M87 210 C113 245 143 261 174 248 S208 208 232 205 S277 220 299 223 S350 207 368 181"/>
+<path d="M153 155 C178 143 208 157 222 184 S221 235 245 251 S310 247 325 221 S329 178 308 174"/>
+<path d="M117 223 C145 273 199 275 223 243 S267 193 291 204 S318 241 344 240 S385 212 383 187"/>
+<path d="M178 163 C201 178 201 207 223 224 S275 224 276 202 S295 169 314 181 S333 216 319 232"/>
+</g>
+<g stroke="url(#noodle)" stroke-width="13">
+<path d="M91 213 C93 176 136 151 173 170 S215 216 185 234 S131 235 147 208 S193 198 211 223 S270 258 307 231 S332 181 303 170 S256 181 269 202"/>
+<path d="M115 187 C141 153 194 150 223 181 S233 235 204 243 S149 230 160 207 S194 189 211 208 S263 239 295 235 S351 208 340 184"/>
+<path d="M142 242 C164 207 185 192 212 200 S247 233 276 230 S324 205 315 182 S285 158 270 173"/>
+<path d="M124 166 C154 155 179 164 194 191 S228 221 249 209 S273 175 299 166 S350 180 354 201"/>
+<path d="M89 207 C116 240 143 256 172 244 S206 211 232 209 S276 216 297 219 S346 205 364 184"/>
+<path d="M153 152 C179 148 205 161 218 187 S218 232 243 246 S306 243 321 219 S326 181 310 178"/>
+<path d="M120 219 C149 266 197 269 219 241 S265 198 288 208 S315 237 342 236 S379 211 379 190"/>
+<path d="M178 160 C201 179 198 204 221 220 S271 220 272 202 S293 175 310 184 S329 214 316 228"/>
+</g>
+<g stroke="url(#glow)" stroke-width="3" opacity=".96">
+<path d="M105 198 C114 176 133 164 150 163 M163 185 C176 190 182 202 178 214 M220 183 C226 195 225 205 219 214 M285 175 C295 168 305 172 312 179 M310 234 C328 234 340 222 347 210 M153 242 C169 251 185 248 195 239"/>
+<path d="M132 180 C151 160 177 157 192 169 M144 224 C153 238 168 244 179 239 M242 233 C256 241 272 239 284 231 M326 203 C337 200 344 191 345 184"/>
+</g>
+</g>
+<!-- chunky irregular guanciale with toasted sides and visible fat -->
+<g stroke="#943b2d" stroke-width="2" stroke-linejoin="round">
+<path d="M143 169 L163 154 L190 163 L194 184 L177 198 L151 188Z" fill="url(#guanciale)"/><path d="M151 168 L166 160 L184 165 L181 173 L160 181Z" fill="#ffe4bf" stroke="none"/>
+<path d="M205 230 L226 216 L248 228 L245 250 L224 261 L207 247Z" fill="url(#guanciale)"/><path d="M212 231 L228 222 L241 230 L237 237 L218 243Z" fill="#ffe1b8" stroke="none"/>
+<path d="M275 158 L296 151 L315 164 L309 185 L287 191 L271 177Z" fill="url(#guanciale)"/><path d="M281 160 L297 155 L308 165 L302 172 L284 171Z" fill="#ffe1b8" stroke="none"/>
+<path d="M326 205 L349 195 L367 208 L362 230 L340 237 L323 222Z" fill="url(#guanciale)"/><path d="M333 207 L349 201 L361 210 L356 217 L337 219Z" fill="#ffe1b8" stroke="none"/>
+<path d="M259 247 L279 239 L296 251 L290 270 L270 274 L254 261Z" fill="url(#guanciale)"/><path d="M265 248 L279 243 L290 252 L285 258 L267 259Z" fill="#ffe1b8" stroke="none"/>
+</g>
+<!-- pecorino, concentrated in the centre -->
+<g fill="#fff8dc" stroke="#e3d0a1" stroke-width=".6">
+<path d="M185 151 l18 -5 4 4 -17 7Z"/><path d="M202 166 l14 -6 5 3 -14 7Z"/><path d="M226 154 l16 -4 4 4 -15 5Z"/><path d="M247 166 l14 -4 4 4 -13 6Z"/><path d="M267 149 l15 -3 3 4 -13 5Z"/><path d="M291 158 l13 -3 4 4 -12 5Z"/><path d="M174 193 l13 -5 4 3 -12 6Z"/><path d="M195 207 l15 -5 4 3 -14 7Z"/><path d="M220 192 l13 -4 4 3 -12 6Z"/><path d="M243 207 l16 -5 4 4 -14 6Z"/><path d="M278 201 l14 -4 4 3 -13 6Z"/><path d="M300 216 l12 -4 4 3 -11 5Z"/>
+</g>
+<g fill="#382719"><circle cx="164" cy="206" r="2.8"/><circle cx="188" cy="181" r="2.2"/><circle cx="218" cy="174" r="2.5"/><circle cx="251" cy="181" r="2.1"/><circle cx="285" cy="193" r="2.8"/><circle cx="311" cy="183" r="2.2"/><circle cx="344" cy="197" r="2.5"/><circle cx="300" cy="242" r="2.3"/><circle cx="236" cy="248" r="2.4"/><circle cx="173" cy="235" r="2.2"/><circle cx="129" cy="213" r="2"/></g>
+</svg>
