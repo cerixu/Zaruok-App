@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<title>Żarłok — audyt ilustracji SVG</title>
+<style>
+:root{color-scheme:dark;--page:#111719;--panel:#1b2326;--border:#344247;--ink:#f4f1e8;--muted:#b2bebd;--accent:#e8a34d}
+*{box-sizing:border-box}
+body{margin:0;padding:clamp(12px,3vw,28px);background:radial-gradient(ellipse at top,#263236 0%,var(--page) 58%);color:var(--ink);font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+main{max-width:1100px;margin:0 auto}
+header{margin:0 0 22px}
+.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:11px;color:var(--accent);font-weight:800}
+h1{margin:.25rem 0 .4rem;font-size:clamp(25px,5vw,38px);line-height:1.1}
+header p{margin:0;color:var(--muted);max-width:64ch}
+.legend{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}
+.legend span{border:1px solid var(--border);border-radius:999px;padding:5px 10px;color:var(--muted);font-size:12px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.card{min-width:0;overflow:hidden;background:linear-gradient(145deg,#20292c,#151c1f);border:1px solid var(--border);border-radius:18px;padding:12px}
+h2{font-size:15px;margin:0 0 3px}
+.slug{font-size:11px;color:var(--muted);margin-bottom:10px}
+.samples{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.sample{min-width:0;border-radius:12px;min-height:140px;padding:8px 5px 7px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;overflow:hidden}
+.sample.dark{background:linear-gradient(145deg,#22292c,#121719);border:1px solid #3b4548}
+.sample.light{background:#f4ead8;color:#30281f;border:1px solid #e6d7bc}
+.sample img{display:block;width:min(100%,122px);aspect-ratio:1;object-fit:contain}
+.sample small{font-size:10px;letter-spacing:.02em;font-weight:700;opacity:.83}
+footer{margin:18px 0 0;padding:14px 16px;border:1px solid var(--border);border-radius:14px;color:var(--muted);font-size:12px}
+@media(max-width:740px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.card{padding:9px;border-radius:14px}.sample{min-height:124px}.sample img{width:min(100%,112px)}}
+@media(max-width:430px){.grid{grid-template-columns:1fr}.card{padding:12px}.sample{min-height:142px}.sample img{width:min(100%,124px)}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main>
+<header>
+ <div class="eyebrow">Żarłok · prototyp, nie część aplikacji</div>
+ <h1>Ilustracje SVG: hybryda premium × flat</h1>
+ <p>Ten sam zestaw na dwóch tłach. Wektorowe pliki mają przezroczyste tło; kolor widać wyłącznie z kafelka pod ilustracją. Porównaj kontrast, czytelność i rozpoznawalność na ciemnej i jasnej powierzchni.</p>
+ <div class="legend"><span>Średni poziom detali</span><span>Bez zewnętrznych zasobów</span><span>240 × 240 viewBox</span><span>Test na iPhonie</span></div>
+</header>
+<section class="grid" aria-label="Porównanie sześciu ilustracji">
+<article class="card"><h2>Carbonara</h2><div class="slug">Makaron · guanciale · pecorino</div><div class="samples">
+<div class="sample dark"><img src="svg-hybrid/carbonara.svg" alt="Carbonara na ciemnym tle" data-dish="carbonara" data-background="dark"><small>Ciemne tło</small></div>
+<div class="sample light"><img src="svg-hybrid/carbonara.svg" alt="Carbonara na jasnym tle" data-dish="carbonara" data-background="light"><small>Jasne tło</small></div></div></article>
+<article class="card"><h2>Pizza Margherita</h2><div class="slug">Pomidor · mozzarella · bazylia</div><div class="samples">
+<div class="sample dark"><img src="svg-hybrid/margherita.svg" alt="Pizza na ciemnym tle" data-dish="margherita" data-background="dark"><small>Ciemne tło</small></div>
+<div class="sample light"><img src="svg-hybrid/margherita.svg" alt="Pizza na jasnym tle" data-dish="margherita" data-background="light"><small>Jasne tło</small></div></div></article>
+<article class="card"><h2>Krem pomidorowy</h2><div class="slug">Krem · śmietanka · bazylia</div><div class="samples">
+<div class="sample dark"><img src="svg-hybrid/tomato-soup.svg" alt="Krem na ciemnym tle" data-dish="tomato-soup" data-background="dark"><small>Ciemne tło</small></div>
+<div class="sample light"><img src="svg-hybrid/tomato-soup.svg" alt="Krem na jasnym tle" data-dish="tomato-soup" data-background="light"><small>Jasne tło</small></div></div></article>
+<article class="card"><h2>Burger klasyczny</h2><div class="slug">Sezam · cheddar · wołowina</div><div class="samples">
+<div class="sample dark"><img src="svg-hybrid/burger.svg" alt="Burger na ciemnym tle" data-dish="burger" data-background="dark"><small>Ciemne tło</small></div>
+<div class="sample light"><img src="svg-hybrid/burger.svg" alt="Burger na jasnym tle" data-dish="burger" data-background="light"><small>Jasne tło</small></div></div></article>
+<article class="card"><h2>Sałatka grecka</h2><div class="slug">Feta · oliwki · świeże warzywa</div><div class="samples">
+<div class="sample dark"><img src="svg-hybrid/greek-salad.svg" alt="Sałatka na ciemnym tle" data-dish="greek-salad" data-background="dark"><small>Ciemne tło</small></div>
+<div class="sample light"><img src="svg-hybrid/greek-salad.svg" alt="Sałatka na jasnym tle" data-dish="greek-salad" data-background="light"><small>Jasne tło</small></div></div></article>
+<article class="card"><h2>Mojito</h2><div class="slug">Limonka · mięta · lód</div><div class="samples">
+<div class="sample dark"><img src="svg-hybrid/mojito.svg" alt="Mojito na ciemnym tle" data-dish="mojito" data-background="dark"><small>Ciemne tło</small></div>
+<div class="sample light"><img src="svg-hybrid/mojito.svg" alt="Mojito na jasnym tle" data-dish="mojito" data-background="light"><small>Jasne tło</small></div></div></article>
+</section>
+<footer>Prototyp graficzny — nowy zestaw nie jest jeszcze importowany przez app.js ani art.js. Zdjęcia własne i obecny system ilustracji nie zostały zmienione.</footer>
+</main>
+</body>
+</html>

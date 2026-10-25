@@ -26,6 +26,10 @@ jobs:
         run: node qa/architecture-audit.mjs
       - name: JS compatibility audit
         run: node qa/js-compat.mjs
+      - name: SVG illustration asset audit
+        run: node qa/svg-illustration-smoke.mjs
+      - name: SVG prototype rendering at desktop and iPhone sizes
+        run: node qa/svg-illustration-visual.mjs
       - name: Mobile visual regression smoke
         run: node qa/visual-regression.mjs
       - name: Upload screenshots

@@ -5,6 +5,14 @@
    ========================================================================== */
 
 export const CHANGELOG = Object.freeze({
+  '2.1.14': Object.freeze({
+    intro: 'Żarłok 2.1.14 — lokalne ilustracje SVG i pewniejsze aktualizacje offline.',
+    items: [
+      'Dodano do pamięci podręcznej 10 dedykowanych ilustracji SVG, aby były dostępne również offline.',
+      'Wyrównano wersję zasobów interfejsu z wersją aplikacji i Service Workera.',
+      'Dane receptur i stany magazynowe pozostają bez zmian.'
+    ]
+  }),
   '2.1.13': Object.freeze({
     intro: 'Żarłok 2.1.13 — osobne fotografie dla czterech dań azjatyckich.',
     items: [

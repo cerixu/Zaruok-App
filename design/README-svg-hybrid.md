@@ -1,0 +1,28 @@
+# Żarłok — wzorcowy zestaw SVG: hybryda premium + flat
+
+To jest **prototyp koncepcyjny**, niezmieniający głównej aplikacji. Zestaw prototypowy jest wersjonowany w repozytorium w `design/svg-hybrid/`.
+
+## Założenia
+- hybryda premium i płaskiego stylu;
+- przezroczyste tło SVG;
+- średni poziom detali, z czytelnością na ekranie telefonu;
+- wspólna paleta, kontrolowane cienie i rozpoznawalne składniki;
+- brak zmian w `main` i brak usuwania zdjęć.
+
+## Wzorcowe ilustracje — osobne pliki SVG
+- [Carbonara](svg-hybrid/carbonara.svg)
+- [Pizza Margherita](svg-hybrid/margherita.svg)
+- [Krem pomidorowy](svg-hybrid/tomato-soup.svg)
+- [Burger klasyczny](svg-hybrid/burger.svg)
+- [Sałatka grecka](svg-hybrid/greek-salad.svg)
+- [Mojito](svg-hybrid/mojito.svg)
+
+Każdy plik ma własny kwadratowy `viewBox`, tytuł i opis dostępności, lokalne definicje kolorów oraz przezroczyste tło. Ilustracje nie pobierają zewnętrznych zasobów.
+- Podgląd obu teł znajduje się w `design/svg-hybrid-preview.html`; to strona kontrolna, nie element aktywnego interfejsu.
+
+## Kontrola jakości
+- `qa/svg-illustration-smoke.mjs` sprawdza strukturę plików, opisy, referencje SVG, przezroczyste tło, rozmiar i wyróżniki dania.
+- Kontrola jest podłączona do workflow Visual QA i zostanie uruchomiona na pull requeście.
+
+## Następny krok
+Ocenić kształty i styl na iPhonie, zebrać uwagi, a następnie dopracować osobne, semantycznie poprawne motywy. Dopiero po akceptacji stylu należy integrować system z `art.js` i aktualizować testy.
