@@ -238,7 +238,7 @@ const SVG_FILES = Object.freeze({
 });
 
 function recipeSvgKey(recipe) {
-  if (!recipe || recipe.thumb || recipe.photo) return null;
+  if (!recipe) return null;
   const name = normalise(recipe.name);
   for (const [key, pattern] of SVG_RECIPE_RULES) {
     if (pattern.test(name)) return key;
@@ -257,6 +257,8 @@ export function attachRecipePhoto(img, recipe) {
     img.dataset.photoSource = 'svg:' + svgKey;
     return;
   }
+  // Zdjęcie użytkownika ma pierwszeństwo przed ogólnym zdjęciem z biblioteki.
+  if (recipe && (recipe.thumb || recipe.photo)) return;
   attach(img, recipePhotoKey(recipe));
 }
 
