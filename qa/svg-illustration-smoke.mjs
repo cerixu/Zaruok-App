@@ -96,6 +96,8 @@ const productionAssets = [
   'risotto-funghi.svg', 'tagliatelle-ragu.svg', 'tiramisu.svg',
   'tomato-soup.svg', 'burger.svg', 'greek-salad.svg', 'mojito.svg', 'sushi-maki.svg',
   'salmon-lemon-butter.svg', 'steak-herb-butter.svg', 'pierogi-ruskie.svg', 'caesar-salad.svg', 'mushroom-soup.svg',
+  'gnocchi-sage.svg', 'spaghetti-puttanesca.svg', 'spaghetti-amatriciana.svg', 'ragu-bolognese.svg',
+  'penne-arrabbiata.svg', 'fettuccine-alfredo.svg', 'minestrone.svg', 'panzanella.svg', 'parmigiana-melanzane.svg', 'pizza-pepperoni.svg',
 ];
 const serviceWorkerSource = fs.readFileSync('sw.js', 'utf8');
 const photoMappingSource = fs.readFileSync('food-photos.js', 'utf8');
@@ -116,6 +118,16 @@ assert.ok(photoMappingSource.includes("  'steak-herb-butter': 'steak-herb-butter
 assert.ok(photoMappingSource.includes("  'pierogi-ruskie': 'pierogi-ruskie.svg',"), 'Pierogi ruskie muszą zachować dedykowane mapowanie produkcyjnego SVG');
 assert.ok(photoMappingSource.includes("  'caesar-salad': 'caesar-salad.svg',"), 'Sałatka cezar musi zachować dedykowane mapowanie produkcyjnego SVG');
 assert.ok(photoMappingSource.includes("  'mushroom-soup': 'mushroom-soup.svg',"), 'Krem z grzybów musi zachować dedykowane mapowanie produkcyjnego SVG');
+assert.ok(photoMappingSource.includes("  'gnocchi-sage': 'gnocchi-sage.svg',"), 'Gnocchi z masłem szałwiowym muszą mieć dedykowane SVG');
+assert.ok(photoMappingSource.includes("  'spaghetti-puttanesca': 'spaghetti-puttanesca.svg',"), 'Spaghetti alla puttanesca musi mieć dedykowane SVG');
+assert.ok(photoMappingSource.includes("  'spaghetti-amatriciana': 'spaghetti-amatriciana.svg',"), 'Spaghetti all’amatriciana musi mieć dedykowane SVG');
+assert.ok(photoMappingSource.includes("  'ragu-bolognese': 'ragu-bolognese.svg',"), 'Ragù alla bolognese musi mieć dedykowane SVG');
+assert.ok(photoMappingSource.includes("  'penne-arrabbiata': 'penne-arrabbiata.svg',"), 'Penne all’arrabbiata musi mieć dedykowane SVG');
+assert.ok(photoMappingSource.includes("  'fettuccine-alfredo': 'fettuccine-alfredo.svg',"), 'Fettuccine Alfredo musi mieć dedykowane SVG');
+assert.ok(photoMappingSource.includes("  minestrone: 'minestrone.svg',"), 'Minestrone musi mieć dedykowane SVG');
+assert.ok(photoMappingSource.includes("  panzanella: 'panzanella.svg',"), 'Panzanella musi mieć dedykowane SVG');
+assert.ok(photoMappingSource.includes("  'parmigiana-melanzane': 'parmigiana-melanzane.svg',"), 'Parmigiana di melanzane musi mieć dedykowane SVG');
+assert.ok(photoMappingSource.includes("  'pizza-pepperoni': 'pizza-pepperoni.svg',"), 'Pizza pepperoni musi mieć dedykowane SVG');
 let productionTotalBytes = 0;
 for (const file of productionAssets) {
   const path = productionRoot + '/' + file;
@@ -152,7 +164,12 @@ for (const file of productionAssets) {
     'tomato-soup.svg': 5, 'burger.svg': 10, 'greek-salad.svg': 10, 'mojito.svg': 13, 'sushi-maki.svg': 13,
     'salmon-lemon-butter.svg': 7, 'steak-herb-butter.svg': 8, 'pierogi-ruskie.svg': 14, 'caesar-salad.svg': 16, 'mushroom-soup.svg': 10,
   };
-  const minimumPaths = minimumPathsByAsset[file] ?? (file === 'panna-cotta.svg' ? 5 : file === 'pizza-margherita.svg' ? 4 : file === 'lasagna.svg' ? 10 : file === 'carbonara.svg' ? 10 : file === 'bruschetta.svg' ? 20 : file === 'tagliatelle-ragu.svg' ? 18 : file === 'ravioli-ricotta-spinaci.svg' ? 4 : file === 'risotto-funghi.svg' ? 10 : 101);
+  const minimumPathsByAssetExtended = {
+    'gnocchi-sage.svg': 6, 'spaghetti-puttanesca.svg': 6, 'spaghetti-amatriciana.svg': 6,
+    'ragu-bolognese.svg': 6, 'penne-arrabbiata.svg': 6, 'fettuccine-alfredo.svg': 6,
+    'minestrone.svg': 6, 'panzanella.svg': 6, 'parmigiana-melanzane.svg': 6, 'pizza-pepperoni.svg': 6,
+  };
+  const minimumPaths = minimumPathsByAsset[file] ?? minimumPathsByAssetExtended[file] ?? (file === 'panna-cotta.svg' ? 5 : file === 'pizza-margherita.svg' ? 4 : file === 'lasagna.svg' ? 10 : file === 'carbonara.svg' ? 10 : file === 'bruschetta.svg' ? 20 : file === 'tagliatelle-ragu.svg' ? 18 : file === 'ravioli-ricotta-spinaci.svg' ? 4 : file === 'risotto-funghi.svg' ? 10 : 101);
   assert.ok(pathCount >= minimumPaths, file + ': nieoczekiwanie mało ścieżek ilustracji (' + pathCount + ')');
   assert.ok(serviceWorkerSource.includes("'" + productionRoot + "/" + file + "'"), file + ': brak w cache offline Service Workera');
   console.log('PASS production SVG ' + file + ': ' + size + ' B, dostępność, referencje i cache offline');
