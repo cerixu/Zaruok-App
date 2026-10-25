@@ -1,4 +1,10 @@
+import fs from 'node:fs';
 import { chromium } from 'playwright';
+
+const swSource = fs.readFileSync('sw.js', 'utf8');
+const swVersion = swSource.match(/const VERSION = '([^']+)'/);
+if (!swVersion) throw new Error('Nie można odczytać wersji cache z sw.js.');
+const serviceWorkerCacheName = swVersion[1];
 
 const base = process.env.BASE_URL || 'http://127.0.0.1:4173/';
 const browser = await chromium.launch();
@@ -45,8 +51,7 @@ try {
     'food-pho-bo.jpg.b64',
   ];
   async function assertRecipePhotosCached(label) {
-    const cached = await page.evaluate(async (files) => {
-      const cacheName = 'zaruok-2.1.13';
+    const cached = await page.evaluate(async ({ files, cacheName }) => {
       const names = await caches.keys();
       if (!names.includes(cacheName)) throw new Error('Brak cache Service Workera: ' + cacheName);
       const cache = await caches.open(cacheName);
@@ -54,7 +59,7 @@ try {
         path,
         cached: !!(await cache.match(new URL(path, location.href).href)),
       })));
-    }, recipePhotoFiles);
+    }, { files: recipePhotoFiles, cacheName: serviceWorkerCacheName });
     const missing = cached.filter((item) => !item.cached).map((item) => item.path);
     if (missing.length) throw new Error(label + ': brak zdjęć receptur w cache offline: ' + missing.join(', '));
   }
