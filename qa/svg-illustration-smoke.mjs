@@ -9,6 +9,12 @@ const fixtures = [
   { file: 'burger.svg', id: 'burger', tokens: [/burger klasyczny/i, /sezamow/i, /kotlet/i] },
   { file: 'greek-salad.svg', id: 'greek-salad', tokens: [/sałatka grecka/i, /oliwk/i, /fet/i] },
   { file: 'mojito.svg', id: 'mojito', tokens: [/mojito/i, /limonk/i, /mięt/i, /słomk/i] },
+  { file: 'tiramisu.svg', id: 'tiramisu', tokens: [/tiramisù/i, /mascarpone/i, /kakao/i] },
+  { file: 'panna-cotta.svg', id: 'panna-cotta', tokens: [/panna cotta/i, /wanili/i, /malin/i] },
+  { file: 'lasagna.svg', id: 'lasagna', tokens: [/lasagne/i, /bolognese/i, /mozzarella/i] },
+  { file: 'ravioli.svg', id: 'ravioli', tokens: [/ravioli/i, /ricotta/i, /szpinak/i] },
+  { file: 'risotto-funghi.svg', id: 'risotto-funghi', tokens: [/risotto/i, /grzyb/i, /parmezan/i] },
+  { file: 'gnocchi.svg', id: 'gnocchi', tokens: [/gnocchi/i, /pomidor/i, /bazyli/i] },
 ];
 
 for (const fixture of fixtures) {

@@ -7,15 +7,21 @@ To jest **prototyp koncepcyjny**, niezmieniający głównej aplikacji. Zestaw pr
 - przezroczyste tło SVG;
 - średni poziom detali, z czytelnością na ekranie telefonu;
 - wspólna paleta, kontrolowane cienie i rozpoznawalne składniki;
-- brak zmian w `main` i brak usuwania zdjęć.
+- prototypy są wersjonowane w repozytorium, ale nie są podłączone do aktywnego interfejsu i nie zastępują zdjęć.
 
-## Wzorcowe ilustracje — osobne pliki SVG
+## Wzorcowe ilustracje — 12 osobnych plików SVG
 - [Carbonara](svg-hybrid/carbonara.svg)
 - [Pizza Margherita](svg-hybrid/margherita.svg)
 - [Krem pomidorowy](svg-hybrid/tomato-soup.svg)
 - [Burger klasyczny](svg-hybrid/burger.svg)
 - [Sałatka grecka](svg-hybrid/greek-salad.svg)
 - [Mojito](svg-hybrid/mojito.svg)
+- [Tiramisù](svg-hybrid/tiramisu.svg)
+- [Panna cotta](svg-hybrid/panna-cotta.svg)
+- [Lasagne alla bolognese](svg-hybrid/lasagna.svg)
+- [Ravioli ricotta e spinaci](svg-hybrid/ravioli.svg)
+- [Risotto ai funghi](svg-hybrid/risotto-funghi.svg)
+- [Gnocchi al pomodoro](svg-hybrid/gnocchi.svg)
 
 Każdy plik ma własny kwadratowy `viewBox`, tytuł i opis dostępności, lokalne definicje kolorów oraz przezroczyste tło. Ilustracje nie pobierają zewnętrznych zasobów.
 - Podgląd obu teł znajduje się w `design/svg-hybrid-preview.html`; to strona kontrolna, nie element aktywnego interfejsu.
