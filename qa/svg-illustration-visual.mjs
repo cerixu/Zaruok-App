@@ -18,7 +18,7 @@ try {
     await page.locator('.sample img').first().waitFor();
     await page.waitForFunction(() => {
       const imgs = [...document.querySelectorAll('.sample img')];
-      return imgs.length === 36 && imgs.every((img) => img.complete && img.naturalWidth > 0 && img.naturalHeight > 0 && Math.abs(img.naturalWidth / img.naturalHeight - 1) < 0.02);
+      return imgs.length === 40 && imgs.every((img) => img.complete && img.naturalWidth > 0 && img.naturalHeight > 0 && Math.abs(img.naturalWidth / img.naturalHeight - 1) < 0.02);
     }, null, { timeout: 10000 });
     const result = await page.evaluate(() => {
       function opaqueEdgeSamples(img, rasterSize, inset, step) {
@@ -60,7 +60,7 @@ try {
         opaqueEdges,
       };
     });
-    if (result.count !== 36 || result.distinctDishes !== 18 || result.broken.length) throw new Error('Niekompletny zestaw ilustracji na ' + device.name + ': ' + JSON.stringify(result));
+    if (result.count !== 40 || result.distinctDishes !== 20 || result.broken.length) throw new Error('Niekompletny zestaw ilustracji na ' + device.name + ': ' + JSON.stringify(result));
     if (result.opaqueEdges.length) throw new Error('Nieprzezroczyste piksele na krawędzi prototypu SVG na ' + device.name + ': ' + JSON.stringify(result.opaqueEdges));
     if (result.bodyWidth > result.viewportWidth + 1) throw new Error('Poziomy overflow na ' + device.name + ': ' + JSON.stringify(result));
     if (result.backgroundVariants < 2) throw new Error('Brak wariantów tła na ' + device.name);
@@ -164,8 +164,8 @@ try {
         })),
       };
     });
-    if (compareResult.renderedImages !== 84 || compareResult.uniqueAssets !== 28 ||
-        compareResult.productionAssets !== 10 || compareResult.prototypeAssets !== 18 ||
+    if (compareResult.renderedImages !== 90 || compareResult.uniqueAssets !== 30 ||
+        compareResult.productionAssets !== 10 || compareResult.prototypeAssets !== 20 ||
         compareResult.backgroundVariants !== 3 || compareResult.broken.length || compareResult.externalSources.length) {
       throw new Error('Niekompletny lub zewnętrzny zasób w podglądzie porównawczym na ' + device.name + ': ' + JSON.stringify(compareResult));
     }
