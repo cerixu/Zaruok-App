@@ -121,6 +121,27 @@ try {
     }, null, { timeout: 30000 });
     const compareResult = await page.evaluate(() => {
       const imgs = [...document.querySelectorAll('img[data-asset-id]')];
+      const groups = new Map();
+      for (const img of imgs) {
+        const id = img.dataset.assetId;
+        if (!groups.has(id)) {
+          groups.set(id, {
+            id,
+            kind: img.dataset.assetKind,
+            kinds: new Set(),
+            sources: new Set(),
+            backgrounds: new Set(),
+            count: 0,
+            missingAlt: 0,
+          });
+        }
+        const group = groups.get(id);
+        group.kinds.add(img.dataset.assetKind);
+        group.sources.add(img.getAttribute('src'));
+        group.backgrounds.add(img.dataset.background);
+        group.count += 1;
+        if (!img.alt.trim()) group.missingAlt += 1;
+      }
       const unique = (kind) => new Set(imgs.filter((img) => img.dataset.assetKind === kind).map((img) => img.dataset.assetId)).size;
       return {
         renderedImages: imgs.length,
@@ -132,12 +153,53 @@ try {
         bodyWidth: document.body.scrollWidth,
         viewportWidth: window.innerWidth,
         broken: imgs.filter((img) => !img.naturalWidth).map((img) => img.dataset.assetId),
+        assetGroups: [...groups.values()].map((group) => ({
+          id: group.id,
+          kind: group.kind,
+          kinds: [...group.kinds].sort(),
+          sources: [...group.sources].sort(),
+          backgrounds: [...group.backgrounds].sort(),
+          count: group.count,
+          missingAlt: group.missingAlt,
+        })),
       };
     });
     if (compareResult.renderedImages !== 84 || compareResult.uniqueAssets !== 28 ||
         compareResult.productionAssets !== 10 || compareResult.prototypeAssets !== 18 ||
         compareResult.backgroundVariants !== 3 || compareResult.broken.length || compareResult.externalSources.length) {
       throw new Error('Niekompletny lub zewnętrzny zasób w podglądzie porównawczym na ' + device.name + ': ' + JSON.stringify(compareResult));
+    }
+
+    const expectedAssetMappings = [
+      ...fs.readdirSync('assets/food-svg').filter((file) => /\.svg$/i.test(file)).map((file) => ({
+        id: 'production:' + file.replace(/\.svg$/i, ''),
+        kind: 'production',
+        src: '../assets/food-svg/' + file,
+      })),
+      ...fs.readdirSync('design/svg-hybrid').filter((file) => /\.svg$/i.test(file)).map((file) => ({
+        id: 'prototype:' + file.replace(/\.svg$/i, ''),
+        kind: 'prototype',
+        src: 'svg-hybrid/' + file,
+      })),
+    ].sort((a, b) => a.id.localeCompare(b.id));
+    const actualAssetMappings = compareResult.assetGroups.map((asset) => ({
+      id: asset.id,
+      kind: asset.kind,
+      src: asset.sources.length === 1 ? asset.sources[0] : '[multiple sources]',
+    })).sort((a, b) => a.id.localeCompare(b.id));
+    const invalidAssetGroups = compareResult.assetGroups.filter((asset) =>
+      asset.kinds.length !== 1 ||
+      asset.sources.length !== 1 ||
+      asset.count !== 3 ||
+      asset.backgrounds.join('|') !== 'checker|dark|light' ||
+      asset.missingAlt > 0
+    );
+    if (invalidAssetGroups.length) {
+      throw new Error('Niespójne tła, źródła lub alt SVG w podglądzie na ' + device.name + ': ' + JSON.stringify(invalidAssetGroups));
+    }
+    if (JSON.stringify(actualAssetMappings) !== JSON.stringify(expectedAssetMappings)) {
+      throw new Error('Identyfikatory SVG nie odpowiadają plikom w repozytorium na ' + device.name +
+        ': ' + JSON.stringify({ expectedAssetMappings, actualAssetMappings }));
     }
     if (compareResult.bodyWidth > compareResult.viewportWidth + 1) throw new Error('Poziomy overflow podglądu porównawczego na ' + device.name + ': ' + JSON.stringify(compareResult));
     await page.screenshot({ path: 'qa-shots/svg-production-compare-' + device.name + '.png', fullPage: true });
