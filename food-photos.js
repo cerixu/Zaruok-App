@@ -209,8 +209,53 @@ function attach(img, key) {
   }).catch(() => {});
 }
 
-/** Podmień ilustrację wyłącznie wtedy, gdy nazwa naprawdę pasuje do dania. */
+// Lokalny zestaw ilustracji SVG premium. Pliki są zapisywane w repo i działają offline.
+const SVG_RECIPE_RULES = [
+  ['carbonara', /\\b(spaghetti carbonara|carbonara tradycyjna|carbonara klasyczna)\\b/],
+  ['pizza-margherita', /\\b(pizza margherita|margherita neapolitanska|neapolitan margherita)\\b/],
+  ['lasagna', /\\b(lasagne alla bolognese|lasagna bolognese|lasagne bolognese)\\b/],
+  ['risotto-funghi', /\\b(risotto ai funghi|risotto funghi|risotto z grzybami)\\b/],
+  ['gnocchi-pomodoro', /\\b(gnocchi al pomodoro|gnocchi w sosie pomidorowym)\\b/],
+  ['tagliatelle-ragu', /\\b(tagliatelle al ragu|tagliatelle z ragu|tagliatelle bolognese)\\b/],
+  ['tiramisu', /\\b(tiramisu|tiramisù)\\b/],
+  ['panna-cotta', /\\b(panna cotta)\\b/],
+  ['bruschetta', /\\b(bruschetta al pomodoro|bruschetta z pomidorami)\\b/],
+  ['ravioli-ricotta-spinaci', /\\b(ravioli ricotta e spinaci|ravioli ze szpinakiem i ricotta)\\b/],
+];
+
+const SVG_FILES = Object.freeze({
+  carbonara: 'carbonara.svg',
+  'pizza-margherita': 'pizza-margherita.svg',
+  lasagna: 'lasagna.svg',
+  'risotto-funghi': 'risotto-funghi.svg',
+  'gnocchi-pomodoro': 'gnocchi-pomodoro.svg',
+  'tagliatelle-ragu': 'tagliatelle-ragu.svg',
+  tiramisu: 'tiramisu.svg',
+  'panna-cotta': 'panna-cotta.svg',
+  bruschetta: 'bruschetta.svg',
+  'ravioli-ricotta-spinaci': 'ravioli-ricotta-spinaci.svg',
+});
+
+function recipeSvgKey(recipe) {
+  if (!recipe || recipe.thumb || recipe.photo) return null;
+  const name = normalise(recipe.name);
+  for (const [key, pattern] of SVG_RECIPE_RULES) {
+    if (pattern.test(name)) return key;
+  }
+  return null;
+}
+
+/** Podmień ilustrację na dokładnie dopasowane SVG, a potem na lokalne zdjęcie, jeśli SVG nie pasuje. */
 export function attachRecipePhoto(img, recipe) {
+  const svgKey = recipeSvgKey(recipe);
+  if (svgKey && SVG_FILES[svgKey]) {
+    const url = new URL('./assets/food-svg/' + SVG_FILES[svgKey], import.meta.url);
+    img.dataset.photoRequested = 'svg:' + svgKey;
+    img.src = url.href;
+    img.classList.remove('art');
+    img.dataset.photoSource = 'svg:' + svgKey;
+    return;
+  }
   attach(img, recipePhotoKey(recipe));
 }
 
