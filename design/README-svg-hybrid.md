@@ -31,6 +31,7 @@ To jest **prototyp koncepcyjny**, niezmieniający głównej aplikacji. Zestaw pr
 
 Każdy plik ma własny kwadratowy `viewBox`, tytuł i opis dostępności, lokalne definicje kolorów oraz przezroczyste tło. Ilustracje nie pobierają zewnętrznych zasobów.
 - Podgląd obu teł znajduje się w `design/svg-hybrid-preview.html`; to strona kontrolna, nie element aktywnego interfejsu.
+- `design/svg-production-compare.html` zestawia 10 produkcyjnych SVG i 18 prototypów na szachownicy przezroczystości oraz na jasnym i ciemnym tle; wszystkie źródła są lokalne.
 
 ## Kontrola jakości
 - `qa/svg-illustration-smoke.mjs` sprawdza strukturę plików, opisy, referencje SVG, rozmiar, wyróżniki dania oraz typowe pełnoekranowe tła narysowane ścieżką.

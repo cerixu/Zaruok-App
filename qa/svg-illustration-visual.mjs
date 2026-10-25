@@ -113,6 +113,35 @@ try {
     const legacyBackgrounds = productionResult.filter((asset) => asset.opaqueEdgeSamples > 0);
     console.log('PASS production SVG rendering ' + device.name + ': ' + productionResult.length + ' assets, 1024×1024');
     if (legacyBackgrounds.length) console.warn('AUDIT: production SVG z nieprzezroczystymi pikselami przy krawędzi (do osobnej migracji): ' + legacyBackgrounds.map((asset) => asset.file + '=' + asset.opaqueEdgeSamples).join(', '));
+    const compareResponse = await page.goto(baseUrl + '/design/svg-production-compare.html', { waitUntil: 'networkidle' });
+    if (!compareResponse?.ok()) throw new Error('Podgląd porównawczy SVG nie ładuje się na ' + device.name + ': HTTP ' + compareResponse?.status());
+    await page.waitForFunction(() => {
+      const imgs = [...document.querySelectorAll('img[data-asset-id]')];
+      return imgs.length === 84 && imgs.every((img) => img.complete && img.naturalWidth > 0 && img.naturalHeight > 0);
+    }, null, { timeout: 30000 });
+    const compareResult = await page.evaluate(() => {
+      const imgs = [...document.querySelectorAll('img[data-asset-id]')];
+      const unique = (kind) => new Set(imgs.filter((img) => img.dataset.assetKind === kind).map((img) => img.dataset.assetId)).size;
+      return {
+        renderedImages: imgs.length,
+        uniqueAssets: new Set(imgs.map((img) => img.dataset.assetId)).size,
+        productionAssets: unique('production'),
+        prototypeAssets: unique('prototype'),
+        backgroundVariants: new Set(imgs.map((img) => img.dataset.background)).size,
+        externalSources: imgs.filter((img) => new URL(img.currentSrc || img.src, location.href).origin !== location.origin).map((img) => img.src),
+        bodyWidth: document.body.scrollWidth,
+        viewportWidth: window.innerWidth,
+        broken: imgs.filter((img) => !img.naturalWidth).map((img) => img.dataset.assetId),
+      };
+    });
+    if (compareResult.renderedImages !== 84 || compareResult.uniqueAssets !== 28 ||
+        compareResult.productionAssets !== 10 || compareResult.prototypeAssets !== 18 ||
+        compareResult.backgroundVariants !== 3 || compareResult.broken.length || compareResult.externalSources.length) {
+      throw new Error('Niekompletny lub zewnętrzny zasób w podglądzie porównawczym na ' + device.name + ': ' + JSON.stringify(compareResult));
+    }
+    if (compareResult.bodyWidth > compareResult.viewportWidth + 1) throw new Error('Poziomy overflow podglądu porównawczego na ' + device.name + ': ' + JSON.stringify(compareResult));
+    await page.screenshot({ path: 'qa-shots/svg-production-compare-' + device.name + '.png', fullPage: true });
+    console.log('PASS SVG production/prototype comparison ' + device.name + ': ' + JSON.stringify(compareResult));
     await page.close();
   }
   if (errors.length) throw new Error(errors.join('\n'));
