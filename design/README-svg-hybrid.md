@@ -41,5 +41,10 @@ Każdy plik ma własny kwadratowy `viewBox`, tytuł i opis dostępności, lokaln
 - Produkcyjne SVG są renderowane i sprawdzane diagnostycznie pod kątem nieprzezroczystych krawędzi. Wykryte stare tła są raportowane do osobnej migracji zamiast ukrywania problemu.
 - Kontrola jest podłączona do workflow Visual QA.
 
+## Stan migracji produkcyjnej
+- `assets/food-svg/bruschetta.svg` jest pierwszą produkcyjną ilustracją przeniesioną na zatwierdzony wzorzec hybrydowy.
+- Reguła receptury `bruschetta` pozostaje bez zmian; zmienił się wyłącznie lokalny plik grafiki.
+- Cache Service Workera i wersja aplikacji są aktualizowane razem z assetem.
+
 ## Następny krok
-Ocenić kształty i styl na iPhonie, zebrać uwagi, a następnie dopracować osobne, semantycznie poprawne motywy. Dopiero po akceptacji stylu należy integrować system z `art.js` i aktualizować testy.
+Po zaliczeniu CI ocenić kolejną produkcyjną ilustrację na jasnym, ciemnym i szachownicowym tle. Migrować pojedynczo, bez masowej podmiany, z testem przezroczystości i mapowania receptury.
