@@ -120,8 +120,10 @@ try {
     if (!migratedLasagna || migratedLasagna.opaqueEdgeSamples !== 0) throw new Error('Lasagne produkcyjne nie mają przezroczystych krawędzi na ' + device.name + ': ' + JSON.stringify(migratedLasagna));
     const migratedPizza = productionResult.find((asset) => asset.file === 'pizza-margherita.svg');
     if (!migratedPizza || migratedPizza.opaqueEdgeSamples !== 0) throw new Error('Pizza Margherita nie ma przezroczystych krawędzi na ' + device.name + ': ' + JSON.stringify(migratedPizza));
+    const migratedPannaCotta = productionResult.find((asset) => asset.file === 'panna-cotta.svg');
+    if (!migratedPannaCotta || migratedPannaCotta.opaqueEdgeSamples !== 0) throw new Error('Panna cotta nie ma przezroczystych krawędzi na ' + device.name + ': ' + JSON.stringify(migratedPannaCotta));
     const legacyBackgrounds = productionResult.filter((asset) => asset.opaqueEdgeSamples > 0);
-    console.log('PASS production SVG rendering ' + device.name + ': ' + productionResult.length + ' kwadratowych assetów; bruschetta, tagliatelle, carbonara, lasagne i pizza Margherita mają przezroczyste krawędzie');
+    console.log('PASS production SVG rendering ' + device.name + ': ' + productionResult.length + ' kwadratowych assetów; bruschetta, tagliatelle, carbonara, lasagne, pizza Margherita i panna cotta mają przezroczyste krawędzie');
     if (legacyBackgrounds.length) console.warn('AUDIT: production SVG z nieprzezroczystymi pikselami przy krawędzi (do osobnej migracji): ' + legacyBackgrounds.map((asset) => asset.file + '=' + asset.opaqueEdgeSamples).join(', '));
     const compareResponse = await page.goto(baseUrl + '/design/svg-production-compare.html', { waitUntil: 'networkidle' });
     if (!compareResponse?.ok()) throw new Error('Podgląd porównawczy SVG nie ładuje się na ' + device.name + ': HTTP ' + compareResponse?.status());
