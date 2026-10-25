@@ -106,6 +106,16 @@ assert.ok(photoMappingSource.includes("  'pizza-margherita': 'pizza-margherita.s
 assert.ok(photoMappingSource.includes("  'panna-cotta': 'panna-cotta.svg',"), 'Panna cotta musi zachować dedykowane mapowanie produkcyjnego SVG');
 assert.ok(photoMappingSource.includes("  'ravioli-ricotta-spinaci': 'ravioli-ricotta-spinaci.svg',"), 'Ravioli ricotta e spinaci musi zachować dedykowane mapowanie produkcyjnego SVG');
 assert.ok(photoMappingSource.includes("  'risotto-funghi': 'risotto-funghi.svg',"), 'Risotto ai funghi musi zachować dedykowane mapowanie produkcyjnego SVG');
+assert.ok(photoMappingSource.includes("  'tomato-soup': 'tomato-soup.svg',"), 'Krem pomidorowy musi zachować dedykowane mapowanie produkcyjnego SVG');
+assert.ok(photoMappingSource.includes("  burger: 'burger.svg',"), 'Burger klasyczny musi zachować dedykowane mapowanie produkcyjnego SVG');
+assert.ok(photoMappingSource.includes("  'greek-salad': 'greek-salad.svg',"), 'Sałatka grecka musi zachować dedykowane mapowanie produkcyjnego SVG');
+assert.ok(photoMappingSource.includes("  mojito: 'mojito.svg',"), 'Mojito musi zachować dedykowane mapowanie produkcyjnego SVG');
+assert.ok(photoMappingSource.includes("  'sushi-maki': 'sushi-maki.svg',"), 'Sushi maki musi zachować dedykowane mapowanie produkcyjnego SVG');
+assert.ok(photoMappingSource.includes("  'salmon-lemon-butter': 'salmon-lemon-butter.svg',"), 'Łosoś z cytryną i masłem musi zachować dedykowane mapowanie produkcyjnego SVG');
+assert.ok(photoMappingSource.includes("  'steak-herb-butter': 'steak-herb-butter.svg',"), 'Stek z masłem ziołowym musi zachować dedykowane mapowanie produkcyjnego SVG');
+assert.ok(photoMappingSource.includes("  'pierogi-ruskie': 'pierogi-ruskie.svg',"), 'Pierogi ruskie muszą zachować dedykowane mapowanie produkcyjnego SVG');
+assert.ok(photoMappingSource.includes("  'caesar-salad': 'caesar-salad.svg',"), 'Sałatka cezar musi zachować dedykowane mapowanie produkcyjnego SVG');
+assert.ok(photoMappingSource.includes("  'mushroom-soup': 'mushroom-soup.svg',"), 'Krem z grzybów musi zachować dedykowane mapowanie produkcyjnego SVG');
 let productionTotalBytes = 0;
 for (const file of productionAssets) {
   const path = productionRoot + '/' + file;
@@ -138,11 +148,11 @@ for (const file of productionAssets) {
     assert.ok(ids.includes(reference), file + ': odwołanie do nieistniejącego id #' + reference);
   }
   const pathCount = (source.match(/<path\b/g) || []).length;
-  const lightweightHybridAssets = new Set([
-    'tomato-soup.svg', 'burger.svg', 'greek-salad.svg', 'mojito.svg', 'sushi-maki.svg',
-    'salmon-lemon-butter.svg', 'steak-herb-butter.svg', 'pierogi-ruskie.svg', 'caesar-salad.svg', 'mushroom-soup.svg',
-  ]);
-  const minimumPaths = lightweightHybridAssets.has(file) ? 4 : file === 'panna-cotta.svg' ? 5 : file === 'pizza-margherita.svg' ? 4 : file === 'lasagna.svg' ? 10 : file === 'carbonara.svg' ? 10 : file === 'bruschetta.svg' ? 20 : file === 'tagliatelle-ragu.svg' ? 18 : file === 'ravioli-ricotta-spinaci.svg' ? 4 : file === 'risotto-funghi.svg' ? 10 : 101;
+  const minimumPathsByAsset = {
+    'tomato-soup.svg': 5, 'burger.svg': 10, 'greek-salad.svg': 10, 'mojito.svg': 13, 'sushi-maki.svg': 13,
+    'salmon-lemon-butter.svg': 7, 'steak-herb-butter.svg': 8, 'pierogi-ruskie.svg': 14, 'caesar-salad.svg': 16, 'mushroom-soup.svg': 10,
+  };
+  const minimumPaths = minimumPathsByAsset[file] ?? (file === 'panna-cotta.svg' ? 5 : file === 'pizza-margherita.svg' ? 4 : file === 'lasagna.svg' ? 10 : file === 'carbonara.svg' ? 10 : file === 'bruschetta.svg' ? 20 : file === 'tagliatelle-ragu.svg' ? 18 : file === 'ravioli-ricotta-spinaci.svg' ? 4 : file === 'risotto-funghi.svg' ? 10 : 101);
   assert.ok(pathCount >= minimumPaths, file + ': nieoczekiwanie mało ścieżek ilustracji (' + pathCount + ')');
   assert.ok(serviceWorkerSource.includes("'" + productionRoot + "/" + file + "'"), file + ': brak w cache offline Service Workera');
   console.log('PASS production SVG ' + file + ': ' + size + ' B, dostępność, referencje i cache offline');
