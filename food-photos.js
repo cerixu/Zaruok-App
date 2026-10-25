@@ -266,5 +266,5 @@ export function attachCategoryPhoto(img, categoryId) {
 
 /** Przydatne przy wyborze wyróżnionej receptury na ekranie Start. */
 export function hasFoodPhoto(recipe) {
-  return !!(recipe && (recipe.thumb || recipe.photo || recipePhotoKey(recipe)));
+  return !!(recipe && (recipe.thumb || recipe.photo || recipeSvgKey(recipe) || recipePhotoKey(recipe)));
 }
