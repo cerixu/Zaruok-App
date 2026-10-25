@@ -211,6 +211,17 @@ function attach(img, key) {
 
 // Lokalny zestaw ilustracji SVG premium. Pliki są zapisywane w repo i działają offline.
 const SVG_RECIPE_RULES = [
+  // Wąskie reguły dla kolejnej paczki ilustracji produkcyjnych.
+  ['tomato-soup', /^(?:krem pomidorowy(?: z bazylia)?|zupa pomidorowa(?: klasyczna)?|pomidorowa)$/],
+  ['burger', /^(?:burger klasyczny|hamburger klasyczny|classic burger|burger wolowy klasyczny)$/],
+  ['greek-salad', /^(?:salatka grecka|salatka grecka klasyczna|greek salad)$/],
+  ['mojito', /^(?:mojito|mojito klasyczne|classic mojito)$/],
+  ['sushi-maki', /^(?:sushi maki|sushi maki z lososiem i ogorkiem|maki z lososiem i ogorkiem|sushi maki z ogorkiem i lososiem)$/],
+  ['salmon-lemon-butter', /^(?:losos z cytryna i maslem|losos pieczony z cytryna i maslem|filet z lososia z cytryna i maslem|salmon with lemon butter)$/],
+  ['steak-herb-butter', /^(?:stek z maslem ziolowym|stek z maslem i ziolami|stek z ziolowym maslem|steak with herb butter)$/],
+  ['pierogi-ruskie', /^(?:pierogi ruskie|pierogi ruskie tradycyjne|pierogi ruskie z cebulka)$/],
+  ['caesar-salad', /^(?:salatka cezar|salatka cezar z kurczakiem|caesar salad)$/],
+  ['mushroom-soup', /^(?:krem z grzybow|krem grzybowy|zupa krem z grzybow|zupa grzybowa krem)$/],
   // Wąskie reguły: nie dopasowuj ilustracji klasycznego dania do wariantu smakowego.
   ['carbonara', /\b(spaghetti carbonara|carbonara tradycyjna|carbonara klasyczna|carbonara tradizionale|pasta alla carbonara)\b/],
   ['pizza-margherita', /\b(pizza margherita|margherita neapolitanska|margherita classica|neapolitan margherita)\b/],
@@ -236,6 +247,16 @@ const SVG_FILES = Object.freeze({
   'panna-cotta': 'panna-cotta.svg',
   bruschetta: 'bruschetta.svg',
   'ravioli-ricotta-spinaci': 'ravioli-ricotta-spinaci.svg',
+  'tomato-soup': 'tomato-soup.svg',
+  burger: 'burger.svg',
+  'greek-salad': 'greek-salad.svg',
+  mojito: 'mojito.svg',
+  'sushi-maki': 'sushi-maki.svg',
+  'salmon-lemon-butter': 'salmon-lemon-butter.svg',
+  'steak-herb-butter': 'steak-herb-butter.svg',
+  'pierogi-ruskie': 'pierogi-ruskie.svg',
+  'caesar-salad': 'caesar-salad.svg',
+  'mushroom-soup': 'mushroom-soup.svg',
 });
 
 export function recipeSvgKey(recipe) {
