@@ -21,6 +21,30 @@ try {
       return imgs.length === 36 && imgs.every((img) => img.complete && img.naturalWidth > 0 && img.naturalHeight > 0 && Math.abs(img.naturalWidth / img.naturalHeight - 1) < 0.02);
     }, null, { timeout: 10000 });
     const result = await page.evaluate(() => {
+      function opaqueEdgeSamples(img, rasterSize, inset, step) {
+        const canvas = document.createElement('canvas');
+        canvas.width = canvas.height = rasterSize;
+        const context = canvas.getContext('2d', { willReadFrequently: true });
+        context.drawImage(img, 0, 0, rasterSize, rasterSize);
+        const pixels = context.getImageData(0, 0, rasterSize, rasterSize).data;
+        let count = 0;
+        const sample = (x, y) => {
+          if (pixels[(y * rasterSize + x) * 4 + 3] > 16) count += 1;
+        };
+        for (let p = inset; p < rasterSize - inset; p += step) {
+          sample(p, inset);
+          sample(p, rasterSize - 1 - inset);
+          sample(inset, p);
+          sample(rasterSize - 1 - inset, p);
+        }
+        return count;
+      }
+      const uniqueImages = [...new Map([...document.querySelectorAll('.sample img')].map((img) => [img.dataset.dish, img])).values()];
+      const opaqueEdges = uniqueImages.map((img) => ({
+        dish: img.dataset.dish,
+        samples: opaqueEdgeSamples(img, 240, 2, 6),
+      })).filter((entry) => entry.samples > 0);
+
       const images = [...document.querySelectorAll('.sample img')];
       const broken = images.filter((img) => !img.naturalWidth).map((img) => img.dataset.dish);
       const groups = new Set(images.map((img) => img.dataset.dish));
@@ -33,9 +57,11 @@ try {
         bodyWidth: document.body.scrollWidth,
         viewportWidth: window.innerWidth,
         backgroundVariants: new Set([...document.querySelectorAll('.sample')].map((el) => getComputedStyle(el).backgroundImage + '|' + getComputedStyle(el).backgroundColor)).size,
+        opaqueEdges,
       };
     });
     if (result.count !== 36 || result.distinctDishes !== 18 || result.broken.length) throw new Error('Niekompletny zestaw ilustracji na ' + device.name + ': ' + JSON.stringify(result));
+    if (result.opaqueEdges.length) throw new Error('Nieprzezroczyste piksele na krawędzi prototypu SVG na ' + device.name + ': ' + JSON.stringify(result.opaqueEdges));
     if (result.bodyWidth > result.viewportWidth + 1) throw new Error('Poziomy overflow na ' + device.name + ': ' + JSON.stringify(result));
     if (result.backgroundVariants < 2) throw new Error('Brak wariantów tła na ' + device.name);
     await page.screenshot({ path: 'qa-shots/svg-hybrid-' + device.name + '.png', fullPage: true });
@@ -65,13 +91,28 @@ try {
       const imgs = [...document.querySelectorAll('[data-production-svg]')];
       return imgs.length === 10 && imgs.every((img) => img.complete && img.naturalWidth === 1024 && img.naturalHeight === 1024);
     }, null, { timeout: 20000 });
-    const productionResult = await page.evaluate(() => [...document.querySelectorAll('[data-production-svg]')].map((img) => ({
-      file: img.dataset.productionSvg, width: img.naturalWidth, height: img.naturalHeight,
-    })));
+    const productionResult = await page.evaluate(() => [...document.querySelectorAll('[data-production-svg]')].map((img) => {
+      const canvas = document.createElement('canvas');
+      canvas.width = canvas.height = 128;
+      const context = canvas.getContext('2d', { willReadFrequently: true });
+      context.drawImage(img, 0, 0, 128, 128);
+      const pixels = context.getImageData(0, 0, 128, 128).data;
+      let opaqueEdgeSamples = 0;
+      const sample = (x, y) => { if (pixels[(y * 128 + x) * 4 + 3] > 16) opaqueEdgeSamples += 1; };
+      for (let p = 3; p < 125; p += 8) {
+        sample(p, 3); sample(p, 124); sample(3, p); sample(124, p);
+      }
+      return {
+        file: img.dataset.productionSvg, width: img.naturalWidth, height: img.naturalHeight,
+        opaqueEdgeSamples,
+      };
+    }));
     if (productionResult.length !== 10 || productionResult.some((img) => img.width !== 1024 || img.height !== 1024)) {
       throw new Error('Nie wszystkie produkcyjne SVG renderują się poprawnie na ' + device.name + ': ' + JSON.stringify(productionResult));
     }
+    const legacyBackgrounds = productionResult.filter((asset) => asset.opaqueEdgeSamples > 0);
     console.log('PASS production SVG rendering ' + device.name + ': ' + productionResult.length + ' assets, 1024×1024');
+    if (legacyBackgrounds.length) console.warn('AUDIT: production SVG z nieprzezroczystymi pikselami przy krawędzi (do osobnej migracji): ' + legacyBackgrounds.map((asset) => asset.file + '=' + asset.opaqueEdgeSamples).join(', '));
     await page.close();
   }
   if (errors.length) throw new Error(errors.join('\n'));

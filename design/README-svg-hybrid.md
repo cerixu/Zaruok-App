@@ -33,8 +33,10 @@ Każdy plik ma własny kwadratowy `viewBox`, tytuł i opis dostępności, lokaln
 - Podgląd obu teł znajduje się w `design/svg-hybrid-preview.html`; to strona kontrolna, nie element aktywnego interfejsu.
 
 ## Kontrola jakości
-- `qa/svg-illustration-smoke.mjs` sprawdza strukturę plików, opisy, referencje SVG, przezroczyste tło, rozmiar i wyróżniki dania.
-- Kontrola jest podłączona do workflow Visual QA i zostanie uruchomiona na pull requeście.
+- `qa/svg-illustration-smoke.mjs` sprawdza strukturę plików, opisy, referencje SVG, rozmiar, wyróżniki dania oraz typowe pełnoekranowe tła narysowane ścieżką.
+- `qa/svg-illustration-visual.mjs` rasteruje każdy prototyp i sprawdza piksele przy krawędziach; wykrywa również tła złożone z niestandardowych ścieżek.
+- Produkcyjne SVG są renderowane i sprawdzane diagnostycznie pod kątem nieprzezroczystych krawędzi. Wykryte stare tła są raportowane do osobnej migracji zamiast ukrywania problemu.
+- Kontrola jest podłączona do workflow Visual QA.
 
 ## Następny krok
 Ocenić kształty i styl na iPhonie, zebrać uwagi, a następnie dopracować osobne, semantycznie poprawne motywy. Dopiero po akceptacji stylu należy integrować system z `art.js` i aktualizować testy.

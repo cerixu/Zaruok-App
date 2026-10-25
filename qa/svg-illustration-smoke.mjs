@@ -2,6 +2,36 @@ import fs from 'node:fs';
 import assert from 'node:assert/strict';
 
 const root = 'design/svg-hybrid';
+
+function hasOpaqueFullCanvasPath(source, size) {
+  const fullCanvasPath = new RegExp(
+    '^M\\s*0\\s+0\\s*(?:H\\s*' + size + '\\s*V\\s*' + size + '\\s*H\\s*0|L\\s*' + size + '\\s+0\\s*L\\s*' + size + '\\s+' + size + '\\s*L\\s*0\\s+' + size + ')\\s*Z$',
+    'i'
+  );
+  return [...source.matchAll(/<path\b[^>]*>/g)].some(([tag]) => {
+    const d = (tag.match(/\bd="([^"]*)"/) || [])[1];
+    if (!d || !fullCanvasPath.test(d.replace(/,/g, ' ').replace(/\s+/g, ' ').trim())) return false;
+    const fill = ((tag.match(/\bfill="([^"]*)"/i) || [])[1] || '').trim().toLowerCase();
+    const style = ((tag.match(/\bstyle="([^"]*)"/i) || [])[1] || '').toLowerCase();
+    const opacity = Number((tag.match(/\bopacity="([^"]*)"/i) || [])[1] ?? 1);
+    const fillOpacity = Number((tag.match(/\bfill-opacity="([^"]*)"/i) || [])[1] ?? 1);
+    return fill !== 'none' && !/\bfill\s*:\s*none\b/.test(style) &&
+      opacity > 0 && fillOpacity > 0 && !/\bfill-opacity\s*:\s*0(?:\.0+)?\b/.test(style) &&
+      !/\bopacity\s*:\s*0(?:\.0+)?\b/.test(style);
+  });
+}
+
+assert.equal(
+  hasOpaqueFullCanvasPath('<svg><path d="M0 0H240V240H0Z" fill="#fff"/></svg>', 240),
+  true,
+  'Kontrola musi wykrywać pełnoekranowe tło narysowane ścieżką'
+);
+assert.equal(
+  hasOpaqueFullCanvasPath('<svg><path d="M0 0H240V240H0Z" fill="none"/></svg>', 240),
+  false,
+  'Przezroczysta ścieżka pełnego obszaru nie może być uznana za tło'
+);
+
 const fixtures = [
   { file: 'carbonara.svg', id: 'carbonara', tokens: [/guanciale/i, /pecorino/i, /bazyli/i] },
   { file: 'margherita.svg', id: 'margherita', tokens: [/mozzarell/i, /bazyli/i, /pomidor/i] },
@@ -38,6 +68,8 @@ for (const fixture of fixtures) {
   assert.ok(source.length < 12000, `${fixture.file}: SVG większy niż 12 KB — sprawdź niepotrzebny kod`);
   assert.ok(!/<rect\b[^>]*(?:width="(?:100%|240|\*)"[^>]*height="(?:100%|240|\*)")/i.test(source),
     `${fixture.file}: wykryto potencjalne nieprzezroczyste tło całego obszaru`);
+  assert.equal(hasOpaqueFullCanvasPath(source, 240), false,
+    `${fixture.file}: pełnoekranowa ścieżka może tworzyć nieprzezroczyste tło`);
   assert.ok(!/(?:href|xlink:href)="https?:\/\//i.test(source), `${fixture.file}: zależność od zewnętrznego zasobu`);
   for (const token of fixture.tokens) {
     assert.match(source, token, `${fixture.file}: brak wyróżnika dania (${token})`);
