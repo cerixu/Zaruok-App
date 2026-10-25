@@ -187,7 +187,7 @@ try {
     }
 
     const expectedAssetMappings = [
-      ...fs.readdirSync('assets/food-svg').filter((file) => /\.svg$/i.test(file)).map((file) => ({
+      ...productionFiles.map((file) => ({
         id: 'production:' + file.replace(/\.svg$/i, ''),
         kind: 'production',
         src: '../assets/food-svg/' + file,
