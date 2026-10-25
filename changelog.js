@@ -5,6 +5,13 @@
    ========================================================================== */
 
 export const CHANGELOG = Object.freeze({
+  '2.1.27': Object.freeze({
+    intro: 'Żarłok 2.1.27 — przywrócono dotychczasowe zdjęcia dla dziesięciu dań, których nowe SVG nie spełniały standardu wizualnego.',
+    items: [
+      'Zdjęcia dla gnocchi z masłem szałwiowym, puttanesca, amatriciana, ragù alla bolognese, penne all’arrabbiata, fettuccine Alfredo, minestrone, panzanella, parmigiana di melanzane i pizzy pepperoni nie są już zastępowane nowymi ilustracjami.',
+      'Ilustracje SVG pozostają w repozytorium do dopracowania; zostaną włączone ponownie dopiero po kontroli jakości.'
+    ]
+  }),
   '2.1.26': Object.freeze({
     intro: 'Żarłok 2.1.26 — kolejnych dziesięć ilustracji SVG działa bezpośrednio w recepturach.',
     items: [
