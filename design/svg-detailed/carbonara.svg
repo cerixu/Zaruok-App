@@ -4,11 +4,11 @@
 <defs>
  <linearGradient id="bowl" x1="0" y1="0" x2=".2" y2="1"><stop stop-color="#45484a"/><stop offset=".18" stop-color="#1b2022"/><stop offset=".7" stop-color="#080a0b"/><stop offset="1" stop-color="#343638"/></linearGradient>
  <linearGradient id="rim" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#a29d8c"/><stop offset=".2" stop-color="#34383a"/><stop offset=".8" stop-color="#111416"/><stop offset="1" stop-color="#77756d"/></linearGradient>
- <linearGradient id="noodle" x1="0" y1="0" x2=".15" y2="1"><stop stop-color="#fff4b5"/><stop offset=".23" stop-color="#f9d96d"/><stop offset=".58" stop-color="#eab13d"/><stop offset=".82" stop-color="#c78325"/><stop offset="1" stop-color="#ffe18a"/></linearGradient>
- <linearGradient id="noodleLight" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff9d8"/><stop offset=".45" stop-color="#ffe58c"/><stop offset="1" stop-color="#d8952d"/></linearGradient>
+ <linearGradient id="noodle" x1="0" y1="0" x2=".15" y2="1"><stop stop-color="#fff0c9"/><stop offset=".23" stop-color="#eac77d"/><stop offset=".58" stop-color="#c8954b"/><stop offset=".82" stop-color="#8f5e2e"/><stop offset="1" stop-color="#f2d69a"/></linearGradient>
+ <linearGradient id="noodleLight" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff9e8"/><stop offset=".45" stop-color="#f4dfac"/><stop offset="1" stop-color="#b47d3e"/></linearGradient>
  <linearGradient id="guanciale" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffd69a"/><stop offset=".18" stop-color="#e99a56"/><stop offset=".42" stop-color="#8c3822"/><stop offset=".62" stop-color="#f0a35f"/><stop offset=".83" stop-color="#b94e2b"/><stop offset="1" stop-color="#672719"/></linearGradient>
  <linearGradient id="fat" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff0c6"/><stop offset="1" stop-color="#dba96b"/></linearGradient>
- <radialGradient id="sauce"><stop stop-color="#ffe9a0"/><stop offset=".78" stop-color="#e9b64c"/><stop offset="1" stop-color="#b8792a"/></radialGradient>
+ <radialGradient id="sauce"><stop stop-color="#f4e2b2"/><stop offset=".78" stop-color="#cda86b"/><stop offset="1" stop-color="#806044"/></radialGradient>
  <filter id="soft"><feGaussianBlur stdDeviation="7"/></filter>
  <clipPath id="plate"><ellipse cx="256" cy="207" rx="184" ry="82"/></clipPath>
 </defs>
@@ -22,15 +22,15 @@
 <g clip-path="url(#plate)">
 <!-- spaghetti strands form a recognizable central nest, not random crossing -->
 <g fill="none" stroke-linecap="round" stroke-linejoin="round">
- <path d="M114 212 C113 175 155 149 197 161 C237 172 250 212 222 237 C196 260 150 246 153 216 C156 190 193 183 213 202 C237 226 273 250 306 232 C337 215 330 176 298 164 C266 151 238 176 249 198" stroke="#a66622" stroke-width="16"/>
+ <path d="M114 212 C113 175 155 149 197 161 C237 172 250 212 222 237 C196 260 150 246 153 216 C156 190 193 183 213 202 C237 226 273 250 306 232 C337 215 330 176 298 164 C266 151 238 176 249 198" stroke="#78502b" stroke-width="16"/>
  <path d="M114 208 C113 175 155 153 196 165 C232 176 246 211 219 233 C196 254 155 243 157 216 C160 194 193 187 211 205 C235 229 272 246 303 229 C331 213 326 180 297 168 C269 157 242 178 252 198" stroke="url(#noodle)" stroke-width="11"/>
- <path d="M132 184 C153 144 213 148 239 182 C260 210 239 245 207 251 C174 257 139 236 146 207 C152 181 184 174 205 190 C230 210 249 235 280 241 C320 249 354 219 343 188 C334 163 304 150 281 166" stroke="#a66622" stroke-width="15"/>
+ <path d="M132 184 C153 144 213 148 239 182 C260 210 239 245 207 251 C174 257 139 236 146 207 C152 181 184 174 205 190 C230 210 249 235 280 241 C320 249 354 219 343 188 C334 163 304 150 281 166" stroke="#78502b" stroke-width="15"/>
  <path d="M132 181 C154 150 211 153 235 184 C255 209 236 241 207 246 C178 252 144 234 150 208 C156 186 184 179 203 193 C228 213 249 231 279 236 C315 244 349 217 339 190 C330 168 304 156 283 169" stroke="url(#noodleLight)" stroke-width="10"/>
- <path d="M169 158 C204 139 247 159 255 190 C263 220 235 244 210 232 C185 220 190 192 213 187 C242 181 270 212 293 220 C323 231 354 210 347 185" stroke="#a66622" stroke-width="14"/>
+ <path d="M169 158 C204 139 247 159 255 190 C263 220 235 244 210 232 C185 220 190 192 213 187 C242 181 270 212 293 220 C323 231 354 210 347 185" stroke="#78502b" stroke-width="14"/>
  <path d="M169 156 C204 144 243 162 251 190 C258 216 234 238 212 227 C191 217 194 195 215 191 C242 186 270 208 292 216 C319 227 349 207 343 187" stroke="url(#noodle)" stroke-width="9"/>
  <path d="M100 222 C126 261 174 270 208 247 C236 228 246 197 270 187 C296 175 327 190 320 212 C312 236 281 236 267 217 C250 194 266 164 291 158 C321 151 354 174 365 200" stroke="#a66622" stroke-width="14"/>
  <path d="M103 219 C129 256 173 265 205 244 C232 225 244 198 270 191 C293 180 321 192 315 211 C309 230 282 232 270 215 C254 194 268 169 291 163 C318 157 350 177 361 201" stroke="url(#noodleLight)" stroke-width="9"/>
- <path d="M120 197 C144 177 173 177 191 197 C208 216 221 238 245 237 C269 236 276 210 260 196 C244 182 220 193 225 210 C232 233 263 257 298 253 C335 249 366 222 365 192" stroke="#a66622" stroke-width="13"/>
+ <path d="M120 197 C144 177 173 177 191 197 C208 216 221 238 245 237 C269 236 276 210 260 196 C244 182 220 193 225 210 C232 233 263 257 298 253 C335 249 366 222 365 192" stroke="#78502b" stroke-width="13"/>
  <path d="M123 195 C146 181 171 181 188 200 C206 219 221 233 245 232 C265 231 271 211 258 200 C246 189 224 196 229 211 C236 231 264 251 297 248 C331 244 360 220 360 193" stroke="url(#noodle)" stroke-width="8"/>
  <!-- distinct foreground loops -->
  <path d="M135 231 C163 258 196 269 221 251 C246 233 239 210 222 205 C201 199 188 221 205 236 C224 253 259 264 289 249 C313 237 325 217 316 200" stroke="#a66622" stroke-width="15"/>
