@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#101214">
+<title>Żarłok — galeria ilustracji SVG</title>
+<style>
+:root{color-scheme:dark;--bg:#101214;--panel:#191d20;--line:#343a3e;--text:#f4f1ea;--muted:#a9b0b3;--accent:#e8b96c}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at 50% -10%,#30383b 0,var(--bg) 55%);color:var(--text);font:15px/1.45 -apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif;padding:clamp(14px,3vw,30px)}
+main{max-width:1200px;margin:auto}
+header{padding:8px 0 22px}
+.kicker{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:800}
+h1{font-size:clamp(28px,6vw,46px);line-height:1.04;letter-spacing:-.04em;margin:8px 0 12px}
+p{color:var(--muted);max-width:70ch;margin:0}
+.toolbar{display:flex;gap:9px;flex-wrap:wrap;margin:20px 0}
+input,button{font:inherit;border:1px solid var(--line);border-radius:12px;background:#171b1e;color:var(--text);padding:11px 14px}
+input{flex:1;min-width:190px}
+button{cursor:pointer}
+button[aria-pressed=true]{background:#f0c77e;color:#17130b;border-color:#f0c77e;font-weight:750}
+#count{font-size:12px;color:var(--muted);align-self:center;padding:0 4px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.card{min-width:0;overflow:hidden;border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,#1c2124,#141719);padding:12px}
+.card h2{font-size:15px;margin:0 0 3px;letter-spacing:-.015em}
+.meta{font-size:11px;color:var(--muted);display:flex;gap:6px;flex-wrap:wrap}
+.tag{border:1px solid #41484c;border-radius:99px;padding:2px 7px}
+.preview{margin-top:10px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
+.swatch{height:clamp(92px,22vw,155px);display:grid;place-items:center;border-radius:10px;overflow:hidden;padding:4px}
+.swatch img{width:100%;height:100%;object-fit:contain;display:block}
+.swatch.checker{background-color:#eee;background-image:conic-gradient(#c5c5c5 25%,#f8f8f8 0 50%,#c5c5c5 0 75%,#f8f8f8 0);background-size:16px 16px}
+.swatch.dark{background:#0b0d0f}
+.swatch.light{background:#f0eee8}
+.swatch small{font-size:9px;color:#697074;text-align:center}
+.swatch.checker small,.swatch.dark small{color:#d4d8d9}
+footer{margin:24px 0 8px;border-top:1px solid var(--line);padding-top:14px;color:var(--muted);font-size:12px}
+@media(min-width:720px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(min-width:1040px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(prefers-reduced-motion:no-preference){.card{transition:transform .18s ease,border-color .18s ease}.card:hover{transform:translateY(-2px);border-color:#6d6250}}
+</style>
+</head>
+<body>
+<main>
+<header>
+<div class="kicker">Żarłok · pracownia ilustracji</div>
+<h1>Galeria SVG</h1>
+<p>Podgląd wszystkich 20 autorskich ilustracji hybrydowych premium × flat. Każda karta pokazuje to samo SVG na szachownicy (przezroczystość), ciemnym i jasnym tle — bez zewnętrznych obrazków i bez zależności sieciowych.</p>
+<div class="toolbar" role="search">
+<input id="search" type="search" placeholder="Szukaj potrawy…" aria-label="Szukaj potrawy">
+<button type="button" data-filter="all" aria-pressed="true">Wszystkie</button>
+<button type="button" data-filter="prototype" aria-pressed="false">Prototypy</button>
+<button type="button" data-filter="production" aria-pressed="false">Mają SVG produkcyjne</button>
+<span id="count" aria-live="polite">20 ilustracji</span>
+</div>
+</header>
+<section class="grid" id="gallery" aria-label="Ilustracje SVG">
+<article class="card" data-kind="production" data-name="bruschetta al pomodoro">
+<h2>Bruschetta al pomodoro</h2><div class="meta"><span class="tag">SVG produkcyjne</span><span>bruschetta.svg</span></div>
+<div class="preview"><div class="swatch checker"><img src="design/svg-hybrid/bruschetta.svg" alt="Bruschetta na szachownicy" loading="lazy"><small>Przezroczystość</small></div><div class="swatch dark"><img src="design/svg-hybrid/bruschetta.svg" alt="Bruschetta na ciemnym tle" loading="lazy"></div><div class="swatch light"><img src="design/svg-hybrid/bruschetta.svg" alt="Bruschetta na jasnym tle" loading="lazy"></div></div></article>
+<article class="card" data-kind="production" data-name="spaghetti carbonara">
+<h2>Spaghetti carbonara</h2><div class="meta"><span class="tag">SVG produkcyjne</span><span>carbonara.svg</span></div>
+<div class="preview"><div class="swatch checker"><img src="design/svg-hybrid/carbonara.svg" alt="Carbonara na szachownicy" loading="lazy"><small>Przezroczystość</small></div><div class="swatch dark"><img src="design/svg-hybrid/carbonara.svg" alt="Carbonara na ciemnym tle" loading="lazy"></div><div class="swatch light"><img src="design/svg-hybrid/carbonara.svg" alt="Carbonara na jasnym tle" loading="lazy"></div></div></article>
+<article class="card" data-kind="production" data-name="gnocchi al pomodoro">
+<h2>Gnocchi al pomodoro</h2><div class="meta"><span class="tag">SVG produkcyjne</span><span>gnocchi.svg</span></div>
+<div class="preview"><div class="swatch checker"><img src="design/svg-hybrid/gnocchi.svg" alt="Gnocchi na szachownicy" loading="lazy"><small>Przezroczystość</small></div><div class="swatch dark"><img src="design/svg-hybrid/gnocchi.svg" alt="Gnocchi na ciemnym tle" loading="lazy"></div><div class="swatch light"><img src="design/svg-hybrid/gnocchi.svg" alt="Gnocchi na jasnym tle" loading="lazy"></div></div></article>
+<article class="card" data-kind="production" data-name="lasagne alla bolognese">
+<h2>Lasagne alla bolognese</h2><div class="meta"><span class="tag">SVG produkcyjne</span><span>lasagna.svg</span></div>
+<div class="preview"><div class="swatch checker"><img src="design/svg-hybrid/lasagna.svg" alt="Lasagne na szachownicy" loading="lazy"><small>Przezroczystość</small></div><div class="swatch dark"><img src="design/svg-hybrid/lasagna.svg" alt="Lasagne na ciemnym tle" loading="lazy"></div><div class="swatch light"><img src="design/svg-hybrid/lasagna.svg" alt="Lasagne na jasnym tle" loading="lazy"></div></div></article>
+<article class="card" data-kind="production" data-name="panna cotta">
+<h2>Panna cotta</h2><div class="meta"><span class="tag">SVG produkcyjne</span><span>panna-cotta.svg</span></div>
+<div class="preview"><div class="swatch checker"><img src="design/svg-hybrid/panna-cotta.svg" alt="Panna cotta na szachownicy" loading="lazy"><small>Przezroczystość</small></div><div class="swatch dark"><img src="design/svg-hybrid/panna-cotta.svg" alt="Panna cotta na ciemnym tle" loading="lazy"></div><div class="swatch light"><img src="design/svg-hybrid/panna-cotta.svg" alt="Panna cotta na jasnym tle" loading="lazy"></div></div></article>
+<article class="card" data-kind="production" data-name="pizza margherita">
+<h2>Pizza Margherita</h2><div class="meta"><span class="tag">SVG produkcyjne</span><span>margherita.svg</span></div>
+<div class="preview"><div class="swatch checker"><img src="design/svg-hybrid/margherita.svg" alt="Pizza Margherita na szachownicy" loading="lazy"><small>Przezroczystość</small></div><div class="swatch dark"><img src="design/svg-hybrid/margherita.svg" alt="Pizza Margherita na ciemnym tle" loading="lazy"></div><div class="swatch light"><img src="design/svg-hybrid/margherita.svg" alt="Pizza Margherita na jasnym tle" loading="lazy"></div></div></article>
+<article class="card" data-kind="production" data-name="ravioli ricotta e spinaci">
+<h2>Ravioli ricotta e spinaci</h2><div class="meta"><span class="tag">SVG produkcyjne</span><span>ravioli.svg</span></div>
+<div class="preview"><div class="swatch checker"><img src="design/svg-hybrid/ravioli.svg" alt="Ravioli na szachownicy" loading="lazy"><small>Przezroczystość</small></div><div class="swatch dark"><img src="design/svg-hybrid/ravioli.svg" alt="Ravioli na ciemnym tle" loading="lazy"></div><div class="swatch light"><img src="design/svg-hybrid/ravioli.svg" alt="Ravioli na jasnym tle" loading="lazy"></div></div></article>
+<article class="card" data-kind="production" data-name="risotto ai funghi">
+<h2>Risotto ai funghi</h2><div class="meta"><span class="tag">SVG produkcyjne · lekka migracja w toku</span><span>risotto-funghi.svg</span></div>
+<div class="preview"><div class="swatch checker"><img src="design/svg-hybrid/risotto-funghi.svg" alt="Risotto na szachownicy" loading="lazy"><small>Przezroczystość</small></div><div class="swatch dark"><img src="design/svg-hybrid/risotto-funghi.svg" alt="Risotto na ciemnym tle" loading="lazy"></div><div class="swatch light"><img src="design/svg-hybrid/risotto-funghi.svg" alt="Risotto na jasnym tle" loading="lazy"></div></div></article>
+<article class="card" data-kind="production" data-name="tagliatelle al ragu">
+<h2>Tagliatelle al ragù</h2><div class="meta"><span class="tag">SVG produkcyjne</span><span>tagliatelle-ragu.svg</span></div>
+<div class="preview"><div class="swatch checker"><img src="design/svg-hybrid/tagliatelle-ragu.svg" alt="Tagliatelle na szachownicy" loading="lazy"><small>Przezroczystość</small></div><div class="swatch dark"><img src="design/svg-hybrid/tagliatelle-ragu.svg" alt="Tagliatelle na ciemnym tle" loading="lazy"></div><div class="swatch light"><img src="design/svg-hybrid/tagliatelle-ragu.svg" alt="Tagliatelle na jasnym tle" loading="lazy"></div></div></article>
+<article class="card" data-kind="production" data-name="tiramisu">
+<h2>Tiramisù</h2><div class="meta"><span class="tag">SVG produkcyjne</span><span>tiramisu.svg</span></div>
+<div class="preview"><div class="swatch checker"><img src="design/svg-hybrid/tiramisu.svg" alt="Tiramisù na szachownicy" loading="lazy"><small>Przezroczystość</small></div><div class="swatch dark"><img src="design/svg-hybrid/tiramisu.svg" alt="Tiramisù na ciemnym tle" loading="lazy"></div><div class="swatch light"><img src="design/svg-hybrid/tiramisu.svg" alt="Tiramisù na jasnym tle" loading="lazy"></div></div></article>
+<article class="card" data-kind="prototype" data-name="krem pomidorowy">
+<h2>Krem pomidorowy</h2><div class="meta"><span class="tag">Prototyp</span><span>tomato-soup.svg</span></div>
+<div class="preview"><div class="swatch checker"><img src="design/svg-hybrid/tomato-soup.svg" alt="Krem pomidorowy na szachownicy" loading="lazy"><small>Przezroczystość</small></div><div class="swatch dark"><img src="design/svg-hybrid/tomato-soup.svg" alt="Krem pomidorowy na ciemnym tle" loading="lazy"></div><div class="swatch light"><img src="design/svg-hybrid/tomato-soup.svg" alt="Krem pomidorowy na jasnym tle" loading="lazy"></div></div></article>
+<article class="card" data-kind="prototype" data-name="burger klasyczny">
+<h2>Burger klasyczny</h2><div class="meta"><span class="tag">Prototyp</span><span>burger.svg</span></div>
+<div class="preview"><div class="swatch checker"><img src="design/svg-hybrid/burger.svg" alt="Burger na szachownicy" loading="lazy"><small>Przezroczystość</small></div><div class="swatch dark"><img src="design/svg-hybrid/burger.svg" alt="Burger na ciemnym tle" loading="lazy"></div><div class="swatch light"><img src="design/svg-hybrid/burger.svg" alt="Burger na jasnym tle" loading="lazy"></div></div></article>
+<article class="card" data-kind="prototype" data-name="salatka grecka">
+<h2>Sałatka grecka</h2><div class="meta"><span class="tag">Prototyp</span><span>greek-salad.svg</span></div>
+<div class="preview"><div class="swatch checker"><img src="design/svg-hybrid/greek-salad.svg" alt="Sałatka grecka na szachownicy" loading="lazy"><small>Przezroczystość</small></div><div class="swatch dark"><img src="design/svg-hybrid/greek-salad.svg" alt="Sałatka grecka na ciemnym tle" loading="lazy"></div><div class="swatch light"><img src="design/svg-hybrid/greek-salad.svg" alt="Sałatka grecka na jasnym tle" loading="lazy"></div></div></article>
+<article class="card" data-kind="prototype" data-name="mojito">
+<h2>Mojito</h2><div class="meta"><span class="tag">Prototyp</span><span>mojito.svg</span></div>
+<div class="preview"><div class="swatch checker"><img src="design/svg-hybrid/mojito.svg" alt="Mojito na szachownicy" loading="lazy"><small>Przezroczystość</small></div><div class="swatch dark"><img src="design/svg-hybrid/mojito.svg" alt="Mojito na ciemnym tle" loading="lazy"></div><div class="swatch light"><img src="design/svg-hybrid/mojito.svg" alt="Mojito na jasnym tle" loading="lazy"></div></div></article>
+<article class="card" data-kind="prototype" data-name="sushi maki">
+<h2>Sushi maki</h2><div class="meta"><span class="tag">Prototyp</span><span>sushi-maki.svg</span></div>
+<div class="preview"><div class="swatch checker"><img src="design/svg-hybrid/sushi-maki.svg" alt="Sushi maki na szachownicy" loading="lazy"><small>Przezroczystość</small></div><div class="swatch dark"><img src="design/svg-hybrid/sushi-maki.svg" alt="Sushi maki na ciemnym tle" loading="lazy"></div><div class="swatch light"><img src="design/svg-hybrid/sushi-maki.svg" alt="Sushi maki na jasnym tle" loading="lazy"></div></div></article>
+<article class="card" data-kind="prototype" data-name="losos cytryna maslo">
+<h2>Łosoś z cytryną i masłem</h2><div class="meta"><span class="tag">Prototyp</span><span>salmon-lemon-butter.svg</span></div>
+<div class="preview"><div class="swatch checker"><img src="design/svg-hybrid/salmon-lemon-butter.svg" alt="Łosoś na szachownicy" loading="lazy"><small>Przezroczystość</small></div><div class="swatch dark"><img src="design/svg-hybrid/salmon-lemon-butter.svg" alt="Łosoś na ciemnym tle" loading="lazy"></div><div class="swatch light"><img src="design/svg-hybrid/salmon-lemon-butter.svg" alt="Łosoś na jasnym tle" loading="lazy"></div></div></article>
+<article class="card" data-kind="prototype" data-name="stek maslo ziolowe">
+<h2>Stek z masłem ziołowym</h2><div class="meta"><span class="tag">Prototyp</span><span>steak-herb-butter.svg</span></div>
+<div class="preview"><div class="swatch checker"><img src="design/svg-hybrid/steak-herb-butter.svg" alt="Stek na szachownicy" loading="lazy"><small>Przezroczystość</small></div><div class="swatch dark"><img src="design/svg-hybrid/steak-herb-butter.svg" alt="Stek na ciemnym tle" loading="lazy"></div><div class="swatch light"><img src="design/svg-hybrid/steak-herb-butter.svg" alt="Stek na jasnym tle" loading="lazy"></div></div></article>
+<article class="card" data-kind="prototype" data-name="pierogi ruskie">
+<h2>Pierogi ruskie</h2><div class="meta"><span class="tag">Prototyp</span><span>pierogi-ruskie.svg</span></div>
+<div class="preview"><div class="swatch checker"><img src="design/svg-hybrid/pierogi-ruskie.svg" alt="Pierogi ruskie na szachownicy" loading="lazy"><small>Przezroczystość</small></div><div class="swatch dark"><img src="design/svg-hybrid/pierogi-ruskie.svg" alt="Pierogi ruskie na ciemnym tle" loading="lazy"></div><div class="swatch light"><img src="design/svg-hybrid/pierogi-ruskie.svg" alt="Pierogi ruskie na jasnym tle" loading="lazy"></div></div></article>
+<article class="card" data-kind="prototype" data-name="salatka cezar">
+<h2>Sałatka Cezar</h2><div class="meta"><span class="tag">Prototyp</span><span>caesar-salad.svg</span></div>
+<div class="preview"><div class="swatch checker"><img src="design/svg-hybrid/caesar-salad.svg" alt="Sałatka Cezar na szachownicy" loading="lazy"><small>Przezroczystość</small></div><div class="swatch dark"><img src="design/svg-hybrid/caesar-salad.svg" alt="Sałatka Cezar na ciemnym tle" loading="lazy"></div><div class="swatch light"><img src="design/svg-hybrid/caesar-salad.svg" alt="Sałatka Cezar na jasnym tle" loading="lazy"></div></div></article>
+<article class="card" data-kind="prototype" data-name="krem z grzybow">
+<h2>Krem z grzybów</h2><div class="meta"><span class="tag">Prototyp</span><span>mushroom-soup.svg</span></div>
+<div class="preview"><div class="swatch checker"><img src="design/svg-hybrid/mushroom-soup.svg" alt="Krem z grzybów na szachownicy" loading="lazy"><small>Przezroczystość</small></div><div class="swatch dark"><img src="design/svg-hybrid/mushroom-soup.svg" alt="Krem z grzybów na ciemnym tle" loading="lazy"></div><div class="swatch light"><img src="design/svg-hybrid/mushroom-soup.svg" alt="Krem z grzybów na jasnym tle" loading="lazy"></div></div></article>
+<article class="card" data-kind="prototype" data-name="bruschetta">
+<h2>Bruschetta — wariant hybrydowy</h2><div class="meta"><span class="tag">Wariant porównawczy</span><span>bruschetta.svg</span></div>
+<div class="preview"><div class="swatch checker"><img src="design/svg-hybrid/bruschetta.svg" alt="Bruschetta hybrydowa na szachownicy" loading="lazy"><small>Przezroczystość</small></div><div class="swatch dark"><img src="design/svg-hybrid/bruschetta.svg" alt="Bruschetta hybrydowa na ciemnym tle" loading="lazy"></div><div class="swatch light"><img src="design/svg-hybrid/bruschetta.svg" alt="Bruschetta hybrydowa na jasnym tle" loading="lazy"></div></div></article>
+<article class="card" data-kind="prototype" data-name="tagliatelle ragu">
+<h2>Tagliatelle al ragù — wariant hybrydowy</h2><div class="meta"><span class="tag">Wariant porównawczy</span><span>tagliatelle-ragu.svg</span></div>
+<div class="preview"><div class="swatch checker"><img src="design/svg-hybrid/tagliatelle-ragu.svg" alt="Tagliatelle hybrydowe na szachownicy" loading="lazy"><small>Przezroczystość</small></div><div class="swatch dark"><img src="design/svg-hybrid/tagliatelle-ragu.svg" alt="Tagliatelle hybrydowe na ciemnym tle" loading="lazy"></div><div class="swatch light"><img src="design/svg-hybrid/tagliatelle-ragu.svg" alt="Tagliatelle hybrydowe na jasnym tle" loading="lazy"></div></div></article>
+</section>
+<footer>Galeria jest osobną stroną podglądową; nie zmienia mapowania zdjęć ani wyglądu produkcyjnej aplikacji. Status „SVG produkcyjne” oznacza, że dana potrawa ma już plik w assets/food-svg; pozostałe ilustracje są na razie wzorcami do migracji. Wszystkie grafiki są lokalne w repozytorium.</footer>
+</main>
+<script>
+const cards=[...document.querySelectorAll('.card')];
+const search=document.querySelector('#search');
+const count=document.querySelector('#count');
+let filter='all';
+function update(){let visible=0;for(const card of cards){const matches=card.dataset.name.includes(search.value.trim().toLocaleLowerCase('pl'));const kind=filter==='all'||(filter==='production'?card.dataset.kind==='production':card.dataset.kind==='prototype');card.hidden=!(matches&&kind);if(!card.hidden)visible++;}count.textContent=visible+' ilustracji';}
+search.addEventListener('input',update);
+for(const button of document.querySelectorAll('[data-filter]'))button.addEventListener('click',()=>{filter=button.dataset.filter;for(const other of document.querySelectorAll('[data-filter]'))other.setAttribute('aria-pressed',String(other===button));update();});
+</script>
+</body>
+</html>
