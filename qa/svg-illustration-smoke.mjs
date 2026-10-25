@@ -11,7 +11,7 @@ const fixtures = [
   { file: 'mojito.svg', id: 'mojito', tokens: [/mojito/i, /limonk/i, /mięt/i, /słomk/i] },
   { file: 'tiramisu.svg', id: 'tiramisu', tokens: [/tiramisù/i, /mascarpone/i, /kakao/i] },
   { file: 'panna-cotta.svg', id: 'panna-cotta', tokens: [/panna cotta/i, /wanili/i, /malin/i] },
-  { file: 'lasagna.svg', id: 'lasagna', tokens: [/lasagne/i, /bolognese/i, /mozzarella/i] },
+  { file: 'lasagna.svg', id: 'lasagna', tokens: [/lasagne/i, /bolognese/i, /mozzarell/i] },
   { file: 'ravioli.svg', id: 'ravioli', tokens: [/ravioli/i, /ricotta/i, /szpinak/i] },
   { file: 'risotto-funghi.svg', id: 'risotto-funghi', tokens: [/risotto/i, /grzyb/i, /parmezan/i] },
   { file: 'gnocchi.svg', id: 'gnocchi', tokens: [/gnocchi/i, /pomidor/i, /bazyli/i] },
