@@ -39,7 +39,7 @@ function recipePhotoImage(recipe, cls = '') {
       el.src = recipeArtFallbackUrl(recipe);
     },
   });
-  if (!custom) attachRecipePhoto(img, recipe);
+  attachRecipePhoto(img, recipe);
   return img;
 }
 
