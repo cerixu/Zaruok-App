@@ -5,6 +5,13 @@
    ========================================================================== */
 
 export const CHANGELOG = Object.freeze({
+  '2.1.29': Object.freeze({
+    intro: 'Żarłok 2.1.29 — ilustracja Carbonary lepiej wtapia się w ciemny interfejs.',
+    items: [
+      'Usunięto dodatkową ramkę i szare pole wokół ilustracji Carbonary.',
+      'Dopasowano proporcje grafiki i połączono jej ciemne tło z tłem ekranu receptury.'
+    ]
+  }),
   '2.1.28': Object.freeze({
     intro: 'Żarłok 2.1.28 — ilustracja Carbonary została podmieniona na dostarczoną, szczegółową wersję SVG.',
     items: [
