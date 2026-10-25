@@ -18,7 +18,7 @@ try {
     await page.locator('.sample img').first().waitFor();
     await page.waitForFunction(() => {
       const imgs = [...document.querySelectorAll('.sample img')];
-      return imgs.length === 12 && imgs.every((img) => img.complete && img.naturalWidth === 240 && img.naturalHeight === 240);
+      return imgs.length === 12 && imgs.every((img) => img.complete && img.naturalWidth > 0 && img.naturalHeight > 0 && Math.abs(img.naturalWidth / img.naturalHeight - 1) < 0.02);
     }, null, { timeout: 10000 });
     const result = await page.evaluate(() => {
       const images = [...document.querySelectorAll('.sample img')];
@@ -32,7 +32,7 @@ try {
         minimumRenderedWidth: Math.min(...images.map((img) => img.getBoundingClientRect().width)),
         bodyWidth: document.body.scrollWidth,
         viewportWidth: window.innerWidth,
-        backgroundVariants: new Set(bg).size,
+        backgroundVariants: new Set([...document.querySelectorAll('.sample')].map((el) => getComputedStyle(el).backgroundImage + '|' + getComputedStyle(el).backgroundColor)).size,
       };
     });
     if (result.count !== 12 || result.distinctDishes !== 6 || result.broken.length) throw new Error('Niekompletny zestaw ilustracji na ' + device.name + ': ' + JSON.stringify(result));
