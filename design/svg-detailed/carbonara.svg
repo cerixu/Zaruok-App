@@ -1,74 +1,70 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
-  <title id="title">Spaghetti carbonara — ilustracja wektorowa premium</title>
-  <desc id="desc">Bogata ilustracja carbonary z połyskującym makaronem, rumianym guanciale, serem i pieprzem w ciemnej ceramicznej misce. Przezroczyste tło.</desc>
-  <defs>
-    <linearGradient id="bowl" x1="0" y1="0" x2=".2" y2="1"><stop stop-color="#394044"/><stop offset=".22" stop-color="#171c20"/><stop offset=".72" stop-color="#090b0d"/><stop offset="1" stop-color="#35383a"/></linearGradient>
-    <linearGradient id="rim" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#777a75"/><stop offset=".25" stop-color="#252a2d"/><stop offset=".7" stop-color="#0b0d0f"/><stop offset="1" stop-color="#77756d"/></linearGradient>
-    <linearGradient id="pasta" x1="0" y1="0" x2=".2" y2="1"><stop stop-color="#fff0a0"/><stop offset=".22" stop-color="#f6cb52"/><stop offset=".55" stop-color="#e9a92e"/><stop offset=".8" stop-color="#bd741b"/><stop offset="1" stop-color="#f8d66c"/></linearGradient>
-    <linearGradient id="pastaHi" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff6c1"/><stop offset=".45" stop-color="#ffe27a"/><stop offset="1" stop-color="#d68b21"/></linearGradient>
-    <linearGradient id="meat" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffd18a"/><stop offset=".24" stop-color="#a94320"/><stop offset=".5" stop-color="#f08b42"/><stop offset=".78" stop-color="#7d291b"/><stop offset="1" stop-color="#d65f2a"/></linearGradient>
-    <linearGradient id="cheese" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff7d6"/><stop offset="1" stop-color="#d9b975"/></linearGradient>
-    <radialGradient id="sauce"><stop stop-color="#ffec9a"/><stop offset=".75" stop-color="#edb83e"/><stop offset="1" stop-color="#a9631b"/></radialGradient>
-    <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%"><feGaussianBlur stdDeviation="9"/></filter>
-    <clipPath id="inside"><ellipse cx="256" cy="208" rx="190" ry="91"/></clipPath>
-  </defs>
-  <ellipse cx="256" cy="400" rx="166" ry="20" fill="#000" opacity=".24" filter="url(#shadow)"/>
-  <path d="M48 205 C60 300 116 369 256 374 C396 369 452 300 464 205Z" fill="url(#bowl)" stroke="#555957" stroke-width="2"/>
-  <path d="M65 231 C88 306 142 350 256 354 C370 350 424 306 447 231 C411 279 350 303 256 305 C162 303 101 279 65 231Z" fill="#111518" opacity=".82"/>
-  <path d="M84 271 C124 324 181 342 256 342 C331 342 388 324 428 271" fill="none" stroke="#777a74" stroke-width="2" opacity=".42"/>
-  <ellipse cx="256" cy="207" rx="211" ry="107" fill="url(#rim)" stroke="#85857b" stroke-width="3"/>
-  <ellipse cx="256" cy="204" rx="195" ry="94" fill="#17191a" stroke="#090b0c" stroke-width="5"/>
-  <ellipse cx="256" cy="207" rx="187" ry="87" fill="url(#sauce)"/>
-  <g clip-path="url(#inside)">
-    <path d="M95 208 C124 143 204 139 241 190 S342 256 389 192 S439 161 444 203" fill="none" stroke="#a9681d" stroke-width="20" stroke-linecap="round" opacity=".75"/>
-    <g fill="none" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M87 211 C106 158 164 145 197 184 S234 257 282 248 S339 174 384 175 S431 203 416 226" stroke="#9e5c18" stroke-width="17"/>
-      <path d="M91 208 C112 160 165 151 195 188 S236 251 280 242 S340 168 383 180 S422 206 409 224" stroke="url(#pasta)" stroke-width="13"/>
-      <path d="M108 232 C139 276 187 266 207 224 S232 156 275 169 S318 240 363 241 S411 217 423 189" stroke="#9d5b18" stroke-width="18"/>
-      <path d="M108 229 C139 270 185 260 204 222 S233 160 275 173 S318 235 362 236 S407 214 419 190" stroke="url(#pastaHi)" stroke-width="13"/>
-      <path d="M111 183 C135 135 199 158 216 197 S242 274 294 266 S340 206 380 202 S417 224 398 248" stroke="#a45f19" stroke-width="18"/>
-      <path d="M111 180 C135 140 196 161 212 199 S242 268 293 260 S339 202 378 207 S411 225 393 245" stroke="url(#pasta)" stroke-width="13"/>
-      <path d="M133 249 C153 208 173 188 203 197 S246 239 276 224 S311 159 348 165 S389 192 381 218" stroke="#9b5917" stroke-width="17"/>
-      <path d="M133 245 C153 208 175 193 203 202 S246 234 276 219 S311 164 347 170 S383 194 377 215" stroke="url(#pastaHi)" stroke-width="12"/>
-      <path d="M144 167 C169 188 168 225 196 239 S248 227 253 194 S287 153 311 185 S335 258 375 257" stroke="#a45d16" stroke-width="17"/>
-      <path d="M144 165 C169 188 170 221 197 235 S245 223 250 193 S286 158 307 188 S334 252 373 252" stroke="url(#pasta)" stroke-width="12"/>
-      <path d="M83 196 C122 226 147 244 183 233 S225 177 261 183 S310 224 341 220 S383 170 419 184" stroke="#9d5a17" stroke-width="16"/>
-      <path d="M83 192 C122 222 147 239 183 228 S225 181 261 188 S310 219 341 215 S382 175 415 188" stroke="url(#pastaHi)" stroke-width="11"/>
-      <path d="M122 213 C139 171 175 171 194 204 S218 251 253 246 S294 202 322 192 S365 211 354 235" stroke="#a45e19" stroke-width="15"/>
-      <path d="M122 210 C140 174 174 175 191 207 S218 245 252 240 S294 198 321 197 S359 213 350 231" stroke="url(#pasta)" stroke-width="10"/>
-      <path d="M174 153 C199 146 220 164 221 190 S209 231 238 246 S288 239 301 214" stroke="#a15c16" stroke-width="14"/>
-      <path d="M174 151 C199 150 216 166 217 191 S208 226 238 241 S285 234 298 211" stroke="url(#pastaHi)" stroke-width="9"/>
-      <path d="M213 153 C238 174 243 206 269 208 S302 176 326 180 S350 209 340 232" stroke="#a15c16" stroke-width="14"/>
-      <path d="M213 151 C238 175 243 201 269 203 S302 181 325 184 S346 210 337 228" stroke="url(#pasta)" stroke-width="9"/>
-      <path d="M92 222 C133 249 158 252 182 225" stroke="#fff0a1" stroke-width="2.4" opacity=".8"/>
-      <path d="M123 176 C142 151 170 151 188 169" stroke="#fff4ba" stroke-width="2.2" opacity=".8"/>
-      <path d="M279 174 C303 155 325 166 337 185" stroke="#fff4ba" stroke-width="2.2" opacity=".8"/>
-      <path d="M308 244 C333 259 364 246 378 228" stroke="#fff1a0" stroke-width="2.2" opacity=".75"/>
-    </g>
-    <g fill="url(#meat)" stroke="#6e2819" stroke-width="2">
-      <path d="M135 176 l28 -10 17 11 -4 23 -25 5 -18 -12Z"/>
-      <path d="M194 229 l29 -9 14 14 -5 23 -27 3 -15 -14Z"/>
-      <path d="M275 157 l26 -7 15 15 -8 21 -24 2 -13 -13Z"/>
-      <path d="M335 207 l28 -8 15 12 -4 22 -27 4 -16 -13Z"/>
-      <path d="M252 252 l23 -8 16 11 -4 19 -22 5 -15 -13Z"/>
-      <path d="M374 174 l21 -5 12 13 -6 17 -19 3 -11 -12Z"/>
-    </g>
-    <g fill="none" stroke-linecap="round">
-      <path d="M141 178 l22 -7 M145 185 l20 8 M201 233 l21 -6 M281 161 l18 -4 M340 212 l20 -5 M258 256 l15 -5" stroke="#ffca77" stroke-width="3" opacity=".8"/>
-      <path d="M150 177 l13 8 M205 238 l12 2 M285 166 l9 7 M345 217 l12 2" stroke="#632516" stroke-width="2" opacity=".8"/>
-    </g>
-    <g fill="url(#cheese)" opacity=".96">
-      <path d="M166 147 l13 -4 5 3 -10 8Z"/><path d="M190 165 l9 -7 4 3 -8 8Z"/><path d="M229 145 l11 -3 3 4 -10 5Z"/>
-      <path d="M258 163 l14 -5 4 3 -13 7Z"/><path d="M300 148 l10 -4 5 3 -9 6Z"/><path d="M350 157 l12 -3 4 4 -12 5Z"/>
-      <path d="M117 202 l12 -5 4 3 -11 7Z"/><path d="M178 213 l10 -4 5 4 -11 5Z"/><path d="M234 218 l13 -5 5 3 -12 7Z"/>
-      <path d="M293 226 l12 -5 4 4 -12 6Z"/><path d="M366 232 l10 -4 4 3 -10 6Z"/><path d="M202 263 l11 -4 4 3 -10 5Z"/>
-    </g>
-    <g fill="#1b1711">
-      <circle cx="153" cy="202" r="3.3"/><circle cx="181" cy="184" r="2.8"/><circle cx="211" cy="174" r="3.4"/><circle cx="239" cy="191" r="2.6"/><circle cx="265" cy="151" r="3.1"/><circle cx="292" cy="196" r="3.4"/><circle cx="324" cy="178" r="2.8"/><circle cx="357" cy="192" r="3.1"/><circle cx="381" cy="213" r="2.5"/><circle cx="318" cy="238" r="3.2"/><circle cx="274" cy="231" r="2.8"/><circle cx="225" cy="245" r="3.2"/><circle cx="164" cy="236" r="2.7"/><circle cx="122" cy="211" r="2.3"/>
-    </g>
-    <g fill="#fff0ac" opacity=".85"><circle cx="155" cy="198" r="1.1"/><circle cx="213" cy="171" r="1.1"/><circle cx="292" cy="193" r="1.1"/><circle cx="357" cy="189" r="1.1"/><circle cx="274" cy="228" r="1.1"/></g>
-  </g>
-  <path d="M61 209 C72 262 125 301 256 306 C387 301 440 262 451 209" fill="none" stroke="#8a8a80" stroke-width="3" opacity=".52"/>
-  <path d="M100 286 C132 320 188 336 256 337" fill="none" stroke="#d2c8af" stroke-width="2" opacity=".14"/>
-  <path d="M68 205 C79 151 139 112 207 107" fill="none" stroke="#e4e0d4" stroke-width="3" opacity=".28" stroke-linecap="round"/>
+<title id="title">Spaghetti alla carbonara</title>
+<desc id="desc">Gniazdo spaghetti w kremowym sosie jajeczno-serowym, z rumianym guanciale, pecorino i świeżo mielonym pieprzem, podane w ciemnej ceramicznej misce. Przezroczyste tło.</desc>
+<defs>
+ <linearGradient id="bowl" x1="0" y1="0" x2=".2" y2="1"><stop stop-color="#45484a"/><stop offset=".18" stop-color="#1b2022"/><stop offset=".7" stop-color="#080a0b"/><stop offset="1" stop-color="#343638"/></linearGradient>
+ <linearGradient id="rim" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#a29d8c"/><stop offset=".2" stop-color="#34383a"/><stop offset=".8" stop-color="#111416"/><stop offset="1" stop-color="#77756d"/></linearGradient>
+ <linearGradient id="noodle" x1="0" y1="0" x2=".15" y2="1"><stop stop-color="#fff4b5"/><stop offset=".23" stop-color="#f9d96d"/><stop offset=".58" stop-color="#eab13d"/><stop offset=".82" stop-color="#c78325"/><stop offset="1" stop-color="#ffe18a"/></linearGradient>
+ <linearGradient id="noodleLight" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff9d8"/><stop offset=".45" stop-color="#ffe58c"/><stop offset="1" stop-color="#d8952d"/></linearGradient>
+ <linearGradient id="guanciale" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffd69a"/><stop offset=".18" stop-color="#e99a56"/><stop offset=".42" stop-color="#8c3822"/><stop offset=".62" stop-color="#f0a35f"/><stop offset=".83" stop-color="#b94e2b"/><stop offset="1" stop-color="#672719"/></linearGradient>
+ <linearGradient id="fat" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff0c6"/><stop offset="1" stop-color="#dba96b"/></linearGradient>
+ <radialGradient id="sauce"><stop stop-color="#ffe9a0"/><stop offset=".78" stop-color="#e9b64c"/><stop offset="1" stop-color="#b8792a"/></radialGradient>
+ <filter id="soft"><feGaussianBlur stdDeviation="7"/></filter>
+ <clipPath id="plate"><ellipse cx="256" cy="207" rx="184" ry="82"/></clipPath>
+</defs>
+<ellipse cx="256" cy="390" rx="150" ry="17" fill="#000" opacity=".25" filter="url(#soft)"/>
+<!-- deep charcoal bowl -->
+<path d="M48 205 C64 309 130 365 256 370 C382 365 448 309 464 205Z" fill="url(#bowl)" stroke="#5c5d59" stroke-width="2"/>
+<path d="M77 251 C111 314 167 342 256 344 C345 342 401 314 435 251" fill="none" stroke="#73736c" stroke-width="2" opacity=".42"/>
+<ellipse cx="256" cy="207" rx="211" ry="104" fill="url(#rim)" stroke="#999487" stroke-width="2.5"/>
+<ellipse cx="256" cy="205" rx="194" ry="89" fill="#17191a" stroke="#090b0c" stroke-width="4"/>
+<ellipse cx="256" cy="207" rx="184" ry="82" fill="url(#sauce)"/>
+<g clip-path="url(#plate)">
+<!-- spaghetti strands form a recognizable central nest, not random crossing -->
+<g fill="none" stroke-linecap="round" stroke-linejoin="round">
+ <path d="M114 212 C113 175 155 149 197 161 C237 172 250 212 222 237 C196 260 150 246 153 216 C156 190 193 183 213 202 C237 226 273 250 306 232 C337 215 330 176 298 164 C266 151 238 176 249 198" stroke="#a66622" stroke-width="16"/>
+ <path d="M114 208 C113 175 155 153 196 165 C232 176 246 211 219 233 C196 254 155 243 157 216 C160 194 193 187 211 205 C235 229 272 246 303 229 C331 213 326 180 297 168 C269 157 242 178 252 198" stroke="url(#noodle)" stroke-width="11"/>
+ <path d="M132 184 C153 144 213 148 239 182 C260 210 239 245 207 251 C174 257 139 236 146 207 C152 181 184 174 205 190 C230 210 249 235 280 241 C320 249 354 219 343 188 C334 163 304 150 281 166" stroke="#a66622" stroke-width="15"/>
+ <path d="M132 181 C154 150 211 153 235 184 C255 209 236 241 207 246 C178 252 144 234 150 208 C156 186 184 179 203 193 C228 213 249 231 279 236 C315 244 349 217 339 190 C330 168 304 156 283 169" stroke="url(#noodleLight)" stroke-width="10"/>
+ <path d="M169 158 C204 139 247 159 255 190 C263 220 235 244 210 232 C185 220 190 192 213 187 C242 181 270 212 293 220 C323 231 354 210 347 185" stroke="#a66622" stroke-width="14"/>
+ <path d="M169 156 C204 144 243 162 251 190 C258 216 234 238 212 227 C191 217 194 195 215 191 C242 186 270 208 292 216 C319 227 349 207 343 187" stroke="url(#noodle)" stroke-width="9"/>
+ <path d="M100 222 C126 261 174 270 208 247 C236 228 246 197 270 187 C296 175 327 190 320 212 C312 236 281 236 267 217 C250 194 266 164 291 158 C321 151 354 174 365 200" stroke="#a66622" stroke-width="14"/>
+ <path d="M103 219 C129 256 173 265 205 244 C232 225 244 198 270 191 C293 180 321 192 315 211 C309 230 282 232 270 215 C254 194 268 169 291 163 C318 157 350 177 361 201" stroke="url(#noodleLight)" stroke-width="9"/>
+ <path d="M120 197 C144 177 173 177 191 197 C208 216 221 238 245 237 C269 236 276 210 260 196 C244 182 220 193 225 210 C232 233 263 257 298 253 C335 249 366 222 365 192" stroke="#a66622" stroke-width="13"/>
+ <path d="M123 195 C146 181 171 181 188 200 C206 219 221 233 245 232 C265 231 271 211 258 200 C246 189 224 196 229 211 C236 231 264 251 297 248 C331 244 360 220 360 193" stroke="url(#noodle)" stroke-width="8"/>
+ <!-- distinct foreground loops -->
+ <path d="M135 231 C163 258 196 269 221 251 C246 233 239 210 222 205 C201 199 188 221 205 236 C224 253 259 264 289 249 C313 237 325 217 316 200" stroke="#a66622" stroke-width="15"/>
+ <path d="M138 228 C165 253 195 263 218 247 C239 231 235 213 221 210 C205 205 194 222 208 234 C227 250 259 259 286 245 C308 234 320 216 312 202" stroke="url(#noodleLight)" stroke-width="10"/>
+ <!-- glossy highlights follow the spaghetti curves -->
+ <path d="M120 190 C139 160 177 153 199 165 M151 211 C154 193 174 185 190 190 M244 184 C248 168 267 159 284 164 M291 239 C315 240 337 225 342 208 M170 248 C188 256 203 252 213 245" fill="none" stroke="#fff8d0" stroke-width="2.2" opacity=".82"/>
+</g>
+<!-- guanciale: irregular small crisp cubes with visible rendered fat -->
+<g stroke="#71301d" stroke-width="1.7" stroke-linejoin="round">
+ <path d="M151 172 l21 -8 13 7 -2 17 -20 7 -14 -9Z" fill="url(#guanciale)"/>
+ <path d="M157 170 l12 -4 11 6 -3 7 -13 3Z" fill="url(#fat)"/>
+ <path d="M221 224 l22 -7 12 9 -4 17 -19 6 -14 -11Z" fill="url(#guanciale)"/>
+ <path d="M226 222 l12 -4 12 8 -3 6 -13 3Z" fill="url(#fat)"/>
+ <path d="M273 163 l20 -6 12 10 -5 17 -19 4 -12 -11Z" fill="url(#guanciale)"/>
+ <path d="M279 161 l11 -3 11 9 -3 6 -13 2Z" fill="url(#fat)"/>
+ <path d="M323 205 l21 -7 12 9 -3 17 -19 5 -14 -11Z" fill="url(#guanciale)"/>
+ <path d="M328 203 l12 -4 11 7 -2 6 -13 3Z" fill="url(#fat)"/>
+ <path d="M262 247 l19 -6 11 8 -4 15 -18 4 -12 -10Z" fill="url(#guanciale)"/>
+ <path d="M267 245 l10 -3 10 7 -2 5 -12 2Z" fill="url(#fat)"/>
+ <path d="M359 180 l16 -5 10 8 -4 14 -15 4 -9 -9Z" fill="url(#guanciale)"/>
+ <path d="M363 179 l9 -3 9 7 -2 5 -10 2Z" fill="url(#fat)"/>
+</g>
+<!-- restrained pecorino shavings -->
+<g fill="#fff1c8" stroke="#d8bd7e" stroke-width=".7">
+ <path d="M184 151 l18 -5 5 3 -15 8Z"/><path d="M205 174 l13 -6 4 3 -12 7Z"/>
+ <path d="M247 150 l15 -4 4 3 -13 6Z"/><path d="M290 147 l12 -2 4 3 -11 5Z"/>
+ <path d="M308 174 l14 -4 3 3 -12 6Z"/><path d="M128 204 l13 -5 4 3 -12 6Z"/>
+ <path d="M188 222 l12 -4 4 3 -11 6Z"/><path d="M247 218 l13 -4 4 3 -12 6Z"/>
+ <path d="M298 230 l12 -4 4 3 -11 6Z"/><path d="M345 222 l12 -4 3 3 -11 5Z"/>
+</g>
+<!-- pepper is sparse and fine -->
+<g fill="#252019"><circle cx="174" cy="204" r="2.5"/><circle cx="200" cy="161" r="2.2"/><circle cx="241" cy="174" r="2.1"/><circle cx="284" cy="192" r="2.4"/><circle cx="310" cy="178" r="2.1"/><circle cx="344" cy="203" r="2.5"/><circle cx="290" cy="248" r="2.2"/><circle cx="220" cy="242" r="2.1"/><circle cx="154" cy="231" r="1.8"/></g>
+</g>
+<!-- bowl rim glints -->
+<path d="M62 203 C75 152 132 116 201 111" fill="none" stroke="#f2ead6" stroke-width="3" opacity=".3" stroke-linecap="round"/>
+<path d="M92 288 C129 324 186 340 256 341" fill="none" stroke="#d6cbb3" stroke-width="2" opacity=".16" stroke-linecap="round"/>
 </svg>
