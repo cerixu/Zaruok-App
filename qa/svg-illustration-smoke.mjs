@@ -94,6 +94,8 @@ const productionAssets = [
   'bruschetta.svg', 'carbonara.svg', 'gnocchi-pomodoro.svg', 'lasagna.svg',
   'panna-cotta.svg', 'pizza-margherita.svg', 'ravioli-ricotta-spinaci.svg',
   'risotto-funghi.svg', 'tagliatelle-ragu.svg', 'tiramisu.svg',
+  'tomato-soup.svg', 'burger.svg', 'greek-salad.svg', 'mojito.svg', 'sushi-maki.svg',
+  'salmon-lemon-butter.svg', 'steak-herb-butter.svg', 'pierogi-ruskie.svg', 'caesar-salad.svg', 'mushroom-soup.svg',
 ];
 const serviceWorkerSource = fs.readFileSync('sw.js', 'utf8');
 const photoMappingSource = fs.readFileSync('food-photos.js', 'utf8');
@@ -136,7 +138,11 @@ for (const file of productionAssets) {
     assert.ok(ids.includes(reference), file + ': odwołanie do nieistniejącego id #' + reference);
   }
   const pathCount = (source.match(/<path\b/g) || []).length;
-  const minimumPaths = file === 'panna-cotta.svg' ? 5 : file === 'pizza-margherita.svg' ? 4 : file === 'lasagna.svg' ? 10 : file === 'carbonara.svg' ? 10 : file === 'bruschetta.svg' ? 20 : file === 'tagliatelle-ragu.svg' ? 18 : file === 'ravioli-ricotta-spinaci.svg' ? 4 : file === 'risotto-funghi.svg' ? 10 : 101;
+  const lightweightHybridAssets = new Set([
+    'tomato-soup.svg', 'burger.svg', 'greek-salad.svg', 'mojito.svg', 'sushi-maki.svg',
+    'salmon-lemon-butter.svg', 'steak-herb-butter.svg', 'pierogi-ruskie.svg', 'caesar-salad.svg', 'mushroom-soup.svg',
+  ]);
+  const minimumPaths = lightweightHybridAssets.has(file) ? 4 : file === 'panna-cotta.svg' ? 5 : file === 'pizza-margherita.svg' ? 4 : file === 'lasagna.svg' ? 10 : file === 'carbonara.svg' ? 10 : file === 'bruschetta.svg' ? 20 : file === 'tagliatelle-ragu.svg' ? 18 : file === 'ravioli-ricotta-spinaci.svg' ? 4 : file === 'risotto-funghi.svg' ? 10 : 101;
   assert.ok(pathCount >= minimumPaths, file + ': nieoczekiwanie mało ścieżek ilustracji (' + pathCount + ')');
   assert.ok(serviceWorkerSource.includes("'" + productionRoot + "/" + file + "'"), file + ': brak w cache offline Service Workera');
   console.log('PASS production SVG ' + file + ': ' + size + ' B, dostępność, referencje i cache offline');
