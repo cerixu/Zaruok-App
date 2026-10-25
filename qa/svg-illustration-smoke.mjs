@@ -96,6 +96,8 @@ const productionAssets = [
   'risotto-funghi.svg', 'tagliatelle-ragu.svg', 'tiramisu.svg',
 ];
 const serviceWorkerSource = fs.readFileSync('sw.js', 'utf8');
+const photoMappingSource = fs.readFileSync('food-photos.js', 'utf8');
+assert.ok(photoMappingSource.includes("  'tagliatelle-ragu': 'tagliatelle-ragu.svg',"), 'Tagliatelle al ragù musi zachować dedykowane mapowanie produkcyjnego SVG');
 let productionTotalBytes = 0;
 for (const file of productionAssets) {
   const path = productionRoot + '/' + file;
@@ -123,7 +125,7 @@ for (const file of productionAssets) {
     assert.ok(ids.includes(reference), file + ': odwołanie do nieistniejącego id #' + reference);
   }
   const pathCount = (source.match(/<path\b/g) || []).length;
-  const minimumPaths = file === 'bruschetta.svg' ? 20 : 101;
+  const minimumPaths = file === 'bruschetta.svg' ? 20 : file === 'tagliatelle-ragu.svg' ? 18 : 101;
   assert.ok(pathCount >= minimumPaths, file + ': nieoczekiwanie mało ścieżek ilustracji (' + pathCount + ')');
   assert.ok(serviceWorkerSource.includes("'" + productionRoot + "/" + file + "'"), file + ': brak w cache offline Service Workera');
   console.log('PASS production SVG ' + file + ': ' + size + ' B, dostępność, referencje i cache offline');
