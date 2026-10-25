@@ -145,7 +145,7 @@ const RECIPE_RULES = [
 const photoPromises = new Map();
 
 export function recipePhotoKey(recipe) {
-  if (!recipe || recipe.thumb || recipe.photo) return null;
+  if (!recipe) return null;
   const name = normalise(recipe.name);
   // Te receptury nie mają jeszcze fotografii, która wiernie przedstawia konkretne danie.
   // Nie przypisuj im zdjęć ogólnych (np. owoców morza) tylko dlatego, że pasuje składnik.
