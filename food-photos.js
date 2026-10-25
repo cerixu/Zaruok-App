@@ -222,6 +222,17 @@ const SVG_RECIPE_RULES = [
   ['pierogi-ruskie', /^(?:pierogi ruskie|pierogi ruskie tradycyjne|pierogi ruskie z cebulka)$/],
   ['caesar-salad', /^(?:salatka cezar|salatka cezar z kurczakiem|caesar salad)$/],
   ['mushroom-soup', /^(?:krem z grzybow|krem grzybowy|zupa krem z grzybow|zupa grzybowa krem)$/],
+  // Paczka 2.1.26: dopasowanie wyłącznie do konkretnych dań.
+  ['gnocchi-sage', /^(?:gnocchi z maslem szalwiowym|gnocchi z maslem i szalwia)$/],
+  ['spaghetti-puttanesca', /^(?:spaghetti alla puttanesca|spaghetti puttanesca)$/],
+  ['spaghetti-amatriciana', /^(?:spaghetti all amatriciana|spaghetti amatriciana|bucatini all amatriciana)$/],
+  ['ragu-bolognese', /^(?:ragu alla bolognese|ragu bolognese|sos ragu alla bolognese)$/],
+  ['penne-arrabbiata', /^(?:penne all arrabbiata|penne arrabbiata)$/],
+  ['fettuccine-alfredo', /^(?:fettuccine alfredo|fettuccine alfredo klasyczne)$/],
+  ['minestrone', /^(?:minestrone|zupa minestrone|minestrone wloskie)$/],
+  ['panzanella', /^(?:panzanella|panzanella toskanska|salatka panzanella)$/],
+  ['parmigiana-melanzane', /^(?:parmigiana di melanzane|parmigiana z baklazana|zapiekany baklazan po wlosku)$/],
+  ['pizza-pepperoni', /^(?:pizza pepperoni|pizza z pepperoni|pepperoni pizza)$/],
   // Wąskie reguły: nie dopasowuj ilustracji klasycznego dania do wariantu smakowego.
   ['carbonara', /\b(spaghetti carbonara|carbonara tradycyjna|carbonara klasyczna|carbonara tradizionale|pasta alla carbonara)\b/],
   ['pizza-margherita', /\b(pizza margherita|margherita neapolitanska|margherita classica|neapolitan margherita)\b/],
@@ -257,6 +268,16 @@ const SVG_FILES = Object.freeze({
   'pierogi-ruskie': 'pierogi-ruskie.svg',
   'caesar-salad': 'caesar-salad.svg',
   'mushroom-soup': 'mushroom-soup.svg',
+  'gnocchi-sage': 'gnocchi-sage.svg',
+  'spaghetti-puttanesca': 'spaghetti-puttanesca.svg',
+  'spaghetti-amatriciana': 'spaghetti-amatriciana.svg',
+  'ragu-bolognese': 'ragu-bolognese.svg',
+  'penne-arrabbiata': 'penne-arrabbiata.svg',
+  'fettuccine-alfredo': 'fettuccine-alfredo.svg',
+  minestrone: 'minestrone.svg',
+  panzanella: 'panzanella.svg',
+  'parmigiana-melanzane': 'parmigiana-melanzane.svg',
+  'pizza-pepperoni': 'pizza-pepperoni.svg',
 });
 
 export function recipeSvgKey(recipe) {
