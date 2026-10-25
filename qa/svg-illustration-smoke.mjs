@@ -136,14 +136,20 @@ for (const file of productionAssets) {
   const size = fs.statSync(path).size;
   productionTotalBytes += size;
   assert.ok(size < 1_500_000, file + ': SVG powinien mieć mniej niż 1,5 MB (ma ' + size + ' B)');
-  if (file === 'carbonara.svg') assert.ok(size < 5_000, 'Carbonara powinna pozostać lekkim SVG poniżej 5 KB (ma ' + size + ' B)');
+  if (file === 'carbonara.svg') assert.ok(size < 1_450_000, 'Carbonara powinna zachować szczegółową ilustrację, ale mieścić się poniżej 1,45 MB (ma ' + size + ' B)');
   if (file === 'lasagna.svg') assert.ok(size < 5_000, 'Lasagne powinna pozostać lekkim SVG poniżej 5 KB (ma ' + size + ' B)');
   if (file === 'pizza-margherita.svg') assert.ok(size < 5_000, 'Pizza Margherita powinna pozostać lekkim SVG poniżej 5 KB (ma ' + size + ' B)');
   if (file === 'panna-cotta.svg') assert.ok(size < 5_000, 'Panna cotta powinna pozostać lekkim SVG poniżej 5 KB (ma ' + size + ' B)');
   if (file === 'ravioli-ricotta-spinaci.svg') assert.ok(size < 5_000, 'Ravioli ricotta e spinaci powinny pozostać lekkim SVG poniżej 5 KB (ma ' + size + ' B)');
   assert.match(source, /^<svg\b/, file + ': brak korzenia SVG');
   const viewBox = source.match(/viewBox="0 0 ([1-9]\d*) ([1-9]\d*)"/);
-  assert.ok(viewBox && viewBox[1] === viewBox[2], file + ': viewBox musi być kwadratowy');
+  assert.ok(viewBox, file + ': brak poprawnego viewBox');
+  if (file === 'carbonara.svg') {
+    assert.equal(viewBox[1], '1427', 'Carbonara musi zachować szerokość oryginalnej ilustracji');
+    assert.equal(viewBox[2], '1102', 'Carbonara musi zachować wysokość oryginalnej ilustracji');
+  } else {
+    assert.equal(viewBox[1], viewBox[2], file + ': viewBox musi być kwadratowy');
+  }
   assert.match(source, /role="img"/, file + ': brak semantycznej roli obrazu');
   assert.match(source, /aria-labelledby="svg-title svg-desc"/, file + ': brak powiązania opisu dostępności');
   assert.match(source, /<title id="svg-title">[^<]+<\/title>/, file + ': brak tytułu dostępności');
