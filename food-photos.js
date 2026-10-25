@@ -237,7 +237,7 @@ const SVG_FILES = Object.freeze({
   'ravioli-ricotta-spinaci': 'ravioli-ricotta-spinaci.svg',
 });
 
-function recipeSvgKey(recipe) {
+export function recipeSvgKey(recipe) {
   if (!recipe) return null;
   const name = normalise(recipe.name);
   for (const [key, pattern] of SVG_RECIPE_RULES) {
