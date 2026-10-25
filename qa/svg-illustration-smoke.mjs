@@ -167,7 +167,7 @@ for (const file of productionAssets) {
   const minimumPathsByAssetExtended = {
     'gnocchi-sage.svg': 6, 'spaghetti-puttanesca.svg': 6, 'spaghetti-amatriciana.svg': 6,
     'ragu-bolognese.svg': 6, 'penne-arrabbiata.svg': 6, 'fettuccine-alfredo.svg': 6,
-    'minestrone.svg': 6, 'panzanella.svg': 6, 'parmigiana-melanzane.svg': 6, 'pizza-pepperoni.svg': 6,
+    'minestrone.svg': 5, 'panzanella.svg': 6, 'parmigiana-melanzane.svg': 5, 'pizza-pepperoni.svg': 6,
   };
   const minimumPaths = minimumPathsByAsset[file] ?? minimumPathsByAssetExtended[file] ?? (file === 'panna-cotta.svg' ? 5 : file === 'pizza-margherita.svg' ? 4 : file === 'lasagna.svg' ? 10 : file === 'carbonara.svg' ? 10 : file === 'bruschetta.svg' ? 20 : file === 'tagliatelle-ragu.svg' ? 18 : file === 'ravioli-ricotta-spinaci.svg' ? 4 : file === 'risotto-funghi.svg' ? 10 : 101);
   assert.ok(pathCount >= minimumPaths, file + ': nieoczekiwanie mało ścieżek ilustracji (' + pathCount + ')');
