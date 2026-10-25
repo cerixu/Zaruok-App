@@ -211,16 +211,17 @@ function attach(img, key) {
 
 // Lokalny zestaw ilustracji SVG premium. Pliki są zapisywane w repo i działają offline.
 const SVG_RECIPE_RULES = [
-  ['carbonara', /\b(spaghetti carbonara|carbonara tradycyjna|carbonara klasyczna)\b/],
-  ['pizza-margherita', /\b(pizza margherita|margherita neapolitanska|neapolitan margherita)\b/],
-  ['lasagna', /\b(lasagne alla bolognese|lasagna bolognese|lasagne bolognese)\b/],
-  ['risotto-funghi', /\b(risotto ai funghi|risotto funghi|risotto z grzybami)\b/],
-  ['gnocchi-pomodoro', /\b(gnocchi al pomodoro|gnocchi w sosie pomidorowym)\b/],
-  ['tagliatelle-ragu', /\b(tagliatelle al ragu|tagliatelle z ragu|tagliatelle bolognese)\b/],
-  ['tiramisu', /\b(tiramisu|tiramisù)\b/],
-  ['panna-cotta', /\b(panna cotta)\b/],
-  ['bruschetta', /\b(bruschetta al pomodoro|bruschetta z pomidorami)\b/],
-  ['ravioli-ricotta-spinaci', /\b(ravioli ricotta e spinaci|ravioli ze szpinakiem i ricotta)\b/],
+  // Wąskie reguły: nie dopasowuj ilustracji klasycznego dania do wariantu smakowego.
+  ['carbonara', /\b(spaghetti carbonara|carbonara tradycyjna|carbonara klasyczna|carbonara tradizionale|pasta alla carbonara)\b/],
+  ['pizza-margherita', /\b(pizza margherita|margherita neapolitanska|margherita classica|neapolitan margherita)\b/],
+  ['lasagna', /\b(lasagne alla bolognese|lasagna bolognese|lasagne bolognese|lasagne tradycyjne|lasagne klasyczne)\b/],
+  ['risotto-funghi', /\b(risotto ai funghi|risotto funghi|risotto z grzybami|risotto grzybowe|risotto z pieczarkami)\b/],
+  ['gnocchi-pomodoro', /\b(gnocchi al pomodoro|gnocchi w sosie pomidorowym|gnocchi z sosem pomidorowym)\b/],
+  ['tagliatelle-ragu', /\b(tagliatelle al ragu|tagliatelle z ragu|tagliatelle bolognese|tagliatelle z sosem bolognese)\b/],
+  ['tiramisu', /\b(tiramisu|tiramisù)\b(?!.*\b(matcha|pistacj|truskawk|malin|cytryn)\b)/],
+  ['panna-cotta', /\b(panna cotta|panna cotta klasyczna|panna cotta waniliowa)\b/],
+  ['bruschetta', /\b(bruschetta al pomodoro|bruschetta z pomidorami|bruschetta pomidorowa|bruschetta klasyczna)\b/],
+  ['ravioli-ricotta-spinaci', /\b(ravioli ricotta e spinaci|ravioli ze szpinakiem i ricotta|ravioli z ricotta i szpinakiem|ravioli ricotta szpinak)\b/],
 ];
 
 const SVG_FILES = Object.freeze({
