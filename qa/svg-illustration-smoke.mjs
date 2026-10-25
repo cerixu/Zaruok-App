@@ -41,3 +41,43 @@ for (const fixture of fixtures) {
 }
 
 console.log(`PASS: ${fixtures.length} wzorcowych ilustracji SVG przeszło audyt`);
+
+
+const productionRoot = 'assets/food-svg';
+const productionAssets = [
+  'bruschetta.svg', 'carbonara.svg', 'gnocchi-pomodoro.svg', 'lasagna.svg',
+  'panna-cotta.svg', 'pizza-margherita.svg', 'ravioli-ricotta-spinaci.svg',
+  'risotto-funghi.svg', 'tagliatelle-ragu.svg', 'tiramisu.svg',
+];
+const serviceWorkerSource = fs.readFileSync('sw.js', 'utf8');
+let productionTotalBytes = 0;
+for (const file of productionAssets) {
+  const path = productionRoot + '/' + file;
+  assert.ok(fs.existsSync(path), 'Brak produkcyjnej ilustracji SVG: ' + path);
+  const source = fs.readFileSync(path, 'utf8');
+  const size = fs.statSync(path).size;
+  productionTotalBytes += size;
+  assert.ok(size < 1_500_000, file + ': SVG powinien mieć mniej niż 1,5 MB (ma ' + size + ' B)');
+  assert.match(source, /^<svg\b/, file + ': brak korzenia SVG');
+  assert.match(source, /viewBox="0 0 1024 1024"/, file + ': brak viewBox');
+  assert.match(source, /role="img"/, file + ': brak semantycznej roli obrazu');
+  assert.match(source, /aria-labelledby="svg-title svg-desc"/, file + ': brak powiązania opisu dostępności');
+  assert.match(source, /<title id="svg-title">[^<]+<\/title>/, file + ': brak tytułu dostępności');
+  assert.match(source, /<desc id="svg-desc">[^<]+<\/desc>/, file + ': brak opisu dostępności');
+  assert.doesNotMatch(source, /<metadata\b|xmpmeta/i, file + ': pozostały metadane eksportu');
+  assert.doesNotMatch(source, /<image\b|<script\b|<foreignObject\b/i, file + ': SVG nie jest samodzielną ilustracją wektorową');
+  assert.doesNotMatch(source, /(?:href|xlink:href)="https?:\/\//i, file + ': zewnętrzna zależność');
+  assert.doesNotMatch(source, /url\(\s*["']?https?:/i, file + ': zewnętrzna zależność w definicji stylu');
+  assert.doesNotMatch(source, /rgb\(/i, file + ': nieoptymalny zapis kolorów RGB');
+  const ids = [...source.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]);
+  assert.equal(new Set(ids).size, ids.length, file + ': zduplikowane identyfikatory SVG');
+  const references = [...source.matchAll(/url\(#([^)]+)\)|(?:xlink:)?href="#([^"]+)"/g)].map((match) => match[1] || match[2]);
+  for (const reference of references) {
+    assert.ok(ids.includes(reference), file + ': odwołanie do nieistniejącego id #' + reference);
+  }
+  assert.ok((source.match(/<path\b/g) || []).length > 100, file + ': nieoczekiwanie mało ścieżek ilustracji');
+  assert.ok(serviceWorkerSource.includes("'" + productionRoot + "/" + file + "'"), file + ': brak w cache offline Service Workera');
+  console.log('PASS production SVG ' + file + ': ' + size + ' B, dostępność, referencje i cache offline');
+}
+assert.ok(productionTotalBytes < 5_800_000, 'Łączny rozmiar produkcyjnych SVG przekracza limit: ' + productionTotalBytes + ' B');
+console.log('PASS: ' + productionAssets.length + ' produkcyjnych SVG, łączny rozmiar ' + productionTotalBytes + ' B');

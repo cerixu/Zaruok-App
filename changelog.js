@@ -5,6 +5,14 @@
    ========================================================================== */
 
 export const CHANGELOG = Object.freeze({
+  '2.1.16': Object.freeze({
+    intro: 'Żarłok 2.1.16 — lżejsze, samodzielne ilustracje SVG.',
+    items: [
+      'Zmniejszono rozmiar 10 produkcyjnych ilustracji SVG o około 30% — łącznie o około 2,35 MB.',
+      'Usunięto zbędne metadane Adobe, skrócono współrzędne do dokładności 0,1 jednostki i zoptymalizowano zapis kolorów.',
+      'Dodano viewBox oraz opisy dostępności title/desc; testy sprawdzają referencje i renderowanie w widoku mobilnym oraz desktopowym.'
+    ]
+  }),
   '2.1.15': Object.freeze({
     intro: 'Żarłok 2.1.15 — precyzyjniejsze dopasowanie ilustracji SVG.',
     items: [
