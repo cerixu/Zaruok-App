@@ -5,6 +5,14 @@
    ========================================================================== */
 
 export const CHANGELOG = Object.freeze({
+  '2.1.25': Object.freeze({
+    intro: 'Żarłok 2.1.25 — dziesięć nowych ilustracji SVG trafia bezpośrednio do receptur.',
+    items: [
+      'Dodano produkcyjne ilustracje: krem pomidorowy, klasyczny burger, sałatka grecka, mojito, sushi maki, łosoś z cytryną i masłem, stek z masłem ziołowym, pierogi ruskie, sałatka cezar i krem grzybowy.',
+      'Każda ilustracja ma lokalny plik SVG i przypisanie wyłącznie do pasujących nazw receptur.',
+      'Zaktualizowano cache offline i wersję aplikacji.'
+    ]
+  }),
   '2.1.24': Object.freeze({
     intro: 'Żarłok 2.1.24 — risotto ai funghi przeniesione na lekkie, przezroczyste SVG.',
     items: [
