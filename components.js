@@ -65,7 +65,7 @@ function recipeImageEl(r, alt = '') {
       el.src = recipeArtFallbackUrl(r);
     },
   });
-  if (!custom) attachRecipePhoto(img, r);
+  attachRecipePhoto(img, r);
   return img;
 }
 export function thumbEl(r, cls = '') {
