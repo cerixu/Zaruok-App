@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Spaghetti carbonara — ilustracja wektorowa premium</title>
+  <desc id="desc">Bogata ilustracja carbonary z połyskującym makaronem, rumianym guanciale, serem i pieprzem w ciemnej ceramicznej misce. Przezroczyste tło.</desc>
+  <defs>
+    <linearGradient id="bowl" x1="0" y1="0" x2=".2" y2="1"><stop stop-color="#394044"/><stop offset=".22" stop-color="#171c20"/><stop offset=".72" stop-color="#090b0d"/><stop offset="1" stop-color="#35383a"/></linearGradient>
+    <linearGradient id="rim" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#777a75"/><stop offset=".25" stop-color="#252a2d"/><stop offset=".7" stop-color="#0b0d0f"/><stop offset="1" stop-color="#77756d"/></linearGradient>
+    <linearGradient id="pasta" x1="0" y1="0" x2=".2" y2="1"><stop stop-color="#fff0a0"/><stop offset=".22" stop-color="#f6cb52"/><stop offset=".55" stop-color="#e9a92e"/><stop offset=".8" stop-color="#bd741b"/><stop offset="1" stop-color="#f8d66c"/></linearGradient>
+    <linearGradient id="pastaHi" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff6c1"/><stop offset=".45" stop-color="#ffe27a"/><stop offset="1" stop-color="#d68b21"/></linearGradient>
+    <linearGradient id="meat" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffd18a"/><stop offset=".24" stop-color="#a94320"/><stop offset=".5" stop-color="#f08b42"/><stop offset=".78" stop-color="#7d291b"/><stop offset="1" stop-color="#d65f2a"/></linearGradient>
+    <linearGradient id="cheese" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff7d6"/><stop offset="1" stop-color="#d9b975"/></linearGradient>
+    <radialGradient id="sauce"><stop stop-color="#ffec9a"/><stop offset=".75" stop-color="#edb83e"/><stop offset="1" stop-color="#a9631b"/></radialGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%"><feGaussianBlur stdDeviation="9"/></filter>
+    <clipPath id="inside"><ellipse cx="256" cy="208" rx="190" ry="91"/></clipPath>
+  </defs>
+  <ellipse cx="256" cy="400" rx="166" ry="20" fill="#000" opacity=".24" filter="url(#shadow)"/>
+  <path d="M48 205 C60 300 116 369 256 374 C396 369 452 300 464 205Z" fill="url(#bowl)" stroke="#555957" stroke-width="2"/>
+  <path d="M65 231 C88 306 142 350 256 354 C370 350 424 306 447 231 C411 279 350 303 256 305 C162 303 101 279 65 231Z" fill="#111518" opacity=".82"/>
+  <path d="M84 271 C124 324 181 342 256 342 C331 342 388 324 428 271" fill="none" stroke="#777a74" stroke-width="2" opacity=".42"/>
+  <ellipse cx="256" cy="207" rx="211" ry="107" fill="url(#rim)" stroke="#85857b" stroke-width="3"/>
+  <ellipse cx="256" cy="204" rx="195" ry="94" fill="#17191a" stroke="#090b0c" stroke-width="5"/>
+  <ellipse cx="256" cy="207" rx="187" ry="87" fill="url(#sauce)"/>
+  <g clip-path="url(#inside)">
+    <path d="M95 208 C124 143 204 139 241 190 S342 256 389 192 S439 161 444 203" fill="none" stroke="#a9681d" stroke-width="20" stroke-linecap="round" opacity=".75"/>
+    <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M87 211 C106 158 164 145 197 184 S234 257 282 248 S339 174 384 175 S431 203 416 226" stroke="#9e5c18" stroke-width="17"/>
+      <path d="M91 208 C112 160 165 151 195 188 S236 251 280 242 S340 168 383 180 S422 206 409 224" stroke="url(#pasta)" stroke-width="13"/>
+      <path d="M108 232 C139 276 187 266 207 224 S232 156 275 169 S318 240 363 241 S411 217 423 189" stroke="#9d5b18" stroke-width="18"/>
+      <path d="M108 229 C139 270 185 260 204 222 S233 160 275 173 S318 235 362 236 S407 214 419 190" stroke="url(#pastaHi)" stroke-width="13"/>
+      <path d="M111 183 C135 135 199 158 216 197 S242 274 294 266 S340 206 380 202 S417 224 398 248" stroke="#a45f19" stroke-width="18"/>
+      <path d="M111 180 C135 140 196 161 212 199 S242 268 293 260 S339 202 378 207 S411 225 393 245" stroke="url(#pasta)" stroke-width="13"/>
+      <path d="M133 249 C153 208 173 188 203 197 S246 239 276 224 S311 159 348 165 S389 192 381 218" stroke="#9b5917" stroke-width="17"/>
+      <path d="M133 245 C153 208 175 193 203 202 S246 234 276 219 S311 164 347 170 S383 194 377 215" stroke="url(#pastaHi)" stroke-width="12"/>
+      <path d="M144 167 C169 188 168 225 196 239 S248 227 253 194 S287 153 311 185 S335 258 375 257" stroke="#a45d16" stroke-width="17"/>
+      <path d="M144 165 C169 188 170 221 197 235 S245 223 250 193 S286 158 307 188 S334 252 373 252" stroke="url(#pasta)" stroke-width="12"/>
+      <path d="M83 196 C122 226 147 244 183 233 S225 177 261 183 S310 224 341 220 S383 170 419 184" stroke="#9d5a17" stroke-width="16"/>
+      <path d="M83 192 C122 222 147 239 183 228 S225 181 261 188 S310 219 341 215 S382 175 415 188" stroke="url(#pastaHi)" stroke-width="11"/>
+      <path d="M122 213 C139 171 175 171 194 204 S218 251 253 246 S294 202 322 192 S365 211 354 235" stroke="#a45e19" stroke-width="15"/>
+      <path d="M122 210 C140 174 174 175 191 207 S218 245 252 240 S294 198 321 197 S359 213 350 231" stroke="url(#pasta)" stroke-width="10"/>
+      <path d="M174 153 C199 146 220 164 221 190 S209 231 238 246 S288 239 301 214" stroke="#a15c16" stroke-width="14"/>
+      <path d="M174 151 C199 150 216 166 217 191 S208 226 238 241 S285 234 298 211" stroke="url(#pastaHi)" stroke-width="9"/>
+      <path d="M213 153 C238 174 243 206 269 208 S302 176 326 180 S350 209 340 232" stroke="#a15c16" stroke-width="14"/>
+      <path d="M213 151 C238 175 243 201 269 203 S302 181 325 184 S346 210 337 228" stroke="url(#pasta)" stroke-width="9"/>
+      <path d="M92 222 C133 249 158 252 182 225" stroke="#fff0a1" stroke-width="2.4" opacity=".8"/>
+      <path d="M123 176 C142 151 170 151 188 169" stroke="#fff4ba" stroke-width="2.2" opacity=".8"/>
+      <path d="M279 174 C303 155 325 166 337 185" stroke="#fff4ba" stroke-width="2.2" opacity=".8"/>
+      <path d="M308 244 C333 259 364 246 378 228" stroke="#fff1a0" stroke-width="2.2" opacity=".75"/>
+    </g>
+    <g fill="url(#meat)" stroke="#6e2819" stroke-width="2">
+      <path d="M135 176 l28 -10 17 11 -4 23 -25 5 -18 -12Z"/>
+      <path d="M194 229 l29 -9 14 14 -5 23 -27 3 -15 -14Z"/>
+      <path d="M275 157 l26 -7 15 15 -8 21 -24 2 -13 -13Z"/>
+      <path d="M335 207 l28 -8 15 12 -4 22 -27 4 -16 -13Z"/>
+      <path d="M252 252 l23 -8 16 11 -4 19 -22 5 -15 -13Z"/>
+      <path d="M374 174 l21 -5 12 13 -6 17 -19 3 -11 -12Z"/>
+    </g>
+    <g fill="none" stroke-linecap="round">
+      <path d="M141 178 l22 -7 M145 185 l20 8 M201 233 l21 -6 M281 161 l18 -4 M340 212 l20 -5 M258 256 l15 -5" stroke="#ffca77" stroke-width="3" opacity=".8"/>
+      <path d="M150 177 l13 8 M205 238 l12 2 M285 166 l9 7 M345 217 l12 2" stroke="#632516" stroke-width="2" opacity=".8"/>
+    </g>
+    <g fill="url(#cheese)" opacity=".96">
+      <path d="M166 147 l13 -4 5 3 -10 8Z"/><path d="M190 165 l9 -7 4 3 -8 8Z"/><path d="M229 145 l11 -3 3 4 -10 5Z"/>
+      <path d="M258 163 l14 -5 4 3 -13 7Z"/><path d="M300 148 l10 -4 5 3 -9 6Z"/><path d="M350 157 l12 -3 4 4 -12 5Z"/>
+      <path d="M117 202 l12 -5 4 3 -11 7Z"/><path d="M178 213 l10 -4 5 4 -11 5Z"/><path d="M234 218 l13 -5 5 3 -12 7Z"/>
+      <path d="M293 226 l12 -5 4 4 -12 6Z"/><path d="M366 232 l10 -4 4 3 -10 6Z"/><path d="M202 263 l11 -4 4 3 -10 5Z"/>
+    </g>
+    <g fill="#1b1711">
+      <circle cx="153" cy="202" r="3.3"/><circle cx="181" cy="184" r="2.8"/><circle cx="211" cy="174" r="3.4"/><circle cx="239" cy="191" r="2.6"/><circle cx="265" cy="151" r="3.1"/><circle cx="292" cy="196" r="3.4"/><circle cx="324" cy="178" r="2.8"/><circle cx="357" cy="192" r="3.1"/><circle cx="381" cy="213" r="2.5"/><circle cx="318" cy="238" r="3.2"/><circle cx="274" cy="231" r="2.8"/><circle cx="225" cy="245" r="3.2"/><circle cx="164" cy="236" r="2.7"/><circle cx="122" cy="211" r="2.3"/>
+    </g>
+    <g fill="#fff0ac" opacity=".85"><circle cx="155" cy="198" r="1.1"/><circle cx="213" cy="171" r="1.1"/><circle cx="292" cy="193" r="1.1"/><circle cx="357" cy="189" r="1.1"/><circle cx="274" cy="228" r="1.1"/></g>
+  </g>
+  <path d="M61 209 C72 262 125 301 256 306 C387 301 440 262 451 209" fill="none" stroke="#8a8a80" stroke-width="3" opacity=".52"/>
+  <path d="M100 286 C132 320 188 336 256 337" fill="none" stroke="#d2c8af" stroke-width="2" opacity=".14"/>
+  <path d="M68 205 C79 151 139 112 207 107" fill="none" stroke="#e4e0d4" stroke-width="3" opacity=".28" stroke-linecap="round"/>
+</svg>
