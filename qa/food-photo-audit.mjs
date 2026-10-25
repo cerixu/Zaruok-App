@@ -1,5 +1,5 @@
 import fs from 'node:fs';
-import { recipePhotoKey } from '../food-photos.js';
+import { recipePhotoKey, recipeSvgKey } from '../food-photos.js';
 
 const photosSource = fs.readFileSync('food-photos.js', 'utf8');
 const photoFiles = new Map(
@@ -136,4 +136,47 @@ for (const [recipe, expected] of correctPhotoCases) {
     throw new Error('Brak poprawnego dopasowania zdjęcia dla "' + recipe.name + '": oczekiwano ' + expected + ', otrzymano ' + actual);
   }
 }
-console.log('Photo mapping QA passed: ' + photoFiles.size + ' zdjęć, ' + ruleKeys.length + ' unikalnych reguł, ' + categoryKeys.length + ' zdjęć kategorii.');
+
+const svgAssets = [
+  'bruschetta.svg', 'carbonara.svg', 'gnocchi-pomodoro.svg', 'lasagna.svg',
+  'panna-cotta.svg', 'pizza-margherita.svg', 'ravioli-ricotta-spinaci.svg',
+  'risotto-funghi.svg', 'tagliatelle-ragu.svg', 'tiramisu.svg',
+];
+const svgRulesBlock = photosSource.match(/const SVG_RECIPE_RULES = \[([\\s\\S]*?)\\n\];/);
+const svgFilesBlock = photosSource.match(/const SVG_FILES = Object\\.freeze\\(\\{([\\s\\S]*?)\\n\\}\\);/);
+if (!svgRulesBlock || !svgFilesBlock) throw new Error('Nie znaleziono mapy ilustracji SVG.');
+const svgRuleKeys = [...svgRulesBlock[1].matchAll(/^\\s*\\['([^']+)'\\s*,/gm)].map((match) => match[1]);
+const svgFileNames = [...svgFilesBlock[1].matchAll(/:\\s*'([^']+\\.svg)'/g)].map((match) => match[1]);
+if (new Set(svgRuleKeys).size !== svgRuleKeys.length) throw new Error('Powtórzone klucze reguł SVG.');
+for (const file of svgAssets) {
+  const path = 'assets/food-svg/' + file;
+  if (!fs.existsSync(path)) throw new Error('Brak ilustracji SVG: ' + path);
+  const svg = fs.readFileSync(path, 'utf8');
+  if (!svg.includes('<svg') || svg.length < 100) throw new Error('Nieprawidłowa ilustracja SVG: ' + path);
+  if (!svgFileNames.includes(file)) throw new Error('SVG istnieje, ale nie jest podpięty w SVG_FILES: ' + file);
+}
+const correctSvgCases = [
+  ['Spaghetti Carbonara', 'carbonara'],
+  ['Pizza Margherita', 'pizza-margherita'],
+  ['Lasagne alla bolognese', 'lasagna'],
+  ['Risotto ai funghi', 'risotto-funghi'],
+  ['Gnocchi al pomodoro', 'gnocchi-pomodoro'],
+  ['Tagliatelle al ragù', 'tagliatelle-ragu'],
+  ['Tiramisù', 'tiramisu'],
+  ['Panna cotta waniliowa', 'panna-cotta'],
+  ['Bruschetta al pomodoro', 'bruschetta'],
+  ['Ravioli ricotta e spinaci', 'ravioli-ricotta-spinaci'],
+];
+for (const [name, expected] of correctSvgCases) {
+  const actual = recipeSvgKey({ name });
+  if (actual !== expected) throw new Error('Błędne dopasowanie SVG dla "' + name + '": oczekiwano ' + expected + ', otrzymano ' + actual);
+}
+const svgMustNotMatch = [
+  'Matcha tiramisu', 'Tiramisu pistacjowe', 'Pizza Diavola',
+  'Gnocchi z masłem szałwiowym', 'Ravioli z mięsem',
+];
+for (const name of svgMustNotMatch) {
+  if (recipeSvgKey({ name }) !== null) throw new Error('Ilustracja SVG nie pasuje do wariantu: ' + name);
+}
+
+console.log('Photo and SVG mapping QA passed: ' + photoFiles.size + ' zdjęć, ' + ruleKeys.length + ' unikalnych reguł, ' + categoryKeys.length + ' zdjęć kategorii.');
