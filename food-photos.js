@@ -1,8 +1,8 @@
 /* ==========================================================================
    Żarłok 2.0 — prawdziwe zdjęcia dań.
    Fotografie są wersjonowane lokalnie w repozytorium jako base64/JPEG, dzięki
-   czemu działają również offline. Własne zdjęcie użytkownika ma pierwszeństwo;
-   gdy zdjęcie nie istnieje albo się nie załaduje, zostaje ilustracja SVG.
+   czemu działają również offline. Dla dokładnie rozpoznanych dań wybieramy
+   dedykowaną ilustrację SVG; dla pozostałych zachowujemy własne zdjęcie użytkownika.
    ========================================================================== */
 
 const PHOTO_FILES = Object.freeze({
