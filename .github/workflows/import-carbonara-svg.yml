@@ -6,9 +6,15 @@ on:
       - design/carbonara-dark-premium
     paths:
       - .github/workflows/import-carbonara-svg.yml
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/workflows/import-carbonara-svg.yml
 
 permissions:
   contents: write
+  pull-requests: read
 
 jobs:
   import-svg:
@@ -31,5 +37,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add design/svg-detailed/carbonara-original.svg
-          git commit -m "Add original vectorized Carbonara SVG"
-          git push origin design/carbonara-dark-premium
+          git commit -m "Add original vectorized Carbonara SVG" || exit 0
+          git push origin HEAD:design/carbonara-dark-premium
