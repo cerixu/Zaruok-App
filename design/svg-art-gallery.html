@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<title>Żarłok — galeria SVG premium</title>
+<style>
+:root{color-scheme:dark;--page:#0b0d0f;--card:#151a1d;--line:#333b3f;--ink:#f4f0e8;--muted:#a9b0b3;--accent:#efbd68}
+*{box-sizing:border-box}
+body{margin:0;padding:clamp(12px,3vw,28px);background:radial-gradient(ellipse at top,#20272b 0%,var(--page) 58%);color:var(--ink);font:14px/1.45 -apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif}
+main{max-width:1240px;margin:0 auto}
+header{margin:0 0 22px}.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:11px;color:var(--accent);font-weight:800}
+h1{font-size:clamp(26px,5vw,40px);line-height:1.08;letter-spacing:-.04em;margin:.4rem 0 .65rem}
+p{max-width:74ch;color:var(--muted);margin:.45rem 0}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.legend span{border:1px solid var(--line);border-radius:999px;padding:5px 10px;font-size:11px;color:var(--muted)}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}
+button{appearance:none;border:1px solid var(--line);border-radius:999px;padding:9px 13px;background:#171d20;color:var(--ink);font:inherit;cursor:pointer}
+button[aria-pressed=true]{background:#efbd68;color:#17130d;border-color:#efbd68;font-weight:700}
+.grid{display:grid;grid-template-columns:1fr;gap:12px}
+.dish-card{min-width:0;padding:14px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,#1a2023,#121619)}
+.dish-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+h2{margin:0;font-size:17px;letter-spacing:-.02em}.dish-head span{font-size:11px;color:var(--muted)}
+.samples{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.sample{min-width:0;height:154px;border-radius:12px;padding:8px 4px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;overflow:hidden}
+.sample img{display:block;width:100%;height:122px;object-fit:contain}
+.sample small{font-size:10px;line-height:1.1;text-align:center;color:#e6e8e8}
+.sample.checker{background-color:#eee;background-image:conic-gradient(#c4c4c4 25%,#f7f7f7 0 50%,#c4c4c4 0 75%,#f7f7f7 0);background-size:16px 16px}
+.sample.dark{background:linear-gradient(145deg,#293034,#0b0e10)}
+.sample.light{background:#f4ead8}
+.sample.checker small,.sample.light small{color:#292929}
+code{font-size:10px;color:var(--muted);overflow-wrap:anywhere}
+.hidden{display:none!important}
+footer{margin:20px 0 0;padding:14px 16px;border:1px solid var(--line);border-radius:14px;color:var(--muted);font-size:12px}
+@media(min-width:760px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.dish-card{padding:12px}.sample{height:138px}.sample img{height:106px}}
+@media(max-width:420px){.samples{gap:5px}.sample{height:118px;padding:5px 2px}.sample img{height:88px}.sample small{font-size:9px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main>
+<header>
+<div class="eyebrow">Żarłok · lokalna galeria SVG</div>
+<h1>Ilustracje potraw</h1>
+<p>Wszystkie 20 wektorowych prototypów w jednej galerii. Obejrzyj je na szachownicy, ciemnym i jasnym tle — bez pobierania obrazów z zewnętrznych serwisów.</p>
+<div class="legend"><span>20 plików SVG</span><span>240 × 240 viewBox</span><span>Przezroczyste tło</span><span>Offline-friendly</span></div>
+<div class="toolbar" aria-label="Filtr tła">
+<button type="button" data-filter="all" aria-pressed="true">Wszystkie tła</button>
+<button type="button" data-filter="checker" aria-pressed="false">Przezroczystość</button>
+<button type="button" data-filter="dark" aria-pressed="false">Ciemne</button>
+<button type="button" data-filter="light" aria-pressed="false">Jasne</button>
+</div>
+</header>
+<section class="grid" aria-label="Ilustracje SVG">
+<article class="dish-card" data-dish="carbonara"><header class="dish-head"><h2>Spaghetti carbonara</h2><span>Guanciale · pecorino · bazylia</span></header><code>design/svg-hybrid/carbonara.svg</code><div class="samples"><div class="sample checker"><img src="svg-hybrid/carbonara.svg" alt="Carbonara na szachownicy"><small>Przezroczystość</small></div><div class="sample dark"><img src="svg-hybrid/carbonara.svg" alt="Carbonara na ciemnym tle"><small>Ciemne tło</small></div><div class="sample light"><img src="svg-hybrid/carbonara.svg" alt="Carbonara na jasnym tle"><small>Jasne tło</small></div></div></article>
+<article class="dish-card" data-dish="margherita"><header class="dish-head"><h2>Pizza Margherita</h2><span>Pomidor · mozzarella · bazylia</span></header><code>design/svg-hybrid/margherita.svg</code><div class="samples"><div class="sample checker"><img src="svg-hybrid/margherita.svg" alt="Pizza Margherita na szachownicy"><small>Przezroczystość</small></div><div class="sample dark"><img src="svg-hybrid/margherita.svg" alt="Pizza Margherita na ciemnym tle"><small>Ciemne tło</small></div><div class="sample light"><img src="svg-hybrid/margherita.svg" alt="Pizza Margherita na jasnym tle"><small>Jasne tło</small></div></div></article>
+<article class="dish-card" data-dish="tomato-soup"><header class="dish-head"><h2>Krem pomidorowy</h2><span>Śmietanka · bazylia</span></header><code>design/svg-hybrid/tomato-soup.svg</code><div class="samples"><div class="sample checker"><img src="svg-hybrid/tomato-soup.svg" alt="Krem pomidorowy na szachownicy"><small>Przezroczystość</small></div><div class="sample dark"><img src="svg-hybrid/tomato-soup.svg" alt="Krem pomidorowy na ciemnym tle"><small>Ciemne tło</small></div><div class="sample light"><img src="svg-hybrid/tomato-soup.svg" alt="Krem pomidorowy na jasnym tle"><small>Jasne tło</small></div></div></article>
+<article class="dish-card" data-dish="burger"><header class="dish-head"><h2>Burger klasyczny</h2><span>Bułka sezamowa · kotlet</span></header><code>design/svg-hybrid/burger.svg</code><div class="samples"><div class="sample checker"><img src="svg-hybrid/burger.svg" alt="Burger na szachownicy"><small>Przezroczystość</small></div><div class="sample dark"><img src="svg-hybrid/burger.svg" alt="Burger na ciemnym tle"><small>Ciemne tło</small></div><div class="sample light"><img src="svg-hybrid/burger.svg" alt="Burger na jasnym tle"><small>Jasne tło</small></div></div></article>
+<article class="dish-card" data-dish="greek-salad"><header class="dish-head"><h2>Sałatka grecka</h2><span>Feta · oliwki · pomidor</span></header><code>design/svg-hybrid/greek-salad.svg</code><div class="samples"><div class="sample checker"><img src="svg-hybrid/greek-salad.svg" alt="Sałatka grecka na szachownicy"><small>Przezroczystość</small></div><div class="sample dark"><img src="svg-hybrid/greek-salad.svg" alt="Sałatka grecka na ciemnym tle"><small>Ciemne tło</small></div><div class="sample light"><img src="svg-hybrid/greek-salad.svg" alt="Sałatka grecka na jasnym tle"><small>Jasne tło</small></div></div></article>
+<article class="dish-card" data-dish="mojito"><header class="dish-head"><h2>Mojito</h2><span>Limonka · mięta</span></header><code>design/svg-hybrid/mojito.svg</code><div class="samples"><div class="sample checker"><img src="svg-hybrid/mojito.svg" alt="Mojito na szachownicy"><small>Przezroczystość</small></div><div class="sample dark"><img src="svg-hybrid/mojito.svg" alt="Mojito na ciemnym tle"><small>Ciemne tło</small></div><div class="sample light"><img src="svg-hybrid/mojito.svg" alt="Mojito na jasnym tle"><small>Jasne tło</small></div></div></article>
+<article class="dish-card" data-dish="tiramisu"><header class="dish-head"><h2>Tiramisù</h2><span>Mascarpone · kakao</span></header><code>design/svg-hybrid/tiramisu.svg</code><div class="samples"><div class="sample checker"><img src="svg-hybrid/tiramisu.svg" alt="Tiramisù na szachownicy"><small>Przezroczystość</small></div><div class="sample dark"><img src="svg-hybrid/tiramisu.svg" alt="Tiramisù na ciemnym tle"><small>Ciemne tło</small></div><div class="sample light"><img src="svg-hybrid/tiramisu.svg" alt="Tiramisù na jasnym tle"><small>Jasne tło</small></div></div></article>
+<article class="dish-card" data-dish="panna-cotta"><header class="dish-head"><h2>Panna cotta</h2><span>Wanilia · maliny</span></header><code>design/svg-hybrid/panna-cotta.svg</code><div class="samples"><div class="sample checker"><img src="svg-hybrid/panna-cotta.svg" alt="Panna cotta na szachownicy"><small>Przezroczystość</small></div><div class="sample dark"><img src="svg-hybrid/panna-cotta.svg" alt="Panna cotta na ciemnym tle"><small>Ciemne tło</small></div><div class="sample light"><img src="svg-hybrid/panna-cotta.svg" alt="Panna cotta na jasnym tle"><small>Jasne tło</small></div></div></article>
+<article class="dish-card" data-dish="lasagna"><header class="dish-head"><h2>Lasagne alla bolognese</h2><span>Ragù · mozzarella</span></header><code>design/svg-hybrid/lasagna.svg</code><div class="samples"><div class="sample checker"><img src="svg-hybrid/lasagna.svg" alt="Lasagne na szachownicy"><small>Przezroczystość</small></div><div class="sample dark"><img src="svg-hybrid/lasagna.svg" alt="Lasagne na ciemnym tle"><small>Ciemne tło</small></div><div class="sample light"><img src="svg-hybrid/lasagna.svg" alt="Lasagne na jasnym tle"><small>Jasne tło</small></div></div></article>
+<article class="dish-card" data-dish="ravioli"><header class="dish-head"><h2>Ravioli ricotta e spinaci</h2><span>Ricotta · szpinak</span></header><code>design/svg-hybrid/ravioli.svg</code><div class="samples"><div class="sample checker"><img src="svg-hybrid/ravioli.svg" alt="Ravioli na szachownicy"><small>Przezroczystość</small></div><div class="sample dark"><img src="svg-hybrid/ravioli.svg" alt="Ravioli na ciemnym tle"><small>Ciemne tło</small></div><div class="sample light"><img src="svg-hybrid/ravioli.svg" alt="Ravioli na jasnym tle"><small>Jasne tło</small></div></div></article>
+<article class="dish-card" data-dish="risotto-funghi"><header class="dish-head"><h2>Risotto ai funghi</h2><span>Grzyby · parmezan · natka</span></header><code>design/svg-hybrid/risotto-funghi.svg</code><div class="samples"><div class="sample checker"><img src="svg-hybrid/risotto-funghi.svg" alt="Risotto na szachownicy"><small>Przezroczystość</small></div><div class="sample dark"><img src="svg-hybrid/risotto-funghi.svg" alt="Risotto na ciemnym tle"><small>Ciemne tło</small></div><div class="sample light"><img src="svg-hybrid/risotto-funghi.svg" alt="Risotto na jasnym tle"><small>Jasne tło</small></div></div></article>
+<article class="dish-card" data-dish="gnocchi"><header class="dish-head"><h2>Gnocchi al pomodoro</h2><span>Pomidor · bazylia</span></header><code>design/svg-hybrid/gnocchi.svg</code><div class="samples"><div class="sample checker"><img src="svg-hybrid/gnocchi.svg" alt="Gnocchi na szachownicy"><small>Przezroczystość</small></div><div class="sample dark"><img src="svg-hybrid/gnocchi.svg" alt="Gnocchi na ciemnym tle"><small>Ciemne tło</small></div><div class="sample light"><img src="svg-hybrid/gnocchi.svg" alt="Gnocchi na jasnym tle"><small>Jasne tło</small></div></div></article>
+<article class="dish-card" data-dish="sushi-maki"><header class="dish-head"><h2>Sushi maki</h2><span>Łosoś · ogórek · nori</span></header><code>design/svg-hybrid/sushi-maki.svg</code><div class="samples"><div class="sample checker"><img src="svg-hybrid/sushi-maki.svg" alt="Sushi maki na szachownicy"><small>Przezroczystość</small></div><div class="sample dark"><img src="svg-hybrid/sushi-maki.svg" alt="Sushi maki na ciemnym tle"><small>Ciemne tło</small></div><div class="sample light"><img src="svg-hybrid/sushi-maki.svg" alt="Sushi maki na jasnym tle"><small>Jasne tło</small></div></div></article>
+<article class="dish-card" data-dish="salmon-lemon-butter"><header class="dish-head"><h2>Łosoś z cytryną i masłem</h2><span>Cytryna · koperek</span></header><code>design/svg-hybrid/salmon-lemon-butter.svg</code><div class="samples"><div class="sample checker"><img src="svg-hybrid/salmon-lemon-butter.svg" alt="Łosoś na szachownicy"><small>Przezroczystość</small></div><div class="sample dark"><img src="svg-hybrid/salmon-lemon-butter.svg" alt="Łosoś na ciemnym tle"><small>Ciemne tło</small></div><div class="sample light"><img src="svg-hybrid/salmon-lemon-butter.svg" alt="Łosoś na jasnym tle"><small>Jasne tło</small></div></div></article>
+<article class="dish-card" data-dish="steak-herb-butter"><header class="dish-head"><h2>Stek z masłem ziołowym</h2><span>Wołowina · rozmaryn</span></header><code>design/svg-hybrid/steak-herb-butter.svg</code><div class="samples"><div class="sample checker"><img src="svg-hybrid/steak-herb-butter.svg" alt="Stek na szachownicy"><small>Przezroczystość</small></div><div class="sample dark"><img src="svg-hybrid/steak-herb-butter.svg" alt="Stek na ciemnym tle"><small>Ciemne tło</small></div><div class="sample light"><img src="svg-hybrid/steak-herb-butter.svg" alt="Stek na jasnym tle"><small>Jasne tło</small></div></div></article>
+<article class="dish-card" data-dish="pierogi-ruskie"><header class="dish-head"><h2>Pierogi ruskie</h2><span>Ziemniaki · twaróg · cebulka</span></header><code>design/svg-hybrid/pierogi-ruskie.svg</code><div class="samples"><div class="sample checker"><img src="svg-hybrid/pierogi-ruskie.svg" alt="Pierogi ruskie na szachownicy"><small>Przezroczystość</small></div><div class="sample dark"><img src="svg-hybrid/pierogi-ruskie.svg" alt="Pierogi ruskie na ciemnym tle"><small>Ciemne tło</small></div><div class="sample light"><img src="svg-hybrid/pierogi-ruskie.svg" alt="Pierogi ruskie na jasnym tle"><small>Jasne tło</small></div></div></article>
+<article class="dish-card" data-dish="caesar-salad"><header class="dish-head"><h2>Sałatka Cezar</h2><span>Sałata rzymska · grzanki · parmezan</span></header><code>design/svg-hybrid/caesar-salad.svg</code><div class="samples"><div class="sample checker"><img src="svg-hybrid/caesar-salad.svg" alt="Sałatka Cezar na szachownicy"><small>Przezroczystość</small></div><div class="sample dark"><img src="svg-hybrid/caesar-salad.svg" alt="Sałatka Cezar na ciemnym tle"><small>Ciemne tło</small></div><div class="sample light"><img src="svg-hybrid/caesar-salad.svg" alt="Sałatka Cezar na jasnym tle"><small>Jasne tło</small></div></div></article>
+<article class="dish-card" data-dish="mushroom-soup"><header class="dish-head"><h2>Krem z grzybów</h2><span>Śmietanka · grzyby · tymianek</span></header><code>design/svg-hybrid/mushroom-soup.svg</code><div class="samples"><div class="sample checker"><img src="svg-hybrid/mushroom-soup.svg" alt="Krem z grzybów na szachownicy"><small>Przezroczystość</small></div><div class="sample dark"><img src="svg-hybrid/mushroom-soup.svg" alt="Krem z grzybów na ciemnym tle"><small>Ciemne tło</small></div><div class="sample light"><img src="svg-hybrid/mushroom-soup.svg" alt="Krem z grzybów na jasnym tle"><small>Jasne tło</small></div></div></article>
+<article class="dish-card" data-dish="bruschetta"><header class="dish-head"><h2>Bruschetta al pomodoro</h2><span>Grzanki · pomidor · bazylia</span></header><code>design/svg-hybrid/bruschetta.svg</code><div class="samples"><div class="sample checker"><img src="svg-hybrid/bruschetta.svg" alt="Bruschetta na szachownicy"><small>Przezroczystość</small></div><div class="sample dark"><img src="svg-hybrid/bruschetta.svg" alt="Bruschetta na ciemnym tle"><small>Ciemne tło</small></div><div class="sample light"><img src="svg-hybrid/bruschetta.svg" alt="Bruschetta na jasnym tle"><small>Jasne tło</small></div></div></article>
+<article class="dish-card" data-dish="tagliatelle-ragu"><header class="dish-head"><h2>Tagliatelle al ragù</h2><span>Ragù wołowe · parmezan · bazylia</span></header><code>design/svg-hybrid/tagliatelle-ragu.svg</code><div class="samples"><div class="sample checker"><img src="svg-hybrid/tagliatelle-ragu.svg" alt="Tagliatelle na szachownicy"><small>Przezroczystość</small></div><div class="sample dark"><img src="svg-hybrid/tagliatelle-ragu.svg" alt="Tagliatelle na ciemnym tle"><small>Ciemne tło</small></div><div class="sample light"><img src="svg-hybrid/tagliatelle-ragu.svg" alt="Tagliatelle na jasnym tle"><small>Jasne tło</small></div></div></article>
+</section>
+<footer id="gallery-status">Ładowanie galerii…</footer>
+</main>
+<script>
+(() => {
+  const buttons = [...document.querySelectorAll('[data-filter]')];
+  const samples = [...document.querySelectorAll('.sample')];
+  const cards = [...document.querySelectorAll('.dish-card')];
+  const status = document.getElementById('gallery-status');
+  for (const button of buttons) {
+    button.addEventListener('click', () => {
+      const filter = button.dataset.filter;
+      for (const option of buttons) option.setAttribute('aria-pressed', String(option === button));
+      for (const sample of samples) sample.classList.toggle('hidden', filter !== 'all' && !sample.classList.contains(filter));
+      for (const card of cards) card.querySelector('.samples').style.gridTemplateColumns = filter === 'all' ? '' : 'minmax(0,1fr)';
+    });
+  }
+  const imgs = [...document.querySelectorAll('.sample img')];
+  Promise.all(imgs.map((img) => img.decode().catch(() => undefined))).then(() => {
+    const missing = imgs.filter((img) => !img.naturalWidth);
+    status.textContent = missing.length ? 'Uwaga: nie udało się wczytać ' + missing.length + ' ilustracji.' : 'Gotowe: 20 ilustracji · 60 renderów lokalnych · 3 typy tła. Wybierz przycisk, żeby porównać jeden wariant tła naraz.';
+  });
+})();
+</script>
+</body>
+</html>
