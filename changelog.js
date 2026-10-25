@@ -5,6 +5,14 @@
    ========================================================================== */
 
 export const CHANGELOG = Object.freeze({
+  '2.1.28': Object.freeze({
+    intro: 'Żarłok 2.1.28 — ilustracja Carbonary została podmieniona na dostarczoną, szczegółową wersję SVG.',
+    items: [
+      'Zastąpiono produkcyjny obraz Carbonary nową ilustracją z zachowaniem jej oryginalnych proporcji 1427×1102.',
+      'Zoptymalizowano ścieżki SVG do około 1,43 MB, usunięto metadane eksportu i dodano opis dostępności.',
+      'Zmieniono wersję aplikacji i cache offline, aby odświeżyć zasób na urządzeniu.'
+    ]
+  }),
   '2.1.27': Object.freeze({
     intro: 'Żarłok 2.1.27 — przywrócono dotychczasowe zdjęcia dla dziesięciu dań, których nowe SVG nie spełniały standardu wizualnego.',
     items: [
