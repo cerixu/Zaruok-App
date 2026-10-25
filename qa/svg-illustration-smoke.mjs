@@ -102,6 +102,7 @@ assert.ok(photoMappingSource.includes("  carbonara: 'carbonara.svg',"), 'Carbona
 assert.ok(photoMappingSource.includes("  lasagna: 'lasagna.svg',"), 'Lasagne alla bolognese musi zachować dedykowane mapowanie produkcyjnego SVG');
 assert.ok(photoMappingSource.includes("  'pizza-margherita': 'pizza-margherita.svg',"), 'Pizza Margherita musi zachować dedykowane mapowanie produkcyjnego SVG');
 assert.ok(photoMappingSource.includes("  'panna-cotta': 'panna-cotta.svg',"), 'Panna cotta musi zachować dedykowane mapowanie produkcyjnego SVG');
+assert.ok(photoMappingSource.includes("  'ravioli-ricotta-spinaci': 'ravioli-ricotta-spinaci.svg',"), 'Ravioli ricotta e spinaci musi zachować dedykowane mapowanie produkcyjnego SVG');
 let productionTotalBytes = 0;
 for (const file of productionAssets) {
   const path = productionRoot + '/' + file;
@@ -114,6 +115,7 @@ for (const file of productionAssets) {
   if (file === 'lasagna.svg') assert.ok(size < 5_000, 'Lasagne powinna pozostać lekkim SVG poniżej 5 KB (ma ' + size + ' B)');
   if (file === 'pizza-margherita.svg') assert.ok(size < 5_000, 'Pizza Margherita powinna pozostać lekkim SVG poniżej 5 KB (ma ' + size + ' B)');
   if (file === 'panna-cotta.svg') assert.ok(size < 5_000, 'Panna cotta powinna pozostać lekkim SVG poniżej 5 KB (ma ' + size + ' B)');
+  if (file === 'ravioli-ricotta-spinaci.svg') assert.ok(size < 5_000, 'Ravioli ricotta e spinaci powinny pozostać lekkim SVG poniżej 5 KB (ma ' + size + ' B)');
   assert.match(source, /^<svg\b/, file + ': brak korzenia SVG');
   const viewBox = source.match(/viewBox="0 0 ([1-9]\d*) ([1-9]\d*)"/);
   assert.ok(viewBox && viewBox[1] === viewBox[2], file + ': viewBox musi być kwadratowy');
@@ -133,7 +135,7 @@ for (const file of productionAssets) {
     assert.ok(ids.includes(reference), file + ': odwołanie do nieistniejącego id #' + reference);
   }
   const pathCount = (source.match(/<path\b/g) || []).length;
-  const minimumPaths = file === 'panna-cotta.svg' ? 5 : file === 'pizza-margherita.svg' ? 4 : file === 'lasagna.svg' ? 10 : file === 'carbonara.svg' ? 10 : file === 'bruschetta.svg' ? 20 : file === 'tagliatelle-ragu.svg' ? 18 : 101;
+  const minimumPaths = file === 'panna-cotta.svg' ? 5 : file === 'pizza-margherita.svg' ? 4 : file === 'lasagna.svg' ? 10 : file === 'carbonara.svg' ? 10 : file === 'bruschetta.svg' ? 20 : file === 'tagliatelle-ragu.svg' ? 18 : file === 'ravioli-ricotta-spinaci.svg' ? 4 : 101;
   assert.ok(pathCount >= minimumPaths, file + ': nieoczekiwanie mało ścieżek ilustracji (' + pathCount + ')');
   assert.ok(serviceWorkerSource.includes("'" + productionRoot + "/" + file + "'"), file + ': brak w cache offline Service Workera');
   console.log('PASS production SVG ' + file + ': ' + size + ' B, dostępność, referencje i cache offline');
