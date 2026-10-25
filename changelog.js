@@ -5,6 +5,14 @@
    ========================================================================== */
 
 export const CHANGELOG = Object.freeze({
+  '2.1.22': Object.freeze({
+    intro: 'Żarłok 2.1.22 — panna cotta przeniesiona na lekkie, przezroczyste SVG.',
+    items: [
+      'Zastąpiono ciężką ilustrację panna cotty lokalnym SVG hybrydowym z przezroczystym tłem.',
+      'Zachowano dedykowane mapowanie klasycznej receptury i dodano testy rozmiaru oraz przezroczystości.',
+      'Odświeżono wersję aplikacji i cache Service Workera, aby nowa ilustracja działała również offline.'
+    ]
+  }),
   '2.1.21': Object.freeze({
     intro: 'Żarłok 2.1.21 — pizza Margherita przeniesiona na lekkie, przezroczyste SVG.',
     items: [
