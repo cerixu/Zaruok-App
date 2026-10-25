@@ -1,0 +1,47 @@
+name: Import premium food SVGs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/import-food-svgs.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  import-food-svgs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Download and validate Adobe SVGs
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p assets/food-svg
+          curl --fail --location --retry 3 'https://to.adobe.com/bFKesqHcA3nu6kTz' -o assets/food-svg/carbonara.svg
+          curl --fail --location --retry 3 'https://to.adobe.com/cY4kI0MixCNYTPza' -o assets/food-svg/pizza-margherita.svg
+          curl --fail --location --retry 3 'https://to.adobe.com/w9nAmvpcG0Ljz1an' -o assets/food-svg/lasagna.svg
+          curl --fail --location --retry 3 'https://to.adobe.com/93YcXVcfKJ9rxvAa' -o assets/food-svg/risotto-funghi.svg
+          curl --fail --location --retry 3 'https://to.adobe.com/Nh1LZuuyc80XaKIN' -o assets/food-svg/gnocchi-pomodoro.svg
+          curl --fail --location --retry 3 'https://to.adobe.com/fHJcDmbmQEINorhm' -o assets/food-svg/tagliatelle-ragu.svg
+          curl --fail --location --retry 3 'https://to.adobe.com/23zcNZAY2em2U5u4' -o assets/food-svg/tiramisu.svg
+          curl --fail --location --retry 3 'https://to.adobe.com/uH85QwzTp1xsN75u' -o assets/food-svg/panna-cotta.svg
+          curl --fail --location --retry 3 'https://to.adobe.com/rLX8uGdkcLEu6pqj' -o assets/food-svg/bruschetta.svg
+          curl --fail --location --retry 3 'https://to.adobe.com/iljBrKHTwObpCi1T' -o assets/food-svg/ravioli-ricotta-spinaci.svg
+          for f in assets/food-svg/*.svg; do
+            test -s "$f"
+            grep -q '<svg' "$f"
+            test "$(grep -o '<path' "$f" | wc -l)" -gt 20
+          done
+      - name: Commit illustrations
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/food-svg
+          git commit -m "Add 10 premium Adobe food SVG illustrations" || exit 0
+          git push origin HEAD:main
