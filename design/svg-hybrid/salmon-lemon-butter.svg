@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="title desc">
+<title id="title">Łosoś z cytryną i masłem</title><desc id="desc">Pieczony filet z łososia z cytryną, masłem i świeżym koperkiem na jasnym talerzu.</desc>
+<defs><linearGradient id="plate" x2="1" y2="1"><stop stop-color="#fffdf6"/><stop offset="1" stop-color="#c6d1cc"/></linearGradient><linearGradient id="fish" x2="0" y2="1"><stop stop-color="#ffb17f"/><stop offset=".55" stop-color="#f18a5d"/><stop offset="1" stop-color="#c85b42"/></linearGradient><linearGradient id="lemon" x2="1" y2="1"><stop stop-color="#fff4a5"/><stop offset="1" stop-color="#e8b83f"/></linearGradient></defs>
+<ellipse cx="120" cy="159" rx="96" ry="37" fill="#18201d" opacity=".1"/><ellipse cx="120" cy="151" rx="99" ry="43" fill="url(#plate)" stroke="#f8f0df" stroke-width="3"/><ellipse cx="120" cy="151" rx="84" ry="31" fill="none" stroke="#c7d0ca" stroke-width="1.4"/>
+<path d="M48 132Q57 102 91 92L157 78Q177 77 190 95L197 123Q192 143 166 150L90 165Q64 165 48 146Z" fill="url(#fish)" stroke="#b6533c" stroke-width="2"/>
+<path d="M60 126Q88 110 112 104M63 138Q91 121 119 116M72 150Q99 133 126 128M106 96Q132 111 145 143M131 88Q153 106 164 137M156 84Q176 104 181 128" fill="none" stroke="#ffd0a5" stroke-width="3" stroke-linecap="round" opacity=".9"/>
+<path d="M145 95q11-7 21 1t5 16q-12 6-21-2t-5-15Z" fill="#f7d67b" stroke="#c68b38" stroke-width="1.5"/><path d="M152 99q8 3 13 9" fill="none" stroke="#fff1bd" stroke-width="2"/>
+<g transform="translate(174 146) rotate(-18)"><circle r="21" fill="url(#lemon)" stroke="#d7a52c" stroke-width="2"/><circle r="15" fill="#fff5c6"/><path d="M0 0V-14M0 0 13-6M0 0 9 11M0 0-9 11M0 0-13-6M0 0V14" stroke="#e8c65a" stroke-width="2"/></g>
+<path d="M51 171q13-11 20-2t-3 8q-8-8-17-6Z" fill="#4d8c4d"/><path d="M54 169l14 4M60 165l-1 10" stroke="#b2d58c" stroke-width="1.5"/><g fill="#3e8b4a"><ellipse cx="112" cy="83" rx="3" ry="10" transform="rotate(-28 112 83)"/><ellipse cx="120" cy="80" rx="3" ry="9" transform="rotate(20 120 80)"/><ellipse cx="126" cy="85" rx="3" ry="8" transform="rotate(42 126 85)"/></g>
+</svg>

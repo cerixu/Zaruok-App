@@ -15,6 +15,12 @@ const fixtures = [
   { file: 'ravioli.svg', id: 'ravioli', tokens: [/ravioli/i, /ricotta/i, /szpinak/i] },
   { file: 'risotto-funghi.svg', id: 'risotto-funghi', tokens: [/risotto/i, /grzyb/i, /parmezan/i] },
   { file: 'gnocchi.svg', id: 'gnocchi', tokens: [/gnocchi/i, /pomidor/i, /bazyli/i] },
+  { file: 'sushi-maki.svg', id: 'sushi-maki', tokens: [/sushi maki/i, /łosos/i, /ogórk/i, /nori/i] },
+  { file: 'salmon-lemon-butter.svg', id: 'salmon-lemon-butter', tokens: [/łosoś/i, /cytryn/i, /masł/i, /koperk/i] },
+  { file: 'steak-herb-butter.svg', id: 'steak-herb-butter', tokens: [/stek/i, /wołow/i, /masł/i, /rozmaryn/i] },
+  { file: 'pierogi-ruskie.svg', id: 'pierogi-ruskie', tokens: [/pierogi ruskie/i, /ziemniaczan/i, /twarogow/i, /cebul/i] },
+  { file: 'caesar-salad.svg', id: 'caesar-salad', tokens: [/sałatka cezar/i, /sałatą rzymską/i, /grzank/i, /parmezan/i] },
+  { file: 'mushroom-soup.svg', id: 'mushroom-soup', tokens: [/krem z grzybów/i, /śmietank/i, /grzyb/i, /tymian/i] },
 ];
 
 for (const fixture of fixtures) {
