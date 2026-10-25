@@ -5,6 +5,14 @@
    ========================================================================== */
 
 export const CHANGELOG = Object.freeze({
+  '2.1.19': Object.freeze({
+    intro: 'Żarłok 2.1.19 — carbonara przeniesiona na lekkie, przezroczyste SVG.',
+    items: [
+      'Zastąpiono ciężką ilustrację carbonary lekkim, lokalnym SVG z przezroczystym tłem.',
+      'Zachowano ścisłe dopasowanie ilustracji do klasycznej carbonary oraz dodano testy rozmiaru, przezroczystości i cache offline.',
+      'Odświeżono wersję aplikacji i Service Workera, aby urządzenia pobrały nową ilustrację.'
+    ]
+  }),
   '2.1.18': Object.freeze({
     intro: 'Żarłok 2.1.18 — druga produkcyjna ilustracja SVG przeniesiona na przezroczysty wzorzec hybrydowy.',
     items: [
