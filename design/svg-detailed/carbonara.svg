@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
 <title id="title">Spaghetti carbonara</title><desc id="desc">Szczegółowa wektorowa ilustracja spaghetti carbonara z guanciale, pecorino i pieprzem w ceramicznej misce. Bez bazylii. Przezroczyste tło.</desc>
 <defs>
-<linearGradient id="ceramic" x1="0" y1="0" x2=".2" y2="1"><stop stop-color="#c8e1e2"/><stop offset=".48" stop-color="#8fb9c0"/><stop offset="1" stop-color="#668e99"/></linearGradient>
-<linearGradient id="terracotta" x1="0" y1="0" x2=".15" y2="1"><stop stop-color="#e8a58b"/><stop offset=".4" stop-color="#c47c65"/><stop offset="1" stop-color="#895343"/></linearGradient>
+<linearGradient id="ceramic" x1="0" y1="0" x2=".2" y2="1"><stop stop-color="#363a3d"/><stop offset=".25" stop-color="#24282b"/><stop offset=".72" stop-color="#111315"/><stop offset="1" stop-color="#292c2f"/></linearGradient>
+<linearGradient id="terracotta" x1="0" y1="0" x2=".15" y2="1"><stop stop-color="#666a6c"/><stop offset=".16" stop-color="#3c4043"/><stop offset=".48" stop-color="#24272a"/><stop offset=".82" stop-color="#0d0f11"/><stop offset="1" stop-color="#303437"/></linearGradient>
 <linearGradient id="noodle" x1="0" y1="0" x2=".1" y2="1"><stop stop-color="#fff7b8"/><stop offset=".24" stop-color="#ffe16b"/><stop offset=".6" stop-color="#f9b92b"/><stop offset=".83" stop-color="#e88d13"/><stop offset="1" stop-color="#ffdb5b"/></linearGradient>
 <linearGradient id="glow" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fffbd7"/><stop offset=".5" stop-color="#ffe879"/><stop offset="1" stop-color="#f6b62b"/></linearGradient>
 <linearGradient id="guanciale" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffd1a4"/><stop offset=".24" stop-color="#e7775e"/><stop offset=".56" stop-color="#b94235"/><stop offset=".82" stop-color="#8e3029"/><stop offset="1" stop-color="#f5a17d"/></linearGradient>
@@ -11,12 +11,12 @@
 </defs>
 <ellipse cx="256" cy="413" rx="165" ry="16" fill="#39231c" opacity=".2" filter="url(#shade)"/>
 <path d="M39 197 C54 313 126 390 256 393 C386 390 458 313 473 197 L448 226 C422 310 357 351 256 355 C155 351 90 310 64 226Z" fill="url(#terracotta)" stroke="#935b49" stroke-width="2"/>
-<path d="M56 213 C78 294 149 347 256 351 C363 347 434 294 456 213" fill="none" stroke="#f0b59b" stroke-width="4" opacity=".8"/>
-<ellipse cx="256" cy="202" rx="218" ry="108" fill="url(#terracotta)" stroke="#a66b57" stroke-width="2"/>
-<ellipse cx="256" cy="201" rx="204" ry="96" fill="#e4a28a"/>
-<ellipse cx="256" cy="201" rx="196" ry="90" fill="url(#ceramic)" stroke="#bb735d" stroke-width="3"/>
-<path d="M81 164 C112 119 171 102 225 109" fill="none" stroke="#f8e4d9" stroke-width="7" stroke-linecap="round" opacity=".9"/>
-<path d="M102 148 C132 122 160 114 184 114" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" opacity=".75"/>
+<path d="M56 213 C78 294 149 347 256 351 C363 347 434 294 456 213" fill="none" stroke="#85898b" stroke-width="4" opacity=".8"/>
+<ellipse cx="256" cy="202" rx="218" ry="108" fill="url(#terracotta)" stroke="#4a4e51" stroke-width="2"/>
+<ellipse cx="256" cy="201" rx="204" ry="96" fill="#34383b"/>
+<ellipse cx="256" cy="201" rx="196" ry="90" fill="url(#ceramic)" stroke="#74787b" stroke-width="3"/>
+<path d="M81 164 C112 119 171 102 225 109" fill="none" stroke="#b7bcbd" stroke-width="7" stroke-linecap="round" opacity=".9"/>
+<path d="M102 148 C132 122 160 114 184 114" fill="none" stroke="#f1f2ee" stroke-width="2.5" stroke-linecap="round" opacity=".66"/>
 <ellipse cx="256" cy="205" rx="184" ry="80" fill="#edaa2c"/>
 <g clip-path="url(#food)" fill="none" stroke-linecap="round" stroke-linejoin="round">
 <!-- shadow edges keep every strand distinct -->
