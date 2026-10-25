@@ -51,6 +51,8 @@ const fixtures = [
   { file: 'pierogi-ruskie.svg', id: 'pierogi-ruskie', tokens: [/pierogi ruskie/i, /ziemniaczan/i, /twarogow/i, /cebul/i] },
   { file: 'caesar-salad.svg', id: 'caesar-salad', tokens: [/sałatka cezar/i, /sałatą rzymską/i, /grzank/i, /parmezan/i] },
   { file: 'mushroom-soup.svg', id: 'mushroom-soup', tokens: [/krem z grzybów/i, /śmietank/i, /grzyb/i, /tymian/i] },
+  { file: 'bruschetta.svg', id: 'bruschetta', tokens: [/bruschetta/i, /pomidor/i, /bazyli/i, /grzank/i] },
+  { file: 'tagliatelle-ragu.svg', id: 'tagliatelle-ragu', tokens: [/tagliatelle/i, /ragù/i, /parmezan/i, /bazyli/i] },
 ];
 
 for (const fixture of fixtures) {
