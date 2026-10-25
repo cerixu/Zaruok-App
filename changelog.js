@@ -5,6 +5,14 @@
    ========================================================================== */
 
 export const CHANGELOG = Object.freeze({
+  '2.1.20': Object.freeze({
+    intro: 'Żarłok 2.1.20 — lasagne przeniesiona na lekkie, przezroczyste SVG.',
+    items: [
+      'Zastąpiono ciężką produkcyjną ilustrację lasagne lokalnym SVG z przezroczystym tłem.',
+      'Zachowano dedykowane dopasowanie receptury oraz dodano testy rozmiaru, przezroczystości i cache offline.',
+      'Odświeżono wersję aplikacji i Service Workera, aby urządzenia pobrały nową ilustrację.'
+    ]
+  }),
   '2.1.19': Object.freeze({
     intro: 'Żarłok 2.1.19 — carbonara przeniesiona na lekkie, przezroczyste SVG.',
     items: [

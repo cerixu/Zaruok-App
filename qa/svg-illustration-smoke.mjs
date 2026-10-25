@@ -99,6 +99,7 @@ const serviceWorkerSource = fs.readFileSync('sw.js', 'utf8');
 const photoMappingSource = fs.readFileSync('food-photos.js', 'utf8');
 assert.ok(photoMappingSource.includes("  'tagliatelle-ragu': 'tagliatelle-ragu.svg',"), 'Tagliatelle al ragù musi zachować dedykowane mapowanie produkcyjnego SVG');
 assert.ok(photoMappingSource.includes("  carbonara: 'carbonara.svg',"), 'Carbonara musi zachować dedykowane mapowanie produkcyjnego SVG');
+assert.ok(photoMappingSource.includes("  lasagna: 'lasagna.svg',"), 'Lasagne alla bolognese musi zachować dedykowane mapowanie produkcyjnego SVG');
 let productionTotalBytes = 0;
 for (const file of productionAssets) {
   const path = productionRoot + '/' + file;
@@ -108,6 +109,7 @@ for (const file of productionAssets) {
   productionTotalBytes += size;
   assert.ok(size < 1_500_000, file + ': SVG powinien mieć mniej niż 1,5 MB (ma ' + size + ' B)');
   if (file === 'carbonara.svg') assert.ok(size < 5_000, 'Carbonara powinna pozostać lekkim SVG poniżej 5 KB (ma ' + size + ' B)');
+  if (file === 'lasagna.svg') assert.ok(size < 5_000, 'Lasagne powinna pozostać lekkim SVG poniżej 5 KB (ma ' + size + ' B)');
   assert.match(source, /^<svg\b/, file + ': brak korzenia SVG');
   const viewBox = source.match(/viewBox="0 0 ([1-9]\d*) ([1-9]\d*)"/);
   assert.ok(viewBox && viewBox[1] === viewBox[2], file + ': viewBox musi być kwadratowy');
@@ -127,7 +129,7 @@ for (const file of productionAssets) {
     assert.ok(ids.includes(reference), file + ': odwołanie do nieistniejącego id #' + reference);
   }
   const pathCount = (source.match(/<path\b/g) || []).length;
-  const minimumPaths = file === 'carbonara.svg' ? 10 : file === 'bruschetta.svg' ? 20 : file === 'tagliatelle-ragu.svg' ? 18 : 101;
+  const minimumPaths = file === 'lasagna.svg' ? 10 : file === 'carbonara.svg' ? 10 : file === 'bruschetta.svg' ? 20 : file === 'tagliatelle-ragu.svg' ? 18 : 101;
   assert.ok(pathCount >= minimumPaths, file + ': nieoczekiwanie mało ścieżek ilustracji (' + pathCount + ')');
   assert.ok(serviceWorkerSource.includes("'" + productionRoot + "/" + file + "'"), file + ': brak w cache offline Service Workera');
   console.log('PASS production SVG ' + file + ': ' + size + ' B, dostępność, referencje i cache offline');
