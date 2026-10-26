@@ -1,1 +1,67 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 240 240" role="img" aria-labelledby="t-burger d-burger"><title id="t-burger">Burger klasyczny — ilustracja SVG Żarłok</title><desc id="d-burger">Burger z sezamową bułką, serem, sałatą i pomidorem. Hybryda premium i flat na ciemnym grafitowym tle.</desc><defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#25272a"/><stop offset="1" stop-color="#111316"/></linearGradient><radialGradient id="glow"><stop stop-color="#b8753c" stop-opacity=".18"/><stop offset="1" stop-color="#b8753c" stop-opacity="0"/></radialGradient><linearGradient id="bun" x1="0" y1="0" x2="0.2" y2="1"><stop stop-color="#efc77e"/><stop offset="1" stop-color="#b96d32"/></linearGradient><linearGradient id="dough" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f3d79c"/><stop offset="1" stop-color="#c38b4b"/></linearGradient><linearGradient id="glass" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#b9d8d1" stop-opacity=".5"/><stop offset=".5" stop-color="#edf4dc" stop-opacity=".18"/><stop offset="1" stop-color="#7caaa0" stop-opacity=".45"/></linearGradient></defs><rect width="240" height="240" rx="28" fill="url(#bg)"/><circle cx="120" cy="111" r="104" fill="url(#glow)"/><circle cx="120" cy="118" r="84" fill="none" stroke="#f0b65a" stroke-opacity=".14"/><ellipse cx="120" cy="169" rx="71" ry="10" fill="#000" opacity=".28"/><ellipse cx="120" cy="159" rx="70" ry="14" fill="#080a0c" opacity=".45"/><path d="M51 111 Q48 70 120 66 Q192 70 189 111Z" fill="url(#bun)"/><g fill="#f7e4bb"><ellipse cx="90" cy="83" rx="3" ry="1.8"/><ellipse cx="117" cy="76" rx="3" ry="1.8"/><ellipse cx="143" cy="82" rx="3" ry="1.8"/><ellipse cx="162" cy="94" rx="3" ry="1.8"/></g><path d="M52 111 Q78 101 96 111 T142 110 T188 110 L185 121 Q158 130 137 120 T92 122 T55 121Z" fill="#65a45a"/><path d="M57 120 L184 120 L172 136 L68 136Z" fill="#e6b83f"/><path d="M58 132 Q120 119 182 132 L176 145 Q120 159 64 145Z" fill="#56352c"/><path d="M54 145 Q120 157 186 145 L180 157 Q120 173 60 157Z" fill="#c77d38"/><path d="M20 202 H220" stroke="#d7a35b" stroke-opacity=".18"/><circle cx="27" cy="27" r="2" fill="#d7a35b" opacity=".45"/><circle cx="213" cy="27" r="2" fill="#d7a35b" opacity=".45"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 240 240" role="img" aria-labelledby="title-burger desc-burger">
+  <title id="title-burger">Burger klasyczny — ilustracja SVG Żarłok</title>
+  <desc id="desc-burger">Soczysty burger z sezamową bułką, sałatą, pomidorem, serem cheddar i grillowanym kotletem wołowym. Przezroczyste tło, styl premium i flat.</desc>
+  <defs>
+    <linearGradient id="bun-top" x1="0" y1="0" x2=".25" y2="1">
+      <stop stop-color="#f7d58b"/>
+      <stop offset=".56" stop-color="#e9ad55"/>
+      <stop offset="1" stop-color="#b96a31"/>
+    </linearGradient>
+    <linearGradient id="bun-bottom" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#e7ad59"/>
+      <stop offset="1" stop-color="#a95c2c"/>
+    </linearGradient>
+    <linearGradient id="beef" x1="0" y1="0" x2=".7" y2="1">
+      <stop stop-color="#754638"/>
+      <stop offset=".5" stop-color="#4b2b24"/>
+      <stop offset="1" stop-color="#2d1c19"/>
+    </linearGradient>
+    <linearGradient id="cheddar" x1="0" y1="0" x2=".7" y2="1">
+      <stop stop-color="#ffd85f"/>
+      <stop offset="1" stop-color="#e18b20"/>
+    </linearGradient>
+    <linearGradient id="tomato" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#ef6b4c"/>
+      <stop offset="1" stop-color="#b82f2a"/>
+    </linearGradient>
+  </defs>
+
+  <ellipse cx="120" cy="174" rx="66" ry="8" fill="#000" opacity=".2"/>
+
+  <!-- Dolna bułka -->
+  <path d="M54 145 Q120 155 186 145 L180 163 Q120 177 60 163Z" fill="url(#bun-bottom)"/>
+  <path d="M62 157 Q120 167 178 157" fill="none" stroke="#f3c879" stroke-width="2" stroke-linecap="round" opacity=".65"/>
+
+  <!-- Grillowany kotlet -->
+  <path d="M49 126 Q120 116 191 126 L185 146 Q120 158 55 146Z" fill="url(#beef)" stroke="#3c241e" stroke-width="1.6"/>
+  <path d="M62 132 Q88 127 111 133 T177 132" fill="none" stroke="#a86b4c" stroke-width="2" stroke-linecap="round" opacity=".8"/>
+  <g stroke="#2b1b18" stroke-width="2.3" stroke-linecap="round" opacity=".85">
+    <path d="M78 128 L88 141"/><path d="M111 126 L121 143"/><path d="M146 127 L156 142"/><path d="M169 129 L176 138"/>
+  </g>
+
+  <!-- Ser cheddar -->
+  <path d="M53 117 Q82 110 111 118 T188 116 L180 138 L164 134 L151 144 L132 133 L112 141 L93 130 L69 136Z" fill="url(#cheddar)" stroke="#c9791e" stroke-width="1.2" stroke-linejoin="round"/>
+  <path d="M63 120 Q91 116 111 121 T174 120" fill="none" stroke="#fff0a1" stroke-width="2" stroke-linecap="round" opacity=".8"/>
+
+  <!-- Pomidor i chrupiąca sałata -->
+  <path d="M55 108 Q76 99 98 107 T143 106 T186 108 L182 120 Q158 127 139 119 T96 120 T58 119Z" fill="#4d8c49"/>
+  <path d="M61 110 Q78 103 96 111 T132 110 T177 111" fill="none" stroke="#9ec66b" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M60 102 Q120 91 180 102 L177 114 Q120 124 63 114Z" fill="url(#tomato)" stroke="#a92d29" stroke-width="1.2"/>
+  <path d="M72 104 Q120 96 167 104" fill="none" stroke="#ff9a72" stroke-width="2" stroke-linecap="round" opacity=".8"/>
+  <g fill="#ffd5a2" opacity=".9"><ellipse cx="91" cy="107" rx="2" ry="1"/><ellipse cx="119" cy="104" rx="2" ry="1"/><ellipse cx="148" cy="107" rx="2" ry="1"/></g>
+
+  <!-- Górna bułka -->
+  <path d="M48 103 Q42 61 81 48 Q120 34 159 48 Q198 61 192 103 Q120 116 48 103Z" fill="url(#bun-top)" stroke="#b96a31" stroke-width="1.5"/>
+  <path d="M54 91 Q62 67 87 59" fill="none" stroke="#ffe4a3" stroke-width="3" stroke-linecap="round" opacity=".75"/>
+  <path d="M61 99 Q120 108 179 99" fill="none" stroke="#a95c2c" stroke-width="2" stroke-linecap="round" opacity=".65"/>
+  <g fill="#fff0c9" stroke="#d8a14d" stroke-width=".65">
+    <ellipse cx="82" cy="67" rx="3.5" ry="1.7" transform="rotate(-28 82 67)"/>
+    <ellipse cx="105" cy="55" rx="3.4" ry="1.6" transform="rotate(-12 105 55)"/>
+    <ellipse cx="131" cy="55" rx="3.5" ry="1.7" transform="rotate(15 131 55)"/>
+    <ellipse cx="154" cy="65" rx="3.5" ry="1.7" transform="rotate(28 154 65)"/>
+    <ellipse cx="171" cy="81" rx="3.3" ry="1.6" transform="rotate(40 171 81)"/>
+    <ellipse cx="69" cy="82" rx="3.2" ry="1.6" transform="rotate(-42 69 82)"/>
+    <ellipse cx="119" cy="76" rx="3.5" ry="1.7" transform="rotate(8 119 76)"/>
+    <ellipse cx="143" cy="88" rx="3.2" ry="1.6" transform="rotate(-18 143 88)"/>
+  </g>
+</svg>
