@@ -135,7 +135,7 @@ try {
     if (!compareResponse?.ok()) throw new Error('Podgląd porównawczy SVG nie ładuje się na ' + device.name + ': HTTP ' + compareResponse?.status());
     await page.waitForFunction(() => {
       const imgs = [...document.querySelectorAll('img[data-asset-id]')];
-      return imgs.length === 90 && imgs.every((img) => img.complete && img.naturalWidth > 0 && img.naturalHeight > 0);
+      return imgs.length === 93 && imgs.every((img) => img.complete && img.naturalWidth > 0 && img.naturalHeight > 0);
     }, null, { timeout: 30000 });
     const compareResult = await page.evaluate(() => {
       const imgs = [...document.querySelectorAll('img[data-asset-id]')];
