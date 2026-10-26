@@ -204,7 +204,7 @@ body{color:var(--z-copy)}
   border-radius: 0 !important;
   object-fit: contain !important;
   object-position: center;
-  mix-blend-mode: multiply;
-  filter: brightness(1.42) saturate(1.12) contrast(1.035) !important;
+  mix-blend-mode: normal;
+  filter: saturate(1.08) contrast(1.025) !important;
   transform: none !important;
 }
