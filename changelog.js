@@ -5,6 +5,15 @@
    ========================================================================== */
 
 export const CHANGELOG = Object.freeze({
+  '2.1.34': Object.freeze({
+    intro: 'Żarłok 2.1.34 — lekkie, przezroczyste SVG dla gnocchi al pomodoro.',
+    items: [
+      'Zastąpiono ciężką ilustrację gnocchi o rozmiarze około 125 KB samodzielnym SVG około 6,3 KB.',
+      'Usunięto nieprzezroczyste tło ilustracji, zachowując istniejące mapowanie receptury i precache offline.',
+      'Rozszerzono audyt SVG o limit rozmiaru i kontrolę pełnoekranowego tła dla gnocchi al pomodoro.'
+    ]
+  }),
+
   '2.1.33': Object.freeze({
     intro: 'Żarłok 2.1.33 — lekkie ilustracje SVG z przezroczystym tłem.',
     items: [
