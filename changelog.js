@@ -6,11 +6,12 @@
 
 export const CHANGELOG = Object.freeze({
   '2.1.34': Object.freeze({
-    intro: 'Żarłok 2.1.34 — lekkie, przezroczyste SVG dla gnocchi al pomodoro.',
+    intro: 'Żarłok 2.1.34 — lekkie, przezroczyste SVG dla gnocchi al pomodoro i pizzy Margherita.',
     items: [
       'Zastąpiono ciężką ilustrację gnocchi o rozmiarze około 125 KB samodzielnym SVG około 6,3 KB.',
-      'Usunięto nieprzezroczyste tło ilustracji, zachowując istniejące mapowanie receptury i precache offline.',
-      'Rozszerzono audyt SVG o limit rozmiaru i kontrolę pełnoekranowego tła dla gnocchi al pomodoro.'
+      'Odświeżono ilustrację pizzy Margherita: rumiany rant, sos pomidorowy, mozzarella i bazylia na przezroczystym tle (4,8 KB).',
+      'Zachowano istniejące mapowanie receptur i precache offline dla obu ilustracji.',
+      'Audyt sprawdza rozmiar, dostępność, referencje i brak pełnoekranowego tła.'
     ]
   }),
 
