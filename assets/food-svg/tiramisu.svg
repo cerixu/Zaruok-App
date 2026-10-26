@@ -1,21 +1,35 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 240 240" role="img" aria-labelledby="title-tiramisu desc">
-<title id="title-tiramisu">Tiramisù — ilustracja SVG Żarłok</title><desc id="desc">Warstwowe tiramisù z kremem mascarpone i kakao. Styl premium: płaskie kształty z delikatnym światłocieniem, na grafitowym tle.</desc><defs>
-<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#25272a"/><stop offset="1" stop-color="#111316"/></linearGradient>
-<radialGradient id="glow"><stop stop-color="#b8753c" stop-opacity=".18"/><stop offset="1" stop-color="#b8753c" stop-opacity="0"/></radialGradient>
-<linearGradient id="plate" x1="0" y1="0" x2="0.9" y2="1"><stop stop-color="#f2eee4"/><stop offset=".55" stop-color="#d5cec1"/><stop offset="1" stop-color="#aaa293"/></linearGradient>
-<linearGradient id="bread" x1="0" y1="0" x2="0.3" y2="1"><stop stop-color="#e8bd78"/><stop offset="1" stop-color="#bd773c"/></linearGradient>
-<linearGradient id="bun" x1="0" y1="0" x2="0.2" y2="1"><stop stop-color="#efc77e"/><stop offset="1" stop-color="#b96d32"/></linearGradient>
-<linearGradient id="crust" x1="0" y1="0" x2="0.7" y2="1"><stop stop-color="#f4cf84"/><stop offset="1" stop-color="#bd7739"/></linearGradient>
-<linearGradient id="pasta" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f1d49a"/><stop offset="1" stop-color="#c18a4a"/></linearGradient>
-<linearGradient id="glass" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#b9d8d1" stop-opacity=".5"/><stop offset=".5" stop-color="#edf4dc" stop-opacity=".18"/><stop offset="1" stop-color="#7caaa0" stop-opacity=".45"/></linearGradient>
-<linearGradient id="salmon" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffb17e"/><stop offset="1" stop-color="#d65c49"/></linearGradient>
-<linearGradient id="steak" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9a5540"/><stop offset="1" stop-color="#4d2a24"/></linearGradient>
-<linearGradient id="dough" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f3d79c"/><stop offset="1" stop-color="#c38b4b"/></linearGradient>
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 240 240" role="img" aria-labelledby="title-tiramisu desc-tiramisu">
+<title id="title-tiramisu">Tiramisù classico — ilustracja SVG Żarłok</title>
+<desc id="desc-tiramisu">Porcja tiramisù z warstwami biszkoptu nasączonego kawą, kremem mascarpone i delikatnym oprószeniem kakao. Ilustracja premium-flat na przezroczystym tle.</desc>
+<defs>
+  <linearGradient id="plate" x1="0" y1="0" x2="0.8" y2="1"><stop stop-color="#f1e8d8"/><stop offset=".58" stop-color="#cfc1ac"/><stop offset="1" stop-color="#a89984"/></linearGradient>
+  <linearGradient id="rim" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff6e5"/><stop offset="1" stop-color="#b9a78e"/></linearGradient>
+  <linearGradient id="sponge" x1="0" y1="0" x2="0.2" y2="1"><stop stop-color="#a96b45"/><stop offset="1" stop-color="#603a2b"/></linearGradient>
+  <linearGradient id="coffee" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#75432f"/><stop offset="1" stop-color="#42271f"/></linearGradient>
+  <linearGradient id="mascarpone" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff0d2"/><stop offset="1" stop-color="#dfc9a7"/></linearGradient>
+  <linearGradient id="cocoa" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#6d432e"/><stop offset="1" stop-color="#38251d"/></linearGradient>
 </defs>
-<rect width="240" height="240" rx="28" fill="url(#bg)"/><circle cx="120" cy="111" r="104" fill="url(#glow)"/>
-<circle cx="120" cy="118" r="84" fill="none" stroke="#f0b65a" stroke-opacity=".14" stroke-width="1"/>
-<ellipse cx="120" cy="169" rx="71" ry="10" fill="#000" opacity=".28"/>
-<g><path d="M57 74 L178 74 L165 158 Q119 177 70 158Z" fill="#b8c2c6" opacity=".18"/><path d="M59 72 L179 72 L167 151 Q120 171 71 151Z" fill="#49352d"/><path d="M62 80 L176 80 L173 99 L65 99Z" fill="#e9d4ae"/><path d="M65 100 L173 100 L170 119 L68 119Z" fill="#6d4434"/><path d="M68 120 L170 120 L167 138 L71 138Z" fill="#f0dfbd"/><path d="M71 139 L167 139 L165 151 Q120 168 73 151Z" fill="#6d4434"/><path d="M59 72 Q120 62 179 72 L176 84 Q120 96 62 84Z" fill="#e9d8b7"/><path d="M68 72 L86 70 L81 82 L63 82Z M104 70 L123 70 L118 84 L99 84Z M144 70 L163 72 L158 85 L140 84Z" fill="#7b513b"/><circle cx="93" cy="69" r="2" fill="#ad8060"/><circle cx="135" cy="68" r="2" fill="#ad8060"/></g>
-<path d="M20 202 H220" stroke="#d7a35b" stroke-opacity=".18" stroke-width="1"/>
-<circle cx="27" cy="27" r="2" fill="#d7a35b" opacity=".45"/><circle cx="213" cy="27" r="2" fill="#d7a35b" opacity=".45"/>
+<ellipse cx="120" cy="166" rx="78" ry="15" fill="#000" opacity=".19"/>
+<path d="M42 148 Q120 176 198 148 L189 166 Q120 190 51 166Z" fill="url(#plate)"/>
+<ellipse cx="120" cy="148" rx="78" ry="17" fill="url(#rim)"/>
+<ellipse cx="120" cy="148" rx="67" ry="11.5" fill="#b8a68e" opacity=".55"/>
+<ellipse cx="120" cy="146" rx="61" ry="8.5" fill="#e5d7c2"/>
+<path d="M76 91 L178 91 L176 145 Q124 162 68 145Z" fill="url(#coffee)"/>
+<path d="M76 91 L178 91 L177 104 L74 104Z" fill="url(#sponge)"/>
+<path d="M74 104 L177 104 L177 116 L72 116Z" fill="url(#mascarpone)"/>
+<path d="M72 116 L177 116 L176 128 L70 128Z" fill="url(#coffee)"/>
+<path d="M70 128 L176 128 L176 139 L69 139Z" fill="url(#mascarpone)"/>
+<path d="M69 139 L176 139 L176 145 Q124 162 68 145Z" fill="url(#sponge)"/>
+<path d="M82 97 L168 97 M79 109 L170 109 M76 121 L170 121 M73 133 L170 133" fill="none" stroke="#3b241d" stroke-opacity=".28" stroke-width="1.1"/>
+<path d="M55 71 L158 71 L178 91 L76 91Z" fill="url(#mascarpone)"/>
+<path d="M58 73 L158 73 L173 87 L77 87Z" fill="#f8e8ca" opacity=".75"/>
+<path d="M63 75 Q76 70 88 75 T112 75 T136 75 T160 75 L171 85 Q151 80 136 84 T105 84 T76 84Z" fill="#fff1d8" opacity=".9"/>
+<path d="M64 76 Q83 71 99 77 T132 77 T160 77" fill="none" stroke="#d7bd98" stroke-width="1.5" stroke-linecap="round" opacity=".8"/>
+<path d="M62 79 L70 76 L74 80 L68 83Z M85 77 L91 74 L96 78 L90 81Z M108 78 L114 75 L119 79 L113 82Z M132 77 L138 74 L143 78 L137 81Z M151 79 L157 76 L163 80 L157 83Z" fill="url(#cocoa)"/>
+<g fill="#4b3024" opacity=".8">
+  <circle cx="80" cy="80" r="1.1"/><circle cx="101" cy="75" r=".9"/><circle cx="123" cy="82" r="1.2"/><circle cx="146" cy="75" r="1"/><circle cx="164" cy="84" r=".8"/>
+  <circle cx="91" cy="85" r=".7"/><circle cx="117" cy="74" r=".7"/><circle cx="139" cy="85" r=".8"/><circle cx="71" cy="82" r=".7"/>
+</g>
+<path d="M79 94 L79 143 M174 95 L172 142" stroke="#f4d7ad" stroke-opacity=".35" stroke-width="1.2"/>
+<path d="M58 151 Q120 169 181 151" fill="none" stroke="#fff4e2" stroke-opacity=".72" stroke-width="1.2"/>
 </svg>
