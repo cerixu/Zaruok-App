@@ -229,6 +229,7 @@ const SVG_RECIPE_RULES = [
   ['risotto-funghi', /\b(risotto ai funghi|risotto funghi|risotto z grzybami|risotto grzybowe|risotto z pieczarkami)\b/],
   ['gnocchi-pomodoro', /\b(gnocchi al pomodoro|gnocchi w sosie pomidorowym|gnocchi z sosem pomidorowym)\b/],
   ['tagliatelle-ragu', /\b(tagliatelle al ragu|tagliatelle z ragu|tagliatelle bolognese|tagliatelle z sosem bolognese)\b/],
+  ['spaghetti-amatriciana', /\b(?:spaghetti all amatriciana|pasta all amatriciana|amatriciana classica)\b/],
   ['tiramisu', /^(?!.*\b(?:matcha|pistac\w*|truskawk\w*|malin\w*|cytryn\w*)\b).*?\btiramisu\b/],
   // Tylko klasyczna panna cotta; warianty smakowe wymagają własnej ilustracji.
   ['panna-cotta', /^(?:panna cotta|panna cotta klasyczna|panna cotta tradycyjna|panna cotta waniliowa|panna cotta vanilla|panna cotta classica)$/],
