@@ -228,6 +228,7 @@ const SVG_RECIPE_RULES = [
   ['lasagna', /\b(lasagne alla bolognese|lasagna bolognese|lasagne bolognese|lasagne tradycyjne|lasagne klasyczne)\b/],
   ['risotto-funghi', /\b(risotto ai funghi|risotto funghi|risotto z grzybami|risotto grzybowe|risotto z pieczarkami)\b/],
   ['gnocchi-pomodoro', /\b(gnocchi al pomodoro|gnocchi w sosie pomidorowym|gnocchi z sosem pomidorowym)\b/],
+  ['cacio-e-pepe', /^(?:cacio e pepe|tonnarelli cacio e pepe|spaghetti cacio e pepe|pasta cacio e pepe)$/],
   ['tagliatelle-ragu', /\b(tagliatelle al ragu|tagliatelle z ragu|tagliatelle bolognese|tagliatelle z sosem bolognese)\b/],
   ['tiramisu', /^(?!.*\b(?:matcha|pistac\w*|truskawk\w*|malin\w*|cytryn\w*)\b).*?\btiramisu\b/],
   // Tylko klasyczna panna cotta; warianty smakowe wymagają własnej ilustracji.
@@ -242,6 +243,7 @@ const SVG_FILES = Object.freeze({
   lasagna: 'lasagna.svg',
   'risotto-funghi': 'risotto-funghi.svg',
   'gnocchi-pomodoro': 'gnocchi-pomodoro.svg',
+  'cacio-e-pepe': 'cacio-e-pepe.svg',
   'tagliatelle-ragu': 'tagliatelle-ragu.svg',
   tiramisu: 'tiramisu.svg',
   'panna-cotta': 'panna-cotta.svg',
