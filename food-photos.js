@@ -231,6 +231,7 @@ const SVG_RECIPE_RULES = [
   ['gnocchi-pomodoro', /\b(gnocchi al pomodoro|gnocchi w sosie pomidorowym|gnocchi z sosem pomidorowym)\b/],
   ['tagliatelle-ragu', /\b(tagliatelle al ragu|tagliatelle z ragu|tagliatelle bolognese|tagliatelle z sosem bolognese)\b/],
   ['spaghetti-amatriciana', /\b(?:spaghetti all amatriciana|pasta all amatriciana|amatriciana classica)\b/],
+  ['cacio-e-pepe', /^(?:cacio e pepe|tonnarelli cacio e pepe|spaghetti cacio e pepe|pasta cacio e pepe)$/],
   ['tiramisu', /^(?!.*\b(?:matcha|pistac\w*|truskawk\w*|malin\w*|cytryn\w*)\b).*?\btiramisu\b/],
   // Tylko klasyczna panna cotta; warianty smakowe wymagają własnej ilustracji.
   ['panna-cotta', /^(?:panna cotta|panna cotta klasyczna|panna cotta tradycyjna|panna cotta waniliowa|panna cotta vanilla|panna cotta classica)$/],
@@ -263,6 +264,7 @@ const SVG_FILES = Object.freeze({
   'gnocchi-sage': 'gnocchi-sage.svg',
   'spaghetti-puttanesca': 'spaghetti-puttanesca.svg',
   'spaghetti-amatriciana': 'spaghetti-amatriciana.svg',
+  'cacio-e-pepe': 'cacio-e-pepe.svg',
   'ragu-bolognese': 'ragu-bolognese.svg',
   'penne-arrabbiata': 'penne-arrabbiata.svg',
   'fettuccine-alfredo': 'fettuccine-alfredo.svg',
