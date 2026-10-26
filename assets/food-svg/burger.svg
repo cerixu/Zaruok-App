@@ -1,22 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="svg-title svg-desc">
-<title id="svg-title">Burger klasyczny — hybrydowa ilustracja SVG</title>
-<desc id="svg-desc">Burger z sezamową bułką, sałatą, serem, pomidorem i kotletem. Przezroczyste tło.</desc>
-<defs>
- <linearGradient id="bun" x1="0" y1="0" x2="0.8" y2="1"><stop stop-color="#ffdc91"/><stop offset=".52" stop-color="#eda84e"/><stop offset="1" stop-color="#bd702d"/></linearGradient>
- <linearGradient id="patty" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#704334"/><stop offset="1" stop-color="#33221d"/></linearGradient>
- <linearGradient id="cheese" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffe36a"/><stop offset="1" stop-color="#eca925"/></linearGradient>
- <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feGaussianBlur stdDeviation="5"/></filter>
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 240 240" role="img" aria-labelledby="title-burger desc">
+<title id="title-burger">Burger klasyczny — ilustracja SVG Żarłok</title><desc id="desc">Burger z sezamową bułką, serem, sałatą i pomidorem. Styl premium: płaskie kształty z delikatnym światłocieniem, na grafitowym tle.</desc><defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#25272a"/><stop offset="1" stop-color="#111316"/></linearGradient>
+<radialGradient id="glow"><stop stop-color="#b8753c" stop-opacity=".18"/><stop offset="1" stop-color="#b8753c" stop-opacity="0"/></radialGradient>
+<linearGradient id="plate" x1="0" y1="0" x2="0.9" y2="1"><stop stop-color="#f2eee4"/><stop offset=".55" stop-color="#d5cec1"/><stop offset="1" stop-color="#aaa293"/></linearGradient>
+<linearGradient id="bread" x1="0" y1="0" x2="0.3" y2="1"><stop stop-color="#e8bd78"/><stop offset="1" stop-color="#bd773c"/></linearGradient>
+<linearGradient id="bun" x1="0" y1="0" x2="0.2" y2="1"><stop stop-color="#efc77e"/><stop offset="1" stop-color="#b96d32"/></linearGradient>
+<linearGradient id="crust" x1="0" y1="0" x2="0.7" y2="1"><stop stop-color="#f4cf84"/><stop offset="1" stop-color="#bd7739"/></linearGradient>
+<linearGradient id="pasta" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f1d49a"/><stop offset="1" stop-color="#c18a4a"/></linearGradient>
+<linearGradient id="glass" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#b9d8d1" stop-opacity=".5"/><stop offset=".5" stop-color="#edf4dc" stop-opacity=".18"/><stop offset="1" stop-color="#7caaa0" stop-opacity=".45"/></linearGradient>
+<linearGradient id="salmon" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffb17e"/><stop offset="1" stop-color="#d65c49"/></linearGradient>
+<linearGradient id="steak" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9a5540"/><stop offset="1" stop-color="#4d2a24"/></linearGradient>
+<linearGradient id="dough" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f3d79c"/><stop offset="1" stop-color="#c38b4b"/></linearGradient>
 </defs>
-<ellipse cx="120" cy="199" rx="84" ry="11" fill="#000" opacity=".14" filter="url(#shadow)"/>
-<path d="M39 111C35 64 75 36 120 36S205 64 201 111Z" fill="url(#bun)" stroke="#c27b32" stroke-width="2.5"/>
-<path d="M52 93C67 61 96 51 121 52" stroke="#ffe5ad" stroke-width="4" stroke-linecap="round" fill="none" opacity=".85"/>
-<g fill="#fff3cd"><ellipse cx="76" cy="71" rx="3.8" ry="2.2" transform="rotate(28 76 71)"/><ellipse cx="106" cy="56" rx="3.8" ry="2.2" transform="rotate(-12 106 56)"/><ellipse cx="140" cy="59" rx="3.8" ry="2.2" transform="rotate(25 140 59)"/><ellipse cx="166" cy="78" rx="3.8" ry="2.2" transform="rotate(-34 166 78)"/><ellipse cx="94" cy="84" rx="3.8" ry="2.2"/><ellipse cx="145" cy="88" rx="3.8" ry="2.2"/></g>
-<path d="M38 109Q54 98 69 109T100 108T132 109T163 108T202 108L197 121Q181 127 167 120T135 121T102 120T68 121T43 118Z" fill="#478640" stroke="#286334" stroke-width="1.4"/>
-<path d="M43 119L194 119L181 139L56 139Z" fill="url(#cheese)" stroke="#cf881e" stroke-width="1.8"/>
-<path d="M48 121L191 121" stroke="#fff08a" stroke-width="3" opacity=".8"/>
-<path d="M48 139Q62 132 77 139T108 138T142 139T189 138L184 159Q120 179 56 159Z" fill="url(#patty)" stroke="#35221b" stroke-width="2.5"/>
-<path d="M60 148Q82 137 103 151T151 149T179 148" fill="none" stroke="#956044" stroke-width="3" stroke-linecap="round" opacity=".7"/>
-<path d="M49 159L190 159L181 172L57 172Z" fill="#df4930" stroke="#ab3527" stroke-width="1.4"/>
-<path d="M48 171Q68 161 86 171T124 171T158 170T191 170L187 183Q120 202 54 183Z" fill="#4e8a3d" stroke="#2b6735" stroke-width="1.4"/>
-<path d="M54 180Q120 194 186 180L181 193Q120 208 59 193Z" fill="url(#bun)" stroke="#bd702d" stroke-width="2"/>
+<rect width="240" height="240" rx="28" fill="url(#bg)"/><circle cx="120" cy="111" r="104" fill="url(#glow)"/>
+<circle cx="120" cy="118" r="84" fill="none" stroke="#f0b65a" stroke-opacity=".14" stroke-width="1"/>
+<ellipse cx="120" cy="169" rx="71" ry="10" fill="#000" opacity=".28"/>
+<g><ellipse cx="120" cy="159" rx="70" ry="14" fill="#080a0c" opacity=".45"/><path d="M51 111 Q48 70 120 66 Q192 70 189 111Z" fill="url(#bun)"/><g fill="#f7e4bb"><ellipse cx="90" cy="83" rx="3" ry="1.8" transform="rotate(-20 90 83)"/><ellipse cx="117" cy="76" rx="3" ry="1.8"/><ellipse cx="143" cy="82" rx="3" ry="1.8" transform="rotate(20 143 82)"/><ellipse cx="162" cy="94" rx="3" ry="1.8"/></g><path d="M52 111 Q78 101 96 111 T142 110 T188 110 L185 121 Q158 130 137 120 T92 122 T55 121Z" fill="#65a45a"/><path d="M57 120 L184 120 L172 136 L68 136Z" fill="#e6b83f"/><path d="M58 132 Q120 119 182 132 L176 145 Q120 159 64 145Z" fill="#56352c"/><path d="M54 145 Q120 157 186 145 L180 157 Q120 173 60 157Z" fill="#c77d38"/><path d="M52 111 Q120 124 188 111" fill="none" stroke="#f3d08c" stroke-width="3"/></g>
+<path d="M20 202 H220" stroke="#d7a35b" stroke-opacity=".18" stroke-width="1"/>
+<circle cx="27" cy="27" r="2" fill="#d7a35b" opacity=".45"/><circle cx="213" cy="27" r="2" fill="#d7a35b" opacity=".45"/>
 </svg>
