@@ -182,8 +182,8 @@ try {
         })),
       };
     });
-    if (compareResult.renderedImages !== 90 || compareResult.uniqueAssets !== 30 ||
-        compareResult.productionAssets !== 10 || compareResult.prototypeAssets !== 20 ||
+    if (compareResult.renderedImages !== 93 || compareResult.uniqueAssets !== 31 ||
+        compareResult.productionAssets !== 11 || compareResult.prototypeAssets !== 20 ||
         compareResult.backgroundVariants !== 3 || compareResult.broken.length || compareResult.externalSources.length) {
       throw new Error('Niekompletny lub zewnętrzny zasób w podglądzie porównawczym na ' + device.name + ': ' + JSON.stringify(compareResult));
     }
