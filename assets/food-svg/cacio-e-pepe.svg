@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="title desc">
+<title id="title">Cacio e pepe — ilustracja premium</title>
+<desc id="desc">Świeże tonnarelli z pecorino Romano i świeżo mielonym czarnym pieprzem na ciemnym ceramicznym talerzu. Przezroczyste tło.</desc>
+<defs>
+ <radialGradient id="plate"><stop offset="0" stop-color="#393a3b"/><stop offset=".68" stop-color="#202224"/><stop offset="1" stop-color="#101214"/></radialGradient>
+ <linearGradient id="rim" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#77716a"/><stop offset=".22" stop-color="#292a2b"/><stop offset=".52" stop-color="#51483c"/><stop offset=".78" stop-color="#17191a"/><stop offset="1" stop-color="#74685a"/></linearGradient>
+ <linearGradient id="pasta" x1="0" y1="0" x2=".9" y2="1"><stop stop-color="#fff0c4"/><stop offset=".32" stop-color="#e8cb8e"/><stop offset=".68" stop-color="#c99a56"/><stop offset="1" stop-color="#f4dba5"/></linearGradient>
+ <linearGradient id="shine" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff2c9"/><stop offset=".5" stop-color="#e8c987"/><stop offset="1" stop-color="#a87539"/></linearGradient>
+ <linearGradient id="cheese" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff3d4"/><stop offset="1" stop-color="#d8b979"/></linearGradient>
+ <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%"><feGaussianBlur stdDeviation="3"/></filter>
+</defs>
+<!-- soft cast shadow, not a background -->
+<ellipse cx="121" cy="185" rx="78" ry="15" fill="#000" opacity=".4" filter="url(#shadow)"/>
+<!-- ceramic plate -->
+<ellipse cx="120" cy="122" rx="91" ry="81" fill="#080909" opacity=".75"/>
+<ellipse cx="120" cy="117" rx="91" ry="81" fill="url(#rim)"/>
+<ellipse cx="120" cy="115" rx="84" ry="74" fill="url(#plate)" stroke="#777064" stroke-opacity=".55" stroke-width="1.2"/>
+<ellipse cx="120" cy="113" rx="74" ry="64" fill="none" stroke="#a79a82" stroke-opacity=".22" stroke-width="1"/>
+<path d="M54 82 Q76 46 118 43" fill="none" stroke="#c6b79a" stroke-opacity=".2" stroke-width="2" stroke-linecap="round"/>
+<!-- nest of thick tonnarelli: dark underlayers -->
+<g fill="none" stroke-linecap="round" stroke-linejoin="round">
+ <g stroke="#76512d" stroke-width="9" opacity=".95">
+  <path d="M73 135 C52 104 78 80 111 88 C145 96 158 127 135 145 C112 164 78 148 83 120 C88 95 128 86 151 108 C174 129 146 154 120 148 C97 143 101 115 124 108 C145 101 160 119 150 133"/>
+  <path d="M78 126 C66 101 95 85 119 98 C143 111 149 135 129 143 C107 152 86 135 96 115 C106 96 136 101 145 119"/>
+  <path d="M83 143 C62 122 77 97 105 99 C132 101 154 123 138 140 C123 157 97 148 99 129 C102 109 127 105 141 121"/>
+ </g>
+ <g stroke="url(#pasta)" stroke-width="6.2">
+  <path d="M73 132 C54 105 79 82 110 90 C142 98 155 126 134 143 C113 160 81 147 85 121 C89 98 127 88 149 109 C170 129 145 151 121 146 C100 142 102 116 124 109 C143 102 157 119 149 132"/>
+  <path d="M78 124 C67 102 94 87 117 99 C140 111 147 133 129 141 C109 150 88 134 97 115 C107 98 134 101 144 119"/>
+  <path d="M83 141 C64 122 78 99 105 101 C130 103 151 123 137 139 C122 154 99 147 101 129 C103 111 126 107 139 121"/>
+  <path d="M91 112 C96 90 123 83 143 99 C162 114 161 137 142 145"/>
+  <path d="M88 147 C105 162 133 158 147 143"/>
+ </g>
+ <g stroke="url(#shine)" stroke-width="1.5" opacity=".9">
+  <path d="M73 132 C54 105 79 82 110 90 C142 98 155 126 134 143"/>
+  <path d="M85 121 C89 98 127 88 149 109 C160 120 158 132 149 139"/>
+  <path d="M78 124 C67 102 94 87 117 99 C133 107 143 121 138 132"/>
+  <path d="M91 112 C96 90 123 83 143 99 C153 108 159 122 153 132"/>
+ </g>
+</g>
+<!-- glossy pecorino emulsion -->
+<path d="M82 111 C91 99 109 99 122 108 C135 116 145 128 135 137 C124 147 104 137 99 128 C94 119 110 112 121 119 C132 126 129 134 120 134" fill="none" stroke="#fff0c3" stroke-width="3.3" stroke-linecap="round" opacity=".78"/>
+<!-- pecorino curls / fine snow -->
+<g fill="url(#cheese)" stroke="#fff0d1" stroke-width=".45">
+ <path d="M91 91 l8 -4 6 5 -4 5 -8 -1z"/><path d="M111 83 l8 -2 4 5 -6 4 -7 -2z"/>
+ <path d="M133 93 l7 -3 5 4 -3 5 -8 -1z"/><path d="M151 111 l6 -2 4 4 -4 5 -6 -2z"/>
+ <path d="M76 119 l7 -4 4 5 -5 4 -5 -1z"/><path d="M102 139 l8 -3 5 4 -3 5 -8 0z"/>
+ <path d="M127 150 l6 -3 5 3 -4 5 -6 -1z"/><path d="M143 131 l6 -3 4 4 -4 4 -6 -1z"/>
+ <path d="M116 101 l5 -4 4 3 -2 4 -5 1z"/>
+</g>
+<!-- cracked black pepper, intentionally visible -->
+<g fill="#151312">
+ <circle cx="86" cy="104" r="2.1"/><circle cx="97" cy="115" r="1.5"/><circle cx="110" cy="92" r="1.8"/>
+ <circle cx="123" cy="105" r="2"/><circle cx="138" cy="110" r="1.7"/><circle cx="148" cy="123" r="2.2"/>
+ <circle cx="117" cy="128" r="1.5"/><circle cx="99" cy="133" r="2"/><circle cx="133" cy="140" r="1.7"/>
+ <circle cx="107" cy="106" r="1.1"/><circle cx="128" cy="88" r="1.2"/><circle cx="84" cy="128" r="1.3"/>
+ <circle cx="144" cy="96" r="1.2"/><circle cx="156" cy="133" r="1.2"/><circle cx="113" cy="148" r="1.4"/>
+</g>
+<g fill="#6b5942" opacity=".8">
+ <circle cx="89" cy="102" r=".65"/><circle cx="112" cy="90" r=".7"/><circle cx="137" cy="108" r=".65"/><circle cx="98" cy="131" r=".7"/><circle cx="145" cy="121" r=".7"/>
+</g>
+<!-- warm highlights on pasta -->
+<g fill="none" stroke="#fff3cf" stroke-linecap="round" opacity=".72">
+ <path d="M78 108 q7 -10 17 -10" stroke-width="1.4"/><path d="M117 91 q10 -1 17 5" stroke-width="1.2"/>
+ <path d="M139 125 q-1 7 -7 10" stroke-width="1.2"/><path d="M102 143 q7 4 14 2" stroke-width="1.2"/>
+</g>
+</svg>
