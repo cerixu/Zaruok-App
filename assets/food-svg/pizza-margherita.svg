@@ -1,21 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="svg-title svg-desc">
-<title id="svg-title">Pizza Margherita — hybrydowa ilustracja SVG</title>
-<desc id="svg-desc">Pizza neapolitańska z pomidorami, mozzarellą i listkami bazylii. Przezroczyste tło.</desc>
-<defs>
- <linearGradient id="crust" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffe09a"/><stop offset=".55" stop-color="#eea74b"/><stop offset="1" stop-color="#bb6728"/></linearGradient>
- <linearGradient id="sauce" x1="0" y1="0" x2=".8" y2="1"><stop stop-color="#f65f3d"/><stop offset="1" stop-color="#b92722"/></linearGradient>
- <linearGradient id="mozz" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff8df"/><stop offset="1" stop-color="#e8d6a6"/></linearGradient>
- <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feGaussianBlur stdDeviation="5"/></filter>
- <g id="basil"><path d="M0 0C-15-13-13-29 1-34 14-21 13-8 0 0Z" fill="#4c9a43" stroke="#276632" stroke-width="1.3"/><path d="M0-2 1-25" stroke="#badd80" stroke-width="1.5" fill="none"/></g>
- <g id="mozzarella"><path d="M-14-5Q-13-16 0-15T15-3Q16 7 5 12T-12 6Z" fill="url(#mozz)" stroke="#d5bf8b" stroke-width="1.4"/><ellipse cx="-3" cy="-7" rx="4" ry="2.5" fill="#fffdf0" opacity=".75"/></g>
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 240 240" role="img" aria-labelledby="title-pizza-margherita desc">
+<title id="title-pizza-margherita">Pizza Margherita — ilustracja SVG Żarłok</title><desc id="desc">Neapolitańska pizza z pomidorami, mozzarellą i bazylią. Styl premium: płaskie kształty z delikatnym światłocieniem, na grafitowym tle.</desc><defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#25272a"/><stop offset="1" stop-color="#111316"/></linearGradient>
+<radialGradient id="glow"><stop stop-color="#b8753c" stop-opacity=".18"/><stop offset="1" stop-color="#b8753c" stop-opacity="0"/></radialGradient>
+<linearGradient id="plate" x1="0" y1="0" x2="0.9" y2="1"><stop stop-color="#f2eee4"/><stop offset=".55" stop-color="#d5cec1"/><stop offset="1" stop-color="#aaa293"/></linearGradient>
+<linearGradient id="bread" x1="0" y1="0" x2="0.3" y2="1"><stop stop-color="#e8bd78"/><stop offset="1" stop-color="#bd773c"/></linearGradient>
+<linearGradient id="bun" x1="0" y1="0" x2="0.2" y2="1"><stop stop-color="#efc77e"/><stop offset="1" stop-color="#b96d32"/></linearGradient>
+<linearGradient id="crust" x1="0" y1="0" x2="0.7" y2="1"><stop stop-color="#f4cf84"/><stop offset="1" stop-color="#bd7739"/></linearGradient>
+<linearGradient id="pasta" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f1d49a"/><stop offset="1" stop-color="#c18a4a"/></linearGradient>
+<linearGradient id="glass" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#b9d8d1" stop-opacity=".5"/><stop offset=".5" stop-color="#edf4dc" stop-opacity=".18"/><stop offset="1" stop-color="#7caaa0" stop-opacity=".45"/></linearGradient>
+<linearGradient id="salmon" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffb17e"/><stop offset="1" stop-color="#d65c49"/></linearGradient>
+<linearGradient id="steak" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9a5540"/><stop offset="1" stop-color="#4d2a24"/></linearGradient>
+<linearGradient id="dough" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f3d79c"/><stop offset="1" stop-color="#c38b4b"/></linearGradient>
 </defs>
-<ellipse cx="120" cy="188" rx="88" ry="11" fill="#000" opacity=".12" filter="url(#shadow)"/>
-<circle cx="120" cy="112" r="91" fill="url(#crust)" stroke="#bc702e" stroke-width="2"/>
-<circle cx="120" cy="112" r="77" fill="#e4a052"/>
-<circle cx="120" cy="112" r="70" fill="url(#sauce)"/>
-<path d="M63 84C83 56 110 68 125 58M145 154C164 137 172 118 166 99M69 133C84 152 91 158 106 162" stroke="#ff8b59" stroke-width="5" stroke-linecap="round" fill="none" opacity=".65"/>
-<use href="#mozzarella" transform="translate(91 75) rotate(-12) scale(.9)"/><use href="#mozzarella" transform="translate(144 75) rotate(18) scale(.88)"/><use href="#mozzarella" transform="translate(157 123) rotate(36) scale(.88)"/><use href="#mozzarella" transform="translate(107 145) rotate(-14) scale(.94)"/><use href="#mozzarella" transform="translate(69 117) rotate(8) scale(.76)"/><use href="#mozzarella" transform="translate(119 103) rotate(20) scale(.72)"/>
-<use href="#basil" transform="translate(111 85) rotate(-38) scale(.63)"/><use href="#basil" transform="translate(125 87) rotate(42) scale(.55)"/><use href="#basil" transform="translate(141 127) rotate(35) scale(.57)"/><use href="#basil" transform="translate(91 137) rotate(-25) scale(.5)"/>
-<g fill="#6c3022" opacity=".8"><circle cx="85" cy="103" r="2"/><circle cx="137" cy="100" r="2.2"/><circle cx="120" cy="136" r="2"/><circle cx="158" cy="99" r="1.8"/><circle cx="99" cy="59" r="2"/></g>
-<g fill="#ffd28a"><circle cx="57" cy="105" r="3"/><circle cx="180" cy="112" r="3"/><circle cx="117" cy="31" r="2.5"/><circle cx="120" cy="193" r="2.5"/></g>
+<rect width="240" height="240" rx="28" fill="url(#bg)"/><circle cx="120" cy="111" r="104" fill="url(#glow)"/>
+<circle cx="120" cy="118" r="84" fill="none" stroke="#f0b65a" stroke-opacity=".14" stroke-width="1"/>
+<ellipse cx="120" cy="169" rx="71" ry="10" fill="#000" opacity=".28"/>
+<g><circle cx="120" cy="120" r="77" fill="#8d4b2a"/><circle cx="120" cy="116" r="73" fill="url(#crust)"/><circle cx="120" cy="116" r="61" fill="#c94732"/><circle cx="120" cy="116" r="53" fill="#e15b3b"/><g fill="#f6e5bb"><path d="M85 80 q15 -8 20 5 l-3 15 q-16 6 -21 -5Z"/><path d="M132 91 q16 -8 21 7 l-7 14 q-17 2 -19 -10Z"/><path d="M93 126 q16 -7 22 8 l-6 13 q-18 2 -20 -10Z"/><path d="M140 132 q15 -8 20 6 l-8 13 q-16 0 -17 -10Z"/></g><g fill="#5d8d4f" stroke="#8bb66b" stroke-width="2"><path d="M112 98 q-18 -18 -4 -21 q17 2 4 21Z"/><path d="M147 117 q-3 -23 12 -18 q9 13 -12 18Z"/><path d="M77 112 q-2 -19 12 -15 q9 12 -12 15Z"/></g><g fill="#8d2f25"><circle cx="105" cy="111" r="5"/><circle cx="145" cy="78" r="4"/><circle cx="80" cy="143" r="4"/></g></g>
+<path d="M20 202 H220" stroke="#d7a35b" stroke-opacity=".18" stroke-width="1"/>
+<circle cx="27" cy="27" r="2" fill="#d7a35b" opacity=".45"/><circle cx="213" cy="27" r="2" fill="#d7a35b" opacity=".45"/>
 </svg>
