@@ -9,7 +9,7 @@
    ZMIANA WERSJI: podbij VERSION (i APP_VERSION w util.js) przy każdej
    aktualizacji plików, żeby urządzenia wykryły nową wersję.
    ========================================================================== */
-const VERSION = 'zaruok-2.1.33';
+const VERSION = 'zaruok-2.1.34';
 const NETWORK_TIMEOUT = 3500;
 
 const CORE = [
