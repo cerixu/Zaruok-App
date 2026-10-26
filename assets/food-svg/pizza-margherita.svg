@@ -1,6 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 240 240" role="img" aria-labelledby="title-pizza-margherita desc">
 <title id="title-pizza-margherita">Pizza Margherita — ilustracja SVG Żarłok</title><desc id="desc">Neapolitańska pizza z pomidorami, mozzarellą i bazylią. Styl premium: płaskie kształty z delikatnym światłocieniem, na grafitowym tle.</desc><defs>
-<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#25272a"/><stop offset="1" stop-color="#111316"/></linearGradient>
 <radialGradient id="glow"><stop stop-color="#b8753c" stop-opacity=".18"/><stop offset="1" stop-color="#b8753c" stop-opacity="0"/></radialGradient>
 <linearGradient id="plate" x1="0" y1="0" x2="0.9" y2="1"><stop stop-color="#f2eee4"/><stop offset=".55" stop-color="#d5cec1"/><stop offset="1" stop-color="#aaa293"/></linearGradient>
 <linearGradient id="bread" x1="0" y1="0" x2="0.3" y2="1"><stop stop-color="#e8bd78"/><stop offset="1" stop-color="#bd773c"/></linearGradient>
@@ -12,7 +11,7 @@
 <linearGradient id="steak" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9a5540"/><stop offset="1" stop-color="#4d2a24"/></linearGradient>
 <linearGradient id="dough" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f3d79c"/><stop offset="1" stop-color="#c38b4b"/></linearGradient>
 </defs>
-<rect width="240" height="240" rx="28" fill="url(#bg)"/><circle cx="120" cy="111" r="104" fill="url(#glow)"/>
+<circle cx="120" cy="111" r="104" fill="url(#glow)"/>
 <circle cx="120" cy="118" r="84" fill="none" stroke="#f0b65a" stroke-opacity=".14" stroke-width="1"/>
 <ellipse cx="120" cy="169" rx="71" ry="10" fill="#000" opacity=".28"/>
 <g><circle cx="120" cy="120" r="77" fill="#8d4b2a"/><circle cx="120" cy="116" r="73" fill="url(#crust)"/><circle cx="120" cy="116" r="61" fill="#c94732"/><circle cx="120" cy="116" r="53" fill="#e15b3b"/><g fill="#f6e5bb"><path d="M85 80 q15 -8 20 5 l-3 15 q-16 6 -21 -5Z"/><path d="M132 91 q16 -8 21 7 l-7 14 q-17 2 -19 -10Z"/><path d="M93 126 q16 -7 22 8 l-6 13 q-18 2 -20 -10Z"/><path d="M140 132 q15 -8 20 6 l-8 13 q-16 0 -17 -10Z"/></g><g fill="#5d8d4f" stroke="#8bb66b" stroke-width="2"><path d="M112 98 q-18 -18 -4 -21 q17 2 4 21Z"/><path d="M147 117 q-3 -23 12 -18 q9 13 -12 18Z"/><path d="M77 112 q-2 -19 12 -15 q9 12 -12 15Z"/></g><g fill="#8d2f25"><circle cx="105" cy="111" r="5"/><circle cx="145" cy="78" r="4"/><circle cx="80" cy="143" r="4"/></g></g>

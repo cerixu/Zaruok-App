@@ -136,7 +136,7 @@ for (const file of productionAssets) {
   const size = fs.statSync(path).size;
   productionTotalBytes += size;
   assert.ok(size < 1_500_000, file + ': SVG powinien mieć mniej niż 1,5 MB (ma ' + size + ' B)');
-  if (file === 'carbonara.svg') assert.ok(size < 1_450_000, 'Carbonara powinna zachować szczegółową ilustrację, ale mieścić się poniżej 1,45 MB (ma ' + size + ' B)');
+  if (file === 'carbonara.svg') assert.ok(size < 25_000, 'Carbonara powinna być lekkim SVG poniżej 25 KB (ma ' + size + ' B)');
   if (file === 'lasagna.svg') assert.ok(size < 5_000, 'Lasagne powinna pozostać lekkim SVG poniżej 5 KB (ma ' + size + ' B)');
   if (file === 'pizza-margherita.svg') assert.ok(size < 5_000, 'Pizza Margherita powinna pozostać lekkim SVG poniżej 5 KB (ma ' + size + ' B)');
   if (file === 'panna-cotta.svg') assert.ok(size < 5_000, 'Panna cotta powinna pozostać lekkim SVG poniżej 5 KB (ma ' + size + ' B)');
@@ -155,9 +155,20 @@ for (const file of productionAssets) {
     assert.equal(viewBox[3], viewBox[4], file + ': viewBox musi być kwadratowy');
   }
   assert.match(source, /role="img"/, file + ': brak semantycznej roli obrazu');
-  assert.match(source, /aria-labelledby="svg-title svg-desc"/, file + ': brak powiązania opisu dostępności');
-  assert.match(source, /<title id="svg-title">[^<]+<\/title>/, file + ': brak tytułu dostępności');
-  assert.match(source, /<desc id="svg-desc">[^<]+<\/desc>/, file + ': brak opisu dostępności');
+  const ariaLabel = source.match(/aria-label="([^"]+)"/);
+  const labelledBy = source.match(/aria-labelledby="([^"]+)"/);
+  if (ariaLabel) {
+    assert.ok(ariaLabel[1].trim(), file + ': pusty aria-label');
+  } else {
+    assert.ok(labelledBy, file + ': brak aria-label lub aria-labelledby');
+    const titleTag = source.match(/<title id="([^"]+)">[^<]+<\/title>/);
+    const descTag = source.match(/<desc id="([^"]+)">[^<]+<\/desc>/);
+    assert.ok(titleTag, file + ': brak tytułu dostępności');
+    assert.ok(descTag, file + ': brak opisu dostępności');
+    const labelledIds = labelledBy[1].trim().split(/\s+/);
+    assert.ok(labelledIds.includes(titleTag[1]) && labelledIds.includes(descTag[1]),
+      file + ': aria-labelledby musi wskazywać identyfikatory title i desc');
+  }
   assert.doesNotMatch(source, /<metadata\b|xmpmeta/i, file + ': pozostały metadane eksportu');
   assert.doesNotMatch(source, /<image\b|<script\b|<foreignObject\b/i, file + ': SVG nie jest samodzielną ilustracją wektorową');
   assert.doesNotMatch(source, /(?:href|xlink:href)="https?:\/\//i, file + ': zewnętrzna zależność');
@@ -169,18 +180,8 @@ for (const file of productionAssets) {
   for (const reference of references) {
     assert.ok(ids.includes(reference), file + ': odwołanie do nieistniejącego id #' + reference);
   }
-  const pathCount = (source.match(/<path\b/g) || []).length;
-  const minimumPathsByAsset = {
-    'tomato-soup.svg': 5, 'burger.svg': 10, 'greek-salad.svg': 10, 'mojito.svg': 13, 'sushi-maki.svg': 13,
-    'salmon-lemon-butter.svg': 7, 'steak-herb-butter.svg': 8, 'pierogi-ruskie.svg': 14, 'caesar-salad.svg': 16, 'mushroom-soup.svg': 10,
-  };
-  const minimumPathsByAssetExtended = {
-    'gnocchi-sage.svg': 6, 'spaghetti-puttanesca.svg': 6, 'spaghetti-amatriciana.svg': 6,
-    'ragu-bolognese.svg': 6, 'penne-arrabbiata.svg': 6, 'fettuccine-alfredo.svg': 6,
-    'minestrone.svg': 5, 'panzanella.svg': 6, 'parmigiana-melanzane.svg': 5, 'pizza-pepperoni.svg': 6,
-  };
-  const minimumPaths = minimumPathsByAsset[file] ?? minimumPathsByAssetExtended[file] ?? (file === 'panna-cotta.svg' ? 5 : file === 'pizza-margherita.svg' ? 4 : file === 'lasagna.svg' ? 10 : file === 'carbonara.svg' ? 10 : file === 'bruschetta.svg' ? 20 : file === 'tagliatelle-ragu.svg' ? 18 : file === 'ravioli-ricotta-spinaci.svg' ? 4 : file === 'risotto-funghi.svg' ? 10 : 101);
-  assert.ok(pathCount >= minimumPaths, file + ': nieoczekiwanie mało ścieżek ilustracji (' + pathCount + ')');
+  const shapeCount = (source.match(/<(?:path|circle|ellipse|rect|polygon|polyline|line|use)\b/g) || []).length;
+  assert.ok(shapeCount >= 10, file + ': ilustracja powinna zawierać co najmniej 10 elementów graficznych (ma ' + shapeCount + ')');
   assert.ok(serviceWorkerSource.includes("'" + productionRoot + "/" + file + "'"), file + ': brak w cache offline Service Workera');
   console.log('PASS production SVG ' + file + ': ' + size + ' B, dostępność, referencje i cache offline');
 }

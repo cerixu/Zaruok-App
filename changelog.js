@@ -5,6 +5,27 @@
    ========================================================================== */
 
 export const CHANGELOG = Object.freeze({
+  '2.1.33': Object.freeze({
+    intro: 'Żarłok 2.1.33 — lekkie ilustracje SVG z przezroczystym tłem.',
+    items: [
+      'Zastąpiono ciężki plik Carbonary samodzielnym SVG 10,4 KB przy zachowaniu proporcji i mapowania receptury.',
+      'Usunięto pełnoekranowe tła z siedmiu głównych ilustracji, aby naturalnie wtapiały się w ciemny interfejs.',
+      'Dostosowano audyt dostępności do aria-label i aria-labelledby oraz dodano limit 25 KB dla Carbonary.',
+      'Odświeżono wersję aplikacji, parametry cache-busting i cache Service Workera.'
+    ]
+  }),
+  '2.1.32': Object.freeze({
+    intro: 'Żarłok 2.1.32 — rozszerzono lokalną bibliotekę ilustracji SVG.',
+    items: [
+      'Dodano kolejne ilustracje potraw do zasobów aplikacji działających offline.'
+    ]
+  }),
+  '2.1.31': Object.freeze({
+    intro: 'Żarłok 2.1.31 — odświeżono identyfikator cache offline.',
+    items: [
+      'Zaktualizowano cache Service Workera dla lokalnych zasobów aplikacji.'
+    ]
+  }),
   '2.1.30': Object.freeze({
     intro: 'Żarłok 2.1.30 — szczegółowa ilustracja Carbonary działa z przezroczystym tłem.',
     items: [
