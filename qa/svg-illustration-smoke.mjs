@@ -158,7 +158,7 @@ for (const file of productionAssets) {
   }
   if (file === 'gnocchi-pomodoro.svg') {
     assert.equal(hasOpaqueFullCanvasPath(source, 240), false, 'Gnocchi al pomodoro nie może mieć nieprzezroczystej ścieżki tła całego obszaru');
-    assert.doesNotMatch(source, /<rect\\b[^>]*(?:width="(?:100%|240|1024)"[^>]*height="(?:100%|240|1024)"|height="(?:100%|240|1024)"[^>]*width="(?:100%|240|1024)")/i, 'Gnocchi al pomodoro nie może mieć pełnoekranowego prostokąta tła');
+    assert.doesNotMatch(source, /<rect\b[^>]*(?:width="(?:100%|240|1024)"[^>]*height="(?:100%|240|1024)"|height="(?:100%|240|1024)"[^>]*width="(?:100%|240|1024)")/i, 'Gnocchi al pomodoro nie może mieć pełnoekranowego prostokąta tła');
     assert.match(source, /Gnocchi al pomodoro/, 'Gnocchi al pomodoro musi mieć właściwą semantykę dania');
     assert.match(source, /przezroczystym tle/i, 'Gnocchi al pomodoro musi dokumentować przezroczyste tło');
   }
