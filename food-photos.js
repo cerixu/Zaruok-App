@@ -222,6 +222,7 @@ const SVG_RECIPE_RULES = [
   ['pierogi-ruskie', /^(?:pierogi ruskie|pierogi ruskie tradycyjne|pierogi ruskie z cebulka)$/],
   ['caesar-salad', /^(?:salatka cezar|salatka cezar z kurczakiem|caesar salad)$/],
   ['mushroom-soup', /^(?:krem z grzybow|krem grzybowy|zupa krem z grzybow|zupa grzybowa krem)$/],
+  ['focaccia', /^(?:focaccia|focaccia genovese|focaccia classica|focaccia classica ligure)$/],
   // Wąskie reguły: nie dopasowuj ilustracji klasycznego dania do wariantu smakowego.
   ['carbonara', /\b(spaghetti carbonara|carbonara tradycyjna|carbonara klasyczna|carbonara tradizionale|pasta alla carbonara)\b/],
   ['pizza-margherita', /\b(pizza margherita|margherita neapolitanska|margherita classica|neapolitan margherita)\b/],
@@ -247,6 +248,7 @@ const SVG_FILES = Object.freeze({
   tiramisu: 'tiramisu.svg',
   'panna-cotta': 'panna-cotta.svg',
   bruschetta: 'bruschetta.svg',
+  focaccia: 'focaccia.svg',
   'ravioli-ricotta-spinaci': 'ravioli-ricotta-spinaci.svg',
   'tomato-soup': 'tomato-soup.svg',
   burger: 'burger.svg',

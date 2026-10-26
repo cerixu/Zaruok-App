@@ -138,7 +138,7 @@ for (const [recipe, expected] of correctPhotoCases) {
 }
 
 const svgAssets = [
-  'bruschetta.svg', 'carbonara.svg', 'gnocchi-pomodoro.svg', 'lasagna.svg',
+  'bruschetta.svg', 'carbonara.svg', 'focaccia.svg', 'gnocchi-pomodoro.svg', 'lasagna.svg',
   'panna-cotta.svg', 'pizza-margherita.svg', 'ravioli-ricotta-spinaci.svg',
   'risotto-funghi.svg', 'tagliatelle-ragu.svg', 'tiramisu.svg',
 ];
@@ -170,6 +170,8 @@ const correctSvgCases = [
   ['Panna cotta tradycyjna', 'panna-cotta'],
   ['Panna cotta waniliowa', 'panna-cotta'],
   ['Bruschetta al pomodoro', 'bruschetta'],
+  ['Focaccia', 'focaccia'],
+  ['Focaccia genovese', 'focaccia'],
   ['Ravioli ricotta e spinaci', 'ravioli-ricotta-spinaci'],
 ];
 for (const [name, expected] of correctSvgCases) {
