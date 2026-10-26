@@ -122,6 +122,7 @@ assert.ok(photoMappingSource.includes("  'mushroom-soup': 'mushroom-soup.svg',")
 assert.ok(photoMappingSource.includes("  'gnocchi-sage': 'gnocchi-sage.svg',"), 'Gnocchi z masłem szałwiowym muszą mieć dedykowane SVG');
 assert.ok(photoMappingSource.includes("  'spaghetti-puttanesca': 'spaghetti-puttanesca.svg',"), 'Spaghetti alla puttanesca musi mieć dedykowane SVG');
 assert.ok(photoMappingSource.includes("  'spaghetti-amatriciana': 'spaghetti-amatriciana.svg',"), 'Spaghetti all’amatriciana musi mieć dedykowane SVG');
+assert.ok(photoMappingSource.includes("  ['spaghetti-amatriciana', /"), 'Spaghetti all’amatriciana musi mieć precyzyjną regułę nazwy receptury');
 assert.ok(photoMappingSource.includes("  'ragu-bolognese': 'ragu-bolognese.svg',"), 'Ragù alla bolognese musi mieć dedykowane SVG');
 assert.ok(photoMappingSource.includes("  'penne-arrabbiata': 'penne-arrabbiata.svg',"), 'Penne all’arrabbiata musi mieć dedykowane SVG');
 assert.ok(photoMappingSource.includes("  'fettuccine-alfredo': 'fettuccine-alfredo.svg',"), 'Fettuccine Alfredo musi mieć dedykowane SVG');
@@ -155,6 +156,11 @@ for (const file of productionAssets) {
     assert.equal(viewBox[1], '0', file + ': początek viewBox X musi wynosić 0');
     assert.equal(viewBox[2], '0', file + ': początek viewBox Y musi wynosić 0');
     assert.equal(viewBox[3], viewBox[4], file + ': viewBox musi być kwadratowy');
+  }
+  if (file === 'spaghetti-amatriciana.svg') {
+    assert.equal(hasOpaqueFullCanvasPath(source, 240), false, 'Spaghetti all’amatriciana nie może mieć nieprzezroczystej ścieżki tła całego obszaru');
+    assert.doesNotMatch(source, /<rect\b[^>]*(?:width="(?:100%|240|1024)"[^>]*height="(?:100%|240|1024)"|height="(?:100%|240|1024)"[^>]*width="(?:100%|240|1024)")/i, 'Spaghetti all’amatriciana nie może mieć pełnoekranowego prostokąta tła');
+    assert.match(source, /przezroczystym tle/i, 'Spaghetti all’amatriciana musi dokumentować przezroczyste tło');
   }
   if (file === 'gnocchi-pomodoro.svg') {
     assert.equal(hasOpaqueFullCanvasPath(source, 240), false, 'Gnocchi al pomodoro nie może mieć nieprzezroczystej ścieżki tła całego obszaru');
