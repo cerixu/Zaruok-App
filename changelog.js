@@ -6,7 +6,7 @@
 
 export const CHANGELOG = Object.freeze({
   '2.1.34': Object.freeze({
-    intro: 'Żarłok 2.1.34 — lekkie, przezroczyste SVG dla gnocchi al pomodoro, pizzy Margherita, Carbonary, lasagne, tiramisù, spaghetti all’amatriciana, focaccia genovese, spaghetti alla puttanesca, Fettuccine Alfredo, Cacio e pepe i bruschetty al pomodoro.',
+    intro: 'Żarłok 2.1.34 — lekkie, przezroczyste SVG dla gnocchi al pomodoro, pizzy Margherita, Carbonary, lasagne, tiramisù, spaghetti all’amatriciana, focaccia genovese, spaghetti alla puttanesca, Fettuccine Alfredo, Cacio e pepe, bruschetty al pomodoro i risotto ai funghi.',
     items: [
       'Zastąpiono ciężką ilustrację gnocchi o rozmiarze około 125 KB samodzielnym SVG około 6,3 KB.',
       'Odświeżono ilustrację pizzy Margherita: rumiany rant, sos pomidorowy, mozzarella i bazylia na przezroczystym tle (4,8 KB).',
@@ -21,6 +21,7 @@ export const CHANGELOG = Object.freeze({
       'Dodano lekkie SVG Cacio e pepe (około 8,1 KB) z przezroczystym tłem i dedykowanym mapowaniem; zasób trafia do precache offline.',
       'Odświeżono bruschettę al pomodoro: trzy rumiane grzanki, soczyste pomidory, bazylia i oliwa na grafitowym talerzu; SVG 11,2 KB z przezroczystym tłem.',
       'Przebudowano gnocchi z masłem szałwiowym: rumiane poduszeczki, emulsja masła, świeża szałwia i parmezan na grafitowej ceramice; SVG z przezroczystym tłem.',
+      'Odświeżono risotto ai funghi: kremowe ziarna ryżu, rumiane grzyby, natka pietruszki i płatki Parmigiano Reggiano na grafitowym talerzu; lekkie SVG 5,4 KB z przezroczystym tłem.',
       'Audyt sprawdza rozmiar, dostępność, referencje i brak pełnoekranowego tła.'
     ]
   }),
