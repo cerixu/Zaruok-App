@@ -128,6 +128,7 @@ assert.ok(photoMappingSource.includes("  'ragu-bolognese': 'ragu-bolognese.svg',
 assert.ok(photoMappingSource.includes("  'penne-arrabbiata': 'penne-arrabbiata.svg',"), 'Penne all’arrabbiata musi mieć dedykowane SVG');
 assert.ok(photoMappingSource.includes("  'fettuccine-alfredo': 'fettuccine-alfredo.svg',"), 'Fettuccine Alfredo musi mieć dedykowane SVG');
 assert.ok(photoMappingSource.includes("  minestrone: 'minestrone.svg',"), 'Minestrone musi mieć dedykowane SVG');
+assert.ok(photoMappingSource.includes("  ['minestrone', /^(?:minestrone|minestrone classica|zuppa minestrone|zupa minestrone)$/],"), 'Minestrone musi mieć precyzyjną regułę nazwy receptury');
 assert.ok(photoMappingSource.includes("  panzanella: 'panzanella.svg',"), 'Panzanella musi mieć dedykowane SVG');
 assert.ok(photoMappingSource.includes("  'parmigiana-melanzane': 'parmigiana-melanzane.svg',"), 'Parmigiana di melanzane musi mieć dedykowane SVG');
 assert.ok(photoMappingSource.includes("  'pizza-pepperoni': 'pizza-pepperoni.svg',"), 'Pizza pepperoni musi mieć dedykowane SVG');

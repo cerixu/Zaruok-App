@@ -212,6 +212,7 @@ function attach(img, key) {
 // Lokalny zestaw ilustracji SVG premium. Pliki są zapisywane w repo i działają offline.
 const SVG_RECIPE_RULES = [
   // Wąskie reguły dla kolejnej paczki ilustracji produkcyjnych.
+  ['minestrone', /^(?:minestrone|minestrone classica|zuppa minestrone|zupa minestrone)$/],
   ['tomato-soup', /^(?:krem pomidorowy(?: z bazylia)?|zupa pomidorowa(?: klasyczna)?|pomidorowa)$/],
   ['burger', /^(?:burger klasyczny|hamburger klasyczny|classic burger|burger wolowy klasyczny)$/],
   ['greek-salad', /^(?:salatka grecka|salatka grecka klasyczna|greek salad)$/],
