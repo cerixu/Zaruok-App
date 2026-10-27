@@ -91,7 +91,7 @@ console.log(`PASS: ${fixtures.length} wzorcowych ilustracji SVG przeszło audyt`
 
 const productionRoot = 'assets/food-svg';
 const productionAssets = [
-  'bruschetta.svg', 'carbonara.svg', 'gnocchi-pomodoro.svg', 'lasagna.svg',
+  'bruschetta.svg', 'carbonara.svg', 'cacio-e-pepe.svg', 'gnocchi-pomodoro.svg', 'lasagna.svg',
   'panna-cotta.svg', 'pizza-margherita.svg', 'ravioli-ricotta-spinaci.svg',
   'risotto-funghi.svg', 'tagliatelle-ragu.svg', 'tiramisu.svg',
   'tomato-soup.svg', 'burger.svg', 'greek-salad.svg', 'mojito.svg', 'sushi-maki.svg',
@@ -103,6 +103,7 @@ const serviceWorkerSource = fs.readFileSync('sw.js', 'utf8');
 const photoMappingSource = fs.readFileSync('food-photos.js', 'utf8');
 assert.ok(photoMappingSource.includes("  'tagliatelle-ragu': 'tagliatelle-ragu.svg',"), 'Tagliatelle al ragù musi zachować dedykowane mapowanie produkcyjnego SVG');
 assert.ok(photoMappingSource.includes("  carbonara: 'carbonara.svg',"), 'Carbonara musi zachować dedykowane mapowanie produkcyjnego SVG');
+assert.ok(photoMappingSource.includes("  'cacio-e-pepe': 'cacio-e-pepe.svg',"), 'Cacio e pepe musi zachować dedykowane mapowanie produkcyjnego SVG');
 assert.ok(photoMappingSource.includes("  'gnocchi-pomodoro': 'gnocchi-pomodoro.svg',"), 'Gnocchi al pomodoro musi zachować dedykowane mapowanie produkcyjnego SVG');
 assert.ok(photoMappingSource.includes("  lasagna: 'lasagna.svg',"), 'Lasagne alla bolognese musi zachować dedykowane mapowanie produkcyjnego SVG');
 assert.ok(photoMappingSource.includes("  'pizza-margherita': 'pizza-margherita.svg',"), 'Pizza Margherita musi zachować dedykowane mapowanie produkcyjnego SVG');
