@@ -20,6 +20,7 @@ export const CHANGELOG = Object.freeze({
       'Przebudowano Fettuccine Alfredo: kremowe wstążki makaronu, parmezan, pieprz i natka na grafitowym talerzu z ciepłym rantem; SVG ma przezroczyste tło (4,6 KB).',
       'Dodano lekkie SVG Cacio e pepe (około 8,1 KB) z przezroczystym tłem i dedykowanym mapowaniem; zasób trafia do precache offline.',
       'Odświeżono bruschettę al pomodoro: trzy rumiane grzanki, soczyste pomidory, bazylia i oliwa na grafitowym talerzu; SVG 11,2 KB z przezroczystym tłem.',
+      'Przebudowano gnocchi z masłem szałwiowym: rumiane poduszeczki, emulsja masła, świeża szałwia i parmezan na grafitowej ceramice; SVG z przezroczystym tłem.',
       'Audyt sprawdza rozmiar, dostępność, referencje i brak pełnoekranowego tła.'
     ]
   }),
