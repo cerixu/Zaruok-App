@@ -15,8 +15,16 @@ const context = await browser.newContext({
 const page = await context.newPage();
 
 const errors = [];
+let offlineMode = false;
 page.on('pageerror', (e) => errors.push(String(e)));
-page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
+page.on('console', (m) => {
+  if (m.type() !== 'error') return;
+  const message = m.text();
+  // networkFirst celowo próbuje sieci także offline, a następnie zwraca cache.
+  // Chromium raportuje ten oczekiwany brak sieci jako błąd konsoli — nie jest to błąd aplikacji.
+  if (offlineMode && /ERR_INTERNET_DISCONNECTED/.test(message)) return;
+  errors.push(message);
+});
 
 async function ready() {
   await page.waitForFunction(() => window.__kucharzyna?.ready === true, null, { timeout: 15000 });
@@ -70,6 +78,7 @@ try {
   if (onlineCount < 1 || !href) throw new Error('Brak receptury do testu offline.');
 
   // Hard network cut after the service worker is controlling the page.
+  offlineMode = true;
   await context.setOffline(true);
   await page.reload({ waitUntil: 'domcontentloaded' });
   await ready();
