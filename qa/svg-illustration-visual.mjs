@@ -139,7 +139,7 @@ try {
     if (!compareResponse?.ok()) throw new Error('Podgląd porównawczy SVG nie ładuje się na ' + device.name + ': HTTP ' + compareResponse?.status());
     await page.waitForFunction(() => {
       const imgs = [...document.querySelectorAll('img[data-asset-id]')];
-      return imgs.length === 96 && imgs.every((img) => img.complete && img.naturalWidth > 0 && img.naturalHeight > 0);
+      return imgs.length === 99 && imgs.every((img) => img.complete && img.naturalWidth > 0 && img.naturalHeight > 0);
     }, null, { timeout: 30000 });
     const compareResult = await page.evaluate(() => {
       const imgs = [...document.querySelectorAll('img[data-asset-id]')];
@@ -186,8 +186,8 @@ try {
         })),
       };
     });
-    if (compareResult.renderedImages !== 96 || compareResult.uniqueAssets !== 32 ||
-        compareResult.productionAssets !== 12 || compareResult.prototypeAssets !== 20 ||
+    if (compareResult.renderedImages !== 99 || compareResult.uniqueAssets !== 33 ||
+        compareResult.productionAssets !== 13 || compareResult.prototypeAssets !== 20 ||
         compareResult.backgroundVariants !== 3 || compareResult.broken.length || compareResult.externalSources.length) {
       throw new Error('Niekompletny lub zewnętrzny zasób w podglądzie porównawczym na ' + device.name + ': ' + JSON.stringify(compareResult));
     }
