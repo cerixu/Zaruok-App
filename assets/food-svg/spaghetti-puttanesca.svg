@@ -1,1 +1,44 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 240 240" role="img" aria-labelledby="t-spaghetti-puttanesca d-spaghetti-puttanesca"><title id="t-spaghetti-puttanesca">Spaghetti alla puttanesca — ilustracja SVG Żarłok</title><desc id="d-spaghetti-puttanesca">Spaghetti z pomidorami, oliwkami, kaparami i pietruszką. Hybryda premium i flat na ciemnym grafitowym tle.</desc><defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#25272a"/><stop offset="1" stop-color="#111316"/></linearGradient><radialGradient id="glow"><stop stop-color="#b8753c" stop-opacity=".18"/><stop offset="1" stop-color="#b8753c" stop-opacity="0"/></radialGradient></defs><rect width="240" height="240" rx="28" fill="url(#bg)"/><circle cx="120" cy="111" r="104" fill="url(#glow)"/><circle cx="120" cy="118" r="84" fill="none" stroke="#f0b65a" stroke-opacity=".14"/><ellipse cx="120" cy="169" rx="71" ry="10" fill="#000" opacity=".28"/><ellipse cx="120" cy="141" rx="72" ry="27" fill="#d8d0c3"/><ellipse cx="120" cy="134" rx="60" ry="22" fill="#e8d8b8"/><g fill="none" stroke="#e3b64e" stroke-width="5" stroke-linecap="round"><path d="M76 128 Q64 102 97 102 T145 124 T165 110"/><path d="M82 137 Q74 114 106 112 T153 134"/><path d="M90 119 Q111 95 137 111 T151 124"/><path d="M100 137 Q125 119 144 131"/></g><g fill="#49372e"><ellipse cx="92" cy="109" rx="6" ry="4"/><ellipse cx="139" cy="117" rx="6" ry="4"/><ellipse cx="116" cy="132" rx="6" ry="4"/></g><g fill="#c54b34"><circle cx="107" cy="110" r="5"/><circle cx="151" cy="128" r="4"/></g><g fill="#6b9350"><path d="M120 100 q-10 -13 0 -14 q12 4 0 14Z"/><path d="M126 103 q4 -14 14 -8 q0 10 -14 8Z"/></g><path d="M20 202 H220" stroke="#d7a35b" stroke-opacity=".18"/><circle cx="27" cy="27" r="2" fill="#d7a35b" opacity=".45"/><circle cx="213" cy="27" r="2" fill="#d7a35b" opacity=".45"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240" role="img" aria-labelledby="title desc">
+<title id="title">Spaghetti alla puttanesca</title>
+<desc id="desc">Spaghetti w sosie pomidorowym z oliwkami, kaparami, czosnkiem, anchois i natką pietruszki na grafitowym talerzu. Przezroczyste tło.</desc>
+<defs>
+  <linearGradient id="plate" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#45413c"/><stop offset=".42" stop-color="#202326"/><stop offset="1" stop-color="#0b0e10"/></linearGradient>
+  <linearGradient id="rim" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e5b77b"/><stop offset=".48" stop-color="#805337"/><stop offset="1" stop-color="#c38c58"/></linearGradient>
+  <radialGradient id="sauce" cx=".38" cy=".28" r=".85"><stop stop-color="#e36c3f"/><stop offset=".5" stop-color="#b8422b"/><stop offset="1" stop-color="#76271f"/></radialGradient>
+  <linearGradient id="noodle" x1="0" y1="0" x2=".2" y2="1"><stop stop-color="#ffe4a0"/><stop offset=".48" stop-color="#e8b957"/><stop offset="1" stop-color="#b9772e"/></linearGradient>
+  <linearGradient id="olive" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#565247"/><stop offset=".55" stop-color="#262820"/><stop offset="1" stop-color="#111512"/></linearGradient>
+  <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feGaussianBlur stdDeviation="4"/></filter>
+  <g id="olive-piece"><ellipse rx="7.2" ry="5.2" fill="url(#olive)" stroke="#0d100f" stroke-width="1"/><ellipse rx="2.3" ry="1.8" fill="#111513" stroke="#a8a080" stroke-width=".8"/><path d="M-3 -2 Q0 -4 3 -2" fill="none" stroke="#a9a08a" stroke-opacity=".55" stroke-width=".8"/></g>
+  <g id="caper"><circle r="3.1" fill="#8b9b58" stroke="#465331" stroke-width=".8"/><path d="M-1.5 -1.4 1.5 1.3M1.4 -1.2 -1.3 1.2" stroke="#c3cb88" stroke-width=".65" stroke-linecap="round"/></g>
+  <g id="parsley" fill="#8ca56b" stroke="#465b37" stroke-width=".55"><path d="M0 0 Q-10 -12 -2 -15 Q4 -12 0 0Z"/><path d="M0 0 Q3 -16 11 -12 Q11 -5 0 0Z"/><path d="M0 0 Q-4 7 -12 2 Q-10 -5 0 0Z"/><path d="M0 0 8 8" fill="none" stroke-width="1.1"/></g>
+</defs>
+<ellipse cx="120" cy="180" rx="78" ry="12" fill="#000" opacity=".28" filter="url(#shadow)"/>
+<ellipse cx="120" cy="137" rx="91" ry="55" fill="url(#plate)" stroke="url(#rim)" stroke-width="2.4"/>
+<ellipse cx="120" cy="136" rx="82" ry="46" fill="#171a1a" stroke="#8b6547" stroke-opacity=".62" stroke-width="1.2"/>
+<ellipse cx="120" cy="135" rx="73" ry="39" fill="url(#sauce)"/>
+<ellipse cx="120" cy="135" rx="66" ry="33" fill="none" stroke="#f18a50" stroke-opacity=".35" stroke-width="1.5"/>
+<path d="M62 123 C73 101 100 105 112 121 S145 150 166 126 S175 111 179 117" fill="none" stroke="#7e321e" stroke-width="25" stroke-linecap="round"/>
+<path d="M65 137 C82 111 104 116 123 134 S153 151 173 132" fill="none" stroke="#7e321e" stroke-width="24" stroke-linecap="round"/>
+<g fill="none" stroke="url(#noodle)" stroke-width="17" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M62 122 C74 101 101 105 112 121 S145 150 166 126 S175 111 179 117"/>
+  <path d="M65 137 C82 111 104 116 123 134 S153 151 173 132"/>
+  <path d="M76 112 C90 136 111 146 126 125 S151 108 163 121"/>
+  <path d="M83 146 C91 128 106 127 118 143 S146 145 158 132"/>
+  <path d="M91 111 C102 101 121 105 131 119 S151 135 164 119"/>
+</g>
+<g fill="none" stroke="#fff0b4" stroke-width="2.3" stroke-linecap="round" opacity=".78">
+  <path d="M70 119 C81 105 98 108 105 118"/><path d="M86 141 C95 130 104 131 112 140"/><path d="M132 124 C143 140 155 141 166 130"/><path d="M112 112 C123 108 132 117 136 123"/>
+</g>
+<g fill="#d85a35" stroke="#8c3023" stroke-width=".8">
+  <path d="M73 109 80 105 86 111 82 118 74 116Z"/><path d="M145 143 153 137 160 143 156 150 148 150Z"/><path d="M112 128 118 123 124 128 121 135 114 135Z"/><path d="M94 150 101 145 106 150 103 156 96 156Z"/>
+</g>
+<g fill="#a8b06c" stroke="#59643b" stroke-width=".7"><circle cx="69" cy="132" r="2.3"/><circle cx="139" cy="110" r="2.2"/><circle cx="171" cy="120" r="2.4"/><circle cx="129" cy="150" r="2.1"/></g>
+<use href="#olive-piece" x="91" y="116" transform="rotate(-18 91 116)"/>
+<use href="#olive-piece" x="133" y="132" transform="rotate(22 133 132)"/>
+<use href="#olive-piece" x="158" y="112" transform="rotate(-12 158 112)"/>
+<use href="#olive-piece" x="106" y="145" transform="rotate(16 106 145)"/>
+<use href="#caper" x="82" y="128"/><use href="#caper" x="119" y="108"/><use href="#caper" x="148" y="126"/><use href="#caper" x="137" y="146"/><use href="#caper" x="99" y="133"/>
+<g fill="#c08b55" stroke="#805331" stroke-width=".6"><path d="M102 105 Q110 101 114 106 L109 111 102 110Z"/><path d="M160 137 Q168 133 171 138 L166 143 160 142Z"/></g>
+<use href="#parsley" x="117" y="99" transform="rotate(10 117 99)"/><use href="#parsley" x="151" y="151" transform="rotate(26 151 151)"/>
+<path d="M57 130 Q48 102 70 86" fill="none" stroke="#fff3dc" stroke-opacity=".22" stroke-width="2.2" stroke-linecap="round"/>
+</svg>

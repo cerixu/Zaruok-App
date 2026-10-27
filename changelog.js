@@ -5,6 +5,28 @@
    ========================================================================== */
 
 export const CHANGELOG = Object.freeze({
+  '2.1.34': Object.freeze({
+    intro: 'Żarłok 2.1.34 — lekkie, przezroczyste SVG dla gnocchi al pomodoro, pizzy Margherita, Carbonary, lasagne, tiramisù, spaghetti all’amatriciana, focaccia genovese, spaghetti alla puttanesca, Fettuccine Alfredo, Cacio e pepe, bruschetty al pomodoro, risotto ai funghi i minestrone.',
+    items: [
+      'Zastąpiono ciężką ilustrację gnocchi o rozmiarze około 125 KB samodzielnym SVG około 6,3 KB.',
+      'Odświeżono ilustrację pizzy Margherita: rumiany rant, sos pomidorowy, mozzarella i bazylia na przezroczystym tle (4,8 KB).',
+      'Dopracowano Carbonarę: więcej naturalnych pasm spaghetti, rumiane guanciale, płatki pecorino i pieprz na grafitowej misie; przezroczyste SVG zmniejszono do 6,0 KB.',
+      'Przebudowano ilustrację lasagne alla bolognese: czytelne warstwy makaronu, ragù i beszamelu, złocista powierzchnia oraz bazyliowe wykończenie (4,1 KB).',
+      'Przebudowano tiramisù: usunięto pełnoekranowe tło, dopracowano warstwy biszkoptu kawowego, krem mascarpone i oprószenie kakao.',
+      'Usunięto pełnoekranowe tło z spaghetti all’amatriciana i aktywowano dedykowane SVG dla dokładnej nazwy receptury.',
+      'Zachowano istniejące mapowanie receptur i precache offline dla wszystkich ilustracji objętych wydaniem.',
+      'Dodano dedykowane SVG focaccia genovese (4,9 KB), mapowanie klasycznej receptury i zasób w precache offline.',
+      'Usunięto pełnoekranowe tło ze spaghetti alla puttanesca; zachowano istniejące mapowanie receptury i precache, a ilustracja ma przezroczyste tło.',
+      'Przebudowano Fettuccine Alfredo: kremowe wstążki makaronu, parmezan, pieprz i natka na grafitowym talerzu z ciepłym rantem; SVG ma przezroczyste tło (4,6 KB).',
+      'Dodano lekkie SVG Cacio e pepe (około 8,1 KB) z przezroczystym tłem i dedykowanym mapowaniem; zasób trafia do precache offline.',
+      'Odświeżono bruschettę al pomodoro: trzy rumiane grzanki, soczyste pomidory, bazylia i oliwa na grafitowym talerzu; SVG 11,2 KB z przezroczystym tłem.',
+      'Przebudowano gnocchi z masłem szałwiowym: rumiane poduszeczki, emulsja masła, świeża szałwia i parmezan na grafitowej ceramice; SVG z przezroczystym tłem.',
+      'Odświeżono risotto ai funghi: kremowe ziarna ryżu, rumiane grzyby, natka pietruszki i płatki Parmigiano Reggiano na grafitowym talerzu; lekkie SVG 5,4 KB z przezroczystym tłem.',
+      'Odświeżono ilustrację minestrone: pomidorowy bulion, fasola cannellini, marchew, cukinia i drobny makaron w grafitowej misie; SVG 4,7 KB z przezroczystym tłem.',
+      'Audyt sprawdza rozmiar, dostępność, referencje i brak pełnoekranowego tła.'
+    ]
+  }),
+
   '2.1.33': Object.freeze({
     intro: 'Żarłok 2.1.33 — lekkie ilustracje SVG z przezroczystym tłem.',
     items: [

@@ -68,7 +68,7 @@ try {
     console.log('PASS SVG prototype visual ' + device.name + ': ' + JSON.stringify(result));
 
     const productionFiles = [
-      'bruschetta.svg', 'carbonara.svg', 'gnocchi-pomodoro.svg', 'lasagna.svg',
+      'bruschetta.svg', 'carbonara.svg', 'cacio-e-pepe.svg', 'focaccia.svg', 'gnocchi-pomodoro.svg', 'lasagna.svg', 'spaghetti-puttanesca.svg',
       'panna-cotta.svg', 'pizza-margherita.svg', 'ravioli-ricotta-spinaci.svg',
       'risotto-funghi.svg', 'tagliatelle-ragu.svg', 'tiramisu.svg',
     ];
@@ -89,7 +89,7 @@ try {
     }, { files: productionFiles, origin: baseUrl });
     await page.waitForFunction(() => {
       const imgs = [...document.querySelectorAll('[data-production-svg]')];
-      return imgs.length === 10 && imgs.every((img) => { const ratio = img.naturalWidth / img.naturalHeight; const expected = img.dataset.productionSvg === 'carbonara.svg' ? (1517 / 1172) : 1; return img.complete && img.naturalWidth > 0 && img.naturalHeight > 0 && Math.abs(ratio - expected) < 0.02; });
+      return imgs.length === 13 && imgs.every((img) => { const ratio = img.naturalWidth / img.naturalHeight; const expected = img.dataset.productionSvg === 'carbonara.svg' ? (1517 / 1172) : 1; return img.complete && img.naturalWidth > 0 && img.naturalHeight > 0 && Math.abs(ratio - expected) < 0.02; });
     }, null, { timeout: 20000 });
     const productionResult = await page.evaluate(() => [...document.querySelectorAll('[data-production-svg]')].map((img) => {
       const canvas = document.createElement('canvas');
@@ -107,7 +107,7 @@ try {
         opaqueEdgeSamples,
       };
     }));
-    if (productionResult.length !== 10 || productionResult.some((img) => img.width <= 0 || img.height <= 0 || Math.abs(img.width / img.height - (img.file === 'carbonara.svg' ? (1517 / 1172) : 1)) >= 0.02)) {
+    if (productionResult.length !== 13 || productionResult.some((img) => img.width <= 0 || img.height <= 0 || Math.abs(img.width / img.height - (img.file === 'carbonara.svg' ? (1517 / 1172) : 1)) >= 0.02)) {
       throw new Error('Nie wszystkie produkcyjne SVG renderują się poprawnie na ' + device.name + ': ' + JSON.stringify(productionResult));
     }
     const migratedBruschetta = productionResult.find((asset) => asset.file === 'bruschetta.svg');
@@ -116,6 +116,8 @@ try {
     if (!migratedTagliatelle || migratedTagliatelle.opaqueEdgeSamples !== 0) throw new Error('Tagliatelle al ragù nie ma przezroczystych krawędzi na ' + device.name + ': ' + JSON.stringify(migratedTagliatelle));
     const migratedCarbonara = productionResult.find((asset) => asset.file === 'carbonara.svg');
     if (!migratedCarbonara || migratedCarbonara.opaqueEdgeSamples !== 0) throw new Error('Carbonara produkcyjna nie ma przezroczystych krawędzi na ' + device.name + ': ' + JSON.stringify(migratedCarbonara));
+    const migratedCacio = productionResult.find((asset) => asset.file === 'cacio-e-pepe.svg');
+    if (!migratedCacio || migratedCacio.opaqueEdgeSamples !== 0) throw new Error('Cacio e pepe nie ma przezroczystych krawędzi na ' + device.name + ': ' + JSON.stringify(migratedCacio));
     const migratedLasagna = productionResult.find((asset) => asset.file === 'lasagna.svg');
     if (!migratedLasagna || migratedLasagna.opaqueEdgeSamples !== 0) throw new Error('Lasagne produkcyjne nie mają przezroczystych krawędzi na ' + device.name + ': ' + JSON.stringify(migratedLasagna));
     const migratedPizza = productionResult.find((asset) => asset.file === 'pizza-margherita.svg');
@@ -126,14 +128,18 @@ try {
     if (!migratedRavioli || migratedRavioli.opaqueEdgeSamples !== 0) throw new Error('Ravioli ricotta e spinaci nie mają przezroczystych krawędzi na ' + device.name + ': ' + JSON.stringify(migratedRavioli));
     const migratedRisotto = productionResult.find((asset) => asset.file === 'risotto-funghi.svg');
     if (!migratedRisotto || migratedRisotto.opaqueEdgeSamples !== 0) throw new Error('Risotto ai funghi nie ma przezroczystych krawędzi na ' + device.name + ': ' + JSON.stringify(migratedRisotto));
+    const migratedFocaccia = productionResult.find((asset) => asset.file === 'focaccia.svg');
+    if (!migratedFocaccia || migratedFocaccia.opaqueEdgeSamples !== 0) throw new Error('Focaccia nie ma przezroczystych krawędzi na ' + device.name + ': ' + JSON.stringify(migratedFocaccia));
+    const migratedPuttanesca = productionResult.find((asset) => asset.file === 'spaghetti-puttanesca.svg');
+    if (!migratedPuttanesca || migratedPuttanesca.opaqueEdgeSamples !== 0) throw new Error('Spaghetti alla puttanesca nie ma przezroczystych krawędzi na ' + device.name + ': ' + JSON.stringify(migratedPuttanesca));
     const legacyBackgrounds = productionResult.filter((asset) => asset.opaqueEdgeSamples > 0);
-    console.log('PASS production SVG rendering ' + device.name + ': ' + productionResult.length + ' assetów; Carbonara zachowuje proporcje 1517×1172 z przezroczystym marginesem, pozostałe są kwadratowe; bruschetta, tagliatelle, carbonara, lasagne, pizza Margherita, panna cotta, ravioli i risotto mają przezroczyste krawędzie');
+    console.log('PASS production SVG rendering ' + device.name + ': ' + productionResult.length + ' assetów; Carbonara zachowuje proporcje 1517×1172 z przezroczystym marginesem, pozostałe są kwadratowe; bruschetta, tagliatelle, carbonara, Cacio e pepe, focaccia, spaghetti alla puttanesca, lasagne, pizza Margherita, panna cotta, ravioli i risotto mają przezroczyste krawędzie');
     if (legacyBackgrounds.length) console.warn('AUDIT: production SVG z nieprzezroczystymi pikselami przy krawędzi (do osobnej migracji): ' + legacyBackgrounds.map((asset) => asset.file + '=' + asset.opaqueEdgeSamples).join(', '));
     const compareResponse = await page.goto(baseUrl + '/design/svg-production-compare.html', { waitUntil: 'networkidle' });
     if (!compareResponse?.ok()) throw new Error('Podgląd porównawczy SVG nie ładuje się na ' + device.name + ': HTTP ' + compareResponse?.status());
     await page.waitForFunction(() => {
       const imgs = [...document.querySelectorAll('img[data-asset-id]')];
-      return imgs.length === 90 && imgs.every((img) => img.complete && img.naturalWidth > 0 && img.naturalHeight > 0);
+      return imgs.length === 99 && imgs.every((img) => img.complete && img.naturalWidth > 0 && img.naturalHeight > 0);
     }, null, { timeout: 30000 });
     const compareResult = await page.evaluate(() => {
       const imgs = [...document.querySelectorAll('img[data-asset-id]')];
@@ -180,8 +186,8 @@ try {
         })),
       };
     });
-    if (compareResult.renderedImages !== 90 || compareResult.uniqueAssets !== 30 ||
-        compareResult.productionAssets !== 10 || compareResult.prototypeAssets !== 20 ||
+    if (compareResult.renderedImages !== 99 || compareResult.uniqueAssets !== 33 ||
+        compareResult.productionAssets !== 13 || compareResult.prototypeAssets !== 20 ||
         compareResult.backgroundVariants !== 3 || compareResult.broken.length || compareResult.externalSources.length) {
       throw new Error('Niekompletny lub zewnętrzny zasób w podglądzie porównawczym na ' + device.name + ': ' + JSON.stringify(compareResult));
     }

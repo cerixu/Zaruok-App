@@ -212,6 +212,7 @@ function attach(img, key) {
 // Lokalny zestaw ilustracji SVG premium. Pliki są zapisywane w repo i działają offline.
 const SVG_RECIPE_RULES = [
   // Wąskie reguły dla kolejnej paczki ilustracji produkcyjnych.
+  ['minestrone', /^(?:minestrone|minestrone classica|zuppa minestrone|zupa minestrone)$/],
   ['tomato-soup', /^(?:krem pomidorowy(?: z bazylia)?|zupa pomidorowa(?: klasyczna)?|pomidorowa)$/],
   ['burger', /^(?:burger klasyczny|hamburger klasyczny|classic burger|burger wolowy klasyczny)$/],
   ['greek-salad', /^(?:salatka grecka|salatka grecka klasyczna|greek salad)$/],
@@ -222,14 +223,16 @@ const SVG_RECIPE_RULES = [
   ['pierogi-ruskie', /^(?:pierogi ruskie|pierogi ruskie tradycyjne|pierogi ruskie z cebulka)$/],
   ['caesar-salad', /^(?:salatka cezar|salatka cezar z kurczakiem|caesar salad)$/],
   ['mushroom-soup', /^(?:krem z grzybow|krem grzybowy|zupa krem z grzybow|zupa grzybowa krem)$/],
+  ['focaccia', /^(?:focaccia|focaccia genovese|focaccia classica|focaccia classica ligure)$/],
   // Wąskie reguły: nie dopasowuj ilustracji klasycznego dania do wariantu smakowego.
   ['carbonara', /\b(spaghetti carbonara|carbonara tradycyjna|carbonara klasyczna|carbonara tradizionale|pasta alla carbonara)\b/],
   ['pizza-margherita', /\b(pizza margherita|margherita neapolitanska|margherita classica|neapolitan margherita)\b/],
   ['lasagna', /\b(lasagne alla bolognese|lasagna bolognese|lasagne bolognese|lasagne tradycyjne|lasagne klasyczne)\b/],
   ['risotto-funghi', /\b(risotto ai funghi|risotto funghi|risotto z grzybami|risotto grzybowe|risotto z pieczarkami)\b/],
   ['gnocchi-pomodoro', /\b(gnocchi al pomodoro|gnocchi w sosie pomidorowym|gnocchi z sosem pomidorowym)\b/],
-  ['cacio-e-pepe', /^(?:cacio e pepe|tonnarelli cacio e pepe|spaghetti cacio e pepe|pasta cacio e pepe)$/],
   ['tagliatelle-ragu', /\b(tagliatelle al ragu|tagliatelle z ragu|tagliatelle bolognese|tagliatelle z sosem bolognese)\b/],
+  ['spaghetti-amatriciana', /\b(?:spaghetti all amatriciana|pasta all amatriciana|amatriciana classica)\b/],
+  ['cacio-e-pepe', /^(?:cacio e pepe|tonnarelli cacio e pepe|spaghetti cacio e pepe|pasta cacio e pepe)$/],
   ['tiramisu', /^(?!.*\b(?:matcha|pistac\w*|truskawk\w*|malin\w*|cytryn\w*)\b).*?\btiramisu\b/],
   // Tylko klasyczna panna cotta; warianty smakowe wymagają własnej ilustracji.
   ['panna-cotta', /^(?:panna cotta|panna cotta klasyczna|panna cotta tradycyjna|panna cotta waniliowa|panna cotta vanilla|panna cotta classica)$/],
@@ -243,11 +246,11 @@ const SVG_FILES = Object.freeze({
   lasagna: 'lasagna.svg',
   'risotto-funghi': 'risotto-funghi.svg',
   'gnocchi-pomodoro': 'gnocchi-pomodoro.svg',
-  'cacio-e-pepe': 'cacio-e-pepe.svg',
   'tagliatelle-ragu': 'tagliatelle-ragu.svg',
   tiramisu: 'tiramisu.svg',
   'panna-cotta': 'panna-cotta.svg',
   bruschetta: 'bruschetta.svg',
+  focaccia: 'focaccia.svg',
   'ravioli-ricotta-spinaci': 'ravioli-ricotta-spinaci.svg',
   'tomato-soup': 'tomato-soup.svg',
   burger: 'burger.svg',
@@ -262,6 +265,7 @@ const SVG_FILES = Object.freeze({
   'gnocchi-sage': 'gnocchi-sage.svg',
   'spaghetti-puttanesca': 'spaghetti-puttanesca.svg',
   'spaghetti-amatriciana': 'spaghetti-amatriciana.svg',
+  'cacio-e-pepe': 'cacio-e-pepe.svg',
   'ragu-bolognese': 'ragu-bolognese.svg',
   'penne-arrabbiata': 'penne-arrabbiata.svg',
   'fettuccine-alfredo': 'fettuccine-alfredo.svg',

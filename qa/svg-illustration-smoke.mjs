@@ -91,7 +91,7 @@ console.log(`PASS: ${fixtures.length} wzorcowych ilustracji SVG przeszło audyt`
 
 const productionRoot = 'assets/food-svg';
 const productionAssets = [
-  'bruschetta.svg', 'carbonara.svg', 'gnocchi-pomodoro.svg', 'lasagna.svg',
+  'bruschetta.svg', 'carbonara.svg', 'cacio-e-pepe.svg', 'gnocchi-pomodoro.svg', 'lasagna.svg',
   'panna-cotta.svg', 'pizza-margherita.svg', 'ravioli-ricotta-spinaci.svg',
   'risotto-funghi.svg', 'tagliatelle-ragu.svg', 'tiramisu.svg',
   'tomato-soup.svg', 'burger.svg', 'greek-salad.svg', 'mojito.svg', 'sushi-maki.svg',
@@ -103,6 +103,8 @@ const serviceWorkerSource = fs.readFileSync('sw.js', 'utf8');
 const photoMappingSource = fs.readFileSync('food-photos.js', 'utf8');
 assert.ok(photoMappingSource.includes("  'tagliatelle-ragu': 'tagliatelle-ragu.svg',"), 'Tagliatelle al ragù musi zachować dedykowane mapowanie produkcyjnego SVG');
 assert.ok(photoMappingSource.includes("  carbonara: 'carbonara.svg',"), 'Carbonara musi zachować dedykowane mapowanie produkcyjnego SVG');
+assert.ok(photoMappingSource.includes("  'cacio-e-pepe': 'cacio-e-pepe.svg',"), 'Cacio e pepe musi zachować dedykowane mapowanie produkcyjnego SVG');
+assert.ok(photoMappingSource.includes("  'gnocchi-pomodoro': 'gnocchi-pomodoro.svg',"), 'Gnocchi al pomodoro musi zachować dedykowane mapowanie produkcyjnego SVG');
 assert.ok(photoMappingSource.includes("  lasagna: 'lasagna.svg',"), 'Lasagne alla bolognese musi zachować dedykowane mapowanie produkcyjnego SVG');
 assert.ok(photoMappingSource.includes("  'pizza-margherita': 'pizza-margherita.svg',"), 'Pizza Margherita musi zachować dedykowane mapowanie produkcyjnego SVG');
 assert.ok(photoMappingSource.includes("  'panna-cotta': 'panna-cotta.svg',"), 'Panna cotta musi zachować dedykowane mapowanie produkcyjnego SVG');
@@ -121,10 +123,12 @@ assert.ok(photoMappingSource.includes("  'mushroom-soup': 'mushroom-soup.svg',")
 assert.ok(photoMappingSource.includes("  'gnocchi-sage': 'gnocchi-sage.svg',"), 'Gnocchi z masłem szałwiowym muszą mieć dedykowane SVG');
 assert.ok(photoMappingSource.includes("  'spaghetti-puttanesca': 'spaghetti-puttanesca.svg',"), 'Spaghetti alla puttanesca musi mieć dedykowane SVG');
 assert.ok(photoMappingSource.includes("  'spaghetti-amatriciana': 'spaghetti-amatriciana.svg',"), 'Spaghetti all’amatriciana musi mieć dedykowane SVG');
+assert.ok(photoMappingSource.includes("  ['spaghetti-amatriciana', /"), 'Spaghetti all’amatriciana musi mieć precyzyjną regułę nazwy receptury');
 assert.ok(photoMappingSource.includes("  'ragu-bolognese': 'ragu-bolognese.svg',"), 'Ragù alla bolognese musi mieć dedykowane SVG');
 assert.ok(photoMappingSource.includes("  'penne-arrabbiata': 'penne-arrabbiata.svg',"), 'Penne all’arrabbiata musi mieć dedykowane SVG');
 assert.ok(photoMappingSource.includes("  'fettuccine-alfredo': 'fettuccine-alfredo.svg',"), 'Fettuccine Alfredo musi mieć dedykowane SVG');
 assert.ok(photoMappingSource.includes("  minestrone: 'minestrone.svg',"), 'Minestrone musi mieć dedykowane SVG');
+assert.ok(photoMappingSource.includes("  ['minestrone', /^(?:minestrone|minestrone classica|zuppa minestrone|zupa minestrone)$/],"), 'Minestrone musi mieć precyzyjną regułę nazwy receptury');
 assert.ok(photoMappingSource.includes("  panzanella: 'panzanella.svg',"), 'Panzanella musi mieć dedykowane SVG');
 assert.ok(photoMappingSource.includes("  'parmigiana-melanzane': 'parmigiana-melanzane.svg',"), 'Parmigiana di melanzane musi mieć dedykowane SVG');
 assert.ok(photoMappingSource.includes("  'pizza-pepperoni': 'pizza-pepperoni.svg',"), 'Pizza pepperoni musi mieć dedykowane SVG');
@@ -137,6 +141,7 @@ for (const file of productionAssets) {
   productionTotalBytes += size;
   assert.ok(size < 1_500_000, file + ': SVG powinien mieć mniej niż 1,5 MB (ma ' + size + ' B)');
   if (file === 'carbonara.svg') assert.ok(size < 25_000, 'Carbonara powinna być lekkim SVG poniżej 25 KB (ma ' + size + ' B)');
+  if (file === 'gnocchi-pomodoro.svg') assert.ok(size < 10_000, 'Gnocchi al pomodoro powinno być lekkim SVG poniżej 10 KB (ma ' + size + ' B)');
   if (file === 'lasagna.svg') assert.ok(size < 5_000, 'Lasagne powinna pozostać lekkim SVG poniżej 5 KB (ma ' + size + ' B)');
   if (file === 'pizza-margherita.svg') assert.ok(size < 5_000, 'Pizza Margherita powinna pozostać lekkim SVG poniżej 5 KB (ma ' + size + ' B)');
   if (file === 'panna-cotta.svg') assert.ok(size < 5_000, 'Panna cotta powinna pozostać lekkim SVG poniżej 5 KB (ma ' + size + ' B)');
@@ -153,6 +158,17 @@ for (const file of productionAssets) {
     assert.equal(viewBox[1], '0', file + ': początek viewBox X musi wynosić 0');
     assert.equal(viewBox[2], '0', file + ': początek viewBox Y musi wynosić 0');
     assert.equal(viewBox[3], viewBox[4], file + ': viewBox musi być kwadratowy');
+  }
+  if (file === 'spaghetti-amatriciana.svg') {
+    assert.equal(hasOpaqueFullCanvasPath(source, 240), false, 'Spaghetti all’amatriciana nie może mieć nieprzezroczystej ścieżki tła całego obszaru');
+    assert.doesNotMatch(source, /<rect\b[^>]*(?:width="(?:100%|240|1024)"[^>]*height="(?:100%|240|1024)"|height="(?:100%|240|1024)"[^>]*width="(?:100%|240|1024)")/i, 'Spaghetti all’amatriciana nie może mieć pełnoekranowego prostokąta tła');
+    assert.match(source, /przezroczystym tle/i, 'Spaghetti all’amatriciana musi dokumentować przezroczyste tło');
+  }
+  if (file === 'gnocchi-pomodoro.svg') {
+    assert.equal(hasOpaqueFullCanvasPath(source, 240), false, 'Gnocchi al pomodoro nie może mieć nieprzezroczystej ścieżki tła całego obszaru');
+    assert.doesNotMatch(source, /<rect\b[^>]*(?:width="(?:100%|240|1024)"[^>]*height="(?:100%|240|1024)"|height="(?:100%|240|1024)"[^>]*width="(?:100%|240|1024)")/i, 'Gnocchi al pomodoro nie może mieć pełnoekranowego prostokąta tła');
+    assert.match(source, /Gnocchi al pomodoro/, 'Gnocchi al pomodoro musi mieć właściwą semantykę dania');
+    assert.match(source, /przezroczystym tle/i, 'Gnocchi al pomodoro musi dokumentować przezroczyste tło');
   }
   assert.match(source, /role="img"/, file + ': brak semantycznej roli obrazu');
   const ariaLabel = source.match(/aria-label="([^"]+)"/);

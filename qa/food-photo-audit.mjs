@@ -138,7 +138,7 @@ for (const [recipe, expected] of correctPhotoCases) {
 }
 
 const svgAssets = [
-  'bruschetta.svg', 'carbonara.svg', 'gnocchi-pomodoro.svg', 'lasagna.svg',
+  'bruschetta.svg', 'carbonara.svg', 'cacio-e-pepe.svg', 'focaccia.svg', 'gnocchi-pomodoro.svg', 'lasagna.svg',
   'panna-cotta.svg', 'pizza-margherita.svg', 'ravioli-ricotta-spinaci.svg',
   'risotto-funghi.svg', 'tagliatelle-ragu.svg', 'tiramisu.svg',
 ];
@@ -161,6 +161,7 @@ const correctSvgCases = [
   ['Lasagne alla bolognese', 'lasagna'],
   ['Risotto ai funghi', 'risotto-funghi'],
   ['Gnocchi al pomodoro', 'gnocchi-pomodoro'],
+  ['Cacio e pepe', 'cacio-e-pepe'],
   ['Tagliatelle al ragù', 'tagliatelle-ragu'],
   ['Tiramisù', 'tiramisu'],
   ['Tiramisu klasyczne', 'tiramisu'],
@@ -170,6 +171,8 @@ const correctSvgCases = [
   ['Panna cotta tradycyjna', 'panna-cotta'],
   ['Panna cotta waniliowa', 'panna-cotta'],
   ['Bruschetta al pomodoro', 'bruschetta'],
+  ['Focaccia', 'focaccia'],
+  ['Focaccia genovese', 'focaccia'],
   ['Ravioli ricotta e spinaci', 'ravioli-ricotta-spinaci'],
 ];
 for (const [name, expected] of correctSvgCases) {
@@ -182,7 +185,7 @@ const svgMustNotMatch = [
   'Panna cotta pistacjowa', 'Panna cotta al limone', 'Panna cotta truskawkowa',
   'Panna cotta z malinami', 'Panna cotta czekoladowa', 'Panna cotta matcha',
   'Panna cotta waniliowa z malinami',
-  'Pizza Diavola', 'Gnocchi z masłem szałwiowym', 'Ravioli z mięsem',
+  'Pizza Diavola', 'Gnocchi z masłem szałwiowym', 'Ravioli z mięsem', 'Cacio e pepe al tartufo',
 ];
 for (const name of svgMustNotMatch) {
   if (recipeSvgKey({ name }) !== null) throw new Error('Ilustracja SVG nie pasuje do wariantu: ' + name);

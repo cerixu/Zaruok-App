@@ -1,7 +1,68 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="svg-title svg-desc">
-<title id="svg-title">Fettuccine Alfredo</title><desc id="svg-desc">Szerokie wstążki fettuccine w kremowym sosie maślano-parmezanowym, z pieprzem i natką na talerzu.</desc>
-<defs><linearGradient id="plate" x2="1" y2="1"><stop stop-color="#fffdf4"/><stop offset="1" stop-color="#b9c5bd"/></linearGradient><linearGradient id="cream" x2="0" y2="1"><stop stop-color="#fff0c5"/><stop offset="1" stop-color="#d9b36b"/></linearGradient></defs>
-<ellipse cx="120" cy="162" rx="97" ry="35" fill="#111916" opacity=".12"/><ellipse cx="120" cy="151" rx="100" ry="43" fill="url(#plate)" stroke="#fff5e3" stroke-width="3"/><ellipse cx="120" cy="151" rx="83" ry="30" fill="none" stroke="#c8d0c8" stroke-width="1.5"/>
-<g fill="none" stroke="url(#cream)" stroke-width="8" stroke-linecap="round"><path d="M64 135q-15-24 9-35t39 12q17 18-2 31t-31-4q-12-16 9-27t40 9q18 18 0 31t-31-3q-11-15 10-27t39 9q18 18 1 31"/><path d="M74 153q-10-16 9-27t34 8q17 16 1 26t-28-2q-9-12 8-22t34 8q16 15 1 24t-26-2"/></g>
-<g fill="none" stroke="#fff9e6" stroke-width="2.3" stroke-linecap="round"><path d="M64 132q-12-20 9-30t37 11M88 127q18-14 39 8M109 147q-10-13 10-23t35 8M142 154q18-14 32 2"/></g>
-<g fill="#4e8b49"><ellipse cx="103" cy="100" rx="9" ry="4" transform="rotate(-30 103 100)"/><ellipse cx="115" cy="104" rx="8" ry="4" transform="rotate(30 115 104)"/><ellipse cx="165" cy="111" rx="8" ry="4" transform="rotate(-20 165 111)"/></g><path d="M112 100q-12-12-5-20 11 3 10 12 10-9 16-1-5 12-21 9Z" fill="#4c8b48"/><g fill="#6c5643"><circle cx="80" cy="118" r="2"/><circle cx="135" cy="120" r="2"/><circle cx="151" cy="145" r="2"/><circle cx="102" cy="160" r="2"/><circle cx="174" cy="139" r="1.7"/></g><g fill="#f5e7c5"><path d="M93 116l4-6 3 4-4 4Z"/><path d="M148 128l4-6 3 4-4 4Z"/><path d="M123 160l4-6 3 4-4 4Z"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 240 240" role="img" aria-labelledby="title-alfredo desc-alfredo">
+  <title id="title-alfredo">Fettuccine Alfredo — ilustracja SVG Żarłok</title>
+  <desc id="desc-alfredo">Wstążki fettuccine w kremowym sosie maślano-serowym, z płatkami parmezanu, czarnym pieprzem i natką, na grafitowym talerzu. Przezroczyste tło.</desc>
+  <defs>
+    <linearGradient id="plate-glaze" x1="0" y1="0" x2=".15" y2="1">
+      <stop stop-color="#414447"/>
+      <stop offset=".55" stop-color="#292c2f"/>
+      <stop offset="1" stop-color="#17191c"/>
+    </linearGradient>
+    <linearGradient id="plate-rim" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#d4a16b"/>
+      <stop offset=".48" stop-color="#80512f"/>
+      <stop offset="1" stop-color="#c58b55"/>
+    </linearGradient>
+    <linearGradient id="pasta" x1="0" y1="0" x2=".25" y2="1">
+      <stop stop-color="#fff0c6"/>
+      <stop offset=".48" stop-color="#f2d58e"/>
+      <stop offset="1" stop-color="#c9984e"/>
+    </linearGradient>
+    <linearGradient id="pasta-light" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#fff8e4"/>
+      <stop offset="1" stop-color="#f0dca9"/>
+    </linearGradient>
+  </defs>
+
+  <ellipse cx="120" cy="164" rx="94" ry="31" fill="#000" opacity=".25"/>
+  <ellipse cx="120" cy="151" rx="99" ry="42" fill="url(#plate-glaze)" stroke="url(#plate-rim)" stroke-width="1.8"/>
+  <ellipse cx="120" cy="151" rx="87" ry="34" fill="none" stroke="#f0d7b8" stroke-opacity=".2" stroke-width="1.1"/>
+  <ellipse cx="120" cy="151" rx="79" ry="28" fill="none" stroke="#0c0e10" stroke-opacity=".5" stroke-width="1.2"/>
+
+  <g fill="none" stroke="#a9793e" stroke-width="12" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M64 133 C51 118 64 103 80 106 C97 109 101 122 91 132 C81 142 68 135 74 125 C80 115 94 118 104 129 C116 142 108 153 96 151 C83 149 83 139 93 133 C105 126 119 137 124 148"/>
+    <path d="M79 146 C66 133 75 118 90 119 C105 120 111 132 102 141 C93 150 82 143 87 134 C92 125 104 128 113 138 C123 149 118 160 107 160 C97 160 95 151 103 145"/>
+    <path d="M111 126 C102 114 112 104 126 107 C140 110 148 122 140 132 C132 142 121 135 124 126 C128 117 140 120 149 130 C158 141 153 151 143 151 C132 150 132 141 140 136"/>
+    <path d="M137 143 C127 132 137 120 151 124 C164 128 169 140 160 149 C152 157 141 151 145 142 C149 134 160 137 167 145"/>
+  </g>
+  <g fill="none" stroke="url(#pasta)" stroke-width="8.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M64 133 C51 118 64 103 80 106 C97 109 101 122 91 132 C81 142 68 135 74 125 C80 115 94 118 104 129 C116 142 108 153 96 151 C83 149 83 139 93 133 C105 126 119 137 124 148"/>
+    <path d="M79 146 C66 133 75 118 90 119 C105 120 111 132 102 141 C93 150 82 143 87 134 C92 125 104 128 113 138 C123 149 118 160 107 160 C97 160 95 151 103 145"/>
+    <path d="M111 126 C102 114 112 104 126 107 C140 110 148 122 140 132 C132 142 121 135 124 126 C128 117 140 120 149 130 C158 141 153 151 143 151 C132 150 132 141 140 136"/>
+    <path d="M137 143 C127 132 137 120 151 124 C164 128 169 140 160 149 C152 157 141 151 145 142 C149 134 160 137 167 145"/>
+  </g>
+  <g fill="none" stroke="url(#pasta-light)" stroke-width="2.1" stroke-linecap="round" opacity=".92">
+    <path d="M64 130 C56 118 66 108 79 109 C89 110 94 117 91 123"/>
+    <path d="M81 143 C73 133 79 123 90 123 C98 124 102 130 99 135"/>
+    <path d="M113 123 C108 115 115 109 125 110 C134 112 139 119 136 125"/>
+    <path d="M139 141 C134 134 141 128 150 129 C156 131 160 136 157 141"/>
+  </g>
+
+  <g fill="#5c984c">
+    <path d="M117 108 C105 102 105 94 110 91 C118 94 121 100 119 105 C126 95 134 96 136 101 C132 108 125 110 117 108Z"/>
+    <path d="M119 107 C113 98 116 91 122 90 C128 96 127 102 123 107Z" fill="#78ae5c"/>
+    <path d="M119 108 L127 99" fill="none" stroke="#3c713b" stroke-width="1.4" stroke-linecap="round"/>
+  </g>
+  <g fill="#f8e8c3" stroke="#d9bd82" stroke-width=".55" stroke-linejoin="round">
+    <path d="M80 119 L85 112 L89 116 L85 122Z"/>
+    <path d="M103 119 L108 112 L112 116 L108 122Z"/>
+    <path d="M143 117 L148 110 L152 114 L148 120Z"/>
+    <path d="M130 145 L136 138 L140 142 L135 148Z"/>
+    <path d="M93 151 L98 145 L102 149 L98 154Z"/>
+  </g>
+  <g fill="#30231d" opacity=".9">
+    <circle cx="73" cy="140" r="1.5"/><circle cx="91" cy="115" r="1.4"/>
+    <circle cx="118" cy="136" r="1.5"/><circle cx="153" cy="135" r="1.4"/>
+    <circle cx="143" cy="157" r="1.2"/><circle cx="106" cy="154" r="1.2"/>
+    <circle cx="165" cy="146" r="1.1"/>
+  </g>
+</svg>
